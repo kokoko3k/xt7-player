@@ -20,6 +20,7 @@ Public MaxH As Integer
 Private mparent As Object
 Private exportfile As String
 Private spacingg As Integer
+Private AlreadyInit As Boolean = False
 
 Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pexportfile As String, pspacingg As Integer, fps As Integer)
   latency = platency
@@ -28,8 +29,17 @@ Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pe
   exportfile = pexportfile
   spacingg = pspacingg
   Try Object.Detach(timer1)
-  timer1 = New Timer As "timer1"
+  If Not AlreadyInit Then 
+    Debug "Made new meters timer"
+    timer1 = New Timer As "timer1"
+    AlreadyInit = True
+  Endif
   timer1.delay = 1000 Div fps
+  Debug "meters initialized at " & fps & " fps"
+End
+
+Public Function ChangeFps(fps As Integer)
+    timer1.delay = 1000 Div fps
 End
 
 
@@ -38,7 +48,8 @@ Public Sub Timer1_Timer()
   Dim bufsize, sync, meter As Integer
   Dim i, c, s, total, avg, start, sstop As Integer
   Dim samples As New Integer[]
-  hFile = Open exportfile For Input
+  Try hFile = Open exportfile For Input
+  If Error Then Return
   hFile.ByteOrder = gb.LittleEndian
   Try channels = Read #hfile As Integer
   Try bufsize = Read #hfile As Integer
@@ -63,6 +74,7 @@ Public Sub Stopp()
   
   Try timer1.stop
   buffer.clear
+  Debug "meters timer stopped"
 End
 
 Public Sub Startt()

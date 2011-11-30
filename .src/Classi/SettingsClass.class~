@@ -355,9 +355,9 @@ Public Sub Load(TheForm As Object, Filename As String)
     If Settings.Find(myobj.name) <> -1 Then
       'then we load it's properties:
       'extract name and properties from Settings array and pass them to reconfigure sub
-      If myobj.name Like "*extrastereo*" Then
-        Debug
-      Endif
+      ' If myobj.name Like "*extrastereo*" Then
+      '   Debug
+      ' Endif
       Subsettings = NameAndProperties(myobj.name, settings)
       Try Reconfigure(myobj, Subsettings, TheForm)
     Endif 

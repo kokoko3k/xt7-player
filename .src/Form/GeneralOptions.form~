@@ -958,6 +958,7 @@
           Spacing = True
           { ToolTipsCHKDBUS CheckBox
             MoveScaled(0,0,43,4)
+            ToolTip = ("Makes xt7 register itself into dbus.\nThis will export media properties and gives basic options to control the player.")
             Expand = True
             Text = ("Dbus support")
           }

@@ -128,7 +128,8 @@ FIX: Better handling of cached options
 FIX: Inserting expand filter into video chains works again
 FIX: Added polish (pl) to the list of enca supported language list 
 FIX: Added an option to just use fallback codepage if enca language is unlisted
-NEW: Optionally remembers last played files
+NEW: remembers last played files
+NEW: Optionally "start where you left" feature
 FIX: Only switch to browse tab at startup if the file exists
 FIX: Don't reset new settings after playing a media for the first time
 

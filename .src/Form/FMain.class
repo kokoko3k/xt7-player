@@ -522,16 +522,20 @@ Public Sub AllInit_Post()
   Endif
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
   
-  If GeneralOptions.ToolTipsCHKHISTORY.value Then updaterecentfiles()
+   updaterecentfiles()
   
 End
 
 Private RecentFileEntry As Menu
 
+
+Private HaveToPlay As String = ""
 Public Sub updaterecentfiles()
   Dim child As Menu
   Dim history, entry As String
   Dim historyarray As String[]
+  Dim sep As String = Chr(8)
+  Dim HaveToSeek As String = ""
   Try history = file.Load(global.Historyfile)
   If Error Then Return
   
@@ -544,13 +548,39 @@ Public Sub updaterecentfiles()
   For Each entry In historyarray
     RecentFileEntry = New Menu(MenuOpenRecent) As "RecentFileEntry"
     RecentFileEntry.name = Timer & Rnd(0, 10000)
-    RecentFileEntry.caption = entry
+    If entry Like "*" & sep & "*" Then 
+      If HaveToPlay = "" Then
+        Try HaveToPlay = Split(entry, sep, "", True, "")[0]
+        If Not Error Then 
+          Try HaveToSeek = Split(entry, sep, "", True, "")[1]
+          entry = HaveToPlay
+        Endif
+      Endif
+    Endif
+    If entry Like ("*" & sep & "*") Then
+      Try RecentFileEntry.caption = Split(entry, sep, "", True, "")[0]
+      If Error Then Return
+        Else
+      RecentFileEntry.caption = entry
+    Endif
     RecentFileEntry.Picture = picture["icon:/medium/recent"]
   Next 'entry
    RecentFileEntry = New Menu(MenuOpenRecent) As "ClearRecentFiles"
    RecentFileEntry.name = "menuclearrecent"
    RecentFileEntry.caption = "Clear History"
    RecentFileEntry.picture = picture["icon:/medium/delete"]
+   
+   'restore the previous media
+   If GeneralOptions.RestorePlayCHK.value Then
+    If HaveToPlay <> "" Then 
+      If HaveToSeek <> "" Then
+        If Not (PlayFromCommandline) Then 
+         Play(False, HaveToPlay, True, " -ss " & HaveToSeek & " " & cachedopts)
+        Endif
+      Endif
+    Endif
+   Endif
+   
 End
 
 
@@ -910,18 +940,23 @@ Public Sub SetSubControlsStyles(TheForm As Form)
   'descend into controls and set various attributes:
   
   Dim TheObject As Object
+  Dim objvalid As Boolean
+  If closing Then Return
   
   For Each TheObject In TheForm.controls
-    If Not Lower(TheObject.Name) = "label2" Then
-      Try TheObject.font = GeneralOptions.FontChooseBTN3.font
-    Endif
-    If Not (theobject Is Menu) Then
-      If Not ((TheObject.parent Is Frame) Or (theobject.parent.parent Is Frame)) Then
-        Try TheObject.foreground = GeneralOptions.ColorChooseBTN3.Background
+    Try objvalid = (theobject.name = "")
+    If Not Error Then 
+      If Not Lower(TheObject.Name) = "label2" Then
+        Try TheObject.font = GeneralOptions.FontChooseBTN3.font
       Endif
+      If Not (theobject Is Menu) Then
+        If Not ((TheObject.parent Is Frame) Or (theobject.parent.parent Is Frame)) Then
+          Try TheObject.foreground = GeneralOptions.ColorChooseBTN3.Background
+        Endif
+      Endif
+      
+      If TheObject.name = "CurrentProfileLabel" Then TheObject.font.bold = True
     Endif
-    
-    If TheObject.name = "CurrentProfileLabel" Then TheObject.font.bold = True
   Next 'TheForm
   
 End
@@ -935,6 +970,7 @@ End
 
 Private fastquit As Boolean = False
 Public havetoshowbrowsetab As Boolean = False
+Private PlayFromCommandline As Boolean = False
 Public Sub MainInit()
   
   Dim quick As Boolean
@@ -994,7 +1030,7 @@ Public Sub MainInit()
       FMain.LoadFormGeometry()
       fmain.Show
       Wait 
-      
+      PlayFromCommandline = True 
       Play(False, DConv(Application.Args[1]), quick, cachedopts)
       Me.Mouse = mouse.Default
       havetoshowbrowsetab = True
@@ -1202,7 +1238,11 @@ Public Sub Form_Close()
   If Not fastquit Then
     fmain.SaveFormGeometry()
     Me.hide
-
+    If mplayer.ProcessRunningOvr() Then
+      If Not (global.IsNetworkURI(mplayer.Media_FullPath_Playing)) Then
+        AddHistory(mplayer.Media_FullPath_Playing, mplayer.CurrentTime())
+      Endif
+    Endif
     ButtonStop_Click() 'don't remove me.
   Endif
   Try AFiltersCfg.hide
@@ -1265,8 +1305,12 @@ Public Sub Form_Close()
 
   If Not fastquit Then
     If GeneralOptions.SaveOnExitCHK.value = True Then
-      Global.SaveAllSettings(global.CurrentProfile)
-      Print "All settings saved"
+      Try Global.SaveAllSettings(global.CurrentProfile)
+      If Error Then 
+        Debug "couldn't save all settings at exit as requested..."
+          Else
+        Print "All settings saved"
+      Endif
     Else
       MySettings.Save(Fmain, global.confpath & "/" & global.CurrentProfile)
       MySettings.Save(SearchFields, global.confpath & "/" & global.CurrentProfile)
@@ -2197,7 +2241,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
     Try Last.mouse = Mouse.default
     ButtonPlay.enabled = True
     MenumediaExplorer.Enabled = True
-    If GeneralOptions.ToolTipsCHKHISTORY.value Then addhistory(mplayer.Media_FullPath)
+    addhistory(mplayer.Media_FullPath)
   Endif
   
   'find overboost levels (volume)
@@ -2237,9 +2281,10 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
 
 End
 
-Public Sub addhistory(fullpath As String)
+Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
   Dim history, entry As String
   Dim historyarray As New String[]
+  Dim sep As String = Chr(8)
   If Not (Exist(fullpath)) Then Return
   If Not global.IsNetworkURI(fullpath) Then
     If Not (Exist(global.historyfile)) Then file.Save(global.historyfile, "")
@@ -2249,9 +2294,16 @@ Public Sub addhistory(fullpath As String)
       Return
     Endif
     For Each entry In Split(history, "\n", "", True)
+      If entry Like "*" & sep & "*" Then 
+        If savetime = "0" Then Try entry = Split(entry, sep, "", True)[0]
+      Endif
       If entry <> fullpath Then historyarray.Add(entry) 'no dupes and last on top
     Next
-    historyarray.Add(fullpath)
+    If Savetime <> "0" Then 
+      historyarray.Add(fullpath & sep & Savetime)
+        Else
+      historyarray.Add(fullpath)
+    Endif
     If historyarray.count > Global.MaxHistory Then
       historyarray.Reverse
       historyarray.Resize(Global.MaxHistory)
@@ -2263,7 +2315,7 @@ Public Sub addhistory(fullpath As String)
     Next
     file.Save(global.Historyfile, history)
   Endif
-  updaterecentfiles()
+  If Not closing Then updaterecentfiles()
 End
 
 
@@ -2706,7 +2758,6 @@ Public Sub OneSecTimer_Timer()
   
   If mplayer.ProcessRunningOvr() Then
     'If (Not fmain.FullScreen) Then cachebar.visible = True
-
     
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
@@ -7739,6 +7790,7 @@ Public Sub PanScan_MouseWheel()
     Endif
   Endif
 End
+
 
 
 

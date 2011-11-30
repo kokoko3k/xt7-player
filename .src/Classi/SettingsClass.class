@@ -594,6 +594,7 @@ Public Sub Save(TheForm As Object, FileName As String)
   Dim SaveColor As Boolean = False
   Dim i As Integer
   Dim layout As String
+  Dim objvalid As Boolean = False
   Debug "Cached Options unvalidated"
   fmain.cachedopts = ""
   FMain.mouse = Mouse.wait
@@ -616,7 +617,8 @@ Public Sub Save(TheForm As Object, FileName As String)
   Endif
   
   For Each TheObject In TheForm.controls
-
+    Try objvalid = (theobject.name <> "")
+    If Error Then Return
     If (Not (Object.Type(TheObject) = "Menu")) And (Not Match(TheObject.name, ExcludedValues))
       'Don't descend in floatspinbox,Vslider and StringFileReq classes
       If Not ((Object.Type(TheObject.parent) = "FloatSpinBox") Or (Object.Type(TheObject.parent) = "VSlider") Or (Object.Type(TheObject.parent) = "StringFileReqClass")) Then

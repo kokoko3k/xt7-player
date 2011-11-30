@@ -553,7 +553,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
     
     If Not (options Like "* -idle *") Then 
       commandline = commandline & " -mouse-movements "
-      If (1 <> 1) Then commandline = commandline & " -alang " & AudioLanguages ""
+      If audiolanguages <> ("\"" & "\"") Then commandline = commandline & " -alang " & AudioLanguages & " "
       If sublanguages <> ("\"" & "\"") Then commandline = commandline & " -slang " & SubLanguages
       'commandline = commandline & " " & options
       If (Trim(subfile) <> "") Then commandline = commandline & " -sub '" & subfile & "'"

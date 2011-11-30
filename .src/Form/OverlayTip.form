@@ -1,0 +1,17 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,16,5)
+  Ignore = True
+  Border = False
+  Stacking = Window.Above
+  SkipTaskbar = True
+  Opacity = 75
+  Arrangement = Arrange.Fill
+  { TextLabel1 TextLabel
+    MoveScaled(0,0,14,4)
+    Background = &HFFFF9B&
+    Text = ("TextLabel1")
+    Alignment = Align.Center
+  }
+}

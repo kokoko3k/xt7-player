@@ -1,0 +1,125 @@
+' Gambas class file
+
+Public Sub PanscanSlider_Change()
+  If (Last Is Slider) And (Last.next Is Spinbox) Then
+    Try Last.Next.value = Last.value
+    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    'If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
+    If FMain.FullyLoaded Then 
+      FMain.resizefactor = (Last.value / 10000)
+      FMain.CorrectAreaAspect
+    Endif
+  Endif
+End
+
+Public Sub PanScanSpinBox_Change()
+  If (Last Is Spinbox) And (Last.previous Is Slider) Then
+    Try Last.previous.value = Last.value
+  Endif
+End
+
+Public Sub AudioDelaySpinBox_Change()
+  If (Last Is Spinbox) And (Last.previous Is Slider) Then
+    Try Last.previous.value = Last.value
+  Endif
+End
+
+
+Public Sub AudioDelaySlider_Change()
+  If (Last Is Slider) And (Last.next Is Spinbox) Then
+    Try Last.Next.value = Last.value
+    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
+  Endif
+End
+
+Public Sub SubDelaySpinBox_Change()
+  If (Last Is Spinbox) And (Last.previous Is Slider) Then
+    Try Last.previous.value = Last.value
+  Endif
+End
+
+Public Sub SubDelaySlider_Change()
+  If (Last Is Slider) And (Last.next Is Spinbox) Then
+    Try Last.Next.value = Last.value
+    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
+  Endif
+End
+
+Public Sub Clears_Click()
+  If (Last Is Toolbutton) And (Last.next Is Slider) And (Last.next.next Is Spinbox) Then
+    Try Last.next.value = 0
+    Try Last.next.next.value = 0
+  Endif
+End
+
+Public Sub SubPositionSlider_Change()
+  If (Last Is Slider) And (Last.next Is Spinbox) Then
+    Try Last.Next.value = Last.value
+    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+  Endif
+End
+
+Public Sub SubPositionSpinBox_Change()
+  If (Last Is Spinbox) And (Last.previous Is Slider) Then
+    Try Last.previous.value = Last.value
+  Endif
+End
+
+Public Sub SubScaleSpinBox_Change()
+  If (Last Is Spinbox) And (Last.previous Is Slider) Then
+    Try Last.previous.value = Last.value
+  Endif
+End
+
+Public Sub SubScaleSlider_Change()
+  If (Last Is Slider) And (Last.next Is Spinbox) Then
+    Try Last.Next.value = Last.value
+    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 10) & " 1")
+  Endif
+End
+
+
+Public Sub ToolButton4_Click()
+
+  SubScaleSlider.value = 10
+
+End
+
+
+Public Sub ComboAlignment_Click()
+  If FMain.FullyLoaded Then 
+    If AlignmentCHK.value Then FMain.mplayer.Send("sub_alignment " & Split(ComboAlignment.text, "-", "", True)[0])
+  Endif
+End
+
+Public Sub AlignmentCHK_Click()
+  If AlignmentCHK.value Then Try ComboAlignment_Click
+End
+
+Public Sub FrameDropCHK_Click()
+  If FrameDropCHK.value Then 
+    Try FrameDropCombobox_Click()
+      Else
+    FMain.mplayer.Send("frame_drop 0")
+  Endif
+End
+
+Public Sub FrameDropCombobox_Click()
+  If FMain.FullyLoaded Then 
+    If FrameDropCHK.value Then 
+      FMain.mplayer.Send("frame_drop " & Split(FrameDropCombobox.text, "-", "", True)[0])
+    Endif
+  Endif
+End
+
+
+
+Public Sub Form_Show()
+
+  PanscanSlider.value = FMain.ResizeFactor * 10000
+
+End

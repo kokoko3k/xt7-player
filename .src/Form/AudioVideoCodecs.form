@@ -1,0 +1,177 @@
+# Gambas Form File 3.0
+
+{ Form Form 
+  MoveScaled(0,0,71,56)
+  Text = ("A/V Codecs priority & Demuxers")
+  Icon = Picture["icon:/large/options"]
+  Persistent = True
+  Resizable = False
+  { MenuProfile Menu 
+    Text = ("Profile")
+    { MenuLoadDefault Menu 
+      Text = ("Reload current profile")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuSaveDefault Menu 
+      Text = ("Save to current profile")
+      Picture = Picture["icon:/16/save"]
+    }
+    { MenuSaveToAll Menu 
+      Text = ("Save these settings to all profiles")
+      Picture = Picture["icon:/16/save"]
+    }
+  }
+  { AVCTabstrip TabStrip 
+    MoveScaled(1,1,69,46)
+    Count = 4
+    Index = 0
+    Text = ("Codecs priority")
+    Picture = Picture["icon:/16/wizard"]
+    { VideoList Frame 
+      MoveScaled(35,1,32,40)
+      Expand = True
+      Text = ("Video Codecs")
+      { AComboBox11 ComboBox VCombos
+        Name = "AComboBox11"
+        MoveScaled(2,4,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { AComboBox12 ComboBox VCombos
+        Name = "AComboBox12"
+        MoveScaled(2,9,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { AComboBox13 ComboBox VCombos
+        Name = "AComboBox13"
+        MoveScaled(2,14,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { AComboBox14 ComboBox VCombos
+        Name = "AComboBox14"
+        MoveScaled(2,19,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { AComboBox15 ComboBox VCombos
+        Name = "AComboBox15"
+        MoveScaled(2,24,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { AComboBox16 ComboBox VCombos
+        Name = "AComboBox16"
+        MoveScaled(2,29,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN")
+      }
+      { VCheckBox1 CheckBox 
+        MoveScaled(2,34,18,4)
+        Text = ("Try other codecs")
+        Value = CheckBox.True
+      }
+    }
+    { AudioList Frame 
+      MoveScaled(1,1,32,40)
+      Expand = True
+      Text = ("Audio Codecs")
+      { AComboBox1 ComboBox ACombos
+        Name = "AComboBox1"
+        MoveScaled(2,4,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { AComboBox2 ComboBox ACombos
+        Name = "AComboBox2"
+        MoveScaled(2,9,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { AComboBox3 ComboBox ACombos
+        Name = "AComboBox3"
+        MoveScaled(2,14,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { AComboBox4 ComboBox ACombos
+        Name = "AComboBox4"
+        MoveScaled(2,19,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { AComboBox5 ComboBox ACombos
+        Name = "AComboBox5"
+        MoveScaled(2,24,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { AComboBox6 ComboBox ACombos
+        Name = "AComboBox6"
+        MoveScaled(2,29,28,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { ACheckBox1 CheckBox 
+        MoveScaled(2,34,18,4)
+        Text = ("Try other codecs")
+        Value = CheckBox.True
+      }
+    }
+    Index = 1
+    Text = ("Audio Codecs Help")
+    Picture = Picture["icon:/16/help"]
+    { AudioText TextArea 
+      MoveScaled(0,0,68,41)
+      Font = Font["Monospace"]
+      ReadOnly = True
+    }
+    Index = 2
+    Text = ("Video Codecs Help")
+    Picture = Picture["icon:/16/help"]
+    { VideoText TextArea 
+      MoveScaled(0,0,68,41)
+      Font = Font["Monospace"]
+      ReadOnly = True
+    }
+    Index = 3
+    Text = ("Demuxers")
+    Picture = Picture["icon:/16/wizard"]
+    { DemuxersList Frame 
+      MoveScaled(0,1,67,40)
+      Expand = True
+      Text = ("Audio/Video Demuxers")
+      { AComboBox7 ComboBox DCombos
+        Name = "AComboBox7"
+        MoveScaled(2,4,63,4)
+        Font = Font["Monospace"]
+        ToolTip = ("Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -ac codec1,codec2,...,codecN")
+      }
+      { DCheckBox1 CheckBox 
+        MoveScaled(2,9,63,4)
+        ToolTip = ("This will skip some checks")
+        Text = ("This demuxer is forced")
+      }
+    }
+    Index = 0
+  }
+  { OkBTN Button 
+    MoveScaled(56,48,13.5,3.75)
+    ToolTip = ("Close the window")
+    Text = ("Close")
+    Picture = Picture["icon:/16/cancel"]
+  }
+  { ApplyBTN Button 
+    MoveScaled(29,48,13.5,3.75)
+    ToolTip = ("Use new settings without save")
+    Text = ("Use ")
+    Picture = Picture["icon:/16/redo"]
+  }
+  { SaveBTN Button 
+    MoveScaled(2,48,13.5,3.75)
+    ToolTip = ("Save and use new settings")
+    Text = ("Save")
+    Picture = Picture["icon:/16/save"]
+  }
+}

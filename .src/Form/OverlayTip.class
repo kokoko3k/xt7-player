@@ -1,0 +1,32 @@
+' Gambas class file
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+Public Sub Redraw(tip As String, x As Integer, y As Integer)
+  Dim Mypic As Picture
+  Textlabel1.text = tip
+  ' [GB2:FNTH] ME.Move(x, y, Textlabel1.Font.TextWidth(tip), Textlabel1.Font.Textheight(tip) + 4)
+  ' [GB2:FNTW] ME.Move(x, y, Textlabel1.Font.TextWidth(tip), Textlabel1.Font.TextHeight(tip) + 4)
+  Me.Move(x, y, Textlabel1.Font.TextWidth(tip), Textlabel1.Font.TextHeight(tip) + 4)
+  ' MyPic = NEW picture(ME.width, ME.height, TRUE)
+  ' Draw.Begin(mypic)
+  '   Draw.FillStyle = Fill.solid
+  '   Draw.FillColor = Color.yellow
+  '   Draw.Rect(0, 0, ME.width, ME.height)
+  '   'Draw.LineWidth = ME.height
+  '   'Draw.Line(0, 0, ME.width, ME.height)
+  ' Draw.end
+  ' ME.Picture = MyPic
+  ' ME.mask = TRUE  
+  'ME.show
+End
+
+
+Public Sub Form_Leave()
+    If Not (Global.MouseInside(FMain.SaveVolumeSlider) Or Global.MouseInside(FMain.ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
+      FMain.VolumeFocused = False
+      OverlayTip.hide
+  Endif
+End
+
+

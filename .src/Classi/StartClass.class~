@@ -1,0 +1,7 @@
+' Gambas class file
+
+STATIC PUBLIC SUB main()
+  global.InitIconfileCollection()
+  zzzFake.Start()
+END
+

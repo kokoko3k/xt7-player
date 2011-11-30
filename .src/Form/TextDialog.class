@@ -1,0 +1,21 @@
+' Gambas class file
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+
+PUBLIC SUB Run() AS Boolean
+  RETURN NOT ME.ShowModal()
+END
+
+PUBLIC SUB OkBtn_Click()
+    ME.Close
+END
+
+PUBLIC SUB CancelBtn_Click()
+  ME.Close(TRUE)
+END
+
+PUBLIC SUB Form_Show()
+  'ME.center
+  Global.Center(Fmain, ME)
+END

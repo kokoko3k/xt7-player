@@ -1,0 +1,484 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,125,49)
+  Expand = True
+  Text = ("Subtitles And Osd")
+  Icon = Picture["icon:/16/font"]
+  Persistent = True
+  Resizable = False
+  Spacing = True
+  Padding = 6
+  { MenuProfile Menu
+    Text = ("Profile")
+    { MenuLoadDefault Menu
+      Text = ("Reload current profile")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuSaveDefault Menu
+      Text = ("Save to current profile")
+      Picture = Picture["icon:/16/save"]
+    }
+    { MenuSaveToAll Menu
+      Text = ("Save these settings to all profiles")
+      Picture = Picture["icon:/16/save"]
+    }
+  }
+  { TabStripSubs TabStrip
+    MoveScaled(1,1,63,44)
+    Arrangement = Arrange.Vertical
+    Spacing = True
+    Margin = True
+    Count = 3
+    Index = 0
+    Text = ("SSA Font Style")
+    Picture = Picture["icon:/16/font"]
+    { ASSDisableHbox HBox
+      MoveScaled(0,0,61,5.5714)
+      ToolTip = ("If you haven't SSA/ASS compiled in mplayer or you don't want SSA/ASS processing, then check it.\nMplayer option: Disables -ass switch.")
+      Spacing = True
+      Padding = 8
+      { ASSDisableCHK CheckBox
+        MoveScaled(1,1,35,4)
+        Text = ("Disable SSA")
+      }
+    }
+    { FontChooseHBox2 HBox
+      MoveScaled(0,6,61,8)
+      ToolTip = ("Mplayer option: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>")
+      Spacing = True
+      Padding = 8
+      { FontStyleCHK CheckBox SubTitleControls
+        Name = "FontStyleCHK"
+        MoveScaled(1,1,16,4)
+        Tag = "FontName"
+        Text = ("Font")
+        Value = CheckBox.True
+      }
+      { FontString Label
+        MoveScaled(18,1,26,4)
+        Font = Font["Bitstream Vera Sans,Bold,18"]
+        Expand = True
+        Text = ("BitStream Vera Sans")
+      }
+      { FontChooseBTN Button
+        MoveScaled(50,1,6,5)
+        Picture = Picture["icon:/16/font"]
+      }
+    }
+    { FontColorHBOX HBox
+      MoveScaled(0,13,61,5)
+      ToolTip = ("Mplayer option: \n-ass-forcestyle primarycolour=HHBBGGRR")
+      Spacing = True
+      Padding = 8
+      { FontColorCHK CheckBox SubTitleControls
+        Name = "FontColorCHK"
+        MoveScaled(1,1,16,4)
+        AutoResize = True
+        Text = ("Font Color")
+        Value = CheckBox.True
+      }
+      { FontColorBox ColorButton
+        MoveScaled(18,0,12,5)
+        Expand = True
+        Value = &HFFFFFF&
+      }
+      { FontColorAlphaLabel Label
+        MoveScaled(40,2,6,4)
+        Expand = True
+        AutoResize = True
+        Text = ("Alpha")
+        Alignment = Align.Right
+      }
+      { FontColorSpinBox SpinBox SubTitleControls
+        Name = "FontColorSpinBox"
+        MoveScaled(47,1,13,4)
+        Expand = True
+        MaxValue = 255
+      }
+    }
+    { BorderColorHBOX HBox
+      MoveScaled(0,21,61,4)
+      ToolTip = ("Mplayer option: ass-forcestyle OutLineColour=HHBBGGRR")
+      Spacing = True
+      Padding = 8
+      { OutlineCHK CheckBox SubTitleControls
+        Name = "OutlineCHK"
+        MoveScaled(1,1,13,4)
+        AutoResize = True
+        Text = ("Border")
+        Value = CheckBox.True
+      }
+      { BorderColorBox ColorButton
+        MoveScaled(18,0,8,5)
+        Expand = True
+      }
+      { BorderSizeLabel Label
+        MoveScaled(29,1,6,4)
+        Expand = True
+        AutoResize = True
+        Text = ("Size")
+        Alignment = Align.Right
+      }
+      { OutLineSpinBox SpinBox SubTitleControls
+        Name = "OutLineSpinBox"
+        MoveScaled(38,0,7,4)
+        Expand = True
+        Value = 1
+      }
+      { BorderColorAlphaLabel2 Label
+        MoveScaled(44,0,6,4)
+        Expand = True
+        AutoResize = True
+        Text = ("Alpha")
+        Alignment = Align.Right
+      }
+      { BorderColorSpinBox SpinBox SubTitleControls
+        Name = "BorderColorSpinBox"
+        MoveScaled(52,0,8,4)
+        Expand = True
+        MaxValue = 255
+      }
+    }
+    { ShadowHBox HBox
+      MoveScaled(0,27,61,4)
+      ToolTip = ("Mplayer option: -ass-forcestyle BackColour=HHBBGGRR")
+      Spacing = True
+      Padding = 8
+      { ShadowCHK CheckBox SubTitleControls
+        Name = "ShadowCHK"
+        MoveScaled(1,1,13,4)
+        AutoResize = True
+        Text = ("Shadow")
+        Value = CheckBox.True
+      }
+      { ShadowColorBTN ColorButton
+        MoveScaled(18,0,8,5)
+        Expand = True
+      }
+      { ShadowOffsetLabel Label
+        MoveScaled(29,1,6,4)
+        Expand = True
+        AutoResize = True
+        Text = ("Offset")
+        Alignment = Align.Right
+      }
+      { ShadowSpinBox SpinBox SubTitleControls
+        Name = "ShadowSpinBox"
+        MoveScaled(38,1,7,4)
+        Expand = True
+        Value = 2
+      }
+      { BorderColorAlphaLabel1 Label
+        MoveScaled(45,1,6,4)
+        Expand = True
+        AutoResize = True
+        Text = ("Alpha")
+        Alignment = Align.Right
+      }
+      { ShadowColorSpinBox SpinBox SubTitleControls
+        Name = "ShadowColorSpinBox"
+        MoveScaled(52,1,8,4)
+        Expand = True
+        MaxValue = 255
+        Value = 127
+      }
+    }
+    Index = 1
+    Text = ("Sub Extra")
+    Picture = Picture["icon:/16/options"]
+    { FuzzinessHbox HBox
+      MoveScaled(0,0,61,4)
+      ToolTip = ("Mplayer option:\n-sub-fuzziness <mode>")
+      Spacing = True
+      Padding = 8
+      { fuzzinesschk CheckBox
+        MoveScaled(1,1,17,4)
+        Enabled = False
+        Text = ("Load subtitles")
+        Value = CheckBox.True
+      }
+      { Combofuzziness ComboBox
+        MoveScaled(19,1,41,4)
+        ReadOnly = True
+        List = [("0 - Exact match"), ("1 - Load all subs containing movie name"), ("2 - Load all subs in the current directory")]
+        Text = ("0 - Exact match")
+      }
+    }
+    { PositionHBox HBox
+      MoveScaled(0,4,61,4)
+      ToolTip = ("Subtitle position on the screen from top or bottom.\n(it depends the alignment you choose)\nMplayer option:\n-ass-force-style MarginV=<margin>\n\nIf you Disabled SSA, then the value is meant to be from top.\nMplayer Option:\n-subpos <0-100>\n")
+      Spacing = True
+      Padding = 8
+      { MarginVCHK CheckBox SubTitleControls
+        Name = "MarginVCHK"
+        MoveScaled(1,1,17,4)
+        Text = ("Position (%)")
+        Value = CheckBox.True
+      }
+      { MarginVSpinBox SpinBox SubTitleControls
+        Name = "MarginVSpinBox"
+        MoveScaled(19,1,20,4)
+        Value = 10
+      }
+    }
+    { AlignmentHBox HBox
+      MoveScaled(0,10,61,4)
+      ToolTip = ("Mplayer option:\n-ass-force-style Alignment=<align>")
+      Spacing = True
+      Padding = 8
+      { AlignmentCHK CheckBox
+        MoveScaled(1,1,17,4)
+        Text = ("Alignment")
+        Value = CheckBox.True
+      }
+      { ComboAlignment ComboBox SubTitleControls
+        Name = "ComboAlignment"
+        MoveScaled(19,1,20,4)
+        ReadOnly = True
+        List = [("2) Bottom/Center"), ("1) Bottom/Left"), ("3) Bottom/Right"), ("6) Top/Center"), ("4) Top/Left"), ("7) Top/Right")]
+        Text = ("2) Bottom/Center")
+      }
+    }
+    { SubScaleHbox HBox
+      MoveScaled(0,16,61,4)
+      ToolTip = ("Subtitles resize factor.\nMplayer option:  -ass-font-scale")
+      Spacing = True
+      Padding = 10
+      { ScaleCHK CheckBox SubTitleControls
+        Name = "ScaleCHK"
+        MoveScaled(1,1,17,4)
+        Text = ("Scale (%)")
+      }
+    }
+    { SubCpHBox HBox
+      MoveScaled(0,22,61,4)
+      ToolTip = ("Depending on the language you select, a charset is auto detected,\nbut if detection fails, the fallback charset will be used.\nNote that this has nothing to do with the subtitle language selection,\nTo configure preferred languages, use the language option in General Option window.\nMplayer option:\n-subcp enca:<language>:<fallback codepage>")
+      Spacing = True
+      Padding = 8
+      { SubCpCHK CheckBox
+        MoveScaled(1,1,12,4)
+        AutoResize = True
+        Text = ("Charset")
+      }
+      { Label2 Label
+        MoveScaled(15,1,10,4)
+        AutoResize = True
+        Text = ("Language")
+      }
+      { EncaComboBox ComboBox
+        MoveScaled(26,1,14.1429,4)
+        Expand = True
+        ReadOnly = True
+        List = [("de (german)"), ("es (spanish)"), ("en (english)"), ("fi (finnish)"), ("it (italian)"), ("ja (japanese)"), ("nl (dutch,flemish)"), ("no (norwegian)"), ("pl (polish)"), ("pt (portuguese)"), ("ru (russian)"), ("sv (swedish)"), ("zh (chinese)"), ("xx (use fallback)")]
+        Text = ("iso-8859-1")
+      }
+      { Label1 Label
+        MoveScaled(40,1,8,4)
+        AutoResize = True
+        Text = ("  FallBack")
+      }
+      { ComboSubCp ComboBox
+        MoveScaled(46,1,14.1429,4)
+        ReadOnly = True
+        List = [("big5"), ("cp1250"), ("euc-kr"), ("gb2312"), ("iso-8859-1"), ("iso-8859-2"), ("iso-8859-7"), ("iso-8859-8"), ("iso-8859-9"), ("koi8-r"), ("latin2"), ("unicode"), ("utf-8"), ("windows-1250"), ("windows-1251")]
+        Text = ("iso-8859-1")
+      }
+    }
+    { SubDelayHbox HBox
+      MoveScaled(0,28,61,4)
+      ToolTip = ("Subtitle delay.\nMplayer option: -subdelay <sec>")
+      Spacing = True
+      Padding = 10
+      { MkvWorkaroundCHK CheckBox
+        MoveScaled(0,1,18,4)
+        ToolTip = ("Setting a negative delay for subtitles embedded in mkv files, leads mplayer\nto shift only the subtitle end time, because it reads the file sequentially.\nChecking this box will workaround the problem by adding:\n-subfile yourfile.mkv to mplayer options, forcing mplayer to read\nand shift the subtitles correctly.\nAlso, any ass rendering will be disabled.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870")
+        Text = ("Mkv Workaround")
+      }
+      { SubDelayCHK CheckBox
+        MoveScaled(19,1,18,4)
+        Text = ("Delay (Decisecs)")
+      }
+    }
+    { SubFileHBox HBox
+      MoveScaled(0,34,61,4)
+      ToolTip = ("You can specify an external subtitle file.\nMplayer option: -subfile <filename>")
+      Spacing = True
+      Padding = 4
+      { SubFileCHK CheckBox
+        MoveScaled(1,0,17,4)
+        Tag = "customprog="
+        Text = ("SubTitle File")
+      }
+      { SubFileTextBox TextBox
+        MoveScaled(18,0,36,4)
+        Expand = True
+      }
+      { SubFileOpen ToolButton
+        MoveScaled(56,0,3.4286,3.4286)
+        Picture = Picture["icon:/24/open"]
+      }
+    }
+    Index = 2
+    Text = ("OSD")
+    Picture = Picture["icon:/16/font"]
+    { OSDFontChooseHBox HBox
+      MoveScaled(0,0,61,4)
+      ToolTip = ("Mplayer option: \n-font")
+      Spacing = True
+      Padding = 8
+      { OSDFontStyleCHK CheckBox SubTitleControls
+        Name = "OSDFontStyleCHK"
+        MoveScaled(1,1,14,4)
+        Tag = "FontName"
+        Text = ("OSD Font")
+      }
+      { OSDFontString Label
+        MoveScaled(18,1,26,4)
+        Font = Font["Bitstream Vera Sans,+2"]
+        Expand = True
+        Text = ("BitStream Vera Sans")
+      }
+      { OSDFontChooseBTN Button
+        MoveScaled(50,1,6,5)
+        Picture = Picture["icon:/16/font"]
+      }
+    }
+    { OSDOutLineHBox HBox
+      MoveScaled(0,6,61,4)
+      ToolTip = ("OSD Border font \"strength\", where 0 means plain white fonts and 10 means bold black outline\nMplayer option: -ffactor <number>\n\n")
+      Spacing = True
+      Padding = 8
+      { OSDOutLineCHK CheckBox SubTitleControls
+        Name = "OSDOutLineCHK"
+        MoveScaled(1,1,38,4)
+        AutoResize = True
+        Text = ("OSD outline strength")
+      }
+    }
+    { OSDOutlineThicknessBox HBox
+      MoveScaled(0,11,61,4)
+      ToolTip = ("Sets the font outline thickness\nMplayer option: -subfont-outline")
+      Spacing = True
+      Padding = 8
+      { OSDOutlineThicknessCHK CheckBox SubTitleControls
+        Name = "OSDOutlineThicknessCHK"
+        MoveScaled(1,1,38,4)
+        Text = ("OSD outline thickness")
+      }
+      { OSDOutlineThicknessSpinBox SpinBox SubTitleControls
+        Name = "OSDOutlineThicknessSpinBox"
+        MoveScaled(40,0,20,4)
+        MaxValue = 8
+        Value = 2
+      }
+    }
+    { OSDBGHbox HBox
+      MoveScaled(0,16,61,4)
+      ToolTip = ("Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  values  mean  more\ntransparency.  0 means completely transparent.\nMplayer option:\n-sub-bg-alpha <0-255>\n\n")
+      Spacing = True
+      Padding = 8
+      { OSDBGCHK CheckBox SubTitleControls
+        Name = "OSDBGCHK"
+        MoveScaled(1,1,38,4)
+        Text = ("OSD Background alpha")
+      }
+      { OSDBGSpinBox SpinBox SubTitleControls
+        Name = "OSDBGSpinBox"
+        MoveScaled(40,0,20,4)
+        MaxValue = 255
+      }
+    }
+    { OSDBlurHBox HBox
+      MoveScaled(0,21,61,4)
+      ToolTip = ("Sets the font blur radius.\nMplayer option: -subfont-blur")
+      Spacing = True
+      Padding = 8
+      { OSDBlurCHK CheckBox SubTitleControls
+        Name = "OSDBlurCHK"
+        MoveScaled(1,1,38,4)
+        Text = ("OSD blur radius")
+      }
+      { OSDBlurSpinBox SpinBox SubTitleControls
+        Name = "OSDBlurSpinBox"
+        MoveScaled(40,0,20,4)
+        MinValue = 2
+        MaxValue = 8
+      }
+    }
+    { OSDDurationHBox HBox
+      MoveScaled(0,27,61,4)
+      ToolTip = ("Set the duration of the OSD messages in ms.\nMplayer option: -osd-duration")
+      Spacing = True
+      Padding = 8
+      { OSDDurationCHK CheckBox
+        MoveScaled(1,1,38,4)
+        Text = ("Osd duration (ms)")
+      }
+      { OSDDurationSpinBox SpinBox
+        MoveScaled(40,0,20,4)
+        MaxValue = 10000
+        Value = 1000
+      }
+    }
+    { OSDScaleHBox HBox
+      MoveScaled(0,32,61,4)
+      ToolTip = ("Sets the autoscale coefficient of the OSD elements.\nMplayer option: -subfont-osd-scale")
+      Spacing = True
+      Padding = 8
+      { OSDScaleCHK CheckBox SubTitleControls
+        Name = "OSDScaleCHK"
+        MoveScaled(1,1,38,4)
+        Text = ("Osd Scale")
+        Value = CheckBox.True
+      }
+      { OSDScaleSpinBox SpinBox SubTitleControls
+        Name = "OSDScaleSpinBox"
+        MoveScaled(40,0,20,4)
+        Value = 4
+      }
+    }
+    Index = 0
+  }
+  { HBox2 HBox
+    MoveScaled(65,40,59,4)
+    Spacing = True
+    { PreviewDriverCombobox ComboBox
+      MoveScaled(1,1,17,4)
+      ToolTip = ("Change me if you have problem displaying the preview.")
+      Expand = True
+      ReadOnly = True
+      List = [("xv preview"), ("x11 Preview"), ("user Preference")]
+      Text = ("x11 preview")
+    }
+    { TestBTN Button
+      MoveScaled(19,1,12,4)
+      ToolTip = ("Test the new configuration in the preview box.")
+      Text = ("Retest")
+      Picture = Picture["icon:/16/refresh"]
+    }
+    { ApplyBTN Button
+      MoveScaled(33,1,12,4)
+      ToolTip = ("Use new settings without save.\nTo save settings, use menu item.")
+      Text = ("Use ")
+      Picture = Picture["icon:/16/redo"]
+    }
+    { OkBTN Button
+      MoveScaled(45,1,12,4)
+      ToolTip = ("Close the window")
+      Text = ("Close")
+      Picture = Picture["icon:/16/cancel"]
+    }
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(65,1,61,4)
+    Font = Font["Bold,+1"]
+    Text = ("Preview")
+    Alignment = Align.Center
+  }
+  { DrawingArea1 DrawingArea
+    MoveScaled(65,5,59,34)
+    Background = &H000000&
+    NoBackground = True
+  }
+}

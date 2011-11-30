@@ -1,0 +1,126 @@
+' Gambas class file
+
+' Gambas class file
+
+Private timer1 As Timer
+Private barsdone As Boolean = False
+Public bars As New Object[]
+Private channels As Integer
+Private samplesperchannel As Integer
+
+Private buffer As New Integer[][]
+
+
+Private currentreading As Integer = 0
+Private maxreadings As Integer = 10
+
+Public latency As Integer = 300
+Public MaxH As Integer
+
+Private mparent As Object
+Private exportfile As String
+Private spacingg As Integer
+
+Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pexportfile As String, pspacingg As Integer, fps As Integer)
+  latency = platency
+  MaxH = MaxHeight
+  mparent = pparent
+  exportfile = pexportfile
+  spacingg = pspacingg
+  Try Object.Detach(timer1)
+  timer1 = New Timer As "timer1"
+  timer1.delay = 1000 Div fps
+End
+
+
+Public Sub Timer1_Timer()
+  Dim hFile As File
+  Dim bufsize, sync, meter As Integer
+  Dim i, c, s, total, avg, start, sstop As Integer
+  Dim samples As New Integer[]
+  Try hFile = Open exportfile For Input
+  If Error Then Return
+  hFile.ByteOrder = gb.LittleEndian
+  Try channels = Read #hfile As Integer
+  Try bufsize = Read #hfile As Integer
+  Try sync = Read #hfile As Long
+  Try SamplesPerChannel = (bufsize Div channels) Div 2
+  If Error Then Return
+  
+  
+  While Not Eof(hfile)
+    Try meter = Read #hFile As Short
+    samples.Add(Abs(meter)) 'write new element at the beginning of the array
+  Wend
+  buffer.Add(samples, 0)
+  
+  If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency
+    updatebars(buffer[buffer.count - 1])
+    buffer.Remove(buffer.Length - 1)
+  Endif
+End
+
+Public Sub Stopp()
+  
+  Try timer1.stop
+  buffer.clear
+End
+
+Public Sub Startt()
+  
+  Try timer1.start
+  
+End
+
+Private Sub updatebars(ByRef samples As Integer[])
+  'prepare n progressbars an n channels
+  'and refer to them using an array of objects
+  Dim i, c, s, total, avg, start, sstop As Integer 
+  Dim bar As Picturebox
+  Dim widt As Integer
+  
+  If Not barsdone Then
+    widt = (mparent.w Div channels) - ((channels - 1) * spacingg)
+    For i = 1 To channels
+      bar = New Picturebox(mparent) As "mbar" & i
+      bar.alignment = Align.Bottom
+      bar.Picture = Picture.Load("meterpt.png").Image.Stretch(Widt, maxh).Picture
+      bar.stretch = False
+      'bar.Background = Color.black
+      bar.ignore = True
+      bar.h = 0
+      'bar.w = (mparent.w Div channels) - (channels * spacingg) 'Widthh
+      'bar.w = (mparent.w Div (channels * spacingg)) ' - (channels * spacingg) 'Widthh
+       bar.w = Widt ' - (channels * spacingg) 'Widthh
+      If i > 1 Then 
+        bar.x = ((i - 1) * bar.w) + (spacingg)
+          Else
+        bar.x = 0
+      Endif
+      bars.Add(bar)
+      
+    Next
+    barsdone = True
+  Endif
+  
+  'for every channel,make an average
+  'of sampled values and assign them to the
+  'respective bar
+  For c = 1 To channels
+    'Print "Channel_" & c 
+    total = 0
+    start = (c * SamplesPerChannel) - SamplesPerChannel 
+    sstop = start + SamplesPerChannel
+    For s = start To sstop - 1
+     Try total = total + samples[s]
+    Next
+    Try avg = total Div SamplesPerChannel
+    'bars[c - 1].value = avg / 15000 '32768 'write value into Vmeter
+     bars[c - 1].h = (avg * maxh) Div 15000 '32768  '32768 'write value into Vmeter
+     'Print avg
+     bars[c - 1].y = maxh - bars[c - 1].h ' + mparent.h  'avg Div 100
+     'Print bars[c - 1].x
+     'Print "x " & bars[c - 1].x
+     'Print "w " & bars[c - 1].w
+  Next
+End

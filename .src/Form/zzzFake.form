@@ -1,0 +1,17 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,19,14)
+  Visible = False
+  Icon = Picture["xt7-player.png"]
+  Picture = Picture["FakeMask.png"]
+  Mask = True
+  Stacking = Window.Below
+  Minimized = True
+  SkipTaskbar = True
+  Opacity = 0
+  { VSplit1 VSplit
+    MoveScaled(9,5,5,4)
+    Expand = True
+  }
+}

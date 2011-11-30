@@ -1,0 +1,1647 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,104,76)
+  Text = ("Xt7-Player")
+  Icon = Picture["xt7-player.png"]
+  Persistent = True
+  Arrangement = Arrange.Vertical
+  { MenuMain Menu MainMenu
+    Name = "MenuMain"
+    Text = ("File")
+    { MenuOpen Menu MenuOpen
+      Name = "MenuOpen"
+      Text = ("Open local file")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuCDDA Menu
+      Text = ("Play Audio Cd")
+      Picture = Picture["cdaudio16.png"]
+    }
+    { MenuDVD Menu
+      Text = ("Play DVD")
+      Picture = Picture["dvd16.png"]
+      { MenuDvdDrive Menu
+        Text = ("From DVD drive")
+        Picture = Picture["icon:/16/cdrom"]
+      }
+      { MenuDvdFile Menu
+        Text = ("From an ISO")
+        Picture = Picture["icon:/16/harddisk"]
+      }
+      { MenuDvdFolder Menu
+        Text = ("From a folder")
+        Picture = Picture["icon:/16/directory"]
+      }
+    }
+    { MenuOpenUri Menu
+      Text = ("Open an Uri/Network stream")
+      Picture = Picture["icon:/16/network"]
+    }
+    { MenuMediaExplorer Menu
+      Text = ("Media Explorer")
+      Picture = Picture["icon:/16/find"]
+      Enabled = False
+      { MenuTitles Menu
+        Text = ("Titles")
+        Picture = Picture["icon:/16/book"]
+      }
+      { StreamsMenu Menu
+        Text = ("Streams")
+        Picture = Picture["icon:/16/watch"]
+        Enabled = False
+        { StreamsAudioMenu Menu
+          Text = ("Audio")
+          Picture = Picture["filetypeaudio.png"]
+          Enabled = False
+        }
+        { StreamsSubtitlesMenu Menu
+          Text = ("Subtitles")
+          Picture = Picture["icon:/16/font"]
+          Enabled = False
+        }
+      }
+    }
+    { Menu1 Menu
+    }
+    { MenuQuit Menu MenuQuit
+      Name = "MenuQuit"
+      Text = ("Quit")
+      Picture = Picture["icon:/16/quit"]
+    }
+  }
+  { MenuLibrary Menu MainMenu
+    Name = "MenuLibrary"
+    Text = ("Library")
+    { MenuLibraryUpdate Menu
+      Text = ("Sync library")
+      Picture = Picture["icon:/16/watch"]
+    }
+    { MenuLibraryWatch Menu
+      Text = ("Configure directories")
+      Picture = Picture["icon:/16/tools"]
+    }
+    { MenuSearch Menu
+      Text = ("Search options")
+      Picture = Picture["icon:/16/find"]
+    }
+    { Separator9 Menu
+    }
+    { MenuAddUri Menu
+      Text = ("Add a generic URI...")
+      Picture = Picture["icon:/16/earth"]
+    }
+    { MenuLibraryAddToPlaylist Menu MenuLibraryAddToPlaylist
+      Name = "MenuLibraryAddToPlaylist"
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+    { Separator919 Menu
+    }
+  }
+  { MenuPopUpLibrary Menu
+    Text = ("MenuPopUpLibrary")
+    Visible = False
+    { MenuOpenContainingFolderPopUp Menu
+      Text = ("Open containing folder")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuLibraryUpdate_popup Menu
+      Text = ("Sync library")
+      Picture = Picture["icon:/16/watch"]
+    }
+    { MenuItemsUpdate Menu
+      Text = ("Update Selected")
+      Picture = Picture["icon:/16/refresh"]
+    }
+    { separator005849 Menu
+    }
+    { MenuLibrarySetCover Menu
+      Text = ("Set a cover")
+      Picture = Picture["icon:/16/color"]
+      Enabled = False
+    }
+    { Separator43057 Menu
+    }
+    { MenuLibCopyToClipboard Menu
+      Text = ("Copy selected to Clipboard")
+      Picture = Picture["icon:/16/copy"]
+    }
+    { MenuLibraryAddToPlaylistPoPuP Menu MenuLibraryAddToPlaylist
+      Name = "MenuLibraryAddToPlaylistPoPuP"
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+    { Separator10 Menu
+    }
+    { MenuLibraryDeleteSelected Menu
+      Text = ("Clear selected")
+      Picture = Picture["icon:/16/delete"]
+    }
+    { MenuClearLibrary Menu
+      Text = ("Clear All")
+      Picture = Picture["icon:/16/delete"]
+    }
+    { MenuLibraryZapSelected Menu
+      Text = ("Delete selected from disk")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { MenuPlaylist Menu MainMenu
+    Name = "MenuPlaylist"
+    Text = ("Playlist")
+    { MenuplaylistOpenFolder Menu
+      Text = ("Open containing folder")
+      Picture = Picture["icon:/16/open"]
+      Enabled = False
+      Visible = False
+    }
+    { MenuSaveLoadPls Menu
+      Text = ("Load/Save")
+      Picture = Picture["icon:/16/directory"]
+      { MenuLoadPls Menu
+        Text = ("Import a playlist")
+        Picture = Picture["icon:/16/open"]
+      }
+      { MenuAppendPls Menu
+        Text = ("Append a playlist")
+        Picture = Picture["icon:/16/attach"]
+      }
+      { MenuSavePls Menu
+        Text = ("Export the playlist")
+        Picture = Picture["icon:/16/save"]
+      }
+    }
+    { Separator3489 Menu
+    }
+    { MenuItemsUpdatePls Menu
+      Text = ("Update Selected")
+      Picture = Picture["icon:/16/refresh"]
+    }
+    { separator5384058 Menu
+    }
+    { MenuPlsSetCover Menu
+      Text = ("Set a cover")
+      Picture = Picture["icon:/16/color"]
+      Enabled = False
+    }
+    { Separator3849348 Menu
+    }
+    { MenuPlsCopyToClipboard Menu
+      Text = ("Copy selected to Clipboard")
+      Picture = Picture["icon:/16/copy"]
+    }
+    { MenuCut Menu
+      Text = ("Cut selected")
+      Picture = Picture["icon:/16/cut"]
+    }
+    { MenuCopyRows Menu
+      Text = ("Copy selected")
+      Picture = Picture["icon:/16/copy"]
+    }
+    { MenuPaste Menu
+      Text = ("Paste after selected")
+      Picture = Picture["icon:/16/paste"]
+    }
+    { Separator12 Menu
+    }
+    { MenuRemovePls Menu
+      Text = ("Remove...")
+      Picture = Picture["icon:/16/delete"]
+      { MenuPlaylistDelete Menu
+        Text = ("Clear selected")
+        Picture = Picture["icon:/16/delete"]
+      }
+      { MenuPlaylistDeleteAll Menu
+        Text = ("Clear All")
+        Picture = Picture["icon:/16/delete"]
+      }
+      { MenuPlaylistZapSelected Menu
+        Text = ("Delete selected from disk")
+        Picture = Picture["icon:/16/erase"]
+      }
+    }
+  }
+  { MenuConfigure Menu MainMenu
+    Name = "MenuConfigure"
+    Text = ("Windows")
+    { GeneralOptionsMenu Menu
+      Text = ("General Options")
+      Picture = Picture["icon:/16/options"]
+    }
+    { HotkeysMenu Menu
+      Text = ("HotKeys")
+      Picture = Picture["HotKeysSmall.png"]
+    }
+    { SubTitlesMenu Menu
+      Text = ("SubTitles and Osd...")
+      Picture = Picture["icon:/16/font"]
+    }
+    { MenuCodecs Menu
+      Text = ("Codecs and demuxers")
+      Picture = Picture["icon:/16/wizard"]
+    }
+    { MenuShowDVBT Menu
+      Text = ("Simple Dvb-T Tuner")
+      Picture = Picture["video-television.png"]
+    }
+    { Separator4 Menu
+    }
+    { MenuVideoAudioChains Menu MenuVideoAudioChains
+      Name = "MenuVideoAudioChains"
+      Text = ("Video/Audio Chains")
+      Picture = Picture["Smallpipe.png"]
+    }
+    { VideoSubMenu Menu
+      Text = ("Video")
+      Picture = Picture["video-television.png"]
+      { MenuConfigureGeneralVideo Menu
+        Text = ("General Options...")
+        Picture = Picture["video-television.png"]
+      }
+      { MenuConfigureVideoFilters Menu
+        Text = ("Filters...")
+        Picture = Picture["video-television.png"]
+      }
+      { MenuVideoDriver Menu MenuVideoDriver
+        Name = "MenuVideoDriver"
+        Text = ("Driver...")
+        Picture = Picture["video-television.png"]
+      }
+    }
+    { AudioSubMenu Menu
+      Text = ("Audio")
+      Picture = Picture["speaker_small.png"]
+      { MenuConfigureGeneralAudio Menu
+        Text = ("General Options...")
+        Picture = Picture["speaker_small.png"]
+      }
+      { MenuConfigureAudioFilters Menu
+        Text = ("Filters...")
+        Picture = Picture["speaker_small.png"]
+      }
+      { MenuAudioDriver Menu MenuAudioDriver
+        Name = "MenuAudioDriver"
+        Text = ("Driver...")
+        Picture = Picture["speaker_small.png"]
+      }
+    }
+    { Separator11 Menu
+    }
+    { MenuTabs Menu
+      Text = ("Tabs visibility")
+    }
+    { EditTagModeSwitch1 Menu
+      Text = ("Show Tag editor")
+      Picture = Picture["icon:/16/edit"]
+    }
+    { MenuToolBarLocked Menu
+      Text = ("Lock Toolbar")
+      Picture = Picture["icon:/16/unlock"]
+      Enabled = False
+      Checked = True
+      Visible = False
+    }
+  }
+  { AspectMenu Menu
+    Text = ("Video Aspect")
+    { Separator7 Menu
+    }
+    { AspectDefaultMenu Menu
+      Text = ("2.35:1")
+    }
+    { Aspect1menu Menu
+      Text = ("16:9")
+    }
+    { Aspect10menu Menu
+      Text = ("16:10")
+    }
+    { Aspect2Menu Menu
+      Text = ("4:3")
+    }
+    { Aspect11menu Menu
+      Text = ("1:1")
+    }
+    { AspectOtherMenu Menu
+      Text = ("Other...")
+    }
+  }
+  { MenuState Menu MainMenu
+    Name = "MenuState"
+    Text = ("Profile")
+    { MenuLoadDefault Menu
+      Text = ("Reload current profile")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuSaveDefault Menu
+      Text = ("Save all to current profile")
+      Picture = Picture["icon:/16/save"]
+    }
+    { MenuManageProfiles Menu
+      Text = ("Profile Manager")
+      Picture = Picture["icon:/16/properties"]
+      Enabled = False
+      Visible = False
+    }
+  }
+  { MenuAbout Menu MainMenu
+    Name = "MenuAbout"
+    Text = ("?")
+    { MenuShowLog Menu
+      Text = ("Show logs")
+      Picture = Picture["icon:/16/text"]
+    }
+    { Separator010 Menu
+    }
+    { MenuBug Menu
+      Text = ("Report a bug")
+      Picture = Picture["icon:/16/important"]
+    }
+    { MenuHomepage Menu
+      Text = ("Home page")
+      Picture = Picture["icon:/16/earth"]
+    }
+    { About Menu MenuAbout
+      Name = "About"
+      Text = ("About")
+      Picture = Picture["MediaInfoTab.png"]
+    }
+  }
+  { ShutdownMenu Menu
+    Text = ("Shutdown menu")
+    Picture = Picture["icon:/16/quit"]
+    Visible = False
+    { ShutOff Menu
+      Text = ("Disable shutdown")
+    }
+    { ShutMedia Menu
+      Text = ("Shutdown at the end of media")
+    }
+    { ShutPls Menu
+      Text = ("ShutDown at the end of playlist")
+    }
+    { Shutcfg Menu
+      Text = ("Configure shutdown command")
+      Picture = Picture["icon:/16/tools"]
+    }
+  }
+  { MenuFlash Menu FlashMenuGroup
+    Name = "MenuFlash"
+    Text = ("FlashMenu")
+    Picture = Picture["flashIcon16.png"]
+    Visible = False
+    { FlashMenuRecordAs Menu
+      Text = ("Record As...")
+      Picture = Picture["icon:/16/save-as"]
+    }
+    { FlashMenuStopRecording Menu
+      Text = ("Stop Recording")
+      Picture = Picture["icon:/16/stop"]
+      Enabled = False
+    }
+    { FlashMenuDelete Menu
+      Text = ("Delete from disk")
+      Picture = Picture["icon:/16/delete"]
+      Enabled = False
+    }
+  }
+  { PodCastMenu Menu
+    Text = ("PodCastMenu")
+    Visible = False
+    { PodCastMenuNew Menu
+      Text = ("New feed")
+      Picture = Picture["icon:/16/new"]
+    }
+    { PodcastMenuRefresh Menu
+      Text = ("Refresh")
+      Picture = Picture["icon:/16/refresh"]
+    }
+    { PodCastMenuDownload Menu
+      Text = ("Download")
+      Picture = Picture["icon:/16/save-as"]
+    }
+    { PodCastMenuAddLibrary Menu
+      Text = ("Add selected items to library")
+      Picture = Picture["icon:/16/add"]
+    }
+    { PodCastMenuAddPlaylist Menu
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+    { PodCastMenuDelete Menu
+      Text = ("Delete selected")
+      Picture = Picture["icon:/16/delete"]
+    }
+  }
+  { ShoutCastGridPopUp Menu
+    Text = ("ShoutCastGridPopUp")
+    Visible = False
+    { ShoutCastGridAddToLibrary Menu
+      Text = ("Add selected items to library")
+      Picture = Picture["icon:/16/add"]
+    }
+    { ShoutCastGridaddtoplaylist Menu
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+  }
+  { ShoutCastTreePopup Menu
+    Text = ("ShoutCastTreePopup")
+    Visible = False
+    { ShoutCastTreeaddtoLibrary Menu
+      Text = ("Add selected items to library")
+      Picture = Picture["icon:/16/add"]
+    }
+    { ShoutCastTreeaddtoplaylist Menu
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+  }
+  { YoutubeTreePopup Menu
+    Text = ("YoutubeTreePopup")
+    Visible = False
+    { youtubeappendmenu Menu
+      Text = ("See more results")
+      Picture = Picture["icon:/16/zoom-in"]
+      Enabled = False
+      Visible = False
+    }
+    { YoutubeTreeTreeGetRelatedMenu Menu
+      Text = ("Get related videos")
+      Picture = Picture["icon:/16/find"]
+    }
+    { YtRefresh Menu
+      Text = ("Refresh")
+      Picture = Picture["icon:/16/refresh"]
+    }
+    { youtubetreeDownload Menu
+      Text = ("Download")
+      Picture = Picture["icon:/16/save-as"]
+    }
+    { YoutubetreeTreeaddtoLibrary Menu
+      Text = ("Add selected items to library")
+      Picture = Picture["icon:/16/add"]
+    }
+    { YoutubetreeTreeaddtoPlaylist Menu
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+  }
+  { MenuBrowse Menu
+    Text = ("MenuBrowse")
+    Visible = False
+    { MenuBrowseOpenContaining Menu
+      Text = ("Open containing folder")
+      Picture = Picture["icon:/16/open"]
+    }
+    { MenuAddToHistory Menu
+      Text = ("Add this folder to history")
+      Picture = Picture["icon:/16/bookmark"]
+    }
+    { menubrowseaddtolibrary Menu
+      Text = ("Add selected items to library")
+      Picture = Picture["icon:/16/add"]
+    }
+    { menubrowseaddtoplaylist Menu
+      Text = ("Add selected items to playlist")
+      Picture = Picture["icon:/16/add"]
+    }
+    { MenuBrowseDelete Menu
+      Text = ("Delete selected from disk")
+      Picture = Picture["icon:/16/erase"]
+    }
+  }
+  { MainToolBar Panel
+    MoveScaled(1,0,92,4)
+    Arrangement = Arrange.Horizontal
+    { ShowVolBtn2 ToolButton DynaGuiToolbar
+      Name = "ShowVolBtn2"
+      MoveScaled(1,0,4,4)
+      ToolTip = ("Open a file")
+      AutoResize = True
+      Picture = Picture["document-open.png"]
+    }
+    { OpenNetworkBTN ToolButton DynaGuiToolbar
+      Name = "OpenNetworkBTN"
+      MoveScaled(6,0,4,4)
+      ToolTip = ("Open an URI/Network stream")
+      AutoResize = True
+      Picture = Picture["icon:/22/network"]
+    }
+    { ConfigureChainsBTN ToolButton DynaGuiToolbar
+      Name = "ConfigureChainsBTN"
+      MoveScaled(10,0,4,4)
+      ToolTip = ("Show/hide chains window")
+      AutoResize = True
+      Picture = Picture["pipe.png"]
+    }
+    { ConfigureBTN ToolButton DynaGuiToolbar
+      Name = "ConfigureBTN"
+      MoveScaled(15,1,4,4)
+      ToolTip = ("Configuration toolbox")
+      AutoResize = True
+      Picture = Picture["configure.png"]
+    }
+    { TagEditorBtn ToolButton DynaGuiToolbar
+      Name = "TagEditorBtn"
+      MoveScaled(25,0,4,4)
+      Enabled = False
+      ToolTip = ("Show/Hide AudioTag editor")
+      AutoResize = True
+      Picture = Picture["icon:/22/edit"]
+    }
+    { FlexSpace PictureBox
+      MoveScaled(33,0,9,4)
+      Expand = True
+    }
+    { ShowAudioEq ToolButton DynaGuiToolbar
+      Name = "ShowAudioEq"
+      MoveScaled(54,0,4,4)
+      ToolTip = ("Video Equalizer")
+      AutoResize = True
+      Picture = Picture["audioequalizer.png"]
+    }
+    { ShowVideoEq ToolButton DynaGuiToolbar
+      Name = "ShowVideoEq"
+      MoveScaled(58,0,4,4)
+      ToolTip = ("Video Equalizer")
+      AutoResize = True
+      Picture = Picture["icon:/16/color"]
+    }
+    { SwitchSubBtn ToolButton DynaGuiToolbar
+      Name = "SwitchSubBtn"
+      MoveScaled(62,0,4,4)
+      ToolTip = ("Switch subtitle track")
+      AutoResize = True
+      Picture = Picture["icon:/16/font"]
+    }
+    { SwitchAudioBTN ToolButton DynaGuiToolbar
+      Name = "SwitchAudioBTN"
+      MoveScaled(67,0,4,4)
+      ToolTip = ("Switch audio track")
+      AutoResize = True
+      Picture = Picture["icon:/16/language"]
+    }
+    { RealtimeBTN ToolButton DynaGuiToolbar
+      Name = "RealtimeBTN"
+      MoveScaled(72,0,4,4)
+      ToolTip = ("Other realtime commands")
+      AutoResize = True
+      Picture = Picture["icon:/16/clock"]
+    }
+    { Separator2 Separator
+      MoveScaled(76,0,2,4)
+    }
+    { SwitchSidePanelBTN ToolButton DynaGuiToolbar
+      Name = "SwitchSidePanelBTN"
+      MoveScaled(79,0,4,4)
+      ToolTip = ("Hide/show left panel")
+      AutoResize = True
+      Picture = Picture["view-choose.png"]
+    }
+    { FullScreenBtn ToolButton DynaGuiToolbar
+      Name = "FullScreenBtn"
+      MoveScaled(83,0,4,4)
+      ToolTip = ("Fullscreen Switch")
+      AutoResize = True
+      Picture = Picture["view-fullscreen.png"]
+    }
+    { PoweroffBTN ToolButton DynaGuiToolbar
+      Name = "PoweroffBTN"
+      MoveScaled(86,0,4,4)
+      ToolTip = ("Shutdown menu")
+      AutoResize = True
+      Picture = Picture["icon:/16/quit"]
+    }
+  }
+  { HSplit1 HSplit
+    MoveScaled(0,4,103,68)
+    Tracking = True
+    Expand = True
+    { LeftSidePanel Panel
+      MoveScaled(1,2,39,64)
+      Expand = True
+      Arrangement = Arrange.Vertical
+      Spacing = True
+      Margin = True
+      Padding = 4
+      { Leftsidetabs TabStrip
+        MoveScaled(1,0,39,59)
+        Tag = "1"
+        ToolTip = ("Right click to select which tabs to show.")
+        Expand = True
+        Arrangement = Arrange.Vertical
+        Spacing = True
+        Margin = True
+        Padding = 4
+        Count = 12
+        Index = 0
+        Text = ("Library")
+        Picture = Picture["icon:/16/book"]
+        { NOPARSETABLIBRARY Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Font = Font["+3"]
+          Tag = "library"
+          Text = ("Label3")
+        }
+        { WaitPanel TextLabel
+          MoveScaled(17,1,37,4)
+          Visible = False
+          Background = Color.TextBackground
+          Expand = True
+          Alignment = Align.Center
+          Border = Border.Raised
+        }
+        { LibraryGrid GridView
+          MoveScaled(3,8,36,25)
+          ToolTip = ("Drag'n drop files, folders or media links to add them,")
+          Drop = True
+          Expand = True
+          Mode = Select.Multiple
+          Grid = False
+          Header = GridView.Horizontal
+        }
+        { LibrarySelInfo Label
+          MoveScaled(2,38,36,4)
+          Visible = False
+          Background = &HFFFF9B&
+          Alignment = Align.Center
+          Border = Border.Etched
+        }
+        { MyLibraryProgressBar ProgressBar
+          MoveScaled(1,43,38,4)
+          Visible = False
+        }
+        Index = 1
+        Text = ("Playlist")
+        Picture = Picture["PlaylistTab.png"]
+        { NOPARSETABPLAYLIST Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Tag = "playlist"
+          Text = ("Label3")
+        }
+        { plstimer #Timer
+          #MoveScaled(1,1)
+          Delay = 33
+        }
+        { PlaylistGrid GridView
+          MoveScaled(0,10,37,22)
+          ToolTip = ("Drag'n drop files or media links to add them,")
+          Drop = True
+          Expand = True
+          Mode = Select.Multiple
+          Grid = False
+          Header = GridView.Horizontal
+        }
+        { WaitPanel2 TextLabel
+          MoveScaled(0,32,36,5)
+          Visible = False
+          Background = Color.TextBackground
+          Expand = True
+          Alignment = Align.Center
+          Border = Border.Raised
+        }
+        { PlayListSelInfoBox HBox
+          MoveScaled(0,38,37,4)
+          { MoveUpPlsBTN Button
+            MoveScaled(0,0,4,4)
+            ToolTip = ("Move selected items up in the list.\nYou can use the mouse wheel too.")
+            Picture = Picture["icon:/16/up"]
+          }
+          { MoveDownPlsBTN Button
+            MoveScaled(4,0,4,4)
+            ToolTip = ("Move selected playlist items down.\nYou can use the mouse wheel too.")
+            Picture = Picture["icon:/16/down"]
+          }
+          { PlayListSelInfo Label
+            MoveScaled(17,0,19,4)
+            Background = &HFFFF9B&
+            Expand = True
+            AutoResize = True
+            Alignment = Align.Center
+            Border = Border.Etched
+          }
+        }
+        Index = 2
+        Text = ("Browse")
+        Picture = Picture["icon:/16/directory"]
+        { NOPARSETABBROWSE Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Font = Font["+3"]
+          Tag = "browse"
+          Text = ("Label3")
+        }
+        { HBox14 HBox
+          MoveScaled(1,3,33,4)
+          Spacing = True
+          Margin = True
+          Padding = 1
+          { ButtonUp Button
+            MoveScaled(0,0,4,4)
+            ToolTip = ("Parent")
+            Picture = Picture["icon:/16/up"]
+          }
+          { ButtonRefresh Button
+            MoveScaled(3,0,4,4)
+            ToolTip = ("Refresh")
+            Picture = Picture["icon:/16/refresh"]
+          }
+          { ButtonHome Button
+            MoveScaled(7,0,4,4)
+            ToolTip = ("Home Folder")
+            Picture = Picture["icon:/16/home"]
+          }
+          { UrlBox ComboBox
+            MoveScaled(11,0,7,4)
+            Expand = True
+            Text = ("/")
+          }
+          { Separator1 Separator
+            MoveScaled(19,1,2,4)
+          }
+          { buttonlistview Button
+            MoveScaled(21,0,4,4)
+            ToolTip = ("Show detailed list")
+            Picture = Picture["icon:/16/view-detail"]
+          }
+          { ButtonIconview Button
+            MoveScaled(25,0,4,4)
+            ToolTip = ("Show icons")
+            Picture = Picture["icon:/16/view-icon"]
+          }
+          { ButtonHidden Button
+            MoveScaled(29,0,4,4)
+            ToolTip = ("Show/Hide hidden files")
+            Picture = Picture["icon:/16/watch"]
+          }
+        }
+        { FileView1 FileView
+          MoveScaled(1,11,35,32)
+          Expand = True
+          Mode = Select.Single
+          Dir = "/"
+          ShowDetailed = True
+          ShowDirectory = True
+        }
+        Index = 3
+        Text = ("DVB-T")
+        Picture = Picture["filetypedvb.png"]
+        { NOPARSETABDVB Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Font = Font["+3"]
+          Tag = "browse"
+          Text = ("Label3")
+        }
+        { WaitPanel3 TextLabel
+          MoveScaled(0,5,37,4)
+          Visible = False
+          Background = Color.TextBackground
+          Expand = True
+          Alignment = Align.Center
+          Border = Border.Raised
+        }
+        { HBox19 HBox
+          MoveScaled(1,10,35,4)
+          Spacing = True
+          { DvbFilter Label
+            MoveScaled(0,0,7,3)
+            ToolTip = ("Double Click for Search Options.")
+            AutoResize = True
+            Text = ("Filter")
+          }
+          { SearchFieldDVB ComboBox
+            MoveScaled(7,0,22,3)
+            ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
+            Expand = True
+          }
+        }
+        { DVBTGrid GridView
+          MoveScaled(0,17,37,32)
+          Drop = True
+          Expand = True
+          Mode = Select.Multiple
+          Grid = False
+          Header = GridView.Horizontal
+        }
+        { ScanBtn Button
+          MoveScaled(1,50,35,4)
+          Text = ("Scan for channels")
+          Picture = Picture["icon:/16/find"]
+        }
+        Index = 4
+        Text = ("Audio CD")
+        Picture = Picture["cdaudio16.png"]
+        { NOPARSETABCDDA Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Tag = "audio cd"
+          Text = ("Label3")
+        }
+        { CDDAGrid GridView
+          MoveScaled(2,5,35,34)
+          Expand = True
+          Mode = Select.Single
+          Grid = False
+        }
+        Index = 5
+        Text = ("DVD")
+        Picture = Picture["icon:/16/cdrom"]
+        { NOPARSETABDVD Label
+          MoveScaled(2,1,8,3)
+          Visible = False
+          Tag = "dvd"
+          Text = ("Label3")
+        }
+        { Button3 Button
+          MoveScaled(2,9,35,4)
+          Text = ("DVD menu navigation mode")
+          Picture = Picture["icon:/16/wizard"]
+        }
+        { TreeView1 TreeView
+          MoveScaled(1,15,36,22)
+          Expand = True
+        }
+        Index = 6
+        Text = ("Flash")
+        Picture = Picture["flashIcon16.png"]
+        { NOPARSETABFLASH Label
+          MoveScaled(2,1,8,3)
+          Visible = False
+          Tag = "flash"
+          Text = ("Label3")
+        }
+        { TimerFlash #Timer
+          #MoveScaled(2,2)
+          Delay = 2000
+        }
+        { FlashGrid GridView
+          MoveScaled(-1,7,38,20)
+          ToolTip = ("Drag'n drop files or media links to add them,")
+          Drop = True
+          Expand = True
+          Mode = Select.Single
+          Header = GridView.Horizontal
+        }
+        { FlashCHK CheckBox
+          MoveScaled(0,26,37,4)
+          ToolTip = ("Show flash videos in /tmp folder in the upper list, allowing you to play them.")
+          Text = ("Catch Flash videos in /tmp folder")
+        }
+        { FlashCHK2 CheckBox
+          MoveScaled(0,29,37,4)
+          ToolTip = ("When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager.")
+          Text = ("PopUp window to play new catched videos")
+        }
+        Index = 7
+        Text = ("YouTube")
+        Picture = Picture["youtubeicon.png"]
+        { NOPARSETABYOUTUBE Label
+          MoveScaled(0,0,8,3)
+          Visible = False
+          Tag = "youtube"
+          Text = ("Label3")
+        }
+        { VSplit1 VSplit
+          MoveScaled(0,1,36,28)
+          Expand = True
+          { youtubetree TreeView
+            MoveScaled(0,0,35,7)
+            Expand = True
+          }
+          { scrollviewyt ScrollView
+            MoveScaled(0,13,35,13)
+            Visible = False
+            Background = &H000000&
+            Foreground = &HFFFFFF&
+            ToolTip = ("Click to open video page")
+            Expand = True
+            { YouVideoInfo TextLabel
+              MoveScaled(1,1,27,11)
+              Visible = False
+              Background = &H000000&
+              Foreground = &HFFFFFF&
+              ToolTip = ("Click to open video page")
+              Expand = True
+              AutoResize = True
+            }
+          }
+        }
+        { HBox13 HBox
+          MoveScaled(0,32,38,4)
+          ToolTip = (" ")
+          { buttonopts Button
+            MoveScaled(0,0,4,4)
+            ToolTip = ("Show advanced search options")
+            Picture = Picture["icon:/16/zoom-fit"]
+          }
+          { blinktimer #Timer
+            Delay = 100
+          }
+          { buttondetail Button
+            MoveScaled(4,0,4,4)
+            ToolTip = ("Show youtube video information")
+            Picture = Picture["icon:/16/info"]
+          }
+          { YtSearchlabel Label
+            MoveScaled(8,0,5,4)
+            AutoResize = True
+            Text = ("Search")
+          }
+          { YouSearchfield ComboBox
+            MoveScaled(13,0,10,3)
+            ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
+            Expand = True
+          }
+          { MaxLabel Label
+            MoveScaled(23,0,5,4)
+            AutoResize = True
+            Text = ("Results")
+          }
+          { SpinBoxmaxresults SpinBox
+            MoveScaled(28,0,7,4)
+            MinValue = 1
+            MaxValue = 49
+            Value = 10
+          }
+          { buttonstartytsearch Button
+            MoveScaled(35,0,4,4)
+            ToolTip = ("Search now")
+            Text = (">>")
+          }
+        }
+        { sidepanelYTSearchoptions Panel
+          MoveScaled(0,36,32,17)
+          Visible = False
+          Arrangement = Arrange.Row
+          AutoResize = True
+          Spacing = True
+          Margin = True
+          Padding = 2
+          Border = Border.Raised
+          { HBox15 HBox
+            MoveScaled(0,0,33,4)
+            ToolTip = ("only valid for searches")
+            AutoResize = True
+            { Label3 Label
+              MoveScaled(0,1,11,3)
+              Tag = "orderby"
+              Text = ("Order by")
+            }
+            { ComboBoxOrderBy ComboBox
+              MoveScaled(7,0,17,4)
+              ReadOnly = True
+              List = [("relevance"), ("published"), ("viewCount"), ("rating")]
+              Text = ("relevance")
+            }
+            { VBox5 VBox
+              MoveScaled(25,0,3,4)
+              Expand = True
+            }
+          }
+          { HBox16 HBox
+            MoveScaled(-1,4,30,4)
+            ToolTip = ("Only valid for standard feeds")
+            AutoResize = True
+            { Label4 Label
+              MoveScaled(0,0,11,3)
+              Tag = "region"
+              Text = ("Region")
+            }
+            { ComboBoxRegion ComboBox
+              MoveScaled(10,0,14,4)
+              ReadOnly = True
+              List = [("Any: "), ("Argentina:AR"), ("Australia:AU"), ("Brazil:BR"), ("Canada:CA"), ("Czec Republic:CZ"), ("France:FR"), ("Germany:DE"), ("Great Britain:BG"), ("Hong Kong:HK"), ("India:IN"), ("Ireland:IE"), ("Israel:IL"), ("Italy:IT"), ("Japan:JP"), ("Mexico:MX"), ("Netherlands:NL"), ("New Zeland:NZ"), ("Poland:PL"), ("Russia:RU"), ("South Africa:ZA"), ("South Korea:KR"), ("Spain:ES"), ("Sweden:SE"), ("Taiwan:TW"), ("United States:US")]
+              Text = ("Any:")
+            }
+            { VBox6 VBox
+              MoveScaled(27,1,3,4)
+              Expand = True
+            }
+          }
+          { HBox17 HBox
+            MoveScaled(1,9,33,4)
+            ToolTip = ("only valid for searches")
+            AutoResize = True
+            { Label5 Label
+              MoveScaled(0,1,11,3)
+              Tag = "time"
+              Text = ("Time")
+            }
+            { ComboBoxtime ComboBox
+              MoveScaled(8,0,14,4)
+              Tag = "time"
+              ReadOnly = True
+              List = [("today"), ("this_week"), ("this_month"), ("all_time")]
+              Text = ("all_time")
+            }
+            { VBox7 VBox
+              MoveScaled(24,1,6,3)
+              Expand = True
+            }
+          }
+          { HBox18 HBox
+            MoveScaled(1,13,30,4)
+            ToolTip = ("only valid for searches")
+            AutoResize = True
+            { Label6 Label
+              MoveScaled(1,1,11,3)
+              Tag = "safeSearch"
+              Text = ("Uploader")
+            }
+            { TextBoxUploader TextBox
+              MoveScaled(12,0,14,4)
+            }
+            { VBox8 VBox
+              MoveScaled(27,0,2,4)
+              Expand = True
+            }
+          }
+        }
+        Index = 8
+        Text = ("ShoutCast")
+        Picture = Picture["shoutcast16.png"]
+        { NOPARSETABSHOUTCAST Label
+          MoveScaled(2,0,8,3)
+          Visible = False
+          Tag = "shoutcast"
+          Text = ("Label3")
+        }
+        { NOSAVEVBox3 VBox
+          MoveScaled(1,6,36,15)
+          Expand = True
+          { GenresTree TreeView
+            MoveScaled(1,0,35,9)
+            Expand = True
+          }
+          { ButtonGetGenres Button
+            MoveScaled(0,9,36,4)
+            Text = ("Refresh Genres list")
+            Picture = Picture["icon:/16/refresh"]
+          }
+        }
+        { NOSAVEVBox2 VBox
+          MoveScaled(1,27,35,21)
+          Visible = False
+          Expand = True
+          Spacing = True
+          { HBox12 Panel
+            MoveScaled(1,0,33,4)
+            Arrangement = Arrange.Horizontal
+            Padding = 4
+            Border = Border.Etched
+            { Label2 Label
+              MoveScaled(0,0,23,3)
+              Font = Font["Bold"]
+              AutoResize = True
+              Text = ("ShoutCast Radio search results:")
+              Alignment = Align.Left
+            }
+            { VBox4 VBox
+              MoveScaled(22,1,6,3)
+              Expand = True
+            }
+            { CloseTagEdBtn2 ToolButton
+              MoveScaled(29,1,4,3)
+              Picture = Picture["icon:/16/close"]
+            }
+          }
+          { HBox11 HBox
+            MoveScaled(1,9,36,4)
+            Spacing = True
+            { ShoutSearchLabel2 Label
+              MoveScaled(1,1,9,3)
+              AutoResize = True
+              Text = ("HighLight")
+            }
+            { FilterTextBox TextBox
+              MoveScaled(12,0,23,4)
+              Expand = True
+            }
+          }
+          { ShutResultGrid GridView
+            MoveScaled(1,15,34,9)
+            Expand = True
+            Mode = Select.Multiple
+            Grid = False
+          }
+        }
+        { NOSAVEHBox10 HBox
+          MoveScaled(2,50,32,4)
+          Spacing = True
+          { TextBox1 ButtonBox
+            MoveScaled(7,0,19,4)
+            Expand = True
+            Picture = Picture["icon:/16/find"]
+          }
+        }
+        Index = 9
+        Text = ("Podcasts")
+        Picture = Picture["rss.png"]
+        { NOPARSETABPODCAST Label
+          MoveScaled(1,1,8,3)
+          Visible = False
+          Tag = "podcasts"
+          Text = ("Label3")
+        }
+        { PodcastTree TreeView
+          MoveScaled(1,5,34,12)
+          Drop = True
+          Expand = True
+          Mode = Select.Multiple
+        }
+        { Button4 Button
+          MoveScaled(1,20,36,4)
+          Text = ("Refresh All")
+          Picture = Picture["icon:/16/refresh"]
+        }
+        { Button1 Button
+          MoveScaled(1,25,36,4)
+          Text = ("New feed")
+          Picture = Picture["icon:/16/new"]
+        }
+        Index = 10
+        Text = ("Media Info")
+        Picture = Picture["MediaInfoTab.png"]
+        { NOPARSETABMEDIAINFO Label
+          MoveScaled(0,0,8,3)
+          Visible = False
+          Tag = "media info"
+          Text = ("Label3")
+        }
+        { PropertiesGrid GridView
+          MoveScaled(1,6,33,30)
+          Expand = True
+        }
+        Index = 11
+        Text = ("Profiles")
+        Picture = Picture["icon:/16/properties"]
+        { NOPARSETABPROFILES Label
+          MoveScaled(2,1,8,3)
+          Visible = False
+          Tag = "profiles"
+          Text = ("Label3")
+        }
+        { CurrentProfileLabel Label
+          MoveScaled(1,9,35,4)
+          Font = Font["Bold"]
+          Text = ("Current profile: ")
+        }
+        { ProfilesListBox ListBox
+          MoveScaled(1,13,35,9)
+          Expand = True
+          Sorted = True
+        }
+        { HBox7 HBox
+          MoveScaled(2,23,34,4)
+          Spacing = True
+          { ProfileLoadBTN Button
+            MoveScaled(4,0,13,4)
+            ToolTip = ("Load the selected profile")
+            Expand = True
+            Text = ("Load")
+            Picture = Picture["icon:/16/open"]
+          }
+          { ProfileSaveBTN2 Button
+            MoveScaled(18,0,13,4)
+            ToolTip = ("Save the settings to the selected profile")
+            Expand = True
+            Text = ("Save")
+            Picture = Picture["icon:/16/save"]
+          }
+        }
+        { HBox8 HBox
+          MoveScaled(2,27,34,4)
+          Spacing = True
+          { ProfileRenameBTN Button
+            MoveScaled(4,0,13,4)
+            ToolTip = ("Rename the selected profile")
+            Expand = True
+            Text = ("Rename")
+            Picture = Picture["icon:/16/edit"]
+          }
+          { ProfileSaveBTN Button
+            MoveScaled(18,0,13,4)
+            ToolTip = ("Save the current settings to a new profile")
+            Expand = True
+            Text = ("Save As")
+            Picture = Picture["icon:/16/save-as"]
+          }
+        }
+        { HBox9 HBox
+          MoveScaled(2,31,34,4)
+          Spacing = True
+          { ProfileDeleteBTN Button
+            MoveScaled(4,0,13,4)
+            ToolTip = ("Delete the selected profile")
+            Expand = True
+            Text = ("Delete")
+            Picture = Picture["icon:/16/remove"]
+          }
+          { ProfileMakeNewBTN Button
+            MoveScaled(18,0,13,4)
+            ToolTip = ("Make a new blank profile")
+            Expand = True
+            Text = ("Make new")
+            Picture = Picture["icon:/16/new"]
+          }
+        }
+        Index = 0
+      }
+      { HBox2 HBox
+        MoveScaled(0,59,37,4)
+        { HBox20 HBox
+          MoveScaled(1,0,29,4)
+          Expand = True
+          AutoResize = True
+          { SearchLabel Label
+            MoveScaled(0,1,7,3)
+            ToolTip = ("Double Click for Search Options.")
+            AutoResize = True
+            Text = ("Search")
+          }
+          { SearchField ComboBox
+            MoveScaled(6,0,7,3)
+            ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
+            Expand = True
+          }
+          { SearchFieldPLS ComboBox
+            MoveScaled(14,0,7,3)
+            ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
+            Expand = True
+          }
+          { ShufflePls ToggleButton
+            MoveScaled(23,0,5,4)
+            Background = Color.Background
+            ToolTip = ("Play random media when the previous reaches the end.")
+            Picture = Picture["amarok_random.png"]
+          }
+        }
+        { TogglePls ToggleButton
+          MoveScaled(31,0,5,4)
+          Background = Color.Background
+          ToolTip = ("Play next media as the previous reaches the end.")
+          Picture = Picture["icon:/16/end"]
+        }
+      }
+    }
+    { RightSidePanel Panel VideoAreaGroup
+      Name = "RightSidePanel"
+      MoveScaled(43,4,60,65)
+      Background = &H000000&
+      Arrangement = Arrange.Vertical
+      { TagPanel ScrollView
+        MoveScaled(27,3,30,45)
+        Expand = True
+        Arrangement = Arrange.Vertical
+        Spacing = True
+        Margin = True
+        Padding = 8
+        ScrollBar = Scroll.Vertical
+        { HBox6 HBox
+          MoveScaled(10,0,4,3)
+          Expand = True
+        }
+        { HBox4 HBox
+          MoveScaled(0,1,28,4)
+          Padding = 4
+          { Label1 Label
+            MoveScaled(-1,-3,15,3)
+            Font = Font["Bold"]
+            Text = ("Tag Editor")
+            Alignment = Align.Left
+          }
+          { VBox1 VBox
+            MoveScaled(17,0,6,3)
+            Expand = True
+          }
+          { CloseTagEdBtn ToolButton
+            MoveScaled(25,0,3,3)
+            Picture = Picture["icon:/16/close"]
+          }
+        }
+        { HTagBox1 HBox
+          MoveScaled(0,5,25,4)
+          { AlbumCHK CheckBox TagsCHK
+            Name = "AlbumCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Album")
+            Value = CheckBox.True
+          }
+          { ToolButton1 ToolButton Clearer
+            Name = "ToolButton1"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox1 TextBox TagsBox
+            Name = "TagBox1"
+            MoveScaled(18,1,6,3)
+            Expand = True
+          }
+        }
+        { HTagBox2 HBox
+          MoveScaled(0,9,25,4)
+          { ArtistCHK CheckBox TagsCHK
+            Name = "ArtistCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Artist")
+            Value = CheckBox.True
+          }
+          { ToolButton2 ToolButton Clearer
+            Name = "ToolButton2"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox2 TextBox TagsBox
+            Name = "TagBox2"
+            MoveScaled(18,1,6,3)
+            Expand = True
+          }
+        }
+        { HTagBox3 HBox
+          MoveScaled(0,13,25,4)
+          { TitleCHK CheckBox TagsCHK
+            Name = "TitleCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Title")
+          }
+          { ToolButton3 ToolButton Clearer
+            Name = "ToolButton3"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox3 TextBox TagsBox
+            Name = "TagBox3"
+            MoveScaled(18,1,6,3)
+            Enabled = False
+            Expand = True
+          }
+        }
+        { HTagBox4 HBox
+          MoveScaled(0,17,25,4)
+          { YearCHK CheckBox TagsCHK
+            Name = "YearCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Year")
+            Value = CheckBox.True
+          }
+          { ToolButton4 ToolButton Clearer
+            Name = "ToolButton4"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox4 TextBox TagsBox
+            Name = "TagBox4"
+            MoveScaled(18,1,6,3)
+            Expand = True
+          }
+        }
+        { HTagBox5 HBox
+          MoveScaled(0,21,25,4)
+          { GenreCHK CheckBox TagsCHK
+            Name = "GenreCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Genre")
+            Value = CheckBox.True
+          }
+          { ToolButton5 ToolButton Clearer
+            Name = "ToolButton5"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox5 ComboBox
+            MoveScaled(18,0,7,3)
+            Expand = True
+          }
+        }
+        { HTagBox6 HBox
+          MoveScaled(0,25,25,4)
+          { TrackCHK CheckBox TagsCHK
+            Name = "TrackCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Track No.")
+          }
+          { ToolButton6 ToolButton Clearer
+            Name = "ToolButton6"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox6 TextBox TagsBox
+            Name = "TagBox6"
+            MoveScaled(18,1,6,3)
+            Enabled = False
+            Expand = True
+          }
+        }
+        { HTagBox7 HBox
+          MoveScaled(0,29,25,4)
+          { CommentCHK CheckBox TagsCHK
+            Name = "CommentCHK"
+            MoveScaled(1,0,13,3)
+            Text = ("Comment")
+            Value = CheckBox.True
+          }
+          { ToolButton7 ToolButton Clearer
+            Name = "ToolButton7"
+            MoveScaled(14,0,4,4)
+            Picture = Picture["icon:/16/clear"]
+          }
+          { TagBox7 TextBox TagsBox
+            Name = "TagBox7"
+            MoveScaled(18,1,6,3)
+            Expand = True
+          }
+        }
+        { FileTagLabel TextArea
+          MoveScaled(-1,30,14,7)
+          Font = Font["Italic"]
+          Background = Color.Background
+          ReadOnly = True
+          Wrap = True
+          Border = False
+          ScrollBar = Scroll.Vertical
+        }
+        { HBox1 HBox
+          MoveScaled(1,35,26,4)
+          Spacing = True
+          { AdvanceCHK CheckBox
+            MoveScaled(1,1,12,3)
+            Expand = True
+            Text = ("Select next")
+          }
+          { HBox3 HBox
+            MoveScaled(14,1,5,3)
+            Expand = True
+          }
+          { Button2 Button
+            MoveScaled(15,0,12,4)
+            Text = ("Refresh")
+            Picture = Picture["icon:/16/refresh"]
+          }
+          { ButtonTag Button
+            MoveScaled(21,0,12,4)
+            Text = ("Commit")
+            Picture = Picture["icon:/16/ok"]
+          }
+        }
+        { HBox5 HBox
+          MoveScaled(6,39,17,3)
+          Expand = True
+        }
+      }
+      { OuterBox DrawingArea VideoAreaGroup
+        Name = "OuterBox"
+        MoveScaled(0,11,26,35)
+        Background = &H000000&
+        Drop = True
+        Expand = True
+        { VideoBox DrawingArea VideoAreaGroup
+          Name = "VideoBox"
+          MoveScaled(1,10,24,14)
+          Background = &H000000&
+          Drop = True
+        }
+      }
+      { BottomVbox VBox
+        MoveScaled(0,49,71,15)
+        Background = Color.Background
+        { cachebar ProgressBar
+          MoveScaled(0,0,54,1.5714)
+          Font = Font["Bold,5"]
+          Label = False
+        }
+        { ControlFrame Frame
+          MoveScaled(0,1,70,10)
+          Font = Font["6"]
+          { ControlPanel Panel
+            MoveScaled(1,6,41,4)
+            Font = Font["6"]
+            AutoResize = True
+            { ButtonOpen ToolButton
+              MoveScaled(2,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Open a file...")
+              Picture = Picture["document-open.png"]
+            }
+            { ButtonPrev ToolButton
+              MoveScaled(7,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Previous media")
+              Picture = Picture["media-skip-backward.png"]
+            }
+            { ButtonRew ToolButton
+              MoveScaled(12,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Slowdown")
+              Picture = Picture["media-seek-backward.png"]
+            }
+            { ButtonPlay ToolButton
+              MoveScaled(17,0,4,4)
+              Font = Font["6"]
+              ToolTip = ("Play/pause")
+              Action = "play"
+              Picture = Picture["media-playback-start.png"]
+            }
+            { ButtonStop ToolButton
+              MoveScaled(21,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Stop")
+              Picture = Picture["media-playback-stop.png"]
+            }
+            { Buttonfwd ToolButton
+              MoveScaled(26,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Speedup")
+              Picture = Picture["media-seek-forward.png"]
+            }
+            { ButtonNext ToolButton
+              MoveScaled(31,0,4,4)
+              Font = Font["6"]
+              ToolTip = ("Next media")
+              Picture = Picture["media-skip-forward.png"]
+            }
+            { PanScan ToolButton
+              MoveScaled(36,0,5,4)
+              Font = Font["6"]
+              ToolTip = ("Open a file...")
+              Picture = Picture["icon:/medium/zoom-in"]
+            }
+          }
+          { SliderBox HBox
+            MoveScaled(1,1,57,4)
+            Font = Font["6"]
+            { SeekBar Slider
+              MoveScaled(1,0,25,4)
+              Font = Font["6"]
+              Tag = "user"
+              Tracking = False
+              Expand = True
+              MaxValue = 1000
+              Step = 10
+            }
+            { ShowVolBtn ToolButton
+              MoveScaled(27,0,4,4)
+              Font = Font["6"]
+              AutoResize = True
+              Picture = Picture["speaker.png"]
+            }
+            { SaveVolumeSlider Slider
+              MoveScaled(31,0,13,4)
+              Font = Font["6"]
+              Tag = "user"
+              MaxValue = 25
+              PageStep = 5
+              Value = 12
+            }
+          }
+        }
+        { Statusbar1 TextBox
+          MoveScaled(0,11,70,4)
+          Background = &H000000&
+          Foreground = &HF0F0F0&
+          Alignment = Align.Left
+          ReadOnly = True
+          Border = False
+        }
+      }
+    }
+    { libtimer #Timer
+      #MoveScaled(51,0)
+      Delay = 50
+    }
+    { DelayTimer #Timer
+      #MoveScaled(58,0)
+    }
+    { OneSecTimer #Timer
+      #MoveScaled(65,0)
+    }
+    { TimerDVD #Timer
+      #MoveScaled(72,0)
+      Delay = 250
+    }
+    { TimerFullScreen #Timer
+      #MoveScaled(79,0)
+      Delay = 250
+    }
+    { SlideTimer #Timer
+      #MoveScaled(86,0)
+      Delay = 10
+    }
+    { Mysocket #ServerSocket
+      #MoveScaled(93,0)
+      Port = 4856
+    }
+  }
+}
+
+# Gambas Action File 3.0
+
+{ Actions
+  { Action play
+    Text = "Play/pause"
+    Picture = "media-playback-start.png"
+  }
+}

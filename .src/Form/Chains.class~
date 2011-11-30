@@ -1,0 +1,352 @@
+' Gambas class file
+
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+Private DynaguiVideo As New DynaGuiClass
+Private DynaguiAudio As New DynaGuiClass
+
+
+
+Public Sub Videofilterobj_MouseDrag()
+  global.NotifyApplyNeeds()
+  DynaguiVideo.DetachFrom(Last, Me)
+End
+                                    
+Public Sub Videofilterobj_MouseMove()
+    DynaGuiVideo.MoveObject(Last, Me)
+End
+
+
+
+Public Sub Videofilterobj_MouseUp()
+  DynaguiVideo.SmartInsert(Last, Me)
+  If Last.Parent = VideoChainBox Then
+    VFiltersCfg.SyncFiltersList(Last.name, True)
+      Else
+    VFiltersCfg.SyncFiltersList(Last.name, False)
+  Endif
+End
+
+Public Sub Videofilterobj_Click()
+  Dim workaroundGb3 As String
+   If Not DynaguiVideo.ObjDragging Then 'this is necessary to not confuse click and drag events
+         If Last.name = "MyExpand" Then 
+          workaroundgb3 = "expand"
+            Else
+          workaroundgb3 = Last.name
+         Endif
+         VFiltersCfg.show
+         VFiltersCfg.ShowFilterConfiguration(workaroundgb3)
+         Me.hide
+   Endif
+   global.FromChains = True
+End
+
+Public Sub Audiofilterobj_MouseDrag()
+  DynaguiAudio.DetachFrom(Last, Me)
+  global.NotifyApplyNeeds()
+End
+                                    
+Public Sub Audiofilterobj_MouseMove()
+  DynaGuiAudio.MoveObject(Last, Me)
+End
+
+Public Sub Audiofilterobj_MouseUp()
+  DynaguiAudio.SmartInsert(Last, Me)
+  If Last.Parent = AudioChainBox Then
+    AFiltersCfg.SyncFiltersList(Last.name, True)
+      Else
+    AFiltersCfg.SyncFiltersList(Last.name, False)
+  Endif
+End
+
+Public Sub Audiofilterobj_Click()
+   If Not DynaguiAudio.ObjDragging Then 'this is necessary to not confuse click and drag events
+         AFiltersCfg.ShowFilterConfiguration(Last.name)
+         AFiltersCfg.show
+         Me.hide
+   Endif
+   global.FromChains = True
+End
+
+
+
+
+
+
+Public Sub VideoChainPanel_MouseDown()
+
+  
+
+End
+
+Public Sub VBox1_MouseDown()
+
+  
+
+End
+
+Public Sub Form_Open()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  If Not AlreadyLoaded Then 
+     Alreadyloaded = True
+     MenuLoadDefault_Click()
+     VFiltersCfg.AlreadyLoaded = True
+     VFiltersCfg.MenuLoadDefault_Click()
+     AFiltersCfg.AlreadyLoaded = True
+     AFiltersCfg.MenuLoadDefault_Click()
+  Endif
+
+  'ME.center
+  Global.Center(Fmain, Me)
+  DynaGuiVideo.AllowedContainers = ["VideoFiltersBox", "VideoChainBox"]
+  DynaguiVideo.ConstrainWidth = 115
+  DynaguiVideo.ConstrainHeight = 28
+  DynaGuiVideo.YOffset = - Me.Font.Textheight("Ij") * 1.5
+  DynaGuiAudio.YOffset = DynaGuiVideo.YOffset
+  DynaGuiAudio.AllowedContainers = ["AudioFiltersBox", "AudioChainBox"]
+  DynaguiAudio.ConstrainWidth = 115
+  DynaguiAudio.ConstrainHeight = 28
+  ' [GB2:FNTH] DynaGuiAudio.YOffset = - Me.Font.Textheight("Ij")
+ ' DynaGuiAudio.YOffset = - Me.Font.TextHeight("Ij")
+End
+
+
+
+Public Sub VideoDriverBTN_Click()
+  XConfigureVideoDriver.show
+  Me.hide
+  global.FromChains = True
+End
+
+
+
+Public Sub AudioDriverBTN_Click()
+  XConfigureAudioDriver.show
+  Me.hide
+  global.FromChains = True
+End
+
+Public Sub Button1_Click()
+  Global.SaveAllSettings(global.CurrentProfile)
+End
+
+' PUBLIC SUB Button2_Click()
+'   DIM MySettings AS NEW SettingsClass
+'   MySettings.LoadSettings(ME, "/tmp/gambas")
+' 
+' END
+
+Public Sub Form_Close()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  Me.hide
+  FMain.VideoBox.setfocus()
+  
+  
+  
+End
+
+
+Public Sub SidePanel1_MouseDown()
+
+  
+
+End
+
+Public Function ParsedChain(VideoOrAudio As String) As String
+  Dim CurrentFilter As Object
+  Dim ParsedFilters As String = "" ' "-vf-add "
+  Dim newfilter As String = ""
+  Dim PreAdd As String
+  Dim PrevAudioTabIndex As Integer = AFiltersCfg.GetCurrentTabIndex() 'Those two are necessary because ParseFilterGui
+  Dim PrevVideoTabIndex As Integer = VFiltersCfg.GetCurrentTabIndex() 'Function alters the tabstrip index property
+  
+  If Upper(VideoOrAudio) = "VIDEO" Then
+    PreAdd = " -vf "
+    For Each CurrentFilter In VideoChainBox.Children
+      NewFilter = VFiltersCfg.ParseFiltersGui(CurrentFilter.name)
+      If Trim(newfilter) <> "" Then ParsedFilters = ParsedFilters & NewFilter & ","
+    Next
+      Else
+    PreAdd = " -af "
+    For Each CurrentFilter In AudioChainBox.Children
+      NewFilter = AFiltersCfg.ParseFiltersGui(CurrentFilter.name)
+      If Trim(newfilter) Then ParsedFilters = ParsedFilters & newfilter & ","
+    Next
+  Endif
+  
+  AFiltersCfg.SetCurrentTabIndex(PrevAudioTabIndex)
+  VFiltersCfg.SetCurrentTabIndex(PrevVideoTabIndex)
+
+  If (Trim(ParsedFilters) <> "") And (Trim(ParsedFilters) <> ",") Then
+    If Upper(VideoOrAudio) = "VIDEO" Then ParsedFilters = FixPPs(ParsedFilters)
+    If Right(ParsedFilters, 1) = "," Then ParsedFilters = Left(ParsedFilters, Len(ParsedFilters) - 1)
+    ParsedFilters = Replace(ParsedFilters, ",,", ",")
+    If Right(ParsedFilters) = "," Then ParsedFilters = Left(ParsedFilters, Len(ParsedFilters) - 1)
+    Return PreAdd & ParsedFilters & " "
+      Else
+    Return ""
+  Endif
+
+End
+
+
+Private Function FixPPs(ParsedFilters As String) As String
+'"pp=hdeblock:1:2:3,someothers,pp=vdeblock:1:2:3" ->> "pp=hdeblock:1:2:3/vdeblock:1:2:3,someothers"
+'also, spp,fspp and uspp have to come first to work.
+  
+  Dim spps As New String[]
+  Dim pps As New String[]
+  Dim nopps As New String[]
+  Dim Filters As New String[]
+  Dim Filter As String
+  Dim FixedFilters As String
+  
+  Filters = Split(ParsedFilters, ",")
+  For Each filter In Filters
+    If filter Like "pp=*" Then
+      pps.Add(Mid(filter, 4))
+        Else If filter Like "*spp*" Then
+          spps.Add(filter)
+        Else
+      nopps.Add(filter)
+    Endif
+  Next 'filter
+  
+  If spps.count > 0 Then
+    For Each filter In spps
+      FixedFilters = FixedFilters & filter & ","
+    Next 'filter
+    FixedFilters = Left(FixedFilters, Len(FixedFilters) - 1)
+    If (pps.count > 0) Or (spps.count > 0) Then FixedFilters = FixedFilters & ","
+  Endif
+  
+  If pps.count > 0 Then
+    FixedFilters = FixedFilters & "pp="
+    For Each filter In pps
+      FixedFilters = FixedFilters & filter & "/"
+    Next 'filter
+    FixedFilters = Left(FixedFilters, Len(FixedFilters) - 1)
+    If nopps.count > 0 Then FixedFilters = FixedFilters & ","
+  Endif
+  
+
+  For Each filter In nopps
+    FixedFilters = FixedFilters & filter & ","
+  Next 'filter
+  
+  Return FixedFilters
+End
+
+
+Public Sub ParseBTN_Click()
+
+End
+
+Public Sub OkBTN_Click()
+  Me.hide
+  Wait 0.1
+  FMain.videobox.setfocus()
+End
+
+
+Private previousvideofilters As String = ""
+Private previousaudiofilters As String = ""
+
+
+Public Sub ApplyBTN_Click()
+  Dim CurrentvideoFilters, CurrentAudioFilters As String = ""
+  global.ResetApplyBtnColor()
+    currentvideofilters = ParsedChain("VIDEO")
+    currentaudiofilters = ParsedChain("AUDIO")
+'se è cambiato qualcosa nel video o non è cambiato nulla, allora forza il riavvio di mplayer
+  
+  ' 'se è la prima volta, forza riavvio di mplayer e memorizza i filtri per la prossima chiamata
+  ' IF Trim(previousvideofilters & previousaudiofilters) = "" THEN 
+  '   FMain.Apply()
+  '   previousvideofilters = currentvideofilters
+  '   previousaudiofilters = currentaudiofilters
+  '   RETURN 
+  ' ENDIF
+  ' 
+  ' 'se video ed audio non sono cambiati, forza comunque un riavvio di mplayer (l'user insiste...)
+  ' IF Trim(previousvideofilters & previousaudiofilters) = Trim(currentvideofilters & currentaudiofilters) = THEN
+  '   FMain.Apply()
+  '   previousvideofilters = currentvideofilters
+  '   previousaudiofilters = currentaudiofilters
+  '   RETURN 
+  ' ENDIF
+  
+  'se l'audio è cambiato, ma il video è rimasto identico, fai in real time
+  If (previousvideofilters = currentvideofilters) And (previousaudiofilters <> currentaudiofilters) Then
+    'fai in real time
+    FMain.mplayer.Send("af_clr")
+    FMain.mplayer.Send("af_add " & Trim(Replace(currentaudiofilters, "-af", "")))
+    'FMain.mplayer.Send("af_switch " & Trim(Replace(currentaudiofilters, "-af", "")))
+    previousvideofilters = currentvideofilters
+    previousaudiofilters = currentaudiofilters
+      Else 'in tutti gli altri casi, forza il riavvio di mplayer
+    FMain.Apply()
+    previousvideofilters = currentvideofilters
+    previousaudiofilters = currentaudiofilters
+  Endif
+  
+  
+  
+End
+
+Public Sub Form_Resize()
+
+  Global.CheckResolution(Me)
+  If (Me.w < 600) And (Me.parent = Null) Then
+    Me.w = 600
+    Return
+  Endif
+  SidePanel1.W = Me.W Div 4
+  SidePanel2.W = (Me.W Div 4)
+  SidePanel2.w = SidePanel2.w - (audiofiltersbox.w - videofiltersbox.w)
+End
+
+Public Sub MenuLoadDefault_Click()
+  Dim MySettings As New SettingsClass
+  Me.hide
+  MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  Me.show
+End
+
+Public Sub MenuSaveDefault_Click()
+   SaveCurrentTo(Global.CurrentProfile)
+End
+Public Sub SaveBTN_Click()
+  SaveCurrentTo(Global.CurrentProfile)
+End
+Public Sub SaveCurrentTo(profile As String)
+  Dim MySettings As New SettingsClass
+  MySettings.ParentContainers = ["VideoFiltersBox", "AudioFiltersBox", "VideoChainBox", "AudioChainBox", "DriversPanel"]
+  MySettings.Save(Me, global.confpath & "/" & profile)
+End
+
+Public Sub MenuSaveToAll_Click()
+Dim profilename, profilenamesplitted As String
+  If MyQuestion.Ask("This will save this window settings\n to all profiles found but the 'Factory_defaults' one", "Proceed", "Don't") = 2 Then
+    Return
+      Else
+     For Each profilename In Dir(global.confpath & "/", "*.profile")
+        If Stat(global.confpath & "/" & profilename, True).type = gb.Directory Then
+          profilenamesplitted = Split(profilename, ".")[0]
+          If profilenamesplitted <> "Factory_Defaults" Then SaveCurrentTo(profilenamesplitted)
+        Endif
+     Next 'profilename
+  Endif
+End
+
+Public Sub Form_Hide()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  FMain.VideoBox.setfocus()
+
+End

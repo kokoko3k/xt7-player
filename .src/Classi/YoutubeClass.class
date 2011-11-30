@@ -1,0 +1,685 @@
+' Gambas class file
+
+Public feedsinfo As New Collection 'a collection of feeds
+Public feedinfo As New Collection  'a collection of a feed infos
+
+Public Sub CollapseAll(tree As Treeview)
+  tree.movefirst
+  Repeat
+    Try tree.Item.expanded = False
+  Until tree.movebelow()
+End
+
+
+Public Sub init_tree(tree As Treeview)
+  Tree.Add("top_rated", ("Top Rated"), picture["youtubeicon.png"])
+  Tree.Add("top_favorites", ("Top favourites"), picture["youtubeicon.png"])
+  Tree.Add("most_viewed", ("Most viewed"), picture["youtubeicon.png"])
+  Tree.Add("most_popular", ("Most popular"), picture["youtubeicon.png"])
+  Tree.Add("most_recent", ("Most recent"), picture["youtubeicon.png"])
+  Tree.Add("most_discussed", ("Most discussed"), picture["youtubeicon.png"])
+  Tree.Add("most_responded", ("Most responded"), picture["youtubeicon.png"])
+  Tree.Add("recently_featured", ("Recently featured"), picture["youtubeicon.png"])
+  Tree.Add("custom_search_results", ("Custom search results"), picture["youtubeicon.png"])
+  Tree.Add("related", ("*Related Videos"), picture["youtubeicon.png"])
+End
+
+Public Sub GetFeed(feed As String, tree As Treeview, Optional resizew As Integer = 0, Optional region As String = "", Optional maxresults As Integer = 25, Optional myappend As Boolean = False)
+   'http://yp.shoutcast.com/sbin/newxml.phtml?genre=Trance
+   'remove all child items
+  Dim AskUrl As String = "http://gdata.youtube.com/feeds/api/standardfeeds/"
+  Debug "region = " & region
+  If Trim(region) <> "" Then askurl = askurl & region & "/"
+  askurl = askurl & feed
+  askurl = askurl & "?&max-results=" & Str(maxresults + 1)
+  If (Not myappend) Then 'delete previous results if not appending
+    Repeat
+      Tree.MoveTo(feed)
+      Tree.MoveChild()
+      Try Tree.Item.Delete
+    Until Error
+  Endif
+  'fill the current thread
+  DownloadAndParse(AskUrl, Tree, feed, resizew, myappend)
+End
+
+Public Sub FeedSearch(searchterm As String, thread As String, tree As Treeview, Optional maxresults As Integer = 20, Optional resizew As Integer = 0, Optional otheropts As String = "", Optional myappend As Boolean = False)
+  ' http://gdata.youtube.com/feeds/api/videos?
+  '   q=skateboarding+dog
+  '   &start-index=21
+  '   &Max-results=10
+  '   &v=2
+  Dim AskUrl As String
+  Dim v As Integer = 1 'api version
+  
+  maxresults = maxresults + 1
+  
+  Askurl = "http://gdata.youtube.com/feeds/api/videos"
+  Askurl = Askurl & "?q=" & searchterm
+  Askurl = Askurl & "&max-results=" & maxresults
+  Askurl = Askurl & "&v=" & v
+  Askurl = Askurl & Otheropts
+  'clear previous search results
+  If (Not myappend) Then 'delete previous results if not appending
+    Repeat
+      Tree.MoveTo(thread)
+      Tree.MoveChild()
+      Try Tree.Item.Delete
+    Until Error
+  Endif
+  'fill the current thread
+  DownloadAndParse(AskUrl, Tree, thread, resizew, myappend)
+  tree.MoveTo(thread)
+  Tree.Item.Expanded = True
+End
+
+Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As String, Optional maxresults As Integer = 20, Optional resizew As Integer = 0, Optional otheropts As String = "", Optional myappend As Boolean = False)
+  ' http://gdata.youtube.com/feeds/api/videos?
+  '   q=skateboarding+dog
+  '   &start-index=21
+  '   &Max-results=10
+  '   &v=2
+  Dim AskUrl As String
+  Dim startindex As Integer = 1
+  Dim v As Integer = 1 'api version
+  Dim videoid As String
+
+  
+  videoid = getvideoid(sourcefeed)
+  maxresults = maxresults + 1
+  
+  Askurl = "http://gdata.youtube.com/feeds/api/videos/"
+  Askurl = Askurl & videoid
+  Askurl = Askurl & "/related"
+  Askurl = Askurl & "?&max-results=" & maxresults
+  Askurl = Askurl & "&v=" & v
+  Askurl = Askurl & Otheropts
+  'clear previous search results
+  If (Not myappend) Then 'delete previous results if not appending
+    Repeat
+      Tree.MoveTo("related")
+      Tree.MoveChild()
+      Try Tree.Item.Delete
+    Until Error
+  Endif
+  'fill the current thread
+  DownloadAndParse(AskUrl, Tree, "related", resizew, myappend)
+  tree.MoveTo("related")
+  Tree.Item.Expanded = True
+  tree.item.text = "*" & ("Related to: ") & relatedtotext
+End
+
+
+Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
+  Dim feed As String
+  Dim reader As Xmlreader
+  Dim nodename, out, attribute, value As String
+  Dim entryfound As Boolean = False
+  'DIM streaminfo AS 
+   ' [linkhref,title,duration]
+  Dim streaminfo As New Collection
+  Dim needpicture As Boolean = True
+  Dim lastlink As String = ""
+  Dim wget As New Wgetclass
+  If tree.item = Null Then tree.movecurrent
+  
+  If myappend Then url = url & "&start-index=" & CStr(tree.Item.Children + 1)
+
+  'quote the url if needed
+  'IF (Left(url) <> "'") AND (Right(url) <> "'") AND (Left(url) <> "\"") AND (Right(url) <> "\"") THEN 
+    url = "'" & url & "'"
+  'ENDIF
+
+  feed = wget.DownloadAsync(url)
+
+  reader = New Xmlreader
+  Try reader.FromString(feed)
+  If Error Then
+    Message.Error("Error when trying to open the XML file!")
+    Return
+  Endif
+
+  While Not reader.eof
+    If reader.Node.type = XmlReaderNodeType.endelement Then Try reader.Read() 'skip end elements like </ID>
+    If Error Then Break
+    Try nodename = reader.node.name
+    If Error Then Break
+    'IF nodename LIKE "*thumbnail*" THEN out = out & "*********************************\n" 
+    'elemento con attributi
+    If reader.Node.Attributes.count > 0 Then
+      out = out & "nome nodo = " & nodename & "\n"
+      For Each reader.Node.Attributes
+        attribute = reader.Node.name
+        value = reader.Node.Value
+        out = out & "- - Attribute: " & attribute & " has value= " & value & "\n"
+        If entryfound
+          Select Case Lower(nodename & attribute)
+          Case "categorylabel"
+            'PRINT "Categoria= " & value
+            feedinfo.Add(value, "categorylabel")
+          Case "yt:durationseconds"
+            feedinfo.Add(value, "yt:durationseconds")
+            streaminfo.Add(value, "yt:durationseconds")
+            'PRINT "Durata in secondi= " & value
+          Case "gd:ratingaverage"
+            'PRINT "Voto= " & value
+          Case "linkhref"
+            'PRINT "link al video= " & value
+            streaminfo.Add(value, "linkhref")
+            'collection of collection :)
+              feedinfo.Add(value, "linkhref")
+              'feedsinfo.Add(feedinfo, value)
+            lastlink = value 'remember this to add more infos to feedinfo[lastlink]
+          Case "media:thumbnailurl"
+            If needpicture Then
+              'TRY streaminfo.Add(downloadpicture(value, resizew), "thumb")
+              streaminfo.Add(downloadpicture(value, resizew), "thumb")
+              If (Not Error ) Then needpicture = False
+            Endif
+          End Select
+
+        Endif
+      Next 'attribute
+      'TRY reader.Read()
+    Endif
+
+    'l'elemento con attributi può avere un valore:
+    If Not (reader.Node.IsEmptyElement) And (reader.Node.Attributes.count > 0) Then
+      Try reader.Read()
+      If Error Then Break
+      Try value = reader.Node.Value
+      If Error Then Break
+      If Trim(value) <> "" Then out = out & nodename & " has value " & value & "\n"
+      If entryfound Then
+        needpicture = True
+        Select Case nodename
+          Case "title"
+            'PRINT "Titolo: " & value
+            streaminfo.Add(value, "title")
+            feedinfo.Add(value, "title")
+          Case "content"
+            'PRINT "content: " & value
+            'feedinfo.Add(value, "content")
+          Case "media:description"
+            'PRINT "media:description: " & value
+            feedinfo.Add(value, "media:description")
+            'PRINT value
+        End Select
+      Endif
+    Endif
+                                                                        ' è un elemento senza attributi?
+    If (reader.Node.type = XmlReaderNodeType.element) And (reader.Node.Attributes.count = 0) Then
+      Try reader.Read()
+      If Error Then Break
+      If reader.Node.type = XmlReaderNodeType.Text Then 'c'è un valore per l'elemento <elemento [boh=boh]>valore</elemento>
+        out = out & "elemento: " & nodename & " has value= " & reader.Node.value & "\n"
+        If entryfound Then
+          Select Case nodename
+            Case "published"
+              feedinfo.Add(reader.Node.value, "published")
+              'PRINT "pubblicato il: " & reader.Node.value
+            Case "updated"
+              'PRINT "aggiornato il: " & reader.Node.value
+              feedinfo.Add(reader.Node.value, "updated")
+            Case "uri"
+              If reader.Node.value Like "*/users/*" Then feedinfo.Add(reader.Node.value, "author")
+          End Select
+        Endif
+          Else
+        'è un elemento senza valori e senza attributi (probabilmente contiene altri elementi)
+         out = out & "Superelement? - " & nodename & "\n"
+         If Lower(nodename) = "entry" Then
+          'PRINT "\nTrovato un elemento:"
+          entryfound = True
+          If streaminfo.count > 0 Then
+            addstream(streaminfo, tree, feedname)
+            feedsinfo.Add(feedinfo["title"], lastlink & "." & "title")
+            feedsinfo.Add(feedinfo["categorylabel"], lastlink & "." & "categorylabel")
+            feedsinfo.Add(feedinfo["yt:durationseconds"], lastlink & "." & "yt:durationseconds")
+            'feedsinfo.Add(feedinfo["content"], lastlink & "." & "content")
+            feedsinfo.Add(feedinfo["media:description"], lastlink & "." & "media:description")
+            feedsinfo.Add(feedinfo["published"], lastlink & "." & "published")
+            feedsinfo.Add(feedinfo["updated"], lastlink & "." & "updated")
+            feedsinfo.Add(feedinfo["author"], lastlink & "." & "author")
+            
+            lastlink = ""
+            feedinfo.Clear
+          Endif
+          streaminfo.Clear
+         Endif
+      Endif
+    Endif
+    Try reader.Read()
+    If Error Then Break
+    'WAIT 0.1
+  Wend
+  AddMoreResultsItem(tree, feedname, resizew)
+  'PRINT out
+End
+
+Public Function downloadpicture(uri As String, Optional resizew As Integer = 0) As Picture
+  Dim wget As New Wgetclass
+  Dim tmppicture As Picture
+  Dim picturefile As String
+  Dim aspect As Float
+  picturefile = wget.DownloadAsync(uri, True)
+  Try tmppicture = picture.Load(picturefile)
+  If Error Then tmppicture = picture["null.png"]
+    If resizew <> 0 Then
+      aspect = tmppicture.w / tmppicture.h
+      tmppicture = tmppicture.Image.Stretch(resizew, CInt(resizew / aspect)).picture
+    Endif
+  Try Kill picturefile
+  Return tmppicture
+End
+
+
+Public Sub addstream(streaminfo As Collection, tree As Treeview, feed As String)
+  Dim Mykey, title As String
+  Dim thumb As Picture
+  
+  'we need at least title and link to video to go on...
+    Try mykey = streaminfo["linkhref"]
+      If Error Then Return 'if one of them is missing, just return
+    Try title = streaminfo["title"]
+      If Error Then Return 'if one of them is missing, just return
+      
+    Try thumb = streaminfo["thumb"]
+
+  While tree.Exist(Mykey) 'be sure to avoid duplicate keys
+    mykey = mykey & ":§"
+  Wend
+
+  tree.MoveTo(feed)
+  Tree.Item.Expanded = True
+
+  ' Tree.current.Expanded = TRUE
+  tree.Add(mykey, streaminfo["title"] & " [" & FormatTime(streaminfo["yt:durationseconds"]) & "]", thumb, feed)
+  tree.Refresh
+  Wait 0.01
+
+End
+
+
+
+
+
+Public Sub AddMoreResultsItem(tree As Treeview, feed As String, resizew As Integer)
+  Dim Mykey, title As String
+  Dim tmp, thumb As Picture
+  Dim resizeh As Integer
+  resizeh = (resizew * 3) Div 4
+  mykey = "__MORERESULTS__" & CStr(Rnd(0, 9999999999999999999))
+  thumb = picture.Load("MoreResults.png").Image.Stretch(resizew, resizeh).Picture
+  tree.Add(MyKey, ("More Results..."), thumb, feed)
+  tree.Refresh
+  Wait 0.01
+End
+
+
+
+Public Sub FormatTime(seconds As String) As String
+    Dim iseconds, hh, mm, ss, restosec As Integer
+    Dim Shh, Smm, Sss As String
+      Try iseconds = Val(seconds)
+      If Error Then iseconds = 0
+      hh = iseconds Div 3600
+      restosec = (iseconds - (hh * 3600))
+      mm = restosec Div 60
+      ss = (restosec - (mm * 60))
+      
+      Sss = ss
+      If Len(Sss) = 1 Then Sss = "0" & Sss
+      Smm = mm
+      If Len(Smm) = 1 Then Smm = "0" & Smm
+      Shh = hh
+      If Len(Shh) = 1 Then Shh = "0" & Shh
+    Return Shh & ":" & Smm & ":" & Sss
+End
+
+Public Function getvideoid(url As String) As String
+  Dim videoid As String
+  Dim tmpsplit As String[]
+  If url Like "*youtube*/watch?v=*" Then
+    videoid = Split(url, "=", "", True)[1]
+    If videoid Like "*&*" Then videoid = Split(videoid, "&")[0]
+      Else
+    tmpsplit = Split(url, "/", "", True)
+    videoid = tmpsplit[tmpsplit.count - 1]
+    videoid = Split(videoid, "?")[0]
+  Endif
+  Return videoid
+End
+
+
+Public currentvideoid As String = ""
+Public Function Oldrealvideourl(sourceurl As String, maxformat As String) As String
+  Dim wget As New Wgetclass
+  Dim videoid, out, url, fmtstr As String
+  Dim urlfmt As New String[]
+  Dim videourls As New String[]
+  Dim start1, stop1, fmt, maxfmt, maxindex As Integer
+  Dim fmts As New Integer[7]
+
+  'fmts:
+  fmts[0] = 18 ' 480x360 h264
+  fmts[1] = 34 ' 640x360 h264
+  fmts[2] = 43 ' 854x480 vp8
+  fmts[3] = 35 ' 854x480 h264
+  fmts[4] = 45 ' 1280x720 vp8
+  fmts[5] = 22 ' 1280x720 h264
+  fmts[6] = 37 ' 1920x1080 h264
+
+  'translate formats into numbers
+  Select Case maxformat
+    Case "1080p"
+      maxfmt = 6
+    Case "720p"
+      maxfmt = 5
+    Case "480p"
+      maxfmt = 3
+    Case "360p"
+      maxfmt = 1
+  End Select
+  
+
+  'get the whole webpage
+  videoid = getvideoid(sourceurl)
+  currentvideoid = videoid
+  out = wget.DownloadAsync("http://www.youtube.com/watch?v=" & videoid) & "&has_verified=1"
+  'cut from "fmt_url_map" to ";"
+  start1 = InStr(out, "fmt_url_map=")
+  stop1 = InStr(out, ";", start1)
+  'decode the webpage
+  out = Mid$(out, start1, stop1 - start1)
+  out = CGI.Decode(out)
+  out = Right$(out, Len(out) - Len("fmt_url_map="))
+
+ 
+  'find video urls in the page and select the best according to maxformat
+  For Each url In Split(out, ",", "", True)
+    If ((url Like "*|http://*") Or (url Like "*|https://*")) Then
+        urlfmt = Split(url, "|")
+        Try fmt = urlfmt[0]
+        If Not Error Then
+          maxindex = fmts.Find(fmt)
+          If ((maxindex > 0) And (maxindex <= maxfmt)) Then
+          'If fmt <= maxfmt Then
+            fmtstr = maxindex
+             'add zeros In front Of fmt To make a 3 digit number
+             If Len(fmtstr) < 2 Then fmtstr = "0" & fmtstr
+             If Len(fmtstr) < 3 Then fmtstr = "0" & fmtstr
+            videourls.Add(fmtstr & "|" & Split(url, "|")[1])
+            Debug videourls[videourls.Length - 1]
+          Endif
+        Endif
+    Endif
+  Next
+  ' [GB2:TEXT] Try videourls = videourls.sort(gb.descent + gb.text)
+  Try videourls = videourls.sort(gb.descent + gb.IgnoreCase)
+
+  If Error Then Return ""
+  Return CGI.decode(Split(videourls[0], "|")[1])
+
+End
+
+Public Cookiesfile As String = ""
+
+Public Function realvideourl(sourceurl As String, maxformat As String) As String
+  Dim stream As String
+  Dim videoid As String
+  Dim maxfmt As String
+  
+  'fmts:
+  ' fmts[0] = 18 ' 480x360 h264
+  ' fmts[1] = 34 ' 640x360 h264
+  ' fmts[2] = 43 ' 854x480 vp8
+  ' fmts[3] = 35 ' 854x480 h264
+  ' fmts[4] = 45 ' 1280x720 vp8
+  ' fmts[5] = 22 ' 1280x720 h264
+  ' fmts[6] = 37 ' 1920x1080 h264
+  
+    'translate formats into numbers
+  Select Case maxformat
+    Case "1080p"
+      maxfmt = 37
+    Case "720p"
+      maxfmt = 45
+    Case "480p"
+      maxfmt = 35
+    Case "360p"
+      maxfmt = 34
+  End Select
+  
+  videoid = getvideoid(sourceurl)
+  Cookiesfile = Temp("ytcookie")
+  Debug cookiesfile
+  Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " --max-quality " & maxfmt To stream
+  Debug stream
+  Return Trim(stream)
+End
+
+
+
+
+Public Function Oldrealvideourl2(sourceurl As String, maxformat As String) As String
+  'input: http://something/something/VIDEOID
+  'output: http://url/to/file.flv
+  'maxformat = 360p,720p or 1080p
+  Dim formats As New Collection
+  Dim videoid As String
+  Dim videoinfo As String
+  Dim videoinfo1 As String
+  Dim videoinfo2 As String
+  Dim token As String
+  Dim start, length As Integer
+  Dim fmta As New String[]
+  Dim mq As Integer
+  Dim out As String
+  Dim wget As New Wgetclass
+  videoid = getvideoid(sourceurl)
+  'we have two methods to get infos, try them both:
+  videoinfo1 = wget.DownloadAsync("'http://www.youtube.com/get_video_info?video_id=" & videoid & "&el=vevo&ps=default&eurl=&gl=US&hl=en" & "'")
+  videoinfo2 = wget.DownloadAsync("wget --quiet -O - " & "'http://www.youtube.com/get_video_info?&video_id=" & videoid & "'")
+  '...and choose the one which gives more info:
+  If Len(videoinfo1) > Len(videoinfo2) Then
+    videoinfo = videoinfo1
+      Else
+    videoinfo = videoinfo2
+  Endif
+  'SHELL "curl " & "'http://www.youtube.com/get_video_info?&video_id=" & videoid & "'" TO videoinfo
+  'get a temporary toke out of video info string
+  'doc_id=&token=vjVQa1PpcFOhoASF5cW90-Tm8sbeWo4bh58eZB-O63M%3D&thumbnail'
+  'PRINT videoinfo
+  start = InStr(videoinfo, "&token=") + Len("& token=")
+  length = InStr(Mid(videoinfo, start), "&")
+  token = CGI.Decode(Mid(videoinfo, start - 1, length))
+  
+  formats.Add("18", "360p")
+  formats.Add("22", "720p")
+  formats.Add("37", "1080p")
+  
+  fmta.Add(formats["360p"])
+  fmta.Add(formats["720p"])
+  fmta.Add(formats["1080p"])
+
+  Select Case maxformat
+    Case "1080p"
+      mq = 2
+    Case "720p"
+      mq = 1
+    Case "360p"
+      mq = 0
+  End Select
+
+  Repeat
+    Debug "checking formats..."
+    out = "http://www.youtube.com/get_video?video_id=" & videoid & "&t=" & token & "&eurl=&el=&ps=&asv=&fmt=" & fmta[mq]
+    mq = mq - 1
+    Debug "checking url: " & out
+  Until wget.ExistsUrl("'" & out & "'") Or (mq = -1)
+  If mq >= -1 Then
+    Debug "best format found is: " & fmta[mq + 1]
+    Return out
+      Else
+    Debug "no good format found, sorry..."
+    Return ""
+  Endif
+End
+
+
+
+
+Public urlexists As Integer = -1
+
+
+Public Function IsYoutubeLink(url As String) As Boolean
+  'return true if the url is a youtube link that needs to be decoded.
+  Dim needsdecoding As Boolean = True
+ ' Debug url
+  url = Lower(url)
+  needsdecoding = needsdecoding And ((url Like "http://*.youtube.*/*") Or (url Like "https://*.youtube.*/*"))
+  needsdecoding = needsdecoding And (Not (url Like "*t=*"))
+  needsdecoding = needsdecoding And (Not (url Like "*ip=*"))
+  needsdecoding = needsdecoding And (Not (url Like "*fexp=*"))
+  needsdecoding = needsdecoding And (Not (url Like "*expire=*"))
+  needsdecoding = needsdecoding And (Not (url Like "*signature=*"))
+  If needsdecoding Then FMain.needytcookie = True
+  Return needsdecoding
+End
+
+Public Sub Select_NextTreeItem(MyTree As Treeview)
+  MyTree.movecurrent
+  Try MyTree.MoveBelow()
+  If Not Error Then
+    Try MyTree.Item.selected = True
+  Endif
+  Wait 0.1 'needed for grid select event to fill new mplayer.media_fullpath,maybe tunable
+End
+
+Public Sub Select_PrevTreeItem(MyTree As Treeview)
+  MyTree.movecurrent
+  Try MyTree.MoveAbove
+  If Not Error Then
+    Try MyTree.Item.selected = True
+  Endif
+  Wait 0.1 'needed for grid select event to fill new mplayer.media_fullpath,maybe tunable
+End
+
+Public Sub AvailableSubs(VideoId As String) As String[]
+  Dim Url As String = "'http://video.google.com/timedtext?type=list&v=" & VideoId & "'"
+  Dim wget As New Wgetclass
+  Dim Sublist As String
+  Dim sublistarray, outarray As New String[]
+  Dim langcode, linea, trackname, out As String
+  Dim start, sstop As Integer
+  sublist = wget.DownloadAsync(Url)
+  sublist = Replace(sublist, "<track id=", "\n<track id=")
+  sublistarray = Split(sublist, "\n")
+  For Each linea In sublistarray
+    trackname = ""
+    LangCode = ""
+    If linea Like "*lang_code*" Then
+      start = InStr(linea, "lang_code=") + 11
+      sstop = InStr(linea, "\"", start)
+      Try langcode = Mid(linea, start, sstop - start)
+      'If (outarray.Find(langcode) = -1) Then outarray.Add(langcode)
+    Endif
+    If linea Like "*name=*" Then
+      start = InStr(linea, "name=") + 6
+      sstop = InStr(linea, "\"", start)
+      Try trackname = Mid(linea, start, sstop - start)
+    Endif
+    If (Trim(TrackName & LangCode) <> "") Then 
+      out = trackname & ":" & langcode
+      If (outarray.Find(out) = -1) Then outarray.Add(out)
+    Endif
+    Debug out
+  Next 'linea
+  
+  Return outarray.Sort()
+End
+
+Public Function GetSub(VideoId As String, trackname As String, langcode As String) As String
+  'Download the subtitle, convert it to srt format and return it as a string
+  'Dim SubUrl As String = "'http://video.google.com/timedtext?hl=" & LangCode & "&lang=" & LangCode & "&v=" & VideoId & "'"
+  Dim Suburl As String
+  Dim wget As New Wgetclass
+  Dim timedText, tmp, linea, start, dur, sstop, out, text As String
+  Dim subarray, startdur As New String[]
+  Dim i As Integer = -1
+  
+  Suburl = "http://video.google.com/timedtext?type=track"
+  Suburl = Suburl & "&name=" & trackname 
+  Suburl = Suburl & "&lang=" & langcode
+  Suburl = Suburl & "&v=" & VideoId 
+  suburl = "'" & suburl & "'"
+  TimedText = wget.DownloadAsync(SubUrl)
+  If Trim(TimedText) = "" Then
+    Debug "Could not download subtitle with LangCode " & Langcode & " for video id " & VideoId
+    Return ""
+  Endif
+  Tmp = TimedText
+  'Convert To srt format:
+  'tmp = Replace(tmp, "</text>", "\n")
+  'tmp = Replace(tmp, "l&amp;", "&")
+  'tmp = CGI.Decode(tmp)
+  tmp = Replace(Tmp, "<text start=", "\n<text start=")
+  tmp = Replace(tmp, "\">", "\"\n")
+  tmp = Replace(tmp, "&amp;#39;", "'")
+  
+  Subarray = Split(tmp, "\n")
+  For Each linea In subarray
+    If i < 1 Then out = "" 'discards all header
+    i = i + 1
+    If linea Like "<text start=\"*" Then
+      'eg: <text start="5212.958" dur="2.292">but they testify to a new awareness.</text>
+      'or: <text start="5212.958">but they testify to a new awareness.</text>
+      startdur = Split(linea, "\"")
+      start = startdur[1]
+      If linea Like "*dur=\"*" Then
+        dur = startdur[3] '
+          Else
+        dur = "2"
+      Endif
+      sstop = start + dur
+      
+      out = out & "\n" & i & "\n"
+      out = out & SubFormatTime(start) & " --> " & SubFormatTime(sstop) & "\n"
+      'PRINT "start" & start & "Dur=" & dur & "stop=" & sstop
+      'convert times
+        Else
+      text = Replace(linea, "</text>", "")
+      text = Replace(text, "&amp;quot;", "\"")
+      If text = "" Then text = "-"
+      out = out & text & "\n"
+    Endif
+  Next 'linea
+  out = Replace(out, "</transcript>", "")
+  Return out
+End
+
+Public Sub SubFormatTime(seconds As String) As String
+    Dim iseconds, hh, mm, ss, restosec As Integer
+    Dim Shh, Smm, Sss As String
+    Dim float As String = "0"
+    Dim integerfloat As String[]
+      integerfloat = Split(seconds, ".")
+      seconds = integerfloat[0]
+      Try float = integerfloat[1]
+      
+      Try iseconds = Val(seconds)
+      If Error Then iseconds = 0
+      hh = iseconds Div 3600
+      restosec = (iseconds - (hh * 3600))
+      mm = restosec Div 60
+      ss = (restosec - (mm * 60))
+      
+      Sss = ss
+      If Len(Sss) = 1 Then Sss = "0" & Sss
+      Smm = mm
+      If Len(Smm) = 1 Then Smm = "0" & Smm
+      Shh = hh
+      If Len(Shh) = 1 Then Shh = "0" & Shh
+    Return Shh & ":" & Smm & ":" & Sss & "," & float
+End

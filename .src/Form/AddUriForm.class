@@ -1,0 +1,100 @@
+' Gambas class file
+
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+Public Sub Run() As Boolean
+
+  Return Not Me.ShowModal()
+
+End
+
+
+
+
+Public Sub btnOK_Click()
+  Dim URItoadd As String = Trim(global.FormatDrag(UriInsCombobox.text))
+  Dim AddToBoth As Boolean = (PlaylistCheckbox.value And collectioncheckbox.value)
+  Dim quickmode As Boolean = (quickcheckbox.value Or Global.IsNonTaggableMedia(URItoadd))
+  Dim ItemName As String = ""
+  btnOK.Enabled = False
+  AddUriForm.mouse = Mouse.Wait
+  With Fmain
+    ComboHistory.AddHistory(UriInsCombobox, URItoadd)
+    If AddToBoth Then 'add to library, copy to playlist
+      If .MyLibrary.AddFile(.LibraryGrid, URItoadd, quickmode, True, Trim(textbox1.text)) Then
+        .UpdateSearchResults(.MyLibrary, .LibraryGrid, fmain.FullyLoaded, fmain.Searchfield.text)
+        FMain.searchfield.text = ""
+      Endif
+      ComboHistory.SaveHistory(UriInsCombobox, global.confpath & "/" & global.CurrentProfile)
+      If .Myplaylist.AddFile(.playlistgrid, URItoadd, quickmode, True, Trim(textbox1.text)) Then
+        .UpdateSearchResults(.myplaylist, .playlistgrid, fmain.FullyLoaded, fmain.SearchfieldPLS.text)
+        FMain.searchfieldPLS.text = ""
+      Endif
+     Else If PlaylistCheckbox.value Then 'or else, add to playlist
+        
+        If .MyPlaylist.AddFile(.PlaylistGrid, URItoadd, quickmode, True, Trim(textbox1.text)) Then
+          .UpdateSearchResults(.MyPlaylist, .Playlistgrid, fmain.FullyLoaded, fmain.SearchfieldPLS.text)
+          FMain.searchfieldPLS.text = ""
+        Endif
+      
+      Else If CollectionCheckbox.value Then 'or else add to library
+        If .MyLibrary.AddFile(.LibraryGrid, URItoadd, quickmode, True) Then
+          .UpdateSearchResults(.MyLibrary, .LibraryGrid, fmain.FullyLoaded, fmain.Searchfield.text)
+          FMain.searchfield.text = ""
+        Endif
+    Endif
+  End With
+  btnOK.Enabled = True
+  AddUriForm.mouse = Mouse.Default
+End
+
+Public Sub btnCancel_Click()
+
+  Me.hide
+
+End
+
+
+Public Sub Form_Show()
+  'ME.center
+  Global.Center(Fmain, Me)
+  QuickCheckBox.value = (GeneralOptions.SlowTagsCHK.value)
+End
+
+Public Sub UriSelComboBox_Click()
+
+  UriInsCombobox.text = UriSelComboBox.text
+
+End
+
+Public Sub btnPlay_Click()
+  Dim URI As String = Trim(global.FormatDrag(UriInsCombobox.text))
+  Last.enabled = False
+  
+  If (URI Like "*dvd://*") Then FMain.dvd_device = GeneralOptions.DvdDeviceText.text
+  AddUriForm.mouse = Mouse.Wait
+  If Fmain.Play(False, URI) Then
+    'PRINT "Debug: AddUriForm: btnplay_Click()" 
+    Last.enabled = True
+    AddUriForm.mouse = Mouse.Default
+  Endif
+End
+
+Public Sub Form_Close()
+
+  FMain.VideoBox.setfocus()
+
+End
+
+
+
+Public Sub SelectFile_Click()
+  If Not fmain.fullyloaded Then Return
+  With Global
+    Dialog.Path = .StartFolder
+    Dialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
+  End With
+  If Dialog.OpenFile() Then Return
+  UriInsComboBox.text = Dialog.Path
+End

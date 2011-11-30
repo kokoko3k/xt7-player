@@ -1,0 +1,30 @@
+' Gambas class file
+
+PUBLIC NoUpgradeFile AS String = global.ConfPath & "/.NoUpgradeFile"
+
+PUBLIC SUB ShowMessage(RequiredVersion AS String, FoundVersion AS String)
+  Message.text = ("<b>Warning:</b><br> Your Gambas interpreter seems too old.<br> This xt7-player version was written using Gambas") & " <b>" & RequiredVersion & "</b>"
+  Message.text = Message.text & ("<br> While you are running Gambas interpreter") & " <b>" & FoundVersion & "</b><br><br>"
+  
+  Message.text = Message.text & ("It is reccommended to upgrade,<br> or Xt7-Player may not work properly.")
+  Global.Center(Fmain, OldGambas)
+  OldGambas.show
+  
+END
+
+PUBLIC SUB Button1_Click()
+  IF (checkbox1.value = TRUE) THEN SHELL "touch " & NoUpgradeFile WAIT
+  ME.Close
+END
+
+PUBLIC SUB Label2_MouseDown()
+    Desktop.Open("http://gambas.sourceforge.net/")
+END
+
+PUBLIC SUB Label2_Enter()
+  ME.mouse = Mouse.Pointing
+END
+
+PUBLIC SUB Label2_Leave()
+  ME.mouse = Mouse.default
+END

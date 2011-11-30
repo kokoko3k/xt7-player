@@ -1,0 +1,23 @@
+' Gambas class file
+
+Public Album As String
+Public Artist As String
+Public MyDate As String
+Public MyYear As String
+Public Genre As String
+Public Title As String
+Public Comment As String
+Public Comments As String
+Public Tracknumber As String
+Public Tracknum As String
+Public Description As String
+
+Private tl As New TagLib 'wrap old audiotag to new taglib
+
+Public Sub GetTags(audiofile As String)
+  Try tl.Init(audiofile)
+End
+
+Public Function WriteTags(FullPath As String, Album As String, Artist As String, Title As String, MyYear As String, Genre As String, TrackNo As String, Comment As String) As Boolean
+  Return tl.WriteTags(FullPath, Album, Artist, Title, MyYear, Genre, TrackNo, Comment)
+End

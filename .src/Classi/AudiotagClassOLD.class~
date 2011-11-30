@@ -1,0 +1,142 @@
+' Gambas class file
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+Public Album As String
+Public Artist As String
+Public MyDate As String
+Public MyYear As String
+Public Genre As String
+Public Title As String
+Public Comment As String
+Public Comments As String
+Public Tracknumber As String
+Public Tracknum As String
+Public Description As String
+'PUBLIC AudioTagExecutable AS String = "audiotag"     'Fixme allows user to choice
+Public Function AudioTagExecutable() As String
+  Return GeneralOptions.AudioTagExeText.text
+End
+
+
+
+'*********** AudioTag Output Definition
+  Private Const AudioTagAlbum As String = "* ALBUM: *"
+  Private Const AudioTagArtist As String = "* ARTIST: *"
+  Private Const AudioTagMyDate As String = "* DATE: *"
+  Private Const AudioTagMyYear As String = "* YEAR: *"
+  Private Const AudioTagGenre As String = "* GENRE: *"
+  Private Const AudioTagTitle As String = "* TITLE: *"
+  Private Const AudioTagComment As String = "* COMMENT: *"
+  Private Const AudioTagComments As String = "* COMMENTS: *"
+  Private Const AudioTagTracknumber As String = "* TRACKNUMBER: *"
+  Private Const AudioTagTracknum As String = "* TRACKNUM: *"
+  Private Const AudioTagDescription As String = "* DESCRIPTION: *"
+'************
+
+
+Private AudioTagProcess As Process
+Private AudioTagOutput As String = ""
+Private GotTags As Boolean = False
+
+Private Sub ClearTags()
+  Album = ""
+  Artist = ""
+  MyDate = ""
+  MyYear = ""
+  Genre = ""
+  Title = ""
+  Comment = ""
+  Comments = ""
+  Tracknumber = ""
+  Tracknum = ""
+  Description = ""
+End
+
+
+Public Sub GetTags(audiofile As String)
+  Dim commandline As String
+  ClearTags()
+  GotTags = False 'we'll check this to see if process ended
+  commandline = AudioTagExecutable() & " -l " & "\"" & SConv(audiofile) & "\""
+  AudioTagProcess = Shell commandline For Input Output As "AudioTagProcess"
+  Repeat
+    Wait 0.01
+  Until GotTags
+End
+
+Public Sub AudioTagProcess_read()
+Dim TagLines As String[]
+Dim TagLine As String
+  
+  Read #AudioTagProcess, AudioTagOutput, -1024
+  Taglines = Split(AudioTagOutput, "\n")
+  
+  For Each tagline In TagLines
+    
+    If (TagLine Like AudioTagAlbum) Then
+      Album = DConv(ExtractTag(TagLine))
+    
+    Else If (TagLine Like AudioTagArtist) Then
+      Artist = DConv(ExtractTag(TagLine))
+    
+    Else If (TagLine Like AudioTagMyDate) Then
+      MyDate = DConv(ExtractTag(TagLine))
+      
+    Else If (TagLine Like AudioTagMyYear) Then
+      MyYear = DConv(ExtractTag(TagLine))
+      
+    Else If (TagLine Like AudioTagGenre) Then
+      Genre = DConv(ExtractTag(TagLine))
+    
+    Else If (TagLine Like AudioTagTitle) Then
+      Title = DConv(ExtractTag(TagLine))
+
+    Else If (TagLine Like AudioTagComment) Then
+      Comment = DConv(ExtractTag(TagLine))
+      
+    Else If (TagLine Like AudioTagComments) Then
+      Comments = DConv(ExtractTag(TagLine))
+      
+    Else If (TagLine Like AudioTagDescription) Then
+      Description = DConv(ExtractTag(TagLine))
+
+    Else If (TagLine Like AudioTagTracknumber) Then
+      Tracknumber = DConv(ExtractTag(TagLine))
+        
+    Else If (TagLine Like AudioTagTracknum) Then
+      Tracknum = DConv(ExtractTag(TagLine))
+    Endif
+  Next
+  GotTags = True
+  
+End
+
+Function ExtractTag(SourceLine As String) As String
+  Return Mid(sourceline, InStr(sourceline, ": ") + 2)
+End
+
+Public Function WriteTags(FullPath As String, Album As String, Artist As String, Title As String, MyYear As String, Genre As String, TrackNo As String, Comment As String) As Boolean
+  Dim commandline, MyOutput As String
+  Dim ts As String = Chr(8)
+  If Album = "" Then Album = " " 'audiotag bug with null comments
+  If Artist = "" Then Artist = " " 'audiotag bug with null comments
+  If Title = "" Then Title = " " 'audiotag bug with null comments
+  If MyYear = "" Then MyYear = " " 'audiotag bug with null comments
+  If Genre = "" Then Genre = "Other" 'audiotag bug with null comments
+  If TrackNo = "" Then TrackNo = " " 'audiotag bug with null comments
+  If comment = "" Then comment = " " 'audiotag bug with null comments
+  commandline = AudioTagExecutable()
+  If TrackNo <> ts Then Commandline = Commandline & " --track=\"" & TrackNo & "\""
+  If Genre <> ts Then Commandline = Commandline & " --genre=\"" & Genre & "\""
+  If Artist <> ts Then Commandline = Commandline & " --artist=\"" & Artist & "\""
+  If Album <> ts Then Commandline = Commandline & " --album=\"" & Album & "\""
+  If Title <> ts Then Commandline = Commandline & " --title=\"" & Title & "\""
+  If MyYear <> ts Then Commandline = Commandline & " --year=\"" & MyYear & "\""
+  If Comment <> ts Then Commandline = Commandline & " --comments=\"" & Comment & "\""
+  Commandline = Commandline & " \"" & SConv(fullpath) & "\" "
+  'PRINT "Debug: AudioTagClass: WriteTags(): Commandline= " & Commandline
+  Shell commandline To Myoutput
+  Print commandline
+End
+

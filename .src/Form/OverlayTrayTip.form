@@ -1,0 +1,56 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  Move(0,0,252,98)
+  #Scaled = False
+  Background = &HFFFF9B&
+  Ignore = True
+  Text = ("Xt7TrayPanel")
+  Border = False
+  Stacking = Window.Above
+  Sticky = True
+  SkipTaskbar = True
+  { Label1 Label
+    Move(84,0,329,91)
+    Mouse = Mouse.SizeAll
+    Expand = True
+  }
+  { Timer1 #Timer
+  }
+  { HBox1 HBox
+    Move(6,80,70,16)
+    { btnprev PictureBox
+      Move(0,0,18,16)
+      Picture = Picture["icon:/16/start"]
+    }
+    { btnplaypause PictureBox
+      Move(14,0,18,16)
+      Picture = Picture["icon:/16/play"]
+    }
+    { btnstop PictureBox
+      Move(28,0,18,16)
+      Picture = Picture["icon:/16/stop"]
+    }
+    { btnnext PictureBox
+      Move(42,0,18,16)
+      Picture = Picture["icon:/16/end"]
+    }
+  }
+  { Panel1 Panel
+    Move(0,0,78,78)
+    Background = &H000000&
+    Foreground = &H000000&
+    { PictureBox1 PictureBox
+      Move(0,0,77,77)
+      Background = &H000000&
+      Foreground = &H000000&
+      Stretch = True
+      Border = Border.Plain
+    }
+  }
+  { pinbutton ToggleButton
+    Move(226,2,24,24)
+    Visible = False
+    Picture = Picture["icon:/16/lock"]
+  }
+}

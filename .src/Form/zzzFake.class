@@ -1,0 +1,68 @@
+' Gambas class file
+
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+
+Public Sub Start()
+  Print ""
+  Print Application.name & " " & Application.version
+  Print "Usage: " & Application.name & ".gambas [Options] Mediafile"
+  Print "Options:"
+  Print "-append (add a media to the playlist)"
+  Print ""
+  Print ""
+  global.init()
+  If (Application.Args.count = 3) And (Application.Args[1] = "-append") Then
+      Sock_Append(Application.Args[2])
+      Me.close
+    Else
+       Try Global.Center(Fmain, Me)
+       FMain.maininit()
+  Endif
+  
+End
+
+Public Sub Form_Open()
+  'Start()
+End
+
+
+
+Public MyCSock As Socket
+
+Public Sub Sock_Append(URI As String)
+  Dim sBuf As String
+  MyCSock = New Socket
+  MyCSock.path = global.SocketFile
+  MyCSock.Port = Net.Local
+  MyCSock.Connect()
+  While (MyCSock.Status <> 7) And (MyCSock.Status > 0)
+    Wait 0.1
+  Wend
+  If MyCSock.Status = 7 Then
+    sBuf = "append " & URI & "\n"
+    Write #MyCSock, sBuf, Len(sBuf)
+    Close #MycSock
+  Endif
+End
+
+Public Sub Sock_Play(URI As String)
+  Dim sBuf As String
+  MyCSock = New Socket
+  MyCSock.path = global.SocketFile
+  MyCSock.Port = Net.Local
+  MyCSock.Connect()
+  While (MyCSock.Status <> 7) And (MyCSock.Status > 0)
+    Wait 0.1
+  Wend
+  If MyCSock.Status = 7 Then
+    sBuf = "play " & URI & "\n"
+    Write #MyCSock, sBuf, Len(sBuf)
+    Close #MycSock
+  Endif
+End
+
+Public Sub VSplit1_Resize()
+  If Not FMain.mplayer.AudioOnly Then FMain.CorrectAreaAspect()
+End

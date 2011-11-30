@@ -1,0 +1,194 @@
+# Gambas Form File 3.0
+
+{ Form Form 
+  MoveScaled(0,0,42,44)
+  Persistent = True
+  Spacing = 4
+  Padding = 4
+  { Freq0 Slider SlidersFreq
+    Name = "Freq0"
+    MoveScaled(1,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { ValuesContainer HBox 
+    MoveScaled(1,40,42,4)
+    { tfreq1 TextBox 
+      MoveScaled(0,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq2 TextBox 
+      MoveScaled(4,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq3 TextBox 
+      MoveScaled(8,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq4 TextBox 
+      MoveScaled(12,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq5 TextBox 
+      MoveScaled(16,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq6 TextBox 
+      MoveScaled(20,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq7 TextBox 
+      MoveScaled(24,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq8 TextBox 
+      MoveScaled(28,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq9 TextBox 
+      MoveScaled(32,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+    { tfreq10 TextBox 
+      MoveScaled(36,0,4,4)
+      Text = ("12")
+      ReadOnly = True
+    }
+  }
+  { Freq1 Slider SlidersFreq
+    Name = "Freq1"
+    MoveScaled(5,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq2 Slider SlidersFreq
+    Name = "Freq2"
+    MoveScaled(9,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq3 Slider SlidersFreq
+    Name = "Freq3"
+    MoveScaled(13,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq4 Slider SlidersFreq
+    Name = "Freq4"
+    MoveScaled(17,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq5 Slider SlidersFreq
+    Name = "Freq5"
+    MoveScaled(21,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq6 Slider SlidersFreq
+    Name = "Freq6"
+    MoveScaled(25,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq7 Slider SlidersFreq
+    Name = "Freq7"
+    MoveScaled(29,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq8 Slider SlidersFreq
+    Name = "Freq8"
+    MoveScaled(33,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { Freq9 Slider SlidersFreq
+    Name = "Freq9"
+    MoveScaled(37,8,4,31)
+    Expand = True
+    MinValue = -12
+    MaxValue = 12
+    PageStep = 1
+    Mark = True
+  }
+  { HBox1 HBox 
+    MoveScaled(2,5,43,4)
+    { Label1 Label 
+      MoveScaled(0,0,4,4)
+      Text = ("31")
+    }
+    { Label2 Label 
+      MoveScaled(4,0,4,4)
+      Text = ("62")
+    }
+    { Label3 Label 
+      MoveScaled(8,0,4,4)
+      Text = ("125")
+    }
+    { Label4 Label 
+      MoveScaled(12,0,4,4)
+      Text = ("250")
+    }
+    { Label5 Label 
+      MoveScaled(16,0,4,4)
+      Text = ("500")
+    }
+    { Label6 Label 
+      MoveScaled(20,0,4,4)
+      Text = ("1K")
+    }
+    { Label7 Label 
+      MoveScaled(24,0,4,4)
+      Text = ("2K")
+    }
+    { Label8 Label 
+      MoveScaled(28,0,4,4)
+      Text = ("4K")
+    }
+    { Label9 Label 
+      MoveScaled(32,0,4,4)
+      Text = ("8K")
+    }
+    { Label10 Label 
+      MoveScaled(36,0,4,4)
+      Text = ("16K")
+    }
+  }
+}

@@ -1,0 +1,310 @@
+' Gambas class file
+
+'Copyright (C) 2007, 2008 Antonio Orefice
+' Gambas class file
+
+Private Dynagui As New DynaGuiClass
+Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+
+Public Sub btnCancel_Click()
+  Me.Close
+End
+
+Public Sub Form_Open()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  If Not AlreadyLoaded Then 
+     Alreadyloaded = True
+     MenuLoadDefault_Click()
+  Endif
+  DynaGui.AllowedContainers = ["DriversPanel"]
+  Dynagui.ConstrainWidth = CustomBTN.Width
+  Dynagui.ConstrainHeight = CustomBTN.Height
+  Dynagui.AddSpace = 4
+  Dynagui.AddPadding = 12
+  DynaGui.YOffset = - Me.Font.Textheight("Ij") * 1.5
+  'ME.center
+  Global.Center(Fmain, Me)
+  TabToDescription()
+End
+
+Private Sub TabToDescription()
+  Dim obj As Object
+  Dim tmp1, tmp2 As String
+  For Each obj In DriversPanel.children
+      tmp1 = Trim(Upper(Replace(ConfigureTabs.Current.Text, "&", "")))
+      tmp2 = Trim(Upper(Replace(obj.text, "&", "")))
+      If tmp1 = tmp2
+        DriverDescription.text = obj.tag
+        Return
+      Endif
+  Next
+End
+
+
+Public Sub ConfigureTabs_Click()
+  TabToDescription()
+End
+
+Public Sub VideoDriverList_Click()
+  Dim i As Integer
+  Dim tmp1, tmp2 As String
+  DriverDescription.Text = Last.tag
+  If Not Dynagui.ObjDragging Then 'this is necessary to not confuse click and drag events
+    For i = 0 To ConfigureTabs.count - 1
+      tmp1 = Trim(Upper(Replace(Last.text, "&", "")))
+      tmp2 = Trim(Upper(Replace(ConfigureTabs[i].text, "&", "")))
+      If tmp1 = tmp2 Then
+        ConfigureTabs.index = i
+        Return
+      Endif
+    Next 'i
+  Endif
+End
+
+
+Public Sub VideoDriverList_MouseMove()
+    DynaGui.MoveObject(Last, Me)
+End
+
+Public Sub VideoDriverList_MouseUp()
+    Dynagui.SmartInsert(Last, Me)
+End
+
+Public Sub VideoDriverList_MouseDrag()
+    Dynagui.DetachFrom(Last, Me)
+End
+
+Public Sub Form_Resize()
+  Global.CheckResolution(Me)
+  DriverDescription.Width = DriverFrame.Width - DriverDescription.left - 8
+  DriverDescription.Height = DriverFrame.Height - DriverDescription.top - 8
+  ConfigureTabs.width = DriverFrame.width - ConfigureTabs.left - 8
+  DriversPanel.Height = DriverFrame.Height - DriversPanel.top - 8
+End
+
+Public Sub CancelBTN_Click()
+  Me.hide
+End
+
+Public Sub VideoDriverList_MouseDown()
+  VideoDriverList_Click()
+End
+
+
+
+
+Public Function ParseOptions(TheContainer As Object, TheOptionKeyword As String) As String
+'This function will parse a gui and return a commandline.
+'The function will parse the objects that:
+    '-(and) Are children OF (one OR more) containers whose name contains TheOptionKeyword
+    '-(and) Are checkboxes
+    '-(or) if are comboboxes or spinboxes or textboxes and they come after a checkbox.
+'The output syntax will be like:
+' checkbox1.tagSpinbox1.text:checkbox2.tagSpinbox2.text:...:checkboxN.tagTextBoxN.text
+
+Dim obj, child, nextchild As Object
+Dim outline As String = "" 'outline is the tag which indicates a driver parameter
+  For Each obj In TheContainer.controls
+    If Upper(obj.name) Like Upper(TheOptionKeyword) & "*" Then
+      For Each child In obj.Children
+        'IF child.name LIKE "*Chk" THEN 
+        If object.type(child) = "CheckBox" Then
+          If child.value Then
+              outline = outline & child.tag
+                If (child.next <> Null) Then
+                  If (object.type(child.next) = "ComboBox") Or (object.type(child.next) = "SpinBox") Or (object.type(child.next) = "TextBox") Then
+                    If (object.type(child.next) = "ComboBox") Then
+                      Try outline = outline & Split(child.NEXT.text, " ")[0]
+                    '  If Error Then Debug "an error occurred, please report this message and what you're doing"
+                        Else
+                      Try outline = outline & child.NEXT.text
+                      If Error Then Debug "an error occurred, please report this message and what you're doing"
+                    Endif
+                  Endif
+                Endif
+                outline = outline & ":"
+          Endif
+        Endif
+      Next
+    Endif
+  Next
+  If outline Like "*:" Then outline = Left(outline, Len(outline) - 1)
+  Return outline
+End
+
+
+Public Function AddVideoDriver(AlreadyParsedDrivers As String, DriverName As String) As String
+  Dim MyDriverName As String = ""
+  Dim VoCmdLine As String = ""
+  Dim AdditionalOpts As String = ""
+  Dim ParsedOptions As String = ""
+  
+  MyDriverName = Trim(Upper(Replace(DriverName, "&", "")))
+  If mydrivername = "CUSTOM" Then
+    TextBox5.text = TextBox5.text & ","
+    VoCmdline = VoCmdline & TextBox5.text
+    TextBox5.text = Left(TextBox5.text, Len(TextBox5.Text) - 1)
+      Else
+    ParsedOptions = ParseOptions(Me, MyDriverName & "ParseMe")
+    If Trim(ParsedOptions) <> "" Then     'ie The selected driver has some option configured
+      VoCmdline = Vocmdline & Lower(MyDriverName) & ":" & ParsedOptions & ","
+        Else
+      VoCmdline = Vocmdline & Lower(MyDriverName) & ParsedOptions & ","
+    Endif
+  Endif
+  Return AlreadyParsedDrivers & VoCmdLine
+  'FMain.mplayer.VoDriver = FMain.mplayer.VoDriver & Vocmdline
+  'FMain.mplayer.VoAdditionalopts = FMain.mplayer.VoAdditionalopts & AdditionalOpts
+
+End
+
+Public Function ParsedVideoDriver() As String
+  Dim driver As Object
+  Dim ParsedVoCmdLine As String = ""
+  For Each driver In DriversPanel.children
+    If Object.Type(driver) = "CheckBox" Then
+      If driver.value Then
+        ParsedVoCmdLine = AddVideoDriver(ParsedVoCmdLine, driver.text)
+      Endif
+    Endif
+  Next
+  If Trim(ParsedVoCmdLine) <> "" Then
+    Return " -vo " & ParsedVoCmdLine & " "
+      Else
+    Return ""
+  Endif
+End
+
+
+Public Sub OkBTN_Click()
+  If global.FromChains Then
+    Chains.Show
+    global.FromChains = False
+  Endif
+  Me.hide
+  Wait 0.1
+  If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.SetFocus()
+End
+
+Public Sub ColorButton2_Change()
+     ColorKeyBox2.Text = "0x" & Hex(Last.color, 6)
+End
+Public Sub ColorButton1_Change()
+  ColorKeyBox.Text = "0x" & Hex(Last.color, 6)
+End
+
+
+Public Sub SpinBox3_Change()
+    Textbox2.Text = "0x" & Hex(SpinBox3.value, 2) & Hex(GLColorButton1.color, 6)
+End
+
+Public Sub GLColorButton1_Change()
+    Textbox2.Text = "0x" & Hex(SpinBox3.value, 2) & Hex(Last.color, 6)
+End
+
+Public Sub FragFileOpen_Click()
+  Dim tmp As String[]
+  tmp = Dialog.filter
+  Dialog.filter = ["*.fp", "fragment Program Files"]
+  If Dialog.OpenFile() Then
+    Return
+    textbox3.text = "\"" & Dialog.Path & "\""
+  Endif
+  Dialog.filter = tmp
+End
+
+Public Sub FragFileOpen2_Click()
+  Dim tmp As String[]
+  tmp = Dialog.filter
+  Dialog.filter = ["*;*.*", "All Files"]
+  If Dialog.OpenFile() Then Return
+  textbox4.text = "\"" & Dialog.Path & "\""
+
+  'Dialog.filter = tmp
+End
+
+
+
+Public Sub ApplyBTN_Click()
+  FMain.Apply()
+End
+
+Public Sub GoChainsBTN_Click()
+  Chains.Show
+  Me.hide
+End
+
+Public Sub MenuLoadDefault_Click()
+  Dim MySettings As New SettingsClass
+  MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+End
+
+Public Sub MenuSaveDefault_Click()
+  SaveCurrent()
+End
+Public Sub SaveBTN_Click()
+  SaveCurrent()
+End
+Public Sub SaveCurrent()
+  Dim MySettings As New SettingsClass
+  MySettings.Save(Me, global.confpath & "/" & global.CurrentProfile)
+End
+
+Public Sub MenuSaveToAll_Click()
+  Dim profilename, profilenamesplitted As String
+  Dim MySettings As New SettingsClass
+  If MyQuestion.Ask("This will save this window settings\n to all profiles found but the 'Factory_defaults' one", "Proceed", "Don't") = 2 Then
+    Return
+      Else
+     For Each profilename In Dir(global.confpath & "/", "*.profile")
+        If Stat(global.confpath & "/" & profilename, True).type = gb.Directory Then
+          profilenamesplitted = Split(profilename, ".")[0]
+          If profilenamesplitted <> "Factory_Defaults" Then
+            MySettings.Save(Me, global.confpath & "/" & profilenamesplitted)
+          Endif
+        Endif
+     Next 'profilename
+  Endif
+End
+
+Public Sub Form_Close()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
+
+End
+
+Public Sub Form_Hide()
+  Debug "Cached Options unvalidated"
+  fmain.cachedopts = ""
+  If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
+
+End
+
+
+
+Public Sub vdpauParseMeHBox3_MouseDown()
+
+  
+
+End
+
+Public Sub CheckBox26_Click()
+End
+
+Public Sub AddVdpauCHK_Click()
+
+End
+
+Public Sub Form_Move()
+
+  
+
+End
+
+Public Sub VdPauScrollView_MouseDown()
+
+  
+
+End

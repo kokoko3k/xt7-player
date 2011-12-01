@@ -101,7 +101,10 @@ Geometry=[21,413,646,301]
 Geometry=[0,0,344,820]
 
 [DebugWindow/ExcludedValues]
-Geometry=[-4,-3,210,210]
+Geometry=[52,0,210,210]
+
+[DebugWindow/FMain.mplayer.GetListOf("ao")]
+Geometry=[52,0,222,507]
 
 [DebugWindow/File]
 Geometry=[0,0,344,344]
@@ -386,10 +389,10 @@ Geometry=[0,0,301,301]
 Geometry=[691,466,506,301]
 
 [DebugWindow/TheForm.controls]
-Geometry=[0,0,344,344]
+Geometry=[52,0,344,344]
 
 [DebugWindow/TheObject]
-Geometry=[0,0,344,344]
+Geometry=[52,0,344,344]
 
 [DebugWindow/TheObject.layout]
 Geometry=[-4,-3,210,210]
@@ -682,27 +685,37 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="AA_ToDo:119.71"
+Active=1
+File[1]="AA_ToDo:119.0"
 File[2]=".src/Form/XConfigureVideoDriver.form"
 File[3]=".src/Form/XConfigureAudioDriver.form"
 File[4]="AA_CHANGELOG:0.0"
 File[5]=".src/Form/FMain.form"
-Active=6
-File[6]=".src/Form/FMain.class:2523.7"
+File[6]=".src/Form/FMain.class:4964.21"
 File[7]=".src/Classi/StartClass.class:4.3"
 File[8]=".src/Form/zzzFake.class:23.3"
-File[9]=".src/Classi/SettingsClass.class:514.0"
+File[9]=".src/Classi/SettingsClass.class:619.24"
 File[10]=".src/Form/GeneralOptions.form"
 File[11]=".src/0_Moduli/Global.module:852.29"
-File[12]=".src/Form/GeneralOptions.class:30.24"
+File[12]=".src/Form/GeneralOptions.class:547.29"
 File[13]=".src/Form/DVBTuner.class:0.0"
 File[14]=".src/Form/Chains.form"
-File[15]=".src/Form/Chains.class:95.28"
+File[15]=".src/Form/Chains.class:383.48"
 File[16]=".src/Form/AllOptions.form"
 File[17]=".src/Form/AllOptions.class:48.2"
-File[18]=".src/Classi/MplayerClass.class:530.32"
-File[19]=".src/Classi/PlaylistClass.class:42.22"
-Count=19
+File[18]=".src/Classi/MplayerClass.class:1293.48"
+File[19]=".src/Classi/PlaylistClass.class:36.27"
+File[20]=".src/Classi/Meters.class:23.0"
+File[21]=".src/Form/XConfigureAudioDriver.class:246.32"
+File[22]=".src/Form/AudioVideoCodecs.form"
+File[23]=".src/Form/AudioVideoCodecs.class:12.34"
+File[24]=".src/Form/XConfigureVideoDriver.class:316.46"
+File[25]=".src/Form/VFiltersCfg.form"
+File[26]=".src/Form/VFiltersCfg.class:113.0"
+File[27]=".src/Form/AFiltersCfg.class:478.4"
+File[28]=".src/Classi/DynaGuiClass.class:264.8"
+File[29]=".src/Form/MyQuestion.class:38.0"
+Count=29
 
 [Watches]
 Count=11

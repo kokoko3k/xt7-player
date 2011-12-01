@@ -89,22 +89,17 @@ uguali, crea dei link e rimuovine una.
 - l'highlighting causa problemi allo spostamento degli item nella playlist
  
 
-
-- in playlist, il secondo elemento, sballa il titolo nella statusbar
 - invertire l'ordine dei risultati youtube?
 
 
 - opzione "-volume" per il volume iniziale (possibile prenderla direttamente dalla barra del volume?)
 
-- vedere i formati video di youtube, che il più grande non vuol dire necessariamente risoluzione più alta.
 
 - l'eq runtime si piazza ancora sempre alla fine della catena ?
 - A volte i filtri audio non vengono correttamente 'ricaricati' in realtime
 
 
 - Port a gb3:
-  A volte l'applicazione non riesce ad uscire, possiamo forzare con quit o è meglio capire perchè?
-    *Non sembra capitare più
 
 
 -crash alla seconda ripetizione dei sub con queste opzioni:
@@ -115,8 +110,6 @@ __GL_SYNC_TO_VBLANK=1  /usr/local/bin/pagecache-management.sh -k 1024 mplayer -i
 
 * mettere lA CATEGORIA AUDIOVIDEO
 
-* remember last time (-ss)
-
 * trovare un modo per levare i messaggi di errore di mplayertag dai log
 
 
@@ -124,14 +117,18 @@ __GL_SYNC_TO_VBLANK=1  /usr/local/bin/pagecache-management.sh -k 1024 mplayer -i
 Risolti:
 ***********************************************
 
-FIX: Better handling of cached options
-FIX: Inserting expand filter into video chains works again
-FIX: Added polish (pl) to the list of enca supported language list 
-FIX: Added an option to just use fallback codepage if enca language is unlisted
-NEW: remembers last played files
-NEW: Optionally "start where you left" feature
-FIX: Only switch to browse tab at startup if the file exists
-FIX: Don't reset new settings after playing a media for the first time
+CHANGE: Some translations update may require you to reconfigure subtitle languages
+CHANGE: Filters not supported by local mplayer now are disabled objects
+........And the user will be warned if it insists in using them
+CHANGE: Drivers not supported by local mplayer now are disabled objects
+FIX:    Better handling of cached options
+FIX:    Inserting expand filter into video chains works again
+FIX:    Added polish (pl) to the list of enca supported language list 
+FIX:    Added an option to just use fallback codepage if enca language is unlisted
+NEW:    Remembers last played files
+NEW:    Optionally "start where you left" feature
+FIX:    Only switch to browse tab at startup if the file exists
+FIX:    Don't reset new settings after playing a media for the first time
 
 
 

@@ -164,16 +164,37 @@ Public Function ParsedChain(VideoOrAudio As String) As String
   Dim PreAdd As String
   Dim PrevAudioTabIndex As Integer = AFiltersCfg.GetCurrentTabIndex() 'Those two are necessary because ParseFilterGui
   Dim PrevVideoTabIndex As Integer = VFiltersCfg.GetCurrentTabIndex() 'Function alters the tabstrip index property
+  Dim warnpre As String
+  Dim warnpost As String
+  Dim AlreadyWarnedV As Boolean = False
+  Dim AlreadyWarnedA As Boolean = False
+  
+  warnpre = ("It seems that you want to use the filter: \n")
+  warnpost = ("\nWhich seems not to be supported by your mplayer.\n ")
+  warnpost &= ("\nTry to remove it from tha chain or to use another mplayer.")
+  warnpost &= ("\nThe Playback will probably fail.")
   
   If Upper(VideoOrAudio) = "VIDEO" Then
     PreAdd = " -vf "
     For Each CurrentFilter In VideoChainBox.Children
+      If (CurrentFilter.enabled = False) And (Not FMain.closing) Then
+        If Not alreadywarnedV Then
+          alreadywarnedV = True
+          Message.Warning(warnpre & CurrentFilter.name & warnpost, ("Let's see..."))
+        Endif
+      Endif
       NewFilter = VFiltersCfg.ParseFiltersGui(CurrentFilter.name)
       If Trim(newfilter) <> "" Then ParsedFilters = ParsedFilters & NewFilter & ","
     Next
       Else
     PreAdd = " -af "
     For Each CurrentFilter In AudioChainBox.Children
+      If (CurrentFilter.enabled = False) And (Not FMain.closing) Then
+        If Not alreadywarnedA Then
+          alreadywarnedA = True
+          Message.Warning(warnpre & CurrentFilter.name & warnpost, ("Let's see..."))
+        Endif
+      Endif
       NewFilter = AFiltersCfg.ParseFiltersGui(CurrentFilter.name)
       If Trim(newfilter) Then ParsedFilters = ParsedFilters & newfilter & ","
     Next
@@ -348,5 +369,61 @@ Public Sub Form_Hide()
   ' Debug "Cached Options unvalidated"
   ' fmain.cachedopts = ""
   FMain.VideoBox.setfocus()
+End
+
+
+Private AvailableListVF As New String[]
+Private AvailableListAF As New String[]
+
+Public Sub Form_Show()
+  Dim obj As Object
+  Dim objname As String
+  'disable unavailable codecs
+  If AvailableListVF.count < 1 Then 
+    AvailableListVF = FMain.mplayer.GetListOf("vf")
+    AvailableListAF = FMain.mplayer.GetListOf("af")
+      Else
+    Return
+  Endif
+
+  For Each obj In videofiltersbox.Children
+    If obj Is Button Then
+      objname = Lower(obj.name)
+      If objname = "myexpand" Then objname = "expand"
+      If Not ((objname) Like "*custom*") Then 
+         If Not ((objname) Like "pp*") Then obj.enabled = (AvailableListVF.Find(objname) >= 0)
+      Endif
+    Endif
+  Next
+
+  For Each obj In VideoChainBox.Children
+    If obj Is Button Then
+      objname = Lower(obj.name)
+      If objname = "myexpand" Then objname = "expand"
+      If Not ((objname) Like "*custom*") Then 
+         If Not ((objname) Like "pp*") Then obj.enabled = (AvailableListVF.Find(objname) >= 0)
+      Endif
+    Endif
+  Next
+
+    For Each obj In audiofiltersbox.Children
+    If obj Is Button Then
+      objname = Lower(obj.name)
+      If Not ((objname) Like "*custom*") Then 
+         obj.enabled = (AvailableListAF.Find(objname) >= 0)
+      Endif
+    Endif
+  Next
+
+  For Each obj In AudioChainBox.Children
+    If obj Is Button Then
+      objname = Lower(obj.name)
+      If Not ((objname) Like "*custom*") Then 
+         obj.enabled = (AvailableListAF.Find(objname) >= 0)
+      Endif
+    Endif
+  Next
+
+  
 
 End

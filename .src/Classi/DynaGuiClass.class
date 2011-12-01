@@ -113,6 +113,8 @@ Public Sub DetachFrom(TheObject As Object, TheForm As Object)
     shadowobj.reparent(theform)
     shadowobj.visible = True
 
+    shadowobj.enabled = TheObject.enabled
+
     ' Try shadowobj.autoresize = True 'gambas3
     ' If Error Then 
         shadowobj.w = TheObject.w 'gambas2
@@ -133,36 +135,6 @@ Public Sub DetachFrom(TheObject As Object, TheForm As Object)
   'If needhighlight Then highlightDestination(theform, True)
 
 End
-
-
-'Private needhighlight As Boolean = True
-'Private prevbgnd As Integer
-
-' Public Sub highlightDestination(theform As Form, plus As Boolean)
-'   Dim containername As String
-'   Dim tmpobj As Object
-'   Dim rightname As Boolean = False
-'   
-'   For Each containername In AllowedContainers
-'     For Each tmpobj In theform.Controls
-'       Try rightname = (Lower(tmpobj.name) = Lower(containername))
-'       If rightname Then
-'         If plus Then 
-'           needhighlight = False
-'           'prevbgnd = tmpobj.background
-'           'tmpobj.background = Color.gradient(tmpobj.background, Color.blue, 0.25)
-'           tmpobj.padding = tmpobj.padding + 4
-'             Else
-'           'tmpobj.background = prevbgnd
-'           tmpobj.padding = tmpobj.padding - 4
-'           needhighlight = True
-'         Endif
-'       Endif
-'     Next
-'     'theform.Controls[containername].padding = theform.Controls[containername].padding + 4
-'   Next
-' 
-' End
 
 
 
@@ -289,7 +261,8 @@ Public Sub SmartInsert(TheObject As Object, TheForm As Object)
     DelayEndDrag.Delay = 100
     DelayEndDrag.Start
     TheForm.mouse = mouse.normal
-    TheObject.enabled = True
+    ' TheObject.enabled = True
+    Try TheObject.enabled = ShadowObj.enabled
     Try ShadowObj.Delete
     'highlightDestination(theform, False)
 End

@@ -545,8 +545,8 @@ End
 
 
 Public Sub ToolTipsCHK_Click()
-
-  Application.showToolTip = ToolTipsCHK.value
+  Try Application.showToolTip = ToolTipsCHK.value
+  Try Application.showToolTips = ToolTipsCHK.value
 
 End
 

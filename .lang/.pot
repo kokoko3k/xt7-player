@@ -704,7 +704,7 @@ msgstr ""
 msgid "Eq2"
 msgstr ""
 
-#: Chains.form:292 VFiltersCfg.class:407 VideoEqualizer.form:183
+#: Chains.form:292 VFiltersCfg.class:413 VideoEqualizer.form:183
 msgid "Hue"
 msgstr ""
 
@@ -779,6 +779,33 @@ msgstr ""
 
 #: Chains.form:473
 msgid "ScaleTempo"
+msgstr ""
+
+#: Chains.class:172
+msgid "It seems that you want to use the filter: \n"
+msgstr ""
+
+#: Chains.class:173
+msgid ""
+"\n"
+"Which seems not to be supported by your mplayer.\n"
+" "
+msgstr ""
+
+#: Chains.class:174
+msgid ""
+"\n"
+"Try to remove it from tha chain or to use another mplayer."
+msgstr ""
+
+#: Chains.class:175
+msgid ""
+"\n"
+"The Playback will probably fail."
+msgstr ""
+
+#: Chains.class:183
+msgid "Let's see..."
 msgstr ""
 
 #: ChooseAspect.form:15
@@ -3200,7 +3227,7 @@ msgid ""
 " Mplayer Option: -framedrop"
 msgstr ""
 
-#: GeneralOptions.class:223 VFiltersCfg.class:420
+#: GeneralOptions.class:223 VFiltersCfg.class:426
 msgid "Field dominance"
 msgstr ""
 
@@ -3442,7 +3469,7 @@ msgstr ""
 msgid "* Some subtitle controls only work when ass subtitles are disabled"
 msgstr ""
 
-#: RealtimeForm.form:60 VFiltersCfg.class:397 VideoEqualizer.form:84
+#: RealtimeForm.form:60 VFiltersCfg.class:403 VideoEqualizer.form:84
 msgid "Brightness"
 msgstr ""
 
@@ -3544,11 +3571,11 @@ msgstr ""
 msgid "Fps"
 msgstr ""
 
-#: Searchfields.form:188 VFiltersCfg.class:244
+#: Searchfields.form:188 VFiltersCfg.class:250
 msgid "Width"
 msgstr ""
 
-#: Searchfields.form:195 VFiltersCfg.class:245
+#: Searchfields.form:195 VFiltersCfg.class:251
 msgid "Height"
 msgstr ""
 
@@ -4060,468 +4087,468 @@ msgstr ""
 msgid "Tab 4"
 msgstr ""
 
-#: VFiltersCfg.class:236
+#: VFiltersCfg.class:242
 msgid "Luminance Matrix"
 msgstr ""
 
-#: VFiltersCfg.class:236
+#: VFiltersCfg.class:242
 msgid "The higher, the slower"
 msgstr ""
 
-#: VFiltersCfg.class:237
+#: VFiltersCfg.class:243
 msgid "Luma amount"
 msgstr ""
 
-#: VFiltersCfg.class:237
+#: VFiltersCfg.class:243
 msgid "Negative means blur"
 msgstr ""
 
-#: VFiltersCfg.class:238
+#: VFiltersCfg.class:244
 msgid "Chrominance Matrix"
 msgstr ""
 
-#: VFiltersCfg.class:239
+#: VFiltersCfg.class:245
 msgid "Chroma amount"
 msgstr ""
 
-#: VFiltersCfg.class:244
+#: VFiltersCfg.class:250
 msgid "0 to Disable; Negative as offset to original value"
 msgstr ""
 
-#: VFiltersCfg.class:246
+#: VFiltersCfg.class:252
 msgid "X Position"
 msgstr ""
 
-#: VFiltersCfg.class:246
+#: VFiltersCfg.class:252
 msgid "Original image position; -1 to center"
 msgstr ""
 
-#: VFiltersCfg.class:247
+#: VFiltersCfg.class:253
 msgid "Y Position"
 msgstr ""
 
-#: VFiltersCfg.class:248
+#: VFiltersCfg.class:254
 msgid "Osd/SubTitle Rendering"
 msgstr ""
 
-#: VFiltersCfg.class:249
+#: VFiltersCfg.class:255
 msgid "Fit an aspect instead of a resolution"
 msgstr ""
 
-#: VFiltersCfg.class:250
+#: VFiltersCfg.class:256
 msgid "Make Width and Height divisible by"
 msgstr ""
 
-#: VFiltersCfg.class:255
+#: VFiltersCfg.class:261
 msgid "Spatial luma strength"
 msgstr ""
 
-#: VFiltersCfg.class:256
+#: VFiltersCfg.class:262
 msgid "Spatial chroma strength"
 msgstr ""
 
-#: VFiltersCfg.class:257
+#: VFiltersCfg.class:263
 msgid "Temporal luma strength"
 msgstr ""
 
-#: VFiltersCfg.class:258
+#: VFiltersCfg.class:264
 msgid "Temporal chroma strength"
 msgstr ""
 
-#: VFiltersCfg.class:271
+#: VFiltersCfg.class:277
 msgid "0 disables scaling,see man below"
 msgstr ""
 
-#: VFiltersCfg.class:273
+#: VFiltersCfg.class:279
 msgid "Interlaced Scaling"
 msgstr ""
 
-#: VFiltersCfg.class:273
+#: VFiltersCfg.class:279
 msgid "Enable for interlaced contents"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "Chroma skipping"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "0 - Use all available input lines for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "1 - Use only every 2. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "2 - Use only every 4. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "3 - Use only every 8. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:274
+#: VFiltersCfg.class:280
 msgid "lower=slower"
 msgstr ""
 
-#: VFiltersCfg.class:275
+#: VFiltersCfg.class:281
 msgid "Scaling Parameters"
 msgstr ""
 
-#: VFiltersCfg.class:275
+#: VFiltersCfg.class:281
 msgid "Depends on sws, leave blank if unsure"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "Scale to Preset Size"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "qntsc - 352x240 (NTSC quarter screen)"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "qpal - 352x288 (PAL quarter screen)"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "ntsc - 720x480 (standard NTSC)"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "pal - 720x576 (standard PAL)"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "sntsc - 640x480 (square pixel NTSC)"
 msgstr ""
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:283
 msgid "spal - 768x576 (square pixel PAL)"
 msgstr ""
 
-#: VFiltersCfg.class:278
+#: VFiltersCfg.class:284
 msgid "Disable Upscaling"
 msgstr ""
 
-#: VFiltersCfg.class:278
+#: VFiltersCfg.class:284
 msgid "0 - Allow Upscaling"
 msgstr ""
 
-#: VFiltersCfg.class:278
+#: VFiltersCfg.class:284
 msgid "1 - Disallow if one dimensions exceeds its original value"
 msgstr ""
 
-#: VFiltersCfg.class:278
+#: VFiltersCfg.class:284
 msgid "2 - Disallow if both dimensions exceed their original values"
 msgstr ""
 
-#: VFiltersCfg.class:279
+#: VFiltersCfg.class:285
 msgid "Accurate Rounding"
 msgstr ""
 
-#: VFiltersCfg.class:279
+#: VFiltersCfg.class:285
 msgid "0 - Disable Accurate rounding"
 msgstr ""
 
-#: VFiltersCfg.class:279
+#: VFiltersCfg.class:285
 msgid "1 - Enable Accurate rounding"
 msgstr ""
 
-#: VFiltersCfg.class:284
+#: VFiltersCfg.class:290
 msgid "topLeft Corner"
 msgstr ""
 
-#: VFiltersCfg.class:285
+#: VFiltersCfg.class:291
 msgid "TopLeft Corner"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:294
 msgid "Tickness"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:294
 msgid "-1 draws a green border"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "Deinterlace method:"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "linblenddeint - Linear blend"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "linipoldeint - Linear interpolation"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "cubicipoldeint - Cubic interpolation"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "mediandeint - Median filter"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "ffmpegdeint - FFmpeg"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:299
 msgid "lowpass5 - FIR lowpass"
 msgstr ""
 
-#: VFiltersCfg.class:298
+#: VFiltersCfg.class:304
 msgid "Horizontal deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:305
 msgid "Difference"
 msgstr ""
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:305
 msgid "higher values mean more deblocking"
 msgstr ""
 
-#: VFiltersCfg.class:300
+#: VFiltersCfg.class:306
 msgid "Flatness"
 msgstr ""
 
-#: VFiltersCfg.class:300
+#: VFiltersCfg.class:306
 msgid "lower values mean more deblocking"
 msgstr ""
 
-#: VFiltersCfg.class:301
+#: VFiltersCfg.class:307
 msgid "Luminance/chrominance"
 msgstr ""
 
-#: VFiltersCfg.class:302
+#: VFiltersCfg.class:308
 msgid "Automatically switch the subfilter off if the CPU is too slow"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:313
 msgid "Accurate Horizontal deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:310
+#: VFiltersCfg.class:316
 msgid "c - Denoise both"
 msgstr ""
 
-#: VFiltersCfg.class:310
+#: VFiltersCfg.class:316
 msgid "y - Just denoise Luma"
 msgstr ""
 
-#: VFiltersCfg.class:310
+#: VFiltersCfg.class:316
 msgid "n - Just denoise Chroma"
 msgstr ""
 
-#: VFiltersCfg.class:316
+#: VFiltersCfg.class:322
 msgid "Vertical deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:325
+#: VFiltersCfg.class:331
 msgid "Accurate Vertical deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:342
+#: VFiltersCfg.class:348
 msgid "Ring noise remover"
 msgstr ""
 
-#: VFiltersCfg.class:349
+#: VFiltersCfg.class:355
 msgid "automatic brightness / contrast correction"
 msgstr ""
 
-#: VFiltersCfg.class:350
+#: VFiltersCfg.class:356
 msgid "Stretch luminance to (0-255)."
 msgstr ""
 
-#: VFiltersCfg.class:357
+#: VFiltersCfg.class:363
 msgid "Quality"
 msgstr ""
 
-#: VFiltersCfg.class:357
+#: VFiltersCfg.class:363
 msgid "The Higher, the slower"
 msgstr ""
 
-#: VFiltersCfg.class:358
+#: VFiltersCfg.class:364
 msgid "Quantization parameter (qp)"
 msgstr ""
 
-#: VFiltersCfg.class:358
+#: VFiltersCfg.class:364
 msgid "Leave to 0 to get qp from video"
 msgstr ""
 
-#: VFiltersCfg.class:359
+#: VFiltersCfg.class:365
 msgid "Mode"
 msgstr ""
 
-#: VFiltersCfg.class:359
+#: VFiltersCfg.class:365
 msgid "0 - hard thresholding"
 msgstr ""
 
-#: VFiltersCfg.class:359
+#: VFiltersCfg.class:365
 msgid "1 - soft thresholding"
 msgstr ""
 
-#: VFiltersCfg.class:359
+#: VFiltersCfg.class:365
 msgid "4 - like 0, but also use B-frames"
 msgstr ""
 
-#: VFiltersCfg.class:359
+#: VFiltersCfg.class:365
 msgid "5 - like 1, but also use B-frames"
 msgstr ""
 
-#: VFiltersCfg.class:370
+#: VFiltersCfg.class:376
 msgid " The Higher, the slower "
 msgstr ""
 
-#: VFiltersCfg.class:372
+#: VFiltersCfg.class:378
 msgid "Strength"
 msgstr ""
 
-#: VFiltersCfg.class:372
+#: VFiltersCfg.class:378
 msgid "The Higher, the blurrier (0=PSNR optimal)"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:379
 msgid "bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:379
 msgid "0 - Dont use QP from bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:379
 msgid "1 - use QP from bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:379
 msgid "default 0"
 msgstr ""
 
-#: VFiltersCfg.class:377
+#: VFiltersCfg.class:383
 msgid "Custom video filter(s):"
 msgstr ""
 
-#: VFiltersCfg.class:377
+#: VFiltersCfg.class:383
 msgid "E.g.:mirror,smartblur=0.4:0.5:10"
 msgstr ""
 
-#: VFiltersCfg.class:395 VideoEqualizer.form:150
+#: VFiltersCfg.class:401 VideoEqualizer.form:150
 msgid "Gamma"
 msgstr ""
 
-#: VFiltersCfg.class:395
+#: VFiltersCfg.class:401
 msgid "Initial gamma value(default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:396 VideoEqualizer.form:117
+#: VFiltersCfg.class:402 VideoEqualizer.form:117
 msgid "Contrast"
 msgstr ""
 
-#: VFiltersCfg.class:396
+#: VFiltersCfg.class:402
 msgid "Initial contrast (-x = negative image)"
 msgstr ""
 
-#: VFiltersCfg.class:397
+#: VFiltersCfg.class:403
 msgid "Initial brightness (default: 0.0)"
 msgstr ""
 
-#: VFiltersCfg.class:398 VideoEqualizer.form:216
+#: VFiltersCfg.class:404 VideoEqualizer.form:216
 msgid "Saturation"
 msgstr ""
 
-#: VFiltersCfg.class:398
+#: VFiltersCfg.class:404
 msgid "Initial Saturation (default: 0.0)"
 msgstr ""
 
-#: VFiltersCfg.class:399
+#: VFiltersCfg.class:405
 msgid "Gamma Red"
 msgstr ""
 
-#: VFiltersCfg.class:399
+#: VFiltersCfg.class:405
 msgid "gamma for the red component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:400
+#: VFiltersCfg.class:406
 msgid "Gamma Green"
 msgstr ""
 
-#: VFiltersCfg.class:400
+#: VFiltersCfg.class:406
 msgid "gamma for the green component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:401
+#: VFiltersCfg.class:407
 msgid "Gamma Blue"
 msgstr ""
 
-#: VFiltersCfg.class:401
+#: VFiltersCfg.class:407
 msgid "gamma for the blue component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:402
+#: VFiltersCfg.class:408
 msgid "Weight"
 msgstr ""
 
-#: VFiltersCfg.class:402
+#: VFiltersCfg.class:408
 msgid "Reduce effect of gamma correction"
 msgstr ""
 
-#: VFiltersCfg.class:407
+#: VFiltersCfg.class:413
 msgid "Initial hue (default: 0)"
 msgstr ""
 
-#: VFiltersCfg.class:408
+#: VFiltersCfg.class:414
 msgid "Initial saturation (default: 1)"
 msgstr ""
 
-#: VFiltersCfg.class:413
+#: VFiltersCfg.class:419
 msgid ""
 "Maximum amount by which the filter will change any one pixel.  Also the "
 "threshold for detecting nearly flat regions (default: 1.2)."
 msgstr ""
 
-#: VFiltersCfg.class:414
+#: VFiltersCfg.class:420
 msgid "Radius"
 msgstr ""
 
-#: VFiltersCfg.class:414
+#: VFiltersCfg.class:420
 msgid ""
 "Neighborhood to fit the gradient to.  Larger radius makes for smoother "
 "gradients, but also prevents the filter from modifying pixels near detailed "
 "regions (default: 16)."
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:425
 msgid "Deinterlace mode"
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:425
 msgid "0 - Output 1 frame for each frame."
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:425
 msgid "1 - Output 1 frame for each field."
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:425
 msgid "2 - Like 0 but skips spatial interlacing check."
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:425
 msgid "3 - Like 1 but skips spatial interlacing check"
 msgstr ""
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:426
 msgid "-1 - auto, need codec support"
 msgstr ""
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:426
 msgid "0 - top field first"
 msgstr ""
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:426
 msgid "1 - bottom field first"
 msgstr ""
 

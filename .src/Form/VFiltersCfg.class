@@ -91,6 +91,7 @@ Dim AScrollview As ScrollView
     MyFilters.add("CustomVideo1")
     MyFilters.add("CustomVideo2")
   
+  
   For Each Filter In MyFilters
     FilterList.Add(Filter)
   Next
@@ -110,7 +111,12 @@ Dim AScrollview As ScrollView
     Ascrollview.ScrollBar = Scroll.Both
    Next 'i
   
+
 End
+
+
+
+
 
 Public Sub SyncFiltersList(CheckFilterName As String, IsInChain As Boolean)
   'this will add or remove the "+" symbol from filter name
@@ -566,6 +572,7 @@ Public Sub Form_Show()
   For Each ChainFilter In Chains.VideoFiltersBox.children
     SyncFiltersList(ChainFilter.name, False)
   Next
+  
 End
 
 Public Sub Form_Close()

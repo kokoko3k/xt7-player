@@ -656,35 +656,6 @@ Private Sub InitStucktimer(options As Integer)
 End
 
 
-Public Function CodecsList(TYPE As String) As String[]
-  'returns a string array of supported audio codecs
-
-  Dim MPoutput As String
-  Dim MPLines, FuncOUT As New String[]
-  Dim MPLine, MPWord As String
-  Dim HeadSkipped As Boolean = False
-  Dim CheckHead As String = "ac:"
-  Dim Option As String
-
-  If TYPE = "AUDIO" Then
-    CheckHead = "ac:"
-    Option = " -noconfig all -ac help"
-  Else
-    CheckHead = "vc:"
-    Option = " -noconfig all -vc help"
-  Endif
-  Shell executable() & " " & Option To MPoutput
-  MpLines = Split(MPOutput, "\n", "", True)
-  For Each MPLine In MPLines
-    'get just the first word
-    MPWord = Split(MPLine, " ", "", True)[0]
-    If HeadSkipped Then FuncOUT.Add(MPWord)
-    If MPWord = CheckHead Then HeadSkipped = True
-  Next
-  Return FuncOUT
-
-End
-
 Public Function DeMuxerslist() As String[]
   'returns a string array of supported audio codecs plus informations
 
@@ -1282,3 +1253,47 @@ Public Sub Media_GetLength() As String
   Return Media_Length
 
 End
+
+
+Public Function CodecsList(TYPE As String) As String[]
+  'returns a string array of supported audio codecs
+
+  Dim MPoutput As String
+  Dim MPLines, FuncOUT As New String[]
+  Dim MPLine, MPWord As String
+  Dim HeadSkipped As Boolean = False
+  Dim CheckHead As String = "ac:"
+  Dim Option As String
+
+  If TYPE = "AUDIO" Then
+    CheckHead = "ac:"
+    Option = " -noconfig all -ac help"
+  Else
+    CheckHead = "vc:"
+    Option = " -noconfig all -vc help"
+  Endif
+  Shell executable() & " " & Option To MPoutput
+  MpLines = Split(MPOutput, "\n", "", True)
+  For Each MPLine In MPLines
+    'get just the first word
+    MPWord = Split(MPLine, " ", "", True)[0]
+    If HeadSkipped Then FuncOUT.Add(MPWord)
+    If MPWord = CheckHead Then HeadSkipped = True
+  Next
+  Return FuncOUT
+
+End
+
+
+Public Function GetListOf(TheType As String) As String[]
+  'return a list of available drivers/filters
+  'thetype can be ao,vo,af,vf
+  Dim list, mpline As String
+  Dim outlist As New String[]
+  Shell executable() & "  -noconfig all -" & TheType & " help" To List
+  For Each mpline In Split(list, "\n", "", True)
+    outlist.Add(Lower(Split(mpline, " \t", "", True)[0]))
+  Next 'mpline
+  Return outlist
+End
+

@@ -308,3 +308,28 @@ Public Sub VdPauScrollView_MouseDown()
   
 
 End
+
+Private AvailableList As New String[]
+Public Sub Form_Show()
+  Dim obj As Object
+  'disable unavailable codecs
+   If AvailableList.count < 1 Then 
+    AvailableList = FMain.mplayer.GetListOf("vo")
+      Else
+    Return
+  Endif
+  
+  For Each obj In DriversPanel.Children
+    If obj Is Checkbox Then
+      If Not (Lower(obj.name) Like "*custom*") Then
+        If (AvailableList.Find(Lower(obj.text)) = -1) Then
+          obj.enabled = False
+          object.Lock(obj)
+            Else
+          obj.enabled = True
+          object.unLock(obj)
+        Endif
+      Endif
+    Endif
+  Next
+End

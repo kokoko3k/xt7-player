@@ -1,11 +1,9 @@
 ' Gambas class file
 
 'Copyright (C) 2007, 2008 Antonio Orefice
-' Gambas class file
-'Export
+
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 Private exportfilespath As String
-
 Public cachedopts As String = ""
 
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
@@ -33,87 +31,59 @@ Private Function IsTabChildren(name As String, Optional index As Integer = 99999
 End
 
 Public Function TabSelectedLibrary() As Boolean
-  
   Return IsTabChildren("NOPARSETABLIBRARY")
-  
 End
 
 Public Function TabSelectedPlaylist() As Boolean
-  
   Return IsTabChildren("NOPARSETABPLAYLIST")
-  
 End
 
 Public Function TabSelectedFlash() As Boolean
-  
   Return IsTabChildren("NOPARSETABFLASH")
-  
 End
 
 Public Function TabSelectedShoutcast() As Boolean
-  
   Return IsTabChildren("NOPARSETABSHOUTCAST")
-  
 End
 
 Public Function TabSelectedyoutube() As Boolean
-  
   Return IsTabChildren("NOPARSETABYOUTUBE")
-  
 End
 
 Public Function TabSelectedCDDA() As Boolean
-  
   Return IsTabChildren("NOPARSETABCDDA")
-  
 End
 
 Public Function TabSelectedDVD() As Boolean
-  
   Return IsTabChildren("NOPARSETABDVD")
-  
 End
 
 Public Function TabSelectedDVB() As Boolean
-  
   Return IsTabChildren("NOPARSETABDVB")
-  
 End
 
 Public Function TabSelectedBrowse() As Boolean
-  
   Return IsTabChildren("NOPARSETABBROWSE")
-  
 End
 
 Public Function TabSelectedDVDAt(index As Integer) As Boolean
-  
   Return IsTabChildren("NOPARSETABDVD", index)
-  
 End
 
 Public Function TabSelectedCDDAAt(index As Integer) As Boolean
-  
   Return IsTabChildren("NOPARSETABCDDA", index)
-  
 End
 
 Public Function TabSelectedPodCasts() As Boolean
-  
   Return IsTabChildren("NOPARSETABPODCAST")
-  
 End
 
 Public Function TabSelectedMediaInfo() As Boolean
-  
   Return IsTabChildren("NOPARSETABMEDIAINFO")
-  
 End
 
 Public Function TabSelectedProfiles() As Boolean
-  
   Return IsTabChildren("NOPARSETABPROFILES")
-  
 End
 
 Public closing As Boolean = False
@@ -124,7 +94,7 @@ Public ScreenXBefore As Integer
 Public ScreenYBefore As Integer
 Public FullScreenSwitchDeltaX As Integer = 0
 Public FullScreenSwitchDeltaY As Integer = 0
-'---  
+
 Public mypodcast As New Podcast
 Public MyRadio As New ShoutCastClass
 Public Youtube As New Youtubeclass
@@ -204,7 +174,7 @@ Public trayicon1 As Trayicon
 
 Public Sub InitTrayIcon()
   'Dim trayicon1 As New TrayIcon
-  
+
   Try trayicon1 = New Trayicon
   If Error Then Debug "Cannot Init Trayicon"
   trayicon1.Picture = picture.Load("trayicon.png")
@@ -216,10 +186,10 @@ Public Sub InitTrayIcon()
 End
 
 Public Sub Form_Open()
-  
+
   Dim tmpimage As Image
   Dim msg As String
-  
+
   SetFlexSpaceVisibility(False)
   'init dynagui toolbar objects
   DynaGuiTools.AllowedContainers = ["MainToolbar"] ', "SliderBox"]
@@ -230,9 +200,9 @@ Public Sub Form_Open()
   If global.TranslationNeeded Then
     If Not (Exist(TranslationNeeded.Notranslatefile)) Then TranslationNeeded.show
   Endif
-  
+
   If Not (Exist(Global.NOsoftvolmessagefile)) Then
-    msg = ("Beware Ubuntu users!\n")
+    msg = ("To Ubuntu users:\n")
     msg &= ("If the video stops when you change volume,") & "\n"
     msg &= ("enable: ") & ("software volume Control") & "\n"
     msg &= ("Under ") & ("General Options ") & "-> " & ("Audio") & "\n"
@@ -243,25 +213,19 @@ Public Sub Form_Open()
     If Message.Warning(msg, ("Don't show anymore"), ("Remind me later")) = 1 Then
       file.Save(Global.NOsoftvolmessagefile, ".")
     Endif
-    
   Endif
-  
-  
 End
 
 Public Sub SetFlexSpaceVisibility(Visibility As Boolean)
-  
   If Visibility = True Then
     FlexSpace.border = Border.plain
     FlexSpace.background = Color.White
   Else
     FlexSpace.border = Border.none 'gambas3
   Endif
-  
 End
 
 Public Sub DynaGuiToolbar_Click()
-  
   Dim ButtonName As String
   If MenuToolBarLocked.checked Then
     Try ButtonName = Last.name
@@ -314,16 +278,14 @@ End
 '--------------------------------------------------
 
 Public Sub TagEditorBtn_click()
-  
   EditTagModeSwitch1_Click()
-  
 End
 
 Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, WithMplayer As Boolean)
-  
+
   Dim Tag As String
   Dim i As Integer = 0
-  
+
   MyLibrary.Init(WithMplayer)
   LibraryGrid.Columns.count = MyLibrary.ColumnIndex.Count
   For Each Tag In MyLibrary.ColumnIndex
@@ -331,11 +293,10 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
     i = i + 1
   Next
   MyLibrary.Load(LibraryGrid, global.confpath)
-  
+
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
-  
   Select Case librarygrid.name
     Case "PlaylistGrid"
       If WaitPanel2.Text <> "" Then WaitPanel2.Text = ""
@@ -354,11 +315,9 @@ Public Sub HideGrid(Librarygrid As Gridview)
       HBox19.visible = False
       WaitPanel3.visible = True
   End Select
-  
 End
 
 Public Sub ShowGrid(LibraryGrid As Gridview)
-  
   Select Case librarygrid.name
     Case "PlaylistGrid"
       WaitPanel2.visible = False
@@ -371,13 +330,9 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
       dvbtgrid.visible = True
       HBox19.visible = True
   End Select
-
 End
 
-
-
 Public Sub AllInit_Pre()
-  
   Dim MySettings As New SettingsClass
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
@@ -391,15 +346,11 @@ Public Sub AllInit_Pre()
   InitPropertiesGrid()
   AspectMenu.visible = False
   Try Copy "FakeInput.conf" To "/tmp/FakeInput.conf"
-  'mettere un timer qui e ritardare tutto cio che segue
-  
   SetDvdTabVisibility(False)
   SetCDDATabVisibility(False)
-  
   If Not (Exist(global.confpath & "/" & "Factory_Defaults.profile")) Then
     'inizializza prma tutto:
     InitEarlyForms()
-    
     ReallySaveAllSettings("Factory_Defaults", False) 'before loading user settings, make a profile with factory values.
   Endif
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
@@ -409,12 +360,9 @@ Public Sub AllInit_Pre()
   SetDvdTabVisibility(False)
   SetCDDATabVisibility(False)
   SetStyle_early()
-  
 End
 
 Public Sub InitEarlyForms()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   Debug "start at: " & Time
   Try Last.mouse = mouse.wait
   fmain.mouse = mouse.wait
@@ -429,31 +377,23 @@ Public Sub InitEarlyForms()
 End
 
 Public Sub AllInit_Post()
-
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
   Dim savefileview1path As String
-
- ' DBus.Session.Register(DbusProperties, "/DbusProperties")
-
 
   Hsplit1ResizeDelayed = New Timer As "Hsplit1ResizeDelayed" 'used to delay the hsplit resize and better performance
   Hsplit1ResizeDelayed.delay = 300
   Hsplit1ResizeDelayed.Enabled = False
-  
   savefileview1path = FileView1.dir
   FileView1.dir = "non/esistent/dir/i/am/very/sure/of/this/1234432100/don/t/you"
   FileView1.visible = True
   FileView1.dir = savefileview1path
   FileView1.Reload
   If (Application.Args.count = 1) And (GeneralOptions.AnimLogoCHK.value = True) Then PlayAnimLogo()
-  
   Leftsidepanel.mouse = mouse.wait
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
-  ' 
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
-  
   'some gtk component problem here
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
@@ -461,29 +401,21 @@ Public Sub AllInit_Post()
   Try ComboHistory.LoadHistory(Fmain.UrlBox, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchFieldDVB, global.confpath & "/" & global.CurrentProfile)
-  
   Myflash = New FlashClass As "MyFlash"
   InitFlashGrid()
-  
   SetStyle_early()
-  
   UpdateSearchResults(MyLibrary, LibraryGrid, False, Searchfield.text)
   UpdateSearchResults(MyPlaylist, PlaylistGrid, False, SearchfieldPLS.text)
   LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   PlayListGrid.Rows.h = PlayListGrid.Font.TextHeight("^_") + global.rowpadding
-  
   Leftsidepanel.mouse = mouse.Default
   Try GeneralOptions.LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try GeneralOptions.LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   'kill prevoiusly launched xbindkeys
   Shell ("killall " & global.CustomBindKeys) For Read
-  
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
-  
-
   'Prepare our xbindkeys link, we'll need it to ensure only one at time.
   Shell ("ln -s $(which xbindkeys) " & global.confpath & "/Xt7BindKeys") For Read
-  
   'start to listen for remote commands, one connection is ok.
   Mysocket.type = Net.Unix
   Mysocket.path = global.confpath & "/.localsocket"
@@ -491,15 +423,11 @@ Public Sub AllInit_Post()
   InitGenresTag()
   Wait 0.5
   SetStyle_later()
-  
   HotKeys.init()
   Try HotKeys.LoadHotKeys(global.confpath & "/" & global.CurrentProfile)
-  
   UpdateProfilesTabList()
   UpdateMenuTabVisibility()
-  
   If GeneralOptions.TrayCHK1.value Then Try InitTrayIcon()
-  
   If TabSelectedShoutcast() Then
     ShoutCast_Select()
   Else If TabSelectedLibrary() Then
@@ -509,10 +437,8 @@ Public Sub AllInit_Post()
   Else If TabSelectedyoutube() Then
     Youtube_Select()
   Endif
-  
   global.AddUserExtensions(GeneralOptions.KnownExtensions.text)
   FullyLoaded = True
-  
   ShowGrid(librarygrid)
   ShowGrid(playlistgrid)
   ShowGrid(DVBTGrid)
@@ -521,9 +447,7 @@ Public Sub AllInit_Post()
     If Exist(Application.Args[1]) Then fmain.ShowBrowseTabTo(Application.Args[1])
   Endif
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
-  
    updaterecentfiles()
-  
 End
 
 Private RecentFileEntry As Menu
@@ -538,11 +462,8 @@ Public Sub updaterecentfiles()
   Dim HaveToSeek As String = ""
   Try history = file.Load(global.Historyfile)
   If Error Then Return
-  
-  'clear the list
+  'Clear and pupulate the list:
   ClearRecentFilesSub()
-  
-  'populate the list
   historyarray = Split(history, "\n", "", True)
   historyarray.Reverse()
   For Each entry In historyarray
@@ -569,7 +490,7 @@ Public Sub updaterecentfiles()
    RecentFileEntry.name = "menuclearrecent"
    RecentFileEntry.caption = "Clear History"
    RecentFileEntry.picture = picture["icon:/medium/delete"]
-   
+
    'restore the previous media
    If GeneralOptions.RestorePlayCHK.value Then
     If HaveToPlay <> "" Then 
@@ -580,9 +501,7 @@ Public Sub updaterecentfiles()
       Endif
     Endif
    Endif
-   
 End
-
 
 Public Sub RecentFileEntry_Click()
   Try Play(False, Last.caption)
@@ -606,29 +525,20 @@ Public Sub ClearRecentFilesSub()
   Until (MenuOpenRecent.Children.count = 0)
 End
 
-
-
-
 Public Sub InitFlashGrid()
-  
   MyFlash.Grid = Fmain.FlashGrid
   MyFlash.init()
-  
 End
 
 Public Sub PlayAnimLogo()
-  
   Dim tmplogo As String = Temp("_AnImLoGo_.avi")
-  
   Try Copy "_AnImLoGo_.avi" To tmplogo
   mplayer.do_play(tmplogo, mplayer.CurrentOptions)
   CorrectAreaAspect
   mplayer.Media_FullPath = ""
-  
 End
 
 Public Sub MakeProfilePath()
-  
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
   'Try to make some profile folders
   Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(DefaultProfilepath)))))
@@ -637,17 +547,14 @@ Public Sub MakeProfilePath()
   Try Mkdir File.Dir(File.Dir(DefaultProfilepath))
   Try Mkdir File.Dir(DefaultProfilepath)
   Try Mkdir DefaultProfilepath
-  
 End
 
 Public Sub MakeScreenshotsPath()
-  
   Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
-  
 End
 
 Private Sub InitGenresTag()
-  
+
   tagbox5.add("A capella")
   tagbox5.add("Acid")
   tagbox5.add("Acid Jazz")
@@ -796,7 +703,6 @@ Private Sub InitGenresTag()
   tagbox5.add("Tribal")
   tagbox5.add("Trip-Hop")
   tagbox5.add("Vocal")
-  
 End
 
 Public Sub SetStyle_early()
@@ -1016,15 +922,6 @@ Public Sub MainInit()
     Else
       AllInit_pre()
       mplayer.Media_FullPath = DConv(Application.Args[1])
-      'TogglePls.value = FALSE
-      ' If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
-      '   cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
-      '   Line Input #cachedfile, cachedopts
-      '   Close #cachedfile
-      '   cachedopts = Trim(cachedopts)
-      '   Debug cachedopts
-      '   quick = True '(say to play() to skip getoptionsfromgui)
-      ' Endif
       FirstPlay = True 'used to  avoid playing media at start when togglepls button is toggled
       Me.mouse = mouse.Wait
       FMain.LoadFormGeometry()
@@ -1211,9 +1108,10 @@ Public Sub FillPropertiesGrid()
 End
 
 Public Sub SyncCachedOptsPlus()
-  'reload the current profile and save it again
-  ReLoadCurrentProfile()
-  ReallySaveAllSettings(global.CurrentProfile, False, True)
+  'reload the current profile and save cached options
+  global.ReallyLoadAllSettings()
+  SyncCachedOpts()
+  global.SaveCachedOpts(global.currentprofile, cachedopts)
 End
 
 Public Sub Form_Close()
@@ -1245,6 +1143,7 @@ Public Sub Form_Close()
     Endif
     ButtonStop_Click() 'don't remove me.
   Endif
+
   Try AFiltersCfg.hide
   Try AddUriForm.hide
   Try AllOptions.hide
@@ -1331,7 +1230,9 @@ Public Sub Form_Close()
       MyPlaylist.Save(PlaylistGrid, global.confpath)
       MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
       Try mypodcast.SavePods(global.confpath & "/mypods.txt", PodcastTree)
+
       SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
+
       Print "Mandatory settings saved"
     Endif
   Endif
@@ -2326,23 +2227,6 @@ Public Function SetRightCache() As String
   Dim mincache, seekcache As String
   Dim cachesizefile As String = global.confpath & "/" & global.CurrentProfile & ".profile/" & "cachesize."
 
-  ' 'If we didnt load GeneralOptions form yet, get variuos caches from a file instead:
-  ' If Not fmain.FullyLoaded Then
-  '   If global.IsNetworkURI(mplayer.Media_FullPath) Then Try Return file.Load(cachesizefile & "network")
-  '   If (mplayer.Media_FullPath Like "dvb://*") Then 
-  '       Try Return file.Load(cachesizefile & "dvb")
-  '     Else If (mplayer.Media_FullPath Like "dvd://*") Then 
-  '       Try Return file.Load(cachesizefile & "dvd")
-  '     Else If (mplayer.Media_FullPath Like "dvdnav://*") Then 
-  '       Try Return file.Load(cachesizefile & "dvdnav")
-  '     Else If ((mplayer.Media_FullPath Like "cdda://*") Or (mplayer.Media_FullPath Like "cddb://*")) Then 
-  '       Try Return file.Load(cachesizefile & "cdda")
-  '     Else
-  '       Try Return file.Load(cachesizefile & "file")
-  '   Endif
-  '   If Error Then Debug "Cannot set cache because cachesizefile wasn't found, using default mplayer cache."
-  ' Endif
-
   With GeneralOptions
     If global.IsNetworkURI(mplayer.Media_FullPath) Then
       If .NetCacheCheckbox.value Then cachesize = .NetCacheSpinBox.value
@@ -2661,31 +2545,6 @@ Public Sub UpdateStatusBar()
 End
 
 
-
-' 
-' Public Sub UpdateCacheLed(cachevalue As Integer)
-'   Dim mycolor As Integer
-'   Dim shade As New Integer[]
-'   'red..yellow...green
-'   shade.add(16728320)
-'   shade.add(16739072)
-'   shade.add(16749056)
-'   shade.add(16759296)
-'   shade.add(16769536)
-'   shade.add(16514816)
-'   shade.add(15335168)
-'   shade.add(14155520)
-'   shade.add(12975872)
-'   shade.add(11796224)
-'   
-'   mycolor = shade[cachevalue Div 10]
-'   'CachePicture.Background = mycolor
-'   CachePicture.Picture = CachePicture.Picture.Image.Colorize(mycolor).picture
-'   
-' End
-
-
-
 Public Sub UpdateVolumeSlider()
   
   Dim tmp As String
@@ -2750,12 +2609,7 @@ Public Sub OneSecTimer_Timer()
   Dim oldaspect, newaspect As Float
   Dim VideoW As Integer
   Dim VideoH As Integer
-  ' Debug "parent " & BottomVbox.Parent.name
-  ' Debug "visible " & BottomVbox.visible
-  ' Debug "x" & BottomVbox.x
-  ' Debug "y" & BottomVbox.y
 
-  
   If mplayer.ProcessRunningOvr() Then
     'If (Not fmain.FullScreen) Then cachebar.visible = True
     
@@ -3554,6 +3408,8 @@ Public Sub Apply()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect
+    LogWindow.clearlogs()
+    LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
 End
@@ -4229,25 +4085,9 @@ Public Sub MenuOpenContainingFolderPopUp_Click()
   
   Try item = librarygrid[librarygrid.row, Mylibrary.ColumnIndex["Full Path"]].text
   If Error Then Return
-  OpenFolder(File.Dir(item))
+  desktop.open(File.Dir(item))
   MenuOpenContainingFolderPopUp.visible = False
   
-End
-
-Public Sub OpenFolder(path As String)
-  ' 
-  ' Dim xdgopen As String
-  ' 
-  ' Shell "which xdg-open" To xdgopen
-  ' xdgopen = Replace(xdgopen, "\n", "")
-  ' If Exist(xdgopen) Then
-  '   Shell "xdg-open " & Quote(path)
-  ' Else
-  '   Message.Error("Sorry, could not find xdg-open executable", "OK")
-  ' Endif
-  ' 
-
-  desktop.Open(path)
 End
 
 Public Sub MenuplaylistOpenFolder_Click()
@@ -4256,7 +4096,7 @@ Public Sub MenuplaylistOpenFolder_Click()
   
   Try item = playlistgrid[playlistgrid.row, Myplaylist.ColumnIndex["Full Path"]].text
   If Error Then Return
-  OpenFolder(File.Dir(item))
+  desktop.open(File.Dir(item))
   MenuplaylistOpenFolder.visible = False
   
 End
@@ -5103,6 +4943,7 @@ Public Sub ExecuteRemote(command As String)
     Debug "URI= " & parameter
     ButtonStop_Click()
     fmain.raise
+    fmain.Minimized = False
     Play(False, parameter)
   Endif
 End
@@ -6055,7 +5896,7 @@ End
 Public Sub ReLoadCurrentProfile()
   'DIM TheError AS Boolean = FALSE
   
-  Try Global.LoadAllSettings(global.CurrentProfile)
+  Try Global.ReallyLoadAllSettings() 'current profile is the default
   Try GeneralOptions.LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try GeneralOptions.LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Try HotKeys.LoadHotKeys(global.confpath & "/" & global.CurrentProfile)
@@ -7187,9 +7028,9 @@ Public Sub MenuBrowseOpenContaining_Click()
   
   SelectedItem = Replace(FileView1.dir & "/" & FileView1.current, "//", "/")
   If IsDir(selecteditem) Then
-    OpenFolder(Selecteditem)
+    desktop.open(Selecteditem)
   Else
-    OpenFolder(FileView1.dir)
+    desktop.open(FileView1.dir)
   Endif
   
 End
@@ -7790,7 +7631,3 @@ Public Sub PanScan_MouseWheel()
     Endif
   Endif
 End
-
-
-
-

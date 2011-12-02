@@ -7,18 +7,14 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 Private DynaguiVideo As New DynaGuiClass
 Private DynaguiAudio As New DynaGuiClass
 
-
-
 Public Sub Videofilterobj_MouseDrag()
   global.NotifyApplyNeeds()
   DynaguiVideo.DetachFrom(Last, Me)
 End
-                                    
+
 Public Sub Videofilterobj_MouseMove()
     DynaGuiVideo.MoveObject(Last, Me)
 End
-
-
 
 Public Sub Videofilterobj_MouseUp()
   DynaguiVideo.SmartInsert(Last, Me)
@@ -48,7 +44,7 @@ Public Sub Audiofilterobj_MouseDrag()
   DynaguiAudio.DetachFrom(Last, Me)
   global.NotifyApplyNeeds()
 End
-                                    
+
 Public Sub Audiofilterobj_MouseMove()
   DynaGuiAudio.MoveObject(Last, Me)
 End
@@ -72,22 +68,6 @@ Public Sub Audiofilterobj_Click()
 End
 
 
-
-
-
-
-Public Sub VideoChainPanel_MouseDown()
-
-  
-
-End
-
-Public Sub VBox1_MouseDown()
-
-  
-
-End
-
 Public Sub Form_Open()
   ' Debug "Cached Options unvalidated"
   ' fmain.cachedopts = ""
@@ -100,7 +80,6 @@ Public Sub Form_Open()
      AFiltersCfg.MenuLoadDefault_Click()
   Endif
 
-  'ME.center
   Global.Center(Fmain, Me)
   DynaGuiVideo.AllowedContainers = ["VideoFiltersBox", "VideoChainBox"]
   DynaguiVideo.ConstrainWidth = 115
@@ -110,19 +89,13 @@ Public Sub Form_Open()
   DynaGuiAudio.AllowedContainers = ["AudioFiltersBox", "AudioChainBox"]
   DynaguiAudio.ConstrainWidth = 115
   DynaguiAudio.ConstrainHeight = 28
-  ' [GB2:FNTH] DynaGuiAudio.YOffset = - Me.Font.Textheight("Ij")
- ' DynaGuiAudio.YOffset = - Me.Font.TextHeight("Ij")
 End
-
-
 
 Public Sub VideoDriverBTN_Click()
   XConfigureVideoDriver.show
   Me.hide
   global.FromChains = True
 End
-
-
 
 Public Sub AudioDriverBTN_Click()
   XConfigureAudioDriver.show
@@ -134,27 +107,9 @@ Public Sub Button1_Click()
   Global.SaveAllSettings(global.CurrentProfile)
 End
 
-' PUBLIC SUB Button2_Click()
-'   DIM MySettings AS NEW SettingsClass
-'   MySettings.LoadSettings(ME, "/tmp/gambas")
-' 
-' END
-
 Public Sub Form_Close()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   Me.hide
   FMain.VideoBox.setfocus()
-  
-  
-  
-End
-
-
-Public Sub SidePanel1_MouseDown()
-
-  
-
 End
 
 Public Function ParsedChain(VideoOrAudio As String) As String
@@ -173,7 +128,7 @@ Public Function ParsedChain(VideoOrAudio As String) As String
   warnpost = ("\nWhich seems not to be supported by your mplayer.\n ")
   warnpost &= ("\nTry to remove it from tha chain or to use another mplayer.")
   warnpost &= ("\nThe Playback will probably fail.")
-  
+
   If Upper(VideoOrAudio) = "VIDEO" Then
     PreAdd = " -vf "
     For Each CurrentFilter In VideoChainBox.Children
@@ -199,7 +154,7 @@ Public Function ParsedChain(VideoOrAudio As String) As String
       If Trim(newfilter) Then ParsedFilters = ParsedFilters & newfilter & ","
     Next
   Endif
-  
+
   AFiltersCfg.SetCurrentTabIndex(PrevAudioTabIndex)
   VFiltersCfg.SetCurrentTabIndex(PrevVideoTabIndex)
 
@@ -219,14 +174,14 @@ End
 Private Function FixPPs(ParsedFilters As String) As String
 '"pp=hdeblock:1:2:3,someothers,pp=vdeblock:1:2:3" ->> "pp=hdeblock:1:2:3/vdeblock:1:2:3,someothers"
 'also, spp,fspp and uspp have to come first to work.
-  
+
   Dim spps As New String[]
   Dim pps As New String[]
   Dim nopps As New String[]
   Dim Filters As New String[]
   Dim Filter As String
   Dim FixedFilters As String
-  
+
   Filters = Split(ParsedFilters, ",")
   For Each filter In Filters
     If filter Like "pp=*" Then
@@ -254,12 +209,11 @@ Private Function FixPPs(ParsedFilters As String) As String
     FixedFilters = Left(FixedFilters, Len(FixedFilters) - 1)
     If nopps.count > 0 Then FixedFilters = FixedFilters & ","
   Endif
-  
 
   For Each filter In nopps
     FixedFilters = FixedFilters & filter & ","
   Next 'filter
-  
+
   Return FixedFilters
 End
 
@@ -284,24 +238,6 @@ Public Sub ApplyBTN_Click()
   global.ResetApplyBtnColor()
     currentvideofilters = ParsedChain("VIDEO")
     currentaudiofilters = ParsedChain("AUDIO")
-'se è cambiato qualcosa nel video o non è cambiato nulla, allora forza il riavvio di mplayer
-  
-  ' 'se è la prima volta, forza riavvio di mplayer e memorizza i filtri per la prossima chiamata
-  ' IF Trim(previousvideofilters & previousaudiofilters) = "" THEN 
-  '   FMain.Apply()
-  '   previousvideofilters = currentvideofilters
-  '   previousaudiofilters = currentaudiofilters
-  '   RETURN 
-  ' ENDIF
-  ' 
-  ' 'se video ed audio non sono cambiati, forza comunque un riavvio di mplayer (l'user insiste...)
-  ' IF Trim(previousvideofilters & previousaudiofilters) = Trim(currentvideofilters & currentaudiofilters) = THEN
-  '   FMain.Apply()
-  '   previousvideofilters = currentvideofilters
-  '   previousaudiofilters = currentaudiofilters
-  '   RETURN 
-  ' ENDIF
-  
   'se l'audio è cambiato, ma il video è rimasto identico, fai in real time
   If (previousvideofilters = currentvideofilters) And (previousaudiofilters <> currentaudiofilters) Then
     'fai in real time
@@ -315,9 +251,6 @@ Public Sub ApplyBTN_Click()
     previousvideofilters = currentvideofilters
     previousaudiofilters = currentaudiofilters
   Endif
-  
-  
-  
 End
 
 Public Sub Form_Resize()
@@ -366,11 +299,8 @@ Dim profilename, profilenamesplitted As String
 End
 
 Public Sub Form_Hide()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   FMain.VideoBox.setfocus()
 End
-
 
 Private AvailableListVF As New String[]
 Private AvailableListAF As New String[]
@@ -423,7 +353,5 @@ Public Sub Form_Show()
       Endif
     Endif
   Next
-
-  
 
 End

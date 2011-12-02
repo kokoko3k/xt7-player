@@ -595,8 +595,15 @@ Public Sub Save(TheForm As Object, FileName As String)
   Dim i As Integer
   Dim layout As String
   Dim objvalid As Boolean = False
-  Debug "Cached Options unvalidated"
-  fmain.cachedopts = ""
+  
+  ' Debug "Cached Options unvalidated, regenerating:" 
+  '   fmain.SyncCachedOpts()
+  '   SaveCachedOpts(Global.CurrentProfile, cachedopts)
+
+  FMain.cachedopts = ""
+  Debug "Cached options unvalidated"
+  
+
   FMain.mouse = Mouse.wait
   FMain.GetOptionsFromGui()
   'PRINT "Debug: SettingsClass: Save(): cachedoptions= " & FMain.CachedOptions

@@ -1,10 +1,10 @@
 ' Gambas class file
+
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 
 
 Public Sub Form_Open()
-  'ME.Center
   Global.Center(Fmain, Me)
 End
 

@@ -15,96 +15,10 @@ Public Sub TextBox1_Click()
   Dim Myimage As New Image
   Dim i As Integer = 0
 
-
-
-
-'tmp------------------------------------------------------------
- '  DIM AWSID AS String = "AKIAJELO4377CHWZOXMA"
- '  
- ' 
- '  DIM K AS String = "yQ0te+6hPxk3hrWkANrYHTJaVdoW4f7XZsw8uOVY"
- '  '    (1) APPEND zeros TO the END OF K TO CREATE a B byte String
- '  '      (e.g., IF K IS of length 20 bytes AND B = 64, THEN K will be
- '  '       appended WITH 44 zero bytes 0 x00)
- '  
- '  
- '  DIM Step1 AS String = K & "000000000000000000000000"
- '  
- '  DIM Timestamp AS String = "2009-08-25T09:13:40"
- ' 
- '  DIM Step2 AS String = ""
- '  DIM Step3 AS String = ""
- '  DIM Step4 AS String = ""
- '  DIM Step5 AS String = ""
- '  DIM Step6 AS String = ""
- '  DIM Step7 AS String = ""
- '  DIM Sign AS String = ""
- '  
- '  DIM IPADBYTE AS Byte = 54 '(0x36)
- '  DIM OPADBYTE AS Byte = 92 '(0x5C)
- ' 
- '  DIM XOR1 AS String = ""
- '  DIM XOR2 AS String = ""
- ' 
- '  DIM Ipad AS String = ""
- '  DIM Opad AS String = ""
- '  
- '  'IPAD = the byte 0 x36 repeated B times
- '  'opad = the byte 0 x5C repeated B times.
- '  
- '  FOR i = 0 TO 63
- '    Ipad = Ipad & Chr(IPADBYTE)
- '    Opad = Opad & Chr(OPADBYTE)
- '  NEXT 'i
- '  
- '  
- ' ' (2) XOR (bitwise exclusive - OR )the B byte String (K) computed IN STEP
- ' ' (1) WITH ipad
- ' 
- '  FOR i = 1 TO 63
- '    XOR1 = XOR1 & (Mid(Step1, i, 1) XOR Mid(Ipad, i, 1))
- '  NEXT 'i
- '  Step2 = XOR1
- ' 
- ' '(3) APPEND the data stream 'text' to the 64 byte string resulting
- ' '    FROM STEP (2)
- '  Step3 = XOR1 & Timestamp
- '  
- ' '(4)apply H TO the stream generated IN STEP (3)
- '  Step4 = Crypt.MD5(Step3)
- ' 
- '  '(5) XOR (bitwise exclusive - OR )the B byte String computed IN
- '  '    STEP (1) WITH opad
- '  FOR i = 1 TO 63
- '    XOR2 = XOR2 & (Mid(Step1, i, 1) XOR Mid(Ipad, i, 1))
- '  NEXT 'i  
- '  Step5 = XOR2
- '  
- ' 
- '  ' (6) APPEND the H result FROM STEP (4) TO the B byte String
- '  '     resulting FROM STEP (5)
- '  Step6 = Step5 & Step4
- ' 
- ' '(7)apply H TO the stream generated IN STEP (6) AND OUTPUT
- ' '   the result
- ' 
- '  Step7 = Crypt.MD5(Step6)  
- ' 
- '  Sign = Step7
- ' 
- '  PRINT sign
-
-'tmp------------------------------------------------------------
-
-
-
-
-
-
   Progressbar1.value = 0
   'Progressbar1.visible = TRUE
   Progressbar1.h = 24
- 
+
   HitCancel = False
   Fetching = True
   textbox1.enabled = False
@@ -114,11 +28,9 @@ Public Sub TextBox1_Click()
   Coverlist.refresh
   
   Wait 0.01
-  
   'Since August, 15, 2009, amazon requires signed requests.
   'I did request signing via an external php page
 
-  
   Keyword = Chr(34) & Replace(TextBox1.text, " ", "%20") & Chr(34)
   Keyword = Replace(keyword, ",", "%20")
   Keyword = Replace(keyword, ";", "%20")
@@ -322,7 +234,6 @@ Public Function Coverfile(artist As String, album As String) As String
 End
 
 
-
 Public Sub ButtonLoad_Click()
   Dim PrevTitle As String
   Dim PrevFilter As String[]
@@ -360,12 +271,7 @@ Public Sub Form_KeyPress()
   If Key.code = Key.escape Then ButtonCancel_Click()
 End
 
-
-
 Public Sub Form_Close()
-
   ButtonCancel_Click()
-
 End
-
 

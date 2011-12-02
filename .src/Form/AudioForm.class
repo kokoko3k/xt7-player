@@ -116,7 +116,5 @@ End
 
 Public Sub cutstrings()
   audioform.RadioLabel.text = cutstring(audioform.RadioLabel.text, 50)
-  ' don't cut radio song name
-  ' Label18.Text = cutstring(label18.text, 50)
 End
 

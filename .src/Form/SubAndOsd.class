@@ -6,16 +6,13 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 Private MyScaleSlider As VSlider
 Private MySubSlider As VSlider
 Private MyOutlineSpinbox As FloatSpinBox
-'PRIVATE MyScaleSlider AS NEW VSlider(ME)
-'PRIVATE MySubSlider AS NEW VSlider(ME)
+
 Public mplayer As New MplayerClass
 
 
 
 Public Sub Init()
   Dim FontName As String
-  
-  'ME.center
   Global.Center(Fmain, Me)
   'Create the scale slider
     MyScaleslider = New VSlider(SubScaleHbox)
@@ -45,8 +42,7 @@ Public Sub Init()
     MyOutlineSpinbox.Value = "0,75"
     MyOutlineSpinbox.FStep = 0.05
     OSDOutLineHBox.padding = 8
-    
-    
+
 End
 
 
@@ -157,12 +153,6 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
 
       If (Trim(AssForceStyle) <> "-ass-force-style") Then OutCmdLine = AssForceStyle
 
-    'IF FontColorCHK.value THEN OutCmdLine = OutCmdLine & AssColor
-    'IF BorderColorCHK.value THEN OutCmdLine = OutCmdLine & AssBorderColor
-
-  
-   
-  
     If ScaleCHK.value Then
       If ForPreview Then
         'scale more to display a true title size
@@ -281,19 +271,8 @@ Public Sub SubFileOpen_Click()
   Dialog.filter = tmp
 End
 
-Public Sub Form_Resize()
-
-' Global.CheckResolution(ME)
- ' IF ME.visible THEN TestBTN_Click()
- 'center previewbox in the outer panel
- ' DrawingArea1.x = (panel1.w / 2) - (DrawingArea1.w / 2)
- 'DrawingArea1.y = (panel1.h / 2) - (DrawingArea1.h / 2)
-End
-
 
 Public Sub Form_Hide()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   mplayer.do_stop()
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 End
@@ -335,18 +314,14 @@ End
 
 Public Sub SubTitleControls_Change()
   TestBTN.background = Color.Yellow
-  'TestBTN_Click()
   global.NotifyApplyNeeds()
 End
 
 Public Sub SubTitleControls_Click()
-  'TestBTN.background = Color.Yellow
   TestBTN_Click()
 End
 
 Public Sub Form_Show()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
     Dialog.Font = FontString.font
     FontString.font = Dialog.font
     FontString.text = FontString.Font.name
@@ -397,10 +372,8 @@ Public Sub ASSDisableCHK_Click()
   Dim EnableSSA As Boolean = Not ASSDisableCHK.value
   FontChooseHBox2.Enabled = EnableSSA
   FontColorHBOX.Enabled = EnableSSA
-  'OutLineHBox.Enabled = EnableSSA
   BorderColorHBOX.Enabled = EnableSSA
   ShadowHBox.Enabled = EnableSSA
-  'PositionHBox.Enabled = EnableSSA
   AlignmentHBox.Enabled = EnableSSA
   TestBTN.background = Color.Yellow
   global.NotifyApplyNeeds()
@@ -418,8 +391,6 @@ Public Sub OSDFontChooseBTN_Click()
 End
 
 Public Sub Form_Close()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   mplayer.do_stop()
   Try Kill global.confpath & "/SubBackImage01.png"
   Try Kill global.confpath & "/SubBackImage02.png"

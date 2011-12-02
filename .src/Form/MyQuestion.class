@@ -45,9 +45,7 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     Button1.text = TheButton1String
     Button2.visible = (thebutton2string <> "")
     Button2.text = TheButton2String
-    ' [GB2:FNTW] Button1.W = Button1.Font.TextWidth(Button1.text & "------")
     Button1.W = Button1.Font.TextWidth(Button1.text & "------")
-    ' [GB2:FNTW] Button2.W = Button2.Font.TextWidth(Button2.text & "------")
     Button2.W = Button2.Font.TextWidth(Button2.text & "------")
     Me.x = Mouse.screenx - (Me.w Div 2)
     Me.y = Mouse.screeny - Me.h '- 90
@@ -56,7 +54,6 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     If checkboxstring <> "" Then
       Checkbox1.text = CheckboxString
       Checkbox1.value = Checkboxobject.value
-      ' [GB2:FNTW] Checkbox1.Width = Checkbox1.Font.TextWidth(Checkbox1.text) + 32
       Checkbox1.Width = Checkbox1.Font.TextWidth(Checkbox1.text) + 32
     Endif
     Me.show
@@ -89,8 +86,6 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     Return -1
  Endif
 End
-
-
 
 
 Public Sub Button1_Click()

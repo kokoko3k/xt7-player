@@ -1,122 +1,64 @@
 - Glitches in video area if X11 driver is used and the form is resized
-
 - move colorkey to video output options
-
-- gesitre incrementi decrementi di velocità manualmente
-
 - dimensione dei sottotitoli consistente tra le diverse risoluzioni
- 
-- integrare il load delle combohistory in global.loadallsetting
- 
 - se alcune informazioni sul file sono disponibili in fase di play, ma non in playlist/gridview, aggiungile, costa nulla.
- 
-- permettere di nascondere dei filtri dal chain e di rivisualizzarli tramite menu "show hidden filters"
-- probabilmente corretto lo "switchable" in afilterscfg, funzione parse, adattarlo anche agli altri (vfilterscfg etc)
-
 -autoswitch playlist/video se video presente in autoplay?
-
 -temi di icone
-
 -permettere l'aggiunta ricorsiva alla playlist?
-
 -drag della seekbar indica a quale secondo ci si posizionerà
-
 - ctrl-click non deseleziona l'item della library/playlist.
-
 - filtro hrtf
-
 - Pulsante "undo" vicino a apply che fa: menu->profile->reload current profile
-
 - video bitrate: se id_length <> 0 => video bitrate = filesize/id_length-audio_bitrate -
 (dipende dalla gestione dei multiaudio, ancora assente)
 
-
 -hotkey locali per allargare o restringere la larghezza del video.
-
-- widescreen e comportamenti strani quando scende la toolbar in fullscreen.
-ossia: se l'utente specifica un Aspect ratio, tienine conto durante il ridimensionamento automatico.
-- impossibile switchare ad un profilo bianco
-
 - premendo retest molte volte nei sub, il programma non esce.
-
 - henrick: PVR 
-
-- tiling wm, problemi con la scomparsa delle barre in fullscreen. (non riscontrato...)
-
 - Aggiornare in tempo reale il check sulla traccia audio/sub abilitata
   (in sostanza serve fare il catch della hotkey premuta)
 
 - Gestire malformattamenti delle playlist importate
-
 -Inserire funzione di ottimizzazione delle cover, se ce ne sono 2
 uguali, crea dei link e rimuovine una.
 
-- Preferenze per il set di icone (?)
-
 - ancora problemi con l'audio panel e i font (check con ubuntu)
-
 - aggiungere contenuto tag <description> ai podcast
-
 - impostare come cover dei file audio l'eventuale cover del podcast
- 
 - Il pulsante dvd navigation mode deve restare pressed finchè "depresso" dalla selezione di un titolo dall' albero
-
 - pensare se è il caso di creare un pannello per la selezione via mouse dei tasti dvd
-
 - PlayList ad albero?
-
 - permettere di specificare opzioni aggiuntive sui file (tipo il parametro playlist)
-
-- quando e perchè un apply rompe il playlisting?
-  
-
 - Sistema di plugin:
     Play da: plugin
     Popola da: plugin
 
-
 - doppio click libreria riseleziona updatesearchresult, perchè?
-
 - Se il file è (molto!) piccolo ed è testo (usare il comando 'file', magari), aggiungi "playlist" come parametro
-
-- alla chiusura fa 4 volte UpdateSearchResults
-
-
 - tasto dx -> imposta cover
-
-- al cambiamento del profilo runtime si spupazza l'highlighting
-
+- al cambiamento del profilo runtime si corrompe l'highlighting
 - l'highlighting causa problemi allo spostamento degli item nella playlist
- 
-
 - invertire l'ordine dei risultati youtube?
-
-
 - opzione "-volume" per il volume iniziale (possibile prenderla direttamente dalla barra del volume?)
-
-
-- l'eq runtime si piazza ancora sempre alla fine della catena ?
-- A volte i filtri audio non vengono correttamente 'ricaricati' in realtime
-
-
-- Port a gb3:
-
 
 -crash alla seconda ripetizione dei sub con queste opzioni:
 __GL_SYNC_TO_VBLANK=1  /usr/local/bin/pagecache-management.sh -k 1024 mplayer -identify -slave  -wid 60820713 -noconfig all  -mouse-movements -mf fps=1:type=bmp -loop 0  -ass  -ass-force-style FontName="Segoe UI",FontSize=22,Bold=1,Italic=Alignment=2,outline=1,OutlineColour=H00000000,MarginV=0,PrimaryColour=H0000FFFF,shadow=2,BackColour=H80000000 -subcp enca:it:iso-8859-1 -sub-fuzziness 0  -font "Bitstream Vera Sans" -sub-bg-alpha 210 -subfont-blur 3 -osd-duration 1000 -subfont-osd-scale 2 -subfont-text-scale 2 -subpos 0 -osdlevel 3 -vf-add scale -vf-pre scale -vo x11  -ao null      -alang "" -slang "" -sub '/tmp/gambas.0/7993/SubSrt.srt.tmp' "mf:///home/root/.config/gambas3/Xt7-Player/SubBackImage*.bmp"
 
-
 * opensubtitles integration?
-
 * mettere lA CATEGORIA AUDIOVIDEO
-
 * trovare un modo per levare i messaggi di errore di mplayertag dai log
-
+* ordinare i canali quando si incolonnano nella griglia
 
 ***********************************************
 Risolti:
 ***********************************************
 
+CHANGE: Unminimize and raise main window when the player is invoked from outside
+FIX:    Immediataly update message logs after when using new settings
+CHANGE: Reload current profile now reloads all the forms
+FIX:    Quit a bit faster
+FIX:    Runtime error when enabling/disabling tooltips.
+FIX:    Audio/video chains were saved everytime on exit
 CHANGE: Some translations update may require you to reconfigure subtitle languages
 CHANGE: Filters not supported by local mplayer now are disabled objects
 ........And the user will be warned if it insists in using them

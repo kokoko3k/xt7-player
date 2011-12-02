@@ -6,16 +6,11 @@
 Private Dynagui As New DynaGuiClass
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 
-
-
-
 Public Sub btnCancel_Click()
   Me.Close
 End
 
 Public Sub Form_Open()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
@@ -187,9 +182,6 @@ Public Function AddAudioDriver(AlreadyParsedDrivers As String, DriverName As Str
     Endif
   Endif
   Return AlreadyParsedDrivers & AoCmdLine
-  'FMain.mplayer.VoDriver = FMain.mplayer.VoDriver & Vocmdline
-  'FMain.mplayer.VoAdditionalopts = FMain.mplayer.VoAdditionalopts & AdditionalOpts
-
 End
 
 
@@ -237,17 +229,12 @@ Public Sub MenuSaveToAll_Click()
 End
 
 Public Sub Form_Close()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 
 End
 
 Public Sub Form_Hide()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
-
 End
 
 Public Sub HBox1_MouseDown()

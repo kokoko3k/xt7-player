@@ -6,11 +6,6 @@
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 
 Public Sub Form_Open()
-
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
-  
-  'ME.Center
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
@@ -142,23 +137,7 @@ Private Sub DrawFiltersGui()
   'Karaoke
     Global.DrawGui(AllParams, "karaoke", Tabstrip1, NotSwitchable)
     AllParams.Clear
-  
-  ' 'equalizer=[g1:g2:g3:...:g10]
-  '   AllParams.Add(["VSLIDER", "31", "-12", "0", "12", "Equalizer1", ""])
-  '   AllParams.Add(["VSLIDER", "62", "-12", "0", "12", "Equalizer2", ""])
-  '   AllParams.Add(["VSLIDER", "125", "-12", "0", "12", "Equalizer3", ""])
-  '   AllParams.Add(["VSLIDER", "250", "-12", "0", "12", "Equalizer4", ""])
-  '   AllParams.Add(["VSLIDER", "500", "-12", "0", "12", "Equalizer5", ""])
-  '   AllParams.Add(["VSLIDER", "1K", "-12", "0", "12", "Equalizer6", ""])
-  '   AllParams.Add(["VSLIDER", "2K", "-12", "0", "12", "Equalizer7", ""])
-  '   AllParams.Add(["VSLIDER", "4K", "-12", "0", "12", "Equalizer8", ""])
-  '   AllParams.Add(["VSLIDER", "8K", "-12", "0", "12", "Equalizer9", ""])
-  '   AllParams.Add(["VSLIDER", "16K", "-12", "0", "12", "Equalizer10", ""])
-  '   Global.DrawGui(AllParams, "equalizer", Tabstrip1, NotSwitchable)
-  '   AllParams.Clear     
-    
-  
-   
+
 
   'volume[=v[:sc]]
     AllParams.add(["RANGE", "db Boost", "-200", "0", "60", "Volume1", "db"])
@@ -192,56 +171,6 @@ Private Sub DrawFiltersGui()
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom25", ("E.g.:resample=44100:1:2,hrtf=s")])
     Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable)
     AllParams.Clear
-      
-  ' 
-  ' 'expand[ = w: h: x: y: o: a: r]
-  ' AllParams.add(["RANGE", "Width", "-2048", "0", "2048", "Expand1", "0 to Disable; Negative as offset to original value"])
-  ' AllParams.add(["RANGE", "Height", "-2048", "0", "2048", "Expand2", "0 to Disable; Negative as offset to original value"])
-  ' AllParams.add(["RANGE", "X Position", "-1", "-1", "2048", "Expand3", "Original image position; -1 to center"])
-  ' AllParams.add(["RANGE", "Y Position", "-1", "-1", "2048", "Expand4", "Original image position; -1 to center"])
-  ' AllParams.add(["CHOOSE", "Osd/SubTitle Rendering", "0 - Disable", "1 - Enable", "Expand5", ""])
-  ' AllParams.add(["CHOOSE", "Fit an aspect instead of a resolution", "", "4/3", "3/2", "16/9", "16/10", "1.85/1", "2.35/1", "2.39/1", "Expand6", ""])
-  ' AllParams.add(["RANGE", "Make Width and Height divisible by", "1", "1", "64", "Expand7", ""])
-  ' DrawGui(AllParams, "expand")
-  ' AllParams.Clear
-  ' 
-  ' 'denoise3d[ = luma_spatial: chroma_spatial: luma_tmp: chroma_tmp]
-  ' AllParams.Add(["RANGE", "Spatial luma strength", "0", "0", "200", "Denoise3D1", ""])
-  ' AllParams.Add(["RANGE", "Spatial chroma strength", "0", "0", "200", "Denoise3D2", ""])
-  ' AllParams.Add(["RANGE", "Temporal luma strength", "0", "0", "200", "Denoise3D3", ""])
-  ' AllParams.Add(["RANGE", "Temporal chroma strength", "0", "0", "200", "Denoise3D4", ""])
-  ' DrawGui(AllParams, "denoise3d")
-  ' AllParams.Clear
-  ' 
-  ' 'hqdn3d[ = luma_spatial: chroma_spatial: luma_tmp: chroma_tmp]
-  ' AllParams.Add(["RANGE", "Spatial luma strength", "0", "0", "200", "HqDn3D1", ""])
-  ' AllParams.Add(["RANGE", "Spatial chroma strength", "0", "0", "200", "HqDn3D2", ""])
-  ' AllParams.Add(["RANGE", "Temporal luma strength", "0", "0", "200", "HqDn3D3", ""])
-  ' AllParams.Add(["RANGE", "Temporal chroma strength", "0", "0", "200", "HqDn3D4", ""])
-  ' DrawGui(AllParams, "hqdn3d")
-  ' AllParams.Clear
-  ' 
-  ' 'scale[=w:h[:ilaced[:chr_drop[:par[:par2[:presize[:noup[:arnd]]]]]]]]
-  ' AllParams.Add(["RANGE", "Width", "-11", "0", "2048", "Scale1", "0 disables scaling,see man below"])
-  ' AllParams.Add(["RANGE", "Height", "-11", "0", "2048", "Scale2", "0 disables scaling,see man below"])
-  ' AllParams.Add(["CHOOSE", "Interlaced Scaling", "0 - Disable", "1 - Enable", "Scale3", "Enable for interlaced contents"])
-  ' AllParams.Add(["CHOOSE", "Chroma skipping", "0 - Use all available input lines for chroma", "1 - Use only every 2. input line for chroma", "2 - Use only every 4. input line for chroma", "3 - Use only every 8. input line for chroma", "Scale4", "lower=slower"])
-  ' AllParams.Add(["FREE", "Scaling Parameters", "", "Scale5", "Depends on sws, leave blank if unsure"])
-  ' AllParams.Add(["FREE", "Scaling Parameters", "", "Scale6", "Depends on sws, leave blank if unsure"])
-  ' AllParams.Add(["CHOOSE", "Scale to Preset Size", "", "qntsc - 352x240 (NTSC quarter screen)", "qpal - 352x288 (PAL quarter screen)", "ntsc - 720x480 (standard NTSC)", "pal - 720x576 (standard PAL)", "sntsc - 640x480 (square pixel NTSC)", "spal - 768x576 (square pixel PAL)", "scale7", ""])
-  ' AllParams.Add(["CHOOSE", "Disable Upscaling", "0 - Allow Upscaling", "1 - Disallow if one dimensions exceeds its original value", "2 - Disallow if both dimensions exceed their original values", "scale8", ""])
-  ' AllParams.Add(["CHOOSE", "Accurate Rounding", "0 - Disable Accurate rounding", "1 - Enable Accurate rounding", "scale9", ""])
-  ' DrawGui(AllParams, "scale")
-  ' AllParams.Clear
-  ' 
-  ' 'delogo[=x:y:w:h:t]
-  ' AllParams.Add(["RANGE", "X", "0", "0", "2048", "Delogo1", "topLeft Corner"])
-  ' AllParams.Add(["RANGE", "Y", "0", "0", "2048", "Delogo2", "TopLeft Corner"])
-  ' AllParams.Add(["RANGE", "Width", "0", "0", "2048", "Delogo3", ""])
-  ' AllParams.Add(["RANGE", "Height", "0", "0", "2048", "Delogo4", ""])
-  ' AllParams.Add(["RANGE", "Tickness", "-1", "0", "2048", "Delogo5", "-1 draws a green border"])
-  ' DrawGui(AllParams, "delogo")
-  ' AllParams.Clear  
 End
 
 
@@ -412,10 +341,6 @@ End
 
 Public Sub ApplyBTN_Click()
   OkToChangeToCustom = False
-  ' ' ' 'FMain.Apply()
-  ' ' ' 'FMain.mplayer.Send("af_switch " & Trim(Replace(Chains.ParsedChain("AUDIO"), "-af", "")))
-  ' ' ' FMain.mplayer.Send("af_clr")
-  ' ' ' FMain.mplayer.Send("af_add " & Trim(Replace(Chains.ParsedChain("AUDIO"), "-af", "")))
   Chains.ApplyBTN_Click()
   OkToChangeToCustom = True
 
@@ -485,17 +410,11 @@ Public Sub Form_Show()
 End
 
 Public Sub Form_Close()
-
   FMain.VideoBox.setfocus()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
 End
 
 Public Sub Form_Hide()
-
   FMain.VideoBox.setfocus()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
 End
 
 '-------------- Manage Audio Equalizer ------------------
@@ -506,14 +425,6 @@ Private Function ParseEq() As String
       SlidersFreq_Change()
   Return neweq
 End
-
-
-
-' PUBLIC SUB applyEqualizer()
-'   'force an update
-'   SlidersFreq_Change()
-' END
-
 
 'salva 'il settagio custom su un file
 'ricaricalo quando si sceglie custom
@@ -547,8 +458,6 @@ Public Sub SlidersFreq_Change()
   Next 'slider
   params = Left$(params, Len(params) - 1)
   NewEq = "equalizer=" & params
-  ' TRY FMain.mplayer.Send("af_del equalizer")
-  ' TRY FMain.mplayer.Send("af_add " & NewEq)
    Try FMain.mplayer.send("af_cmdline equalizer " & params)
    If Lower(PresetsCombobox.text) = "custom" Then SaveCustomEqSettings(params)
   

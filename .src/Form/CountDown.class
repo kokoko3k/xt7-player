@@ -1,29 +1,27 @@
 ' Gambas class file
 
-PUBLIC SUB Engage()
+Public Sub Engage()
   CountDown.Show()
-  Global.Center(Fmain, ME)
+  Global.Center(Fmain, Me)
   SecondsLabel.text = 10
   timer1.start
-END
+End
 
-PUBLIC SUB Timer1_Timer()
+Public Sub Timer1_Timer()
   SecondsLabel.text = SecondsLabel.text - 1
-  IF SecondsLabel.text = 0 THEN
+  If SecondsLabel.text = 0 Then
     Shutdown()
     timer1.Stop
     CountDown.close
-  ENDIF
-END
+  Endif
+End
 
-PUBLIC SUB Shutdown()
-  SHELL GeneralOptions.NoParseShutDownCommand.text WAIT
-END
+Public Sub Shutdown()
+  Shell GeneralOptions.NoParseShutDownCommand.text Wait
+End
 
-
-PUBLIC SUB AbortBTN_Click()
+Public Sub AbortBTN_Click()
   timer1.Stop
   CountDown.close
-END
-
+End
 

@@ -31,7 +31,6 @@ Public Sub MenuSaveToAll_Click()
 End
 
 Public Sub Form_Open()
-  'ME.Center
   Global.Center(Fmain, Me)
 End
 
@@ -71,19 +70,9 @@ Public Sub ApplyEqSettings()
   FMain.mplayer.Send("osd 1") 'enable osd
 End
 
-
-Public Sub Form_Resize()
-  'ME.Height = 240
-End
-
 Public Sub ApplyEqCheckbox_Click()
   If Last.value Then
     ApplyEqSettings()
   Endif
 End
 
-Public Sub HBox1_MouseDown()
-
-  
-
-End

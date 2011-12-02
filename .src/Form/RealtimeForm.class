@@ -3,8 +3,6 @@
 Public Sub PanscanSlider_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
-    'If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
     If FMain.FullyLoaded Then 
       FMain.resizefactor = (Last.value / 10000)
       FMain.CorrectAreaAspect
@@ -28,7 +26,6 @@ End
 Public Sub AudioDelaySlider_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
     If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
   Endif
 End
@@ -42,7 +39,6 @@ End
 Public Sub SubDelaySlider_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
     If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 1000) & " 1")
   Endif
 End
@@ -65,7 +61,6 @@ End
 Public Sub SubPositionSlider_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
     If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
   Endif
 End
@@ -85,7 +80,6 @@ End
 Public Sub SubScaleSlider_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    'If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
     If FMain.FullyLoaded Then FMain.mplayer.Send(Last.tag & " " & (Last.value / 10) & " 1")
   Endif
 End

@@ -7,12 +7,10 @@ Public Sub CancelBtn_Click()
   Me.hide
 End
 
-
 Public Sub OkBtn_Click()
   choice = Ratiobox.Text
   Me.hide
 End
-
 
 Public Sub SpinW_Change()
   Calc()
@@ -33,10 +31,7 @@ Public Sub testvalues()
   FMain.mplayer.Send("switch_ratio " & Ratiobox.text)
   FMain.ForcedAspectRT = Ratiobox.text
   FMain.CorrectAreaAspect()
-  
-  
 End
-
 
 Public Sub TestBtn_Click()
 testvalues()
@@ -47,8 +42,6 @@ Public Sub Form_Close()
 End
 
 Public Sub Form_Show()
-
   Me.x = FMain.x + 32
   Me.y = FMain.y + 32
-
 End

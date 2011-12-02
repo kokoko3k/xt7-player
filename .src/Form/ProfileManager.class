@@ -64,7 +64,6 @@ Public Sub SwitchProfile()
   Try ProfileName As String = ProfilesList.Current.Text
   If Not Error Then
       Global.CurrentProfile = Split(profilename, ".")[0]
-      'IF Message.Question(("Do you also want to load ") & ProfilesList.Current.Text & "?", ("Yes, load"), ("Don't load, just switch")) = 1 THEN FMain.ReLoadCurrentProfile()
       If MyQuestion.ask(("Do you also want to load ") & ProfilesList.Current.Text & "?", ("Yes, load"), ("Don't load, just switch")) = 1 Then FMain.ReLoadCurrentProfile()
   Endif
   CurrentProfilelabel.text = ("Current profile: ") & Global.CurrentProfile & ".profile"
@@ -74,15 +73,6 @@ End
 Public Sub ProfilesList_DblClick()
   SwitchProfile()
 End
-
-' PUBLIC SUB CopyBtn_Click()
-'   
-'   TextDialog.text = "Name the new profile:"
-'   TextDialog.MyTextBox.text = ""
-'   IF TextDialog.run() THEN 
-'       
-'     
-' END
 
 Public Sub Form_Close()
 

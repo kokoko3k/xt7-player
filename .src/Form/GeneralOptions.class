@@ -563,19 +563,6 @@ Public Sub MplayerExeOpen_Click()
   Dialog.path = expat
 End
 
-' Public Sub AudioTagExeOpen_Click()
-'   Dim tmp As String[]
-'   Dim expat As String = Dialog.Path
-'   tmp = Dialog.filter
-'   Dialog.filter = ["*.*;*", "audiotag executable"]
-'   Dialog.path = "/usr"
-'   If Not (Dialog.OpenFile()) Then
-'     AudioTagExeText.text = "\"" & Dialog.Path & "\""
-'   Endif
-'   Dialog.filter = tmp
-'   Dialog.path = expat
-' End
-
 Public Sub ScanExeOpen_Click()
   Dim tmp As String[]
   Dim expat As String = Dialog.Path

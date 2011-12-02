@@ -3,7 +3,6 @@
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 
-
 Public Sub Start()
   Print ""
   Print Application.name & " " & Application.version
@@ -26,8 +25,6 @@ End
 Public Sub Form_Open()
   'Start()
 End
-
-
 
 Public MyCSock As Socket
 

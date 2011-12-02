@@ -11,8 +11,6 @@ Public Sub btnCancel_Click()
 End
 
 Public Sub Form_Open()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
@@ -23,7 +21,6 @@ Public Sub Form_Open()
   Dynagui.AddSpace = 4
   Dynagui.AddPadding = 12
   DynaGui.YOffset = - Me.Font.Textheight("Ij") * 1.5
-  'ME.center
   Global.Center(Fmain, Me)
   TabToDescription()
 End
@@ -95,13 +92,6 @@ End
 
 
 Public Function ParseOptions(TheContainer As Object, TheOptionKeyword As String) As String
-'This function will parse a gui and return a commandline.
-'The function will parse the objects that:
-    '-(and) Are children OF (one OR more) containers whose name contains TheOptionKeyword
-    '-(and) Are checkboxes
-    '-(or) if are comboboxes or spinboxes or textboxes and they come after a checkbox.
-'The output syntax will be like:
-' checkbox1.tagSpinbox1.text:checkbox2.tagSpinbox2.text:...:checkboxN.tagTextBoxN.text
 
 Dim obj, child, nextchild As Object
 Dim outline As String = "" 'outline is the tag which indicates a driver parameter
@@ -116,7 +106,6 @@ Dim outline As String = "" 'outline is the tag which indicates a driver paramete
                   If (object.type(child.next) = "ComboBox") Or (object.type(child.next) = "SpinBox") Or (object.type(child.next) = "TextBox") Then
                     If (object.type(child.next) = "ComboBox") Then
                       Try outline = outline & Split(child.NEXT.text, " ")[0]
-                    '  If Error Then Debug "an error occurred, please report this message and what you're doing"
                         Else
                       Try outline = outline & child.NEXT.text
                       If Error Then Debug "an error occurred, please report this message and what you're doing"
@@ -154,9 +143,6 @@ Public Function AddVideoDriver(AlreadyParsedDrivers As String, DriverName As Str
     Endif
   Endif
   Return AlreadyParsedDrivers & VoCmdLine
-  'FMain.mplayer.VoDriver = FMain.mplayer.VoDriver & Vocmdline
-  'FMain.mplayer.VoAdditionalopts = FMain.mplayer.VoAdditionalopts & AdditionalOpts
-
 End
 
 Public Function ParsedVideoDriver() As String
@@ -221,7 +207,6 @@ Public Sub FragFileOpen2_Click()
   If Dialog.OpenFile() Then Return
   textbox4.text = "\"" & Dialog.Path & "\""
 
-  'Dialog.filter = tmp
 End
 
 
@@ -269,45 +254,14 @@ Public Sub MenuSaveToAll_Click()
 End
 
 Public Sub Form_Close()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 
 End
 
 Public Sub Form_Hide()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
-
 End
 
-
-
-Public Sub vdpauParseMeHBox3_MouseDown()
-
-  
-
-End
-
-Public Sub CheckBox26_Click()
-End
-
-Public Sub AddVdpauCHK_Click()
-
-End
-
-Public Sub Form_Move()
-
-  
-
-End
-
-Public Sub VdPauScrollView_MouseDown()
-
-  
-
-End
 
 Private AvailableList As New String[]
 Public Sub Form_Show()

@@ -312,16 +312,26 @@ Public Function GetTotalFiles(dragdata As String, FromDesktop As Boolean) As Int
   Return total
 End
 
+
+Public Sub SaveCachedOpts(ProfileName As String, cachedopts As String)
+  Dim cachefile As File
+  cachefile = Open Global.confpath & "/" & ProfileName & ".profile.cache" For Write Create
+  Print #cachefile, cachedopts
+  Close cachefile
+End
+
+
+
 Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As Boolean = True, Optional cachedopts As String = "")
   Dim MySettings As New SettingsClass
   Dim cachefile As File
-  If cachedopts <> "" Then
-    cachefile = Open Global.confpath & "/" & ProfileName & ".profile.cache" For Write Create
-      Print #cachefile, cachedopts
-    Close cachefile
-    'PRINT "Debug: SaveAllSettings(): cachedopts= " & cachedopts
-    'SHELL "echo " & cachedopts & " > " & Global.confpath & "/" & ProfileName & ".profile.cache"
-  Endif
+  If cachedopts <> "" Then SaveCachedOpts(ProfileName, cachedopts)
+    ' cachefile = Open Global.confpath & "/" & ProfileName & ".profile.cache" For Write Create
+    '   Print #cachefile, cachedopts
+    ' Close cachefile
+    ' 'PRINT "Debug: SaveAllSettings(): cachedopts= " & cachedopts
+    ' 'SHELL "echo " & cachedopts & " > " & Global.confpath & "/" & ProfileName & ".profile.cache"
+  'Endif
   MySettings.Save(Fmain, Global.confpath & "/" & ProfileName)
   MySettings.Save(Chains, Global.confpath & "/" & ProfileName)
   MySettings.Save(XConfigureAudioDriver, Global.confpath & "/" & ProfileName)
@@ -374,7 +384,7 @@ End
 
 
 
-Public Sub LoadAllSettings(ProfileName As String)
+Public Sub LoadAllSettings(ProfileName As String) 'THIS Is PROBABLY BROKEN
   Dim MySettings As New SettingsClass
   'DIM MyForms AS NEW Object[]
   'DIM TheForm AS Object
@@ -391,6 +401,36 @@ Public Sub LoadAllSettings(ProfileName As String)
   AddUserExtensions(GeneralOptions.KnownExtensions.text)
   MySettings.Load(VideoEqualizer, Global.confpath & "/" & SettingsFileName)
 End
+
+Public Sub ReallyLoadAllSettings()
+  Dim MySettings As New SettingsClass
+  Dim MyForms As New Object[]
+  Dim TheForm As Object
+  Dim WasVisible As Boolean = False
+  Debug "Start at: " & Time
+  Try fmain.mouse = Mouse.wait
+  If (Not global.initearlyformsdone) Then
+    fmain.InitEarlyForms()
+  Endif
+  MyForms.Add(Chains)
+  MyForms.Add(XConfigureAudioDriver)
+  MyForms.Add(XConfigureVideoDriver)
+  MyForms.Add(SubAndOsd)
+  MyForms.Add(GeneralOptions)
+  MyForms.Add(AudioVideoCodecs)
+  MyForms.Add(VideoEqualizer)
+  MyForms.Add(VFiltersCfg)
+  MyForms.Add(AFiltersCfg)
+  For Each TheForm In MyForms
+    WasVisible = TheForm.visible
+    TheForm.hide
+    MySettings.Load(TheForm, Global.confpath & "/" & SettingsFileName)
+    TheForm.visible = WasVisible
+  Next
+  Try fmain.mouse = Mouse.default
+  Debug "Ends at: " & Time
+End
+
 
 
 

@@ -2328,13 +2328,14 @@ Public Sub ShowAudioPanel(Show As Boolean)
   If Show And (Not TagEditMode) Then
     previousfile = currentfile
     currentfile = mplayer.Media_FullPath_Playing
-    If currentfile = previousfile Then Return 'avoid showing twice
-    fmain.OuterBox.ignore = True
-    audioform.CoverBox.Resize(0, 0)
-    If ((Lower(audioform.AudioPanel.Parent.name) <> "rightsidepanel") Or (Not audioformshown)) Then
-      BottomVbox.Reparent(zzzfake)
-      audioform.AudioPanel.Reparent(Rightsidepanel)
-      BottomVbox.Reparent(rightsidepanel)
+    If (currentfile <> previousfile) Then  'avoid showing twice
+      fmain.OuterBox.ignore = True
+      audioform.CoverBox.Resize(0, 0)
+      If ((Lower(audioform.AudioPanel.Parent.name) <> "rightsidepanel") Or (Not audioformshown)) Then
+        BottomVbox.Reparent(zzzfake)
+        audioform.AudioPanel.Reparent(Rightsidepanel)
+        BottomVbox.Reparent(rightsidepanel)
+      Endif
     Endif
     audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
     If GeneralOptions.ShowVmeterCHK.value = True Then

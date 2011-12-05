@@ -749,7 +749,7 @@ Public Sub SetStyle_early()
   '---------------------------------------------------------------------------
   
   If audioform.AudioPanel.parent = Rightsidepanel Then
-    ShowAudioPanel(False)
+    If (Not mplayer.ProcessRunningOvr()) Then ShowAudioPanel(False) 
     SetSubControlsStyles(Fmain)
     For Each TheObject In Audioform.controls
       If theobject Is Label Then
@@ -2321,11 +2321,14 @@ Public Sub OLD_ShowAudioPanel(Show As Boolean)
 End
 
 Public audioformshown As Boolean = False
-
-
+Private currentfile As String = ""
+Private previousfile As String = ""
 Public mymeters As New Meters
 Public Sub ShowAudioPanel(Show As Boolean)
-  If Show And Not TagEditMode Then
+  If Show And (Not TagEditMode) Then
+    previousfile = currentfile
+    currentfile = mplayer.Media_FullPath_Playing
+    If currentfile = previousfile Then Return 'avoid showing twice
     fmain.OuterBox.ignore = True
     audioform.CoverBox.Resize(0, 0)
     If ((Lower(audioform.AudioPanel.Parent.name) <> "rightsidepanel") Or (Not audioformshown)) Then

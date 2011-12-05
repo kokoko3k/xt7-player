@@ -1,0 +1,23 @@
+Git changes:
+--------------------------------------
+
+Dec 05, 2011
+  FIX: Don't display the cover twice on start
+
+Dec 02, 2011
+  CHANGE: Unminimize and raise main window when the player is invoked from outside
+  FIX:    Immediataly update message logs after when using new settings
+  CHANGE: Reload current profile now reloads all the forms
+  FIX:    Quit a bit faster
+  FIX:    Runtime error when enabling/disabling tooltips.
+  FIX:    Audio/video chains were saved everytime on exit
+
+Dec 01, 2011
+  CHANGE: Some translations update may require you to reconfigure subtitle languages
+  CHANGE: Filters not supported by local mplayer now are disabled objects
+  ........And the user will be warned if it insists in using them
+  CHANGE: Drivers not supported by local mplayer now are disabled objects
+
+Nov 30, 2011
+  Start where you left functionality added
+

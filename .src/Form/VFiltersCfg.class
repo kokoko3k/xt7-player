@@ -437,9 +437,6 @@ End
 
 
 Public Sub Form_Open()
-  'ME.Center
-    ' Debug "Cached Options unvalidated"
-    ' fmain.cachedopts = ""
     If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
@@ -561,8 +558,6 @@ End
 
 Public Sub Form_Show()
   Dim Chainfilter As Object
-  '   Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
    FilterList_Select()
   'Add "*" to every filter which is in the active chain
   For Each ChainFilter In Chains.VideoChainBox.Children
@@ -576,15 +571,10 @@ Public Sub Form_Show()
 End
 
 Public Sub Form_Close()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
-
 End
 
 Public Sub Form_Hide()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 
 End

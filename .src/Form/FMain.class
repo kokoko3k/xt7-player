@@ -448,6 +448,11 @@ Public Sub AllInit_Post()
   Endif
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
    updaterecentfiles()
+   'we created a "default" empty profile, copy the factory settings to it
+   If FirstTimeXt7 Then 
+    ReallySaveAllSettings("default", False, True)
+    global.currentprofile = "default"
+   Endif
 End
 
 Private RecentFileEntry As Menu
@@ -550,6 +555,7 @@ Public Sub MakeProfilePath()
     Try Mkdir DefaultProfilepath
   Endif
 End
+
 
 Public Sub MakeScreenshotsPath()
   Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
@@ -875,19 +881,20 @@ Public Sub DelayTimer_Timer()
   AllInit_Post()
   
 End
-
+Private FirstTimeXt7 As Boolean = True ' has the user ever used xt7?
 Private fastquit As Boolean = False
 Public havetoshowbrowsetab As Boolean = False
 Private PlayFromCommandline As Boolean = False
 Public Sub MainInit()
-  
+ 
   Dim quick As Boolean
   Dim AlreadyRunning As Boolean = False
   Dim out As String
-  'Dim cachedopts As String
   Dim cachedfile As File
   Dim MySettings As New SettingsClass
   'Disable Shutdown feature at start.
+  '
+  FirstTimeXt7 = Not (Exist(global.ConfPath))
   ShutOff_Click()
   
   MakeProfilePath()
@@ -950,7 +957,7 @@ Public Sub MainInit()
     Debug "Timer = " & Timer
   Endif
   LeftSideTabs_Click()
-  
+
 End
 
 
@@ -1205,6 +1212,7 @@ Public Sub Form_Close()
   Print "xbindkeys killed"
 
   If Not fastquit Then
+
     If GeneralOptions.SaveOnExitCHK.value = True Then
       Try Global.SaveAllSettings(global.CurrentProfile)
       If Error Then 
@@ -1233,12 +1241,10 @@ Public Sub Form_Close()
       MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
       Try mypodcast.SavePods(global.confpath & "/mypods.txt", PodcastTree)
 
-      SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
-
       Print "Mandatory settings saved"
     Endif
   Endif
-
+  SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
   If Not fastquit Then
     MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
     Debug "wrote last profile"
@@ -2182,6 +2188,9 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   cachingbox.delete
   global.ResetApplyBtnColor()
   Return True
+
+
+
 
 End
 
@@ -3337,7 +3346,7 @@ End
 Public Sub MenuSaveDefault_Click()
 
   If Lower(global.CurrentProfile) = "factory_defaults" Then
-    If MyQuestion.Ask("You can't modify the current profile\nbecause it is the Factory defaults one", "Save and switch to ''default'' profile", "Don't save") = 1 Then
+    If MyQuestion.Ask(("You can't modify the current profile\nbecause it is the Factory defaults one"), ("Switch to ''default'' profile and save"), ("Don't save")) = 1 Then
       global.CurrentProfile = "default"
         Else
       Return

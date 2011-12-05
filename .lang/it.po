@@ -27,11 +27,11 @@ msgstr " Più alto è, più sarà lento"
 msgid " by Antonio Orefice.\nxt7player@gmail.com\n\nThanks to Benoît Minisini for Gambas."
 msgstr " di Antonio Orefice.\nxt7player@gmail.com\n\nGrazie a Benoît Minisini per Gambas."
 
-#: FMain.class:1100
+#: FMain.class:1101
 msgid " channels"
 msgstr "canali"
 
-#: FMain.class:2533
+#: FMain.class:2543
 msgid " of: "
 msgstr " di: "
 
@@ -87,7 +87,7 @@ msgstr "* Allineamento  sottotitoli"
 msgid "* Subtitle position"
 msgstr "* Posizione sottotitoli"
 
-#: FMain.class:2650
+#: FMain.class:2663
 msgid "* Youtube subtitles available *"
 msgstr "* Sono disponibili sottotitoli *"
 
@@ -695,7 +695,7 @@ msgstr "Aggiungi l'opzione \"-va\" alla linea di comando"
 msgid "Add a generic URI..."
 msgstr "Aggiungi una URI generica"
 
-#: FMain.class:6161
+#: FMain.class:6174
 msgid "Add quickly"
 msgstr "Aggiungi velocemente"
 
@@ -759,7 +759,7 @@ msgstr "Album:"
 msgid "Alignment"
 msgstr "Posizione"
 
-#: FMain.class:5062
+#: FMain.class:5075
 msgid "All files"
 msgstr "Tutti i file"
 
@@ -791,15 +791,15 @@ msgstr "Ricostruisci sempre l'indice"
 msgid "Amount"
 msgstr "Ammontare"
 
-#: FMain.class:1761
+#: FMain.class:1762
 msgid "Angle"
 msgstr "Angolo"
 
-#: FMain.class:1758
+#: FMain.class:1759
 msgid "Angles"
 msgstr "Angoli"
 
-#: FMain.class:5308
+#: FMain.class:5321
 msgid "Another cover search is in progress, please wait for it to finish!"
 msgstr "E' già in atto una ricerca, aspetta che finisca!"
 
@@ -819,31 +819,31 @@ msgstr "-"
 msgid "Append a playlist"
 msgstr "Accoda una playlist"
 
-#: FMain.class:4625
+#: FMain.class:4638
 msgid "Are you sure you want to clear the Playlist?"
 msgstr "Vuoi davvero azzerare la playlist?"
 
-#: FMain.class:4616
+#: FMain.class:4629
 msgid "Are you sure you want to clear your library?"
 msgstr "Vuoi davvero azzerare la libreria?"
 
-#: FMain.class:5854 ProfileManager.class:38
+#: FMain.class:5867 ProfileManager.class:38
 msgid "Are you sure you want to delete "
 msgstr "Vuoi davvero cancellare "
 
-#: FMain.class:4875
+#: FMain.class:4888
 msgid "Are you sure you want to delete selected item(s) from disk?"
 msgstr "Vuoi davvero cancellare la selezione dal disco?"
 
-#: GeneralOptions.class:479
+#: GeneralOptions.class:483
 msgid "Are you sure you want to delete selected items?"
 msgstr "Sei sicuro di voler cancellare gli oggetti selezionati?"
 
-#: FMain.class:3376
+#: FMain.class:3389
 msgid "Are you sure you want to reset the default profile\nto factory values?"
 msgstr "Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
 
-#: FMain.class:6978
+#: FMain.class:6991
 msgid "Are you sure you want to\nrecursively add this directory?"
 msgstr "Sicuro di voler aggiungere\nricorsivamente questa cartella?"
 
@@ -855,7 +855,7 @@ msgstr "-"
 msgid "Artist"
 msgstr "Artista"
 
-#: FMain.class:5304
+#: FMain.class:5317
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr "Le tag artista o album sono necessarie per impostare una copertina"
 
@@ -1035,11 +1035,11 @@ msgstr "-"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: FMain.class:6348
+#: FMain.class:6361
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr "Impossibile accedere al lettore specificato o al cd audio"
 
-#: FMain.class:6536
+#: FMain.class:6549
 msgid "Cannot delete child items!"
 msgstr "Non si può cancellare l'elemento figlio!"
 
@@ -1095,15 +1095,15 @@ msgstr "Canale 6"
 msgid "Channels"
 msgstr "Canali"
 
-#: FMain.class:1752
+#: FMain.class:1753
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: FMain.class:1749
+#: FMain.class:1750
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: FMain.class:1721
+#: FMain.class:1722
 msgid "Chapters:"
 msgstr "Capitoli:"
 
@@ -1115,7 +1115,7 @@ msgstr "Set caratteri"
 msgid "CheckBox1"
 msgstr "-"
 
-#: FMain.class:5625
+#: FMain.class:5638
 msgid "Choose a destination file"
 msgstr "Scegli un file di destinazione"
 
@@ -1171,7 +1171,7 @@ msgstr "-"
 msgid "Clear All"
 msgstr "Azzera tutto"
 
-#: FMain.class:4616
+#: FMain.class:4629
 msgid "Clear my library"
 msgstr "Azzera la mia libreria"
 
@@ -1179,7 +1179,7 @@ msgstr "Azzera la mia libreria"
 msgid "Clear selected"
 msgstr "Azzera la selezione"
 
-#: FMain.class:4625
+#: FMain.class:4638
 msgid "Clear the playlist"
 msgstr "Azzera la playlist"
 
@@ -1375,7 +1375,7 @@ msgstr "Dispositivo DVD"
 msgid "DVD menu navigation mode"
 msgstr "Modalità navigazione DVD"
 
-#: FMain.class:6169
+#: FMain.class:6182
 msgid "Damn!"
 msgstr "Dannazione!"
 
@@ -1403,7 +1403,7 @@ msgstr "Decodifica a risoluzioni inferiori.\nNon supportato da tutti i codec, po
 msgid "Default"
 msgstr "Prefefinito"
 
-#: FMain.class:3381
+#: FMain.class:3394
 msgid "Default profile has been set to factory values.\nRestart is needed."
 msgstr "Il profilo di default è stato reimpostato ai valori predefiniti.E' necessario il riavvio."
 
@@ -1535,31 +1535,31 @@ msgstr "Mostra l'anteprima delle copertine nella lista laterale"
 msgid "Do you also want to load "
 msgstr "Vuoi caricare anche "
 
-#: FMain.class:4150
+#: FMain.class:4163
 msgid "Do you also want to remove non existent files from library?"
 msgstr "Vuoi anche cancellare i file non trovati dalla libreria?"
 
-#: HotKeys.class:517
+#: HotKeys.class:518
 msgid "Don't"
 msgstr "Non farlo"
 
-#: FMain.class:4875
+#: FMain.class:4888
 msgid "Don't Delete"
 msgstr "Non cancellare"
 
-#: FMain.class:5658
+#: FMain.class:5671
 msgid "Don't Play"
 msgstr "Non riprodurre"
 
-#: FMain.class:3376
+#: FMain.class:3389
 msgid "Don't Reset"
 msgstr "Non eseguire il reset"
 
-#: FMain.class:4616
+#: FMain.class:4629
 msgid "Don't clear my library"
 msgstr "Non azzerare la libreria"
 
-#: FMain.class:4625
+#: FMain.class:4638
 msgid "Don't clear the playlist"
 msgstr "Non azzerare la playlist"
 
@@ -1567,7 +1567,7 @@ msgstr "Non azzerare la playlist"
 msgid "Don't delete"
 msgstr "Non cancellare"
 
-#: FMain.class:1670
+#: FMain.class:1671
 msgid "Don't display subtitles"
 msgstr "Non visualizzare i sottotitoli"
 
@@ -1583,9 +1583,13 @@ msgstr "Non leggere le informazioni come i tag ID3 all' atto dell' aggiunta alla
 msgid "Don't load, just switch"
 msgstr "Non caricare, ma cambia profilo"
 
-#: FMain.class:4150
+#: FMain.class:4163
 msgid "Don't remove"
 msgstr "Non rimuovere"
+
+#: FMain.class:3342
+msgid "Don't save"
+msgstr "Non salvare"
 
 #: FMain.class:213
 msgid "Don't show anymore"
@@ -1695,11 +1699,11 @@ msgstr "Abilita/disabilita l'icona nel tray"
 msgid "Enter a name for the new playlist/library item, or leave blank for default."
 msgstr "Scrivi un nome per il nuovo elemento della libreria/playlist, \nlascia in bianco per usare il predefinito"
 
-#: FMain.class:5997
+#: FMain.class:6010
 msgid "Enter a name for the new profile:"
 msgstr "Inserisci un nome per il nuovo profilo:"
 
-#: FMain.class:6502
+#: FMain.class:6515
 msgid "Enter a new podcast url"
 msgstr "Inserisci la url di un podcast"
 
@@ -1711,7 +1715,7 @@ msgstr "Inserisci un' URI valida:"
 msgid "Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart "
 msgstr "Inserisci qualche termine di ricerca, il carattere speciale \"|\" significa \"Oppure\",quindi tu puoi scrivere: Bach|Mozart"
 
-#: FMain.class:5941
+#: FMain.class:5954
 msgid "Enter the new profile name"
 msgstr "Inserisci il nome del nuovo profilo"
 
@@ -1731,19 +1735,19 @@ msgstr "-"
 msgid "Equalizer "
 msgstr "-"
 
-#: FMain.class:6506
+#: FMain.class:6519
 msgid "Error adding new feed"
 msgstr "Errore durante l'aggiunta del feed"
 
-#: FMain.class:6113
+#: FMain.class:6126
 msgid "Error reading from shoutcast server"
 msgstr "Errore durante la lettura dal server shoutcast"
 
-#: FMain.class:6457
+#: FMain.class:6470
 msgid "Error refreshing the feed"
 msgstr "Errore durante l'aggiornamento del feed"
 
-#: FMain.class:6169
+#: FMain.class:6182
 msgid "Error while adding one or more items"
 msgstr "Errore durante l'aggiunta di uno o più elementi"
 
@@ -1751,15 +1755,15 @@ msgstr "Errore durante l'aggiunta di uno o più elementi"
 msgid "Error while loading the picture"
 msgstr "Errore durante il caricamento dell' immagine"
 
-#: FMain.class:3338
+#: FMain.class:3351
 msgid "Error while saving default settings"
 msgstr "Errore durante il salvataggio delle impostazioni di default"
 
-#: FMain.class:6400
+#: FMain.class:6413
 msgid "Error, failed to get disc information"
 msgstr "Errore, non posso ottenere informazioni dal disco"
 
-#: FMain.class:6561
+#: FMain.class:6574
 msgid "Error: Cannot get current item"
 msgstr "Errore: Non posso recuperare l'oggetto corrente"
 
@@ -1963,7 +1967,7 @@ msgstr "Genere"
 msgid "Germany:DE"
 msgstr "-"
 
-#: FMain.class:6161
+#: FMain.class:6174
 msgid "Get Stream info"
 msgstr "Con informazioni sul flusso"
 
@@ -1979,7 +1983,7 @@ msgstr "-"
 msgid "Global Hotkeys"
 msgstr "Hotkey Globali"
 
-#: FMain.class:2871
+#: FMain.class:2884
 msgid "GotIt!"
 msgstr "Capito!"
 
@@ -2063,7 +2067,7 @@ msgstr "Hotkey"
 msgid "Hotkeys"
 msgstr "Hotkey"
 
-#: FMain.class:6161
+#: FMain.class:6174
 msgid "How do you want to add?"
 msgstr "Come vuoi aggiungere?"
 
@@ -2083,7 +2087,7 @@ msgstr "-"
 msgid "Hue"
 msgstr "-"
 
-#: FMain.class:5960
+#: FMain.class:5973
 msgid "I know, proceed"
 msgstr "Lo so, procedi"
 
@@ -2227,7 +2231,7 @@ msgstr "Colore di sfondo delle liste di sinistra:"
 msgid "Left-side list font and font color:"
 msgstr "Carattere del font delle liste di sinistra:"
 
-#: AudioForm.form:325 FMain.class:6389 Searchfields.form:104
+#: AudioForm.form:325 FMain.class:6402 Searchfields.form:104
 msgid "Length"
 msgstr "Durata"
 
@@ -2499,7 +2503,7 @@ msgstr "-"
 msgid "Network"
 msgstr "Rete"
 
-#: FMain.class:5654
+#: FMain.class:5667
 msgid "New Flash(tm) video detected: \n"
 msgstr "Rilevato un nuovo video Flash:\n"
 
@@ -2523,11 +2527,11 @@ msgstr "Prossimo media"
 msgid "No driver Defined"
 msgstr "Nessun driver definito"
 
-#: FMain.class:6043
+#: FMain.class:6056
 msgid "No hotkeys defined for dvd navigation mode\nPlease configure dvdnav hotkeys first."
 msgstr "Nessuna scorciatoia definita per la navigazione dvd \n Si prega di configurare le scorciatoie (hotkey) prima."
 
-#: FMain.class:7232
+#: FMain.class:7245
 msgid "No, thanks"
 msgstr "No, grazie"
 
@@ -2755,7 +2759,7 @@ msgstr "Visualizza l'animazione iniziale"
 msgid "Play next media as the previous reaches the end."
 msgstr "Avanza automaticamente"
 
-#: FMain.class:5658
+#: FMain.class:5671
 msgid "Play now"
 msgstr "Riproduci"
 
@@ -2783,15 +2787,15 @@ msgstr "Playlist"
 msgid "Please, choose"
 msgstr "Prego, scegli"
 
-#: FMain.class:6785
+#: FMain.class:6798
 msgid "Please, disable playlist shutdown option first!"
 msgstr "Disabilita l'opzione di spegnimento, prima!"
 
-#: FMain.class:5436
+#: FMain.class:5449
 msgid "Please, disable random playing first!"
 msgstr "Disabilita la riproduzione casuale, prima!"
 
-#: FMain.class:6377
+#: FMain.class:6390
 msgid "Please, wait while getting disc information"
 msgstr "Prego, attendere mentre recupero le informazioni dal disco"
 
@@ -2871,7 +2875,7 @@ msgstr "Media precedente"
 msgid "Print grid code to console"
 msgstr "-"
 
-#: HotKeys.class:517 SubAndOsd.class:351
+#: HotKeys.class:518 SubAndOsd.class:351
 msgid "Proceed"
 msgstr "Procedi"
 
@@ -2983,7 +2987,7 @@ msgstr "Ricarica il profilo corrente"
 msgid "Remind me later"
 msgstr "Ricordamelo"
 
-#: FMain.class:4150
+#: FMain.class:4163
 msgid "Remove"
 msgstr "Rimuovi"
 
@@ -3015,7 +3019,7 @@ msgstr "Richiesto da \"Amplificazione massima\""
 msgid "Rescan Channels with simple DVB-T Tuner"
 msgstr "Risintonizza i canali con DVB-T Tuner"
 
-#: FMain.class:3376
+#: FMain.class:3389
 msgid "Reset"
 msgstr "Reset"
 
@@ -3039,7 +3043,7 @@ msgstr "Rimozione del rumore ad anello"
 msgid "Rms window size"
 msgstr "Ampiezza della finestre Rms"
 
-#: FMain.class:7620
+#: FMain.class:7633
 msgid "Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys."
 msgstr "Scorri la rotellina del mouse sul bottone \nper cambiare il panscan o configura le hotkey."
 
@@ -3195,7 +3199,7 @@ msgstr "Localizza l'eseguibile 'femon'.\nO scrivi semplicemente 'femon'."
 msgid "Select your mplayer executable.\nJust write 'mplayer' for default."
 msgstr "Seleziona l'eseguibile mplayer.\n Scrivi semplicemente 'mplayer' per il predefinito"
 
-#: FMain.class:4267
+#: FMain.class:4280
 msgid "Selected: "
 msgstr "Selezionati:"
 
@@ -3275,7 +3279,7 @@ msgstr "-"
 msgid "ShoutCastTreePopup"
 msgstr "-"
 
-#: FMain.class:5705
+#: FMain.class:5718
 msgid "Show"
 msgstr "Mostra"
 
@@ -3555,6 +3559,10 @@ msgstr "Cambia traccia audio"
 msgid "Switch subtitle track"
 msgstr "Cambia traccia sottotitolo"
 
+#: FMain.class:3342
+msgid "Switch to ''default'' profile and save"
+msgstr "Passa al profilo default e salva"
+
 #: ProfileManager.form:64
 msgid "Switch to:"
 msgstr "Passa a:"
@@ -3651,15 +3659,15 @@ msgstr "L'hotkey è già definita per "
 msgid "The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min"
 msgstr "La riproduzione partità appena la cache sarà riempita abbastanza.\nOpzione mplayer: -cache-min"
 
-#: FMain.class:3379
+#: FMain.class:3392
 msgid "There was a problem while deleting"
 msgstr "C'è stato un problema durante la cancellazione "
 
-#: FMain.class:5233
+#: FMain.class:5246
 msgid "There was an error while saving the playlist"
 msgstr "Si è verificato un errore durante il salvataggio della playlist"
 
-#: FMain.class:7067
+#: FMain.class:7080
 msgid "There was an error while trying to delete the item"
 msgstr "Errore durante la rimozione dell'elemento"
 
@@ -3671,7 +3679,7 @@ msgstr "Usa un canale differente dal PCM default\nper controllare il volume.\nIl
 msgid "This demuxer is forced"
 msgstr "Questo demuxer deve essere forzato"
 
-#: FMain.class:5860
+#: FMain.class:5873
 msgid "This is a read-only profile"
 msgstr "Questo profilo è di sola lettura."
 
@@ -3679,7 +3687,7 @@ msgstr "Questo profilo è di sola lettura."
 msgid "This is an issue with Ubuntu + mplayer + pulseaudio, sorry"
 msgstr "Questo è un bug presente in Ubuntu + mplayer + pulseaudio, spiacenti"
 
-#: HotKeys.class:517 SubAndOsd.class:351
+#: HotKeys.class:518 SubAndOsd.class:351
 msgid "This will save this window settings\n to all profiles found but the 'Factory_defaults' one"
 msgstr "Salverò le impostazioni di questa finestra\n a tutti i profili trovati eccetto 'Factory_defaults'"
 
@@ -3735,7 +3743,7 @@ msgstr "Top favoriti"
 msgid "TopLeft Corner"
 msgstr " Angolo superiore sinistro"
 
-#: FMain.class:6388 Searchfields.form:97
+#: FMain.class:6401 Searchfields.form:97
 msgid "Track"
 msgstr "Traccia"
 
@@ -3807,7 +3815,7 @@ msgstr "-"
 msgid "UnSharp"
 msgstr "-"
 
-#: FMain.class:2034
+#: FMain.class:2035
 msgid "Unable to get the real stream url"
 msgstr "Non posso recuperare l'url reale del flusso"
 
@@ -3883,7 +3891,7 @@ msgstr "Usa le nuove impostazioni senza salvare"
 msgid "Use new settings without save.\nTo save settings, use menu item."
 msgstr "Usa le nuove impostazioni senza salvare.\n Per salvare le impostazioni usa la voce nel menu."
 
-#: FMain.class:5689
+#: FMain.class:5702
 msgid "Use vertical tabs"
 msgstr "Usa tab verticali"
 
@@ -3951,7 +3959,7 @@ msgstr "Configurazione dei filtri Video"
 msgid "Video Filters list"
 msgstr "Lista dei filtri Video"
 
-#: FMain.class:3486
+#: FMain.class:3499
 msgid "Video snaps to borders"
 msgstr "Il video tocca il bordo"
 
@@ -4015,7 +4023,7 @@ msgstr "Larghezza"
 msgid "Windows"
 msgstr "Finestre"
 
-#: FMain.class:7232
+#: FMain.class:7245
 msgid "Would you like to go to the video homepage?"
 msgstr "Vuoi aprire la pagina web del video?"
 
@@ -4075,11 +4083,11 @@ msgstr "-"
 msgid "Year"
 msgstr "Anno"
 
-#: FMain.class:4875 GeneralOptions.class:479 ProfileManager.class:38
+#: FMain.class:4888 GeneralOptions.class:483 ProfileManager.class:38
 msgid "Yes, Delete"
 msgstr "Sì, Cancella"
 
-#: FMain.class:7232
+#: FMain.class:7245
 msgid "Yes, Go to Youtube"
 msgstr "Sì, vai su Youtube"
 
@@ -4091,7 +4099,7 @@ msgstr "Sì, Carica"
 msgid "You are going to delete this file from disk, are you sure?"
 msgstr "Stai per cancellare questo file dal disco, sei sicuro?"
 
-#: FMain.class:5960
+#: FMain.class:5973
 msgid "You are going to overwrite the selected profile\nwith the current settings."
 msgstr "Stai per sovrascrivere il profilo selezionato\ncon le impostazioni correnti."
 
@@ -4099,9 +4107,13 @@ msgstr "Stai per sovrascrivere il profilo selezionato\ncon le impostazioni corre
 msgid "You can specify an external subtitle file.\nMplayer option: -subfile <filename>"
 msgstr "Puoi specificare un file per i sottotitoli esterno.\nOpzione mplayer: -subfile <nomefile>"
 
-#: FMain.class:5851
+#: FMain.class:5864
 msgid "You can't delete the current profile!"
 msgstr "Non puoi cancellare il profilo corrente."
+
+#: FMain.class:3342
+msgid "You can't modify the current profile\nbecause it is the Factory defaults one"
+msgstr "Non puoi modificare il profilo corrente\nperchè è quello di fabbrica."
 
 #: FMain.form:1423
 msgid "YouTube"
@@ -4127,7 +4139,7 @@ msgstr "[Opzionale] Mostra i protocolli"
 msgid "[Optional] Give item a name:"
 msgstr "[Opzionale] Dai un nome all' elemento"
 
-#: FMain.class:5654
+#: FMain.class:5667
 msgid "\n  Would you like to play it now in Xt7-Player?"
 msgstr "\n Vuoi riprodurlo ora in Xt7-Player?"
 
@@ -4151,7 +4163,7 @@ msgstr "\nProva a rimuoverlo dalla catena o a usare un altro mplayer."
 msgid "\nWhich seems not to be supported by your mplayer.\n "
 msgstr "\nChe sembra non essere supportato dal tuo mplayer.\n"
 
-#: FMain.class:5303
+#: FMain.class:5316
 msgid "\nso you are going to set a cover for this particular file/stream"
 msgstr "\nQuindi la copertina che imposterai sarà solo per questo file o stream"
 
@@ -4163,7 +4175,7 @@ msgstr "-"
 msgid "aspect"
 msgstr "Rapporto di aspetto"
 
-#: FMain.class:1730
+#: FMain.class:1731
 msgid "at"
 msgstr "a"
 
@@ -4191,7 +4203,7 @@ msgstr "-"
 msgid "c - Denoise both"
 msgstr "c - Applica denoise a entrambi"
 
-#: AddUriForm.form:51 FMain.class:6394
+#: AddUriForm.form:51 FMain.class:6407
 msgid "cdda://"
 msgstr "-"
 
@@ -4259,7 +4271,7 @@ msgstr "-"
 msgid "dvb://"
 msgstr "-"
 
-#: FMain.class:2632
+#: FMain.class:2645
 msgid "dvb://*"
 msgstr "-"
 
@@ -4395,7 +4407,7 @@ msgstr "-"
 msgid "http://"
 msgstr "-"
 
-#: FMain.class:2633
+#: FMain.class:2646
 msgid "http://*shoutcast*"
 msgstr "-"
 
@@ -4403,7 +4415,7 @@ msgstr "-"
 msgid "http_proxy://"
 msgstr "-"
 
-#: FMain.class:5062
+#: FMain.class:5075
 msgid "iso files"
 msgstr "file iso"
 

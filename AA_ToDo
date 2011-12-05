@@ -70,6 +70,7 @@ ricarico il profilo e vedo i filtri
 ***********************************************
 Risolti:
 ***********************************************
+FIX:    Check if confdir exists before trying to make any parent folder
 FIX:    Catch row highlight errors
 FIX:    Don't display the cover twice on start
 CHANGE: Unminimize and raise main window when the player is invoked from outside

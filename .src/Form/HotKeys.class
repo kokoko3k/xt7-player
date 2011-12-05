@@ -363,12 +363,13 @@ Public Sub SaveHotKeys(ProfileName As String)
   
   Dim C, R As Integer
 
-  
-  Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
-  Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
-  Try Mkdir File.dir(File.Dir(File.Dir(filename)))
-  Try Mkdir File.Dir(File.Dir(filename))
-  Try Mkdir File.Dir(filename)
+  If Not Exist(file.Dir(filename), True) Then
+    Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
+    Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
+    Try Mkdir File.dir(File.Dir(File.Dir(filename)))
+    Try Mkdir File.Dir(File.Dir(filename))
+    Try Mkdir File.Dir(filename)
+  Endif
   
   'local hotkeys
   HotFile = Open filename For Write Create

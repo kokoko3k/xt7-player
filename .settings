@@ -1,8 +1,8 @@
 [Breakpoints]
-Breakpoint[1]="FMain.2110"
-Breakpoint[2]="FMain.5150"
-Breakpoint[3]="FMain.5169"
-Breakpoint[4]="FMain.5171"
+Breakpoint[1]="FMain.2112"
+Breakpoint[2]="FMain.5152"
+Breakpoint[3]="FMain.5171"
+Breakpoint[4]="FMain.5173"
 Count=4
 
 [DebugWindow]
@@ -393,7 +393,7 @@ Geometry=[0,0,210,210]
 Geometry=[0,0,301,301]
 
 [DebugWindow/TheForm]
-Geometry=[691,466,506,301]
+Geometry=[691,104,506,663]
 
 [DebugWindow/TheForm.controls]
 Geometry=[52,0,344,344]
@@ -699,7 +699,7 @@ SearchString=True
 
 [OpenFile]
 File[1]=".src/Classi/StartClass.class:4.3"
-File[2]=".src/Form/FMain.class:2331.34"
+File[2]=".src/Form/FMain.class:547.28"
 File[3]=".src/Form/zzzFake.class:22.0"
 File[4]=".src/Classi/MplayerClass.class:289.10"
 File[5]=".src/Form/AudioForm.class:88.0"
@@ -708,10 +708,18 @@ File[7]=".src/Form/CoverManager.class:162.92"
 File[8]=".src/Form/FMain.form"
 File[9]=".src/Form/CoverManager.form"
 File[10]=".src/Form/AudioForm.form"
-File[11]="AA_ToDo:56.0"
+File[11]="AA_ToDo:72.69"
 Active=12
-File[12]="CHANGELOG_GIT:5.10"
-Count=12
+File[12]="CHANGELOG_GIT:7.68"
+File[13]=".src/0_Moduli/Global.module:335.17"
+File[14]=".src/Form/Chains.class:302.0"
+File[15]=".src/Classi/SettingsClass.class:616.28"
+File[16]=".src/Form/Chains.form"
+File[17]=".src/Form/HotKeys.class:369.28"
+File[18]=".src/0_Moduli/ComboHistory.module:53.28"
+File[19]=".src/Classi/FlashClass.class:79.33"
+File[20]=".src/Form/GeneralOptions.class:443.28"
+Count=20
 
 [Watches]
 Count=11

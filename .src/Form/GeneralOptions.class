@@ -419,11 +419,13 @@ Public Sub SaveWatchDir(ProfileName As String)
   Dim filename As String = ProfileName & ".profile/" & "Watch.txt"
   Dim outfile As File
   Dim i As Integer = 0
-  Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
-  Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
-  Try Mkdir File.dir(File.Dir(File.Dir(filename)))
-  Try Mkdir File.Dir(File.Dir(filename))
-  Try Mkdir File.Dir(filename)
+  If Not Exist(file.Dir(filename), True) Then
+    Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
+    Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
+    Try Mkdir File.dir(File.Dir(File.Dir(filename)))
+    Try Mkdir File.Dir(File.Dir(filename))
+    Try Mkdir File.Dir(filename)
+  Endif
   outfile = Open filename For Write Create
   For i = 0 To NoParseWatchedListbox.Count - 1
     Print #outfile, NoParseWatchedListbox[i].text
@@ -435,11 +437,13 @@ Public Sub SaveExcludeDir(ProfileName As String)
   Dim filename As String = ProfileName & ".profile/" & "Exclude.txt"
   Dim outfile As File
   Dim i As Integer = 0
-  Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
-  Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
-  Try Mkdir File.dir(File.Dir(File.Dir(filename)))
-  Try Mkdir File.Dir(File.Dir(filename))
-  Try Mkdir File.Dir(filename)
+  If Not Exist(file.Dir(filename), True) Then
+    Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
+    Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
+    Try Mkdir File.dir(File.Dir(File.Dir(filename)))
+    Try Mkdir File.Dir(File.Dir(filename))
+    Try Mkdir File.Dir(filename)
+  Endif
   outfile = Open filename For Write Create
   For i = 0 To NoParseExcludedListbox.Count - 1
     Print #outfile, NoParseExcludedListbox[i].text

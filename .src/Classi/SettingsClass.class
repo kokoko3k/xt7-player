@@ -610,11 +610,13 @@ Public Sub Save(TheForm As Object, FileName As String)
   'FileName = Filename & "." & TheForm.name
   FileName = Filename & ".profile/" & TheForm.name
   'PRINT "Debug: SettingsClass: Save: Filename= " & Filename
-  Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
-  Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
-  Try Mkdir File.dir(File.Dir(File.Dir(filename)))
-  Try Mkdir File.Dir(File.Dir(filename))
-  Try Mkdir File.Dir(filename)
+  If Not Exist(file.Dir(filename), True) Then
+    Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
+    Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(filename))))
+    Try Mkdir File.dir(File.Dir(File.Dir(filename)))
+    Try Mkdir File.Dir(File.Dir(filename))
+    Try Mkdir File.Dir(filename)
+  Endif
   ConfFile = Open FileName For Write Create
   
   If Lower(TheForm.name) = "fmain" Then

@@ -424,7 +424,7 @@ Public Sub ReallyLoadAllSettings()
   For Each TheForm In MyForms
     WasVisible = TheForm.visible
     TheForm.hide
-    MySettings.Load(TheForm, Global.confpath & "/" & SettingsFileName)
+    MySettings.Load(TheForm, Global.confpath & "/" & CurrentProfile)
     TheForm.visible = WasVisible
   Next
   Try fmain.mouse = Mouse.default

@@ -541,12 +541,14 @@ End
 Public Sub MakeProfilePath()
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
   'Try to make some profile folders
-  Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(DefaultProfilepath)))))
-  Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(DefaultProfilepath))))
-  Try Mkdir File.dir(File.Dir(File.Dir(DefaultProfilepath)))
-  Try Mkdir File.Dir(File.Dir(DefaultProfilepath))
-  Try Mkdir File.Dir(DefaultProfilepath)
-  Try Mkdir DefaultProfilepath
+  If Not Exist(file.Dir(DefaultProfilepath), True) Then
+    Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(DefaultProfilepath)))))
+    Try Mkdir File.Dir(File.dir(File.Dir(File.Dir(DefaultProfilepath))))
+    Try Mkdir File.dir(File.Dir(File.Dir(DefaultProfilepath)))
+    Try Mkdir File.Dir(File.Dir(DefaultProfilepath))
+    Try Mkdir File.Dir(DefaultProfilepath)
+    Try Mkdir DefaultProfilepath
+  Endif
 End
 
 Public Sub MakeScreenshotsPath()

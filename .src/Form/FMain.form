@@ -570,28 +570,28 @@
       MoveScaled(58,0,4,4)
       ToolTip = ("Video Equalizer")
       AutoResize = True
-      Picture = Picture["icon:/16/color"]
+      Picture = Picture["icon:/22/color"]
     }
     { SwitchSubBtn ToolButton DynaGuiToolbar
       Name = "SwitchSubBtn"
       MoveScaled(62,0,4,4)
       ToolTip = ("Switch subtitle track")
       AutoResize = True
-      Picture = Picture["icon:/16/font"]
+      Picture = Picture["icon:/22/font"]
     }
     { SwitchAudioBTN ToolButton DynaGuiToolbar
       Name = "SwitchAudioBTN"
       MoveScaled(67,0,4,4)
       ToolTip = ("Switch audio track")
       AutoResize = True
-      Picture = Picture["icon:/16/language"]
+      Picture = Picture["icon:/22/language"]
     }
     { RealtimeBTN ToolButton DynaGuiToolbar
       Name = "RealtimeBTN"
       MoveScaled(72,0,4,4)
       ToolTip = ("Other realtime commands")
       AutoResize = True
-      Picture = Picture["icon:/16/clock"]
+      Picture = Picture["icon:/22/clock"]
     }
     { Separator2 Separator
       MoveScaled(76,0,2,4)
@@ -615,7 +615,7 @@
       MoveScaled(86,0,4,4)
       ToolTip = ("Shutdown menu")
       AutoResize = True
-      Picture = Picture["icon:/16/quit"]
+      Picture = Picture["icon:/22/quit"]
     }
   }
   { HSplit1 HSplit

@@ -3915,14 +3915,14 @@ Public Sub RefreshVisibleCovers(mygrid As Gridview)
   
   Debug "Doing from " & FirstR & " - to " & LastR
   For R = FirstR To LastR
-    DeHighlightRow(R, mygrid)
+    Try DeHighlightRow(R, mygrid)
   Next 'R
   If Lower(mygrid.name) = "playlistgrid" Then
     Try PlaylistGrid.refresh
   Else
     Try libraryGrid.refresh
   Endif
-  
+
 End
 
 Public Sub MyLibrarySmartFill(LibraryGrid As GridView, MyLibrary As PlaylistClass)
@@ -4282,7 +4282,7 @@ Public Sub LibraryGrid_Select()
   If librarygrid.row >= 0 Then
     If GeneralOptions.HighlightCHK.value Then
       If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, librarygrid)
-      HighlightRow(librarygrid.row, librarygrid, global.Highlightmore, True)
+      Try HighlightRow(librarygrid.row, librarygrid, global.Highlightmore, True)
       prevHigLibRow = librarygrid.row
     Endif
   Endif
@@ -4319,7 +4319,7 @@ Public Sub PlayListGrid_Select()
   If Playlistgrid.row >= 0 Then
     If GeneralOptions.HighlightCHK.value Then
       If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
-      HighlightRow(Playlistgrid.row, Playlistgrid, global.Highlightmore, True)
+      Try HighlightRow(Playlistgrid.row, Playlistgrid, global.Highlightmore, True)
       prevHigLibRow = Playlistgrid.row
     Endif
   Endif
@@ -4479,7 +4479,7 @@ Public Sub MoveUpPlsBTN_Click()
     i = i + 1
   Wend
   If i > 0 Then
-    If GeneralOptions.HighlightCHK.value Then DeHighlightRow(prevHigLibRow, Playlistgrid)
+    If GeneralOptions.HighlightCHK.value Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
     MovingItems = True
     CutSelectedRows()
     howmanyselected = ClipboardRows.Count
@@ -4509,7 +4509,7 @@ Public Sub MoveDownPlsBTN_Click()
     i = i - 1
   Wend
   If i < (playlistgrid.Rows.count - 1) Then
-    If GeneralOptions.HighlightCHK.value Then DeHighlightRow(prevHigLibRow, Playlistgrid)
+    If GeneralOptions.HighlightCHK.value Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
     CutSelectedRows()
     howmanyselected = ClipboardRows.Count
     PasteSelectedRows(i - howmanyselected + 2)
@@ -6653,7 +6653,7 @@ Public Sub LibAndPlsHighlighter(Mygrid As Gridview)
   If CurHigRow <> PrevHigRow Then
     highlighting = True
     If (PrevHigRow >= 0) And (Mygrid.row <> PrevHigRow) Then Try DeHighlightRow(PrevHigRow, Mygrid)
-    If (CurHigRow >= 0) Then HighlightRow(CurHigRow, Mygrid, global.Highlightmore)
+    If (CurHigRow >= 0) Then Try HighlightRow(CurHigRow, Mygrid, global.Highlightmore)
     highlighting = False
   Endif
   If (CurHigRow >= 0) Then

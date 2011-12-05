@@ -52,9 +52,6 @@ __GL_SYNC_TO_VBLANK=1  /usr/local/bin/pagecache-management.sh -k 1024 mplayer -i
 
 
 
-...quando apri un mp3 dall'esterno, mostra due volte la cover ( si
-vede l'animazione 2 volte)
-
 controllare quai sono re reali dipendenze, cancellare gambas3 e
 installare xt7-git vedendo se parte
 
@@ -68,25 +65,13 @@ apro un altro profilo con dei filtri in catena
 ricarico il profilo e vedo i filtri
 
 
-------
-e inoltre runtime error se parto con il profilo con i fitri caricati:
-FMain.MainInit.948: Timer = 1.51645108358935
-FMain.HighlightRow.6695: Bad row index
-1: FMain.HighlightRow.6695
-2: FMain.LibraryGrid_Select.4282
-3: FMain.UpdateTabs.4365
-4: FMain.LeftSideTabs_Click.4404
-5: FMain.MainInit.950
-6: zzzFake.Start.20
-7: StartClass.main.4
----------------------------------------------------------------------------
-
 
 
 ***********************************************
 Risolti:
 ***********************************************
-
+FIX:    Catch row highlight errors
+FIX:    Don't display the cover twice on start
 CHANGE: Unminimize and raise main window when the player is invoked from outside
 FIX:    Immediataly update message logs after when using new settings
 CHANGE: Reload current profile now reloads all the forms

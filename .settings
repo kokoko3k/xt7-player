@@ -1,11 +1,9 @@
 [Breakpoints]
-Breakpoint[1]="FMain.1535"
-Breakpoint[2]="FMain.2110"
-Breakpoint[3]="FMain.2700"
-Breakpoint[4]="FMain.5149"
-Breakpoint[5]="FMain.5168"
-Breakpoint[6]="FMain.5170"
-Count=6
+Breakpoint[1]="FMain.2110"
+Breakpoint[2]="FMain.5149"
+Breakpoint[3]="FMain.5168"
+Breakpoint[4]="FMain.5170"
+Count=4
 
 [DebugWindow]
 Count=0
@@ -701,7 +699,8 @@ SearchString=True
 
 [OpenFile]
 File[1]=".src/Classi/StartClass.class:4.3"
-File[2]=".src/Form/FMain.class:751.68"
+Active=2
+File[2]=".src/Form/FMain.class:2700.28"
 File[3]=".src/Form/zzzFake.class:22.0"
 File[4]=".src/Classi/MplayerClass.class:289.10"
 File[5]=".src/Form/AudioForm.class:88.0"
@@ -710,9 +709,8 @@ File[7]=".src/Form/CoverManager.class:162.92"
 File[8]=".src/Form/FMain.form"
 File[9]=".src/Form/CoverManager.form"
 File[10]=".src/Form/AudioForm.form"
-File[11]="AA_ToDo:89.0"
-Active=12
-File[12]="CHANGELOG_GIT:12.31"
+File[11]="AA_ToDo:66.0"
+File[12]="CHANGELOG_GIT:5.7"
 Count=12
 
 [Watches]

@@ -2,10 +2,12 @@ Git changes:
 --------------------------------------
 
 Dec 05, 2011
+  FIX: Sometimes xt7 failed to switch profiles at runtime
+  FIX: Check if confdir exists before trying to make any parent folder
   FIX: Don't display the cover twice on start
   GITFIX: but still update meters!
   FIX: Catch row highlight errors
-  FIX: Check if confdir exists before trying to make any parent folder
+
 
 Dec 02, 2011
   CHANGE: Unminimize and raise main window when the player is invoked from outside

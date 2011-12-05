@@ -2144,6 +2144,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
     Try Last.mouse = Mouse.default
     ButtonPlay.enabled = True
     MenumediaExplorer.Enabled = True
+    Debug fmain.fullyloaded
     addhistory(mplayer.Media_FullPath)
   Endif
   
@@ -2536,7 +2537,11 @@ Public Sub UpdateStatusBar()
         Else
       MaxCacheHuman = mplayer.maxcache & "KB"
     Endif
-    fmain.caption = pretext & " [ cache: " & cachevalue & "%" & (" of: ") & MaxCacheHuman & " ]"
+    If maxcachehuman <> "0KB" Then 
+      fmain.caption = pretext & " [ cache: " & cachevalue & "%" & (" of: ") & MaxCacheHuman & " ]"
+        Else
+      fmain.caption = pretext & " [ cache: " & cachevalue & "% (Auto) ]"
+    Endif
     cachebar.value = cachevalue / 100
   Endif
   

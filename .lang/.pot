@@ -2981,7 +2981,7 @@ msgid ""
 " Mplayer Option: -speed"
 msgstr ""
 
-#: GeneralOptions.class:122 RealtimeForm.form:110
+#: GeneralOptions.class:122 RealtimeForm.form:108
 msgid "Audio Delay"
 msgstr ""
 
@@ -3483,57 +3483,53 @@ msgstr ""
 msgid "* Some subtitle controls only work when ass subtitles are disabled"
 msgstr ""
 
-#: RealtimeForm.form:60 VFiltersCfg.class:403 VideoEqualizer.form:84
-msgid "Brightness"
-msgstr ""
-
-#: RealtimeForm.form:72
+#: RealtimeForm.form:71
 msgid "Zoom"
 msgstr ""
 
-#: RealtimeForm.form:149
+#: RealtimeForm.form:146
 msgid "Subtitle delay"
 msgstr ""
 
-#: RealtimeForm.form:188
+#: RealtimeForm.form:184
 msgid "Subtitle scale"
 msgstr ""
 
-#: RealtimeForm.form:223
+#: RealtimeForm.form:218
 msgid "* Subtitle position"
 msgstr ""
 
-#: RealtimeForm.form:246 SubAndOsd.form:348
+#: RealtimeForm.form:241 SubAndOsd.form:348
 msgid ""
 "Mplayer option:\n"
 "-ass-force-style Alignment=<align>"
 msgstr ""
 
-#: RealtimeForm.form:253
+#: RealtimeForm.form:248
 msgid "* Subtitle alignment"
 msgstr ""
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:255
 msgid "0 - Top"
 msgstr ""
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:255
 msgid "1 - Center"
 msgstr ""
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:255
 msgid "2 - Bottom"
 msgstr ""
 
-#: RealtimeForm.form:274
+#: RealtimeForm.form:269
 msgid "FrameDrop"
 msgstr ""
 
-#: RealtimeForm.form:281
+#: RealtimeForm.form:276
 msgid "1 - Soft Framedropping"
 msgstr ""
 
-#: RealtimeForm.form:281
+#: RealtimeForm.form:276
 msgid "2 - Hard Framedropping"
 msgstr ""
 
@@ -4463,6 +4459,10 @@ msgstr ""
 
 #: VFiltersCfg.class:402
 msgid "Initial contrast (-x = negative image)"
+msgstr ""
+
+#: VFiltersCfg.class:403 VideoEqualizer.form:84
+msgid "Brightness"
 msgstr ""
 
 #: VFiltersCfg.class:403

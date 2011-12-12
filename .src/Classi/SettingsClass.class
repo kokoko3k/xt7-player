@@ -679,6 +679,11 @@ Public Sub Save(TheForm As Object, FileName As String)
           Try Print #ConfFile, ".Filter=" & TheObject.Filter
         Endif
         
+        If (TheObject Is Tabstrip) Then
+          Try Print #ConfFile, ".Orientation=" & TheObject.Orientation
+        Endif
+        
+        
         'gb3 bug with scrollviews visibility?
         If Not (TheObject Is ScrollView) Then Try Print #ConfFile, ".visible=" & TheObject.visible
         

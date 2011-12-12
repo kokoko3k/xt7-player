@@ -3360,8 +3360,8 @@ End
 Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibraryAndPls As Boolean = True, Optional WithCachedopts As Boolean = False)
   
   'Dim cachedopts As String
-  
-  If Not (global.initlatelyformsdone Or (DestinationProfile = "Factory_Defaults")) Then ReLoadCurrentProfile()
+  If (Not global.initearlyformsdone) Then InitEarlyForms()
+  If (DestinationProfile = "Factory_Defaults") Then ReLoadCurrentProfile()
   If WithCachedopts Then
     cachedopts = GetOptionsFromGui()
     cachedopts = cachedopts & " " & mplayer.AoAdditionalopts & " " & mplayer.AoDriver & " "

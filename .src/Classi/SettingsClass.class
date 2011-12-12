@@ -125,7 +125,7 @@ Private Sub Reconfigure(theObject As Object, TheSettings As String[], TheForm As
   Dim MyProperty, MyValue As String
   Dim Setting As String
   Dim layout As Integer[]
-  
+ 
   
   For Each Setting In TheSettings
     Try MyProperty = Split(Setting, "=")[0]
@@ -207,7 +207,9 @@ Private Sub Reconfigure(theObject As Object, TheSettings As String[], TheForm As
         If (MyValue <> TheObject.Dir) Then TheObject.Dir = MyValue
       Else If MyProperty = ".filter" Then
         If (MyValue <> TheObject.filter) Then TheObject.filter = MyValue
-        
+      Else If MyProperty = ".Orientation" Then
+        If (MyValue <> TheObject.orientation) Then TheObject.orientation = MyValue
+
       Endif
     Endif
   Next

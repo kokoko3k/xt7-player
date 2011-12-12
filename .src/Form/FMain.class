@@ -718,7 +718,6 @@ Public Sub SetStyle_early()
   Dim ButtonWovr, ButtonHovr, PaddingOvr, NumButtonsCPL, NumButtonsZoom As Integer
   Dim h1, h2, h3 As String
   
-  TabOrientation()
   
   If desktop.Height > 600 Then
     Maintoolbar.h = 32
@@ -5707,7 +5706,7 @@ Public Sub UpdateMenuTabVisibility()
   TabsonleftMenu = New Menu(Menutabs) As "tabsonleftmenu"
   TabsonLeftMenu.text = ("Use vertical tabs")
   TabsonleftMenu.Picture = picture["icon:/16/previous"]
-  TabsonleftMenu.checked = GeneralOptions.TabsOnLeftCHK.value
+
   HideShowTabsMenu = New Menu(menutabs)
   HideShowTabsMenu.name = "HideShowTabsMenu"
   HideShowTabsMenu.Text = "Hide/Show tabs"
@@ -5780,11 +5779,11 @@ End
 Private Sub TabOrientation()
   
   Dim tmplayout As Integer[] = hsplit1.layout
-  
-  If GeneralOptions.TabsOnLeftCHK.value Then 
-    Leftsidetabs.Orientation = 1
-  Else
-    Leftsidetabs.Orientation = 19
+  ' 
+  If Leftsidetabs.Orientation = 19 Then 
+     Leftsidetabs.Orientation = 1
+      Else
+     Leftsidetabs.Orientation = 19
   Endif
   
   If fmain.fullyloaded Then  'force an update
@@ -5796,10 +5795,7 @@ Private Sub TabOrientation()
 End
 
 Public Sub tabsonleftmenu_Click()
-  
-  GeneralOptions.TabsOnLeftCHK.value = Not GeneralOptions.TabsOnLeftCHK.value
-  TabOrientation()
-  
+  If fmain.fullyloaded Then TabOrientation()
 End
 
 Public Sub HideShowTabMenu_click()

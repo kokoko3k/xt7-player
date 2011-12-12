@@ -1059,16 +1059,6 @@
             Value = CheckBox.True
           }
         }
-        { NoParse41 HBox
-          MoveScaled(0,8,51,5)
-          Spacing = True
-          { TabsOnLeftCHK CheckBox
-            MoveScaled(0,0,47,4)
-            ToolTip = ("Enable/Disbale the start banner animation")
-            Expand = True
-            Text = ("Tabs on left (vertical)")
-          }
-        }
         { NoParse29 HBox
           MoveScaled(0,13,50,4)
           Spacing = True

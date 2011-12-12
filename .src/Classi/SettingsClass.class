@@ -373,7 +373,7 @@ Public Sub Load(TheForm As Object, Filename As String)
   If Upper(theform.name) <> "GENERALOPTIONS" Then
     Try TheForm.AlreadyLoaded = True
   Endif
-  
+  If Lower(TheForm.name) = "fmain" Then LoadLeftSideTabsVisibility(FileName)
 End
 
 Public Sub ReparentAndSort(TheForm As Object, settings As String[])

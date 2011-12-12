@@ -174,7 +174,6 @@ Public trayicon1 As Trayicon
 
 Public Sub InitTrayIcon()
   'Dim trayicon1 As New TrayIcon
-
   Try trayicon1 = New Trayicon
   If Error Then Debug "Cannot Init Trayicon"
   trayicon1.Picture = picture.Load("trayicon.png")

@@ -1,5 +1,14 @@
 Git changes:
 --------------------------------------
+Dec 06..13 2011
+  FIX:    Audio panel disappeared when playing, stop and playing again the same (audio) media.
+  CHANGE: Cosmetic changes to AudioVideoCodec Form
+  CHANGE: Removed tab orientation option in generaloptions
+  FIX:    Useless (and sometimes harmfull) reloading the current profile
+  FIX:    Restore left tabs visibility at startup
+
+
+
 Dec 06, 2011
   GITFIX: Removed some wrong tooltip messages
   FIX: Unknown symbol 'DvdminCacheCheckbox' in class 'GeneralOptions'.

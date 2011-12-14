@@ -430,25 +430,27 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim videoid As String
   Dim maxfmt As String
   
-  'fmts:
-  ' fmts[0] = 18 ' 480x360 h264
-  ' fmts[1] = 34 ' 640x360 h264
-  ' fmts[2] = 43 ' 854x480 vp8
-  ' fmts[3] = 35 ' 854x480 h264
-  ' fmts[4] = 45 ' 1280x720 vp8
-  ' fmts[5] = 22 ' 1280x720 h264
-  ' fmts[6] = 37 ' 1920x1080 h264
+    '37: mp4  [1080 x1920]
+    '22: mp4  [720 x1280]
+    '45: webm [720 x1280]
+    '35: flv  [480 x854]
+    '44: webm [480 x854]
+    '34: flv  [360 x640]
+    '18: mp4  [360 x640]
+    '43: webm [360 x640]
+    '5 : flv  [240 x400]
+
   
     'translate formats into numbers
   Select Case maxformat
     Case "1080p"
       maxfmt = 37
     Case "720p"
-      maxfmt = 45
+      maxfmt = 22
     Case "480p"
       maxfmt = 35
     Case "360p"
-      maxfmt = 34
+      maxfmt = 18
   End Select
   
   videoid = getvideoid(sourceurl)

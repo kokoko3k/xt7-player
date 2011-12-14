@@ -1,6 +1,8 @@
 Git changes:
 --------------------------------------
 Dec 06..13 2011
+  FIX:    Don't allow to change tab orientation when in fullscreen mode
+  CHANGE: Prefer mp4 over webm for youtube due to problems with webm/vp8 in ffmpeg/mplayer
   FIX:    Audio panel disappeared when playing, stop and playing again the same (audio) media.
   CHANGE: Cosmetic changes to AudioVideoCodec Form
   CHANGE: Removed tab orientation option in generaloptions

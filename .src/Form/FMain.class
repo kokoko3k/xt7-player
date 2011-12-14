@@ -5779,7 +5779,8 @@ End
 Private Sub TabOrientation()
   
   Dim tmplayout As Integer[] = hsplit1.layout
-  ' 
+  
+  If fmain.FullScreen Then Return 
   If Leftsidetabs.Orientation = 19 Then 
      Leftsidetabs.Orientation = 1
       Else

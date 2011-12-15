@@ -2714,12 +2714,11 @@ Public Sub OneSecTimer_Timer()
       overboost = 100
       'hide the cover
       If GeneralOptions.CoverCHK2.value Then ShowAudioPanel(False)
-      If fmain.FullScreen Then FullScreenSwitch()
       'Execute PostCommand
       ExecutePostCmd()
       'delete export file
       Try Kill mplayer.exportfile
-      
+      Wait
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) Then
         Debug "end of media reached, playing next video..."
         ButtonNext_Click()
@@ -2736,7 +2735,7 @@ Public Sub OneSecTimer_Timer()
         Playstarted = False
         UserStopped = False
         FirstPlay = False
-        'If fmain.FullScreen Then FullScreenSwitch()
+        If ((Not TogglePls.value) And fmain.FullScreen) Then FullScreenSwitch()
       Endif
     Endif
     Try Statusbar1.text = "Stopped"

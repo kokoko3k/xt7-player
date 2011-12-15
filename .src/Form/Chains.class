@@ -229,8 +229,8 @@ Public Sub OkBTN_Click()
 End
 
 
-Private previousvideofilters As String = ""
-Private previousaudiofilters As String = ""
+Private previousvideofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
+Private previousaudiofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
 
 
 Public Sub ApplyBTN_Click()

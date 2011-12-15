@@ -878,3 +878,15 @@ Public Sub ShowVmeterCHK_Click()
 End
 
 
+
+Public Sub notifyobj_Click()
+
+  global.ManageNotifies_click(Last)
+
+End
+
+Public Sub notifyobj_Change()
+
+  global.ManageNotifies_Change(Last)
+
+End

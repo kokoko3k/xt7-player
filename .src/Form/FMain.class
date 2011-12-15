@@ -2718,7 +2718,7 @@ Public Sub OneSecTimer_Timer()
       ExecutePostCmd()
       'delete export file
       Try Kill mplayer.exportfile
-      Wait
+
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) Then
         Debug "end of media reached, playing next video..."
         ButtonNext_Click()

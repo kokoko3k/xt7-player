@@ -60,7 +60,8 @@
           MoveScaled(0,1,51,4)
           ToolTip = ("If you zoomed-in a video, this will allow you to pan it with mouse-drag operation.\nWorks in full-screen mode only.")
           Spacing = True
-          { PanTagCHK CheckBox
+          { PanTagCHK CheckBox notifyobj
+            Name = "PanTagCHK"
             MoveScaled(1,1,49,4)
             Expand = True
             Text = ("Allow video panning via mouse-drag")
@@ -70,7 +71,8 @@
           MoveScaled(1,6,51,4)
           ToolTip = ("If your video card doesn't support brightness, gamma, contrast or hue settings,\nyou may want to try this (slower method) for video equalizer to work properly.\nNote that this does not conflict with configuration you explicitly set in eq2 and hue filters.")
           Spacing = True
-          { EqCHK CheckBox
+          { EqCHK CheckBox notifyobj
+            Name = "EqCHK"
             MoveScaled(1,1,49,4)
             Expand = True
             Text = ("Auto add eq2 and hue filters to video chain")
@@ -304,7 +306,8 @@
             AutoResize = True
             Text = ("Xt7 Player nice level")
           }
-          { NiceLevelSpinBox SpinBox
+          { NiceLevelSpinBox SpinBox notifyobj
+            Name = "NiceLevelSpinBox"
             MoveScaled(15,1,11,4)
             MinValue = -19
             MaxValue = 19
@@ -319,7 +322,8 @@
           MoveScaled(1,4,48,4)
           ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
           Spacing = True
-          { CacheCheckbox CheckBox
+          { CacheCheckbox CheckBox notifyobj
+            Name = "CacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label3 Label labelcheck
@@ -328,7 +332,8 @@
             AutoResize = True
             Text = ("Local file cache size (KB)")
           }
-          { CacheSpinBox SpinBox
+          { CacheSpinBox SpinBox notifyobj
+            Name = "CacheSpinBox"
             MoveScaled(29,1,11,4)
             MaxValue = 1048576
             Value = 1024
@@ -338,7 +343,8 @@
           MoveScaled(1,9,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
-          { CacheMinCheckbox CheckBox
+          { CacheMinCheckbox CheckBox notifyobj
+            Name = "CacheMinCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label18 Label labelcheck
@@ -347,7 +353,8 @@
             AutoResize = True
             Text = ("Start playback after filling")
           }
-          { CacheMinSpinboxFile SpinBox
+          { CacheMinSpinboxFile SpinBox notifyobj
+            Name = "CacheMinSpinboxFile"
             MoveScaled(24,1,8,4)
             MaxValue = 99
             Value = 1
@@ -394,7 +401,8 @@
             AutoResize = True
             Text = ("Audio CD Device")
           }
-          { CDDADeviceText ComboBox
+          { CDDADeviceText ComboBox notifyobj
+            Name = "CDDADeviceText"
             MoveScaled(17,0,25,4)
             Expand = True
             Text = ("Please, choose")
@@ -408,7 +416,8 @@
           MoveScaled(1,7,48,4)
           ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
           Spacing = True
-          { CDDACacheCheckbox CheckBox
+          { CDDACacheCheckbox CheckBox notifyobj
+            Name = "CDDACacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label4 Label labelcheck
@@ -417,7 +426,8 @@
             AutoResize = True
             Text = ("CD Cache size (KB)")
           }
-          { CDDACacheSpinBox SpinBox
+          { CDDACacheSpinBox SpinBox notifyobj
+            Name = "CDDACacheSpinBox"
             MoveScaled(26,0,11,4)
             MaxValue = 1048576
             Value = 1024
@@ -443,7 +453,8 @@
             AutoResize = True
             Text = ("DVD Device")
           }
-          { DVDDeviceText ComboBox
+          { DVDDeviceText ComboBox notifyobj
+            Name = "DVDDeviceText"
             MoveScaled(16,0,25,4)
             Expand = True
             Text = ("Please, choose")
@@ -457,7 +468,8 @@
           MoveScaled(1,6,48,4)
           ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
           Spacing = True
-          { DvdCacheCheckbox CheckBox
+          { DvdCacheCheckbox CheckBox notifyobj
+            Name = "DvdCacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label5 Label labelcheck
@@ -466,7 +478,8 @@
             AutoResize = True
             Text = ("Dvd Cache size (KB)")
           }
-          { DVDCacheSpinBox SpinBox
+          { DVDCacheSpinBox SpinBox notifyobj
+            Name = "DVDCacheSpinBox"
             MoveScaled(24,1,11,4)
             MaxValue = 1048576
             Value = 1024
@@ -476,7 +489,8 @@
           MoveScaled(0,11,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
-          { CacheMinCheckbox2 CheckBox
+          { CacheMinCheckbox2 CheckBox notifyobj
+            Name = "CacheMinCheckbox2"
             MoveScaled(1,0,3,4)
           }
           { Label20 Label labelcheck
@@ -485,7 +499,8 @@
             AutoResize = True
             Text = ("Start playback after filling")
           }
-          { DVDCacheMinSpinBox SpinBox
+          { DVDCacheMinSpinBox SpinBox notifyobj
+            Name = "DVDCacheMinSpinBox"
             MoveScaled(24,1,8,4)
             MaxValue = 99
             Value = 1
@@ -523,11 +538,13 @@
           MoveScaled(0,7,50,4)
           ToolTip = ("Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer.")
           Spacing = True
-          { HttpProxyCHK CheckBox
+          { HttpProxyCHK CheckBox notifyobj
+            Name = "HttpProxyCHK"
             MoveScaled(1,0,17,3)
             Text = ("Http proxy")
           }
-          { ProxyTextBox TextBox
+          { ProxyTextBox TextBox notifyobj
+            Name = "ProxyTextBox"
             MoveScaled(19,1,23,4)
             Expand = True
           }
@@ -536,7 +553,8 @@
           MoveScaled(0,10,48,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
-          { NetCacheCheckbox CheckBox
+          { NetCacheCheckbox CheckBox notifyobj
+            Name = "NetCacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label6 Label labelcheck
@@ -545,7 +563,8 @@
             AutoResize = True
             Text = ("Net Cache size (KB)")
           }
-          { NetCacheSpinBox SpinBox
+          { NetCacheSpinBox SpinBox notifyobj
+            Name = "NetCacheSpinBox"
             MoveScaled(23,1,11,4)
             MaxValue = 1048576
             Value = 1024
@@ -555,7 +574,8 @@
           MoveScaled(0,15,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
-          { NetminCacheCheckbox CheckBox
+          { NetminCacheCheckbox CheckBox notifyobj
+            Name = "NetminCacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label8 Label labelcheck
@@ -564,7 +584,8 @@
             AutoResize = True
             Text = ("Start playback after filling")
           }
-          { cacheminspinbox SpinBox
+          { cacheminspinbox SpinBox notifyobj
+            Name = "cacheminspinbox"
             MoveScaled(24,1,8,4)
             MaxValue = 99
             Value = 1
@@ -580,7 +601,8 @@
           MoveScaled(0,20,50,4)
           ToolTip = ("HINT: For youtube, enable this option and set 0.\n--\n If a seek is to be made to a position within <percentage> of the cache size from the current position, \nMPlayer will wait  for  the cache to be filled to this position rather than performing a stream seek (default: 50).\nMplayer option: -cache-seek-min <percentage>")
           Spacing = True
-          { NetseekCacheCheckbox CheckBox
+          { NetseekCacheCheckbox CheckBox notifyobj
+            Name = "NetseekCacheCheckbox"
             MoveScaled(1,0,3,4)
             Value = CheckBox.True
           }
@@ -590,7 +612,8 @@
             AutoResize = True
             Text = ("Minimum seek cache size")
           }
-          { cacheseekspinbox SpinBox
+          { cacheseekspinbox SpinBox notifyobj
+            Name = "cacheseekspinbox"
             MoveScaled(25,1,8,4)
           }
           { Label12 Label labelcheck
@@ -690,7 +713,8 @@
           MoveScaled(0,8,50,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
-          { dvbtCacheCheckbox CheckBox
+          { dvbtCacheCheckbox CheckBox notifyobj
+            Name = "dvbtCacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label14 Label labelcheck
@@ -699,7 +723,8 @@
             AutoResize = True
             Text = ("DVB-T Cache size (KB)")
           }
-          { dvbtCacheSpinBox SpinBox
+          { dvbtCacheSpinBox SpinBox notifyobj
+            Name = "dvbtCacheSpinBox"
             MoveScaled(23,1,11,4)
             MaxValue = 1048576
             Value = 1024
@@ -709,7 +734,8 @@
           MoveScaled(0,12,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
-          { dvbtminCacheCheckbox CheckBox
+          { dvbtminCacheCheckbox CheckBox notifyobj
+            Name = "dvbtminCacheCheckbox"
             MoveScaled(1,0,3,4)
           }
           { Label15 Label labelcheck
@@ -718,7 +744,8 @@
             AutoResize = True
             Text = ("Start playback after filling")
           }
-          { dvbtcacheminspinbox SpinBox
+          { dvbtcacheminspinbox SpinBox notifyobj
+            Name = "dvbtcacheminspinbox"
             MoveScaled(24,1,8,4)
             MaxValue = 99
             Value = 1
@@ -765,11 +792,13 @@
           MoveScaled(0,28,54,4)
           ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n")
           Spacing = True
-          { tsprobechk CheckBox
+          { tsprobechk CheckBox notifyobj
+            Name = "tsprobechk"
             MoveScaled(0,0,15,4)
             Text = ("tsprobe")
           }
-          { comboboxtsprobe ComboBox
+          { comboboxtsprobe ComboBox notifyobj
+            Name = "comboboxtsprobe"
             MoveScaled(14,0,22,3)
             List = [("64000"), ("128000"), ("256000"), ("512000"), ("1024000"), ("2048000"), ("4096000"), ("8192000")]
             Text = ("1024000")
@@ -816,7 +845,8 @@
             MoveScaled(36,0,4,4)
             Picture = Picture["icon:/16/clear"]
           }
-          { AudioLangList TextBox
+          { AudioLangList TextBox notifyobj
+            Name = "AudioLangList"
             MoveScaled(40,0,8,4)
             Expand = True
             Text = ("en,eng")
@@ -847,7 +877,8 @@
             MoveScaled(35,0,4,4)
             Picture = Picture["icon:/16/clear"]
           }
-          { SubLangList TextBox
+          { SubLangList TextBox notifyobj
+            Name = "SubLangList"
             MoveScaled(39,0,8,4)
             Expand = True
             Text = ("en,eng")
@@ -892,7 +923,8 @@
             AutoResize = True
             Text = ("Additional options")
           }
-          { NoParseAdditionalOptions TextBox
+          { NoParseAdditionalOptions TextBox notifyobj
+            Name = "NoParseAdditionalOptions"
             MoveScaled(17,1,26,3)
             Expand = True
           }

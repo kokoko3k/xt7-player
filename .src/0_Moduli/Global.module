@@ -841,28 +841,39 @@ End
 
 
 Public Sub dynaobj_change()
-  'dynamically objects are all on goup "dynapobj"
+  ManageNotifies_Change(Last)
+End
+
+Public Sub ManageNotifies_Change(LastObj As Object)
+  'dynamically created objects are all on group "dynaobj"
   'that way i can manage their changes
   'unvalidate cachedoptions and notify users that it needs to apply new settings
   Dim goon As Boolean = False
-  If (Last Is Checkbox) Or (Last Is Spinbox) Or (Last Is Floatspinbox) Or (Last Is Textbox) Then
+  If (LastObj Is Checkbox) Or (LastObj Is Spinbox) Or (LastObj Is Floatspinbox) Or (LastObj Is Textbox) Then
     goon = True
   Endif
-  If (Last Is Label) Or (Last Is Slider) Or (Last Is Combobox) Then
+  If (LastObj Is Label) Or (LastObj Is Slider) Or (LastObj Is Combobox) Then
     goon = True
   Endif
   If Not goon Then Return
-  NotifyChanges(Last)
+  NotifyChanges(LastObj)
 End
 
-Public Sub dynaobj_click()
+Public Sub ManageNotifies_click(LastObj As Object)
   Dim goon As Boolean = False
-  If (Last Is Checkbox) Or (Last Is Combobox) Then
+  If (LastObj Is Checkbox) Or (LastObj Is Combobox) Then
     goon = True
   Endif
   If Not goon Then Return
-  NotifyChanges(Last)
+  NotifyChanges(LastObj)
+
 End
+
+
+Public Sub dynaobj_click()
+  ManageNotifies_click(Last)
+End
+
 
 
 Public Sub NotifyChanges(obj As Object)

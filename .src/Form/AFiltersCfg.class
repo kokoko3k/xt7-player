@@ -362,6 +362,7 @@ End
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  AlreadyLoaded = True
 End
 
 Public Sub MenuSaveDefault_Click()

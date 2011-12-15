@@ -1564,7 +1564,17 @@ End
 Public Function GetOptionsFromGui() As String
   
   Dim GotOptions As String = ""
-  
+
+  'we need to load any form which hasn't been loaded yet,
+  'or else we'll only get factory defaults values.
+    Chains.FirstLoadIfNeeded()
+    XConfigureAudioDriver.FirstLoadIfNeeded()
+    XConfigureVideoDriver.FirstLoadIfNeeded()
+    AudioVideoCodecs.FirstLoadIfNeeded()
+    HotKeys.FirstLoadIfNeeded()
+    SubAndOsd.FirstLoadIfNeeded()
+    VideoEqualizer.FirstLoadIfNeeded()
+  '-----------------------------------------------------
   mplayer.VoDriver = XConfigureVideoDriver.ParsedVideoDriver()
   mplayer.AoDriver = XConfigureAudioDriver.ParsedAudioDriver()
   mplayer.AVcodecs = AudioVideoCodecs.Parse()

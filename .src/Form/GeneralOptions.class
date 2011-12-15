@@ -11,17 +11,18 @@ Public GuiPercent As Integer = 100
 
 Public UntranslatedTabNames As String[] = ["VIDEO", "AUDIO", "LIBRARY", "TWEAKS", "DVD", "NETWORK", "LANGUAGE", "MISC"]
 
-Public Sub Form_Open()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
+Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
-     Alreadyloaded = True
-     MenuLoadDefault_Click()
-     Me.Refresh
-     Wait 0.001
+    Alreadyloaded = True
+    MenuLoadDefault_Click()
+    Me.Refresh
+    Wait 0.001
   Endif
+End
 
-  'ME.center
+
+Public Sub Form_Open()
+  FirstLoadIfNeeded()
   Global.Center(Fmain, Me)
   SLangComboBox.visible = False
   ALangComboBox.visible = False
@@ -369,6 +370,8 @@ Public Function Parse(Optional WithDVD As Boolean = False) As String
 End
 
 Public Sub ApplyBTN_Click()
+  FMain.Apply
+  Wait 0.1
   'IF ((NOT FMain.mplayer.ProcessRunningOvr()) OR (Fmain.mplayer.paused)) OR (GeneralOptions.Tabstrip1.caption = ("Style")) THEN 'apply style changes only if mplayer is not running.
     FMain.SetStyle_early()
     FMain.SetStyle_later()
@@ -376,7 +379,6 @@ Public Sub ApplyBTN_Click()
     Fmain.UpdateSearchResults(Fmain.myplaylist, Fmain.PlaylistGrid, fmain.fullyloaded, fmain.SearchfieldPLS.text)
     global.AddUserExtensions(KnownExtensions.text)
   'ENDIF
-  FMain.Apply
   Last.mouse = mouse.default
 End
 
@@ -531,6 +533,7 @@ Public Sub MenuLoadDefault_Click()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
+  Alreadyloaded = True
 End
 
 

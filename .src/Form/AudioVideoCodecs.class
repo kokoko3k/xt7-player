@@ -31,18 +31,25 @@ Public Sub DCombos_Enter()
   Endif
 End
 
-Public Sub Form_Open()
+
+Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
      MenuLoadDefault_Click()
      Alreadyloaded = True
   Endif
-  'ME.center
+End
+
+
+
+Public Sub Form_Open()
+  FirstLoadIfNeeded()
   Global.Center(Fmain, Me)
 End
 
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  Alreadyloaded = True
 End
 
 Public Sub MenuSaveDefault_Click()

@@ -289,14 +289,16 @@ Public Sub ApplyBTN_Click()
   global.ResetApplyBtnColor()
 End
 
-Public Sub Form_Open()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
-    If Not AlreadyLoaded Then 
-     Alreadyloaded = True
-     MenuLoadDefault_Click()
+Public Sub FirstLoadIfNeeded()
+  If Not AlreadyLoaded Then 
+    Alreadyloaded = True
+    MenuLoadDefault_Click()
   Endif
-  
+End
+
+
+Public Sub Form_Open()
+  FirstLoadIfNeeded()
   If ((FontColorBox.color = Color.black) And (borderColorBox.color = Color.black) And (shadowColorbtn.color = Color.black)) Then FontColorBox.color = Color.white
   'ME.center
   Global.Center(Fmain, Me)
@@ -331,6 +333,7 @@ End
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  Alreadyloaded = True
 End
 
 Public Sub MenuSaveDefault_Click()

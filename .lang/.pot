@@ -333,7 +333,7 @@ msgstr ""
 msgid "mf://"
 msgstr ""
 
-#: AddUriForm.form:51 FMain.class:6409
+#: AddUriForm.form:51 FMain.class:6419
 msgid "cdda://"
 msgstr ""
 
@@ -497,12 +497,12 @@ msgstr ""
 msgid "NewProfile"
 msgstr ""
 
-#: AskName.form:24 ChooseAspect.form:28 FMain.class:5975 MyAskName.form:19
+#: AskName.form:24 ChooseAspect.form:28 FMain.class:5985 MyAskName.form:19
 #: TextDialog.form:19
 msgid "Cancel"
 msgstr ""
 
-#: AskName.form:30 ChooseAspect.form:22 FMain.class:5250 MyAskName.form:25
+#: AskName.form:30 ChooseAspect.form:22 FMain.class:5260 MyAskName.form:25
 #: TextDialog.form:25 TranslationNeeded.form:62
 msgid "Ok"
 msgstr ""
@@ -543,7 +543,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: AudioForm.form:325 FMain.class:6404 Searchfields.form:104
+#: AudioForm.form:325 FMain.class:6414 Searchfields.form:104
 msgid "Length"
 msgstr ""
 
@@ -781,30 +781,30 @@ msgstr ""
 msgid "ScaleTempo"
 msgstr ""
 
-#: Chains.class:127
+#: Chains.class:130
 msgid "It seems that you want to use the filter: \n"
 msgstr ""
 
-#: Chains.class:128
+#: Chains.class:131
 msgid ""
 "\n"
 "Which seems not to be supported by your mplayer.\n"
 " "
 msgstr ""
 
-#: Chains.class:129
+#: Chains.class:132
 msgid ""
 "\n"
 "Try to remove it from tha chain or to use another mplayer."
 msgstr ""
 
-#: Chains.class:130
+#: Chains.class:133
 msgid ""
 "\n"
 "The Playback will probably fail."
 msgstr ""
 
-#: Chains.class:138
+#: Chains.class:141
 msgid "Let's see..."
 msgstr ""
 
@@ -1832,344 +1832,344 @@ msgstr ""
 msgid " channels"
 msgstr ""
 
-#: FMain.class:1676
+#: FMain.class:1686
 msgid "Don't display subtitles"
 msgstr ""
 
-#: FMain.class:1727
+#: FMain.class:1737
 msgid "Chapters:"
 msgstr ""
 
-#: FMain.class:1736
+#: FMain.class:1746
 msgid "at"
 msgstr ""
 
-#: FMain.class:1755
+#: FMain.class:1765
 msgid "Chapters"
 msgstr ""
 
-#: FMain.class:1758
+#: FMain.class:1768
 msgid "Chapter"
 msgstr ""
 
-#: FMain.class:1764
+#: FMain.class:1774
 msgid "Angles"
 msgstr ""
 
-#: FMain.class:1767
+#: FMain.class:1777
 msgid "Angle"
 msgstr ""
 
-#: FMain.class:2040
+#: FMain.class:2050
 msgid "Unable to get the real stream url"
 msgstr ""
 
-#: FMain.class:2548
+#: FMain.class:2558
 msgid " of: "
 msgstr ""
 
-#: FMain.class:2650
+#: FMain.class:2660
 msgid "dvb://*"
 msgstr ""
 
-#: FMain.class:2651
+#: FMain.class:2661
 msgid "http://*shoutcast*"
 msgstr ""
 
-#: FMain.class:2668
+#: FMain.class:2678
 msgid "* Youtube subtitles available *"
 msgstr ""
 
-#: FMain.class:2888
+#: FMain.class:2898
 msgid "GotIt!"
 msgstr ""
 
-#: FMain.class:3346
+#: FMain.class:3356
 msgid ""
 "You can't modify the current profile\n"
 "because it is the Factory defaults one"
 msgstr ""
 
-#: FMain.class:3346
+#: FMain.class:3356
 msgid "Switch to ''default'' profile and save"
 msgstr ""
 
-#: FMain.class:3346
+#: FMain.class:3356
 msgid "Don't save"
 msgstr ""
 
-#: FMain.class:3355
+#: FMain.class:3365
 msgid "Error while saving default settings"
 msgstr ""
 
-#: FMain.class:3393
+#: FMain.class:3403
 msgid ""
 "Are you sure you want to reset the default profile\n"
 "to factory values?"
 msgstr ""
 
-#: FMain.class:3393
+#: FMain.class:3403
 msgid "Don't Reset"
 msgstr ""
 
-#: FMain.class:3393
+#: FMain.class:3403
 msgid "Reset"
 msgstr ""
 
-#: FMain.class:3396
+#: FMain.class:3406
 msgid "There was a problem while deleting"
 msgstr ""
 
-#: FMain.class:3398
+#: FMain.class:3408
 msgid ""
 "Default profile has been set to factory values.\n"
 "Restart is needed."
 msgstr ""
 
-#: FMain.class:3503
+#: FMain.class:3513
 msgid "Video snaps to borders"
 msgstr ""
 
-#: FMain.class:4167
+#: FMain.class:4177
 msgid "Do you also want to remove non existent files from library?"
 msgstr ""
 
-#: FMain.class:4167
+#: FMain.class:4177
 msgid "Remove"
 msgstr ""
 
-#: FMain.class:4167
+#: FMain.class:4177
 msgid "Don't remove"
 msgstr ""
 
-#: FMain.class:4284
+#: FMain.class:4294
 msgid "Selected: "
 msgstr ""
 
-#: FMain.class:4633
+#: FMain.class:4643
 msgid "Are you sure you want to clear your library?"
 msgstr ""
 
-#: FMain.class:4633
+#: FMain.class:4643
 msgid "Don't clear my library"
 msgstr ""
 
-#: FMain.class:4633
+#: FMain.class:4643
 msgid "Clear my library"
 msgstr ""
 
-#: FMain.class:4642
+#: FMain.class:4652
 msgid "Are you sure you want to clear the Playlist?"
 msgstr ""
 
-#: FMain.class:4642
+#: FMain.class:4652
 msgid "Don't clear the playlist"
 msgstr ""
 
-#: FMain.class:4642
+#: FMain.class:4652
 msgid "Clear the playlist"
 msgstr ""
 
-#: FMain.class:4892
+#: FMain.class:4902
 msgid "Are you sure you want to delete selected item(s) from disk?"
 msgstr ""
 
-#: FMain.class:4892
+#: FMain.class:4902
 msgid "Don't Delete"
 msgstr ""
 
-#: FMain.class:4892 GeneralOptions.class:483 ProfileManager.class:38
+#: FMain.class:4902 GeneralOptions.class:485 ProfileManager.class:38
 msgid "Yes, Delete"
 msgstr ""
 
-#: FMain.class:5079
+#: FMain.class:5089
 msgid "iso files"
 msgstr ""
 
-#: FMain.class:5079
+#: FMain.class:5089
 msgid "All files"
 msgstr ""
 
-#: FMain.class:5250
+#: FMain.class:5260
 msgid "There was an error while saving the playlist"
 msgstr ""
 
-#: FMain.class:5320
+#: FMain.class:5330
 msgid ""
 "\n"
 "so you are going to set a cover for this particular file/stream"
 msgstr ""
 
-#: FMain.class:5321
+#: FMain.class:5331
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr ""
 
-#: FMain.class:5325
+#: FMain.class:5335
 msgid "Another cover search is in progress, please wait for it to finish!"
 msgstr ""
 
-#: FMain.class:5453
+#: FMain.class:5463
 msgid "Please, disable random playing first!"
 msgstr ""
 
-#: FMain.class:5642
+#: FMain.class:5652
 msgid "Choose a destination file"
 msgstr ""
 
-#: FMain.class:5671
+#: FMain.class:5681
 msgid "New Flash(tm) video detected: \n"
 msgstr ""
 
-#: FMain.class:5671
+#: FMain.class:5681
 msgid ""
 "\n"
 "  Would you like to play it now in Xt7-Player?"
 msgstr ""
 
-#: FMain.class:5675
+#: FMain.class:5685
 msgid "Play now"
 msgstr ""
 
-#: FMain.class:5675
+#: FMain.class:5685
 msgid "Don't Play"
 msgstr ""
 
-#: FMain.class:5706
+#: FMain.class:5716
 msgid "Use vertical tabs"
 msgstr ""
 
-#: FMain.class:5722
+#: FMain.class:5732
 msgid "Show"
 msgstr ""
 
-#: FMain.class:5866
+#: FMain.class:5876
 msgid "You can't delete the current profile!"
 msgstr ""
 
-#: FMain.class:5869 ProfileManager.class:38
+#: FMain.class:5879 ProfileManager.class:38
 msgid "Are you sure you want to delete "
 msgstr ""
 
-#: FMain.class:5869 FlashClass.class:20 GeneralOptions.class:483
+#: FMain.class:5879 FlashClass.class:20 GeneralOptions.class:485
 #: ProfileManager.class:38
 msgid "Don't delete"
 msgstr ""
 
-#: FMain.class:5875
+#: FMain.class:5885
 msgid "This is a read-only profile"
 msgstr ""
 
-#: FMain.class:5956
+#: FMain.class:5966
 msgid "Enter the new profile name"
 msgstr ""
 
-#: FMain.class:5975
+#: FMain.class:5985
 msgid ""
 "You are going to overwrite the selected profile\n"
 "with the current settings."
 msgstr ""
 
-#: FMain.class:5975
+#: FMain.class:5985
 msgid "I know, proceed"
 msgstr ""
 
-#: FMain.class:6012
+#: FMain.class:6022
 msgid "Enter a name for the new profile:"
 msgstr ""
 
-#: FMain.class:6058
+#: FMain.class:6068
 msgid ""
 "No hotkeys defined for dvd navigation mode\n"
 "Please configure dvdnav hotkeys first."
 msgstr ""
 
-#: FMain.class:6128
+#: FMain.class:6138
 msgid "Error reading from shoutcast server"
 msgstr ""
 
-#: FMain.class:6176
+#: FMain.class:6186
 msgid "How do you want to add?"
 msgstr ""
 
-#: FMain.class:6176
+#: FMain.class:6186
 msgid "Add quickly"
 msgstr ""
 
-#: FMain.class:6176
+#: FMain.class:6186
 msgid "Get Stream info"
 msgstr ""
 
-#: FMain.class:6184
+#: FMain.class:6194
 msgid "Error while adding one or more items"
 msgstr ""
 
-#: FMain.class:6184
+#: FMain.class:6194
 msgid "Damn!"
 msgstr ""
 
-#: FMain.class:6363
+#: FMain.class:6373
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr ""
 
-#: FMain.class:6392
+#: FMain.class:6402
 msgid "Please, wait while getting disc information"
 msgstr ""
 
-#: FMain.class:6403 Searchfields.form:97
+#: FMain.class:6413 Searchfields.form:97
 msgid "Track"
 msgstr ""
 
-#: FMain.class:6415
+#: FMain.class:6425
 msgid "Error, failed to get disc information"
 msgstr ""
 
-#: FMain.class:6472
+#: FMain.class:6482
 msgid "Error refreshing the feed"
 msgstr ""
 
-#: FMain.class:6517
+#: FMain.class:6527
 msgid "Enter a new podcast url"
 msgstr ""
 
-#: FMain.class:6521
+#: FMain.class:6531
 msgid "Error adding new feed"
 msgstr ""
 
-#: FMain.class:6551
+#: FMain.class:6561
 msgid "Cannot delete child items!"
 msgstr ""
 
-#: FMain.class:6576
+#: FMain.class:6586
 msgid "Error: Cannot get current item"
 msgstr ""
 
-#: FMain.class:6800
+#: FMain.class:6810
 msgid "Please, disable playlist shutdown option first!"
 msgstr ""
 
-#: FMain.class:6993
+#: FMain.class:7003
 msgid ""
 "Are you sure you want to\n"
 "recursively add this directory?"
 msgstr ""
 
-#: FMain.class:7082
+#: FMain.class:7092
 msgid "There was an error while trying to delete the item"
 msgstr ""
 
-#: FMain.class:7247
+#: FMain.class:7257
 msgid "Would you like to go to the video homepage?"
 msgstr ""
 
-#: FMain.class:7247
+#: FMain.class:7257
 msgid "Yes, Go to Youtube"
 msgstr ""
 
-#: FMain.class:7247
+#: FMain.class:7257
 msgid "No, thanks"
 msgstr ""
 
-#: FMain.class:7635
+#: FMain.class:7645
 msgid ""
 "Roll Your mouse wheel over the button\n"
 "to change panscan or Setup some hotkeys."
@@ -2900,15 +2900,15 @@ msgstr ""
 msgid "Audio panel font and font color:"
 msgstr ""
 
-#: GeneralOptions.class:90
+#: GeneralOptions.class:91
 msgid "resolution"
 msgstr ""
 
-#: GeneralOptions.class:97
+#: GeneralOptions.class:98
 msgid "Mixer Channel"
 msgstr ""
 
-#: GeneralOptions.class:98
+#: GeneralOptions.class:99
 msgid ""
 "This  option  will  tell MPlayer to use a different channel \n"
 "for controlling volume than the default PCM. \n"
@@ -2924,11 +2924,11 @@ msgid ""
 " Mplayer Option:  <mixer line>[,mixer index] (-ao oss and -ao alsa only)"
 msgstr ""
 
-#: GeneralOptions.class:102
+#: GeneralOptions.class:103
 msgid "Output Channels"
 msgstr ""
 
-#: GeneralOptions.class:103
+#: GeneralOptions.class:104
 msgid ""
 "Request the number of playback channels (default: 2).\n"
 " This is usually only important when playing videos with AC-3 audio (like "
@@ -2936,25 +2936,25 @@ msgid ""
 " Mplayer Option: -channels"
 msgstr ""
 
-#: GeneralOptions.class:107
+#: GeneralOptions.class:108
 msgid "Software Volume control"
 msgstr ""
 
-#: GeneralOptions.class:107
+#: GeneralOptions.class:108
 msgid "Required by Maximum Amplification"
 msgstr ""
 
-#: GeneralOptions.class:108
+#: GeneralOptions.class:109
 msgid ""
 "Force the use of the software mixer, instead of using the sound card mixer.\n"
 " Mplayer Option: -softvol"
 msgstr ""
 
-#: GeneralOptions.class:112
+#: GeneralOptions.class:113
 msgid "Maximum Amplification"
 msgstr ""
 
-#: GeneralOptions.class:113
+#: GeneralOptions.class:114
 msgid ""
 "Set the maximum amplification level in percent (default: 110).\n"
 " A value of 200 will allow you to adjust the volume up to a maximum of "
@@ -2962,115 +2962,115 @@ msgid ""
 " Mplayer Option: -softvol-max"
 msgstr ""
 
-#: GeneralOptions.class:117
+#: GeneralOptions.class:118
 msgid "Initial speed"
 msgstr ""
 
-#: GeneralOptions.class:117
+#: GeneralOptions.class:118
 msgid "Set initial playback tempo/pitch"
 msgstr ""
 
-#: GeneralOptions.class:118
+#: GeneralOptions.class:119
 msgid ""
 "#-12..#+12 are semitones.\n"
 " See also 'speed' under 'scaletempo' filter in chains window.\n"
 " Mplayer Option: -speed"
 msgstr ""
 
-#: GeneralOptions.class:122 RealtimeForm.form:108
+#: GeneralOptions.class:123 RealtimeForm.form:108
 msgid "Audio Delay"
 msgstr ""
 
-#: GeneralOptions.class:122
+#: GeneralOptions.class:123
 msgid "Seconds"
 msgstr ""
 
-#: GeneralOptions.class:123
+#: GeneralOptions.class:124
 msgid ""
 "Use it to correct constant Audio/video desync issues\n"
 " Mplayer Option: -delay"
 msgstr ""
 
-#: GeneralOptions.class:127
+#: GeneralOptions.class:128
 msgid "Rebuild Index if necessary"
 msgstr ""
 
-#: GeneralOptions.class:127
+#: GeneralOptions.class:128
 msgid "Use it to repair broken files"
 msgstr ""
 
-#: GeneralOptions.class:128
+#: GeneralOptions.class:129
 msgid ""
 "\n"
 " Mplayer Option: -idx"
 msgstr ""
 
-#: GeneralOptions.class:132
+#: GeneralOptions.class:133
 msgid "Always rebuild Index"
 msgstr ""
 
-#: GeneralOptions.class:133
+#: GeneralOptions.class:134
 msgid ""
 "\n"
 " Mplayer Option: -forceidx"
 msgstr ""
 
-#: GeneralOptions.class:137
+#: GeneralOptions.class:138
 msgid "Non-interleaved AVI  parser"
 msgstr ""
 
-#: GeneralOptions.class:137
+#: GeneralOptions.class:138
 msgid "Fixes  playback  of some bad AVI files"
 msgstr ""
 
-#: GeneralOptions.class:143
+#: GeneralOptions.class:144
 msgid "aspect"
 msgstr ""
 
-#: GeneralOptions.class:144
+#: GeneralOptions.class:145
 msgid ""
 "Override movie aspect ratio, in case aspect information\n"
 " is incorrect or missing in the file being played.\n"
 " Mplayer Option: -aspect"
 msgstr ""
 
-#: GeneralOptions.class:149
+#: GeneralOptions.class:150
 msgid "Framerate override"
 msgstr ""
 
-#: GeneralOptions.class:150
+#: GeneralOptions.class:151
 msgid ""
 "Force video Framerate.\n"
 " Will probably cause Audio/Video desync.\n"
 " Mplayer Option: -fps"
 msgstr ""
 
-#: GeneralOptions.class:154
+#: GeneralOptions.class:155
 msgid "Gradually adjusts the A/V sync based on audio delay measurements."
 msgstr ""
 
-#: GeneralOptions.class:155
+#: GeneralOptions.class:156
 msgid ""
 "Try  -autosync 30 to smooth out problems with sound drivers which do not "
 "implement a perfect audio delay measurement.\n"
 " [..] Mplayer Option: -autosync"
 msgstr ""
 
-#: GeneralOptions.class:159
+#: GeneralOptions.class:160
 msgid "maximum A-V sync correction per frame (in seconds)"
 msgstr ""
 
-#: GeneralOptions.class:160
+#: GeneralOptions.class:161
 msgid ""
 "maximum A-V sync correction per frame (in seconds)\n"
 " mplayer options: -mc"
 msgstr ""
 
-#: GeneralOptions.class:165
+#: GeneralOptions.class:166
 msgid "Use it if your kernel timing is imprecise"
 msgstr ""
 
-#: GeneralOptions.class:166
+#: GeneralOptions.class:167
 msgid ""
 "Time frames by repeatedly checking the current time\n"
 " instead of asking the kernel to wake up MPlayer at the correct time.\n"
@@ -3080,61 +3080,61 @@ msgid ""
 " Mplayer Option: -softsleep"
 msgstr ""
 
-#: GeneralOptions.class:172
+#: GeneralOptions.class:173
 msgid "Send cookies"
 msgstr ""
 
-#: GeneralOptions.class:172
+#: GeneralOptions.class:173
 msgid "Only valid for http:// Uries"
 msgstr ""
 
-#: GeneralOptions.class:173
+#: GeneralOptions.class:174
 msgid ""
 "Send cookies to websites when playing http:// Uries,\n"
 " Cookie file must be in Netscape format.\n"
 " Mplayer Option: -cookies"
 msgstr ""
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:178
 msgid "prefer-ipv4"
 msgstr ""
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:178
 msgid "try ipv4 first"
 msgstr ""
 
-#: GeneralOptions.class:178
+#: GeneralOptions.class:179
 msgid ""
 "Use IPv4 on network connections.  Falls back on IPv6 automatically.\n"
 "-prefer-ipv4 (network only)"
 msgstr ""
 
-#: GeneralOptions.class:182
+#: GeneralOptions.class:183
 msgid "location"
 msgstr ""
 
-#: GeneralOptions.class:183
+#: GeneralOptions.class:184
 msgid ""
 "Specify cookies.txt location\n"
 " Mplayer Option: -cookies-file"
 msgstr ""
 
-#: GeneralOptions.class:187
+#: GeneralOptions.class:188
 msgid "(MPEG-1/2 and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:188
+#: GeneralOptions.class:189
 msgid ""
 "Number of threads to use for decoding.\n"
 "You may need the 'mt' version of mplayer and ffmmpeg\n"
 "Mplayer Option: -lavdopts threads=n"
 msgstr ""
 
-#: GeneralOptions.class:193
+#: GeneralOptions.class:194
 msgid "Lowres (lavdopts)"
 msgstr ""
 
-#: GeneralOptions.class:194
+#: GeneralOptions.class:195
 msgid ""
 "Decode at lower resolutions.  Low resolution decoding\n"
 "is not supported by all codecs, and it will  often result\n"
@@ -3143,11 +3143,11 @@ msgid ""
 " Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:198
+#: GeneralOptions.class:199
 msgid "(MPEG-2, MPEG-4, and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:199
+#: GeneralOptions.class:200
 msgid ""
 "Enable optimizations which do not comply to the specification\n"
 "and might potentially cause problems, like simpler dequantization,\n"
@@ -3157,11 +3157,11 @@ msgid ""
 " Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:203
+#: GeneralOptions.class:204
 msgid "(H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:204
+#: GeneralOptions.class:205
 msgid ""
 "Skips the loop filter (AKA deblocking) during H.264 decoding.\n"
 "this has a worse effect on quality\n"
@@ -3170,11 +3170,11 @@ msgid ""
 " Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:208
+#: GeneralOptions.class:209
 msgid "libmpeg2 and libavcodec codecs only"
 msgstr ""
 
-#: GeneralOptions.class:209
+#: GeneralOptions.class:210
 msgid ""
 "Disable drawing video by 16-pixel height slices/bands,\n"
 "instead draws the whole frame in a single  run.\n"
@@ -3182,54 +3182,54 @@ msgid ""
 " Mplayer Option: -noslices"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "Scaler type (-sws)"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "0 - fast bilinear"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "1 - bilinear"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "2 - bicubic (good quality) (default)"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "3 - experimental"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "4 - nearest neighbor (bad quality)"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "5 - area"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "6 - luma bicubic/chroma bilinear"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "10 - natural bicubic spline"
 msgstr ""
 
-#: GeneralOptions.class:214
+#: GeneralOptions.class:215
 msgid ""
 "Specify the software scaler algorithm to be used, Some -sws options are "
 "tunable.\n"
 "The description of the scale video filter has further information."
 msgstr ""
 
-#: GeneralOptions.class:218
+#: GeneralOptions.class:219
 msgid "Skip displaying some frames to maintain A/V sync"
 msgstr ""
 
-#: GeneralOptions.class:219
+#: GeneralOptions.class:220
 msgid ""
 "Skip displaying some frames to maintain A/V sync on slow systems.\n"
 "Video filters are not applied to such frames.\n"
@@ -3237,43 +3237,43 @@ msgid ""
 " Mplayer Option: -framedrop"
 msgstr ""
 
-#: GeneralOptions.class:223 VFiltersCfg.class:426
+#: GeneralOptions.class:224 VFiltersCfg.class:426
 msgid "Field dominance"
 msgstr ""
 
-#: GeneralOptions.class:223
+#: GeneralOptions.class:224
 msgid "-1=auto (default)"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:225
 msgid ""
 "Set first field for interlaced content\n"
 " Mplayer Option: -field-dominance"
 msgstr ""
 
-#: GeneralOptions.class:228
+#: GeneralOptions.class:229
 msgid "Limit Drive Speed to"
 msgstr ""
 
-#: GeneralOptions.class:228
+#: GeneralOptions.class:229
 msgid "X"
 msgstr ""
 
-#: GeneralOptions.class:229
+#: GeneralOptions.class:230
 msgid ""
 "Try to limit DVD speed. 0 means no change.\n"
 "Note that you need write access to dvd device\n"
 " Mplayer Option: -dvd-speed"
 msgstr ""
 
-#: GeneralOptions.class:234
+#: GeneralOptions.class:235
 msgid ""
 "Try to limit cdrom speed. 0 means no change.\n"
 "Note that you need write access to dvd device\n"
 " Mplayer Option: -cdda speed=x"
 msgstr ""
 
-#: GeneralOptions.class:483
+#: GeneralOptions.class:485
 msgid "Are you sure you want to delete selected items?"
 msgstr ""
 
@@ -3345,33 +3345,33 @@ msgstr ""
 msgid "Global Hotkeys"
 msgstr ""
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "The hotkey you entered is already defined for "
 msgstr ""
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Delete old "
 msgstr ""
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Delete new "
 msgstr ""
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Assign nevertheless"
 msgstr ""
 
-#: HotKeys.class:518 SubAndOsd.class:351
+#: HotKeys.class:520 SubAndOsd.class:354
 msgid ""
 "This will save this window settings\n"
 " to all profiles found but the 'Factory_defaults' one"
 msgstr ""
 
-#: HotKeys.class:518 SubAndOsd.class:351
+#: HotKeys.class:520 SubAndOsd.class:354
 msgid "Proceed"
 msgstr ""
 
-#: HotKeys.class:518
+#: HotKeys.class:520
 msgid "Don't"
 msgstr ""
 
@@ -4041,7 +4041,7 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: SubAndOsd.class:351
+#: SubAndOsd.class:354
 msgid "Don't do it"
 msgstr ""
 
@@ -4574,7 +4574,7 @@ msgstr ""
 msgid "Auto apply those values"
 msgstr ""
 
-#: VideoEqualizer.class:58
+#: VideoEqualizer.class:68
 msgid ""
 "If equalizer doesn't work, you can try to:\n"
 "\n"

@@ -10,11 +10,15 @@ Public Sub btnCancel_Click()
   Me.Close
 End
 
-Public Sub Form_Open()
+Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
-  Endif
+  Endif  
+End
+
+Public Sub Form_Open()
+  FirstLoadIfNeeded()
   DynaGui.AllowedContainers = ["DriversPanel"]
   Dynagui.ConstrainWidth = CustomBTN.Width
   Dynagui.ConstrainHeight = CustomBTN.Height
@@ -223,6 +227,7 @@ End
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  Alreadyloaded = True
 End
 
 Public Sub MenuSaveDefault_Click()

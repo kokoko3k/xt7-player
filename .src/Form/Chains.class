@@ -67,11 +67,8 @@ Public Sub Audiofilterobj_Click()
    global.FromChains = True
 End
 
-
-Public Sub Form_Open()
-  ' Debug "Cached Options unvalidated"
-  ' fmain.cachedopts = ""
-  If Not AlreadyLoaded Then 
+Public Sub FirstLoadIfNeeded()
+    If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
      VFiltersCfg.AlreadyLoaded = True
@@ -79,6 +76,12 @@ Public Sub Form_Open()
      AFiltersCfg.AlreadyLoaded = True
      AFiltersCfg.MenuLoadDefault_Click()
   Endif
+End
+
+
+Public Sub Form_Open()
+
+  FirstLoadIfNeeded()
 
   Global.Center(Fmain, Me)
   DynaGuiVideo.AllowedContainers = ["VideoFiltersBox", "VideoChainBox"]
@@ -267,9 +270,11 @@ End
 
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
-  Me.hide
+  Dim wasvisible As Boolean = Me.Visible
+  If wasvisible Then Me.hide
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
-  Me.show
+  Alreadyloaded = True
+  If wasvisible Then Me.show
 End
 
 Public Sub MenuSaveDefault_Click()

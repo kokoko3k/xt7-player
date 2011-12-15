@@ -6,6 +6,7 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  AlreadyLoaded = True
 End
 
 Public Sub MenuSaveDefault_Click()
@@ -30,7 +31,16 @@ Public Sub MenuSaveToAll_Click()
   Endif
 End
 
+Public Sub FirstLoadIfNeeded()
+  If Not AlreadyLoaded Then 
+    Alreadyloaded = True
+    MenuLoadDefault_Click()
+  Endif
+End
+
+
 Public Sub Form_Open()
+  FirstLoadIfNeeded()
   Global.Center(Fmain, Me)
 End
 

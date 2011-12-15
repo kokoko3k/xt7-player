@@ -1981,10 +1981,21 @@ Public Sub ExportDbusProperties()
   DbusProperties.CreationDate = mplayer.Media_CreationDate 
 End
 
+Public Function VmetersOptionsAndInitIfNeeded() As String
+  If GeneralOptions.ShowVmeterCHK.value Then
+    If Not (global.IsVideoFile(mplayer.Media_FullPath)) Then
+      mplayer.exportfile = exportfilespath & Int(Rnd(1, 9999))
+      Return " -af-add export=" & mplayer.exportfile & ":" & GeneralOptions.RmsSizeSpinBox.value
+      audioform.BarBox.visible = True
+  Else
+      audioform.BarBox.visible = False
+    Endif
+      Else
+    audioform.BarBox.visible = False
+  Endif
+End
 
 Public needytcookie As Boolean = False
-
-
 
 Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "", Optional quick As Boolean = False, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
   
@@ -2078,19 +2089,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   
   'If global.initlatelyformsdone Then otheroptions = otheroptions & " " & SetRightCache()
   otheroptions = otheroptions & " " & SetRightCache()
-  If GeneralOptions.ShowVmeterCHK.value Then
-    If Not (global.IsVideoFile(mplayer.Media_FullPath)) Then
-      mplayer.exportfile = exportfilespath & Int(Rnd(1, 9999))
-      'otheroptions = otheroptions & " " & " -af-add export=/tmp/export:" & GeneralOptions.RmsSizeSpinBox.value
-      otheroptions = otheroptions & " " & " -af-add export=" & mplayer.exportfile & ":" & GeneralOptions.RmsSizeSpinBox.value
-      audioform.BarBox.visible = True
-        Else
-      audioform.BarBox.visible = False
-    Endif
-      Else
-    audioform.BarBox.visible = False
-  Endif
-  
+  OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
   
   firstplay = False
@@ -3431,7 +3430,7 @@ Public Sub Apply()
   VEqHasBeenSet = False
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
-    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache())
+    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded())
     aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect

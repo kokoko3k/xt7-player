@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Dec 19 2011
   FIX:    Init Audio and Video filters window before trying to load them
+  FIX:    Skip notifying the needs to apply settings if is the first time they're loaded.
 
 Dec 15 2011
   FIX:    Don't exit from fullscreen mode in playlisting mode.

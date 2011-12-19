@@ -868,7 +868,6 @@ Public Sub ManageNotifies_click(LastObj As Object)
   Endif
   If Not goon Then Return
   NotifyChanges(LastObj)
-
 End
 
 
@@ -880,7 +879,6 @@ End
 
 Public Sub NotifyChanges(obj As Object)
   Dim myform As Object
-  'Object.SetProperty(Object.
   myform = Last
   Repeat
   If Not (myform Is Form) Then Try myform = myform.parent
@@ -892,7 +890,6 @@ Public Sub NotifyChanges(obj As Object)
       fmain.cachedopts = ""
     Endif
   Endif
-
 End
 
 Public Sub NotifyApplyNeeds()

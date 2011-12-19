@@ -5,6 +5,7 @@
 
 Private mplayer As New MplayerClass
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+Public TimesLoaded As Integer = 0 'Count how many times the form has been loaded
 
 Public Sub ACombos_Enter()
   Dim PrevText As String = Last.text
@@ -50,6 +51,7 @@ Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
+  TimesLoaded += 1
 End
 
 Public Sub MenuSaveDefault_Click()
@@ -156,25 +158,25 @@ End
 
 
 Public Sub ACombos_Change()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End
 
 Public Sub VCombos_Change()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End
 
 Public Sub ACheckBox1_Click()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End
 
 Public Sub VCheckBox1_Click()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End
 
 Public Sub DCombos_Change()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End
 
 Public Sub DCheckBox1_Click()
-  global.NotifyApplyNeeds()
+  If Alreadyloaded Then global.NotifyApplyNeeds()
 End

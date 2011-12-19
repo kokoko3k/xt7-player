@@ -188,6 +188,9 @@ Geometry=[0,0,344,731]
 [DebugWindow/LAST.next.NEXT.next]
 Geometry=[0,0,344,344]
 
+[DebugWindow/Last]
+Geometry=[52,0,210,210]
+
 [DebugWindow/Leftsidetabs]
 Geometry=[0,0,344,344]
 
@@ -204,7 +207,7 @@ Geometry=[0,0,1272,387]
 Geometry=[0,0,344,344]
 
 [DebugWindow/Me]
-Geometry=[-4,-3,830,649]
+Geometry=[66,49,830,649]
 
 [DebugWindow/MediaHeaders]
 Geometry=[304,489,761,765]
@@ -527,6 +530,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/myfile]
 Geometry=[0,0,301,301]
 
+[DebugWindow/myform]
+Geometry=[52,0,606,604]
+
 [DebugWindow/mygrid]
 Geometry=[0,41,344,344]
 
@@ -579,7 +585,7 @@ Geometry=[0,0,344,344]
 Geometry=[0,64,301,301]
 
 [DebugWindow/obj]
-Geometry=[0,0,301,301]
+Geometry=[52,0,301,301]
 
 [DebugWindow/objs]
 Geometry=[0,0,301,301]
@@ -712,15 +718,16 @@ File[8]=".src/Form/FMain.form"
 File[9]=".src/Form/CoverManager.form"
 File[10]=".src/Form/AudioForm.form"
 File[11]="AA_ToDo:52.0"
-File[12]="CHANGELOG_GIT:15.50"
-File[13]=".src/0_Moduli/Global.module:333.8"
+Active=12
+File[12]="CHANGELOG_GIT:4.44"
+File[13]=".src/0_Moduli/Global.module:895.0"
 File[14]=".src/Form/Chains.class:76.25"
-File[15]=".src/Classi/SettingsClass.class:609.0"
+File[15]=".src/Classi/SettingsClass.class:363.0"
 File[16]=".src/Form/Chains.form"
 File[17]=".src/Form/HotKeys.class:264.28"
 File[18]=".src/0_Moduli/ComboHistory.module:53.28"
 File[19]=".src/Classi/FlashClass.class:79.33"
-File[20]=".src/Form/GeneralOptions.class:18.14"
+File[20]=".src/Form/GeneralOptions.class:897.43"
 File[21]=".src/Form/XConfigureAudioDriver.form"
 File[22]=".src/Form/AudioVideoCodecs.form"
 File[23]=".src/Form/VFiltersCfg.form"
@@ -729,8 +736,8 @@ File[25]=".src/Form/GeneralOptions.form"
 File[26]=".src/Form/RealtimeForm.form"
 File[27]=".src/Classi/YoutubeClass.class:448.17"
 File[28]=".src/Form/DVBTuner.form"
-File[29]=".src/Form/AudioVideoCodecs.class:34.28"
-File[30]=".src/Form/SubAndOsd.class:291.28"
+File[29]=".src/Form/AudioVideoCodecs.class:167.29"
+File[30]=".src/Form/SubAndOsd.class:317.2"
 File[31]=".src/Form/AllOptions.form"
 File[32]=".src/Form/HotKeys.form"
 File[33]=".src/Form/SubAndOsd.form"
@@ -749,9 +756,10 @@ File[45]=".src/Form/ServiceForm.form"
 File[46]=".src/Form/XConfigureAudioDriver.class:110.0"
 File[47]=".src/Form/XConfigureVideoDriver.form"
 File[48]=".src/Form/XConfigureVideoDriver.class:19.21"
-Active=49
-File[49]=".src/Classi/ShoutCastClass.class:105.52"
-Count=49
+File[49]=".src/Classi/ShoutCastClass.class:118.60"
+File[50]=".src/Form/LogWindow.class:82.31"
+File[51]=".src/Form/TextDialog.form"
+Count=51
 
 [Watches]
 Count=11

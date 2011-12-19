@@ -5,6 +5,7 @@
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 Public InitDone As Boolean = False
 Const Pre As String = "* "
+Public TimesLoaded As Integer = 0 'Count how many times the form has been loaded
 
 Private LastDirectory As String = ""
 
@@ -14,8 +15,8 @@ Public UntranslatedTabNames As String[] = ["VIDEO", "AUDIO", "LIBRARY", "TWEAKS"
 
 Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
-    Alreadyloaded = True
     MenuLoadDefault_Click()
+    Alreadyloaded = True
     Me.Refresh
     Wait 0.001
   Endif
@@ -536,6 +537,7 @@ Public Sub MenuLoadDefault_Click()
   LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
+  TimesLoaded += 1
 End
 
 
@@ -886,13 +888,13 @@ End
 
 
 Public Sub notifyobj_Click()
-
-  global.ManageNotifies_click(Last)
+  'make red apply button only if not chainging properties due to first time loads
+  If (timesloaded > 1) Then global.ManageNotifies_click(Last) 
 
 End
 
 Public Sub notifyobj_Change()
 
-  global.ManageNotifies_Change(Last)
+  If (timesloaded > 1) Then global.ManageNotifies_Change(Last)
 
 End

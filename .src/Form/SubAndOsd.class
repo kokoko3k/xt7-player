@@ -6,7 +6,6 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 Private MyScaleSlider As VSlider
 Private MySubSlider As VSlider
 Private MyOutlineSpinbox As FloatSpinBox
-
 Public mplayer As New MplayerClass
 
 
@@ -198,7 +197,7 @@ Public Sub TestBTN_Click()
   Dim Filename As String
   Dim MyOptions As String
   Dim MySrtFile As File
-  global.NotifyApplyNeeds()
+  'If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   If SubAndOsd.visible Then 'we wanna preview only if the form is visible
     FileName = Temp("SubSrt.srt")
     MyOptions = "-mf fps=1:type=bmp -loop 0 " & ParseSubGui(True)
@@ -290,7 +289,7 @@ Public Sub ApplyBTN_Click()
 End
 
 Public Sub FirstLoadIfNeeded()
-  If Not AlreadyLoaded Then 
+  If Not (alreadyloaded) Then 
     Alreadyloaded = True
     MenuLoadDefault_Click()
   Endif
@@ -305,7 +304,8 @@ Public Sub Form_Open()
 End
 
 Public Sub FontChooseBTN_Click()
-   Dialog.Font = FontString.font
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
+  Dialog.Font = FontString.font
   If Not (Dialog.SelectFont()) Then
     FontString.font = Dialog.font
     FontString.text = FontString.Font.name
@@ -316,10 +316,11 @@ End
 
 Public Sub SubTitleControls_Change()
   TestBTN.background = Color.Yellow
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 
 Public Sub SubTitleControls_Click()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   TestBTN_Click()
 End
 
@@ -379,10 +380,11 @@ Public Sub ASSDisableCHK_Click()
   ShadowHBox.Enabled = EnableSSA
   AlignmentHBox.Enabled = EnableSSA
   TestBTN.background = Color.Yellow
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 
 Public Sub OSDFontChooseBTN_Click()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   Dialog.Font = OSDFontString.font
   If Not (Dialog.SelectFont()) Then
     OSDFontString.font = Dialog.font
@@ -407,51 +409,54 @@ Public Sub PreviewDriverCombobox_Click()
     TestBTN_Click()
 End
 Public Sub FontColorBox_Change()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   TestBTN_Click()
 End
 Public Sub BorderColorBox_Change()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   TestBTN_Click()
 End
 Public Sub ShadowColorBTN_Change()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   TestBTN_Click()
 End
 Public Sub FuzzinessHbox_MouseDown()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub HBox2_MouseDown()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub MkvWorkaroundCHK_Click()
   If MkvWorkaroundCHK.value Then ASSDisableCHK.value = True
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub SubFileCHK_Click()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub Combofuzziness_Change()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub AlignmentCHK_Click()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub SubCpCHK_Click()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub EncaComboBox_Change()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub ComboSubCp_Change()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub SubDelayCHK_Click()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub SubFileTextBox_Change()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub OSDDurationCHK_Click()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub OSDDurationSpinBox_Change()
-  global.NotifyApplyNeeds()
+  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End

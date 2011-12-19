@@ -1,4 +1,5 @@
 ' Gambas class file
+
  
 Public Ts As String = "\r"
 Public channelinfo As String
@@ -51,7 +52,7 @@ Public Function GetGenres(GenresTree As TreeView)
   Dim node, subnode As Xmlnode
   Dim lines As New String[]
   'DIM AskUrl AS String = "http://yp.shoutcast.com/sbin/newxml.phtml?rss=1"
-  Dim AskUrl As String = "'http://api.shoutcast.com/legacy/genrelist?k=wa1NcG2CLff9Gl5M&rss=1'"
+  Dim AskUrl As String = "'http://api.shoutcast.com/legacy/genrelist?k=sh17tOUi_ezL61_A&rss=1'"
   Dim tmpfile As String = Temp()
   Dim wget As New Wgetclass
   tmpfile = wget.DownloadAsync(AskUrl, True)
@@ -102,7 +103,7 @@ Public Function GetStationsFromSearch(SearchTerm As String, ShutResultGrid As Gr
   Dim MyError As Boolean
   SearchTerm = urlencode(searchterm)
   'AskUrl = "http://yp.shoutcast.com/sbin/newxml.phtml?search='" & SearchTerm & "'" & "&limit=" & MAXRESULTS
-  AskUrl = "'http://api.shoutcast.com/legacy/stationsearch?k=wa1NcG2CLff9Gl5M&search=" & SearchTerm & "&limit=" & MAXRESULTS & "'"
+  AskUrl = "'http://api.shoutcast.com/legacy/stationsearch?k=sh17tOUi_ezL61_A&search=" & SearchTerm & "&limit=" & MAXRESULTS & "'"
   'http://api.shoutcast.com/legacy/stationsearch?k=[Your Dev ID]&search=ambient+beats
   MyError = DownloadAndParse(AskUrl, Null, ShutResultGrid) <> ""
   For i = 0 To 3
@@ -116,7 +117,7 @@ Public Function GetStationsFromGenre(Genre As String, GenresTree As Treeview)
    'http://yp.shoutcast.com/sbin/newxml.phtml?genre=Trance
    'remove all child items
   'DIM AskUrl AS String = "http://yp.shoutcast.com/sbin/newxml.phtml?genre=" & Genre '& "&rss=1"
-  Dim AskUrl As String = "'http://api.shoutcast.com/legacy/genresearch?k=wa1NcG2CLff9Gl5M&genre=" & Genre & "'"
+  Dim AskUrl As String = "'http://api.shoutcast.com/legacy/genresearch?k=sh17tOUi_ezL61_A&genre=" & Genre & "'"
   Repeat
     GenresTree.MoveTo(Genre)
     GenresTree.MoveChild()

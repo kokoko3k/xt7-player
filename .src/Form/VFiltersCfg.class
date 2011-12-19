@@ -5,6 +5,7 @@
 
 Private pre As String = Global.pre
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one timenu
+Public InitDone As Boolean = False
 
 Public Sub FillFilters()
 Dim MyFilters As New String[]
@@ -433,6 +434,7 @@ End
 Public Sub Init()
   FillFilters()
   DrawFiltersGui()
+  InitDone = True
 End
 
 
@@ -525,11 +527,13 @@ End
 
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
+  Init()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   AlreadyLoaded = True
 End
 
 Public Sub MenuSaveDefault_Click()
+  If Not InitDone Then Init()
   SaveCurrent()
 End
 Public Sub SaveBTN_Click()

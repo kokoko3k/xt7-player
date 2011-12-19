@@ -11,6 +11,9 @@ Count=0
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
 
+[DebugWindow/AFiltersCfg]
+Geometry=[52,0,210,920]
+
 [DebugWindow/AllParams]
 Geometry=[0,0,301,301]
 
@@ -375,7 +378,7 @@ Geometry=[0,0,301,301]
 Geometry=[0,0,344,344]
 
 [DebugWindow/Tabstrip1]
-Geometry=[0,0,344,344]
+Geometry=[52,0,344,344]
 
 [DebugWindow/Tagline]
 Geometry=[0,0,301,301]
@@ -699,30 +702,30 @@ SearchString=True
 
 [OpenFile]
 File[1]=".src/Classi/StartClass.class:4.3"
-File[2]=".src/Form/FMain.class:1986.42"
+File[2]=".src/Form/FMain.class:1569.30"
 File[3]=".src/Form/zzzFake.class:22.0"
-File[4]=".src/Classi/MplayerClass.class:414.0"
+File[4]=".src/Classi/MplayerClass.class:873.0"
 File[5]=".src/Form/AudioForm.class:88.0"
 File[6]=".src/Classi/Meters.class:64.0"
 File[7]=".src/Form/CoverManager.class:162.92"
 File[8]=".src/Form/FMain.form"
 File[9]=".src/Form/CoverManager.form"
 File[10]=".src/Form/AudioForm.form"
-File[11]="AA_ToDo:60.0"
+File[11]="AA_ToDo:52.0"
 Active=12
-File[12]="CHANGELOG_GIT:6.10"
-File[13]=".src/0_Moduli/Global.module:462.70"
-File[14]=".src/Form/Chains.class:276.8"
-File[15]=".src/Classi/SettingsClass.class:209.40"
+File[12]="CHANGELOG_GIT:15.50"
+File[13]=".src/0_Moduli/Global.module:333.8"
+File[14]=".src/Form/Chains.class:76.25"
+File[15]=".src/Classi/SettingsClass.class:609.0"
 File[16]=".src/Form/Chains.form"
 File[17]=".src/Form/HotKeys.class:264.28"
 File[18]=".src/0_Moduli/ComboHistory.module:53.28"
 File[19]=".src/Classi/FlashClass.class:79.33"
-File[20]=".src/Form/GeneralOptions.class:372.13"
+File[20]=".src/Form/GeneralOptions.class:18.14"
 File[21]=".src/Form/XConfigureAudioDriver.form"
 File[22]=".src/Form/AudioVideoCodecs.form"
 File[23]=".src/Form/VFiltersCfg.form"
-File[24]=".src/Form/VFiltersCfg.class:528.22"
+File[24]=".src/Form/VFiltersCfg.class:535.2"
 File[25]=".src/Form/GeneralOptions.form"
 File[26]=".src/Form/RealtimeForm.form"
 File[27]=".src/Classi/YoutubeClass.class:448.17"
@@ -735,7 +738,7 @@ File[33]=".src/Form/SubAndOsd.form"
 File[34]=".src/Form/VideoEqualizer.class:33.28"
 File[35]=".src/Form/VideoEqualizer.form"
 File[36]=".src/Form/AFiltersCfg.form"
-File[37]=".src/Form/AFiltersCfg.class:364.20"
+File[37]=".src/Form/AFiltersCfg.class:364.2"
 File[38]=".src/Form/AudioEqualizer.form"
 File[39]=".src/Form/ChooseAspect.form"
 File[40]=".src/Form/CountDown.form"
@@ -744,7 +747,7 @@ File[42]=".src/Form/LogWindow.form"
 File[43]=".src/Form/ProfileManager.form"
 File[44]=".src/Form/Searchfields.form"
 File[45]=".src/Form/ServiceForm.form"
-File[46]=".src/Form/XConfigureAudioDriver.class:19.0"
+File[46]=".src/Form/XConfigureAudioDriver.class:110.0"
 File[47]=".src/Form/XConfigureVideoDriver.form"
 File[48]=".src/Form/XConfigureVideoDriver.class:19.21"
 Count=48

@@ -332,6 +332,8 @@ Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As 
     ' 'PRINT "Debug: SaveAllSettings(): cachedopts= " & cachedopts
     ' 'SHELL "echo " & cachedopts & " > " & Global.confpath & "/" & ProfileName & ".profile.cache"
   'Endif
+  
+  
   MySettings.Save(Fmain, Global.confpath & "/" & ProfileName)
   MySettings.Save(Chains, Global.confpath & "/" & ProfileName)
   MySettings.Save(XConfigureAudioDriver, Global.confpath & "/" & ProfileName)

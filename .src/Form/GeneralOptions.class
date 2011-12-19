@@ -3,6 +3,7 @@
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+Public InitDone As Boolean = False
 Const Pre As String = "* "
 
 Private LastDirectory As String = ""
@@ -84,6 +85,7 @@ Public Sub Init()
   Try Optionslist.Add("Misc", ("Misc"), Picture["GeneralMisc.png"])
   Try Optionslist.Add("Style", ("Style"), Picture["GeneralStyle.png"])
   DrawFiltersGui()
+  InitDone = True
 End
 
 
@@ -842,6 +844,7 @@ End
 
 Public Sub SaveCurrentTo(profile As String)
   Dim MySettings As New SettingsClass
+  If Not InitDone Then Init()
   MySettings.Save(Me, global.confpath & "/" & Profile)
   SaveWatchDir(global.confpath & "/" & Profile)
   SaveExcludeDir(global.confpath & "/" & Profile)

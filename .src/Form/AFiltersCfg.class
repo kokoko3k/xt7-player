@@ -4,6 +4,7 @@
 ' Gambas class file
 
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+Public InitDone As Boolean = False
 
 Public Sub Form_Open()
   If Not AlreadyLoaded Then 
@@ -175,9 +176,9 @@ End
 
 
 Public Sub Init()
-Debug
   FillFilters()
   DrawFiltersGui()
+  InitDone = True
 End
 
 
@@ -361,6 +362,7 @@ End
 
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
+  If Not InitDone Then Init()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   AlreadyLoaded = True
 End

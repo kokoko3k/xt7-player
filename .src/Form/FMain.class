@@ -4422,7 +4422,7 @@ Public Sub Leftsidetabs_MouseWheel()
   
 End
 
-Public Sub LeftSideTabs_Click()
+Public Sub EnableDisableTagBtn()
   Dim tablib, tabpls As Boolean
   tablib = TabSelectedLibrary()
   tabpls = TabSelectedPlaylist() Or TabSelectedBrowse()
@@ -4440,7 +4440,10 @@ Public Sub LeftSideTabs_Click()
   
   Searchfield.Visible = tablib
   SearchfieldPLS.Visible = tabpls
-  
+End
+
+Public Sub LeftSideTabs_Click()
+  EnableDisableTagBtn()
 End
 
 Public Sub LeftSideTabs_KeyRelease()
@@ -7654,4 +7657,12 @@ Public Sub PanScan_MouseWheel()
       Endif
     Endif
   Endif
+End
+
+Public Sub LibraryGrid_Click()
+  EnableDisableTagBtn()
+End
+
+Public Sub PlaylistGrid_Click()
+  EnableDisableTagBtn()
 End

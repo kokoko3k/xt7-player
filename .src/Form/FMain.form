@@ -541,14 +541,14 @@
     }
     { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
-      MoveScaled(15,1,4,4)
+      MoveScaled(15,0,4,4)
       ToolTip = ("Configuration toolbox")
       AutoResize = True
       Picture = Picture["configure.png"]
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
-      MoveScaled(25,0,4,4)
+      MoveScaled(19,0,4,4)
       Enabled = False
       ToolTip = ("Show/Hide AudioTag editor")
       AutoResize = True

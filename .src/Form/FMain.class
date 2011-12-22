@@ -5050,9 +5050,12 @@ Public Sub ShowVideoEq_Click()
 End
 
 Public Sub ShowAudioEq_Click()
-  
-  AFiltersCfg.ShowFilterConfiguration("equalizer")
-  AFiltersCfg.visible = Not AFiltersCfg.Visible
+  If (Not AFiltersCfg.visible) Then
+    AFiltersCfg.show
+    AFiltersCfg.ShowFilterConfiguration("equalizer")
+      Else
+    AFiltersCfg.hide
+  Endif
   
 End
 

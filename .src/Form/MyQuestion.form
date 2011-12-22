@@ -14,6 +14,7 @@
   { HBox1 HBox
     MoveScaled(1,1,31,8)
     AutoResize = True
+    Padding = 4
     { MyIcon PictureBox
       MoveScaled(2,1,6,6)
       Picture = Picture["icon:/32/question"]
@@ -34,7 +35,7 @@
   { ButtonContainer HBox
     MoveScaled(0,16,33,6)
     AutoResize = True
-    Spacing = True
+    Padding = 6
     { VBox1 VBox
       MoveScaled(0,0,3,4)
       Expand = True

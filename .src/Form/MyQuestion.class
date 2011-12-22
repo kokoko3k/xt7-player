@@ -58,6 +58,9 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     Endif
     Me.show
     Me.autoresize = True
+    Me.padding = 4
+    Me.spacing = True
+    
     Wait 0.01
       If button2.visible Then
         If Me.w < (Button2.x + button2.w + 50) Then

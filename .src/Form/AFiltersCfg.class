@@ -176,6 +176,7 @@ End
 
 
 Public Sub Init()
+  If initdone Then Return
   FillFilters()
   DrawFiltersGui()
   InitDone = True

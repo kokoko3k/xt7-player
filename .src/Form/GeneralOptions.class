@@ -69,6 +69,7 @@ End
 
 
 Public Sub Init()
+  If initdone Then Return
   Try Optionslist.Add("Video", ("Video"), Picture["GeneralVideo.png"])
   Try Optionslist.Add("Audio", ("Audio"), Picture["GeneralAudio.png"])
   'TRY Optionslist.Add("Subtitles", ("Subtitles"), Picture["GeneralSubtitles.png"])

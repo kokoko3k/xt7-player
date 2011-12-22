@@ -92,7 +92,8 @@
   { HBox1 HBox
     MoveScaled(1,26,62,5)
     Spacing = True
-    Padding = 2
+    Margin = True
+    Padding = 3
     { btnPlay Button
       MoveScaled(2,1,14,4)
       ToolTip = ("Play the selected URI")

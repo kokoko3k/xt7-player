@@ -690,295 +690,295 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: GeneralOptions.class:94
+#: GeneralOptions.class:95
 msgid "resolution"
 msgstr ""
 
-#: GeneralOptions.class:101
+#: GeneralOptions.class:102
 msgid "Mixer Channel"
 msgstr ""
 
-#: GeneralOptions.class:102
+#: GeneralOptions.class:103
 msgid "This  option  will  tell MPlayer to use a different channel \nfor controlling volume than the default PCM. \n Options for OSS include vol, pcm, line. \nFor a complete list of options look for SOUND_DEVICE_NAMES \n in /usr/include/linux/soundcard.h. \nFor ALSA you can use the names e.g. alsamixer displays, \nlike Master, Line, PCM.\nNOTE: ALSA mixer channel names followed by a number\nmust be specified in the <name,number> format, \ni.e. a channel labeled 'PCM 1' in alsamixer must be  converted\nto PCM,1.\n Mplayer Option:  <mixer line>[,mixer index] (-ao oss and -ao alsa only)"
 msgstr ""
 
-#: GeneralOptions.class:106
+#: GeneralOptions.class:107
 msgid "Output Channels"
 msgstr ""
 
-#: GeneralOptions.class:107
+#: GeneralOptions.class:108
 msgid "Request the number of playback channels (default: 2).\n This is usually only important when playing videos with AC-3 audio (like DVDs).\n Mplayer Option: -channels"
 msgstr ""
 
-#: GeneralOptions.class:111
+#: GeneralOptions.class:112
 msgid "Software Volume control"
 msgstr ""
 
-#: GeneralOptions.class:111
+#: GeneralOptions.class:112
 msgid "Required by Maximum Amplification"
 msgstr ""
 
-#: GeneralOptions.class:112
+#: GeneralOptions.class:113
 msgid "Force the use of the software mixer, instead of using the sound card mixer.\n Mplayer Option: -softvol"
 msgstr ""
 
-#: GeneralOptions.class:116
+#: GeneralOptions.class:117
 msgid "Maximum Amplification"
 msgstr ""
 
-#: GeneralOptions.class:117
+#: GeneralOptions.class:118
 msgid "Set the maximum amplification level in percent (default: 110).\n A value of 200 will allow you to adjust the volume up to a maximum of double the current level.\n Mplayer Option: -softvol-max"
 msgstr ""
 
-#: GeneralOptions.class:121
+#: GeneralOptions.class:122
 msgid "Initial speed"
 msgstr ""
 
-#: GeneralOptions.class:121
+#: GeneralOptions.class:122
 msgid "Set initial playback tempo/pitch"
 msgstr ""
 
-#: GeneralOptions.class:122
+#: GeneralOptions.class:123
 msgid "#-12..#+12 are semitones.\n See also 'speed' under 'scaletempo' filter in chains window.\n Mplayer Option: -speed"
 msgstr ""
 
-#: GeneralOptions.class:126
+#: GeneralOptions.class:127
 msgid "Audio Delay"
 msgstr ""
 
-#: GeneralOptions.class:126
+#: GeneralOptions.class:127
 msgid "Seconds"
 msgstr ""
 
-#: GeneralOptions.class:127
+#: GeneralOptions.class:128
 msgid "Use it to correct constant Audio/video desync issues\n Mplayer Option: -delay"
 msgstr ""
 
-#: GeneralOptions.class:131
+#: GeneralOptions.class:132
 msgid "Rebuild Index if necessary"
 msgstr ""
 
-#: GeneralOptions.class:131
+#: GeneralOptions.class:132
 msgid "Use it to repair broken files"
 msgstr ""
 
-#: GeneralOptions.class:132
+#: GeneralOptions.class:133
 msgid "\n Mplayer Option: -idx"
 msgstr ""
 
-#: GeneralOptions.class:136
+#: GeneralOptions.class:137
 msgid "Always rebuild Index"
 msgstr ""
 
-#: GeneralOptions.class:137
+#: GeneralOptions.class:138
 msgid "\n Mplayer Option: -forceidx"
 msgstr ""
 
-#: GeneralOptions.class:141
+#: GeneralOptions.class:142
 msgid "Non-interleaved AVI  parser"
 msgstr ""
 
-#: GeneralOptions.class:141
+#: GeneralOptions.class:142
 msgid "Fixes  playback  of some bad AVI files"
 msgstr ""
 
-#: GeneralOptions.class:147
+#: GeneralOptions.class:148
 msgid "aspect"
 msgstr ""
 
-#: GeneralOptions.class:148
+#: GeneralOptions.class:149
 msgid "Override movie aspect ratio, in case aspect information\n is incorrect or missing in the file being played.\n Mplayer Option: -aspect"
 msgstr ""
 
-#: GeneralOptions.class:153
+#: GeneralOptions.class:154
 msgid "Framerate override"
 msgstr ""
 
-#: GeneralOptions.class:154
+#: GeneralOptions.class:155
 msgid "Force video Framerate.\n Will probably cause Audio/Video desync.\n Mplayer Option: -fps"
 msgstr ""
 
-#: GeneralOptions.class:158
+#: GeneralOptions.class:159
 msgid "Gradually adjusts the A/V sync based on audio delay measurements."
 msgstr ""
 
-#: GeneralOptions.class:159
+#: GeneralOptions.class:160
 msgid "Try  -autosync 30 to smooth out problems with sound drivers which do not implement a perfect audio delay measurement.\n [..] Mplayer Option: -autosync"
 msgstr ""
 
-#: GeneralOptions.class:163
+#: GeneralOptions.class:164
 msgid "maximum A-V sync correction per frame (in seconds)"
 msgstr ""
 
-#: GeneralOptions.class:164
+#: GeneralOptions.class:165
 msgid "maximum A-V sync correction per frame (in seconds)\n mplayer options: -mc"
 msgstr ""
 
-#: GeneralOptions.class:169
+#: GeneralOptions.class:170
 msgid "Use it if your kernel timing is imprecise"
 msgstr ""
 
-#: GeneralOptions.class:170
+#: GeneralOptions.class:171
 msgid "Time frames by repeatedly checking the current time\n instead of asking the kernel to wake up MPlayer at the correct time.\n Useful if your kernel timing is imprecise and you cannot use the RTC either.\n Comes at the price of higher CPU consumption.\n Mplayer Option: -softsleep"
 msgstr ""
 
-#: GeneralOptions.class:176
+#: GeneralOptions.class:177
 msgid "Send cookies"
 msgstr ""
 
-#: GeneralOptions.class:176
+#: GeneralOptions.class:177
 msgid "Only valid for http:// Uries"
 msgstr ""
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:178
 msgid "Send cookies to websites when playing http:// Uries,\n Cookie file must be in Netscape format.\n Mplayer Option: -cookies"
 msgstr ""
 
-#: GeneralOptions.class:181
+#: GeneralOptions.class:182
 msgid "prefer-ipv4"
 msgstr ""
 
-#: GeneralOptions.class:181
+#: GeneralOptions.class:182
 msgid "try ipv4 first"
 msgstr ""
 
-#: GeneralOptions.class:182
+#: GeneralOptions.class:183
 msgid "Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"
 msgstr ""
 
-#: GeneralOptions.class:186
+#: GeneralOptions.class:187
 msgid "location"
 msgstr ""
 
-#: GeneralOptions.class:187
+#: GeneralOptions.class:188
 msgid "Specify cookies.txt location\n Mplayer Option: -cookies-file"
 msgstr ""
 
-#: GeneralOptions.class:191
+#: GeneralOptions.class:192
 msgid "(MPEG-1/2 and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:192
+#: GeneralOptions.class:193
 msgid "Number of threads to use for decoding.\nYou may need the 'mt' version of mplayer and ffmmpeg\nMplayer Option: -lavdopts threads=n"
 msgstr ""
 
-#: GeneralOptions.class:197
+#: GeneralOptions.class:198
 msgid "Lowres (lavdopts)"
 msgstr ""
 
-#: GeneralOptions.class:198
+#: GeneralOptions.class:199
 msgid "Decode at lower resolutions.  Low resolution decoding\nis not supported by all codecs, and it will  often result\nin ugly artifacts.  This is not a bug, but a side effect\nof not decoding at full resolution.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:202
+#: GeneralOptions.class:203
 msgid "(MPEG-2, MPEG-4, and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:203
+#: GeneralOptions.class:204
 msgid "Enable optimizations which do not comply to the specification\nand might potentially cause problems, like simpler dequantization,\nsimpler motion compensation, assuming use of the  default\nquantization  matrix, assuming YUV 4:2:0 and skipping\na few checks to detect damaged bitstreams.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:207
+#: GeneralOptions.class:208
 msgid "(H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:208
+#: GeneralOptions.class:209
 msgid "Skips the loop filter (AKA deblocking) during H.264 decoding.\nthis has a worse effect on quality\nBut at least for high bitrate HDTV this provides a big speedup\nwith  no visible quality loss.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:212
+#: GeneralOptions.class:213
 msgid "libmpeg2 and libavcodec codecs only"
 msgstr ""
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:214
 msgid "Disable drawing video by 16-pixel height slices/bands,\ninstead draws the whole frame in a single  run.\nMay  be faster  or slower, depending on video card and available cache.\n Mplayer Option: -noslices"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "Scaler type (-sws)"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "0 - fast bilinear"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "1 - bilinear"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "2 - bicubic (good quality) (default)"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "3 - experimental"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "4 - nearest neighbor (bad quality)"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "5 - area"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "6 - luma bicubic/chroma bilinear"
 msgstr ""
 
-#: GeneralOptions.class:217
+#: GeneralOptions.class:218
 msgid "10 - natural bicubic spline"
 msgstr ""
 
-#: GeneralOptions.class:218
+#: GeneralOptions.class:219
 msgid "Specify the software scaler algorithm to be used, Some -sws options are tunable.\nThe description of the scale video filter has further information."
 msgstr ""
 
-#: GeneralOptions.class:222
+#: GeneralOptions.class:223
 msgid "Skip displaying some frames to maintain A/V sync"
 msgstr ""
 
-#: GeneralOptions.class:223
+#: GeneralOptions.class:224
 msgid "Skip displaying some frames to maintain A/V sync on slow systems.\nVideo filters are not applied to such frames.\nFor B-frames even decoding is skipped completely.\n Mplayer Option: -framedrop"
 msgstr ""
 
-#: GeneralOptions.class:227
+#: GeneralOptions.class:228
 msgid "Field dominance"
 msgstr ""
 
-#: GeneralOptions.class:227
+#: GeneralOptions.class:228
 msgid "-1=auto (default)"
 msgstr ""
 
-#: GeneralOptions.class:228
+#: GeneralOptions.class:229
 msgid "Set first field for interlaced content\n Mplayer Option: -field-dominance"
 msgstr ""
 
-#: GeneralOptions.class:232
+#: GeneralOptions.class:233
 msgid "Limit Drive Speed to"
 msgstr ""
 
-#: GeneralOptions.class:232
+#: GeneralOptions.class:233
 msgid "X"
 msgstr ""
 
-#: GeneralOptions.class:233
+#: GeneralOptions.class:234
 msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
 msgstr ""
 
-#: GeneralOptions.class:238
+#: GeneralOptions.class:239
 msgid "Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"
 msgstr ""
 
-#: GeneralOptions.class:488
+#: GeneralOptions.class:489
 msgid "Are you sure you want to delete selected items?"
 msgstr ""
 
-#: GeneralOptions.class:488
+#: GeneralOptions.class:489
 msgid "Yes, Delete"
 msgstr ""
 
-#: GeneralOptions.class:488
+#: GeneralOptions.class:489
 msgid "Don't delete"
 msgstr ""
 

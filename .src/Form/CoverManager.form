@@ -6,21 +6,21 @@
   Icon = Picture["filetypeaudio.png"]
   Persistent = True
   Arrangement = Arrange.Fill
-  Spacing = True
-  Margin = True
-  Padding = 6
+  Padding = 4
   { VBox2 VBox
-    MoveScaled(0,0,92,72)
+    MoveScaled(0,0,92,73)
     Spacing = True
     { HBox1 HBox
       MoveScaled(1,0,83,4)
       Spacing = True
+      { VBox5 VBox
+        MoveScaled(0,0,0,3)
+      }
       { ArtistLabel Label
-        MoveScaled(1,0,16,4)
+        MoveScaled(4,0,16,4)
         Font = Font["Bold"]
         AutoResize = True
         Text = ("Artist/Author:")
-        Alignment = Align.Left
       }
       { ArtistText Label
         MoveScaled(19,0,19,4)
@@ -34,18 +34,17 @@
         Font = Font["Bold"]
         AutoResize = True
         Text = ("Album:")
-        Alignment = Align.Left
       }
       { AlbumText Label
-        MoveScaled(53,0,19,4)
+        MoveScaled(55,0,19,4)
         AutoResize = True
       }
     }
     { HSplit1 HSplit
-      MoveScaled(0,4,91,62)
+      MoveScaled(1,4,91,61)
       Expand = True
       { VBox1 VBox
-        MoveScaled(1,2,24,54)
+        MoveScaled(1,2,24,57)
         Spacing = True
         { HttpClient1 #HttpClient
         }
@@ -62,7 +61,7 @@
         }
       }
       { VBox3 VBox
-        MoveScaled(26,2,64,64)
+        MoveScaled(26,-3,64,63)
         { PictureBox1 PictureBox
           MoveScaled(4,0,54,57)
           Background = &H000000&
@@ -72,7 +71,7 @@
       }
     }
     { HBox2 HBox
-      MoveScaled(0,67,84,4)
+      MoveScaled(2,66,84,4)
       Spacing = True
       { ButtonUnset Button
         MoveScaled(1,0,15,4)

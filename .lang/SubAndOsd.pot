@@ -18,415 +18,415 @@ msgstr ""
 msgid "Subtitles And Osd"
 msgstr ""
 
-#: SubAndOsd.form:98
+#: SubAndOsd.form:96
 msgid "Profile"
 msgstr ""
 
-#: SubAndOsd.form:101
+#: SubAndOsd.form:99
 msgid "Reload current profile"
 msgstr ""
 
-#: SubAndOsd.form:106
+#: SubAndOsd.form:104
 msgid "Save to current profile"
 msgstr ""
 
-#: SubAndOsd.form:111
+#: SubAndOsd.form:109
 msgid "Save these settings to all profiles"
 msgstr ""
 
-#: SubAndOsd.form:123
+#: SubAndOsd.form:121
 msgid "SSA Font Style"
 msgstr ""
 
-#: SubAndOsd.form:128
+#: SubAndOsd.form:126
 msgid "If you haven't SSA/ASS compiled in mplayer or you don't want SSA/ASS processing, then check it.\nMplayer option: Disables -ass switch."
 msgstr ""
 
-#: SubAndOsd.form:134
+#: SubAndOsd.form:132
 msgid "Disable SSA"
 msgstr ""
 
-#: SubAndOsd.form:140
+#: SubAndOsd.form:138
 msgid "Mplayer option: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 msgstr ""
 
-#: SubAndOsd.form:148
+#: SubAndOsd.form:146
 msgid "Font"
 msgstr ""
 
-#: SubAndOsd.form:156
+#: SubAndOsd.form:154
 msgid "BitStream Vera Sans"
 msgstr ""
 
-#: SubAndOsd.form:167
+#: SubAndOsd.form:165
 msgid "Mplayer option: \n-ass-forcestyle primarycolour=HHBBGGRR"
 msgstr ""
 
-#: SubAndOsd.form:175
+#: SubAndOsd.form:173
 msgid "Font Color"
 msgstr ""
 
-#: SubAndOsd.form:189
+#: SubAndOsd.form:187
 msgid "Alpha"
 msgstr ""
 
-#: SubAndOsd.form:203
+#: SubAndOsd.form:201
 msgid "Mplayer option: ass-forcestyle OutLineColour=HHBBGGRR"
 msgstr ""
 
-#: SubAndOsd.form:211
+#: SubAndOsd.form:209
 msgid "Border"
 msgstr ""
 
-#: SubAndOsd.form:224
+#: SubAndOsd.form:222
 msgid "Size"
 msgstr ""
 
-#: SubAndOsd.form:253
+#: SubAndOsd.form:251
 msgid "Mplayer option: -ass-forcestyle BackColour=HHBBGGRR"
 msgstr ""
 
-#: SubAndOsd.form:261
+#: SubAndOsd.form:259
 msgid "Shadow"
 msgstr ""
 
-#: SubAndOsd.form:274
+#: SubAndOsd.form:272
 msgid "Offset"
 msgstr ""
 
-#: SubAndOsd.form:302
+#: SubAndOsd.form:300
 msgid "Sub Extra"
 msgstr ""
 
-#: SubAndOsd.form:307
+#: SubAndOsd.form:305
 msgid "Mplayer option:\n-sub-fuzziness <mode>"
 msgstr ""
 
-#: SubAndOsd.form:314
+#: SubAndOsd.form:312
 msgid "Load subtitles"
 msgstr ""
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "0 - Exact match"
 msgstr ""
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "1 - Load all subs containing movie name"
 msgstr ""
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "2 - Load all subs in the current directory"
 msgstr ""
 
-#: SubAndOsd.form:328
+#: SubAndOsd.form:326
 msgid "Subtitle position on the screen from top or bottom.\n(it depends the alignment you choose)\nMplayer option:\n-ass-force-style MarginV=<margin>\n\nIf you Disabled SSA, then the value is meant to be from top.\nMplayer Option:\n-subpos <0-100>\n"
 msgstr ""
 
-#: SubAndOsd.form:335
+#: SubAndOsd.form:333
 msgid "Position (%)"
 msgstr ""
 
-#: SubAndOsd.form:348
+#: SubAndOsd.form:346
 msgid "Mplayer option:\n-ass-force-style Alignment=<align>"
 msgstr ""
 
-#: SubAndOsd.form:354
+#: SubAndOsd.form:352
 msgid "Alignment"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "2) Bottom/Center"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "1) Bottom/Left"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "3) Bottom/Right"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "6) Top/Center"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "4) Top/Left"
 msgstr ""
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "7) Top/Right"
 msgstr ""
 
-#: SubAndOsd.form:369
+#: SubAndOsd.form:367
 msgid "Subtitles resize factor.\nMplayer option:  -ass-font-scale"
 msgstr ""
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:374
 msgid "Scale (%)"
 msgstr ""
 
-#: SubAndOsd.form:382
+#: SubAndOsd.form:380
 msgid "Depending on the language you select, a charset is auto detected,\nbut if detection fails, the fallback charset will be used.\nNote that this has nothing to do with the subtitle language selection,\nTo configure preferred languages, use the language option in General Option window.\nMplayer option:\n-subcp enca:<language>:<fallback codepage>"
 msgstr ""
 
-#: SubAndOsd.form:389
+#: SubAndOsd.form:387
 msgid "Charset"
 msgstr ""
 
-#: SubAndOsd.form:395
+#: SubAndOsd.form:393
 msgid "Language"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "xx (use fallback)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "de (german)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "es (spanish)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "en (english)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "fi (finnish)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "it (italian)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "ja (japanese)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "nl (dutch,flemish)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "no (norwegian)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "pl (polish)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "pt (portuguese)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "ru (russian)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "sv (swedish)"
 msgstr ""
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "zh (chinese)"
 msgstr ""
 
-#: SubAndOsd.form:403
+#: SubAndOsd.form:401
 msgid "iso-8859-1"
 msgstr ""
 
-#: SubAndOsd.form:409
+#: SubAndOsd.form:407
 msgid "  FallBack"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "big5"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "cp1250"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "euc-kr"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "gb2312"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-2"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-7"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-8"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-9"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "koi8-r"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "latin2"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "unicode"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "utf-8"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "windows-1250"
 msgstr ""
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "windows-1251"
 msgstr ""
 
-#: SubAndOsd.form:422
+#: SubAndOsd.form:420
 msgid "Subtitle delay.\nMplayer option: -subdelay <sec>"
 msgstr ""
 
-#: SubAndOsd.form:428
+#: SubAndOsd.form:426
 msgid "Setting a negative delay for subtitles embedded in mkv files, leads mplayer\nto shift only the subtitle end time, because it reads the file sequentially.\nChecking this box will workaround the problem by adding:\n-subfile yourfile.mkv to mplayer options, forcing mplayer to read\nand shift the subtitles correctly.\nAlso, any ass rendering will be disabled.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 msgstr ""
 
-#: SubAndOsd.form:429
+#: SubAndOsd.form:427
 msgid "Mkv Workaround"
 msgstr ""
 
-#: SubAndOsd.form:434
+#: SubAndOsd.form:432
 msgid "Delay (Decisecs)"
 msgstr ""
 
-#: SubAndOsd.form:440
+#: SubAndOsd.form:438
 msgid "You can specify an external subtitle file.\nMplayer option: -subfile <filename>"
 msgstr ""
 
-#: SubAndOsd.form:447
+#: SubAndOsd.form:445
 msgid "SubTitle File"
 msgstr ""
 
-#: SubAndOsd.form:461
+#: SubAndOsd.form:459
 msgid "OSD"
 msgstr ""
 
-#: SubAndOsd.form:466
+#: SubAndOsd.form:464
 msgid "Mplayer option: \n-font"
 msgstr ""
 
-#: SubAndOsd.form:474
+#: SubAndOsd.form:472
 msgid "OSD Font"
 msgstr ""
 
-#: SubAndOsd.form:492
+#: SubAndOsd.form:490
 msgid "OSD Border font \"strength\", where 0 means plain white fonts and 10 means bold black outline\nMplayer option: -ffactor <number>\n\n"
 msgstr ""
 
-#: SubAndOsd.form:500
+#: SubAndOsd.form:498
 msgid "OSD outline strength"
 msgstr ""
 
-#: SubAndOsd.form:506
+#: SubAndOsd.form:504
 msgid "Sets the font outline thickness\nMplayer option: -subfont-outline"
 msgstr ""
 
-#: SubAndOsd.form:513
+#: SubAndOsd.form:511
 msgid "OSD outline thickness"
 msgstr ""
 
-#: SubAndOsd.form:526
+#: SubAndOsd.form:524
 msgid "Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  values  mean  more\ntransparency.  0 means completely transparent.\nMplayer option:\n-sub-bg-alpha <0-255>\n\n"
 msgstr ""
 
-#: SubAndOsd.form:533
+#: SubAndOsd.form:531
 msgid "OSD Background alpha"
 msgstr ""
 
-#: SubAndOsd.form:545
+#: SubAndOsd.form:543
 msgid "Sets the font blur radius.\nMplayer option: -subfont-blur"
 msgstr ""
 
-#: SubAndOsd.form:552
+#: SubAndOsd.form:550
 msgid "OSD blur radius"
 msgstr ""
 
-#: SubAndOsd.form:565
+#: SubAndOsd.form:563
 msgid "Set the duration of the OSD messages in ms.\nMplayer option: -osd-duration"
 msgstr ""
 
-#: SubAndOsd.form:571
+#: SubAndOsd.form:569
 msgid "Osd duration (ms)"
 msgstr ""
 
-#: SubAndOsd.form:583
+#: SubAndOsd.form:581
 msgid "Sets the autoscale coefficient of the OSD elements.\nMplayer option: -subfont-osd-scale"
 msgstr ""
 
-#: SubAndOsd.form:590
+#: SubAndOsd.form:588
 msgid "Osd Scale"
 msgstr ""
 
-#: SubAndOsd.form:609
+#: SubAndOsd.form:607
 msgid "Change me if you have problem displaying the preview."
 msgstr ""
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "xv preview"
 msgstr ""
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "x11 Preview"
 msgstr ""
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "user Preference"
 msgstr ""
 
-#: SubAndOsd.form:613
+#: SubAndOsd.form:611
 msgid "x11 preview"
 msgstr ""
 
-#: SubAndOsd.form:618
+#: SubAndOsd.form:616
 msgid "Test the new configuration in the preview box."
 msgstr ""
 
-#: SubAndOsd.form:619
+#: SubAndOsd.form:617
 msgid "Retest"
 msgstr ""
 
-#: SubAndOsd.form:625
+#: SubAndOsd.form:623
 msgid "Use new settings without save.\nTo save settings, use menu item."
 msgstr ""
 
-#: SubAndOsd.form:626
+#: SubAndOsd.form:624
 msgid "Use "
 msgstr ""
 
-#: SubAndOsd.form:632
+#: SubAndOsd.form:630
 msgid "Close the window"
 msgstr ""
 
-#: SubAndOsd.form:633
+#: SubAndOsd.form:631
 msgid "Close"
 msgstr ""
 
-#: SubAndOsd.form:641
+#: SubAndOsd.form:639
 msgid "Preview"
 msgstr ""
 

@@ -7,7 +7,6 @@
   Icon = Picture["pipe.png"]
   Persistent = True
   Arrangement = Arrange.Vertical
-  Spacing = True
   Margin = True
   Padding = 4
   { MenuProfile Menu
@@ -29,6 +28,7 @@
     MoveScaled(0,2,90,60)
     Expand = True
     Spacing = True
+    Margin = True
     Padding = 4
     { SidePanel1 SidePanel
       MoveScaled(1,2,24,55)
@@ -253,7 +253,7 @@
           ScrollBar = Scroll.Vertical
         }
         { VideoDriverBTN Button
-          MoveScaled(2,33,13,5)
+          MoveScaled(2,33,13,4.5714)
           ToolTip = ("No driver Defined")
           Text = ("VideoDriver")
           Picture = Picture["icon:/16/tools"]
@@ -280,7 +280,7 @@
           ScrollBar = Scroll.Vertical
         }
         { AudioDriverBTN Button
-          MoveScaled(1,33,15,5)
+          MoveScaled(1,33,15,4.5714)
           ToolTip = ("No driver Defined")
           Text = ("AudioDriver")
           Picture = Picture["icon:/16/tools"]
@@ -387,7 +387,8 @@
   { HBox2 HBox
     MoveScaled(1,63,76,5)
     Spacing = True
-    Padding = 4
+    Margin = True
+    Padding = 3
     { HBox3 HBox
       MoveScaled(6,0,5,4)
       Expand = True

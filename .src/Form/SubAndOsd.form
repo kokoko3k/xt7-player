@@ -7,8 +7,6 @@
   Icon = Picture["icon:/16/font"]
   Persistent = True
   Resizable = False
-  Spacing = True
-  Padding = 6
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu
@@ -441,10 +439,10 @@
     Index = 0
   }
   { HBox2 HBox
-    MoveScaled(65,40,59,4)
+    MoveScaled(65,41,59,4)
     Spacing = True
     { PreviewDriverCombobox ComboBox
-      MoveScaled(1,1,17,4)
+      MoveScaled(1,0,17,4)
       ToolTip = ("Change me if you have problem displaying the preview.")
       Expand = True
       ReadOnly = True
@@ -452,33 +450,34 @@
       Text = ("x11 preview")
     }
     { TestBTN Button
-      MoveScaled(19,1,12,4)
+      MoveScaled(19,0,12,4)
       ToolTip = ("Test the new configuration in the preview box.")
       Text = ("Retest")
       Picture = Picture["icon:/16/refresh"]
     }
     { ApplyBTN Button
-      MoveScaled(33,1,12,4)
+      MoveScaled(33,0,12,4)
       ToolTip = ("Use new settings without save.\nTo save settings, use menu item.")
       Text = ("Use ")
       Picture = Picture["icon:/16/redo"]
     }
     { OkBTN Button
-      MoveScaled(45,1,12,4)
+      MoveScaled(45,0,12,4)
       ToolTip = ("Close the window")
       Text = ("Close")
       Picture = Picture["icon:/16/cancel"]
     }
   }
   { TextLabel1 TextLabel
-    MoveScaled(65,1,61,4)
+    MoveScaled(64,0,61,4)
     Font = Font["Bold,+1"]
     Text = ("Preview")
     Alignment = Align.Center
   }
   { DrawingArea1 DrawingArea
-    MoveScaled(65,5,59,34)
+    MoveScaled(65,4,59,36)
     Background = &H000000&
+    Foreground = Color.Foreground
     NoBackground = True
   }
 }

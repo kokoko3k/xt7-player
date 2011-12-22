@@ -10,6 +10,7 @@
   Arrangement = Arrange.Vertical
   AutoResize = True
   Spacing = True
+  Margin = True
   Padding = 8
   { HBox1 HBox
     MoveScaled(1,1,31,8)
@@ -35,6 +36,7 @@
   { ButtonContainer HBox
     MoveScaled(0,16,33,6)
     AutoResize = True
+    Spacing = True
     Padding = 6
     { VBox1 VBox
       MoveScaled(0,0,3,4)

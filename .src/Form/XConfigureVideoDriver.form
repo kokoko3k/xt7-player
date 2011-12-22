@@ -8,6 +8,7 @@
   Persistent = True
   Arrangement = Arrange.Vertical
   Spacing = True
+  Margin = True
   Padding = 6
   { MenuProfile Menu
     Text = ("Profile")
@@ -36,6 +37,7 @@
     }
     { Label2 Label
       MoveScaled(1,2,14,4)
+      AutoResize = True
       Text = ("Driver Priority")
     }
     { ConfigureTabs TabStrip
@@ -833,7 +835,7 @@
     Alignment = Align.Left
   }
   { HBox1 HBox
-    MoveScaled(1,62,76,5)
+    MoveScaled(1,62,76,4)
     Spacing = True
     Padding = 4
     { HBox3 HBox

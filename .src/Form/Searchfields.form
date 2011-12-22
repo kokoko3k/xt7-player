@@ -9,13 +9,13 @@
   Stacking = Window.Above
   Arrangement = Arrange.Fill
   AutoResize = True
+  Padding = 4
   { ScrollView1 ScrollView
     MoveScaled(0,0,63,36)
     Arrangement = Arrange.Column
     Spacing = True
     Margin = True
-    Padding = 8
-    Border = False
+    Padding = 2
     { SearchFullPath CheckBox SearchFieldsCHK
       Name = "SearchFullPath"
       MoveScaled(1,1,19,4)

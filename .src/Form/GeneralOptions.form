@@ -8,6 +8,7 @@
   Persistent = True
   Arrangement = Arrange.Vertical
   Spacing = True
+  Margin = True
   Padding = 7
   { MenuProfile Menu
     Text = ("Profile")
@@ -1295,7 +1296,7 @@
     }
   }
   { HBox2 HBox
-    MoveScaled(1,60,76,5)
+    MoveScaled(1,60,76,4)
     Spacing = True
     Padding = 4
     { HBox3 HBox

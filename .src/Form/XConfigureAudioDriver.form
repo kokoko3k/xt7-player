@@ -35,6 +35,7 @@
     }
     { Label2 Label
       MoveScaled(1,2,11,4)
+      AutoResize = True
       Text = ("Driver priority")
     }
     { ConfigureTabs TabStrip
@@ -328,7 +329,7 @@
     Alignment = Align.Left
   }
   { HBox1 HBox
-    MoveScaled(0,61,76,5)
+    MoveScaled(0,61,76,4)
     Spacing = True
     Padding = 4
     { HBox3 HBox

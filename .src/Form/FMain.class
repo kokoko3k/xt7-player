@@ -5552,11 +5552,18 @@ End
 
 
 Public Sub TrayIcon1_MouseDown()
-  
+  Dim iconified As Boolean = False
+  iconified = (fmain.minimized And fmain.SkipTaskbar)
   If mouse.left Then
-    fmain.visible = Not fmain.visible
+    'fmain.visible = Not fmain.visible
+    If iconified Then 
+      fmain.Minimized = False
+      fmain.SkipTaskbar = False
+        Else
+      fmain.Minimized = True
+      fmain.SkipTaskbar = True
+    Endif
   Endif
-  
 End
 
 Public Sub TrayIcon1_Menu()

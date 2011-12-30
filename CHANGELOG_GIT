@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Dec 30 2011
+  FIX:    Avoid a segfault with gambas 2.99.7 when changing videobox cached property
+
 Dec 23 2011
   FIX:    Use a method to iconify the main form that doesn't break playlisting.
 

@@ -2027,7 +2027,11 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   
   'avoid a graphical glitch when hitting stop after a song and then play again
   'it will be turned on at the end of this play function
-  videobox.cached = False 
+  videobox.visible = False
+  Wait
+  videobox.cached = False  'here we have a segfault with gambas 2.99.7, seems to be solved by changing visibility twice
+  Wait
+  videobox.visible = True
   
   'http://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870
   If SubAndOsd.MkvWorkaroundCHK.value Then
@@ -7675,4 +7679,11 @@ End
 
 Public Sub PlaylistGrid_Click()
   EnableDisableTagBtn()
+End
+
+
+Public Sub Button5_Click()
+  outerbox.cached = False
+  
+
 End

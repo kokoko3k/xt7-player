@@ -1476,14 +1476,14 @@
             Expand = True
             Text = ("Select next")
           }
+          { Button2 Button
+            MoveScaled(12,0,12,4)
+            Text = ("Refresh")
+            Picture = Picture["icon:/16/refresh"]
+          }
           { HBox3 HBox
             MoveScaled(14,1,5,3)
             Expand = True
-          }
-          { Button2 Button
-            MoveScaled(15,0,12,4)
-            Text = ("Refresh")
-            Picture = Picture["icon:/16/refresh"]
           }
           { ButtonTag Button
             MoveScaled(21,0,12,4)

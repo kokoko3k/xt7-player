@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Dec 31 2011
+  FIX:    Avoid to "try" to register to dbus twice
+
 Dec 30 2011
   FIX:    Avoid a segfault with gambas 2.99.7 when changing videobox cached property
 

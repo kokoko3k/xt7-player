@@ -1945,12 +1945,17 @@ Public Function LargestDvdTitle() As Integer
   
 End
 
+Private DbusAlreadyRegistered As Boolean = False
 Public Sub ExportDbusProperties()
-  Try DBus.Session.Register(DbusProperties, "/xt7")
-  If Error Then 
-    Debug "Error setting up dbus or xt7 already registered"
-    Return
+  If Not DbusAlreadyRegistered Then
+    Try DBus.name = "org.mpris.MediaPlayer2.xt7"
+    Try DBus.Session.Register(DbusProperties, "/xt7")
+    If Error Then 
+      Debug "Error setting up dbus"
+      Return
+    Endif
   Endif
+  DbusAlreadyRegistered = True
   DbusProperties.clear()
   DbusProperties.FullPath = mplayer.Media_FullPath
   DbusProperties.FullPathPlaying = mplayer.Media_FullPath_Playing

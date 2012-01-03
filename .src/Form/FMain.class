@@ -3502,6 +3502,26 @@ Public Sub HotKeyToMplayer(HotKey As String)
       SaveVolumeSlider.value = SaveVolumeSlider.value + 1
     Case "Volume -0.5"
       SaveVolumeSlider.value = SaveVolumeSlider.value - 1
+    Case "Brightness +1"
+      VideoEqualizer.slider1.value += 1
+    Case "Brightness -1"
+      VideoEqualizer.slider1.value -= 1
+    Case "Contrast +1"
+      VideoEqualizer.slider2.value += 1
+    Case "Contrast -1"
+      VideoEqualizer.slider2.value -= 1
+    Case "Gamma +1"
+      VideoEqualizer.slider3.value += 1
+    Case "Gamma -1"  
+      VideoEqualizer.slider3.value -= 1
+    Case "Hue +1"
+      VideoEqualizer.slider4.value += 1
+    Case "Hue -1"  
+      VideoEqualizer.slider4.value -= 1
+    Case "Saturation +1"
+      VideoEqualizer.slider5.value += 1
+    Case "Saturation -1"
+      VideoEqualizer.slider5.value -= 1
     Case Else
       mplayer.Send(Action)
   End Select

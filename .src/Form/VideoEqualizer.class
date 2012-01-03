@@ -3,6 +3,30 @@
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
+
+'gamma,brightness,contrast...
+  Public Sub VideoOsd()
+    Dim osdmsg As String
+    osdmsg = "B: " & Make2(slider1.value)
+    osdmsg &= "  C: " & Make2(slider2.value)
+    osdmsg &= "  G: " & Make2(slider3.value)
+    osdmsg &= "  H: " & Make2(slider4.value)
+    osdmsg &= "  S: " & Make2(slider5.value)
+    FMain.mplayer.ShowText(osdmsg, 1000)
+  End
+'
+
+Public Function Make2(n As String) As String
+  Dim t, neg As String
+  If n Like "-*" Then neg = "-"
+  t = Abs(CInt(n))
+  While Len(t) < 3
+    t = "0" & t
+  Wend
+  Return neg & t
+End
+
+
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
@@ -47,7 +71,10 @@ End
 Public Sub Sliders_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
-    If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+    If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then 
+      FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+      VideoOsd()
+    Endif
   Endif
 End
 

@@ -7647,7 +7647,6 @@ Public Sub MenuBug_Click()
     If MyQuestion.Ask("Thank you,\nyou will be taken to the \nbug reporting web page.", "Submit the bug", "Not now") = 1 Then
       Desktop.Open("http://xt7-player.sourceforge.net/xt7forum/newmsg.php?mode=post&f=3")
     Endif
-
 End
 
 

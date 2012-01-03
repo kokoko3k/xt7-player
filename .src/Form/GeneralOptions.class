@@ -889,13 +889,13 @@ End
 
 
 Public Sub notifyobj_Click()
-  'make red apply button only if not chainging properties due to first time loads
-  If (timesloaded > 1) Then global.ManageNotifies_click(Last) 
-
+   If alreadyloaded Then global.ManageNotifies_click(Last) 
 End
 
 Public Sub notifyobj_Change()
-
-  If (timesloaded > 1) Then global.ManageNotifies_Change(Last)
-
+  If fmain.fullyloaded Then 
+   ' If alreadyloaded Then 
+      If timesloaded > 1 Then global.ManageNotifies_Change(Last)
+   ' Endif
+  Endif
 End

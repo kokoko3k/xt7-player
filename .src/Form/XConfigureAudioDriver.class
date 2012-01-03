@@ -54,6 +54,7 @@ End
 Public Sub AudioDriverList_Click()
   Dim i As Integer
   Dim tmp1, tmp2 As String
+  global.ManageNotifies_click(Last) 
   DriverDescription.Text = Last.tag
   If Not Dynagui.ObjDragging Then 'this is necessary to not confuse click and drag events
     For i = 0 To ConfigureTabs.count - 1
@@ -273,3 +274,28 @@ Public Sub Form_Show()
     Endif
   Next
 End
+
+'-------------------------------------------------------------------------
+
+
+
+Public Sub notifyobj_Click()
+   If alreadyloaded Then global.ManageNotifies_click(Last) 
+End
+
+Public Sub notifyobj_Change()
+  If fmain.fullyloaded Then 
+   ' If alreadyloaded Then 
+ '     If timesloaded > 1 ThPublic Sub notifyobj_MouseDown()
+
+  
+
+End
+en global.ManageNotifies_Change(Last)
+   ' Endif
+    If alreadyloaded Then global.ManageNotifies_Change(Last) 
+  Endif
+End
+
+
+

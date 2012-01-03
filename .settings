@@ -1,9 +1,11 @@
 [Breakpoints]
-Breakpoint[1]="FMain.5187"
-Breakpoint[2]="FMain.5206"
-Breakpoint[3]="FMain.5208"
-Breakpoint[4]="FMain.7422"
-Count=4
+Breakpoint[1]="FMain.4893"
+Breakpoint[2]="FMain.4903"
+Breakpoint[3]="FMain.5187"
+Breakpoint[4]="FMain.5206"
+Breakpoint[5]="FMain.5208"
+Breakpoint[6]="FMain.7422"
+Count=6
 
 [DebugWindow]
 Count=0
@@ -192,7 +194,7 @@ Geometry=[0,0,344,731]
 Geometry=[0,0,344,344]
 
 [DebugWindow/Last]
-Geometry=[52,0,210,210]
+Geometry=[52,0,267,712]
 
 [DebugWindow/LastObj]
 Geometry=[-4,-3,210,210]
@@ -719,14 +721,9 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/GeneralOptions.form"
-File[2]=".src/Form/GeneralOptions.class:892.17"
-File[3]=".src/0_Moduli/Global.module:869.3"
-File[4]="AA_ToDo:64.9"
-File[5]=".src/Form/FMain.class:1953.23"
-Active=6
-File[6]="CHANGELOG_GIT:5.11"
-Count=6
+Active=1
+File[1]=".src/Form/XConfigureAudioDriver.form"
+Count=1
 
 [Watches]
 Count=11

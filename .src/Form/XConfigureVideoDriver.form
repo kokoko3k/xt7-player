@@ -68,7 +68,8 @@
           Tag = "adaptor="
           Text = ("Adaptor")
         }
-        { SpinBox10 SpinBox
+        { SpinBox10 SpinBox notifyobj
+          Name = "SpinBox10"
           MoveScaled(18,1,9,4)
           MaxValue = 999
         }
@@ -81,7 +82,8 @@
           Tag = "ck="
           Text = ("Ck")
         }
-        { ComboBox1 ComboBox
+        { ComboBox1 ComboBox notifyobj
+          Name = "ComboBox1"
           MoveScaled(18,1,17,4)
           ReadOnly = True
           List = [("cur"), ("use"), ("set")]
@@ -96,14 +98,16 @@
           Tag = "ck-method="
           Text = ("Ck-Method")
         }
-        { ComboBox2 ComboBox
+        { ComboBox2 ComboBox notifyobj
+          Name = "ComboBox2"
           MoveScaled(18,1,17,4)
           ReadOnly = True
           List = [("man"), ("bg"), ("auto")]
           Text = ("ComboBox1")
         }
       }
-      { XvHbox4 HBox
+      { XvHbox4 HBox notifyobj
+        Name = "XvHbox4"
         MoveScaled(2,29,45,6)
         Padding = 6
         { ColorButton1 ColorButton
@@ -128,7 +132,7 @@
         Padding = 4
         Border = False
         { GLParseMeHPanel HPanel
-          MoveScaled(1,2,45,20)
+          MoveScaled(1,1,45,20)
           Spacing = True
           Padding = 10
           { CheckBox3 CheckBox

@@ -291,11 +291,6 @@ Public Sub notifyobj_Change()
   
 
 End
-en global.ManageNotifies_Change(Last)
-   ' Endif
-    If alreadyloaded Then global.ManageNotifies_Change(Last) 
-  Endif
-End
 
 
 

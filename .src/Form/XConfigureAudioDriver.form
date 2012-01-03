@@ -63,7 +63,7 @@
           Text = ("Device")
         }
         { AlsaDeviceTextBox TextBox
-          MoveScaled(20,1,17,4)
+          MoveScaled(18,1,26,4)
           Text = ("spdif")
         }
       }
@@ -323,7 +323,7 @@
     }
   }
   { Label6 Label
-    MoveScaled(0,58,68,4)
+    MoveScaled(0,57,68,4)
     Foreground = &H646464&
     Text = ("Drivers are choosed from top to bottom, drag'n drop them to choose priority.")
     Alignment = Align.Left

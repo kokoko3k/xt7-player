@@ -1296,6 +1296,7 @@ Public Sub Form_Close()
   
 End
 
+
 Public Sub CorrectAreaAspect()
   'this sets the draweing area of the form to the aspect of the video
   
@@ -1549,15 +1550,11 @@ Public Sub ButtonStop_Click()
 End
 
 Public Sub Buttonfwd_Click()
-  
   mplayer.do_ffwd
-  
 End
 
 Public Sub ButtonRew_Click()
-  
   mplayer.do_slow
-  
 End
 
 Public Function GetOptionsFromGui() As String
@@ -1952,7 +1949,7 @@ Public Sub ExportDbusProperties()
       Debug "Error setting up dbus"
       Return
     Endif
-    Try DBus.Session.Register(mpris, "/org/mpris/MediaPlayer2", ["org.mpris.MediaPlayer2", "org.mpris.MediaPlayer2.Player", "org.mpris.MediaPlayer2.TrackList", "org.mpris.MediaPlayer2.Playlists"])
+    Try DBus.Session.Register(mpris, "/org/mpris/MediaPlayer2", ["org.mpris.MediaPlayer2", "org.mpris.MediaPlayer2.Player", "org.mpris.MediaPlayer2.TrackList", "org.mpris.MediaPlayer2.Playlists", "org.freedesktop.Dbus.Properties", "org.freedesktop.Dbus.Introspectable"])
     If Error Then 
       Debug "Error setting up dbus"
       Return
@@ -7714,4 +7711,8 @@ Public Sub Button5_Click()
   outerbox.cached = False
   
 
+End
+
+Public Sub TimerQuit_Timer()
+  fmain.close
 End

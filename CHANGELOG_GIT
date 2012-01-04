@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Dec 4 2012
+  NEW:    mpris interface: loop,shuffle,volume,play,pause,play/pause,stop,previous,next,open uri,seek
   CHANGE: Toolbar buttons are now plain buttons (still need other size fixes)
   NEW:    Initial mpris 2.1 interface support (Headers only)
   NEW:    Dropping all old dbus code (will be replaced by mpris)

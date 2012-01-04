@@ -6,6 +6,25 @@ Inherits DBusObject
 
 Create Static
 
+
+''org.freedesktop.Dbus.Introspectable-------------------------------------------------------------------------------------------------------------
+' 
+' Public Function org_freedesktop_Dbus_Introspectable_Introspect() As String
+'   Return "NULL"
+' End
+' 
+' ''org.freedesktop.Dbus.Properties-----------------------------------------------------------------------------------------------------------------
+' Public Function org_freedesktop_Dbus_Properties_Get(Myinterface As String, MyProperty As String) As String
+'   Return "NULL"
+' End
+' Public Function org_freedesktop_Dbus_Properties_Set(Myinterface As String, MyProperty As String) As String
+'   Return "NULL"
+' End
+' Public Function org_freedesktop_Dbus_Properties_GetAll(Myinterface As String, MyProperty As String) As String[]
+'   Return "NULL"
+' End
+
+
 ''ORG.MPRIS.MEDIAPLAYER2-----------------------------------------------------------------------------------------------------------------
 Property Read org_mpris_MediaPlayer2_CanQuit As Boolean
 Property Read org_mpris_MediaPlayer2_CanRaise As Boolean
@@ -48,7 +67,10 @@ Public Function org_mpris_MediaPlayer2_Raise()
 End
 
  Public Function org_mpris_MediaPlayer2_Quit()
-   FMain.quit
+    'we cannot just quit the application, because it would unregister
+    'dbus before we exit this kifunction, leading to a runtime error
+    'so use a timer to program a delayed quit.
+    FMain.TimerQuit.start
  End
 
 ''ORG.MPRIS.MEDIAPLAYER2.PLAYER-----------------------------------------------------------------------------------------------------------------
@@ -73,9 +95,15 @@ Function org_mpris_MediaPlayer2_Player_PlayBackStatus_Read() As String
 End
 
 Function org_mpris_MediaPlayer2_Player_LoopStatus_Read() As String
+  If FMain.TogglePls.value Then 
+    Return "Playlist"
+      Else
+    Return "None"
+  Endif
 End
 
 Function org_mpris_MediaPlayer2_Player_LoopStatus_Write(p As String)
+  FMain.TogglePls.value = (p = "Playlist")
 End
 
 Function org_mpris_MediaPlayer2_Player_Rate_Read() As Float
@@ -85,18 +113,26 @@ Function org_mpris_MediaPlayer2_Player_Rate_Write(p As Float)
 End
 
 Function org_mpris_MediaPlayer2_Player_Shuffle_Read() As Boolean
+  Return FMain.ShufflePls.value
 End
 
 Function org_mpris_MediaPlayer2_Player_Shuffle_Write(p As Boolean) 
+  FMain.ShufflePls.value = p
 End
 
 Function org_mpris_MediaPlayer2_Player_Metadata_Read() As String[]
 End
 
 Function org_mpris_MediaPlayer2_Player_Volume_Read() As Float
+   Return (FMain.SaveVolumeSlider.value * (100 Div FMain.SaveVolumeSlider.MaxValue))
 End
 
 Function org_mpris_MediaPlayer2_Player_Volume_Write(p As Float)
+  If p <= 0 Then
+    FMain.SaveVolumeSlider.value = 0
+      Else
+    FMain.SaveVolumeSlider.value = p * FMain.SaveVolumeSlider.MaxValue
+  Endif
 End
 
 Function org_mpris_MediaPlayer2_Player_Position_Read() As Long
@@ -132,31 +168,38 @@ End
 
 
 Public Function org_mpris_MediaPlayer2_Player_Next()
-  Debug "Uninmplemented"
+  FMain.ButtonNext_Click()
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Previous()
-  Debug "Uninmplemented"
+  FMain.ButtonPrev_click()
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Pause()
-  Debug "Uninmplemented"
+  If Not (FMain.mplayer.ProcessRunningOvr()) Then Return
+
+    If FMain.mplayer.Paused Then 
+      Debug "Already paused!"
+        Else
+      FMain.ButtonPlay_click()
+  Endif
 End
 
 Public Function org_mpris_MediaPlayer2_Player_PlayPause()
-  Debug "Uninmplemented"
+   FMain.ButtonPlay_click()
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Stop()
-  Debug "Uninmplemented"
+  FMain.buttonstop_click()
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Play()
-  Debug "Uninmplemented"
+  If (FMain.mplayer.ProcessRunningOvr()) And (Not FMain.mplayer.paused) Then Return 
+  FMain.ButtonPlay_click()
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Seek(p As Long)
-  Debug "Uninmplemented"
+  FMain.mplayer.Send("seek " & (p Div 1000000) & " 0")
 End
 
 Public Function org_mpris_MediaPlayer2_Player_SetPosition(o As Long, p As Long)
@@ -164,5 +207,5 @@ Public Function org_mpris_MediaPlayer2_Player_SetPosition(o As Long, p As Long)
 End
 
 Public Function org_mpris_MediaPlayer2_Player_OpenUri(p As String)
-  Debug "Uninmplemented"
+  FMain.Play(False, p, True)
 End

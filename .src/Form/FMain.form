@@ -633,8 +633,12 @@
       Border = False
     }
   }
+  { TimerQuit #Timer
+    #MoveScaled(44,7)
+    Delay = 100
+  }
   { HSplit1 HSplit
-    MoveScaled(1,8,103,68)
+    MoveScaled(1,7,103,68)
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
@@ -1608,7 +1612,7 @@
               Picture = Picture["speaker.png"]
             }
             { SaveVolumeSlider Slider
-              MoveScaled(31,0,13,4)
+              MoveScaled(34,0,13,4)
               Font = Font["6"]
               Tag = "user"
               MaxValue = 25

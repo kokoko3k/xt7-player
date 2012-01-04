@@ -1291,7 +1291,7 @@ Public Sub Form_Close()
   Try XConfigureVideoDriver.close
   Try Xt7Egg.close
   Try realtimeform.close
-  Try DBus.Session.Unregister(DbusProperties)
+  Try DBus.Session.Unregister(mpris)
   
   Print "Bye"
   

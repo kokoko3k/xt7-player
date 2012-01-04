@@ -1,15 +1,14 @@
 [Breakpoints]
-Breakpoint[1]="FMain.4915"
-Breakpoint[2]="FMain.4925"
-Breakpoint[3]="FMain.5209"
-Breakpoint[4]="FMain.5228"
-Breakpoint[5]="FMain.5230"
-Breakpoint[6]="FMain.7445"
+Breakpoint[1]="FMain.4919"
+Breakpoint[2]="FMain.4929"
+Breakpoint[3]="FMain.5213"
+Breakpoint[4]="FMain.5232"
+Breakpoint[5]="FMain.5234"
+Breakpoint[6]="FMain.7449"
 Count=6
 
 [DebugWindow]
-Count=1
-DebugWindow[1]="Split(dragdata, \"\\n\\r\", \"\", True)"
+Count=0
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -731,19 +730,21 @@ SearchString=True
 File[1]=".src/Form/XConfigureAudioDriver.form"
 File[2]=".src/Form/XConfigureAudioDriver.class:286.6"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:1945.3"
+Active=4
+File[4]=".src/Form/FMain.class:1955.8"
 File[5]=".src/Classi/MplayerClass.class:247.38"
 File[6]=".src/Form/RealtimeForm.form"
 File[7]=".src/Form/AudioEqualizer.form"
 File[8]=".src/Form/VideoEqualizer.form"
 File[9]=".src/Form/VideoEqualizer.class:13.15"
 File[10]=".src/Form/HotKeys.form"
-Active=11
 File[11]="CHANGELOG_GIT:3.0"
 File[12]="AA_ToDo:394.50"
 File[13]=".src/0_Moduli/Global.module:468.7"
 File[14]=".src/Form/GeneralOptions.class:525.69"
-Count=14
+File[15]=".src/Classi/DbusProperties.class:395.3"
+File[16]=".src/Classi/mpris.class:168.0"
+Count=16
 
 [Watches]
 Count=11

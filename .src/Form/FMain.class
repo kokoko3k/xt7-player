@@ -1948,42 +1948,46 @@ End
 Private DbusAlreadyRegistered As Boolean = False
 Public Sub ExportDbusProperties()
   If Not DbusAlreadyRegistered Then
-    Try DBus.name = "org.mpris.MediaPlayer2.xt7"
-    Try DBus.Session.Register(DbusProperties, "/xt7")
+    Try DBus.Name = "org.mpris.MediaPlayer2.xt7"
+    If Error Then 
+      Debug "Error setting up dbus"
+      Return
+    Endif
+    Try DBus.Session.Register(mpris, "/org/mpris/MediaPlayer2", ["org.mpris.MediaPlayer2", "org.mpris.MediaPlayer2.Player", "org.mpris.MediaPlayer2.TrackList", "org.mpris.MediaPlayer2.Playlists"])
     If Error Then 
       Debug "Error setting up dbus"
       Return
     Endif
   Endif
   DbusAlreadyRegistered = True
-  DbusProperties.clear()
-  DbusProperties.FullPath = mplayer.Media_FullPath
-  DbusProperties.FullPathPlaying = mplayer.Media_FullPath_Playing
-  DbusProperties.Length = mplayer.Media_Length
-  DbusProperties.Size = mplayer.Media_Size
-  DbusProperties.Type = mplayer.Media_Type
-  DbusProperties.AudioCodec = mplayer.Media_AudioCodec
-  DbusProperties.AudioBitrate = mplayer.Media_AudioBitrate
-  DbusProperties.AudioRate = mplayer.Media_AudioRate
-  DbusProperties.Channels = mplayer.Media_Channels
-  DbusProperties.VideoCodec = mplayer.Media_VideoCodec
-  DbusProperties.VideoBitrate = mplayer.Media_VideoBitrate
-  DbusProperties.VideoFps = mplayer.Media_VideoFps
-  DbusProperties.Width = mplayer.Media_Width
-  DbusProperties.Height = mplayer.Media_Height
-  DbusProperties.VideoOutWidth = mplayer.VideoOut_Width
-  DbusProperties.VideoOutHeight = mplayer.VideoOut_Height
-  DbusProperties.Author = mplayer.Media_Author
-  DbusProperties.Artist = mplayer.Media_Artist
-  DbusProperties.Genre = mplayer.Media_Genre
-  DbusProperties.Album = mplayer.Media_Album
-  DbusProperties.TrackNo = mplayer.Media_TrackNo
-  DbusProperties.Title = mplayer.Media_Title
-  DbusProperties.Name = mplayer.Media_Name
-  DbusProperties.Comment = mplayer.Media_Comment
-  DbusProperties.Comment = mplayer.Media_Comments
-  DbusProperties.MyYear = mplayer.Media_Year
-  DbusProperties.CreationDate = mplayer.Media_CreationDate 
+  ' DbusProperties.clear()
+  ' DbusProperties.FullPath = mplayer.Media_FullPath
+  ' DbusProperties.FullPathPlaying = mplayer.Media_FullPath_Playing
+  ' DbusProperties.Length = mplayer.Media_Length
+  ' DbusProperties.Size = mplayer.Media_Size
+  ' DbusProperties.Type = mplayer.Media_Type
+  ' DbusProperties.AudioCodec = mplayer.Media_AudioCodec
+  ' DbusProperties.AudioBitrate = mplayer.Media_AudioBitrate
+  ' DbusProperties.AudioRate = mplayer.Media_AudioRate
+  ' DbusProperties.Channels = mplayer.Media_Channels
+  ' DbusProperties.VideoCodec = mplayer.Media_VideoCodec
+  ' DbusProperties.VideoBitrate = mplayer.Media_VideoBitrate
+  ' DbusProperties.VideoFps = mplayer.Media_VideoFps
+  ' DbusProperties.Width = mplayer.Media_Width
+  ' DbusProperties.Height = mplayer.Media_Height
+  ' DbusProperties.VideoOutWidth = mplayer.VideoOut_Width
+  ' DbusProperties.VideoOutHeight = mplayer.VideoOut_Height
+  ' DbusProperties.Author = mplayer.Media_Author
+  ' DbusProperties.Artist = mplayer.Media_Artist
+  ' DbusProperties.Genre = mplayer.Media_Genre
+  ' DbusProperties.Album = mplayer.Media_Album
+  ' DbusProperties.TrackNo = mplayer.Media_TrackNo
+  ' DbusProperties.Title = mplayer.Media_Title
+  ' DbusProperties.Name = mplayer.Media_Name
+  ' DbusProperties.Comment = mplayer.Media_Comment
+  ' DbusProperties.Comment = mplayer.Media_Comments
+  ' DbusProperties.MyYear = mplayer.Media_Year
+  ' DbusProperties.CreationDate = mplayer.Media_CreationDate 
 End
 
 Public Function VmetersOptionsAndInitIfNeeded() As String

@@ -259,44 +259,12 @@ Public Sub CheckResolution(TheForm As Form)
 End
 
 Public Function GetTotalFiles(dragdata As String, FromDesktop As Boolean) As Integer
-'will descend in the dragdata and count the files
-  ' DIM droppedfiles, subdir AS String[]
-  ' DIM DroppedFile, subfile AS String
-  ' DIM total AS Integer = 0
-  ' DIM subtotal AS Integer = 0
-  ' DIM IsFile, IsURI, IsDirectory AS Boolean
-  ' ' 
-  ' droppedfiles = Split(dragdata, "\n")
-  ' FOR EACH DroppedFile IN Droppedfiles   
-  '   IF Trim(DroppedFile) <> "" THEN
-  '     IF FromDesktop THEN 
-  '       droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
-  '         ELSE 
-  '       droppedfile = Global.NoFileSuffix(Global.FormatDrag(droppedfile))
-  '     ENDIF
-  '     
-  '     ISFile = FALSE
-  '     IsDirectory = FALSE
-  '     IsUri = FALSE
-  '     TRY ISFile = (Stat(droppedfile).type = gb.file)
-  '     TRY IsDirectory = (Stat(droppedfile, TRUE).type = gb.Directory)
-  '     IsUri = (droppedfile LIKE "*://*")
-  '     IF (ISFile OR IsUri) THEN 
-  '       total = total + 1  
-  '       ELSE IF IsDirectory THEN
-  '         subdir = Dir(droppedfile)
-  '         FOR EACH subfile IN subdir
-  '           total = total + GetTotalFiles(droppedfile & "/" & subfile, FALSE)
-  '         NEXT
-  '     ENDIF
-  '   ENDIF 
-  ' NEXT
-
   Dim droppedfiles As String[]
   Dim DroppedFile As String
   Dim total As Integer = 0
   Dim subtotal As String = 0
-  droppedfiles = Split(dragdata, "\n", "", True)
+
+  droppedfiles = Split(dragdata, "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If FromDesktop Then
       droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
@@ -306,7 +274,8 @@ Public Function GetTotalFiles(dragdata As String, FromDesktop As Boolean) As Int
     'PRINT "DEBUG: Global: GetTotalFiles(): ls -laRL " & DroppedFile & " |wc -l"
     Shell "sync" Wait
     ' [GB2:QUOT] Shell "ls -LR1 " & Quote.Shell(DroppedFile) & " |grep \\. |grep -v \\/ |sort -u |wc -l" Wait To subtotal
-    Shell "ls -LR1 " & Shell$(DroppedFile) & " |grep \\. |grep -v \\/ |sort -u |wc -l" Wait To subtotal
+    Shell "ls -LR1 " & Shell$(DroppedFile) & " |grep \\. |sort -u |wc -l" Wait To subtotal
+    'Debug "ls -LR1 " & Shell$(DroppedFile) & " |grep \\. |grep -v \\/ |sort -u |wc -l"
     total = total + CInt(Trim(subtotal))
   Next
   Return total
@@ -497,9 +466,9 @@ Public Function FormatDrag(mystring As String) As String
       Hcode = Mid(ReturnString, i + 1, 2)
       Try char = Chr(Val("&H" & Hcode & "&")) 'fixme, why "TRY" is needed on kubuntu/kde4.1?
       
-      If IsAscii(char) Then
+      'If IsAscii(char) Then
         ReturnString = Replace(ReturnString, "%" & Hcode, char)
-      Endif
+      'Endif
     Endif
     i = i + 1
   Wend

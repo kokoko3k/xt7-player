@@ -53,17 +53,7 @@ __GL_SYNC_TO_VBLANK=1  /usr/local/bin/pagecache-management.sh -k 1024 mplayer -i
 Se attivi un driver video, poi non si può più disabilitare se è
 disabled il checkbox...
 
-con 2.99.7 (o qt4?) 
-    *Non funziona più l'highlight del pulsante "USA"
-    *xt7 non riesce più a uscire quando si attiva dbus (provato da casa e va!?)
-    *la proprietà cached del videobox sembra causare un crash (risolto, credo)
 
-la notifica rossa ha ancora problemi, pare solo con oggetti statici
-(timesloaded non è >1)
-provare per esempio "aggiungi automaticamente i filtri eq2"...)
-...ma invece che timesloaded, non basterebbe controllare che xt7 stia suonando
-qualcosa?
--provato, in generaloptions funziona, estenderlo a tutti i form necessari
 ---------------------------------------------------------------------------
 
 

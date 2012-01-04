@@ -2476,14 +2476,13 @@ Public Sub VideoAreaGroup_Drop()
   
   Dim droppedfiles As String[]
   
-  droppedfiles = Split(Drag.data, "\n")
+  droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True) 
   droppedfiles[0] = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfiles[0])))
   If Not ((droppedfiles[0] Like "*.iso") Or (droppedfiles[0] Like "*VIDEO_TS")) Then
     If mplayer.IsSubFile(droppedfiles[0]) Then
       mplayer.SubtitleDisplay(droppedfiles[0])
     Else
       mplayer.Media_FullPath = droppedfiles[0]
-      Debug "Drag.format= " & Drag.format
       Play(False)
     Endif
   Else
@@ -3267,17 +3266,19 @@ Public Sub LibraryGrid_Drop()
   
   Dim droppedfiles As String[]
   Dim DroppedFile, ext As String
+  Dim dragdata As String
   Dim i As Integer
   Dim IsFile, IsURI, IsDirectory, IsPlayList As Boolean
   
-  droppedfiles = Split(Drag.data, "\n")
+  dragdata = Drag.Paste("text/uri-list")
+  droppedfiles = Split(dragdata, "\n\r", "", True)
   Debug "Start at: " & Time
 
   'prepare the progressbar
   MyLibraryProgressBar.visible = True
   MyLibraryProgressBar.h = 32
   Wait 0.1
-  MyLibrary.FilesToProcess = Global.GetTotalFiles(Drag.data, True)
+  MyLibrary.FilesToProcess = Global.GetTotalFiles(dragdata, True)
   MyLibraryProgressBar.value = 0 '(it will be update by MyLibrary.add())
   
   MyLibrary.SyncSortedTable() '<-necessary for MyLibrary.isdupe() function
@@ -4692,7 +4693,7 @@ End
 Public Sub PlaylistGrid_Drop()
   
   Dim droppedfile, ext As String
-  Dim droppedfiles As String[] = Split(Drag.data, "\n")
+  Dim droppedfiles As String[] = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   Dim IsFile, IsDirectory, IsUri, IsPlayList As Boolean
   
   MyPlaylist.SyncSortedTable()  '<-necessary for MyPlaylist.isdupe() function
@@ -6551,7 +6552,7 @@ Public Sub PodcastTree_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile, ext As String
   
-  droppedfiles = Split(Drag.data, "\n")
+  droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If Trim(DroppedFile) <> "" Then
       droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))

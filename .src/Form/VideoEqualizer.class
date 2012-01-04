@@ -7,6 +7,7 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 'gamma,brightness,contrast...
   Public Sub VideoOsd()
     Dim osdmsg As String
+    
     osdmsg = "B: " & Make2(slider1.value)
     osdmsg &= "  C: " & Make2(slider2.value)
     osdmsg &= "  G: " & Make2(slider3.value)

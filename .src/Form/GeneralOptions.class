@@ -510,7 +510,7 @@ Public Sub NoParseWatchedListbox_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile As String
   Dim i As Integer
-  droppedfiles = Split(Drag.data, "\n")
+  droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If Trim(DroppedFile) <> "" Then
       droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
@@ -523,7 +523,7 @@ Public Sub NoParseExcludedListbox_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile As String
   Dim i As Integer
-  droppedfiles = Split(Drag.data, "\n")
+  droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If Trim(DroppedFile) <> "" Then
       droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))

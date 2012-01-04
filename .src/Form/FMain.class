@@ -724,7 +724,6 @@ Public Sub SetStyle_early()
   Else
     Maintoolbar.h = 24
   Endif
-  
   'Set font size AND stile OF the whole form; beware the AudioForm!
   
   'fix bottom panel for high sized fonts

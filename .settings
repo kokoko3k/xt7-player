@@ -1,5 +1,5 @@
 [Breakpoints]
-Breakpoint[1]="FMain.7448"
+Breakpoint[1]="FMain.7441"
 Count=1
 
 [DebugWindow]
@@ -67,6 +67,9 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/Color]
 Geometry=[0,0,301,301]
+
+[DebugWindow/Columnindex]
+Geometry=[325,-20,210,210]
 
 [DebugWindow/ConfFile]
 Geometry=[0,0,210,210]
@@ -724,16 +727,16 @@ SearchString=True
 [OpenFile]
 File[1]=".src/Form/XConfigureAudioDriver.form"
 File[2]=".src/Form/XConfigureAudioDriver.class:286.6"
-Active=3
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:5212.0"
+File[4]=".src/Form/FMain.class:2523.12"
 File[5]=".src/Classi/MplayerClass.class:920.23"
 File[6]=".src/Form/RealtimeForm.form"
 File[7]=".src/Form/AudioEqualizer.form"
 File[8]=".src/Form/VideoEqualizer.form"
 File[9]=".src/Form/VideoEqualizer.class:13.15"
 File[10]=".src/Form/HotKeys.form"
-File[11]="CHANGELOG_GIT:3.69"
+Active=11
+File[11]="CHANGELOG_GIT:3.0"
 File[12]="AA_ToDo:34.0"
 File[13]=".src/0_Moduli/Global.module:468.7"
 File[14]=".src/Form/GeneralOptions.class:65.2"
@@ -742,7 +745,8 @@ File[16]=".src/Classi/mpris.class:104.41"
 File[17]=".src/Form/DVBTuner.form"
 File[18]=".src/Form/GeneralOptions.form"
 File[19]=".src/Form/CountDown.class:24.17"
-Count=19
+File[20]=".src/Classi/PlaylistClass.class:1378.22"
+Count=20
 
 [Watches]
 Count=11

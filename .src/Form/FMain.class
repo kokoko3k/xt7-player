@@ -387,7 +387,7 @@ Public Sub AllInit_Post()
   FileView1.visible = True
   FileView1.dir = savefileview1path
   FileView1.Reload
-  If (Application.Args.count = 1) And (GeneralOptions.AnimLogoCHK.value = True) Then PlayAnimLogo()
+ 
   Leftsidepanel.mouse = mouse.wait
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
@@ -534,13 +534,6 @@ Public Sub InitFlashGrid()
   MyFlash.init()
 End
 
-Public Sub PlayAnimLogo()
-  Dim tmplogo As String = Temp("_AnImLoGo_.avi")
-  Try Copy "_AnImLoGo_.avi" To tmplogo
-  mplayer.do_play(tmplogo, mplayer.CurrentOptions)
-  CorrectAreaAspect
-  mplayer.Media_FullPath = ""
-End
 
 Public Sub MakeProfilePath()
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
@@ -2497,13 +2490,13 @@ Public Sub UpdateSeekSlider()
   
   Dim totaltime, actualtime, percent, stream_length, stream_pos As Integer
   
-  If File.Name(mplayer.Media_FullPath_Playing) <> "_AnImLoGo_.avi.tmp" Then
+  
     SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
     Try totaltime = mplayer.Media_Length
     Try actualtime = mplayer.CurrentTime()
     Try SeekBar.value = (actualtime * 1000) Div totaltime
     SeekBar.tag = "user"
-  Endif
+  
   
 End
 
@@ -2523,7 +2516,7 @@ Public Sub UpdateStatusBar()
   Dim LotOfSpaces As String = ""
   Dim Cachevalue As Integer = 0
   
-  If File.Name(mplayer.Media_FullPath_Playing) <> "_AnImLoGo_.avi.tmp" Then
+ 
     pretext = file.BaseName(mplayer.Media_FullPath_Playing)
     If IsDvd Then Pretext = "DVD: " & mplayer.FindTagValue("ID_DVD_VOLUME_ID")
     If mplayer.IsNetworkURI Then
@@ -2532,7 +2525,7 @@ Public Sub UpdateStatusBar()
       Else If youtubetitle <> "" Then
         pretext = youtubetitle
       Endif
-    Endif
+ 
     
     
     '------------------------------

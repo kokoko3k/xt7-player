@@ -996,10 +996,10 @@
             Text = ("Dbus support")
           }
           { Label22 Label
-            MoveScaled(19,0,11,3)
+            MoveScaled(19,0,19,3)
             Font = Font["Italic"]
             AutoResize = True
-            Text = ("   (MPRIS)")
+            Text = ("   (MPRIS 2.1 - Incomplete)")
             Alignment = Align.Right
           }
         }
@@ -1085,17 +1085,6 @@
             Font = Font["Bold,+1"]
             Expand = True
             Text = ("* Some Options may require application restart.")
-          }
-        }
-        { NoParse11 HBox
-          MoveScaled(0,4,50,4)
-          Spacing = True
-          { AnimLogoCHK CheckBox
-            MoveScaled(1,1,47,4)
-            ToolTip = ("Enable/Disbale the start banner animation")
-            Expand = True
-            Text = ("Play logo animation at start")
-            Value = CheckBox.True
           }
         }
         { NoParse29 HBox

@@ -1,6 +1,8 @@
 Git changes:
 --------------------------------------
 Dec 5 2012
+  FIX:    Runtime error on startup with no existing profiles
+  CHANGE: Removed startup animation as it seems to cause problems on 64bit
   FIX:    If there's no cookie file, don't use "-cookies-file" option
 
 Dec 4 2012

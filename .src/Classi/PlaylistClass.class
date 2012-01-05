@@ -1375,7 +1375,8 @@ Dim r, c As Integer
 'will sync LibraryGrid to SearchTable.
   'It is not necessary to blank the entire Playlist,
   '(We'll blank only the "FileName" Column because FillRows checks just it)
-  c = Columnindex["Filename"]
+  Try c = Columnindex["Filename"]
+  If Error Then Return
   LibraryGrid.Rows.count = 0
   LibraryGrid.rows.count = SearchTable.Count
   LibraryGrid.moveto(RowToSelect, ColToSelect)

@@ -2128,7 +2128,8 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
     Endif
   Endif
   OneSecTimer.start
-  If needytcookie Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
+  If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
+    
 
   If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts) Then
     If Not (mplayer.AudioOnly) Then

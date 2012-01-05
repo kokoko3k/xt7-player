@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Dec 5 2012
+  FIX:    If there's no cookie file, don't use "-cookies-file" option
+
 Dec 4 2012
   NEW:    mpris interface: loop,shuffle,volume,play,pause,play/pause,stop,previous,next,open uri,seek
   CHANGE: Toolbar buttons are now plain buttons (still need other size fixes)

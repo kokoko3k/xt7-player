@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,104,76)
+  MoveScaled(0,0,106,77)
   Text = ("Xt7-Player")
   Icon = Picture["xt7-player.png"]
   Persistent = True
@@ -1523,8 +1523,14 @@
           Label = False
         }
         { ControlFrame Frame
-          MoveScaled(0,1,70,10)
+          MoveScaled(-1,1,70,10)
           Font = Font["6"]
+          { PictureBox1 PictureBox
+            MoveScaled(1,1,60,7)
+            Expand = True
+            Picture = Picture["backpanel.png"]
+            Stretch = True
+          }
           { ControlPanel Panel
             MoveScaled(1,6,41,4)
             Font = Font["6"]
@@ -1608,9 +1614,9 @@
           }
         }
         { Statusbar1 TextBox
-          MoveScaled(0,11,70,4)
+          MoveScaled(1,10,30,4)
           Background = &H000000&
-          Foreground = &HF0F0F0&
+          Foreground = &HFFFFFF&
           Alignment = Align.Left
           ReadOnly = True
           Border = False

@@ -1419,6 +1419,7 @@ Private Sub CostrainFormSizes()
   MainToolbar.width = FMain.clientw - 16
   BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+  picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End
 
 Public Sub Form_Resize()
@@ -2525,7 +2526,7 @@ Public Sub UpdateStatusBar()
       Else If youtubetitle <> "" Then
         pretext = youtubetitle
       Endif
- 
+    Endif 
     
     
     '------------------------------
@@ -2541,7 +2542,7 @@ Public Sub UpdateStatusBar()
       RemainingTime = mplayer.Media_Length - mplayer.CurrentTime()
       PostText = "-" & RemainingTime & " / " & mplayer.Media_Length
     Endif
-  Endif
+
   smallwindow = (Statusbar1.Font.TextWidth(PreText & PostText) > Statusbar1.Width)
   If SmallWindow Then
     pretext = Left$(pretext, CInt(((Statusbar1.Width) Div Statusbar1.font.TextWidth("_")) - Len(PostText)) / 1.) & "..."

@@ -518,119 +518,106 @@
   { MainToolBar Panel
     MoveScaled(0,0,92,4)
     Arrangement = Arrange.Horizontal
-    { ShowVolBtn2 Button DynaGuiToolbar
+    { ShowVolBtn2 ToolButton DynaGuiToolbar
       Name = "ShowVolBtn2"
       MoveScaled(1,0,4,4)
       ToolTip = ("Open a file")
       AutoResize = True
       Picture = Picture["document-open.png"]
-      Border = False
     }
-    { OpenNetworkBTN Button DynaGuiToolbar
+    { OpenNetworkBTN ToolButton DynaGuiToolbar
       Name = "OpenNetworkBTN"
       MoveScaled(6,0,4,4)
       ToolTip = ("Open an URI/Network stream")
       AutoResize = True
       Picture = Picture["icon:/22/network"]
-      Border = False
     }
-    { ConfigureChainsBTN Button DynaGuiToolbar
+    { ConfigureChainsBTN ToolButton DynaGuiToolbar
       Name = "ConfigureChainsBTN"
       MoveScaled(10,0,4,4)
       ToolTip = ("Show/hide chains window")
       AutoResize = True
       Picture = Picture["pipe.png"]
-      Border = False
     }
-    { ConfigureBTN Button DynaGuiToolbar
+    { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
       MoveScaled(15,0,4,4)
       ToolTip = ("Configuration toolbox")
       AutoResize = True
       Picture = Picture["configure.png"]
-      Border = False
     }
-    { TagEditorBtn Button DynaGuiToolbar
+    { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
       MoveScaled(19,0,4,4)
       Enabled = False
       ToolTip = ("Show/Hide AudioTag editor")
       AutoResize = True
       Picture = Picture["icon:/22/edit"]
-      Border = False
     }
     { FlexSpace PictureBox
       MoveScaled(33,0,9,4)
       Font = Font["1"]
       Expand = True
     }
-    { ShowAudioEq Button DynaGuiToolbar
+    { ShowAudioEq ToolButton DynaGuiToolbar
       Name = "ShowAudioEq"
       MoveScaled(54,0,4,4)
       ToolTip = ("Video Equalizer")
       AutoResize = True
       Picture = Picture["audioequalizer.png"]
-      Border = False
     }
-    { ShowVideoEq Button DynaGuiToolbar
+    { ShowVideoEq ToolButton DynaGuiToolbar
       Name = "ShowVideoEq"
       MoveScaled(58,0,4,4)
       ToolTip = ("Video Equalizer")
       AutoResize = True
       Picture = Picture["icon:/22/color"]
-      Border = False
     }
-    { SwitchSubBtn Button DynaGuiToolbar
+    { SwitchSubBtn ToolButton DynaGuiToolbar
       Name = "SwitchSubBtn"
       MoveScaled(62,0,4,4)
       ToolTip = ("Switch subtitle track")
       AutoResize = True
       Picture = Picture["icon:/22/font"]
-      Border = False
     }
-    { SwitchAudioBTN Button DynaGuiToolbar
+    { SwitchAudioBTN ToolButton DynaGuiToolbar
       Name = "SwitchAudioBTN"
       MoveScaled(67,0,4,4)
       ToolTip = ("Switch audio track")
       AutoResize = True
       Picture = Picture["icon:/22/language"]
-      Border = False
     }
-    { RealtimeBTN Button DynaGuiToolbar
+    { RealtimeBTN ToolButton DynaGuiToolbar
       Name = "RealtimeBTN"
       MoveScaled(72,0,4,4)
       ToolTip = ("Other realtime commands")
       AutoResize = True
       Picture = Picture["icon:/22/clock"]
-      Border = False
     }
     { Separator2 Separator
       MoveScaled(76,0,2,4)
       Font = Font["1"]
     }
-    { SwitchSidePanelBTN Button DynaGuiToolbar
+    { SwitchSidePanelBTN ToolButton DynaGuiToolbar
       Name = "SwitchSidePanelBTN"
       MoveScaled(79,0,4,4)
       ToolTip = ("Hide/show left panel")
       AutoResize = True
       Picture = Picture["view-choose.png"]
-      Border = False
     }
-    { FullScreenBtn Button DynaGuiToolbar
+    { FullScreenBtn ToolButton DynaGuiToolbar
       Name = "FullScreenBtn"
       MoveScaled(83,0,4,4)
       ToolTip = ("Fullscreen Switch")
       AutoResize = True
       Picture = Picture["view-fullscreen.png"]
-      Border = False
     }
-    { PoweroffBTN Button DynaGuiToolbar
+    { PoweroffBTN ToolButton DynaGuiToolbar
       Name = "PoweroffBTN"
       MoveScaled(86,0,4,4)
       ToolTip = ("Shutdown menu")
       AutoResize = True
       Picture = Picture["icon:/22/quit"]
-      Border = False
     }
   }
   { TimerQuit #Timer
@@ -1484,7 +1471,6 @@
           Background = Color.Background
           ReadOnly = True
           Wrap = True
-          Border = False
           ScrollBar = Scroll.Vertical
         }
         { HBox1 HBox

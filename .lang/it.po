@@ -11,15 +11,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: SubAndOsd.form:409
+#: GeneralOptions.form:1423
+msgid "   (MPRIS 2.1 - Incomplete)"
+msgstr "  (MPRIS 2.1 - Incompleto)"
+
+#: SubAndOsd.form:407
 msgid "  FallBack"
 msgstr "Ripiego"
 
-#: XConfigureAudioDriver.form:357 XConfigureVideoDriver.form:1069
+#: XConfigureAudioDriver.form:358 XConfigureVideoDriver.form:1075
 msgid " Custom Driver(s) options, \"-vo \" is implicit."
 msgstr " Opzioni del driver custom, \"-vo\" è implicito."
 
-#: VFiltersCfg.class:376
+#: VFiltersCfg.class:377
 msgid " The Higher, the slower "
 msgstr " Più alto è, più sarà lento"
 
@@ -27,71 +31,71 @@ msgstr " Più alto è, più sarà lento"
 msgid " by Antonio Orefice.\nxt7player@gmail.com\n\nThanks to Benoît Minisini for Gambas."
 msgstr " di Antonio Orefice.\nxt7player@gmail.com\n\nGrazie a Benoît Minisini per Gambas."
 
-#: FMain.class:1109
+#: FMain.class:1099
 msgid " channels"
 msgstr "canali"
 
-#: FMain.class:2550
+#: FMain.class:2560
 msgid " of: "
 msgstr " di: "
 
-#: GeneralOptions.class:118
+#: GeneralOptions.class:123
 msgid "#-12..#+12 are semitones.\n See also 'speed' under 'scaletempo' filter in chains window.\n Mplayer Option: -speed"
 msgstr "#-12..#+12 sono semitoni.\n Guarda anche 'speed' del filtro 'scaletempo' nella finestra catene.\n Opzione mplayer: -speed"
 
-#: GeneralOptions.form:1558
+#: GeneralOptions.form:1570
 msgid "% of the screen"
 msgstr "% dello schermo"
 
-#: GeneralOptions.form:668
+#: GeneralOptions.form:673
 msgid "% of total cache size"
 msgstr "% della cache totale"
 
-#: GeneralOptions.form:955
+#: GeneralOptions.form:976
 msgid "% of total cache size "
 msgstr "% della cache totale"
 
-#: GeneralOptions.class:203
+#: GeneralOptions.class:208
 msgid "(H.264 only)"
 msgstr "(Solo H.264)"
 
-#: GeneralOptions.class:187
+#: GeneralOptions.class:192
 msgid "(MPEG-1/2 and H.264 only)"
 msgstr "(Solo MPEG-1/2 and H.264)"
 
-#: GeneralOptions.class:198
+#: GeneralOptions.class:203
 msgid "(MPEG-2, MPEG-4, and H.264 only)"
 msgstr "(Soo MPEG-2, MPEG-4 e H.264)"
 
-#: GeneralOptions.form:615
+#: GeneralOptions.form:616
 msgid "(The lower, the 'faster')"
 msgstr "(Più è basso, più è 'veloce')"
 
-#: LogWindow.form:117
+#: LogWindow.form:118
 msgid "(\"'R' means that the last line is repeating a lot of times\")"
 msgstr "(\"'R' indica che l'ultima linea si sta ripetendo molte volte\")"
 
-#: GeneralOptions.form:1486
+#: GeneralOptions.form:1523
 msgid "* Some Options may require application restart."
 msgstr "* Alcune opzioni potrebbero richiedere il riavvio dell' applicazione."
 
-#: RealtimeForm.form:55
+#: RealtimeForm.form:61
 msgid "* Some subtitle controls only work when ass subtitles are disabled"
 msgstr "* Alcuni controlli per i sottotitoli funzionano solo se ass è disabilitato"
 
-#: RealtimeForm.form:253
+#: RealtimeForm.form:289
 msgid "* Subtitle alignment"
 msgstr "* Allineamento  sottotitoli"
 
-#: RealtimeForm.form:223
+#: RealtimeForm.form:254
 msgid "* Subtitle position"
 msgstr "* Posizione sottotitoli"
 
-#: FMain.class:2670
+#: FMain.class:2680
 msgid "* Youtube subtitles available *"
 msgstr "* Sono disponibili sottotitoli *"
 
-#: XConfigureVideoDriver.form:756
+#: XConfigureVideoDriver.form:762
 msgid "** Note: Vaapi and multithreaded decoding don't play nice !! **"
 msgstr "** Nota: Vaapi non funziona con la decodifica multithread !! **"
 
@@ -99,71 +103,71 @@ msgstr "** Nota: Vaapi non funziona con la decodifica multithread !! **"
 msgid "*Related Videos"
 msgstr "*Video correlati"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.1"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.2"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.3"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.4"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.5"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.6"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.7"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.8"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-0.9"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "-1"
 msgstr "-"
 
-#: VFiltersCfg.class:426
+#: VFiltersCfg.class:427
 msgid "-1 - auto, need codec support"
 msgstr "-1 - auto, necessita del supporto del codec"
 
-#: VFiltersCfg.class:294
+#: VFiltersCfg.class:295
 msgid "-1 draws a green border"
 msgstr "-1 disegna un bordo verde"
 
-#: GeneralOptions.class:223
+#: GeneralOptions.class:228
 msgid "-1=auto (default)"
 msgstr "-1=auto (predefinito)"
 
-#: FMain.form:1262
+#: FMain.form:1270
 msgid "/"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:167
+#: XConfigureAudioDriver.form:168
 msgid "/dev/dsp"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:185
+#: XConfigureAudioDriver.form:186
 msgid "/dev/mixer"
 msgstr "-"
 
-#: VFiltersCfg.class:284
+#: VFiltersCfg.class:285
 msgid "0 - Allow Upscaling"
 msgstr "0 - Permetti upscale"
 
@@ -171,131 +175,131 @@ msgstr "0 - Permetti upscale"
 msgid "0 - DVBT_Autoscan_(Fast)"
 msgstr "-"
 
-#: VFiltersCfg.class:285
+#: VFiltersCfg.class:286
 msgid "0 - Disable Accurate rounding"
 msgstr "0 - Disabilita l'approssimazione automatica"
 
-#: VFiltersCfg.class:379
+#: VFiltersCfg.class:380
 msgid "0 - Dont use QP from bFrames"
 msgstr "0 - Non usare il QP dei Bframe"
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "0 - Exact match"
 msgstr "0 - Il sottotitolo chiamato come il nome del filmato"
 
-#: XConfigureVideoDriver.form:689
+#: XConfigureVideoDriver.form:695
 msgid "0 - Guess based on resolution"
 msgstr "0 - Ricavalo dalla risoluzione"
 
-#: XConfigureVideoDriver.form:648
+#: XConfigureVideoDriver.form:654
 msgid "0 - No deinterlacing"
 msgstr "0 - Non Deinterlacciare"
 
-#: XConfigureVideoDriver.form:807
+#: XConfigureVideoDriver.form:813
 msgid "0 - No deinterlacing (default)"
 msgstr "0 - Non deinterlacciare (predefinito)"
 
-#: VFiltersCfg.class:425
+#: VFiltersCfg.class:426
 msgid "0 - Output 1 frame for each frame."
 msgstr "0 - Crea un frame per ogni frame"
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:296
 msgid "0 - Top"
 msgstr "0 - Alto"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "0 - Use all available input lines for chroma"
 msgstr "0 - Usa tutte le linee per il chroma"
 
-#: XConfigureVideoDriver.form:709
+#: XConfigureVideoDriver.form:715
 msgid "0 - Use default VDPAU scaling"
 msgstr "0 -  Usa la scalatura predefinita di VDPAU"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "0 - fast bilinear"
 msgstr "0 - Bilineare veloce"
 
-#: VFiltersCfg.class:365
+#: VFiltersCfg.class:366
 msgid "0 - hard thresholding"
 msgstr "0 - Controllo della soglia rigido"
 
-#: XConfigureVideoDriver.form:806
+#: XConfigureVideoDriver.form:812
 msgid "0 - no deinterlacing (default)"
 msgstr "0 - Non deinterlacciare (predefinito)"
 
-#: XConfigureVideoDriver.form:629
+#: XConfigureVideoDriver.form:635
 msgid "0 - no denoise"
 msgstr "0 - No riduzione rumore"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0 - no sharpen"
 msgstr "0 - no sharpen"
 
-#: VFiltersCfg.class:426
+#: VFiltersCfg.class:427
 msgid "0 - top field first"
 msgstr "0 - Prima il campo superiore"
 
-#: XConfigureVideoDriver.form:787
+#: XConfigureVideoDriver.form:793
 msgid "0 - use least-recently-used VA surface"
 msgstr "0 - Usa la superficie VA usata più recentemente"
 
-#: VFiltersCfg.class:277
+#: VFiltersCfg.class:278
 msgid "0 disables scaling,see man below"
 msgstr "0 disabilita lo scaling, consulta il manuale sotto"
 
-#: VFiltersCfg.class:250
+#: VFiltersCfg.class:251
 msgid "0 to Disable; Negative as offset to original value"
 msgstr "0 = disabilita; < 0 = discostamento dal valore originale"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.1"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.2"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.3"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.4"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.5"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.6"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.7"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.8"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:610
+#: XConfigureVideoDriver.form:616
 msgid "0.9"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:388
+#: XConfigureVideoDriver.form:394
 msgid "0x00ffffff"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:314
+#: XConfigureVideoDriver.form:320
 msgid "0xFF00FF"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:420
+#: XConfigureVideoDriver.form:426
 msgid "1"
 msgstr "-"
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:296
 msgid "1 - Center"
 msgstr "1 - Centro"
 
@@ -303,67 +307,67 @@ msgstr "1 - Centro"
 msgid "1 - DVBT_Autoscan_Extensive_(Slow)"
 msgstr "-"
 
-#: VFiltersCfg.class:284
+#: VFiltersCfg.class:285
 msgid "1 - Disallow if one dimensions exceeds its original value"
 msgstr "1 - Impedisci se una dimensione eccede il suo valore originale"
 
-#: VFiltersCfg.class:285
+#: VFiltersCfg.class:286
 msgid "1 - Enable Accurate rounding"
 msgstr "1 - Abilita l'approssimazione automatica"
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "1 - Load all subs containing movie name"
 msgstr "1 - Tutti i sottotitoli contenenti il nome del filmato"
 
-#: VFiltersCfg.class:425
+#: VFiltersCfg.class:426
 msgid "1 - Output 1 frame for each field."
 msgstr "1 - Crea un frame per ogni campo"
 
-#: XConfigureVideoDriver.form:648
+#: XConfigureVideoDriver.form:654
 msgid "1 - Show only first field"
 msgstr "1 - Mostra solo il primo campo"
 
-#: RealtimeForm.form:281
+#: RealtimeForm.form:322
 msgid "1 - Soft Framedropping"
 msgstr "1 - Scarto morbido dei fotogrammi"
 
-#: XConfigureVideoDriver.form:689
+#: XConfigureVideoDriver.form:695
 msgid "1 - Use ITU-R BT.601 color space (default)"
 msgstr "1 - Usa lo spazio di colore ITU-R BT.601 (predefinito)"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "1 - Use only every 2. input line for chroma"
 msgstr "1 - Usa solo 1 su 2 linee per il croma"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "1 - bilinear"
 msgstr "1 - Bilineare"
 
-#: VFiltersCfg.class:426
+#: VFiltersCfg.class:427
 msgid "1 - bottom field first"
 msgstr "1 - Prima il campo inferiore"
 
-#: XConfigureVideoDriver.form:787
+#: XConfigureVideoDriver.form:793
 msgid "1 - identify VA surface with MPI index"
 msgstr "1 - Identifica la superficie VA dall' indice MPI"
 
-#: XConfigureVideoDriver.form:806
+#: XConfigureVideoDriver.form:812
 msgid "1 - only show first field"
 msgstr "1 - Mostra solo il primo campo"
 
-#: VFiltersCfg.class:365
+#: VFiltersCfg.class:366
 msgid "1 - soft thresholding"
 msgstr "1 - Controllo della soglia: flessibile"
 
-#: VFiltersCfg.class:379
+#: VFiltersCfg.class:380
 msgid "1 - use QP from bFrames"
 msgstr "1 - Usa il QP dai BFrame"
 
-#: AFiltersCfg.class:144
+#: AFiltersCfg.class:145
 msgid "1 Turns on soft clipping"
 msgstr "1 Abilita la saturazione morbida"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "1) Bottom/Left"
 msgstr "1) Basso/Sinistra"
 
@@ -375,15 +379,15 @@ msgstr "-"
 msgid "10"
 msgstr "-"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "10 - natural bicubic spline"
 msgstr "10 - Cubico naturale spline"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "1024000"
 msgstr "-"
 
-#: GeneralOptions.form:974
+#: GeneralOptions.form:995
 msgid "1080p"
 msgstr "-"
 
@@ -395,15 +399,15 @@ msgstr "-"
 msgid "125"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "128000"
 msgstr "-"
 
-#: FMain.form:734
+#: FMain.form:736
 msgid "16:10"
 msgstr "-"
 
-#: FMain.form:730
+#: FMain.form:732
 msgid "16:9"
 msgstr "-"
 
@@ -415,7 +419,7 @@ msgstr "-"
 msgid "1965"
 msgstr "-"
 
-#: FMain.form:742
+#: FMain.form:744
 msgid "1:1"
 msgstr "-"
 
@@ -423,23 +427,23 @@ msgstr "-"
 msgid "1K"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:420
+#: XConfigureVideoDriver.form:426
 msgid "2"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:648
+#: XConfigureVideoDriver.form:654
 msgid "2 - Bob deinterlacing"
 msgstr "2 - Deinterlacciamento Bob"
 
-#: RealtimeForm.form:260
+#: RealtimeForm.form:296
 msgid "2 - Bottom"
 msgstr "2 - Basso"
 
-#: VFiltersCfg.class:284
+#: VFiltersCfg.class:285
 msgid "2 - Disallow if both dimensions exceed their original values"
 msgstr "2 - Disabilita se entrambe le dimensioni eccedono il valore originale"
 
-#: RealtimeForm.form:281
+#: RealtimeForm.form:322
 msgid "2 - Hard Framedropping"
 msgstr "2 - Scarto fotogrammi aggressivo"
 
@@ -447,43 +451,43 @@ msgstr "2 - Scarto fotogrammi aggressivo"
 msgid "2 - Initial Tuning data file"
 msgstr "2 - File iniziale di tuning"
 
-#: VFiltersCfg.class:425
+#: VFiltersCfg.class:426
 msgid "2 - Like 0 but skips spatial interlacing check."
 msgstr "2 - Come 0 ma salta il controllo spaziale."
 
-#: SubAndOsd.form:321
+#: SubAndOsd.form:319
 msgid "2 - Load all subs in the current directory"
 msgstr "2 - Tutti i sottotitoli nella directory corrente"
 
-#: XConfigureVideoDriver.form:689
+#: XConfigureVideoDriver.form:695
 msgid "2 - Use ITU-R BT.709 color space"
 msgstr "2 - Usa lo spazio di colore ITU-R BT.709"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "2 - Use only every 4. input line for chroma"
 msgstr "2 - Usa solo 1 su 4 linee per il croma"
 
-#: XConfigureVideoDriver.form:787
+#: XConfigureVideoDriver.form:793
 msgid "2 - auto-detect use of direct surface mapping (default)"
 msgstr "2 - Scegli la superficie automaticamente (predefinito)"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "2 - bicubic (good quality) (default)"
 msgstr "2 - Bicubico (buona qualità) (predefinito)"
 
-#: XConfigureVideoDriver.form:806
+#: XConfigureVideoDriver.form:812
 msgid "2 - bob deinterlacing"
 msgstr "2 - Deinterlacciamento bob"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "2) Bottom/Center"
 msgstr "2) Basso/Centro"
 
-#: FMain.form:726
+#: FMain.form:728
 msgid "2.35:1"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "2048000"
 msgstr "-"
 
@@ -491,7 +495,7 @@ msgstr "-"
 msgid "250"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "256000"
 msgstr "-"
 
@@ -499,31 +503,31 @@ msgstr "-"
 msgid "2K"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:420
+#: XConfigureVideoDriver.form:426
 msgid "3"
 msgstr "-"
 
-#: VFiltersCfg.class:425
+#: VFiltersCfg.class:426
 msgid "3 - Like 1 but skips spatial interlacing check"
 msgstr "3 - Come 1 ma salta il controllo spaziale"
 
-#: XConfigureVideoDriver.form:648
+#: XConfigureVideoDriver.form:654
 msgid "3 - Motion adaptive"
 msgstr "3 - Motion Adattivo"
 
-#: XConfigureVideoDriver.form:689
+#: XConfigureVideoDriver.form:695
 msgid "3 - Use SMPTE-240M color space"
 msgstr "3 - Usa lo spazio di colore SMPTE-240M"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "3 - Use only every 8. input line for chroma"
 msgstr "3 - Usa solo 1 su 8 linee per il croma"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "3 - experimental"
 msgstr "3 - Sperimentale"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "3) Bottom/Right"
 msgstr "3) Basso/Destra"
 
@@ -531,39 +535,39 @@ msgstr "3) Basso/Destra"
 msgid "31"
 msgstr "-"
 
-#: GeneralOptions.form:974
+#: GeneralOptions.form:995
 msgid "360p"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "4"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:648
+#: XConfigureVideoDriver.form:654
 msgid "4 - Motion adaptive with edge-guided interpolation"
 msgstr "4 - Interpolazione temporale adattiva al movimento e spaziale legata ai bordi."
 
-#: VFiltersCfg.class:365
+#: VFiltersCfg.class:366
 msgid "4 - like 0, but also use B-frames"
 msgstr "4 - Come 0, ma usa anche i B-frame"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "4 - nearest neighbor (bad quality)"
 msgstr "4 - Più vicino (scarsa qualità)"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "4) Top/Left"
 msgstr "4) Alto/Sinistra"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "4096000"
 msgstr "-"
 
-#: GeneralOptions.form:974
+#: GeneralOptions.form:995
 msgid "480p"
 msgstr "-"
 
-#: FMain.form:738
+#: FMain.form:740
 msgid "4:3"
 msgstr "-"
 
@@ -571,15 +575,15 @@ msgstr "-"
 msgid "4K"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "5"
 msgstr "-"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "5 - area"
 msgstr "5 - area"
 
-#: VFiltersCfg.class:365
+#: VFiltersCfg.class:366
 msgid "5 - like 1, but also use B-frames"
 msgstr "5 - come 1, ma usa anche i B-frame"
 
@@ -587,19 +591,19 @@ msgstr "5 - come 1, ma usa anche i B-frame"
 msgid "500"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "512000"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "6"
 msgstr "-"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "6 - luma bicubic/chroma bilinear"
 msgstr "6 - luminanza bicubica/crominanza bilineare"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "6) Top/Center"
 msgstr "6) Alto/Centro"
 
@@ -607,27 +611,27 @@ msgstr "6) Alto/Centro"
 msgid "62"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "64000"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "7"
 msgstr "-"
 
-#: SubAndOsd.form:362
+#: SubAndOsd.form:360
 msgid "7) Top/Right"
 msgstr "7) Alto/Destra"
 
-#: GeneralOptions.form:974
+#: GeneralOptions.form:995
 msgid "720p"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "8"
 msgstr "-"
 
-#: GeneralOptions.form:1162
+#: GeneralOptions.form:1189
 msgid "8192000"
 msgstr "-"
 
@@ -635,7 +639,7 @@ msgstr "-"
 msgid "8K"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:708
+#: XConfigureVideoDriver.form:714
 msgid "9"
 msgstr "-"
 
@@ -647,11 +651,11 @@ msgstr "-"
 msgid "="
 msgstr "-"
 
-#: FMain.form:1510
+#: FMain.form:1518
 msgid ">>"
 msgstr "-"
 
-#: FMain.form:774 VideoEqualizer.form:68
+#: FMain.form:776 VideoEqualizer.form:68
 msgid "?"
 msgstr "-"
 
@@ -663,63 +667,63 @@ msgstr "Priorità dei codec e demuxer"
 msgid "Abort"
 msgstr "Annulla"
 
-#: FMain.form:796
+#: FMain.form:798
 msgid "About"
 msgstr "Informazioni"
 
-#: VFiltersCfg.class:313
+#: VFiltersCfg.class:314
 msgid "Accurate Horizontal deblocking filter:"
 msgstr "Filtro accurato di deblock orizzontale:"
 
-#: VFiltersCfg.class:285
+#: VFiltersCfg.class:286
 msgid "Accurate Rounding"
 msgstr "Approssimazione accurata"
 
-#: VFiltersCfg.class:331
+#: VFiltersCfg.class:332
 msgid "Accurate Vertical deblocking filter:"
 msgstr "Filtro accurato di deblock verticale:"
 
-#: XConfigureVideoDriver.form:254
+#: XConfigureVideoDriver.form:256
 msgid "Adaptor"
 msgstr "-"
 
-#: AddUriForm.form:149 GeneralOptions.form:510
+#: AddUriForm.form:150 GeneralOptions.form:510
 msgid "Add"
 msgstr "Aggiungi"
 
-#: XConfigureVideoDriver.form:768
+#: XConfigureVideoDriver.form:774
 msgid "Add -va option to command line"
 msgstr "Aggiungi l'opzione \"-va\" alla linea di comando"
 
-#: FMain.form:448
+#: FMain.form:450
 msgid "Add a generic URI..."
 msgstr "Aggiungi una URI generica"
 
-#: FMain.class:6181
+#: FMain.class:6223
 msgid "Add quickly"
 msgstr "Aggiungi velocemente"
 
-#: FMain.form:868
+#: FMain.form:870
 msgid "Add selected items to library"
 msgstr "Aggiungi alla libreria"
 
-#: FMain.form:454
+#: FMain.form:456
 msgid "Add selected items to playlist"
 msgstr "Aggiungi alla playlist"
 
-#: AddUriForm.form:148
+#: AddUriForm.form:149
 msgid "Add the selected URI to Collection and/or Playlist"
 msgstr "Aggiungi l'URI selezionata alla collezione/playlist"
 
-#: GeneralOptions.form:1192
+#: GeneralOptions.form:1219
 msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-alang \"language list\""
 msgstr "Aggiungi la lingua selezionata alla lista delle lingue preferite. \n Opzione mplayer: \n -alang \"Lista lingue\""
 
-#: GeneralOptions.form:1229
+#: GeneralOptions.form:1257
 msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-slang \"language list\""
 msgstr "Aggiungi la lingua selezionata alla lista delle lingue preferite. \n Opzione mplayer: \n -slang \"Lista lingue\""
 
-#: FMain.form:960
+#: FMain.form:962
 msgid "Add this folder to history"
 msgstr "Aggiungi alle cartelle recenti"
 
@@ -739,7 +743,7 @@ msgstr "Aggiungi/Riproduci un' URI"
 msgid "Added on"
 msgstr "Aggiunto il"
 
-#: GeneralOptions.form:1302 XConfigureVideoDriver.form:730
+#: GeneralOptions.form:1331 XConfigureVideoDriver.form:736
 msgid "Additional options"
 msgstr "Opzioni addizionali"
 
@@ -747,131 +751,131 @@ msgstr "Opzioni addizionali"
 msgid "Air"
 msgstr "-"
 
-#: AudioForm.form:184 FMain.form:1934 Searchfields.form:66
+#: AudioForm.form:184 FMain.form:1942 Searchfields.form:66
 msgid "Album"
 msgstr "Album"
 
-#: CoverManager.form:65
+#: CoverManager.form:67
 msgid "Album:"
 msgstr "Album:"
 
-#: SubAndOsd.form:354
+#: SubAndOsd.form:352
 msgid "Alignment"
 msgstr "Posizione"
 
-#: FMain.class:5082
+#: FMain.class:5119
 msgid "All files"
 msgstr "Tutti i file"
 
-#: GeneralOptions.form:323
+#: GeneralOptions.form:322
 msgid "Allow video panning via mouse-drag"
 msgstr "Consenti il panning del video tramite mouse"
 
-#: SubAndOsd.form:189
+#: SubAndOsd.form:187
 msgid "Alpha"
 msgstr "Trasp."
 
-#: XConfigureAudioDriver.form:123
+#: XConfigureAudioDriver.form:124
 msgid "Alsa"
 msgstr "-"
 
-#: GeneralOptions.form:1449
+#: GeneralOptions.form:1486
 msgid "Also save xt7 geometry on exit"
 msgstr "Salva anche la posizione di xt7 all' uscita."
 
-#: GeneralOptions.form:1461
+#: GeneralOptions.form:1498
 msgid "Alternative saving method (compiz/emerald)"
 msgstr "Usa un metodo di salvataggio alternativo (compiz/emerald)"
 
-#: GeneralOptions.class:132
+#: GeneralOptions.class:137
 msgid "Always rebuild Index"
 msgstr "Ricostruisci sempre l'indice"
 
-#: AFiltersCfg.class:123
+#: AFiltersCfg.class:124
 msgid "Amount"
 msgstr "Ammontare"
 
-#: FMain.class:1769
+#: FMain.class:1767
 msgid "Angle"
 msgstr "Angolo"
 
-#: FMain.class:1766
+#: FMain.class:1764
 msgid "Angles"
 msgstr "Angoli"
 
-#: FMain.class:5328
+#: FMain.class:5365
 msgid "Another cover search is in progress, please wait for it to finish!"
 msgstr "E' già in atto una ricerca, aspetta che finisca!"
 
-#: TranslationNeeded.form:46
+#: TranslationNeeded.form:50
 msgid "Another way to quickly translate xt7, thanks to eloaders"
 msgstr "Un' altro modo per tradurre velocemente xt7, grazie eloaders"
 
-#: FMain.form:1563
+#: FMain.form:1571
 msgid "Any:"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Any: "
 msgstr "-"
 
-#: FMain.form:544
+#: FMain.form:546
 msgid "Append a playlist"
 msgstr "Accoda una playlist"
 
-#: FMain.class:4645
+#: FMain.class:4679
 msgid "Are you sure you want to clear the Playlist?"
 msgstr "Vuoi davvero azzerare la playlist?"
 
-#: FMain.class:4636
+#: FMain.class:4670
 msgid "Are you sure you want to clear your library?"
 msgstr "Vuoi davvero azzerare la libreria?"
 
-#: FMain.class:5874 ProfileManager.class:38
+#: FMain.class:5916 ProfileManager.class:38
 msgid "Are you sure you want to delete "
 msgstr "Vuoi davvero cancellare "
 
-#: FMain.class:4895
+#: FMain.class:4929
 msgid "Are you sure you want to delete selected item(s) from disk?"
 msgstr "Vuoi davvero cancellare la selezione dal disco?"
 
-#: GeneralOptions.class:483
+#: GeneralOptions.class:489
 msgid "Are you sure you want to delete selected items?"
 msgstr "Sei sicuro di voler cancellare gli oggetti selezionati?"
 
-#: FMain.class:3396
+#: FMain.class:3407
 msgid "Are you sure you want to reset the default profile\nto factory values?"
 msgstr "Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
 
-#: FMain.class:6998
+#: FMain.class:7040
 msgid "Are you sure you want to\nrecursively add this directory?"
 msgstr "Sicuro di voler aggiungere\nricorsivamente questa cartella?"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Argentina:AR"
 msgstr "-"
 
-#: AudioForm.form:174 FMain.form:1957 Searchfields.form:58
+#: AudioForm.form:174 FMain.form:1965 Searchfields.form:58
 msgid "Artist"
 msgstr "Artista"
 
-#: FMain.class:5324
+#: FMain.class:5361
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr "Le tag artista o album sono necessarie per impostare una copertina"
 
-#: CoverManager.form:48
+#: CoverManager.form:51
 msgid "Artist/Author:"
 msgstr "Artista/Autore:"
 
-#: XConfigureAudioDriver.form:408
+#: XConfigureAudioDriver.form:409
 msgid "Arts"
 msgstr "-"
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Assign nevertheless"
 msgstr "Assegna comunque"
 
-#: FMain.form:402 GeneralOptions.form:341
+#: FMain.form:404 GeneralOptions.form:341
 msgid "Audio"
 msgstr "Audio"
 
@@ -879,11 +883,11 @@ msgstr "Audio"
 msgid "Audio Bitrate"
 msgstr "Bitrate Audio"
 
-#: FMain.form:1350 GeneralOptions.form:691
+#: FMain.form:1358 GeneralOptions.form:696
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: GeneralOptions.form:710
+#: GeneralOptions.form:715
 msgid "Audio CD Device"
 msgstr "Dispositivo Audio CD"
 
@@ -899,7 +903,7 @@ msgstr "Codec Audio"
 msgid "Audio Codecs Help"
 msgstr "Aiuto Codec Audio"
 
-#: GeneralOptions.class:122 RealtimeForm.form:110
+#: GeneralOptions.class:127 RealtimeForm.form:122
 msgid "Audio Delay"
 msgstr "Ritardo audio"
 
@@ -935,7 +939,7 @@ msgstr "Latenza audio"
 msgid "Audio Rate"
 msgstr "Frequenza Audio"
 
-#: GeneralOptions.form:1726
+#: GeneralOptions.form:1738
 msgid "Audio panel font and font color:"
 msgstr "Carattere del pannello audio:"
 
@@ -951,7 +955,7 @@ msgstr "Catena Audio"
 msgid "AudioDriver"
 msgstr "Driver audio"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Australia:AU"
 msgstr "-"
 
@@ -963,11 +967,11 @@ msgstr "Aggiungi automaticamente i filtri eq2 ed hue alla catena video"
 msgid "Auto apply those values"
 msgstr "Applica i valori automaticamente"
 
-#: XConfigureVideoDriver.form:591
+#: XConfigureVideoDriver.form:597
 msgid "Autoload codecs for vdpau decoding"
 msgstr "AutoCarica i codec per la decodifica vdpau"
 
-#: VFiltersCfg.class:308
+#: VFiltersCfg.class:309
 msgid "Automatically switch the subfilter off if the CPU is too slow"
 msgstr "Disabilita automaticamente il sottofiltro se la CPU è troppo lenta"
 
@@ -979,31 +983,31 @@ msgstr "Filtri audio.\nTrascinali nella catena audio per usarli.\nClicca su un f
 msgid "Available video filters.\nDrag them into the video chain to use them.\nClick on a filter to bring up his configuration window."
 msgstr "Filtri video.\nTrascinali nella catena video per usarli.\nClicca su un filtro per configurarlo."
 
-#: XConfigureVideoDriver.form:1007
+#: XConfigureVideoDriver.form:1013
 msgid "Benchmark"
 msgstr "-"
 
-#: ShoutCastClass.class:158
+#: ShoutCastClass.class:159
 msgid "BitRate"
 msgstr "BitRate"
 
-#: SubAndOsd.form:156
+#: SubAndOsd.form:154
 msgid "BitStream Vera Sans"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:1013
+#: XConfigureVideoDriver.form:1019
 msgid "Bobdeint"
 msgstr "-"
 
-#: SubAndOsd.form:211
+#: SubAndOsd.form:209
 msgid "Border"
 msgstr "Bordo"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Brazil:BR"
 msgstr "-"
 
-#: RealtimeForm.form:60 VFiltersCfg.class:403 VideoEqualizer.form:84
+#: VFiltersCfg.class:404 VideoEqualizer.form:84
 msgid "Brightness"
 msgstr "Luminosità"
 
@@ -1011,23 +1015,23 @@ msgstr "Luminosità"
 msgid "Brittle"
 msgstr "-"
 
-#: FMain.form:1224
+#: FMain.form:1232
 msgid "Browse"
 msgstr "Esplora"
 
-#: MyQuestion.form:62
+#: MyQuestion.form:65
 msgid "Button1"
 msgstr "-"
 
-#: MyQuestion.form:67
+#: MyQuestion.form:70
 msgid "Button2"
 msgstr "-"
 
-#: GeneralOptions.form:738
+#: GeneralOptions.form:745
 msgid "CD Cache size (KB)"
 msgstr "Cache per i CD (KB)"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Canada:CA"
 msgstr "-"
 
@@ -1035,11 +1039,11 @@ msgstr "-"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: FMain.class:6368
+#: FMain.class:6410
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr "Impossibile accedere al lettore specificato o al cd audio"
 
-#: FMain.class:6556
+#: FMain.class:6598
 msgid "Cannot delete child items!"
 msgstr "Non si può cancellare l'elemento figlio!"
 
@@ -1047,11 +1051,11 @@ msgstr "Non si può cancellare l'elemento figlio!"
 msgid "Car Stereo"
 msgstr "-"
 
-#: DVBTuner.form:88 GeneralOptions.form:1121
+#: DVBTuner.form:88 GeneralOptions.form:1146
 msgid "Card #"
 msgstr "Scheda #"
 
-#: FMain.form:1414
+#: FMain.form:1422
 msgid "Catch Flash videos in /tmp folder"
 msgstr "Intercetta video flash nella cartella /tmp"
 
@@ -1063,31 +1067,31 @@ msgstr "Catena"
 msgid "Chains Editor"
 msgstr "Editor della catena"
 
-#: SubAndOsd.form:609
+#: SubAndOsd.form:607
 msgid "Change me if you have problem displaying the preview."
 msgstr "Modifica qui se hai problemi nella visualizzazione dell' anteprima."
 
-#: AFiltersCfg.class:128
+#: AFiltersCfg.class:129
 msgid "Channel 1"
 msgstr "Canale 1"
 
-#: AFiltersCfg.class:129
+#: AFiltersCfg.class:130
 msgid "Channel 2"
 msgstr "Canale 2"
 
-#: AFiltersCfg.class:130
+#: AFiltersCfg.class:131
 msgid "Channel 3"
 msgstr "Canale 3"
 
-#: AFiltersCfg.class:131
+#: AFiltersCfg.class:132
 msgid "Channel 4"
 msgstr "Canale 4"
 
-#: AFiltersCfg.class:132
+#: AFiltersCfg.class:133
 msgid "Channel 5"
 msgstr "Canale 5"
 
-#: AFiltersCfg.class:133
+#: AFiltersCfg.class:134
 msgid "Channel 6"
 msgstr "Canale 6"
 
@@ -1095,27 +1099,27 @@ msgstr "Canale 6"
 msgid "Channels"
 msgstr "Canali"
 
-#: FMain.class:1760
+#: FMain.class:1758
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: FMain.class:1757
+#: FMain.class:1755
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: FMain.class:1729
+#: FMain.class:1727
 msgid "Chapters:"
 msgstr "Capitoli:"
 
-#: SubAndOsd.form:389
+#: SubAndOsd.form:387
 msgid "Charset"
 msgstr "Set caratteri"
 
-#: MyQuestion.form:47
+#: MyQuestion.form:49
 msgid "CheckBox1"
 msgstr "-"
 
-#: FMain.class:5645
+#: FMain.class:5689
 msgid "Choose a destination file"
 msgstr "Scegli un file di destinazione"
 
@@ -1127,7 +1131,7 @@ msgstr "Scegli un file channels.conf standard da importare"
 msgid "Choose an Aspect Ratio"
 msgstr "Scegli un rapporto d'aspetto"
 
-#: GeneralOptions.form:981
+#: GeneralOptions.form:1002
 msgid "Choose how to download network streams\nsuch as youtube video and podcasts.\nkde4 - choose kioclient ; \nkde3 - choose kfmclient ; \nIf you wish to write your own downloader, \nremember that\n%url is the stream to download\n%destdir is the destination directory\n%destfile is the destination file (without the path)\n\nNote then kioclient and kfmclient do not work with youtubeì streams."
 msgstr "Scegli come scaricare i flussi di rete come i video youtube o i podcast.kde4 - scegli kioclient;kde3 - scegli kfmclientSe vuoi specificare un download personalizzato,ricorda che %url è il flusso da scaricare%destdir è la directory di destinazione%destfile è il nome del file destinazione senza il percorso.Nota che kioclient e kfmclient non funzionano per youtube."
 
@@ -1135,23 +1139,23 @@ msgstr "Scegli come scaricare i flussi di rete come i video youtube o i podcast.
 msgid "Choose search fields"
 msgstr "Scegli i campi da ricercare"
 
-#: VFiltersCfg.class:245
+#: VFiltersCfg.class:246
 msgid "Chroma amount"
 msgstr "Quantità chroma"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "Chroma skipping"
 msgstr "Salto croma"
 
-#: VFiltersCfg.class:244
+#: VFiltersCfg.class:245
 msgid "Chrominance Matrix"
 msgstr "Matrice di crominanza"
 
-#: XConfigureVideoDriver.form:270
+#: XConfigureVideoDriver.form:273
 msgid "Ck"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:288
+#: XConfigureVideoDriver.form:292
 msgid "Ck-Method"
 msgstr "-"
 
@@ -1167,19 +1171,19 @@ msgstr "Azzera"
 msgid "Clear "
 msgstr "-"
 
-#: FMain.form:513
+#: FMain.form:515
 msgid "Clear All"
 msgstr "Azzera tutto"
 
-#: FMain.class:4636
+#: FMain.class:4670
 msgid "Clear my library"
 msgstr "Azzera la mia libreria"
 
-#: FMain.form:508
+#: FMain.form:510
 msgid "Clear selected"
 msgstr "Azzera la selezione"
 
-#: FMain.class:4645
+#: FMain.class:4679
 msgid "Clear the playlist"
 msgstr "Azzera la playlist"
 
@@ -1195,15 +1199,15 @@ msgstr "Clicca per una lista di codec audio supportati.\nMplayer proverà ad usa
 msgid "Click for a list of supported Audio codecs.\nMplayer will try to use the selected codecs\nfrom top to bottom until it founds a workng one.\nCodec selection is NOT mandatory, leave blank for defaults.\nMplayer option: -vc codec1,codec2,...,codecN"
 msgstr "Clicca per una lista di codec audio supportati.\nMplayer proverà ad usare quelli indicati\n dall' alto in basso finchè ne troverà uno funzionante.\n La selezione del codec NON è obbligatoria, lascia in bianco per i predefiniti.\n Opzione mplayer: -ac codec1,codec2,...,codecN"
 
-#: FMain.form:1447
+#: FMain.form:1455
 msgid "Click to open video page"
 msgstr "Clicca per aprire la pagina del video"
 
-#: XConfigureAudioDriver.form:489 XConfigureVideoDriver.form:1204
+#: XConfigureAudioDriver.form:490 XConfigureVideoDriver.form:1210
 msgid "Close"
 msgstr "Chiudi"
 
-#: XConfigureVideoDriver.form:1203
+#: XConfigureVideoDriver.form:1209
 msgid "Close the window"
 msgstr "Chiudi la finestra"
 
@@ -1211,7 +1215,7 @@ msgstr "Chiudi la finestra"
 msgid "Codecs && demuxers"
 msgstr "Codec && demuxer"
 
-#: FMain.form:638
+#: FMain.form:640
 msgid "Codecs and demuxers"
 msgstr "Codec e demuxer"
 
@@ -1219,31 +1223,31 @@ msgstr "Codec e demuxer"
 msgid "Codecs priority"
 msgstr "Priorità dei codec"
 
-#: XConfigureVideoDriver.form:309
+#: XConfigureVideoDriver.form:315
 msgid "ColorKey"
 msgstr "-"
 
-#: AddUriForm.form:52 XConfigureVideoDriver.form:277
+#: AddUriForm.form:52 XConfigureVideoDriver.form:281
 msgid "ComboBox1"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:421
+#: XConfigureVideoDriver.form:427
 msgid "ComboBox5"
 msgstr "-"
 
-#: GeneralOptions.form:1330
+#: GeneralOptions.form:1360
 msgid "Command or commands (semicolon separated) which\nwill be executed after a file has been played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one."
 msgstr "Comando(i) (separati dal punto e virgola)\nche saranno eseguiti al termine della riproduzione,\nSuggerimento: Puoi eseguire più comandi separandoli con \";\".Suggerimento: Se non vuoi che Xt7-Player aspetti il termine del comando, Postponi \"&\" alla fine."
 
-#: GeneralOptions.form:1313
+#: GeneralOptions.form:1343
 msgid "Command or commands (semicolon separated) which\nwill be executed before a file is played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one."
 msgstr "Comando(i) (separati dal punto e virgola)\nche saranno eseguiti prima della riproduzione,\nSuggerimento: Puoi eseguire più comandi separandoli con \";\".Suggerimento: Se non vuoi che Xt7-Player aspetti il termine del comando, Postponi \"&\" alla fine."
 
-#: AudioForm.form:214 FMain.form:2071 Searchfields.form:118
+#: AudioForm.form:214 FMain.form:2079 Searchfields.form:118
 msgid "Comment"
 msgstr "Commento"
 
-#: FMain.form:2121
+#: FMain.form:2128
 msgid "Commit"
 msgstr "Applica"
 
@@ -1255,7 +1259,7 @@ msgstr "Tipi di file audio comuni"
 msgid "Common Video Files"
 msgstr "Tipi di file video comuni"
 
-#: FMain.form:1011
+#: FMain.form:1013
 msgid "Configuration toolbox"
 msgstr "Accesso veloce alla configurazione"
 
@@ -1267,23 +1271,23 @@ msgstr "Configurazione Driver Audio"
 msgid "Configure Video Driver"
 msgstr "Configurazione Driver Video"
 
-#: FMain.form:435
+#: FMain.form:437
 msgid "Configure directories"
 msgstr "Configurazione cartelle"
 
-#: FMain.form:819
+#: FMain.form:821
 msgid "Configure shutdown command"
 msgstr "Configura il comando di spegnimento"
 
-#: VFiltersCfg.class:402 VideoEqualizer.form:117
+#: VFiltersCfg.class:403 VideoEqualizer.form:117
 msgid "Contrast"
 msgstr "Contrasto"
 
-#: FMain.form:585
+#: FMain.form:587
 msgid "Copy selected"
 msgstr "Copia i selezionati"
 
-#: FMain.form:494
+#: FMain.form:496
 msgid "Copy selected to Clipboard"
 msgstr "Copia i selezionati nella clipboard"
 
@@ -1291,27 +1295,27 @@ msgstr "Copia i selezionati nella clipboard"
 msgid "Could not read file"
 msgstr "Non posso leggere il file"
 
-#: FMain.class:520
+#: FMain.class:519
 msgid "Couldn't clear the history!"
 msgstr "Impossibile cancellare la cronologia!"
 
-#: CoverManager.form:28
+#: CoverManager.form:29
 msgid "Cover fetcher"
 msgstr "Gestore delle copertine"
 
-#: XConfigureVideoDriver.form:496
+#: XConfigureVideoDriver.form:502
 msgid "Cscale"
 msgstr "-"
 
-#: ProfileManager.form:106
+#: ProfileManager.form:107
 msgid "Current Profile: "
 msgstr "Profilo corrente:"
 
-#: FMain.form:1768 ProfileManager.class:69
+#: FMain.form:1776 ProfileManager.class:69
 msgid "Current profile: "
 msgstr "Profilo corrente:"
 
-#: XConfigureVideoDriver.form:1065
+#: XConfigureVideoDriver.form:1071
 msgid "Custom"
 msgstr "-"
 
@@ -1323,7 +1327,7 @@ msgstr "-"
 msgid "Custom 2"
 msgstr "-"
 
-#: AFiltersCfg.class:159
+#: AFiltersCfg.class:160
 msgid "Custom audio filter(s):"
 msgstr "Filtri audio custom:"
 
@@ -1331,51 +1335,51 @@ msgstr "Filtri audio custom:"
 msgid "Custom search results"
 msgstr "Risultati della ricerca personalizzata"
 
-#: VFiltersCfg.class:383
+#: VFiltersCfg.class:384
 msgid "Custom video filter(s):"
 msgstr "Filtri video custom:"
 
-#: XConfigureVideoDriver.form:513
+#: XConfigureVideoDriver.form:519
 msgid "CustomProg"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:360
+#: XConfigureVideoDriver.form:366
 msgid "CustomRect"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:534
+#: XConfigureVideoDriver.form:540
 msgid "CustomTex"
 msgstr "-"
 
-#: FMain.form:580
+#: FMain.form:582
 msgid "Cut selected"
 msgstr "Taglia i selezionati"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Czec Republic:CZ"
 msgstr "-"
 
-#: DVBTuner.class:53 FMain.form:1297 GeneralOptions.form:1000
+#: DVBTuner.class:53 FMain.form:1305 GeneralOptions.form:1021
 msgid "DVB-T"
 msgstr "-"
 
-#: GeneralOptions.form:1073
+#: GeneralOptions.form:1095
 msgid "DVB-T Cache size (KB)"
 msgstr "Dimensione della cache per DVB-T (KB)"
 
-#: FMain.form:1367 GeneralOptions.form:749
+#: FMain.form:1375 GeneralOptions.form:757
 msgid "DVD"
 msgstr "DVD"
 
-#: GeneralOptions.form:768
+#: GeneralOptions.form:776
 msgid "DVD Device"
 msgstr "Dispositivo DVD"
 
-#: FMain.form:1379
+#: FMain.form:1387
 msgid "DVD menu navigation mode"
 msgstr "Modalità navigazione DVD"
 
-#: FMain.class:6189
+#: FMain.class:6231
 msgid "Damn!"
 msgstr "Dannazione!"
 
@@ -1383,7 +1387,7 @@ msgstr "Dannazione!"
 msgid "Dark"
 msgstr "-"
 
-#: GeneralOptions.form:1386
+#: GeneralOptions.form:1416
 msgid "Dbus support"
 msgstr "supporto Dbus"
 
@@ -1395,23 +1399,23 @@ msgstr "-"
 msgid "Death"
 msgstr "-"
 
-#: GeneralOptions.class:194
+#: GeneralOptions.class:199
 msgid "Decode at lower resolutions.  Low resolution decoding\nis not supported by all codecs, and it will  often result\nin ugly artifacts.  This is not a bug, but a side effect\nof not decoding at full resolution.\n Mplayer Option: -lavdopts"
 msgstr "Decodifica a risoluzioni inferiori.\nNon supportato da tutti i codec, potrebbe causare degli artefatti (non è un bug).\nOpzione mplayer: -lavdopts"
 
-#: GeneralOptions.form:1581
+#: GeneralOptions.form:1593
 msgid "Default"
 msgstr "Prefefinito"
 
-#: FMain.class:3401
+#: FMain.class:3412
 msgid "Default profile has been set to factory values.\nRestart is needed."
 msgstr "Il profilo di default è stato reimpostato ai valori predefiniti.E' necessario il riavvio."
 
-#: XConfigureAudioDriver.form:184
+#: XConfigureAudioDriver.form:185
 msgid "Default: /dev/mixer"
 msgstr "Predefinito: /dev/mixer"
 
-#: XConfigureAudioDriver.form:222
+#: XConfigureAudioDriver.form:223
 msgid "Default: localhost"
 msgstr "Predefinito: localhost"
 
@@ -1419,11 +1423,11 @@ msgstr "Predefinito: localhost"
 msgid "Defaults"
 msgstr "Predefinite"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "Deinterlace method:"
 msgstr "Metodo di deinterlacciamento:"
 
-#: VFiltersCfg.class:425
+#: VFiltersCfg.class:426
 msgid "Deinterlace mode"
 msgstr "Metodo di deinterlacciamento:"
 
@@ -1435,39 +1439,39 @@ msgstr "Rimuovi"
 msgid "Delay"
 msgstr "-"
 
-#: SubAndOsd.form:434
+#: SubAndOsd.form:432
 msgid "Delay (Decisecs)"
 msgstr "Ritardo (Decimi)"
 
-#: FMain.form:1827 FlashClass.class:20
+#: FMain.form:1835 FlashClass.class:20
 msgid "Delete"
 msgstr "Cancella"
 
-#: FMain.form:842
+#: FMain.form:844
 msgid "Delete from disk"
 msgstr "Cancella dal disco"
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Delete new "
 msgstr "Cancella il nuovo"
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "Delete old "
 msgstr "Cancella il vecchio"
 
-#: FMain.form:878
+#: FMain.form:880
 msgid "Delete selected"
 msgstr "Cancella la selezione"
 
-#: FMain.form:518
+#: FMain.form:520
 msgid "Delete selected from disk"
 msgstr "Cancella la selezione dal disco"
 
-#: FMain.form:1825
+#: FMain.form:1833
 msgid "Delete the selected profile"
 msgstr "Cancella il profilo selezionato"
 
-#: ProfileManager.form:54
+#: ProfileManager.form:55
 msgid "Delete:"
 msgstr "Cancella:"
 
@@ -1479,19 +1483,19 @@ msgstr "Demuxer"
 msgid "Denoise3D"
 msgstr "-"
 
-#: SubAndOsd.form:382
+#: SubAndOsd.form:380
 msgid "Depending on the language you select, a charset is auto detected,\nbut if detection fails, the fallback charset will be used.\nNote that this has nothing to do with the subtitle language selection,\nTo configure preferred languages, use the language option in General Option window.\nMplayer option:\n-subcp enca:<language>:<fallback codepage>"
 msgstr "A seconda del linguaggio scelto, un set di caratteri sarà scelto automaticamente, \nnel caso non sia possibile, sarà utilizzato il set di caratteri scelto esplicitamente. \nNB: questo non ha nulla a che fare con la lingua dei sottotitoli, per configurare un set dilingue predefinite, \nusa l'opzione \"Linguaggio\" nella finestra \"Opzioni Generali. \nOpzione mplayer: \n-subcp enca:language:fallback codepage"
 
-#: VFiltersCfg.class:281
+#: VFiltersCfg.class:282
 msgid "Depends on sws, leave blank if unsure"
 msgstr "Dipende da sws, nel dubbio, lascia in bianco."
 
-#: XConfigureAudioDriver.form:143
+#: XConfigureAudioDriver.form:144
 msgid "Device"
 msgstr "-"
 
-#: VFiltersCfg.class:305
+#: VFiltersCfg.class:306
 msgid "Difference"
 msgstr "Differenza"
 
@@ -1503,23 +1507,23 @@ msgstr "Le cartelle qui specificate saranno aggiunte ricorsivamente alla playlis
 msgid "Directories specified here will excluded\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop."
 msgstr "Le cartelle qui specificate saranno esplicitamente escluse dalla playlist\n quando impartisci una sincronizzazione.\nUsa i pulsanti o il drag'n drop."
 
-#: GeneralOptions.form:686
+#: GeneralOptions.form:691
 msgid "Disable Kde Effects in fullscreen mode"
 msgstr "Disattiva gli effetti kde in modalità schermo intero"
 
-#: SubAndOsd.form:134
+#: SubAndOsd.form:132
 msgid "Disable SSA"
 msgstr "Disabilita SSA"
 
-#: VFiltersCfg.class:284
+#: VFiltersCfg.class:285
 msgid "Disable Upscaling"
 msgstr "Disabilita l'upscaling"
 
-#: GeneralOptions.class:209
+#: GeneralOptions.class:214
 msgid "Disable drawing video by 16-pixel height slices/bands,\ninstead draws the whole frame in a single  run.\nMay  be faster  or slower, depending on video card and available cache.\n Mplayer Option: -noslices"
 msgstr "Non disegnare il video in parti alte 16 pixel, ma disegna l'intero frame in una passata.\nPuò essere più o meno veloce a seconda della scheda video e della cache.\nOpzione mplayer: -noslices"
 
-#: FMain.form:807
+#: FMain.form:809
 msgid "Disable shutdown"
 msgstr "Disabilita lo spegnimento"
 
@@ -1527,7 +1531,7 @@ msgstr "Disabilita lo spegnimento"
 msgid "Disabling any audio filters in chain by appending -af-clr"
 msgstr "Disabilito tutto i filtri audio aggiungendo -af-clr alla fine."
 
-#: GeneralOptions.form:1521
+#: GeneralOptions.form:1533
 msgid "Display cover thumbnails in side lists"
 msgstr "Mostra l'anteprima delle copertine nella lista laterale"
 
@@ -1535,31 +1539,31 @@ msgstr "Mostra l'anteprima delle copertine nella lista laterale"
 msgid "Do you also want to load "
 msgstr "Vuoi caricare anche "
 
-#: FMain.class:4170
+#: FMain.class:4201
 msgid "Do you also want to remove non existent files from library?"
 msgstr "Vuoi anche cancellare i file non trovati dalla libreria?"
 
-#: HotKeys.class:518
+#: HotKeys.class:520
 msgid "Don't"
 msgstr "Non farlo"
 
-#: FMain.class:4895
+#: FMain.class:4929
 msgid "Don't Delete"
 msgstr "Non cancellare"
 
-#: FMain.class:5678
+#: FMain.class:5722
 msgid "Don't Play"
 msgstr "Non riprodurre"
 
-#: FMain.class:3396
+#: FMain.class:3407
 msgid "Don't Reset"
 msgstr "Non eseguire il reset"
 
-#: FMain.class:4636
+#: FMain.class:4670
 msgid "Don't clear my library"
 msgstr "Non azzerare la libreria"
 
-#: FMain.class:4645
+#: FMain.class:4679
 msgid "Don't clear the playlist"
 msgstr "Non azzerare la playlist"
 
@@ -1567,11 +1571,11 @@ msgstr "Non azzerare la playlist"
 msgid "Don't delete"
 msgstr "Non cancellare"
 
-#: FMain.class:1678
+#: FMain.class:1676
 msgid "Don't display subtitles"
 msgstr "Non visualizzare i sottotitoli"
 
-#: SubAndOsd.class:351
+#: SubAndOsd.class:356
 msgid "Don't do it"
 msgstr "Non farlo"
 
@@ -1583,23 +1587,23 @@ msgstr "Non leggere le informazioni come i tag ID3 all' atto dell' aggiunta alla
 msgid "Don't load, just switch"
 msgstr "Non caricare, ma cambia profilo"
 
-#: FMain.class:4170
+#: FMain.class:4201
 msgid "Don't remove"
 msgstr "Non rimuovere"
 
-#: FMain.class:3349
+#: FMain.class:3360
 msgid "Don't save"
 msgstr "Non salvare"
 
-#: FMain.class:213
+#: FMain.class:212
 msgid "Don't show anymore"
 msgstr "Non mostrare più"
 
-#: TranslationNeeded.form:57
+#: TranslationNeeded.form:61
 msgid "Don't show this anymore"
 msgstr "Non mostrarmelo più"
 
-#: FMain.form:1323
+#: FMain.form:1331
 msgid "Double Click for Search Options."
 msgstr "Doppio click per le opzioni di ricerca."
 
@@ -1607,47 +1611,47 @@ msgstr "Doppio click per le opzioni di ricerca."
 msgid "Double click on a cell to enter a new hotkey.\nSelect a cell and hit \"canc\" to delete one."
 msgstr "Doppio click su una cella per scegliere la hotkey,\nSeleziona una cella e premi \"canc\" per cancellarla."
 
-#: FMain.form:863
+#: FMain.form:865
 msgid "Download"
 msgstr "Scarica"
 
-#: GeneralOptions.form:988
+#: GeneralOptions.form:1009
 msgid "Download with"
 msgstr "Scarica con"
 
-#: XConfigureAudioDriver.form:377 XConfigureVideoDriver.form:1088
+#: XConfigureAudioDriver.form:378 XConfigureVideoDriver.form:1094
 msgid "Drag Elements with a mouse button to change their priority.\nmplayer will try to use the selected video drivers from top to bottom\nuntil it founds a workng driver."
 msgstr "Trascina gli elementi con un bottone del mouse per cambiarne la priorità.\nmplayer proverà ad usare i driver selezionati dall' alto in basso\nfino a trovarne uno funzionante"
 
-#: FMain.form:1182
+#: FMain.form:1190
 msgid "Drag'n drop files or media links to add them,"
 msgstr "Trascina file o media generici per aggiungerli."
 
-#: FMain.form:1145
+#: FMain.form:1153
 msgid "Drag'n drop files, folders or media links to add them,"
 msgstr "Trascina file, cartelle o media generici per aggiungerli."
 
-#: XConfigureAudioDriver.form:198 XConfigureVideoDriver.form:1039
+#: XConfigureAudioDriver.form:199 XConfigureVideoDriver.form:1045
 msgid "Driver"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:107 XConfigureVideoDriver.form:213
+#: XConfigureAudioDriver.form:107 XConfigureVideoDriver.form:214
 msgid "Driver Description"
 msgstr "Descrizione del driver"
 
-#: XConfigureVideoDriver.form:220
+#: XConfigureVideoDriver.form:222
 msgid "Driver Priority"
 msgstr "Priorità del driver"
 
-#: XConfigureAudioDriver.form:114
+#: XConfigureAudioDriver.form:115
 msgid "Driver priority"
 msgstr "Priorità dei driver"
 
-#: FMain.form:672
+#: FMain.form:674
 msgid "Driver..."
 msgstr "Driver..."
 
-#: XConfigureAudioDriver.form:458 XConfigureVideoDriver.form:1173
+#: XConfigureAudioDriver.form:459 XConfigureVideoDriver.form:1179
 msgid "Drivers are choosed from top to bottom, drag'n drop them to choose priority."
 msgstr "I driver sono scelti dall' alto in basso, trascinali per sceglierne la priorità"
 
@@ -1655,43 +1659,43 @@ msgstr "I driver sono scelti dall' alto in basso, trascinali per sceglierne la p
 msgid "Drums"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:161
+#: XConfigureAudioDriver.form:162
 msgid "Dsp-Device"
 msgstr "-"
 
-#: GeneralOptions.form:796
+#: GeneralOptions.form:806
 msgid "Dvd Cache size (KB)"
 msgstr "Dimensione cache DVD (KB)"
 
-#: VFiltersCfg.class:383
+#: VFiltersCfg.class:384
 msgid "E.g.:mirror,smartblur=0.4:0.5:10"
 msgstr "Es: mirror,smartblur=0.4:0.5:10"
 
-#: AFiltersCfg.class:159
+#: AFiltersCfg.class:160
 msgid "E.g.:resample=44100:1:2,hrtf=s"
 msgstr "Es.: resample=44100:1:2,hrtf=s"
 
-#: GeneralOptions.form:1372
+#: GeneralOptions.form:1402
 msgid "Enable ToolTips"
 msgstr "Abilita i tooltip"
 
-#: VFiltersCfg.class:279
+#: VFiltersCfg.class:280
 msgid "Enable for interlaced contents"
 msgstr "Abilitalo per contenuti interlacciati"
 
-#: GeneralOptions.class:199
+#: GeneralOptions.class:204
 msgid "Enable optimizations which do not comply to the specification\nand might potentially cause problems, like simpler dequantization,\nsimpler motion compensation, assuming use of the  default\nquantization  matrix, assuming YUV 4:2:0 and skipping\na few checks to detect damaged bitstreams.\n Mplayer Option: -lavdopts"
 msgstr "Abilita ottimizzazioni come dequantizzazione semplice, stima del movimento sempèlice\n uso di una matrice di quantizzazione predefinita, YUV 4:2:0\ne salto di alcuni controlli per il riconoscimento di stream danneggiati.\n Queste impostazioni non rispettano le specifiche\ne possono causare problemi."
 
-#: GeneralOptions.form:1366
+#: GeneralOptions.form:1409
+msgid "Enable this if you want xt7 to be controlled through an mpris2 compliant client.\n"
+msgstr "Abilitalo se vuoi controllare xt7 tramite un client compatibile MPRIS.\n"
+
+#: GeneralOptions.form:1396
 msgid "Enable/Disbale Tooltips"
 msgstr "Abilita/Disabilita tooltips"
 
-#: GeneralOptions.form:1496
-msgid "Enable/Disbale the start banner animation"
-msgstr "Abilita/disabilita l'animazione iniziale"
-
-#: GeneralOptions.form:1419
+#: GeneralOptions.form:1457
 msgid "Enable/Disbale the tray icon"
 msgstr "Abilita/disabilita l'icona nel tray"
 
@@ -1699,11 +1703,11 @@ msgstr "Abilita/disabilita l'icona nel tray"
 msgid "Enter a name for the new playlist/library item, or leave blank for default."
 msgstr "Scrivi un nome per il nuovo elemento della libreria/playlist, \nlascia in bianco per usare il predefinito"
 
-#: FMain.class:6017
+#: FMain.class:6059
 msgid "Enter a name for the new profile:"
 msgstr "Inserisci un nome per il nuovo profilo:"
 
-#: FMain.class:6522
+#: FMain.class:6564
 msgid "Enter a new podcast url"
 msgstr "Inserisci la url di un podcast"
 
@@ -1711,19 +1715,19 @@ msgstr "Inserisci la url di un podcast"
 msgid "Enter a valid URI:"
 msgstr "Inserisci un' URI valida:"
 
-#: FMain.form:1330
+#: FMain.form:1338
 msgid "Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart "
 msgstr "Inserisci qualche termine di ricerca, il carattere speciale \"|\" significa \"Oppure\",quindi tu puoi scrivere: Bach|Mozart"
 
-#: FMain.class:5961
+#: FMain.class:6003
 msgid "Enter the new profile name"
 msgstr "Inserisci il nome del nuovo profilo"
 
-#: GeneralOptions.form:1347
+#: GeneralOptions.form:1377
 msgid "Enter the shutdown command \\n (make sure your  have rights to do it)"
 msgstr "Inserisci il comando di spegnimento,(assicurati anche che il tuo utente abbia i diritti per farlo!)"
 
-#: GeneralOptions.form:1358
+#: GeneralOptions.form:1388
 msgid "Enter the shutdown command\n(also make sure your user has rights to do it)"
 msgstr "Inserisci il comando di spegnimento,(assicurati anche che il tuo utente abbia i diritti per farlo!)"
 
@@ -1735,19 +1739,19 @@ msgstr "-"
 msgid "Equalizer "
 msgstr "-"
 
-#: FMain.class:6526
+#: FMain.class:6568
 msgid "Error adding new feed"
 msgstr "Errore durante l'aggiunta del feed"
 
-#: FMain.class:6133
+#: FMain.class:6175
 msgid "Error reading from shoutcast server"
 msgstr "Errore durante la lettura dal server shoutcast"
 
-#: FMain.class:6477
+#: FMain.class:6519
 msgid "Error refreshing the feed"
 msgstr "Errore durante l'aggiornamento del feed"
 
-#: FMain.class:6189
+#: FMain.class:6231
 msgid "Error while adding one or more items"
 msgstr "Errore durante l'aggiunta di uno o più elementi"
 
@@ -1755,23 +1759,23 @@ msgstr "Errore durante l'aggiunta di uno o più elementi"
 msgid "Error while loading the picture"
 msgstr "Errore durante il caricamento dell' immagine"
 
-#: FMain.class:3358
+#: FMain.class:3369
 msgid "Error while saving default settings"
 msgstr "Errore durante il salvataggio delle impostazioni di default"
 
-#: FMain.class:6420
+#: FMain.class:6462
 msgid "Error, failed to get disc information"
 msgstr "Errore, non posso ottenere informazioni dal disco"
 
-#: FMain.class:6581
+#: FMain.class:6623
 msgid "Error: Cannot get current item"
 msgstr "Errore: Non posso recuperare l'oggetto corrente"
 
-#: LogWindow.form:84
+#: LogWindow.form:85
 msgid "Errors"
 msgstr "Errori"
 
-#: XConfigureAudioDriver.form:207
+#: XConfigureAudioDriver.form:208
 msgid "Esd"
 msgstr "-"
 
@@ -1787,7 +1791,7 @@ msgstr "Directory escluse"
 msgid "Expand"
 msgstr "-"
 
-#: FMain.form:549
+#: FMain.form:551
 msgid "Export the playlist"
 msgstr "Esporta la playlst"
 
@@ -1799,15 +1803,15 @@ msgstr "-"
 msgid "FSpp Denoiser"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:349
+#: XConfigureAudioDriver.form:350
 msgid "Fast"
 msgstr "-"
 
-#: GeneralOptions.class:223 VFiltersCfg.class:426
+#: GeneralOptions.class:228 VFiltersCfg.class:427
 msgid "Field dominance"
 msgstr "Campo diominante"
 
-#: FMain.form:343 XConfigureAudioDriver.form:316
+#: FMain.form:345 XConfigureAudioDriver.form:317
 msgid "File"
 msgstr "-"
 
@@ -1827,7 +1831,7 @@ msgstr "-"
 msgid "FileSize"
 msgstr "Dimensione"
 
-#: FMain.form:1325
+#: FMain.form:1333
 msgid "Filter"
 msgstr "Filtro"
 
@@ -1835,23 +1839,23 @@ msgstr "Filtro"
 msgid "Filters are processed from up to down\ntill the Audio/Video driver."
 msgstr "I filtri sono applicati dall' alto in basso\nfino al driver Audio/Video"
 
-#: FMain.form:666
+#: FMain.form:668
 msgid "Filters..."
 msgstr "Filtri..."
 
-#: VFiltersCfg.class:255
+#: VFiltersCfg.class:256
 msgid "Fit an aspect instead of a resolution"
 msgstr "Usa un Aspetto invece che una risoluzione"
 
-#: GeneralOptions.class:137
+#: GeneralOptions.class:142
 msgid "Fixes  playback  of some bad AVI files"
 msgstr "Corregge la riproduzione di alcuni AVI danneggiati"
 
-#: FMain.form:1388
+#: FMain.form:1396
 msgid "Flash"
 msgstr "Flash"
 
-#: FMain.form:826
+#: FMain.form:828
 msgid "FlashMenu"
 msgstr "-"
 
@@ -1859,27 +1863,27 @@ msgstr "-"
 msgid "Flat"
 msgstr "-"
 
-#: VFiltersCfg.class:306
+#: VFiltersCfg.class:307
 msgid "Flatness"
 msgstr "Piattezza"
 
-#: SubAndOsd.form:148
+#: SubAndOsd.form:146
 msgid "Font"
 msgstr "Carattere"
 
-#: SubAndOsd.form:175
+#: SubAndOsd.form:173
 msgid "Font Color"
 msgstr "Colore del carattere"
 
-#: GeneralOptions.class:108
+#: GeneralOptions.class:113
 msgid "Force the use of the software mixer, instead of using the sound card mixer.\n Mplayer Option: -softvol"
 msgstr "Forza l'uso del mixer software al posto di quello della scheda audio.\n Opzione mplayer: -softvol"
 
-#: GeneralOptions.class:150
+#: GeneralOptions.class:155
 msgid "Force video Framerate.\n Will probably cause Audio/Video desync.\n Mplayer Option: -fps"
 msgstr "Forza un framerate video.\n Ciò comporta una probabile desincronizzazione."
 
-#: XConfigureVideoDriver.form:1055
+#: XConfigureVideoDriver.form:1061
 msgid "ForceXv"
 msgstr "-"
 
@@ -1887,27 +1891,27 @@ msgstr "-"
 msgid "Fps"
 msgstr "-"
 
-#: RealtimeForm.form:274
+#: RealtimeForm.form:315
 msgid "FrameDrop"
 msgstr "-"
 
-#: GeneralOptions.class:149
+#: GeneralOptions.class:154
 msgid "Framerate override"
 msgstr "Forza un framerate"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "France:FR"
 msgstr "-"
 
-#: FMain.form:366
+#: FMain.form:368
 msgid "From DVD drive"
 msgstr "Da un drive DVD"
 
-#: FMain.form:376
+#: FMain.form:378
 msgid "From a folder"
 msgstr "Da una cartella"
 
-#: FMain.form:371
+#: FMain.form:373
 msgid "From an ISO"
 msgstr "Da una ISO"
 
@@ -1915,67 +1919,67 @@ msgstr "Da una ISO"
 msgid "Full Path"
 msgstr "Path Completo"
 
-#: FMain.form:1085
+#: FMain.form:1089
 msgid "Fullscreen Switch"
 msgstr "Switch Schermo intero"
 
-#: XConfigureVideoDriver.form:318
+#: XConfigureVideoDriver.form:324
 msgid "GL"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:548
+#: XConfigureVideoDriver.form:554
 msgid "GL2"
 msgstr "-"
 
-#: VFiltersCfg.class:401 VideoEqualizer.form:150
+#: VFiltersCfg.class:402 VideoEqualizer.form:150
 msgid "Gamma"
 msgstr "Gamma"
 
-#: VFiltersCfg.class:407
+#: VFiltersCfg.class:408
 msgid "Gamma Blue"
 msgstr "Gamma blu"
 
-#: VFiltersCfg.class:406
+#: VFiltersCfg.class:407
 msgid "Gamma Green"
 msgstr "Gamma verde"
 
-#: VFiltersCfg.class:405
+#: VFiltersCfg.class:406
 msgid "Gamma Red"
 msgstr "Gamma rosso"
 
-#: AllOptions.form:27 FMain.form:623 GeneralOptions.form:287
+#: AllOptions.form:27 FMain.form:625 GeneralOptions.form:285
 msgid "General Options"
 msgstr "Opzioni generali"
 
-#: FMain.class:208
+#: FMain.class:207
 msgid "General Options "
 msgstr "Opzioni Generali"
 
-#: FMain.form:661
+#: FMain.form:663
 msgid "General Options..."
 msgstr "Opzioni generali..."
 
-#: GeneralOptions.form:251
+#: GeneralOptions.form:248
 msgid "General options"
 msgstr "Opzioni generali"
 
-#: FMain.form:2026 Searchfields.form:82
+#: FMain.form:2034 Searchfields.form:82
 msgid "Genre"
 msgstr "Genere"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Germany:DE"
 msgstr "-"
 
-#: FMain.class:6181
+#: FMain.class:6223
 msgid "Get Stream info"
 msgstr "Con informazioni sul flusso"
 
-#: FMain.form:925
+#: FMain.form:927
 msgid "Get related videos"
 msgstr "Recupera i video correlati"
 
-#: XConfigureVideoDriver.form:342
+#: XConfigureVideoDriver.form:348
 msgid "GlFinish"
 msgstr "-"
 
@@ -1983,7 +1987,7 @@ msgstr "-"
 msgid "Global Hotkeys"
 msgstr "Hotkey Globali"
 
-#: FMain.class:2891
+#: FMain.class:2900
 msgid "GotIt!"
 msgstr "Capito!"
 
@@ -1991,15 +1995,15 @@ msgstr "Capito!"
 msgid "GradFun"
 msgstr "-"
 
-#: GeneralOptions.class:154
+#: GeneralOptions.class:159
 msgid "Gradually adjusts the A/V sync based on audio delay measurements."
 msgstr "Compensa la desincronizzazione Audio/Video misurando il ritardo audio."
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Great Britain:BG"
 msgstr "-"
 
-#: GeneralOptions.form:932
+#: GeneralOptions.form:951
 msgid "HINT: For youtube, enable this option and set 0.\n--\n If a seek is to be made to a position within <percentage> of the cache size from the current position, \nMPlayer will wait  for  the cache to be filled to this position rather than performing a stream seek (default: 50).\nMplayer option: -cache-seek-min <percentage>"
 msgstr "Suggerimento: Per youtube, abilita questa opzione e imposta 0.\nSe verrà effettuata una ricerca verso una posizione entro la <percentuale>\ndella  dimensione  della  cache  dalla  posizione  attuale\nMPlayer  attenderà  il  riempimento  della  cache  stessa  fino  a  quella\nposizione invece di effettuare la ricerca sul flusso (default: 50)."
 
@@ -2007,35 +2011,35 @@ msgstr "Suggerimento: Per youtube, abilita questa opzione e imposta 0.\nSe verr�
 msgid "HQDenoise3D"
 msgstr "-"
 
-#: Searchfields.form:195 VFiltersCfg.class:251
+#: Searchfields.form:195 VFiltersCfg.class:252
 msgid "Height"
 msgstr "Altezza"
 
-#: GeneralOptions.form:1296
+#: GeneralOptions.form:1325
 msgid "Here you can specify additional mplayer options."
 msgstr "Qui puoi passare opzioni addizionali ad mplayer"
 
-#: FMain.form:1077
+#: FMain.form:1081
 msgid "Hide/show left panel"
 msgstr "Mostra/Nascondi il pannello di sinistra"
 
-#: FMain.form:1683
+#: FMain.form:1691
 msgid "HighLight"
 msgstr "Evidenzia"
 
-#: LogWindow.form:66
+#: LogWindow.form:67
 msgid "Highlight"
 msgstr "Evidenzia"
 
-#: GeneralOptions.form:1535
+#: GeneralOptions.form:1547
 msgid "Highlight listview items on mouse over (buggy!)"
 msgstr "Evidenzia gli elementi della lista al passaggio del mouse (difettoso!)"
 
-#: GeneralOptions.form:1533
+#: GeneralOptions.form:1545
 msgid "Highlight the sideview item which is under the mouse"
 msgstr "Evidenzia l'elemento della lista laterale al passaggio del mouse"
 
-#: FMain.form:1255
+#: FMain.form:1263
 msgid "Home Folder"
 msgstr "Cartella Home"
 
@@ -2043,23 +2047,23 @@ msgstr "Cartella Home"
 msgid "Home Theater"
 msgstr "-"
 
-#: FMain.form:790
+#: FMain.form:792
 msgid "Home page"
 msgstr "Home page"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Hong Kong:HK"
 msgstr "-"
 
-#: VFiltersCfg.class:304
+#: VFiltersCfg.class:305
 msgid "Horizontal deblocking filter:"
 msgstr "Filtro di deblock orizzontale"
 
-#: XConfigureAudioDriver.form:281
+#: XConfigureAudioDriver.form:282
 msgid "Host"
 msgstr "-"
 
-#: AllOptions.form:83 FMain.form:628
+#: AllOptions.form:83 FMain.form:630
 msgid "HotKeys"
 msgstr "Hotkey"
 
@@ -2067,31 +2071,31 @@ msgstr "Hotkey"
 msgid "Hotkeys"
 msgstr "Hotkey"
 
-#: FMain.class:6181
+#: FMain.class:6223
 msgid "How do you want to add?"
 msgstr "Come vuoi aggiungere?"
 
-#: GeneralOptions.form:1133
+#: GeneralOptions.form:1158
 msgid "How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n"
 msgstr "Quanti secondi attendere per per la sintonizzazione del canale.\nOpzione mplayer: -dvbin timeout=#\n"
 
-#: TranslationNeeded.form:39
+#: TranslationNeeded.form:42
 msgid "How to translate a gambas project"
 msgstr "-"
 
-#: GeneralOptions.form:868
+#: GeneralOptions.form:882
 msgid "Http proxy"
 msgstr "-"
 
-#: Chains.form:292 VFiltersCfg.class:413 VideoEqualizer.form:183
+#: Chains.form:292 VFiltersCfg.class:414 VideoEqualizer.form:183
 msgid "Hue"
 msgstr "-"
 
-#: FMain.class:5980
+#: FMain.class:6022
 msgid "I know, proceed"
 msgstr "Lo so, procedi"
 
-#: VideoEqualizer.class:58
+#: VideoEqualizer.class:96
 msgid "If equalizer doesn't work, you can try to:\n\n- Change video output driver\n- Enable eq2 and hue filters under General Options\n- Add Eq2 filter in chains window\n- Add Hue filter in chains window"
 msgstr "Se l'equalizzatore non funziona, puoi provare a:\n\n- Cambiare driver video\n- Abilitare i filtri eq2 ed hue nelle opzioni generali\n- Aggiungere il filtro Eq2 alla catena dei filtri video\n- Aggiungere il filtro hue alla catena dei filtri video."
 
@@ -2099,27 +2103,27 @@ msgstr "Se l'equalizzatore non funziona, puoi provare a:\n\n- Cambiare driver vi
 msgid "If not maximized, the gui size will be at most the value you specify here."
 msgstr "Se non massimizzata, l'interfaccia sarà al più grande quanto qui specificato."
 
-#: FMain.class:206
+#: FMain.class:205
 msgid "If the video stops when you change volume,"
 msgstr "Se il video si ferma quando cambiate volume,"
 
-#: GeneralOptions.form:1397
+#: GeneralOptions.form:1435
 msgid "If you close xt7-player while playing a local file,\nxt7 will start just were you left the next time."
 msgstr "Se chiudi xt7-player durante la riproduzione di un file locale,\nalla riapertura di xt7, esso riprenderà dove l'hai lasciato."
 
-#: SubAndOsd.form:128
+#: SubAndOsd.form:126
 msgid "If you haven't SSA/ASS compiled in mplayer or you don't want SSA/ASS processing, then check it.\nMplayer option: Disables -ass switch."
 msgstr "Se il tuo mplayer non è stato compilato con il supporto ASS/SSA, selezionalo.\n;Opzione mplayer: Disabilita lo switch -ass."
 
-#: GeneralOptions.form:317
+#: GeneralOptions.form:315
 msgid "If you zoomed-in a video, this will allow you to pan it with mouse-drag operation.\nWorks in full-screen mode only."
 msgstr "Se hai ingrandito un video, questo te ne permette il pan tramite il trascinamento."
 
-#: GeneralOptions.form:329
+#: GeneralOptions.form:328
 msgid "If your video card doesn't support brightness, gamma, contrast or hue settings,\nyou may want to try this (slower method) for video equalizer to work properly.\nNote that this does not conflict with configuration you explicitly set in eq2 and hue filters."
 msgstr "Se la tua scheda video non supporta i controlli di luminosità,gamma,contrasto,tonalità etc..,\npuoi provare ad attivare questa opzione (più lenta) di modo che \nl'equalizzatore video funzioni.\nNB:questa impostazione NON va in conflitto con eventuali configurazioni dei filtri hue ed eq2 \n impostate esplicitamente nella catena dei filtri video."
 
-#: GeneralOptions.form:1456
+#: GeneralOptions.form:1493
 msgid "If your window manager is not kwin\nand you find that form position is not correctly restored,\ntry checking this."
 msgstr "Se il tuo window manager non è kwin\ne ti accorgi che la posizione di xt7 non è correttamente ripristinata\nprova a spuntarlo."
 
@@ -2127,7 +2131,7 @@ msgstr "Se il tuo window manager non è kwin\ne ti accorgi che la posizione di x
 msgid "Import"
 msgstr "Importa"
 
-#: FMain.form:539
+#: FMain.form:541
 msgid "Import a playlist"
 msgstr "Importa una playlist"
 
@@ -2135,67 +2139,67 @@ msgstr "Importa una playlist"
 msgid "Import an external channels.conf"
 msgstr "Importa un channels.conf esterno"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "India:IN"
 msgstr "-"
 
-#: VFiltersCfg.class:404
+#: VFiltersCfg.class:405
 msgid "Initial Saturation (default: 0.0)"
 msgstr "Saturazione iniziale (predefinito: 0.0)"
 
-#: VFiltersCfg.class:403
+#: VFiltersCfg.class:404
 msgid "Initial brightness (default: 0.0)"
 msgstr "Luminanza iniziale (predefinito: 0.0)"
 
-#: VFiltersCfg.class:402
+#: VFiltersCfg.class:403
 msgid "Initial contrast (-x = negative image)"
 msgstr "Contrasto iniziale (-x = immagine negativa)"
 
-#: VFiltersCfg.class:401
+#: VFiltersCfg.class:402
 msgid "Initial gamma value(default: 1.0)"
 msgstr "Gamma iniziale (Predefinito: 1.0)"
 
-#: VFiltersCfg.class:413
+#: VFiltersCfg.class:414
 msgid "Initial hue (default: 0)"
 msgstr "Hue iniziale (predefinito: 0)"
 
-#: VFiltersCfg.class:414
+#: VFiltersCfg.class:415
 msgid "Initial saturation (default: 1)"
 msgstr "Saturazione iniziale (predefinito: 1)"
 
-#: GeneralOptions.class:117
+#: GeneralOptions.class:122
 msgid "Initial speed"
 msgstr "Velocità iniziale"
 
-#: VFiltersCfg.class:279
+#: VFiltersCfg.class:280
 msgid "Interlaced Scaling"
 msgstr "Scalatura interlacciata"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Ireland:IE"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Israel:IL"
 msgstr "-"
 
-#: Chains.class:127
+#: Chains.class:130
 msgid "It seems that you want to use the filter: \n"
 msgstr "Sembra che tu voglia usare il filtro: \n"
 
-#: GeneralOptions.form:1115
+#: GeneralOptions.form:1140
 msgid "It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#"
 msgstr "Se hai più schede di acquisizione,\npuoi specificarne una qui.\nOpzione mplayer: -dvbin card=#"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Italy:IT"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:227
+#: XConfigureAudioDriver.form:228
 msgid "Jack"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Japan:JP"
 msgstr "-"
 
@@ -2203,59 +2207,59 @@ msgstr "-"
 msgid "Karaoke"
 msgstr "-"
 
-#: MyQuestion.form:39
+#: MyQuestion.form:41
 msgid "Label1"
 msgstr "-"
 
-#: FMain.form:1131
+#: FMain.form:1139
 msgid "Label3"
 msgstr "-"
 
-#: GeneralOptions.form:1174 SubAndOsd.form:395
+#: GeneralOptions.form:1201 SubAndOsd.form:393
 msgid "Language"
 msgstr "Linguaggio"
 
-#: VFiltersCfg.class:364
+#: VFiltersCfg.class:365
 msgid "Leave to 0 to get qp from video"
 msgstr "Lascia a 0 per prendere il qp dal video"
 
-#: GeneralOptions.form:1633
+#: GeneralOptions.form:1645
 msgid "Left-side list alternate background color:"
 msgstr "Colore di sfondo alternato  per le liste di sinistra:"
 
-#: GeneralOptions.form:1604
+#: GeneralOptions.form:1616
 msgid "Left-side list background color:"
 msgstr "Colore di sfondo delle liste di sinistra:"
 
-#: GeneralOptions.form:1569
+#: GeneralOptions.form:1581
 msgid "Left-side list font and font color:"
 msgstr "Carattere del font delle liste di sinistra:"
 
-#: AudioForm.form:325 FMain.class:6409 Searchfields.form:104
+#: AudioForm.form:325 FMain.class:6451 Searchfields.form:104
 msgid "Length"
 msgstr "Durata"
 
-#: Chains.class:138
+#: Chains.class:141
 msgid "Let's see..."
 msgstr "Vediamo..."
 
-#: FMain.form:427 GeneralOptions.form:455
+#: FMain.form:429 GeneralOptions.form:455
 msgid "Library"
 msgstr "Libreria"
 
-#: GeneralOptions.class:228
+#: GeneralOptions.class:233
 msgid "Limit Drive Speed to"
 msgstr "Limita la velocità del drive a"
 
-#: GeneralOptions.form:1547
+#: GeneralOptions.form:1559
 msgid "Limit gui size to"
 msgstr "Limita la grandezza dell' interfaccia a"
 
-#: ShoutCastClass.class:159
+#: ShoutCastClass.class:160
 msgid "Link"
 msgstr "Collegamento"
 
-#: FMain.form:1785
+#: FMain.form:1793
 msgid "Load"
 msgstr "Carica"
 
@@ -2263,19 +2267,19 @@ msgstr "Carica"
 msgid "Load a Jpg cover image"
 msgstr "Carica una copertina in formato jpg"
 
-#: CoverManager.form:125
+#: CoverManager.form:126
 msgid "Load cover"
 msgstr "Carica da disco"
 
-#: SubAndOsd.form:314
+#: SubAndOsd.form:312
 msgid "Load subtitles"
 msgstr "Carica i sottotitoli"
 
-#: FMain.form:1783
+#: FMain.form:1791
 msgid "Load the selected profile"
 msgstr "Carica il profilo selezionato"
 
-#: FMain.form:535
+#: FMain.form:537
 msgid "Load/Save"
 msgstr "Carica/Salva"
 
@@ -2283,11 +2287,11 @@ msgstr "Carica/Salva"
 msgid "Local Hotkeys"
 msgstr "Hotkey locali"
 
-#: GeneralOptions.form:632
+#: GeneralOptions.form:634
 msgid "Local file cache size (KB)"
 msgstr "Cache per i file locali (KB)"
 
-#: FMain.form:711
+#: FMain.form:713
 msgid "Lock Toolbar"
 msgstr "Blocca la toolbar"
 
@@ -2299,71 +2303,71 @@ msgstr "Finestra dei log"
 msgid "Loudness"
 msgstr "-"
 
-#: GeneralOptions.class:193
+#: GeneralOptions.class:198
 msgid "Lowres (lavdopts)"
 msgstr "Bassa Risoluzione (lavdopts)"
 
-#: XConfigureVideoDriver.form:480
+#: XConfigureVideoDriver.form:486
 msgid "Lscale"
 msgstr "-"
 
-#: VFiltersCfg.class:243
+#: VFiltersCfg.class:244
 msgid "Luma amount"
 msgstr "Quantità di luma"
 
-#: VFiltersCfg.class:242
+#: VFiltersCfg.class:243
 msgid "Luminance Matrix"
 msgstr "Matrice di luminanza"
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:308
 msgid "Luminance/chrominance"
 msgstr "Luminanza/Crominanza"
 
-#: VFiltersCfg.class:256
+#: VFiltersCfg.class:257
 msgid "Make Width and Height divisible by"
 msgstr "Fa sì che Larghezza ed altezza siano divisibili per"
 
-#: ProfileManager.form:75
+#: ProfileManager.form:76
 msgid "Make a copy"
 msgstr "Fai una copia"
 
-#: FMain.form:1833
+#: FMain.form:1841
 msgid "Make a new blank profile"
 msgstr "Crea un nuovo profilo vergine"
 
-#: FMain.form:1835
+#: FMain.form:1843
 msgid "Make new"
 msgstr "Crea nuovo"
 
-#: ProfileManager.form:44
+#: ProfileManager.form:45
 msgid "Make new..."
 msgstr "Nuovo..."
 
-#: GeneralOptions.form:1384
+#: GeneralOptions.form:1414
 msgid "Makes xt7 register itself into dbus.\nThis will export media properties and gives basic options to control the player."
 msgstr "Fa sì che xt7 registri un' istanza in Dbus\nesportanto le proprietà del file\n e permettendo un controllo basilare della riproduzione."
 
-#: GeneralOptions.class:112
+#: GeneralOptions.class:117
 msgid "Maximum Amplification"
 msgstr "Amplificazione massima"
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:420
 msgid "Maximum amount by which the filter will change any one pixel.  Also the threshold for detecting nearly flat regions (default: 1.2)."
 msgstr "Massima variazione che il filtro applicherà su ogni pixel. E' anche la soglia per determinare le regioni quasi piane (predefinito: 1.2)."
 
-#: GeneralOptions.form:879
+#: GeneralOptions.form:894
 msgid "Maximum cache size.\nMplayer option: -cache "
 msgstr "Cache massima.\nOpzione mplayer: -cache"
 
-#: XConfigureVideoDriver.form:767
+#: XConfigureVideoDriver.form:773
 msgid "May be required or not depending on mplayer version"
 msgstr "Potrebbe essere richiesto o meno a seconda della versione di mplayer"
 
-#: FMain.form:387
+#: FMain.form:389
 msgid "Media Explorer"
 msgstr "Media Explorer"
 
-#: FMain.form:1740
+#: FMain.form:1748
 msgid "Media Info"
 msgstr "Media Info"
 
@@ -2371,15 +2375,15 @@ msgstr "Media Info"
 msgid "Media Info "
 msgstr "Media Info"
 
-#: ShoutCastClass.class:157
+#: ShoutCastClass.class:158
 msgid "Media Type"
 msgstr "Tipo di Media"
 
-#: FMain.form:951
+#: FMain.form:953
 msgid "MenuBrowse"
 msgstr "-"
 
-#: FMain.form:463
+#: FMain.form:465
 msgid "MenuPopUpLibrary"
 msgstr "-"
 
@@ -2387,35 +2391,35 @@ msgstr "-"
 msgid "Metal"
 msgstr "-"
 
-#: AFiltersCfg.class:117
+#: AFiltersCfg.class:118
 msgid "Method"
 msgstr "Metodo"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Mexico:MX"
 msgstr "-"
 
-#: GeneralOptions.form:944
+#: GeneralOptions.form:964
 msgid "Minimum seek cache size"
 msgstr "Dimensione minima della cache per i seek"
 
-#: GeneralOptions.form:1260
+#: GeneralOptions.form:1289
 msgid "Misc"
 msgstr "Varie"
 
-#: GeneralOptions.class:97
+#: GeneralOptions.class:102
 msgid "Mixer Channel"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:178
+#: XConfigureAudioDriver.form:179
 msgid "Mixer-Device"
 msgstr "-"
 
-#: SubAndOsd.form:429
+#: SubAndOsd.form:427
 msgid "Mkv Workaround"
 msgstr "-"
 
-#: VFiltersCfg.class:365
+#: VFiltersCfg.class:366
 msgid "Mode"
 msgstr "Modo"
 
@@ -2443,75 +2447,75 @@ msgstr "Più risposti"
 msgid "Most viewed"
 msgstr "Più visti"
 
-#: FMain.form:1204
+#: FMain.form:1212
 msgid "Move selected items up in the list.\nYou can use the mouse wheel too."
 msgstr "Sposta la selezione nella lista.\nPuoi usare anche la rotellina del mouse."
 
-#: FMain.form:1210
+#: FMain.form:1218
 msgid "Move selected playlist items down.\nYou can use the mouse wheel too."
 msgstr "Sposta la selezione nella lista.\nPuoi usare anche la rotellina del mouse."
 
-#: SubAndOsd.form:253
+#: SubAndOsd.form:251
 msgid "Mplayer option: -ass-forcestyle BackColour=HHBBGGRR"
 msgstr "Opzione Mplayer: -ass-forcestyle BackColour=HHBBGGRR"
 
-#: SubAndOsd.form:140
+#: SubAndOsd.form:138
 msgid "Mplayer option: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 msgstr "Opzione mplayer: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 
-#: SubAndOsd.form:167
+#: SubAndOsd.form:165
 msgid "Mplayer option: \n-ass-forcestyle primarycolour=HHBBGGRR"
 msgstr "Opzione Mplayer:  \n-ass-forcestyle primarycolour=HHBBGGRR"
 
-#: SubAndOsd.form:466
+#: SubAndOsd.form:464
 msgid "Mplayer option: \n-font"
 msgstr "Opzione mplayer: \n-font"
 
-#: SubAndOsd.form:203
+#: SubAndOsd.form:201
 msgid "Mplayer option: ass-forcestyle OutLineColour=HHBBGGRR"
 msgstr "Opzione Mplayer: ass-forcestyle OutLineColour=HHBBGGRR"
 
-#: RealtimeForm.form:246 SubAndOsd.form:348
+#: RealtimeForm.form:281 SubAndOsd.form:346
 msgid "Mplayer option:\n-ass-force-style Alignment=<align>"
 msgstr "Opzione mplayer: \n-ass-force-style Alignment=<align>"
 
-#: SubAndOsd.form:307
+#: SubAndOsd.form:305
 msgid "Mplayer option:\n-sub-fuzziness <mode>"
 msgstr "Opzione Mplayer: \n-sub-fuzziness <mode>"
 
-#: AudioForm.form:316 ShoutCastClass.class:156 XConfigureAudioDriver.form:251
+#: AudioForm.form:316 ShoutCastClass.class:157 XConfigureAudioDriver.form:252
 msgid "Name"
 msgstr "Nome"
 
-#: VFiltersCfg.class:243
+#: VFiltersCfg.class:244
 msgid "Negative means blur"
 msgstr "Valori negativi producono sfocatura"
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:421
 msgid "Neighborhood to fit the gradient to.  Larger radius makes for smoother gradients, but also prevents the filter from modifying pixels near detailed regions (default: 16)."
 msgstr "Raggio della zona circostante a cui adattare  il  gradiente. (predefinito: 16)."
 
-#: GeneralOptions.form:890
+#: GeneralOptions.form:906
 msgid "Net Cache size (KB)"
 msgstr "Cache per la rete (KB)"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Netherlands:NL"
 msgstr "-"
 
-#: GeneralOptions.form:837
+#: GeneralOptions.form:850
 msgid "Network"
 msgstr "Rete"
 
-#: FMain.class:5674
+#: FMain.class:5718
 msgid "New Flash(tm) video detected: \n"
 msgstr "Rilevato un nuovo video Flash:\n"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "New Zeland:NZ"
 msgstr "-"
 
-#: FMain.form:853
+#: FMain.form:855
 msgid "New feed"
 msgstr "Nuovo feed"
 
@@ -2519,7 +2523,7 @@ msgstr "Nuovo feed"
 msgid "NewProfile"
 msgstr "Nuovo profilo"
 
-#: FMain.form:2212
+#: FMain.form:2226
 msgid "Next media"
 msgstr "Prossimo media"
 
@@ -2527,51 +2531,51 @@ msgstr "Prossimo media"
 msgid "No driver Defined"
 msgstr "Nessun driver definito"
 
-#: FMain.class:6063
+#: FMain.class:6105
 msgid "No hotkeys defined for dvd navigation mode\nPlease configure dvdnav hotkeys first."
 msgstr "Nessuna scorciatoia definita per la navigazione dvd \n Si prega di configurare le scorciatoie (hotkey) prima."
 
-#: FMain.class:7252
+#: FMain.class:7294
 msgid "No, thanks"
 msgstr "No, grazie"
 
-#: XConfigureVideoDriver.form:372
+#: XConfigureVideoDriver.form:378
 msgid "NoAspect"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:132
+#: XConfigureAudioDriver.form:133
 msgid "NoBlock"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:348
+#: XConfigureVideoDriver.form:354
 msgid "NoCustomLin"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:268
+#: XConfigureAudioDriver.form:269
 msgid "NoEstimate"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:573
+#: XConfigureVideoDriver.form:579
 msgid "NoGlFinish"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:1061
+#: XConfigureVideoDriver.form:1067
 msgid "NoHwAccel"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:354
+#: XConfigureVideoDriver.form:360
 msgid "NoManyFmts"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:366
+#: XConfigureVideoDriver.form:372
 msgid "NoOsd"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:337
+#: XConfigureAudioDriver.form:338
 msgid "NoWaveHeader"
 msgstr "-"
 
-#: GeneralOptions.class:137
+#: GeneralOptions.class:142
 msgid "Non-interleaved AVI  parser"
 msgstr "Parser avi non interleaved"
 
@@ -2579,115 +2583,115 @@ msgstr "Parser avi non interleaved"
 msgid "Note that this can conflicts with Eq2 and hue filter settings"
 msgstr "Potrebbe andare in conflirro con le impostazioni dei filtri hue ed Eq2"
 
-#: XConfigureAudioDriver.form:443 XConfigureVideoDriver.form:1157
+#: XConfigureAudioDriver.form:444 XConfigureVideoDriver.form:1163
 msgid "Null"
 msgstr "-"
 
-#: GeneralOptions.class:188
+#: GeneralOptions.class:193
 msgid "Number of threads to use for decoding.\nYou may need the 'mt' version of mplayer and ffmmpeg\nMplayer Option: -lavdopts threads=n"
 msgstr "Numero di sottoprocessi usati per la decodifica\nProbabilmente hai bisogno della versione \"mt\" di mplayer ed ffmpeg\nOpzione mplayer: -lavdopts threads=n"
 
-#: SubAndOsd.form:461
+#: SubAndOsd.form:459
 msgid "OSD"
 msgstr "-"
 
-#: SubAndOsd.form:533
+#: SubAndOsd.form:531
 msgid "OSD Background alpha"
 msgstr "Trasparenza dello sfondo OSD"
 
-#: SubAndOsd.form:492
+#: SubAndOsd.form:490
 msgid "OSD Border font \"strength\", where 0 means plain white fonts and 10 means bold black outline\nMplayer option: -ffactor <number>\n\n"
 msgstr "Marcatura del bordo OSD,\n dove 0 significa carattere nero e 10 significa contorno nero molto marcato\nOpzione mplayer: -ffactor <numero>\n\n"
 
-#: SubAndOsd.form:474
+#: SubAndOsd.form:472
 msgid "OSD Font"
 msgstr "Font OSD"
 
-#: SubAndOsd.form:552
+#: SubAndOsd.form:550
 msgid "OSD blur radius"
 msgstr "Raggio di sfocatura OSD"
 
-#: SubAndOsd.form:500
+#: SubAndOsd.form:498
 msgid "OSD outline strength"
 msgstr "Marcatura del bordo OSD"
 
-#: SubAndOsd.form:513
+#: SubAndOsd.form:511
 msgid "OSD outline thickness"
 msgstr "Spessore del bordo OSD"
 
-#: SubAndOsd.form:274
+#: SubAndOsd.form:272
 msgid "Offset"
 msgstr "Offset"
 
-#: TextDialog.form:25 TranslationNeeded.form:62
+#: TextDialog.form:25 TranslationNeeded.form:66
 msgid "Ok"
 msgstr "-"
 
-#: GeneralOptions.class:172
+#: GeneralOptions.class:177
 msgid "Only valid for http:// Uries"
 msgstr "Valido solo per indirizzi http://"
 
-#: FMain.form:1550
+#: FMain.form:1558
 msgid "Only valid for standard feeds"
 msgstr "Valido soltanto per i flussi standard"
 
-#: AddUriForm.form:75 FMain.form:987
+#: AddUriForm.form:75 FMain.form:989
 msgid "Open a file"
 msgstr "Apri un file"
 
-#: FMain.form:2169
+#: FMain.form:2183
 msgid "Open a file..."
 msgstr "Apri un file..."
 
-#: FMain.form:995
+#: FMain.form:997
 msgid "Open an URI/Network stream"
 msgstr "Apri una URI/Stream di rete"
 
-#: FMain.form:382
+#: FMain.form:384
 msgid "Open an Uri/Network stream"
 msgstr "Apri una URI/Stream di rete"
 
-#: FMain.form:467
+#: FMain.form:469
 msgid "Open containing folder"
 msgstr "Apri cartella"
 
-#: FMain.form:347
+#: FMain.form:349
 msgid "Open local file"
 msgstr "Apri un file locale"
 
-#: FMain.form:352
+#: FMain.form:354
 msgid "Open recent file"
 msgstr "Apri un file recente"
 
-#: FMain.class:210
+#: FMain.class:209
 msgid "Or disable any audio driver to use the default one"
 msgstr "Oppure disabilitate ogni driver per usare quello di default"
 
-#: FMain.form:1532
+#: FMain.form:1540
 msgid "Order by"
 msgstr "Ordina per"
 
-#: VFiltersCfg.class:252
+#: VFiltersCfg.class:253
 msgid "Original image position; -1 to center"
 msgstr "Posizione dell' immagine originale; -1 per centro"
 
-#: SubAndOsd.form:590
+#: SubAndOsd.form:588
 msgid "Osd Scale"
 msgstr "Coefficiente di autoscalatura"
 
-#: SubAndOsd.form:571
+#: SubAndOsd.form:569
 msgid "Osd duration (ms)"
 msgstr "Durata OSD (ms)"
 
-#: VFiltersCfg.class:254
+#: VFiltersCfg.class:255
 msgid "Osd/SubTitle Rendering"
 msgstr "Rappresentazione Osd/Sottotitoli"
 
-#: XConfigureVideoDriver.form:383
+#: XConfigureVideoDriver.form:389
 msgid "OsdColor"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:152
+#: XConfigureAudioDriver.form:153
 msgid "Oss"
 msgstr "-"
 
@@ -2695,19 +2699,19 @@ msgstr "-"
 msgid "Other known extensions"
 msgstr "Altre estensioni conosciute"
 
-#: FMain.form:1065
+#: FMain.form:1068
 msgid "Other realtime commands"
 msgstr "Altri controlli in real time"
 
-#: FMain.form:746
+#: FMain.form:748
 msgid "Other..."
 msgstr "Altro..."
 
-#: LogWindow.form:56
+#: LogWindow.form:57
 msgid "Output"
 msgstr "-"
 
-#: GeneralOptions.class:102
+#: GeneralOptions.class:107
 msgid "Output Channels"
 msgstr "Canali audio di uscita"
 
@@ -2719,59 +2723,55 @@ msgstr "File di uscita"
 msgid "Output Language strings:"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:297
+#: XConfigureAudioDriver.form:298
 msgid "Output Sink"
 msgstr "-"
 
-#: GeneralOptions.class:144
+#: GeneralOptions.class:149
 msgid "Override movie aspect ratio, in case aspect information\n is incorrect or missing in the file being played.\n Mplayer Option: -aspect"
 msgstr "Forza un rapporto d'aspetto, nel caso le informazioni sul rapporto\ncontenute nel filmato fossero mancanti o incorrette.\n Opzione mplayer: -aspect"
 
-#: FMain.form:1243
+#: FMain.form:1251
 msgid "Parent"
 msgstr "Su"
 
-#: FMain.form:590
+#: FMain.form:592
 msgid "Paste after selected"
 msgstr "Incolla dopo il selezionato"
 
-#: XConfigureAudioDriver.form:306
+#: XConfigureAudioDriver.form:307
 msgid "Pcm"
 msgstr "-"
 
-#: AddUriForm.form:136
+#: AddUriForm.form:137
 msgid "Play"
 msgstr "-"
 
-#: FMain.form:357
+#: FMain.form:359
 msgid "Play Audio Cd"
 msgstr "Riproduci Cd audio"
 
-#: FMain.form:362
+#: FMain.form:364
 msgid "Play DVD"
 msgstr "Riproduci DVD"
 
-#: GeneralOptions.form:1498
-msgid "Play logo animation at start"
-msgstr "Visualizza l'animazione iniziale"
-
-#: FMain.form:1880
+#: FMain.form:1888
 msgid "Play next media as the previous reaches the end."
 msgstr "Avanza automaticamente"
 
-#: FMain.class:5678
+#: FMain.class:5722
 msgid "Play now"
 msgstr "Riproduci"
 
-#: FMain.form:1872
+#: FMain.form:1880
 msgid "Play random media when the previous reaches the end."
 msgstr "Seleziona il prossimo brano casualmente"
 
-#: AddUriForm.form:135
+#: AddUriForm.form:136
 msgid "Play the selected URI"
 msgstr "Riproduzi l'URI selezionata"
 
-#: FMain.form:2190
+#: FMain.form:2204
 msgid "Play/pause"
 msgstr "Play/Pausa"
 
@@ -2779,35 +2779,35 @@ msgstr "Play/Pausa"
 msgid "Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes."
 msgstr "Livello nice del player.\n Più basso è, maggiore sarà la priorità\nche avrà nei confronti degli altri processi."
 
-#: FMain.form:525
+#: FMain.form:527
 msgid "Playlist"
 msgstr "Playlist"
 
-#: GeneralOptions.form:716
+#: GeneralOptions.form:722
 msgid "Please, choose"
 msgstr "Prego, scegli"
 
-#: FMain.class:6805
+#: FMain.class:6847
 msgid "Please, disable playlist shutdown option first!"
 msgstr "Disabilita l'opzione di spegnimento, prima!"
 
-#: FMain.class:5456
+#: FMain.class:5493
 msgid "Please, disable random playing first!"
 msgstr "Disabilita la riproduzione casuale, prima!"
 
-#: FMain.class:6397
+#: FMain.class:6439
 msgid "Please, wait while getting disc information"
 msgstr "Prego, attendere mentre recupero le informazioni dal disco"
 
-#: FMain.form:849
+#: FMain.form:851
 msgid "PodCastMenu"
 msgstr "-"
 
-#: FMain.form:1711
+#: FMain.form:1719
 msgid "Podcasts"
 msgstr "Podcast"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Poland:PL"
 msgstr "-"
 
@@ -2815,35 +2815,35 @@ msgstr "-"
 msgid "Pop"
 msgstr "-"
 
-#: FMain.form:1420
+#: FMain.form:1428
 msgid "PopUp window to play new catched videos"
 msgstr "Mostra un PopUp per riprodurre i video intercettati"
 
-#: XConfigureAudioDriver.form:236 XConfigureVideoDriver.form:238
+#: XConfigureAudioDriver.form:237 XConfigureVideoDriver.form:240
 msgid "Port"
 msgstr "-"
 
-#: SubAndOsd.form:335
+#: SubAndOsd.form:333
 msgid "Position (%)"
 msgstr "Posizione (%)"
 
-#: GeneralOptions.form:1336
+#: GeneralOptions.form:1366
 msgid "Post Command"
 msgstr "Post-Comando"
 
-#: GeneralOptions.form:1319
+#: GeneralOptions.form:1349
 msgid "Pre Command"
 msgstr "Pre-Comando"
 
-#: GeneralOptions.form:1187
+#: GeneralOptions.form:1214
 msgid "Preferred Audio languages:"
 msgstr "Lingue audio preferite:"
 
-#: GeneralOptions.form:1224
+#: GeneralOptions.form:1252
 msgid "Preferred Subtitle languages:"
 msgstr "Lingue dei sottotitoli preferite:"
 
-#: GeneralOptions.form:968
+#: GeneralOptions.form:989
 msgid "Preferred youtube resolution"
 msgstr "Risoluzione preferita per Youtube"
 
@@ -2863,11 +2863,11 @@ msgstr "Preimpostazioni"
 msgid "Press a Key\nor (some) Mouse button(s)\n"
 msgstr "Premi un tasto\no uno o più pulsanti del mouse\n"
 
-#: SubAndOsd.form:641
+#: SubAndOsd.form:639
 msgid "Preview"
 msgstr "Anteprima"
 
-#: FMain.form:2176
+#: FMain.form:2190
 msgid "Previous media"
 msgstr "Media precedente"
 
@@ -2875,15 +2875,15 @@ msgstr "Media precedente"
 msgid "Print grid code to console"
 msgstr "-"
 
-#: HotKeys.class:518 SubAndOsd.class:351
+#: HotKeys.class:520 SubAndOsd.class:356
 msgid "Proceed"
 msgstr "Procedi"
 
-#: XConfigureVideoDriver.form:188
+#: XConfigureVideoDriver.form:189
 msgid "Profile"
 msgstr "Profilo"
 
-#: FMain.form:765 ProfileManager.form:22
+#: FMain.form:767 ProfileManager.form:22
 msgid "Profile Manager"
 msgstr "Gestore dei profili"
 
@@ -2891,7 +2891,7 @@ msgstr "Gestore dei profili"
 msgid "Profile name:"
 msgstr "Nome del profilo:"
 
-#: FMain.form:1755
+#: FMain.form:1763
 msgid "Profiles"
 msgstr "Profili"
 
@@ -2899,7 +2899,7 @@ msgstr "Profili"
 msgid "Progress"
 msgstr "Progresso"
 
-#: XConfigureAudioDriver.form:272
+#: XConfigureAudioDriver.form:273
 msgid "Pulse"
 msgstr "-"
 
@@ -2907,15 +2907,15 @@ msgstr "-"
 msgid "Punch & Sparkle"
 msgstr "-"
 
-#: VFiltersCfg.class:363
+#: VFiltersCfg.class:364
 msgid "Quality"
 msgstr "Qualità"
 
-#: VFiltersCfg.class:364
+#: VFiltersCfg.class:365
 msgid "Quantization parameter (qp)"
 msgstr "Parametro di quantizzazione (qp)"
 
-#: XConfigureVideoDriver.form:1019
+#: XConfigureVideoDriver.form:1025
 msgid "Queue"
 msgstr "-"
 
@@ -2923,7 +2923,7 @@ msgstr "-"
 msgid "Quick add mode"
 msgstr "Aggiungi velocemente"
 
-#: FMain.form:420
+#: FMain.form:422
 msgid "Quit"
 msgstr "Esci"
 
@@ -2931,15 +2931,15 @@ msgstr "Esci"
 msgid "Radio"
 msgstr "Radio"
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:421
 msgid "Radius"
 msgstr "Raggio"
 
-#: RealtimeForm.form:44
+#: RealtimeForm.form:51
 msgid "Realtime Controls"
 msgstr "Controlli in tempo reale"
 
-#: GeneralOptions.class:127
+#: GeneralOptions.class:132
 msgid "Rebuild Index if necessary"
 msgstr "Ricostruisci l'indice se necessario"
 
@@ -2947,31 +2947,31 @@ msgstr "Ricostruisci l'indice se necessario"
 msgid "Recently featured"
 msgstr "In evidenza di recente"
 
-#: FMain.form:831
+#: FMain.form:833
 msgid "Record As..."
 msgstr "Registra come..."
 
-#: XConfigureVideoDriver.form:414
+#: XConfigureVideoDriver.form:420
 msgid "Rectangle"
 msgstr "-"
 
-#: VFiltersCfg.class:408
+#: VFiltersCfg.class:409
 msgid "Reduce effect of gamma correction"
 msgstr "Riduce l'effetto della correzione gamma"
 
-#: FMain.form:858 LogWindow.form:131
+#: FMain.form:860 LogWindow.form:132
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: FMain.form:1730
+#: FMain.form:1738
 msgid "Refresh All"
 msgstr "Aggiorna tutto"
 
-#: FMain.form:1640
+#: FMain.form:1648
 msgid "Refresh Genres list"
 msgstr "Aggiorna la lista dei generi"
 
-#: FMain.form:1556
+#: FMain.form:1564
 msgid "Region"
 msgstr "Luogo"
 
@@ -2979,63 +2979,63 @@ msgstr "Luogo"
 msgid "Related to: "
 msgstr "Correlato a:"
 
-#: XConfigureVideoDriver.form:191
+#: XConfigureVideoDriver.form:192
 msgid "Reload current profile"
 msgstr "Ricarica il profilo corrente"
 
-#: FMain.class:213
+#: FMain.class:212
 msgid "Remind me later"
 msgstr "Ricordamelo"
 
-#: FMain.class:4170
+#: FMain.class:4201
 msgid "Remove"
 msgstr "Rimuovi"
 
-#: FMain.form:598
+#: FMain.form:600
 msgid "Remove..."
 msgstr "Rimuovi..."
 
-#: FMain.form:1806
+#: FMain.form:1814
 msgid "Rename"
 msgstr "Rinomina"
 
-#: FMain.form:1804
+#: FMain.form:1812
 msgid "Rename the selected profile"
 msgstr "Rinomina il profilo selezionato"
 
-#: FMain.form:785
+#: FMain.form:787
 msgid "Report a bug"
 msgstr "Segnala un bug"
 
-#: GeneralOptions.class:103
+#: GeneralOptions.class:108
 msgid "Request the number of playback channels (default: 2).\n This is usually only important when playing videos with AC-3 audio (like DVDs).\n Mplayer Option: -channels"
 msgstr "Richiedi un numero di canali audio (2 di default).\n In genere importante solo durante la riproduzione di video con audio AC3 (come dvd), DTS etc.\n Opzione mplayer: -channels"
 
-#: GeneralOptions.class:107
+#: GeneralOptions.class:112
 msgid "Required by Maximum Amplification"
 msgstr "Richiesto da \"Amplificazione massima\""
 
-#: GeneralOptions.form:1169
+#: GeneralOptions.form:1196
 msgid "Rescan Channels with simple DVB-T Tuner"
 msgstr "Risintonizza i canali con DVB-T Tuner"
 
-#: FMain.class:3396
+#: FMain.class:3407
 msgid "Reset"
 msgstr "Reset"
 
-#: FMain.form:1497
+#: FMain.form:1505
 msgid "Results"
 msgstr "Risultati"
 
-#: SubAndOsd.form:619
+#: SubAndOsd.form:617
 msgid "Retest"
 msgstr "Riprova"
 
-#: FMain.form:1115
+#: FMain.form:1123
 msgid "Right click to select which tabs to show."
 msgstr "Click destro per selezionare quali tab mostrare"
 
-#: VFiltersCfg.class:348
+#: VFiltersCfg.class:349
 msgid "Ring noise remover"
 msgstr "Rimozione del rumore ad anello"
 
@@ -3043,67 +3043,67 @@ msgstr "Rimozione del rumore ad anello"
 msgid "Rms window size"
 msgstr "Ampiezza della finestre Rms"
 
-#: FMain.class:7640
+#: FMain.class:7681
 msgid "Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys."
 msgstr "Scorri la rotellina del mouse sul bottone \nper cambiare il panscan o configura le hotkey."
 
-#: AFiltersCfg.class:155
+#: AFiltersCfg.class:156
 msgid "Runtime responce to speed change"
 msgstr "Modo di riproduzione alla variazione di velocità"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Russia:RU"
 msgstr "-"
 
-#: XConfigureAudioDriver.form:401 XConfigureVideoDriver.form:1030
+#: XConfigureAudioDriver.form:402 XConfigureVideoDriver.form:1036
 msgid "SDL"
 msgstr "-"
 
-#: SubAndOsd.form:123
+#: SubAndOsd.form:121
 msgid "SSA Font Style"
 msgstr "Tipo di carattere SSA"
 
-#: VFiltersCfg.class:404 VideoEqualizer.form:216
+#: VFiltersCfg.class:405 VideoEqualizer.form:216
 msgid "Saturation"
 msgstr "Saturazione"
 
-#: XConfigureVideoDriver.form:1190
+#: XConfigureVideoDriver.form:1196
 msgid "Save"
 msgstr "Salva"
 
-#: FMain.form:1814
+#: FMain.form:1822
 msgid "Save As"
 msgstr "Salva come"
 
-#: GeneralOptions.form:1437
+#: GeneralOptions.form:1474
 msgid "Save all settings to profile on program exit"
 msgstr "Salva tutte le impostazioni all' uscita."
 
-#: FMain.form:760
+#: FMain.form:762
 msgid "Save all to current profile"
 msgstr "Salva tutte le impostazioni al profilo corrente"
 
-#: XConfigureAudioDriver.form:474 XConfigureVideoDriver.form:1189
+#: XConfigureAudioDriver.form:475 XConfigureVideoDriver.form:1195
 msgid "Save and use new settings"
 msgstr "Salva ed usa le nuove impostazioni"
 
-#: FMain.form:1812
+#: FMain.form:1820
 msgid "Save the current settings to a new profile"
 msgstr "Salva le impostazioni correnti in un nuovo profilo"
 
-#: FMain.form:1791
+#: FMain.form:1799
 msgid "Save the settings to the selected profile"
 msgstr "Salva le impostazioni correnti nel profilo selezionato"
 
-#: XConfigureVideoDriver.form:201
+#: XConfigureVideoDriver.form:202
 msgid "Save these settings to all profiles"
 msgstr "Salva queste impostazioni a tutti i profili"
 
-#: XConfigureVideoDriver.form:196
+#: XConfigureVideoDriver.form:197
 msgid "Save to current profile"
 msgstr "Salva le impostazioni al profilo corrente"
 
-#: GeneralOptions.form:1444
+#: GeneralOptions.form:1481
 msgid "Save xt7 position and size on program exit."
 msgstr "Salva la posizione e le dimensioni di xt7 all'uscita."
 
@@ -3111,11 +3111,11 @@ msgstr "Salva la posizione e le dimensioni di xt7 all'uscita."
 msgid "Scale"
 msgstr "-"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:374
 msgid "Scale (%)"
 msgstr "Scala (%)"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "Scale to Preset Size"
 msgstr "Scala ad una dimensione predefinita"
 
@@ -3123,43 +3123,43 @@ msgstr "Scala ad una dimensione predefinita"
 msgid "ScaleTempo"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:336
+#: XConfigureVideoDriver.form:342
 msgid "Scaled-Osd"
 msgstr "-"
 
-#: GeneralOptions.class:213
+#: GeneralOptions.class:218
 msgid "Scaler type (-sws)"
 msgstr "Tipo di scalatura (-sws)"
 
-#: VFiltersCfg.class:281
+#: VFiltersCfg.class:282
 msgid "Scaling Parameters"
 msgstr "Parametri di scalatura"
 
-#: FMain.form:1346
+#: FMain.form:1354
 msgid "Scan for channels"
 msgstr "Sintonizza i canali"
 
-#: XConfigureAudioDriver.form:189
+#: XConfigureAudioDriver.form:190
 msgid "Sdl"
 msgstr "-"
 
-#: FMain.form:1485
+#: FMain.form:1493
 msgid "Search"
 msgstr "Cerca"
 
-#: FMain.form:1509
+#: FMain.form:1517
 msgid "Search now"
 msgstr "Cerca ora"
 
-#: FMain.form:440
+#: FMain.form:442
 msgid "Search options"
 msgstr "Opzioni di ricerca"
 
-#: GeneralOptions.class:122
+#: GeneralOptions.class:127
 msgid "Seconds"
 msgstr "Secondi"
 
-#: FMain.form:918
+#: FMain.form:920
 msgid "See more results"
 msgstr "Più risultati"
 
@@ -3167,7 +3167,7 @@ msgstr "Più risultati"
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: FMain.form:2105
+#: FMain.form:2112
 msgid "Select next"
 msgstr "Seleziona il prossimo"
 
@@ -3179,83 +3179,83 @@ msgstr "Deseleziona tutto"
 msgid "Select which field(s) you whish to search into."
 msgstr "Seleziona quali campi desideri ricercare"
 
-#: GeneralOptions.form:1025
+#: GeneralOptions.form:1046
 msgid "Select your 'scan' executable.\nJust write 'scan' for default."
 msgstr "Localizza l'eseguibile 'scan'.\nO scrivi semplicemente 'scan'."
 
-#: GeneralOptions.form:704
+#: GeneralOptions.form:709
 msgid "Select your Dvd device (es /dev/dvd, /dev/cdrom, /dev/sr2...)."
 msgstr "Seleziona il tuo dispositivo dvd (exempio /dev/dvd, /dev/cdrom, /dev/sr2...)"
 
-#: GeneralOptions.form:1014
+#: GeneralOptions.form:1035
 msgid "Select your audiotag executable.\nJust write 'audiotag' for default."
 msgstr "Selezione l'eseguibile audiotag.\nScrivi semplicemente 'audiotag' per il predefinito."
 
-#: GeneralOptions.form:1049
+#: GeneralOptions.form:1070
 msgid "Select your femon executable.\nJust write 'femon' for default."
 msgstr "Localizza l'eseguibile 'femon'.\nO scrivi semplicemente 'femon'."
 
-#: GeneralOptions.form:1273
+#: GeneralOptions.form:1302
 msgid "Select your mplayer executable.\nJust write 'mplayer' for default."
 msgstr "Seleziona l'eseguibile mplayer.\n Scrivi semplicemente 'mplayer' per il predefinito"
 
-#: FMain.class:4287
+#: FMain.class:4318
 msgid "Selected: "
 msgstr "Selezionati:"
 
-#: GeneralOptions.class:172
+#: GeneralOptions.class:177
 msgid "Send cookies"
 msgstr "Manda i cookie"
 
-#: GeneralOptions.class:173
+#: GeneralOptions.class:178
 msgid "Send cookies to websites when playing http:// Uries,\n Cookie file must be in Netscape format.\n Mplayer Option: -cookies"
 msgstr "Manda i cookie ai siti web prima di riprodurre indirizzi http:// \n Il file dei cookie dev'essere in formato Netscape.\n Opzione mplayer: -cookies"
 
-#: XConfigureAudioDriver.form:216
+#: XConfigureAudioDriver.form:217
 msgid "Server"
 msgstr "-"
 
-#: CoverManager.form:136
+#: CoverManager.form:137
 msgid "Set Cover"
 msgstr "Imposta"
 
-#: FMain.form:485
+#: FMain.form:487
 msgid "Set a cover"
 msgstr "Imposta una copertina"
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:229
 msgid "Set first field for interlaced content\n Mplayer Option: -field-dominance"
 msgstr "Imposta il campo primario per contenuti interlacciati\n Opzione mplayer: -field-dominance"
 
-#: GeneralOptions.class:117
+#: GeneralOptions.class:122
 msgid "Set initial playback tempo/pitch"
 msgstr "Imposta la velocità, il tempo o il tono iniziali."
 
-#: SubAndOsd.form:565
+#: SubAndOsd.form:563
 msgid "Set the duration of the OSD messages in ms.\nMplayer option: -osd-duration"
 msgstr "Imposta la durata dei messaggi OSD in millisecondi.\nOpzione mplayer: -osd-duration"
 
-#: GeneralOptions.class:113
+#: GeneralOptions.class:118
 msgid "Set the maximum amplification level in percent (default: 110).\n A value of 200 will allow you to adjust the volume up to a maximum of double the current level.\n Mplayer Option: -softvol-max"
 msgstr "Imposta il livello di amplificazione massima in percentuale (di default 110).\n Un valore di 200 permetterà di aumentare il volume fino al doppio del volume.\n Opzione mplayer: -softvol-max"
 
-#: SubAndOsd.form:583
+#: SubAndOsd.form:581
 msgid "Sets the autoscale coefficient of the OSD elements.\nMplayer option: -subfont-osd-scale"
 msgstr "Imposta il coefficioente di autoscalature per gli elementi OSD\nOpzione mplayer: -subfont-osd-scale"
 
-#: SubAndOsd.form:545
+#: SubAndOsd.form:543
 msgid "Sets the font blur radius.\nMplayer option: -subfont-blur"
 msgstr "Imposta il raggio di sfocatura del font.\nOpzione mplayer: -subfont-blur"
 
-#: SubAndOsd.form:506
+#: SubAndOsd.form:504
 msgid "Sets the font outline thickness\nMplayer option: -subfont-outline"
 msgstr "Imposta lo spessore del bordo\nOpzione mplayer: -subfont-outline"
 
-#: SubAndOsd.form:428
+#: SubAndOsd.form:426
 msgid "Setting a negative delay for subtitles embedded in mkv files, leads mplayer\nto shift only the subtitle end time, because it reads the file sequentially.\nChecking this box will workaround the problem by adding:\n-subfile yourfile.mkv to mplayer options, forcing mplayer to read\nand shift the subtitles correctly.\nAlso, any ass rendering will be disabled.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 msgstr "Impostare un ritardo negativo per i sottotitoli incorporati nei file mkv, porta mplayer\na traslare solo la fine del sottotitolo, in quanto esso legge il file in maniera sequenziale.\nSelezionando questo box, aggirerai il problema con l'opzione\n:-subfile tuofile.mkv\nche forzerà mplayer a leggere il file video come un sottotitolo.\nGli stili ass saranno inoltre disabilitati.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 
-#: SubAndOsd.form:261
+#: SubAndOsd.form:259
 msgid "Shadow"
 msgstr "Ombra"
 
@@ -3263,27 +3263,27 @@ msgstr "Ombra"
 msgid "Shimmer"
 msgstr "-"
 
-#: FMain.form:1619
+#: FMain.form:1627
 msgid "ShoutCast"
 msgstr "-"
 
-#: FMain.form:1661
+#: FMain.form:1669
 msgid "ShoutCast Radio search results:"
 msgstr "Risultati della ricerca radio Shoutcast:"
 
-#: FMain.form:884
+#: FMain.form:886
 msgid "ShoutCastGridPopUp"
 msgstr "-"
 
-#: FMain.form:899
+#: FMain.form:901
 msgid "ShoutCastTreePopup"
 msgstr "-"
 
-#: FMain.class:5725
+#: FMain.class:5769
 msgid "Show"
 msgstr "Mostra"
 
-#: FMain.form:706
+#: FMain.form:708
 msgid "Show Tag editor"
 msgstr "Mostra L'editor delle tag"
 
@@ -3291,43 +3291,43 @@ msgstr "Mostra L'editor delle tag"
 msgid "Show Vmeters"
 msgstr "Mostra i Vmeter"
 
-#: FMain.form:1468
+#: FMain.form:1476
 msgid "Show advanced search options"
 msgstr "Mostra le opzioni di ricerca avanzate"
 
-#: GeneralOptions.form:1523
+#: GeneralOptions.form:1535
 msgid "Show covers in listviews"
 msgstr "Mostra le cover nel pannello laterale"
 
-#: FMain.form:1271
+#: FMain.form:1279
 msgid "Show detailed list"
 msgstr "Mostra i dettagli nella lista"
 
-#: FMain.form:1413
+#: FMain.form:1421
 msgid "Show flash videos in /tmp folder in the upper list, allowing you to play them."
 msgstr "Mostra nella lista sopra i video flash (dalla catella /tmp ) permettendone la riproduzione"
 
-#: FMain.form:1277
+#: FMain.form:1285
 msgid "Show icons"
 msgstr "Mostra le icone"
 
-#: FMain.form:777
+#: FMain.form:779
 msgid "Show logs"
 msgstr "Mostra il log"
 
-#: FMain.form:1478
+#: FMain.form:1486
 msgid "Show youtube video information"
 msgstr "Mostra informazioni sul video youtube"
 
-#: FMain.form:1020
+#: FMain.form:1022
 msgid "Show/Hide AudioTag editor"
 msgstr "Mostra/Nascondi l'editor delle tag audio."
 
-#: FMain.form:1283
+#: FMain.form:1291
 msgid "Show/Hide hidden files"
 msgstr "Mostra/nascondi i file nascosti"
 
-#: FMain.form:1003
+#: FMain.form:1005
 msgid "Show/hide chains window"
 msgstr "Mostra/Nascondi la finestre catene."
 
@@ -3335,7 +3335,7 @@ msgstr "Mostra/Nascondi la finestre catene."
 msgid "ShutDown CountDown..."
 msgstr "Conto alla rovescia per lo spegnimento."
 
-#: FMain.form:815
+#: FMain.form:817
 msgid "ShutDown at the end of playlist"
 msgstr "Spegni al termine della playlist"
 
@@ -3343,15 +3343,15 @@ msgstr "Spegni al termine della playlist"
 msgid "ShutDown in"
 msgstr "Spegnimento in"
 
-#: GeneralOptions.form:1353
+#: GeneralOptions.form:1383
 msgid "Shutdown Command"
 msgstr "Comando di spegnimento"
 
-#: FMain.form:811
+#: FMain.form:813
 msgid "Shutdown at the end of media"
 msgstr "Spegni alla fine del media"
 
-#: FMain.form:802
+#: FMain.form:804
 msgid "Shutdown menu"
 msgstr "Menu di spegnimento"
 
@@ -3359,43 +3359,43 @@ msgstr "Menu di spegnimento"
 msgid "Signal"
 msgstr "Segnale"
 
-#: DVBTuner.form:33 FMain.form:643
+#: DVBTuner.form:33 FMain.form:645
 msgid "Simple Dvb-T Tuner"
 msgstr "Semplice tuner DVB-T"
 
-#: SubAndOsd.form:224
+#: SubAndOsd.form:222
 msgid "Size"
 msgstr "Dimensione"
 
-#: GeneralOptions.class:218
+#: GeneralOptions.class:223
 msgid "Skip displaying some frames to maintain A/V sync"
 msgstr "Non visualizzare alcuni frame pur di mantenere la sincronizzazione A/V"
 
-#: GeneralOptions.class:219
+#: GeneralOptions.class:224
 msgid "Skip displaying some frames to maintain A/V sync on slow systems.\nVideo filters are not applied to such frames.\nFor B-frames even decoding is skipped completely.\n Mplayer Option: -framedrop"
 msgstr "Non visualizzare alcuni frame pur di mantenere la sincronizzazione A/V\nI filtri video non sono applicati a tali frame.\nPer i B-Frame anche la decodifica è omessa.\nOpzione Mplayer: -framedrop"
 
-#: GeneralOptions.form:850
+#: GeneralOptions.form:863
 msgid "Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://"
 msgstr "Non leggere i tag dalla rete:\n Usalo per aggiungere i media alla playlist o alla libreria più velocemente.\nL'impostazione ha effetto sulle seguenti URI:\nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://"
 
-#: GeneralOptions.form:856
+#: GeneralOptions.form:869
 msgid "Skip tags on network streams."
 msgstr "Non leggere le tag dalla rete."
 
-#: GeneralOptions.class:204
+#: GeneralOptions.class:209
 msgid "Skips the loop filter (AKA deblocking) during H.264 decoding.\nthis has a worse effect on quality\nBut at least for high bitrate HDTV this provides a big speedup\nwith  no visible quality loss.\n Mplayer Option: -lavdopts"
 msgstr "Evita il loop filter (deblocking) durante la decodifica dei flussi H.264.\nLa qualità sarà più bassa\n Ma per contenuti ad alto bitrate come HDTV, ci sarà un considerevole incremento di velocità \nsenza notare alcun degrado.\n Opzione mplayer: -lavdopts "
 
-#: XConfigureVideoDriver.form:1025
+#: XConfigureVideoDriver.form:1031
 msgid "Sleep"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:464
+#: XConfigureVideoDriver.form:470
 msgid "Slice Height"
 msgstr "Altezza della parte"
 
-#: FMain.form:2183
+#: FMain.form:2197
 msgid "Slowdown"
 msgstr "Rallenta"
 
@@ -3407,43 +3407,43 @@ msgstr "-"
 msgid "Soft Bass"
 msgstr "-"
 
-#: AFiltersCfg.class:144
+#: AFiltersCfg.class:145
 msgid "Soft Clipping"
 msgstr "Saturazione morbida"
 
-#: GeneralOptions.class:107
+#: GeneralOptions.class:112
 msgid "Software Volume control"
 msgstr "Controllo del volume software"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "South Africa:ZA"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "South Korea:KR"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Spain:ES"
 msgstr "-"
 
-#: VFiltersCfg.class:262
+#: VFiltersCfg.class:263
 msgid "Spatial chroma strength"
 msgstr "Intensità spaziale della crominanza"
 
-#: VFiltersCfg.class:261
+#: VFiltersCfg.class:262
 msgid "Spatial luma strength"
 msgstr "Intensità spaziale della luminanza"
 
-#: GeneralOptions.class:183
+#: GeneralOptions.class:188
 msgid "Specify cookies.txt location\n Mplayer Option: -cookies-file"
 msgstr "Specifica la posizione di cookies.txt \n Opzione mplayer: -cookies-file"
 
-#: SubAndOsd.form:526
+#: SubAndOsd.form:524
 msgid "Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  values  mean  more\ntransparency.  0 means completely transparent.\nMplayer option:\n-sub-bg-alpha <0-255>\n\n"
 msgstr "Specifica il valore di trasparenza per i sottotitoli e lo sfondo dei messaggi OSD.\nGrandi valori significano più trasparenza.\n0 significa trasparenza totale.\nOpzione mplayer:\n-sub-bg-alpha <0-255>\n\n"
 
-#: GeneralOptions.class:214
+#: GeneralOptions.class:219
 msgid "Specify the software scaler algorithm to be used, Some -sws options are tunable.\nThe description of the scale video filter has further information."
 msgstr "Specifica l'algoritmo da usare per la scalatura, alcune opzioni di -sws sono impostabili.\nLa descrizione del filtro scale ti darà maggiori informazioni."
 
@@ -3451,7 +3451,7 @@ msgstr "Specifica l'algoritmo da usare per la scalatura, alcune opzioni di -sws 
 msgid "Specify what additional file extensions are allowed in playlist and library.\nEx: mov,dts,h264"
 msgstr "Specifica estensioni addizionali riconosciute per playlist e libreria.\nEs: \"mov,dts,h264\""
 
-#: FMain.form:2205
+#: FMain.form:2219
 msgid "Speedup"
 msgstr "Velocizza"
 
@@ -3463,35 +3463,35 @@ msgstr "-"
 msgid "Start"
 msgstr "Avvia"
 
-#: GeneralOptions.form:655
+#: GeneralOptions.form:659
 msgid "Start playback after filling"
 msgstr "Comincia la riproduzione dopo il riempimento di"
 
-#: GeneralOptions.form:1399
+#: GeneralOptions.form:1437
 msgid "Start were you left"
 msgstr "Riprendi dove ho lasciato"
 
-#: DVBTuner.form:106 FMain.form:2198
+#: DVBTuner.form:106 FMain.form:2212
 msgid "Stop"
 msgstr "Stop"
 
-#: FMain.form:836
+#: FMain.form:838
 msgid "Stop Recording"
 msgstr "Interrompi la registrazione"
 
-#: LogWindow.form:37
+#: LogWindow.form:38
 msgid "Stream"
 msgstr "Flusso"
 
-#: FMain.form:397
+#: FMain.form:399
 msgid "Streams"
 msgstr "Flussi"
 
-#: VFiltersCfg.class:378
+#: VFiltersCfg.class:379
 msgid "Strength"
 msgstr "Intensità"
 
-#: VFiltersCfg.class:356
+#: VFiltersCfg.class:357
 msgid "Stretch luminance to (0-255)."
 msgstr "Intervallo di correzione luminanza"
 
@@ -3499,39 +3499,39 @@ msgstr "Intervallo di correzione luminanza"
 msgid "Strings"
 msgstr "-"
 
-#: GeneralOptions.form:1467
+#: GeneralOptions.form:1504
 msgid "Style"
 msgstr "Stile"
 
-#: SubAndOsd.form:302
+#: SubAndOsd.form:300
 msgid "Sub Extra"
 msgstr "Sub Extra"
 
-#: SubAndOsd.form:447
+#: SubAndOsd.form:445
 msgid "SubTitle File"
 msgstr "File dei sottotitoli"
 
-#: FMain.form:633
+#: FMain.form:635
 msgid "SubTitles and Osd..."
 msgstr "Sottotitoli ed OSD..."
 
-#: RealtimeForm.form:149
+#: RealtimeForm.form:170
 msgid "Subtitle delay"
 msgstr "Ritardo sottotitoli"
 
-#: SubAndOsd.form:422
+#: SubAndOsd.form:420
 msgid "Subtitle delay.\nMplayer option: -subdelay <sec>"
 msgstr "Ritardo sottotitoli:\nOpzione Mplayer: -subdelay <sec>"
 
-#: SubAndOsd.form:328
+#: SubAndOsd.form:326
 msgid "Subtitle position on the screen from top or bottom.\n(it depends the alignment you choose)\nMplayer option:\n-ass-force-style MarginV=<margin>\n\nIf you Disabled SSA, then the value is meant to be from top.\nMplayer Option:\n-subpos <0-100>\n"
 msgstr "Posizione dei sottotitoli sullo schermo dall' alto o dal basso\n(dipende dall' allineamento scelto)\nOpzione mplayer:\n-ass-force-style MarginV=<margin>\n\nSe hai disabilitato SSA, il valore è inteso dall' alto.\nOpzione mplayer:\n-subpos <0-100>\n"
 
-#: RealtimeForm.form:188
+#: RealtimeForm.form:214
 msgid "Subtitle scale"
 msgstr "Scala sottotitoli"
 
-#: AllOptions.form:76 FMain.form:408
+#: AllOptions.form:76 FMain.form:410
 msgid "Subtitles"
 msgstr "Sottotitoli"
 
@@ -3539,31 +3539,31 @@ msgstr "Sottotitoli"
 msgid "Subtitles And Osd"
 msgstr "Sottotitoli ed OSD"
 
-#: SubAndOsd.form:369
+#: SubAndOsd.form:367
 msgid "Subtitles resize factor.\nMplayer option:  -ass-font-scale"
 msgstr "Fattore di scalatura dei sottotitoli.\nOpzione mplayer: -ass-force-scale"
 
-#: XConfigureVideoDriver.form:432
+#: XConfigureVideoDriver.form:438
 msgid "SwapInterval"
 msgstr "-"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Sweden:SE"
 msgstr "-"
 
-#: FMain.form:1057
+#: FMain.form:1060
 msgid "Switch audio track"
 msgstr "Cambia traccia audio"
 
-#: FMain.form:1049
+#: FMain.form:1052
 msgid "Switch subtitle track"
 msgstr "Cambia traccia sottotitolo"
 
-#: FMain.class:3349
+#: FMain.class:3360
 msgid "Switch to ''default'' profile and save"
 msgstr "Passa al profilo default e salva"
 
-#: ProfileManager.form:64
+#: ProfileManager.form:65
 msgid "Switch to:"
 msgstr "Passa a:"
 
@@ -3571,7 +3571,7 @@ msgstr "Passa a:"
 msgid "Sync Now"
 msgstr "Sincronizza ora"
 
-#: FMain.form:430
+#: FMain.form:432
 msgid "Sync library"
 msgstr "Sincronizza la libreria"
 
@@ -3579,47 +3579,43 @@ msgstr "Sincronizza la libreria"
 msgid "Syncing Library, please wait..."
 msgstr "Sincronizzazione della libreria, attendere prego..."
 
-#: VFiltersCfg.form:83
+#: VFiltersCfg.form:84
 msgid "Tab 1"
 msgstr "-"
 
-#: VFiltersCfg.form:85
+#: VFiltersCfg.form:86
 msgid "Tab 2"
 msgstr "-"
 
-#: VFiltersCfg.form:87
+#: VFiltersCfg.form:88
 msgid "Tab 3"
 msgstr "-"
 
-#: VFiltersCfg.form:89
+#: VFiltersCfg.form:90
 msgid "Tab 4"
 msgstr "-"
 
-#: GeneralOptions.form:1511
-msgid "Tabs on left (vertical)"
-msgstr "Tab a sinistra (verticali)"
-
-#: FMain.form:702
+#: FMain.form:704
 msgid "Tabs visibility"
 msgstr "Visibilità delle tab"
 
-#: FMain.form:1913
+#: FMain.form:1921
 msgid "Tag Editor"
 msgstr "Editor delle Tag"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "Taiwan:TW"
 msgstr "-"
 
-#: AFiltersCfg.class:118
+#: AFiltersCfg.class:119
 msgid "Target"
 msgstr "Obiettivo"
 
-#: VFiltersCfg.class:264
+#: VFiltersCfg.class:265
 msgid "Temporal chroma strength"
 msgstr "Intensità temporale della crominanza"
 
-#: VFiltersCfg.class:263
+#: VFiltersCfg.class:264
 msgid "Temporal luma strength"
 msgstr "Intensità temporale della luminanza"
 
@@ -3627,11 +3623,11 @@ msgstr "Intensità temporale della luminanza"
 msgid "Test"
 msgstr "Test"
 
-#: SubAndOsd.form:618
+#: SubAndOsd.form:616
 msgid "Test the new configuration in the preview box."
 msgstr "Prova la nuova configurazione nella preview."
 
-#: AFiltersCfg.form:98 TranslationNeeded.form:24 VFiltersCfg.form:56
+#: AFiltersCfg.form:98 TranslationNeeded.form:25 VFiltersCfg.form:57
 msgid "TextArea1"
 msgstr "-"
 
@@ -3639,39 +3635,39 @@ msgstr "-"
 msgid "TextLabel1"
 msgstr "-"
 
-#: VFiltersCfg.class:378
+#: VFiltersCfg.class:379
 msgid "The Higher, the blurrier (0=PSNR optimal)"
 msgstr "Più alto è, più sarà sfocato"
 
-#: VFiltersCfg.class:363
+#: VFiltersCfg.class:364
 msgid "The Higher, the slower"
 msgstr " Più alto è, più sarà lento"
 
-#: VFiltersCfg.class:242
+#: VFiltersCfg.class:243
 msgid "The higher, the slower"
 msgstr "Più alto è, più sarà lento"
 
-#: HotKeys.class:296
+#: HotKeys.class:298
 msgid "The hotkey you entered is already defined for "
 msgstr "L'hotkey è già definita per "
 
-#: GeneralOptions.form:644
+#: GeneralOptions.form:647
 msgid "The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min"
 msgstr "La riproduzione partità appena la cache sarà riempita abbastanza.\nOpzione mplayer: -cache-min"
 
-#: FMain.class:3399
+#: FMain.class:3410
 msgid "There was a problem while deleting"
 msgstr "C'è stato un problema durante la cancellazione "
 
-#: FMain.class:5253
+#: FMain.class:5290
 msgid "There was an error while saving the playlist"
 msgstr "Si è verificato un errore durante il salvataggio della playlist"
 
-#: FMain.class:7087
+#: FMain.class:7129
 msgid "There was an error while trying to delete the item"
 msgstr "Errore durante la rimozione dell'elemento"
 
-#: GeneralOptions.class:98
+#: GeneralOptions.class:103
 msgid "This  option  will  tell MPlayer to use a different channel \nfor controlling volume than the default PCM. \n Options for OSS include vol, pcm, line. \nFor a complete list of options look for SOUND_DEVICE_NAMES \n in /usr/include/linux/soundcard.h. \nFor ALSA you can use the names e.g. alsamixer displays, \nlike Master, Line, PCM.\nNOTE: ALSA mixer channel names followed by a number\nmust be specified in the <name,number> format, \ni.e. a channel labeled 'PCM 1' in alsamixer must be  converted\nto PCM,1.\n Mplayer Option:  <mixer line>[,mixer index] (-ao oss and -ao alsa only)"
 msgstr "Usa un canale differente dal PCM default\nper controllare il volume.\nIl numero si riferisce al numero della scheda audio."
 
@@ -3679,15 +3675,15 @@ msgstr "Usa un canale differente dal PCM default\nper controllare il volume.\nIl
 msgid "This demuxer is forced"
 msgstr "Questo demuxer deve essere forzato"
 
-#: FMain.class:5880
+#: FMain.class:5922
 msgid "This is a read-only profile"
 msgstr "Questo profilo è di sola lettura."
 
-#: FMain.class:211
+#: FMain.class:210
 msgid "This is an issue with Ubuntu + mplayer + pulseaudio, sorry"
 msgstr "Questo è un bug presente in Ubuntu + mplayer + pulseaudio, spiacenti"
 
-#: HotKeys.class:518 SubAndOsd.class:351
+#: HotKeys.class:520 SubAndOsd.class:356
 msgid "This will save this window settings\n to all profiles found but the 'Factory_defaults' one"
 msgstr "Salverò le impostazioni di questa finestra\n a tutti i profili trovati eccetto 'Factory_defaults'"
 
@@ -3695,27 +3691,27 @@ msgstr "Salverò le impostazioni di questa finestra\n a tutti i profili trovati 
 msgid "This will skip some checks"
 msgstr "Questo ha lo scopo di evitere alcuni controlli"
 
-#: VFiltersCfg.class:294
+#: VFiltersCfg.class:295
 msgid "Tickness"
 msgstr "Spessore"
 
-#: FMain.form:1580
+#: FMain.form:1588
 msgid "Time"
 msgstr "Tempo"
 
-#: GeneralOptions.class:166
+#: GeneralOptions.class:171
 msgid "Time frames by repeatedly checking the current time\n instead of asking the kernel to wake up MPlayer at the correct time.\n Useful if your kernel timing is imprecise and you cannot use the RTC either.\n Comes at the price of higher CPU consumption.\n Mplayer Option: -softsleep"
 msgstr "Temporizza i fotogrammi ripetutamente controllando il tempo attuale\n invece che richiedere al kernel di 'svegliare' mplayer al tempo esatto.\n Utile se la temporizzazione del tuo kernel è imprecisa e/o non puoi usare l'RTC.\n Richiede maggior carico CPU.\n Opzione mplayer: -softsleep"
 
-#: AudioForm.form:204 FMain.form:1980 Searchfields.form:74
+#: AudioForm.form:204 FMain.form:1988 Searchfields.form:74
 msgid "Title"
 msgstr "Titolo"
 
-#: FMain.form:392
+#: FMain.form:394
 msgid "Titles"
 msgstr "Titoli"
 
-#: FMain.class:205
+#: FMain.class:204
 msgid "To Ubuntu users:\n"
 msgstr "Agli utenti Ubuntu:\n"
 
@@ -3739,15 +3735,15 @@ msgstr "Top votati"
 msgid "Top favourites"
 msgstr "Top favoriti"
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:292
 msgid "TopLeft Corner"
 msgstr " Angolo superiore sinistro"
 
-#: FMain.class:6408 Searchfields.form:97
+#: FMain.class:6450 Searchfields.form:97
 msgid "Track"
 msgstr "Traccia"
 
-#: FMain.form:2048
+#: FMain.form:2056
 msgid "Track No."
 msgstr "Traccia No."
 
@@ -3759,23 +3755,23 @@ msgstr "Traducimi per prima"
 msgid "Translation needed!"
 msgstr "-"
 
-#: TranslationNeeded.form:32
+#: TranslationNeeded.form:34
 msgid "Translation thread on Xt7-Player Boards"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:403
+#: XConfigureVideoDriver.form:409
 msgid "Transparency"
 msgstr "Trasparenza"
 
-#: GeneralOptions.form:1697
+#: GeneralOptions.form:1709
 msgid "TrayIcon panel background color:"
 msgstr "Colore di sfondo del pannello della icona nel Tray"
 
-#: GeneralOptions.form:1662
+#: GeneralOptions.form:1674
 msgid "Trayicon panel font and font color:"
 msgstr "Carattere del pannello Trayicon"
 
-#: GeneralOptions.class:155
+#: GeneralOptions.class:160
 msgid "Try  -autosync 30 to smooth out problems with sound drivers which do not implement a perfect audio delay measurement.\n [..] Mplayer Option: -autosync"
 msgstr "Prova -autosync 30 per 'ammorbidire' i problemi con driver audio che non permettono una misura precisa del ritadro audio.\n[..] Opzione mplayer: -autosync"
 
@@ -3783,15 +3779,15 @@ msgstr "Prova -autosync 30 per 'ammorbidire' i problemi con driver audio che non
 msgid "Try other codecs"
 msgstr "Prova altri codec"
 
-#: GeneralOptions.class:229
+#: GeneralOptions.class:234
 msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
 msgstr "Prova a limitare la velocità del DCD. 0 significa nessun cambiamento. \nNB: hai bisogno di accesso in scrittura al dispositivo\n Opzione Mplayer: -dvd-speed"
 
-#: GeneralOptions.class:234
+#: GeneralOptions.class:239
 msgid "Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"
 msgstr "Prova a limitare la velocità del cd. 0 Vuol dire nessun cambiamemto.\nIl tuo utente deve avere i permessi di scrittura al dispositivo dvd\n Opzione mplayer: -cdda speed=x"
 
-#: GeneralOptions.form:1139
+#: GeneralOptions.form:1164
 msgid "Tuner Timeout"
 msgstr "Timeout di sintonizzazione"
 
@@ -3811,27 +3807,27 @@ msgstr "Tipo"
 msgid "USpp Denoiser"
 msgstr "-"
 
-#: VFiltersCfg.form:81
+#: VFiltersCfg.form:82
 msgid "UnSharp"
 msgstr "-"
 
-#: FMain.class:2042
+#: FMain.class:2064
 msgid "Unable to get the real stream url"
 msgstr "Non posso recuperare l'url reale del flusso"
 
-#: FMain.class:208
+#: FMain.class:207
 msgid "Under "
 msgstr "Sotto"
 
-#: FMain.form:1562
+#: FMain.form:1570
 msgid "United States:US"
 msgstr "-"
 
-#: CoverManager.form:119
+#: CoverManager.form:120
 msgid "Unset Cover"
 msgstr "Disimposta"
 
-#: FMain.form:477
+#: FMain.form:479
 msgid "Update Selected"
 msgstr "Aggiorna la selezione"
 
@@ -3839,15 +3835,15 @@ msgstr "Aggiorna la selezione"
 msgid "Update Vmeters at"
 msgstr "Aggiorna i Vmeter a "
 
-#: FMain.form:1605
+#: FMain.form:1613
 msgid "Uploader"
 msgstr "Uploader"
 
-#: XConfigureAudioDriver.form:482 XConfigureVideoDriver.form:1197
+#: XConfigureAudioDriver.form:483 XConfigureVideoDriver.form:1203
 msgid "Use "
 msgstr "Usa"
 
-#: GeneralOptions.class:178
+#: GeneralOptions.class:183
 msgid "Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"
 msgstr "Preferisci IPV4 per le connessioni di rete, ma prova IPV6 automaticamente.\n Opzione mplayer: -prefer-ipv4"
 
@@ -3855,51 +3851,51 @@ msgstr "Preferisci IPV4 per le connessioni di rete, ma prova IPV6 automaticament
 msgid "Use Selected"
 msgstr "Usa i selezionati"
 
-#: GeneralOptions.form:1426
+#: GeneralOptions.form:1464
 msgid "Use Tray icon (xt7-player restart needed)"
 msgstr "Usa l'icona nel tray (è necessario il riavvio di xt7)"
 
-#: GeneralOptions.form:863
+#: GeneralOptions.form:876
 msgid "Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer."
 msgstr "Usa un proxy per le connessioni http \nPer esempio: http://mioproxy.miarete:miaporta \nL'autenticazione con il proxy non è (ancora?) supportata da mplayer."
 
-#: GeneralOptions.form:1412
+#: GeneralOptions.form:1450
 msgid "Use cover manager."
 msgstr "Usa il gestore di copertine"
 
-#: GeneralOptions.form:684
+#: GeneralOptions.form:689
 msgid "Use dbus (need dbus-send command) to disable kwin effects\nand avoid glitches in fullscreen mode."
 msgstr "Usa dbus (necessita del comando dbus-send) per sospendere gli effetti di kwin.\nScongiurando artefatti in modo schermo intero"
 
-#: GeneralOptions.class:165
+#: GeneralOptions.class:170
 msgid "Use it if your kernel timing is imprecise"
 msgstr "Usalo se la temporizzazione del kernel è imprecisa"
 
-#: GeneralOptions.class:123
+#: GeneralOptions.class:128
 msgid "Use it to correct constant Audio/video desync issues\n Mplayer Option: -delay"
 msgstr "Usalo per correggere desincronizzazioni Auio/Video Costanti\n Opzione mplayer: -delay"
 
-#: GeneralOptions.class:127
+#: GeneralOptions.class:132
 msgid "Use it to repair broken files"
 msgstr "Usalo per riparare file danneggiati"
 
-#: XConfigureVideoDriver.form:1196
+#: XConfigureVideoDriver.form:1202
 msgid "Use new settings without save"
 msgstr "Usa le nuove impostazioni senza salvare"
 
-#: SubAndOsd.form:625
+#: SubAndOsd.form:623
 msgid "Use new settings without save.\nTo save settings, use menu item."
 msgstr "Usa le nuove impostazioni senza salvare.\n Per salvare le impostazioni usa la voce nel menu."
 
-#: FMain.class:5709
+#: FMain.class:5753
 msgid "Use vertical tabs"
 msgstr "Usa tab verticali"
 
-#: XConfigureVideoDriver.form:741
+#: XConfigureVideoDriver.form:747
 msgid "Vaapi"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:577
+#: XConfigureVideoDriver.form:583
 msgid "Vdpau"
 msgstr "-"
 
@@ -3907,15 +3903,15 @@ msgstr "-"
 msgid "Verbose Log"
 msgstr "Log esteso"
 
-#: VFiltersCfg.class:322
+#: VFiltersCfg.class:323
 msgid "Vertical deblocking filter:"
 msgstr "Filtro di deblock verticale"
 
-#: FMain.form:657 GeneralOptions.form:304
+#: FMain.form:659 GeneralOptions.form:302
 msgid "Video"
 msgstr "Video"
 
-#: FMain.form:720
+#: FMain.form:722
 msgid "Video Aspect"
 msgstr "Aspetto"
 
@@ -3939,7 +3935,7 @@ msgstr "Aiuto Codec Video"
 msgid "Video Drivers"
 msgstr "Driver Video"
 
-#: FMain.form:1033 VideoEqualizer.form:39
+#: FMain.form:1036 VideoEqualizer.form:39
 msgid "Video Equalizer"
 msgstr "Equalizzatore Video"
 
@@ -3955,15 +3951,15 @@ msgstr "Pannello dei filtri Video"
 msgid "Video Filters configuration"
 msgstr "Configurazione dei filtri Video"
 
-#: VFiltersCfg.form:66
+#: VFiltersCfg.form:67
 msgid "Video Filters list"
 msgstr "Lista dei filtri Video"
 
-#: FMain.class:3506
+#: FMain.class:3537
 msgid "Video snaps to borders"
 msgstr "Il video tocca il bordo"
 
-#: FMain.form:652
+#: FMain.form:654
 msgid "Video/Audio Chains"
 msgstr "Catena Audio/Video"
 
@@ -3991,55 +3987,55 @@ msgstr "Aspetto una HotKey..."
 msgid "Watched Directories"
 msgstr "Directory controllate"
 
-#: VFiltersCfg.class:408
+#: VFiltersCfg.class:409
 msgid "Weight"
 msgstr "Peso"
 
-#: FMain.form:1419
+#: FMain.form:1427
 msgid "When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager."
 msgstr "Quando un unovo video flash è rilevato, mostra una finestra PopUp.NB: Può essere necessario disabilitare il livello di prevenzione del focusdal tuo window manager."
 
-#: GeneralOptions.form:1405
+#: GeneralOptions.form:1443
 msgid "When an audio file is played, the right panel will show\ninformations on the file played, allowing to set covers\nfor your library items."
 msgstr "Quando viene riprodotto un file audio, il pannello di destra mostra\ninformazioni sul file,\n permettendo di impostare copertine\nper gli oggetti della libreria."
 
-#: GeneralOptions.form:1005
+#: GeneralOptions.form:1026
 msgid "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer Option: -tsprobe <byte position>"
 msgstr "Quando si riproduce un flusso MPEG-TS, questa opzione specifica quanti byte leggere\nin cerca di sottoflussi audio/video.\nOpzione mplayer: -tsprobe <byte position>"
 
-#: GeneralOptions.form:1152
+#: GeneralOptions.form:1177
 msgid "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n"
 msgstr "Quando si riproduce un flusso MPEG-TS, questa opzione specifica quanti byte leggere\nin cerca di sottoflussi audio/video.\nOpzione mplayer: -tsprobe <byte position>\n"
 
-#: GeneralOptions.form:961
+#: GeneralOptions.form:982
 msgid "When playing youtube videos, \nprefer this format if available."
 msgstr "Preferisci (se disponibile) questo formato\nper i flussi youtube."
 
-#: Searchfields.form:188 VFiltersCfg.class:250
+#: Searchfields.form:188 VFiltersCfg.class:251
 msgid "Width"
 msgstr "Larghezza"
 
-#: FMain.form:620
+#: FMain.form:622
 msgid "Windows"
 msgstr "Finestre"
 
-#: FMain.class:7252
+#: FMain.class:7294
 msgid "Would you like to go to the video homepage?"
 msgstr "Vuoi aprire la pagina web del video?"
 
-#: GeneralOptions.form:994
+#: GeneralOptions.form:1015
 msgid "Write your own: %url=source %destdir=destination dir %destfile=destination file"
 msgstr "Scrivi il tuo: %url=sorgente %destdir=cartella destinazione %destfile=file di destinazione"
 
-#: GeneralOptions.class:228
+#: GeneralOptions.class:233
 msgid "X"
 msgstr "-"
 
-#: VFiltersCfg.class:252
+#: VFiltersCfg.class:253
 msgid "X Position"
 msgstr "Posizione X"
 
-#: XConfigureVideoDriver.form:1149
+#: XConfigureVideoDriver.form:1155
 msgid "X11"
 msgstr "-"
 
@@ -4047,7 +4043,7 @@ msgstr "-"
 msgid "Xt7 Player nice level"
 msgstr "Livello nice di Xt7Player"
 
-#: FMain.form:336
+#: FMain.form:338
 msgid "Xt7-Player"
 msgstr "Xt7-Player"
 
@@ -4063,15 +4059,15 @@ msgstr "Xt7-Player, un' interfaccia (quasi) completa ad mplayer."
 msgid "Xt7TrayPanel"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:229
+#: XConfigureVideoDriver.form:231
 msgid "Xv"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:921
+#: XConfigureVideoDriver.form:927
 msgid "Xvmc"
 msgstr "-"
 
-#: VFiltersCfg.class:253
+#: VFiltersCfg.class:254
 msgid "Y Position"
 msgstr "Posizione Y"
 
@@ -4079,15 +4075,15 @@ msgstr "Posizione Y"
 msgid "Yadif"
 msgstr "-"
 
-#: AudioForm.form:194 FMain.form:2003 Searchfields.form:90
+#: AudioForm.form:194 FMain.form:2011 Searchfields.form:90
 msgid "Year"
 msgstr "Anno"
 
-#: FMain.class:4895 GeneralOptions.class:483 ProfileManager.class:38
+#: FMain.class:4929 GeneralOptions.class:489 ProfileManager.class:38
 msgid "Yes, Delete"
 msgstr "Sì, Cancella"
 
-#: FMain.class:7252
+#: FMain.class:7294
 msgid "Yes, Go to Youtube"
 msgstr "Sì, vai su Youtube"
 
@@ -4099,37 +4095,41 @@ msgstr "Sì, Carica"
 msgid "You are going to delete this file from disk, are you sure?"
 msgstr "Stai per cancellare questo file dal disco, sei sicuro?"
 
-#: FMain.class:5980
+#: FMain.class:6022
 msgid "You are going to overwrite the selected profile\nwith the current settings."
 msgstr "Stai per sovrascrivere il profilo selezionato\ncon le impostazioni correnti."
 
-#: SubAndOsd.form:440
+#: SubAndOsd.form:438
 msgid "You can specify an external subtitle file.\nMplayer option: -subfile <filename>"
 msgstr "Puoi specificare un file per i sottotitoli esterno.\nOpzione mplayer: -subfile <nomefile>"
 
-#: FMain.class:5871
+#: FMain.class:5913
 msgid "You can't delete the current profile!"
 msgstr "Non puoi cancellare il profilo corrente."
 
-#: FMain.class:3349
+#: FMain.class:3360
 msgid "You can't modify the current profile\nbecause it is the Factory defaults one"
 msgstr "Non puoi modificare il profilo corrente\nperchè è quello di fabbrica."
 
-#: FMain.form:1423
+#: FMain.form:1431
 msgid "YouTube"
 msgstr "-"
 
-#: FMain.form:914
+#: FMain.form:916
 msgid "YoutubeTreePopup"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:448
+#: XConfigureVideoDriver.form:454
 msgid "Yuv"
 msgstr "-"
 
-#: RealtimeForm.form:72
+#: RealtimeForm.form:79
 msgid "Zoom"
 msgstr "-"
+
+#: FMain.form:2233
+msgid "Zoom the video"
+msgstr "Zoom del video"
 
 #: AddUriForm.form:43
 msgid "[Optional] Browse for protocols:"
@@ -4139,71 +4139,71 @@ msgstr "[Opzionale] Mostra i protocolli"
 msgid "[Optional] Give item a name:"
 msgstr "[Opzionale] Dai un nome all' elemento"
 
-#: FMain.class:5674
+#: FMain.class:5718
 msgid "\n  Would you like to play it now in Xt7-Player?"
 msgstr "\n Vuoi riprodurlo ora in Xt7-Player?"
 
-#: GeneralOptions.class:133
+#: GeneralOptions.class:138
 msgid "\n Mplayer Option: -forceidx"
 msgstr "\n Opzione mplayer: -forceidx"
 
-#: GeneralOptions.class:128
+#: GeneralOptions.class:133
 msgid "\n Mplayer Option: -idx"
 msgstr "\n Opzione mplayer: -idx"
 
-#: Chains.class:130
+#: Chains.class:133
 msgid "\nThe Playback will probably fail."
 msgstr "\nProbabilmente la riproduzione fallirà."
 
-#: Chains.class:129
+#: Chains.class:132
 msgid "\nTry to remove it from tha chain or to use another mplayer."
 msgstr "\nProva a rimuoverlo dalla catena o a usare un altro mplayer."
 
-#: Chains.class:128
+#: Chains.class:131
 msgid "\nWhich seems not to be supported by your mplayer.\n "
 msgstr "\nChe sembra non essere supportato dal tuo mplayer.\n"
 
-#: FMain.class:5323
+#: FMain.class:5360
 msgid "\nso you are going to set a cover for this particular file/stream"
 msgstr "\nQuindi la copertina che imposterai sarà solo per questo file o stream"
 
-#: FMain.form:1587
+#: FMain.form:1595
 msgid "all_time"
 msgstr "-"
 
-#: GeneralOptions.class:143
+#: GeneralOptions.class:148
 msgid "aspect"
 msgstr "Rapporto di aspetto"
 
-#: FMain.class:1738
+#: FMain.class:1736
 msgid "at"
 msgstr "a"
 
-#: XConfigureVideoDriver.form:294
+#: XConfigureVideoDriver.form:299
 msgid "auto"
 msgstr "-"
 
-#: VFiltersCfg.class:355
+#: VFiltersCfg.class:356
 msgid "automatic brightness / contrast correction"
 msgstr "Correzione automatica di luminosità/contrasto"
 
-#: VFiltersCfg.class:379
+#: VFiltersCfg.class:380
 msgid "bFrames"
 msgstr "bframe"
 
-#: XConfigureVideoDriver.form:294
+#: XConfigureVideoDriver.form:299
 msgid "bg"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "big5"
 msgstr "-"
 
-#: VFiltersCfg.class:316
+#: VFiltersCfg.class:317
 msgid "c - Denoise both"
 msgstr "c - Applica denoise a entrambi"
 
-#: AddUriForm.form:51 FMain.class:6414
+#: AddUriForm.form:51 FMain.class:6456
 msgid "cdda://"
 msgstr "-"
 
@@ -4211,19 +4211,19 @@ msgstr "-"
 msgid "cddb://"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:660
+#: XConfigureVideoDriver.form:666
 msgid "chroma-deint"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:682
+#: XConfigureVideoDriver.form:688
 msgid "colorspace"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "cp1250"
 msgstr "-"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "cubicipoldeint - Cubic interpolation"
 msgstr "cubicipoldeint -interpolazione cubica"
 
@@ -4231,39 +4231,39 @@ msgstr "cubicipoldeint -interpolazione cubica"
 msgid "cue://"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:276
+#: XConfigureVideoDriver.form:280
 msgid "cur"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "de (german)"
 msgstr "de (tedesco)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "de,ger,deu (german)"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:844
+#: XConfigureVideoDriver.form:850
 msgid "default - use implementation default (default)"
 msgstr "default - Usa l'implementazione predefinita"
 
-#: XConfigureVideoDriver.form:845
+#: XConfigureVideoDriver.form:851
 msgid "default - use implementation default (default)\n"
 msgstr "default - Usa l'implementazione predefinita\n"
 
-#: VFiltersCfg.class:379
+#: VFiltersCfg.class:380
 msgid "default 0"
 msgstr "predefinito: 0"
 
-#: XConfigureVideoDriver.form:641
+#: XConfigureVideoDriver.form:647
 msgid "deint"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:622
+#: XConfigureVideoDriver.form:628
 msgid "denoise"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:780
+#: XConfigureVideoDriver.form:786
 msgid "dm"
 msgstr "-"
 
@@ -4271,7 +4271,7 @@ msgstr "-"
 msgid "dvb://"
 msgstr "-"
 
-#: FMain.class:2652
+#: FMain.class:2662
 msgid "dvb://*"
 msgstr "-"
 
@@ -4283,19 +4283,19 @@ msgstr "-"
 msgid "dvdnav://"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "en (english)"
 msgstr "en (inglese)"
 
-#: GeneralOptions.form:1218
+#: GeneralOptions.form:1246
 msgid "en,eng"
 msgstr "-"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "en,eng (english)"
 msgstr "-"
 
-#: FMain.class:207
+#: FMain.class:206
 msgid "enable: "
 msgstr "abilitate: "
 
@@ -4303,39 +4303,39 @@ msgstr "abilitate: "
 msgid "equalizer"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "es (spanish)"
 msgstr "es (spagnolo)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "es,spa (spanish)"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "euc-kr"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:844
+#: XConfigureVideoDriver.form:850
 msgid "fast - use fast scaling, but possibly with less quality"
 msgstr "fast - Usa un ridimensionamento veloce, forse di qualità inferiore"
 
-#: GeneralOptions.form:1051
+#: GeneralOptions.form:1072
 msgid "femon"
 msgstr "-"
 
-#: GeneralOptions.form:1044
+#: GeneralOptions.form:1065
 msgid "femon executable"
 msgstr "Eseguibile femon"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "ffmpegdeint - FFmpeg"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "fi (finnish)"
 msgstr "fi (finlandese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "fi,fin (finnish)"
 msgstr "-"
 
@@ -4355,7 +4355,7 @@ msgstr "Trovato vdpau o vaapi nei driver video opssibili, disabilito tutto i fil
 msgid "fps"
 msgstr "-"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "fr,fre (french)"
 msgstr "-"
 
@@ -4363,27 +4363,27 @@ msgstr "-"
 msgid "ftp://"
 msgstr "-"
 
-#: VFiltersCfg.class:407
+#: VFiltersCfg.class:408
 msgid "gamma for the blue component (default: 1.0)"
 msgstr "Gamma per la componente blu (predefinito: 1.0)"
 
-#: VFiltersCfg.class:406
+#: VFiltersCfg.class:407
 msgid "gamma for the green component (default: 1.0)"
 msgstr "Gamma per la componente verde (predefinito: 1.0)"
 
-#: VFiltersCfg.class:405
+#: VFiltersCfg.class:406
 msgid "gamma for the red component (default: 1.0)"
 msgstr "Gamma per la componente rossa (predefinito: 1.0)"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "gb2312"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:856
+#: XConfigureVideoDriver.form:862
 msgid "gl"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:867
+#: XConfigureVideoDriver.form:873
 msgid "glfinish"
 msgstr "-"
 
@@ -4391,15 +4391,15 @@ msgstr "-"
 msgid "help"
 msgstr "Aiuto"
 
-#: VFiltersCfg.class:305
+#: VFiltersCfg.class:306
 msgid "higher values mean more deblocking"
 msgstr "Valori alti producono maggior deblock"
 
-#: XConfigureVideoDriver.form:844
+#: XConfigureVideoDriver.form:850
 msgid "hq - use high-quality scaling, but possibly slower"
 msgstr "hq - Usa un ridimensionamento di alta qualità, forse lento"
 
-#: XConfigureVideoDriver.form:701
+#: XConfigureVideoDriver.form:707
 msgid "hqscaling"
 msgstr "-"
 
@@ -4407,7 +4407,7 @@ msgstr "-"
 msgid "http://"
 msgstr "-"
 
-#: FMain.class:2653
+#: FMain.class:2663
 msgid "http://*shoutcast*"
 msgstr "-"
 
@@ -4415,107 +4415,107 @@ msgstr "-"
 msgid "http_proxy://"
 msgstr "-"
 
-#: FMain.class:5082
+#: FMain.class:5119
 msgid "iso files"
 msgstr "file iso"
 
-#: GeneralOptions.form:1201 SubAndOsd.form:403
+#: GeneralOptions.form:1228 SubAndOsd.form:401
 msgid "iso-8859-1"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-2"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-7"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-8"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "iso-8859-9"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "it (italian)"
 msgstr "it (italiano)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "it,ita (italian)"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "ja (japanese)"
 msgstr "ja (giapponese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "ja,jpn  (japanese)"
 msgstr "-"
 
-#: GeneralOptions.form:994
+#: GeneralOptions.form:1015
 msgid "kfmclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: GeneralOptions.form:994
+#: GeneralOptions.form:1015
 msgid "kioclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "koi8-r"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "latin2"
 msgstr "-"
 
-#: GeneralOptions.class:208
+#: GeneralOptions.class:213
 msgid "libmpeg2 and libavcodec codecs only"
 msgstr "Solo codec libmpeg2 e libavcodec"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "linblenddeint - Linear blend"
 msgstr "linblenddeint - sfocatura lineare"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "linipoldeint - Linear interpolation"
 msgstr "linipoldeint - interpolazione lineare"
 
-#: XConfigureAudioDriver.form:223
+#: XConfigureAudioDriver.form:224
 msgid "localhost"
 msgstr "-"
 
-#: GeneralOptions.class:182
+#: GeneralOptions.class:187
 msgid "location"
 msgstr "posizione"
 
-#: VFiltersCfg.class:306
+#: VFiltersCfg.class:307
 msgid "lower values mean more deblocking"
 msgstr "Valori bassi producono più deblock"
 
-#: VFiltersCfg.class:280
+#: VFiltersCfg.class:281
 msgid "lower=slower"
 msgstr "Basso=lento"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "lowpass5 - FIR lowpass"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:294
+#: XConfigureVideoDriver.form:299
 msgid "man"
 msgstr "-"
 
-#: GeneralOptions.class:159
+#: GeneralOptions.class:164
 msgid "maximum A-V sync correction per frame (in seconds)"
 msgstr "Massima correzione di sincronia Audio/Video per fotogramma (in secondi)"
 
-#: GeneralOptions.class:160
+#: GeneralOptions.class:165
 msgid "maximum A-V sync correction per frame (in seconds)\n mplayer options: -mc"
 msgstr "Massima correzione di sincronia Audio/Video per fotogramma (in secondi)\n Opzione mplayer: -mc"
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:300
 msgid "mediandeint - Median filter"
 msgstr "mediandeint - filtro median"
 
@@ -4527,11 +4527,11 @@ msgstr "-"
 msgid "mms://"
 msgstr "-"
 
-#: GeneralOptions.form:1285 XConfigureAudioDriver.form:256
+#: GeneralOptions.form:1314 XConfigureAudioDriver.form:257
 msgid "mplayer"
 msgstr "-"
 
-#: GeneralOptions.form:1279
+#: GeneralOptions.form:1308
 msgid "mplayer executable"
 msgstr "Eseguibile mplayer"
 
@@ -4543,51 +4543,51 @@ msgstr "-"
 msgid "ms"
 msgstr "-"
 
-#: VFiltersCfg.class:316
+#: VFiltersCfg.class:317
 msgid "n - Just denoise Chroma"
 msgstr "n - applica denoise alla sola crominanza"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "nl (dutch,flemish)"
 msgstr "nl (dutch,flemish)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "nl,dut,nld (dutch,flemish)"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:844
+#: XConfigureVideoDriver.form:850
 msgid "nla - use non-linear anamorphic scaling"
 msgstr "nla - Usa un ridimensionamento anamorfico non lineare"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "no (norwegian)"
 msgstr "no (norvegese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "no,nor (norwegian)"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:720
+#: XConfigureVideoDriver.form:726
 msgid "noforce-mixer"
 msgstr "-"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "ntsc - 720x480 (standard NTSC)"
 msgstr "-"
 
-#: FMain.form:1526
+#: FMain.form:1534
 msgid "only valid for searches"
 msgstr "Valido solo per le ricerche"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "pal - 720x576 (standard PAL)"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "pl (polish)"
 msgstr "pl (polacco)"
 
-#: GeneralOptions.form:1360
+#: GeneralOptions.form:1390
 msgid "poweroff"
 msgstr "spegni"
 
@@ -4619,23 +4619,23 @@ msgstr "-"
 msgid "ppVDeblock"
 msgstr "-"
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:182
 msgid "prefer-ipv4"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "pt (portuguese)"
 msgstr "pt (portoghese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "pt,por (portuguese)"
 msgstr "-"
 
-#: FMain.form:1538
+#: FMain.form:1546
 msgid "published"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:671
+#: XConfigureVideoDriver.form:677
 msgid "pullup"
 msgstr "-"
 
@@ -4643,11 +4643,11 @@ msgstr "-"
 msgid "pvr://"
 msgstr "-"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "qntsc - 352x240 (NTSC quarter screen)"
 msgstr "qntsc - 352x240 (NTSC quarto di schermo)"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "qpal - 352x288 (PAL quarter screen)"
 msgstr "qpal - 352x288 (PAL quarto di schermo)"
 
@@ -4655,19 +4655,19 @@ msgstr "qpal - 352x288 (PAL quarto di schermo)"
 msgid "radio://"
 msgstr "-"
 
-#: FMain.form:1538
+#: FMain.form:1546
 msgid "rating"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:889
+#: XConfigureVideoDriver.form:895
 msgid "reflect"
 msgstr "-"
 
-#: FMain.form:1538
+#: FMain.form:1546
 msgid "relevance"
 msgstr "-"
 
-#: GeneralOptions.class:90
+#: GeneralOptions.class:95
 msgid "resolution"
 msgstr "risoluzione"
 
@@ -4679,11 +4679,11 @@ msgstr "-"
 msgid "rtsp://"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "ru (russian)"
 msgstr "ru (russo)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "ru,rus (russian)"
 msgstr "-"
 
@@ -4691,15 +4691,15 @@ msgstr "-"
 msgid "samples"
 msgstr "Campioni"
 
-#: XConfigureVideoDriver.form:837
+#: XConfigureVideoDriver.form:843
 msgid "scaling"
 msgstr "-"
 
-#: GeneralOptions.form:1027
+#: GeneralOptions.form:1048
 msgid "scan"
 msgstr "-"
 
-#: GeneralOptions.form:1020
+#: GeneralOptions.form:1041
 msgid "scan executable"
 msgstr "exeguibile scan"
 
@@ -4711,11 +4711,11 @@ msgstr "-"
 msgid "seconds..."
 msgstr "secondi..."
 
-#: XConfigureVideoDriver.form:276
+#: XConfigureVideoDriver.form:280
 msgid "set"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:603
+#: XConfigureVideoDriver.form:609
 msgid "sharpen"
 msgstr "-"
 
@@ -4723,39 +4723,39 @@ msgstr "-"
 msgid "smb://"
 msgstr "-"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "sntsc - 640x480 (square pixel NTSC)"
 msgstr "sntsc - 640x480 (NTSC a pixel quadrati)"
 
-#: FMain.class:207
+#: FMain.class:206
 msgid "software volume Control"
 msgstr "-"
 
-#: VFiltersCfg.class:283
+#: VFiltersCfg.class:284
 msgid "spal - 768x576 (square pixel PAL)"
 msgstr "spal - 768x576 (PAL a pixel quadrati)"
 
-#: XConfigureAudioDriver.form:148
+#: XConfigureAudioDriver.form:149
 msgid "spdif"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "sv (swedish)"
 msgstr "sv (svedese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "sv,swe (swedish)"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:878
+#: XConfigureVideoDriver.form:884
 msgid "tfp"
 msgstr "-"
 
-#: FMain.form:1587
+#: FMain.form:1595
 msgid "this_month"
 msgstr "-"
 
-#: FMain.form:1587
+#: FMain.form:1595
 msgid "this_week"
 msgstr "-"
 
@@ -4763,19 +4763,19 @@ msgstr "-"
 msgid "tivo://"
 msgstr "-"
 
-#: FMain.form:1587
+#: FMain.form:1595
 msgid "today"
 msgstr "-"
 
-#: VFiltersCfg.class:290
+#: VFiltersCfg.class:291
 msgid "topLeft Corner"
 msgstr "Angolo superiore sinistro"
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:182
 msgid "try ipv4 first"
 msgstr "Prova prima IPV4"
 
-#: GeneralOptions.form:1157
+#: GeneralOptions.form:1183
 msgid "tsprobe"
 msgstr "-"
 
@@ -4787,7 +4787,7 @@ msgstr "-"
 msgid "udp://"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "unicode"
 msgstr "-"
 
@@ -4795,43 +4795,43 @@ msgstr "-"
 msgid "unsv://"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:276
+#: XConfigureVideoDriver.form:280
 msgid "use"
 msgstr "-"
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "user Preference"
 msgstr "Preferenza utente"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "utf-8"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:586
+#: XConfigureVideoDriver.form:592
 msgid "vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau"
 msgstr "vdpau ha bisogno che alcuni codec siano caricati, \nselezionando questa opzione caricherai: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau"
 
-#: FMain.form:1538
+#: FMain.form:1546
 msgid "viewCount"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "windows-1250"
 msgstr "-"
 
-#: SubAndOsd.form:415
+#: SubAndOsd.form:413
 msgid "windows-1251"
 msgstr "-"
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "x11 Preview"
 msgstr "-"
 
-#: SubAndOsd.form:613
+#: SubAndOsd.form:611
 msgid "x11 preview"
 msgstr "-"
 
-#: XConfigureVideoDriver.form:900
+#: XConfigureVideoDriver.form:906
 msgid "xrender"
 msgstr "-"
 
@@ -4839,31 +4839,31 @@ msgstr "-"
 msgid "xt7-player"
 msgstr "-"
 
-#: GeneralOptions.form:994
+#: GeneralOptions.form:1015
 msgid "xterm -e aria2c -c -x 3 -k 10M -s 3 %url -d %destdir -o %destfile"
 msgstr "-"
 
-#: GeneralOptions.form:994
+#: GeneralOptions.form:1015
 msgid "xterm -e wget %url -O %destdir/%destfile"
 msgstr "-"
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:610
 msgid "xv preview"
 msgstr "-"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "xx (use fallback)"
 msgstr "xx (usa il ripiego)"
 
-#: VFiltersCfg.class:316
+#: VFiltersCfg.class:317
 msgid "y - Just denoise Luma"
 msgstr "y - applica denoise alla sola luminanza"
 
-#: SubAndOsd.form:402
+#: SubAndOsd.form:400
 msgid "zh (chinese)"
 msgstr "zh (cinese)"
 
-#: GeneralOptions.form:1200
+#: GeneralOptions.form:1227
 msgid "zh,chi,zho (chinese)"
 msgstr "-"
 

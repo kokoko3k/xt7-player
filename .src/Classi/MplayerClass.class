@@ -221,8 +221,8 @@ Public Sub Renice(nice As Integer)
   Dim out As String
 
   Debug "nice=" & nice
-  RenicerProcess = Shell "sudo renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
-  RenicerProcess = Shell "sudo renice " & (nice - 1) & " -p " & playerprocess.id  'renice the whole application to 'nice'-1
+  RenicerProcess = Shell "renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
+  RenicerProcess = Shell "renice " & (nice - 1) & " -p " & playerprocess.id  'renice the whole application to 'nice'-1
 
 End
 

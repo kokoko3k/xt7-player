@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Dec 5 2012
+  FIX:    Do not use suto to renice mplayer, if it ask for a pass xt7 can't exit
   CHANGE: Use x11 as default subtitle preview driver (prevent crashes on buggy catalyst drivers)
   NEW:    Use a background/transparent png under the play controls (backpanel.png)
   FIX:    Runtime error on startup with no existing profiles

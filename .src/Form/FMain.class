@@ -711,7 +711,7 @@ Public Sub SetStyle_early()
   Dim ButtonWovr, ButtonHovr, PaddingOvr, NumButtonsCPL, NumButtonsZoom As Integer
   Dim h1, h2, h3 As String
   
-  
+  cachebar.h = (fmain.font.textHeight("iJ") Div 2)
   If desktop.Height > 600 Then
     Maintoolbar.h = 32
   Else
@@ -2570,7 +2570,7 @@ Public Sub UpdateStatusBar()
   FreeSpace = Statusbar1.width - StatusTextWidth
   NeededSpaces = Freespace / SpaceWidth
   Try LotOfSpaces = Space(NeededSpaces - 3)
-  Statusbar1.text = PreText & LotOfSpaces & PostText
+  Statusbar1.text = " " & PreText & LotOfSpaces & PostText
   AudioForm.UpdateLength(PostText)
 End
 
@@ -2750,7 +2750,7 @@ Public Sub OneSecTimer_Timer()
         If ((Not TogglePls.value) And fmain.FullScreen) Then FullScreenSwitch()
       Endif
     Endif
-    Try Statusbar1.text = "Stopped"
+    Try Statusbar1.text = " Stopped"
     SeekBar.value = 0
   Endif
 End

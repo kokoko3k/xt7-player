@@ -1515,15 +1515,15 @@
         }
       }
       { BottomVbox VBox
-        MoveScaled(0,49,71,15)
+        MoveScaled(0,47,71,15)
         Background = Color.Background
         { cachebar ProgressBar
-          MoveScaled(0,0,54,1.5714)
+          MoveScaled(1,0,54,1.5714)
           Font = Font["Bold,5"]
           Label = False
         }
         { ControlFrame Frame
-          MoveScaled(-1,1,70,10)
+          MoveScaled(0,1,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
             MoveScaled(1,1,60,7)
@@ -1532,11 +1532,11 @@
             Stretch = True
           }
           { ControlPanel Panel
-            MoveScaled(1,6,41,4)
+            MoveScaled(8,6,43,4)
             Font = Font["6"]
             AutoResize = True
             { ButtonOpen ToolButton
-              MoveScaled(2,0,4.4286,4)
+              MoveScaled(3,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Open a file...")
               Picture = Picture["document-open.png"]
@@ -1586,7 +1586,7 @@
             }
           }
           { SliderBox HBox
-            MoveScaled(1,1,57,4)
+            MoveScaled(0,2,57,4)
             Font = Font["6"]
             { SeekBar Slider
               MoveScaled(1,0,25,4)
@@ -1613,13 +1613,13 @@
             }
           }
         }
-        { Statusbar1 TextBox
-          MoveScaled(1,10,30,4)
+        { statusbar1 Label
+          MoveScaled(0,12,41,2)
+          Font = Font["Bold,-1"]
           Background = &H000000&
           Foreground = &HFFFFFF&
+          AutoResize = True
           Alignment = Align.Left
-          ReadOnly = True
-          Border = False
         }
       }
     }

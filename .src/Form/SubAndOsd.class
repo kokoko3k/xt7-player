@@ -96,7 +96,7 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
 
   If EncaComboBox.text Like "* *" Then
     If Split(EncaComboBox.text, " ", "", True)[0] <> "xx" Then
-      Try SubCp = " -subcp enca:" & Split(EncaComboBox.text, " ")[0] & ":" & ComboSubCp.text
+      Try SubCp = " -subcp enca:" & Split(EncaComboBox.text, " ")[0] & ":" & Split(ComboSubCp.text, " ", "", True)[0]
         Else
       SubCp = " -subcp " & ComboSubCp.text
     Endif

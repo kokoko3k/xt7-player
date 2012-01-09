@@ -60,9 +60,17 @@
             Text = ("Yadif")
             Picture = Picture["icon:/16/next"]
           }
+          { Unsharp Button VideoFilterObj
+            Name = "Unsharp"
+            MoveScaled(0,5,16.4286,4)
+            Background = &HFFFF5F&
+            Tag = "       unsharp[=l|cWxH:amount[:l|cWxH:amount]]\n              unsharp mask / gaussian blur\n\n                 l:\n                      Apply effect on luma component.\n\n                 c:\n                      Apply effect on chroma components.\n\n                 <width>x<height>:\n                      width and height of the matrix, odd sized in both directions (min =  3x3,\n                      max = 13x11 or 11x13, usually something between 3x3 and 7x7)\n\n                 amount:\n                      Relative  amount  of  sharpness/blur  to  add  to the image (a sane range\n                      should be -1.5-1.5).\n                         <0: blur\n                         >0: sharpen\n"
+            Text = ("Unsharp")
+            Picture = Picture["icon:/16/next"]
+          }
           { ppHaDeblock Button VideoFilterObj
             Name = "ppHaDeblock"
-            MoveScaled(0,6,16.4286,4)
+            MoveScaled(0,9,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                  ha/hadeblock[:difference[:flatness]]\n                      Accurate horizontal deblocking filter\n                         <difference>:  Difference  factor where higher values\n                         mean more deblocking (default: 32).\n                         <flatness>: Flatness  threshold  where  lower  values\n                         mean more deblocking (default: 39)."
             Text = ("ppHADeblock")
@@ -70,7 +78,7 @@
           }
           { ppVDeblock Button VideoFilterObj
             Name = "ppVDeblock"
-            MoveScaled(1,11,16.4286,4)
+            MoveScaled(-1,14,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                  vb/vdeblock[:difference[:flatness]]\n                      vertical deblocking filter\n                         <difference>:  Difference  factor where higher values\n                         mean more deblocking (default: 32).\n                         <flatness>: Flatness  threshold  where  lower  values\n                         mean more deblocking (default: 39)."
             Text = ("ppVDeblock")
@@ -78,7 +86,7 @@
           }
           { ppHDeblock Button VideoFilterObj
             Name = "ppHDeblock"
-            MoveScaled(1,15,16.4286,4)
+            MoveScaled(-1,18,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                  hb/hdeblock[:difference[:flatness]]\n                      horizontal deblocking filter\n                         <difference>:  Difference  factor where higher values\n                         mean more deblocking (default: 32).\n                         <flatness>: Flatness  threshold  where  lower  values\n                         mean more deblocking (default: 39)."
             Text = ("ppHDeblock")
@@ -86,7 +94,7 @@
           }
           { ppVaDeblock Button VideoFilterObj
             Name = "ppVaDeblock"
-            MoveScaled(1,20,16.4286,4)
+            MoveScaled(-1,22,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                  va/vadeblock[:difference[:flatness]]\n                      accurate vertical deblocking filter\n                         <difference>:  Difference  factor where higher values\n                         mean more deblocking (default: 32).\n                         <flatness>: Flatness  threshold  where  lower  values\n                         mean more deblocking (default: 39)."
             Text = ("ppVADeblock")
@@ -94,7 +102,7 @@
           }
           { ppdering Button VideoFilterObj
             Name = "ppdering"
-            MoveScaled(1,25,16.4286,4)
+            MoveScaled(0,27,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                 dr/dering\n                      deringing filter"
             Text = ("ppDering")
@@ -102,7 +110,7 @@
           }
           { ppAutoLevels Button VideoFilterObj
             Name = "ppAutoLevels"
-            MoveScaled(2,30,16.4286,4)
+            MoveScaled(0,32,16.4286,4)
             Background = &HDDDDFF&
             Tag = "** For this filter to work properly, it will be auto placed at the beginning of the chain **\n** but after spp,uspp and fspp **\n\n                 al/autolevels[:f/fullyrange]\n                      automatic brightness / contrast correction\n                         f/fullyrange: Stretch luminance to (0-255).\n"
             Text = ("ppAutoLevels")

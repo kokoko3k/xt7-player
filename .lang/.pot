@@ -22,21 +22,21 @@ msgstr ""
 msgid "Audio Filters configuration"
 msgstr ""
 
-#: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:73 FMain.form:754
+#: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:74 FMain.form:754
 #: GeneralOptions.form:257 HotKeys.form:32 SubAndOsd.form:96
 #: VFiltersCfg.form:32 VideoEqualizer.form:49 XConfigureAudioDriver.form:82
 #: XConfigureVideoDriver.form:189
 msgid "Profile"
 msgstr ""
 
-#: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:76 FMain.form:757
+#: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:77 FMain.form:757
 #: GeneralOptions.form:260 HotKeys.form:35 SubAndOsd.form:99
 #: VFiltersCfg.form:35 VideoEqualizer.form:52 XConfigureAudioDriver.form:85
 #: XConfigureVideoDriver.form:192
 msgid "Reload current profile"
 msgstr ""
 
-#: AFiltersCfg.form:80 AudioVideoCodecs.form:50 Chains.form:81
+#: AFiltersCfg.form:80 AudioVideoCodecs.form:50 Chains.form:82
 #: GeneralOptions.form:265 HotKeys.form:40 SubAndOsd.form:104
 #: VFiltersCfg.form:40 VideoEqualizer.form:57 XConfigureAudioDriver.form:90
 #: XConfigureVideoDriver.form:197
@@ -195,13 +195,13 @@ msgstr ""
 msgid "Presets"
 msgstr ""
 
-#: AFiltersCfg.form:388 AudioVideoCodecs.form:233 Chains.form:512
+#: AFiltersCfg.form:388 AudioVideoCodecs.form:233 Chains.form:522
 #: GeneralOptions.form:1784 HotKeys.form:96 VFiltersCfg.form:106
 #: XConfigureAudioDriver.form:475 XConfigureVideoDriver.form:1195
 msgid "Save and use new settings"
 msgstr ""
 
-#: AFiltersCfg.form:389 AudioVideoCodecs.form:234 Chains.form:513
+#: AFiltersCfg.form:389 AudioVideoCodecs.form:234 Chains.form:523
 #: FMain.form:1801 GeneralOptions.form:1785 HotKeys.form:97
 #: VFiltersCfg.form:107 XConfigureAudioDriver.form:476
 #: XConfigureVideoDriver.form:1196
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Use new settings without save"
 msgstr ""
 
-#: AFiltersCfg.form:396 AudioVideoCodecs.form:227 Chains.form:520
+#: AFiltersCfg.form:396 AudioVideoCodecs.form:227 Chains.form:530
 #: GeneralOptions.form:1792 SubAndOsd.form:624 VFiltersCfg.form:114
 #: XConfigureAudioDriver.form:483 XConfigureVideoDriver.form:1203
 msgid "Use "
@@ -227,7 +227,7 @@ msgid "Close the window"
 msgstr ""
 
 #: AFiltersCfg.form:403 AddUriForm.form:156 AudioVideoCodecs.form:220
-#: Chains.form:527 CoverManager.form:143 GeneralOptions.form:1799
+#: Chains.form:537 CoverManager.form:143 GeneralOptions.form:1799
 #: LogWindow.form:138 SubAndOsd.form:631 VFiltersCfg.form:121
 #: XConfigureAudioDriver.form:490 XConfigureVideoDriver.form:1210
 msgid "Close"
@@ -617,167 +617,171 @@ msgstr ""
 msgid "This demuxer is forced"
 msgstr ""
 
-#: Chains.form:65
+#: Chains.form:66
 msgid "Chains Editor"
 msgstr ""
 
-#: Chains.form:105
+#: Chains.form:106
 msgid ""
 "Available video filters.\n"
 "Drag them into the video chain to use them.\n"
 "Click on a filter to bring up his configuration window."
 msgstr ""
 
-#: Chains.form:111
+#: Chains.form:112
 msgid "Video Filters Toolbox"
 msgstr ""
 
-#: Chains.form:129
+#: Chains.form:130
 msgid "Yadif"
 msgstr ""
 
-#: Chains.form:138
+#: Chains.form:139
+msgid "Unsharp"
+msgstr ""
+
+#: Chains.form:148
 msgid "ppHADeblock"
 msgstr ""
 
-#: Chains.form:147
+#: Chains.form:157
 msgid "ppVDeblock"
 msgstr ""
 
-#: Chains.form:156
+#: Chains.form:166
 msgid "ppHDeblock"
 msgstr ""
 
-#: Chains.form:165
+#: Chains.form:175
 msgid "ppVADeblock"
 msgstr ""
 
-#: Chains.form:174
+#: Chains.form:184
 msgid "ppDering"
 msgstr ""
 
-#: Chains.form:183
+#: Chains.form:193
 msgid "ppAutoLevels"
 msgstr ""
 
-#: Chains.form:192
+#: Chains.form:202
 msgid "ppDeinterlace"
 msgstr ""
 
-#: Chains.form:201
+#: Chains.form:211
 msgid "FSpp Denoiser"
 msgstr ""
 
-#: Chains.form:211
+#: Chains.form:221
 msgid "USpp Denoiser"
 msgstr ""
 
-#: Chains.form:220
+#: Chains.form:230
 msgid "Spp Denoiser"
 msgstr ""
 
-#: Chains.form:229
+#: Chains.form:239
 msgid "Denoise3D"
 msgstr ""
 
-#: Chains.form:238
+#: Chains.form:248
 msgid "HQDenoise3D"
 msgstr ""
 
-#: Chains.form:247
+#: Chains.form:257
 msgid "GradFun"
 msgstr ""
 
-#: Chains.form:256
+#: Chains.form:266
 msgid "Scale"
 msgstr ""
 
-#: Chains.form:265
+#: Chains.form:275
 msgid "Expand"
 msgstr ""
 
-#: Chains.form:274
+#: Chains.form:284
 msgid "DeLogo"
 msgstr ""
 
-#: Chains.form:283
+#: Chains.form:293
 msgid "Eq2"
 msgstr ""
 
-#: Chains.form:292 VFiltersCfg.class:414 VideoEqualizer.form:183
+#: Chains.form:302 VFiltersCfg.class:414 VideoEqualizer.form:183
 msgid "Hue"
 msgstr ""
 
-#: Chains.form:301
+#: Chains.form:311
 msgid "Custom 1"
 msgstr ""
 
-#: Chains.form:310
+#: Chains.form:320
 msgid "Custom 2"
 msgstr ""
 
-#: Chains.form:319
+#: Chains.form:329
 msgid ""
 "Filters are processed from up to down\n"
 "till the Audio/Video driver."
 msgstr ""
 
-#: Chains.form:334
+#: Chains.form:344
 msgid "VideoChain"
 msgstr ""
 
-#: Chains.form:351
+#: Chains.form:361
 msgid "No driver Defined"
 msgstr ""
 
-#: Chains.form:352
+#: Chains.form:362
 msgid "VideoDriver"
 msgstr ""
 
-#: Chains.form:365
+#: Chains.form:375
 msgid "AudioChain"
 msgstr ""
 
-#: Chains.form:383
+#: Chains.form:393
 msgid "AudioDriver"
 msgstr ""
 
-#: Chains.form:396
+#: Chains.form:406
 msgid ""
 "Available audio filters.\n"
 "Drag them into the audio chain to use them.\n"
 "Click on a filter to bring up his configuration window."
 msgstr ""
 
-#: Chains.form:401
+#: Chains.form:411
 msgid "Audio Filters Toolbox"
 msgstr ""
 
-#: Chains.form:419
+#: Chains.form:429
 msgid "VolNorm"
 msgstr ""
 
-#: Chains.form:428
+#: Chains.form:438
 msgid "Extra Stereo"
 msgstr ""
 
-#: Chains.form:437
+#: Chains.form:447
 msgid "Delay"
 msgstr ""
 
-#: Chains.form:446
+#: Chains.form:456
 msgid "Karaoke"
 msgstr ""
 
-#: Chains.form:455
+#: Chains.form:465
 msgid "Equalizer "
 msgstr ""
 
-#: Chains.form:464
+#: Chains.form:474
 msgid "Volume "
 msgstr ""
 
-#: Chains.form:473
+#: Chains.form:483
 msgid "ScaleTempo"
 msgstr ""
 

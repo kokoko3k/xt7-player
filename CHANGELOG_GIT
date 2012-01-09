@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+Dec 9 2012 
+  FIX:    Unsharp video filter was deleted by mistake
+
+
 Dec 5 2012
   FIX:    Do not use suto to renice mplayer, if it ask for a pass xt7 can't exit
   CHANGE: Use x11 as default subtitle preview driver (prevent crashes on buggy catalyst drivers)

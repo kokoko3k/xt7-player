@@ -64,6 +64,7 @@ Public Paused As Boolean = False
 Public Media_FullPath As String = ""
 Public Media_FullPath_Playing As String = ""
 Public Media_Length As String = ""      'in seconds
+Public Media_percent_pos As String = ""
 Public Media_Size As String = "0"         'in bytes
 Public Media_Type As String
 Public Media_AudioCodec As String
@@ -273,7 +274,7 @@ Public Sub playerprocess_read()
     Endif
     
     If Playeroutput Like "*ANS_*=*" Then
-      'Debug playeroutput
+      Debug playeroutput
       Splitted = Split(playeroutput, "\n\r")
       For Each tmpout In splitted 'for every splitted part, search for "ANS_"
         If tmpout Like "*ANS_VOLUME=*" Then
@@ -284,6 +285,8 @@ Public Sub playerprocess_read()
           CurrentSubStream = Mid(tmpout, InStr(tmpout, "=") + 1)
         Else If tmpout Like "*ANS_LENGTH=*" Then
           Media_Length = Split(Mid(tmpout, InStr(tmpout, "=") + 1), ".")[0]
+        Else If tmpout Like "*ANS_PERCENT_POS*=*" Then
+          Media_percent_pos = Split(Mid(tmpout, InStr(tmpout, "=") + 1), ".")[0]
         Endif
       Next
       'Debug "return from 1"
@@ -617,6 +620,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
 
     stopping = False
     Media_Length = "0"
+    Media_percent_pos = "0"
     MediaHeaders.Resize(0) 'fixes an issue when playlisting youtube results
     WaitForHeaders()
     GetAllTags()

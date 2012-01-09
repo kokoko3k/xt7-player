@@ -741,7 +741,7 @@ Public Sub SetStyle_early()
    SliderBox.h = CInt(ButtonHovr / 1.33)
    ControlPanel.y = SliderBox.y + SliderBox.h
    controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
-   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") + 2
+   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
 
    
   '---------------------------------------------------------------------------
@@ -2488,17 +2488,20 @@ End
 
 Public Sub UpdateSeekSlider()
   'Get the current playing time and update seek bar accordingly
-  
   Dim totaltime, actualtime, percent, stream_length, stream_pos As Integer
-  
-  
+
     SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
     Try totaltime = mplayer.Media_Length
     Try actualtime = mplayer.CurrentTime()
     Try SeekBar.value = (actualtime * 1000) Div totaltime
+    'workaround a bug with mts files:
+    'mplayer is unable to get id_length and reports always 0
+    'while mplayer2 reports a wrong length
+    If (totaltime = "0") Or (actualtime > totaltime) Then  
+      mplayer.Send("get_percent_pos")
+      Seekbar.value = mplayer.Media_percent_pos * 10
+    Endif
     SeekBar.tag = "user"
-  
-  
 End
 
 Public youtubetitle As String = ""

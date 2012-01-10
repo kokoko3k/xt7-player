@@ -7789,31 +7789,6 @@ Public Sub MenuLoadSubtitle_Click()
   Dialog.path = tmp2
 End
 
-Public Sub Button5_Click()
-
-  mplayer.Send("sub_select 0")
-
-End
-
-Public Sub Button6_Click()
-
-  mplayer.Send("sub_select 1")
-
-End
-
-Public Sub Button7_Click()
-
-  mplayer.Send("sub_select 2")
-
-End
-
-Public Sub Button8_Click()
-
-  mplayer.Send("sub_select 3")
-
-End
-
-
 
 Public Sub StreamsSubtitlesMenu_show()
   If mplayer.ProcessRunningOvr() Then 
@@ -7821,14 +7796,3 @@ Public Sub StreamsSubtitlesMenu_show()
   Endif
 End
 
-Public Sub Button9_Click()
-
-    mplayer.Send("sub_select 4")
-
-End
-
-Public Sub Button10_Click()
-
-    mplayer.Send("sub_select 5")
-
-End

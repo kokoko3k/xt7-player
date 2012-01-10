@@ -663,17 +663,13 @@
           Border = Border.Raised
         }
         { LibraryGrid GridView
-          MoveScaled(3,8,36,25)
+          MoveScaled(1,8,36,25)
           ToolTip = ("Drag'n drop files, folders or media links to add them,")
           Drop = True
           Expand = True
           Mode = Select.Multiple
           Grid = False
           Header = GridView.Horizontal
-        }
-        { Button5 Button
-          MoveScaled(1,33,6,4)
-          Text = ("0")
         }
         { LibrarySelInfo Label
           MoveScaled(2,38,36,4)
@@ -685,26 +681,6 @@
         { MyLibraryProgressBar ProgressBar
           MoveScaled(1,43,38,4)
           Visible = False
-        }
-        { Button6 Button
-          MoveScaled(7,33,6,4)
-          Text = ("1")
-        }
-        { Button7 Button
-          MoveScaled(13,33,6,4)
-          Text = ("2")
-        }
-        { Button8 Button
-          MoveScaled(19,33,6,4)
-          Text = ("3")
-        }
-        { Button9 Button
-          MoveScaled(25,33,6,4)
-          Text = ("4")
-        }
-        { Button10 Button
-          MoveScaled(31,33,6,4)
-          Text = ("5")
         }
         Index = 1
         Text = ("Playlist")
@@ -1549,7 +1525,7 @@
           MoveScaled(0,1,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
-            MoveScaled(1,1,60,7)
+            MoveScaled(-1,2,60,7)
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True

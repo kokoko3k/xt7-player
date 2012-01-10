@@ -1656,7 +1656,7 @@ Public Function FillStreamsMenu()
   Streamsmenu.Enabled = ((mplayer.audiotracks.count > 0) Or (mplayer.subtitletracks.count > 0))
   If Streamsmenu.enabled Then
     Streamsaudiomenu.Enabled = (mplayer.audiotracks.count > 0)
-    Streamssubtitlesmenu.Enabled = (mplayer.subtitletracks.count > 0)
+    'Streamssubtitlesmenu.Enabled = (mplayer.subtitletracks.count > 0)
   Endif
   ClearStreamsMenu()
   
@@ -1669,17 +1669,24 @@ Public Function FillStreamsMenu()
     Next 'i
   Endif
   'fill sub streams menu
-  If Streamssubtitlesmenu.enabled Then
+  'If Streamssubtitlesmenu.enabled Then
+ 
     'add a menu item to disable subtitles:
     SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
     SubMenu.name = "DisableSubs"
     SubMenu.caption = ("Don't display subtitles")
-    For i = 0 To mplayer.subtitletracks.count - 1
-      SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
-      SubMenu.name = "SubMenuID" & i
-      SubMenu.caption = mplayer.subtitletracks[i]
-    Next 'i
-  Endif
+    If mplayer.subtitletracks.count > 0 Then
+      For i = 0 To mplayer.subtitletracks.count - 1
+        SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
+        SubMenu.name = "SubMenuID" & i
+        SubMenu.caption = mplayer.subtitletracks[i]
+      Next 'i
+    Endif
+
+  SubMenu = New Menu(Streamssubtitlesmenu) As "MenuLoadSubtitle"
+  SubMenu.name = "Streamssubtitlesmenu"
+  SubMenu.caption = ("Load from disk...")
+  submenu.Picture = picture["icon:/medium/insert-text"]
   
 End
 
@@ -1883,7 +1890,7 @@ Public Sub Menuswitchaudio_click()
     brother.checked = False
   Next
   Last.checked = True
-  Try ID = Split(Last.caption, " ")[0]
+  Try ID = Split(Last.caption, " ")[0] 
   mplayer.Send("switch_audio " & ID)
   
 End
@@ -1894,23 +1901,77 @@ Public Sub PowerffBTN_click()
   
 End
 
+Public nosub As Boolean = False
+Public lastsubid As Integer = -1
+
 Public Sub Menuswitchsub_click()
   
   Dim brother As Menu
-  Dim ID As Integer
-  
+
   For Each brother In Streamssubtitlesmenu.Children
     brother.checked = False
   Next
-  Last.checked = True
+
   If Last.caption = ("Don't display subtitles") Then
-    mplayer.Send("sub_select -1")
+    nosub = (Not nosub)
+    Last.checked = nosub
+    If Last.checked Then 
+      mplayer.Send("sub_select -1")
+        Else
+      If lastsubID <> -1 Then 
+        mplayer.Send("sub_select " & lastsubid) 
+          Else
+        mplayer.Send("sub_select") 
+      Endif
+    Endif
   Else
-    Try ID = Split(Last.caption, " ")[0]
-    mplayer.Send("sub_select " & ID)
+    Displaysub(Last.Caption)
   Endif
-  
 End
+
+Public Function Displaysub(MenuLine As String)
+  Dim fmax, emax, rfid, reid, fid, eid As Integer
+  Dim sub As String
+  Dim ID As Integer
+  'when you insert an external sub file into a file that embeds other subtitles like mkv,
+  'all other subtitles gets shifted and the file is inserted before them
+  'so we mark every inserted subtitle as "* (file)" and every embedded as "* (embedded)"
+  'and than we can select the right subtitle
+  '
+  'said fmax the number of file subtitles
+  'said emax the number of embedded subtitles,
+  'said rfid the real id of a file subtitle
+  'said reid the real id of an embedded sub
+  'said fid the id to say to mplayer to select a file sub
+  'said eid the id to say to mplayer to select an embedded sub:
+  '
+  'eid= reid + fmax
+  'fid= rfid - emax
+  fmax = 0
+  emax = 0
+  For Each sub In mplayer.subtitletracks
+    If sub Like "* (file)" Then 
+        fmax += 1
+      Else If sub Like "* (embedded)" Then 
+        emax += 1
+    Endif
+  Next
+  Debug "fmax=" & fmax
+  Debug "emax=" & emax
+
+
+  Try ID = Split(MenuLine, " ")[0] - 1
+  If Not Error Then 
+    If MenuLine Like "* (file)" Then 
+        ID = ID - emax
+      Else If MenuLine Like "* (embedded)" Then 
+        ID = ID + fmax
+    Endif
+    mplayer.Send("sub_select " & ID)
+    lastsubid = ID
+  Endif
+End
+
 
 Public Function LargestDvdTitle() As Integer
   'Analyze mediaheaders and find the largest DVD title
@@ -2004,7 +2065,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   Dim cookieopts As String = ""
   Dim cachingbox As MovieBox 'show an animation while caching...
   Wait
-  
+  lastsubid = -1
   global.ResetApplyBtnColor()
   
   cachingbox = New MovieBox(outerbox)
@@ -2475,7 +2536,8 @@ Public Sub VideoAreaGroup_Drop()
   droppedfiles[0] = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfiles[0])))
   If Not ((droppedfiles[0] Like "*.iso") Or (droppedfiles[0] Like "*VIDEO_TS")) Then
     If mplayer.IsSubFile(droppedfiles[0]) Then
-      mplayer.SubtitleDisplay(droppedfiles[0])
+      mplayer.SubtitleAdd(droppedfiles[0]) 'add the subtitle and append it to mplayer.subtitletracks
+      Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
     Else
       mplayer.Media_FullPath = droppedfiles[0]
       Play(False)
@@ -2753,7 +2815,7 @@ Public Sub OneSecTimer_Timer()
         If ((Not TogglePls.value) And fmain.FullScreen) Then FullScreenSwitch()
       Endif
     Endif
-    Try Statusbar1.text = " Stopped"
+    Try Statusbar1.text = (" Stopped")
     SeekBar.value = 0
   Endif
 End
@@ -4832,13 +4894,15 @@ Public Sub ShowVolBtn2_Click()
 End
 
 Public Sub SwitchSubBtn_Click()
-  
-  If Streamssubtitlesmenu.enabled Then
-    Streamssubtitlesmenu.Popup
-  Else
-    mplayer.Send("sub_select")
-  Endif
-  
+
+ ' If Streamssubtitlesmenu.enabled Then
+    ' Streamssubtitlesmenu.Popup
+  ' Else
+  '   mplayer.Send("sub_select")
+  ' Endif
+    streamssubtitlesmenu.Popup
+
+ ' Endif
 End
 
 Public Sub SwitchAudioBTN_Click()
@@ -7705,12 +7769,66 @@ Public Sub PlaylistGrid_Click()
 End
 
 
+Public Sub TimerQuit_Timer()
+  fmain.close
+End
+
+Public Sub MenuLoadSubtitle_Click()
+  Dim tmp As String[]
+  Dim tmp2 As String = Dialog.path
+  tmp = Dialog.filter
+  Try Dialog.path = file.Dir(mplayer.Media_FullPath)
+  Dialog.filter = ["*.srt;*.sub;*.ass;*.ssa;*.txt", ("SubTitle files")]
+  If Not (Dialog.OpenFile()) Then
+    If mplayer.IsSubFile(DConv(Dialog.Path)) Then 
+      mplayer.SubtitleAdd(DConv(Dialog.Path)) 'add the subtitle and append it to mplayer.subtitletracks
+      Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
+    Endif
+  Endif
+  Dialog.filter = tmp
+  Dialog.path = tmp2
+End
+
 Public Sub Button5_Click()
-  outerbox.cached = False
-  
+
+  mplayer.Send("sub_select 0")
 
 End
 
-Public Sub TimerQuit_Timer()
-  fmain.close
+Public Sub Button6_Click()
+
+  mplayer.Send("sub_select 1")
+
+End
+
+Public Sub Button7_Click()
+
+  mplayer.Send("sub_select 2")
+
+End
+
+Public Sub Button8_Click()
+
+  mplayer.Send("sub_select 3")
+
+End
+
+
+
+Public Sub StreamsSubtitlesMenu_show()
+  If mplayer.ProcessRunningOvr() Then 
+    FillStreamsMenu()
+  Endif
+End
+
+Public Sub Button9_Click()
+
+    mplayer.Send("sub_select 4")
+
+End
+
+Public Sub Button10_Click()
+
+    mplayer.Send("sub_select 5")
+
 End

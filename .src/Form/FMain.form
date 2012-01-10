@@ -62,7 +62,6 @@
         { StreamsSubtitlesMenu Menu
           Text = ("Subtitles")
           Picture = Picture["icon:/16/font"]
-          Enabled = False
         }
       }
     }
@@ -672,6 +671,10 @@
           Grid = False
           Header = GridView.Horizontal
         }
+        { Button5 Button
+          MoveScaled(1,33,6,4)
+          Text = ("0")
+        }
         { LibrarySelInfo Label
           MoveScaled(2,38,36,4)
           Visible = False
@@ -682,6 +685,26 @@
         { MyLibraryProgressBar ProgressBar
           MoveScaled(1,43,38,4)
           Visible = False
+        }
+        { Button6 Button
+          MoveScaled(7,33,6,4)
+          Text = ("1")
+        }
+        { Button7 Button
+          MoveScaled(13,33,6,4)
+          Text = ("2")
+        }
+        { Button8 Button
+          MoveScaled(19,33,6,4)
+          Text = ("3")
+        }
+        { Button9 Button
+          MoveScaled(25,33,6,4)
+          Text = ("4")
+        }
+        { Button10 Button
+          MoveScaled(31,33,6,4)
+          Text = ("5")
         }
         Index = 1
         Text = ("Playlist")

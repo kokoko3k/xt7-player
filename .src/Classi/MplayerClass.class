@@ -104,6 +104,7 @@ Public Function FillMultitracks()
   Dim i As Integer
   Dim Aids, Sids As New Integer[]
   Dim ID, NAME, LANGUAGE As String
+  Dim sid As Integer
   'will read mediaheaders, searching for "ID_AUDIO_ID" and "ID_SUBTITLE_ID"
   'and will fill audiotracks[] and subtitletracks[]
   
@@ -113,7 +114,7 @@ Public Function FillMultitracks()
   'find audio and sub id numbers
   For i = 0 To mediaheaders.count - 1
     If mediaheaders[i] Like "*ID_AUDIO_ID=*" Then Aids.add(GetTagValue(mediaheaders[i], "ID_AUDIO_ID"))
-    If mediaheaders[i] Like "*ID_SUBTITLE_ID=*" Then Sids.add(GetTagValue(mediaheaders[i], "ID_SUBTITLE_ID"))
+    If mediaheaders[i] Like "*ID_SUBTITLE_ID=*" Then Sids.add(GetTagValue(mediaheaders[i], "ID_SUBTITLE_ID")) 'for embedded usb
   Next 'i
   'for every id in aids, find name and language
   For i = 0 To Aids.count - 1
@@ -130,9 +131,15 @@ Public Function FillMultitracks()
     NAME = " - " & FindTagValue("ID_SID_" & ID & "_NAME")
     LANGUAGE = " - " & FindTagValue("ID_SID_" & ID & "_LANG")
     '(add without duplicates)
-    If (subtitletracks.Find(ID & NAME & LANGUAGE) = -1) Then subtitletracks.Add(ID & NAME & LANGUAGE)
+    If (subtitletracks.Find(ID & NAME & LANGUAGE) = -1) Then subtitletracks.Add(CStr(ID + 1) & NAME & LANGUAGE & " (embedded)")
   Next 'i
-
+  For i = 0 To mediaheaders.count - 1
+    If mediaheaders[i] Like "*ID_FILE_SUB_ID=*" Then
+      sid = GetTagValue(mediaheaders[i], "ID_FILE_SUB_ID")
+      NAME = file.Name(GetTagValue(mediaheaders[i + 1], "ID_FILE_SUB_FILENAME"))
+      subtitletracks.Add(CStr(SID + 1) & " - " & NAME & " (File)")
+    Endif
+  Next
 End
 
 Public Function getlength()
@@ -274,7 +281,7 @@ Public Sub playerprocess_read()
     Endif
     
     If Playeroutput Like "*ANS_*=*" Then
-      Debug playeroutput
+      'Debug playeroutput
       Splitted = Split(playeroutput, "\n\r")
       For Each tmpout In splitted 'for every splitted part, search for "ANS_"
         If tmpout Like "*ANS_VOLUME=*" Then
@@ -1042,28 +1049,38 @@ Public Function IsSubFile(SubfilePath As String) As Boolean
 
 End
 
+Private AddedSubs As Integer = 0
 Public Sub SubtitleAdd(SubFilePath As String)
-
-  Send("sub_load '" & SubFilePath & "'")
-  subtitletracks.Add(file.Name(subfilepath))
-
-End
-
-Public Sub SubtitleDisplay(SubFilePath As String)
 
   Dim TotalSubtitles As String = "0"
   Dim LastSubId As Integer = 0
   'Warning: for this to work correctly, FindTagValue should scan mediaheaders
   'from end to beginning.
-  Try TotalSubtitles = CStr(CInt(FindTagValue("ID_FILE_SUB_ID")) + 1)
+  'AddedSubs += 1
+  'Try TotalSubtitles = CStr(CInt(FindTagValue("ID_FILE_SUB_ID")) + 1) + addedsubs
+  TotalSubtitles = subtitletracks.count
   Debug "TotalSubtitles= " & TotalSubtitles
   LastSubId = CInt(TotalSubtitles) - 1
   Send("sub_load '" & SubFilePath & "'") 'NOTE THE Triple quotes ( "'subfile'", mplayer bug)
   Debug "Send()" & "sub_load \"" & SubFilePath & "\""
-  Send("sub_file '" & CStr(LastSubId + 1) & "'")
+  ' Send("sub_select " & CStr(LastSubId + 1))
+  ' Debug "selecting sub id " & (LastSubId + 1)
+  'Send("sub_file '" & CStr(LastSubId + 1) & "'")
   subfile = SubFilePath
+  subtitletracks.Add(CStr(lastsubid + 2) & " - " & file.Name(subfilepath) & " (File)")
+
+
+
+
+  'when you insert an external sub file into a file that embeds other subtitles like mkv,
+  'all other subtitles gets shifted and the file is inserted before them
+  'so we mark every inserted subtitle as "* (file)" and every embedded as "* embedded"
+  'and than we can select the right subtitle
+  
   'All this should not be necessary, but it seems that mplayer mess sub_delay with sub_step :(
   'send("sub_step +1")
+  '
+  '
 End
 
 Public Function GetScreenShot(DeleteFILE As Boolean) As Picture

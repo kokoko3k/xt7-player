@@ -522,7 +522,7 @@
       MoveScaled(1,0,4,4)
       ToolTip = ("Open a file")
       AutoResize = True
-      Picture = Picture["document-open.png"]
+      Picture = Picture["icon:/22/open"]
     }
     { OpenNetworkBTN ToolButton DynaGuiToolbar
       Name = "OpenNetworkBTN"
@@ -613,7 +613,7 @@
     }
     { PoweroffBTN ToolButton DynaGuiToolbar
       Name = "PoweroffBTN"
-      MoveScaled(86,0,4,4)
+      MoveScaled(87,0,4,4)
       ToolTip = ("Shutdown menu")
       AutoResize = True
       Picture = Picture["icon:/22/quit"]
@@ -1538,7 +1538,7 @@
               MoveScaled(3,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Open a file...")
-              Picture = Picture["document-open.png"]
+              Picture = Picture["icon:/22/open"]
             }
             { ButtonPrev ToolButton
               MoveScaled(7,0,4.4286,4)

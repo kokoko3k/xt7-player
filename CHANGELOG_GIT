@@ -1,16 +1,21 @@
 Git changes:
 --------------------------------------
-Dev 10 2012
+Jan 12 2012 
+  NEW:    Added polish translation (eloaders)
+  CHANGE: Reorganized subtitle controls a bit
+  Change: Use system icon for file-open image
+
+Jan 10 2012
   FIX:    Italian Translation updates
   FIX:    Several fixes in subtitle loading and handling
   NEW:    New menu voice under subtitle menu list to load subtitles from disk apart of drag'n drop.
 
-Dec 9 2012 
+Jan 9 2012 
   FIX:    Unsharp video filter was deleted by mistake
   CHANGE: Workaround an problem wrong or no length reported with *ts files 
   NEW:    Support for more subtitle encodings
 
-Dec 5 2012
+Jan 5 2012
   FIX:    Do not use suto to renice mplayer, if it ask for a pass xt7 can't exit
   CHANGE: Use x11 as default subtitle preview driver (prevent crashes on buggy catalyst drivers)
   NEW:    Use a background/transparent png under the play controls (backpanel.png)
@@ -18,14 +23,14 @@ Dec 5 2012
   CHANGE: Removed startup animation as it seems to cause problems on 64bit
   FIX:    If there's no cookie file, don't use "-cookies-file" option
 
-Dec 4 2012
+Jan 4 2012
   NEW:    mpris interface: loop,shuffle,volume,play,pause,play/pause,stop,previous,next,open uri,seek
   CHANGE: Toolbar buttons are now plain buttons (still need other size fixes)
   NEW:    Initial mpris 2.1 interface support (Headers only)
   NEW:    Dropping all old dbus code (will be replaced by mpris)
   FIX:    Drag'n drop from gtk apps works again
 
-Dec 3 2012
+Jan 3 2012
   NEW:    Osd messages for contrast,gamma,hue,saturation,brightness
 
 Dec 31 2011

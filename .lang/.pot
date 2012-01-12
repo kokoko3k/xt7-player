@@ -23,28 +23,28 @@ msgid "Audio Filters configuration"
 msgstr ""
 
 #: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:74 FMain.form:753
-#: GeneralOptions.form:257 HotKeys.form:32 SubAndOsd.form:96
+#: GeneralOptions.form:257 HotKeys.form:32 SubAndOsd.form:99
 #: VFiltersCfg.form:32 VideoEqualizer.form:49 XConfigureAudioDriver.form:82
 #: XConfigureVideoDriver.form:189
 msgid "Profile"
 msgstr ""
 
 #: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:77 FMain.form:756
-#: GeneralOptions.form:260 HotKeys.form:35 SubAndOsd.form:99
+#: GeneralOptions.form:260 HotKeys.form:35 SubAndOsd.form:102
 #: VFiltersCfg.form:35 VideoEqualizer.form:52 XConfigureAudioDriver.form:85
 #: XConfigureVideoDriver.form:192
 msgid "Reload current profile"
 msgstr ""
 
 #: AFiltersCfg.form:80 AudioVideoCodecs.form:50 Chains.form:82
-#: GeneralOptions.form:265 HotKeys.form:40 SubAndOsd.form:104
+#: GeneralOptions.form:265 HotKeys.form:40 SubAndOsd.form:107
 #: VFiltersCfg.form:40 VideoEqualizer.form:57 XConfigureAudioDriver.form:90
 #: XConfigureVideoDriver.form:197
 msgid "Save to current profile"
 msgstr ""
 
 #: AFiltersCfg.form:85 AudioVideoCodecs.form:55 GeneralOptions.form:270
-#: HotKeys.form:45 SubAndOsd.form:109 VFiltersCfg.form:45
+#: HotKeys.form:45 SubAndOsd.form:112 VFiltersCfg.form:45
 #: VideoEqualizer.form:62 XConfigureAudioDriver.form:95
 #: XConfigureVideoDriver.form:202
 msgid "Save these settings to all profiles"
@@ -215,20 +215,20 @@ msgid "Use new settings without save"
 msgstr ""
 
 #: AFiltersCfg.form:396 AudioVideoCodecs.form:227 Chains.form:530
-#: GeneralOptions.form:1792 SubAndOsd.form:625 VFiltersCfg.form:114
+#: GeneralOptions.form:1792 SubAndOsd.form:641 VFiltersCfg.form:114
 #: XConfigureAudioDriver.form:483 XConfigureVideoDriver.form:1203
 msgid "Use "
 msgstr ""
 
 #: AFiltersCfg.form:402 AudioVideoCodecs.form:219 GeneralOptions.form:1798
-#: SubAndOsd.form:631 VFiltersCfg.form:120 XConfigureAudioDriver.form:489
+#: SubAndOsd.form:647 VFiltersCfg.form:120 XConfigureAudioDriver.form:489
 #: XConfigureVideoDriver.form:1209
 msgid "Close the window"
 msgstr ""
 
 #: AFiltersCfg.form:403 AddUriForm.form:156 AudioVideoCodecs.form:220
 #: Chains.form:537 CoverManager.form:143 GeneralOptions.form:1799
-#: LogWindow.form:138 SubAndOsd.form:632 VFiltersCfg.form:121
+#: LogWindow.form:138 SubAndOsd.form:648 VFiltersCfg.form:121
 #: XConfigureAudioDriver.form:490 XConfigureVideoDriver.form:1210
 msgid "Close"
 msgstr ""
@@ -2625,7 +2625,7 @@ msgstr ""
 msgid "Rescan Channels with simple DVB-T Tuner"
 msgstr ""
 
-#: GeneralOptions.form:1201 SubAndOsd.form:393
+#: GeneralOptions.form:1201
 msgid "Language"
 msgstr ""
 
@@ -2692,7 +2692,7 @@ msgstr ""
 msgid "sv,swe (swedish)"
 msgstr ""
 
-#: GeneralOptions.form:1228 SubAndOsd.form:401
+#: GeneralOptions.form:1228 SubAndOsd.form:417
 msgid "iso-8859-1"
 msgstr ""
 
@@ -3383,13 +3383,13 @@ msgstr ""
 msgid "Assign nevertheless"
 msgstr ""
 
-#: HotKeys.class:520 SubAndOsd.class:356
+#: HotKeys.class:520 SubAndOsd.class:347
 msgid ""
 "This will save this window settings\n"
 " to all profiles found but the 'Factory_defaults' one"
 msgstr ""
 
-#: HotKeys.class:520 SubAndOsd.class:356
+#: HotKeys.class:520 SubAndOsd.class:347
 msgid "Proceed"
 msgstr ""
 
@@ -3517,7 +3517,7 @@ msgstr ""
 msgid "* Subtitle position"
 msgstr ""
 
-#: RealtimeForm.form:281 SubAndOsd.form:346
+#: RealtimeForm.form:281 SubAndOsd.form:365
 msgid ""
 "Mplayer option:\n"
 "-ass-force-style Alignment=<align>"
@@ -3627,104 +3627,89 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: SubAndOsd.form:90
+#: SubAndOsd.form:92
 msgid "Subtitles And Osd"
 msgstr ""
 
-#: SubAndOsd.form:121
+#: SubAndOsd.form:125
 msgid "SSA Font Style"
 msgstr ""
 
-#: SubAndOsd.form:126
-msgid ""
-"If you haven't SSA/ASS compiled in mplayer or you don't want SSA/ASS "
-"processing, then check it.\n"
-"Mplayer option: Disables -ass switch."
-msgstr ""
-
-#: SubAndOsd.form:132
+#: SubAndOsd.form:130
 msgid "Disable SSA"
 msgstr ""
 
-#: SubAndOsd.form:138
+#: SubAndOsd.form:144
 msgid ""
 "Mplayer option: \n"
 "-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 msgstr ""
 
-#: SubAndOsd.form:146
+#: SubAndOsd.form:154
 msgid "Font"
 msgstr ""
 
-#: SubAndOsd.form:154
+#: SubAndOsd.form:162
 msgid "BitStream Vera Sans"
 msgstr ""
 
-#: SubAndOsd.form:165
+#: SubAndOsd.form:173
 msgid ""
 "Mplayer option: \n"
 "-ass-forcestyle primarycolour=HHBBGGRR"
 msgstr ""
 
-#: SubAndOsd.form:173
+#: SubAndOsd.form:187
 msgid "Font Color"
 msgstr ""
 
-#: SubAndOsd.form:187
+#: SubAndOsd.form:201
 msgid "Alpha"
 msgstr ""
 
-#: SubAndOsd.form:201
-msgid "Mplayer option: ass-forcestyle OutLineColour=HHBBGGRR"
-msgstr ""
-
-#: SubAndOsd.form:209
+#: SubAndOsd.form:223
 msgid "Border"
 msgstr ""
 
-#: SubAndOsd.form:222
+#: SubAndOsd.form:234
 msgid "Size"
 msgstr ""
 
-#: SubAndOsd.form:251
-msgid "Mplayer option: -ass-forcestyle BackColour=HHBBGGRR"
-msgstr ""
-
-#: SubAndOsd.form:259
+#: SubAndOsd.form:267
 msgid "Shadow"
 msgstr ""
 
-#: SubAndOsd.form:272
+#: SubAndOsd.form:279
 msgid "Offset"
 msgstr ""
 
-#: SubAndOsd.form:300
+#: SubAndOsd.form:312
 msgid "Sub Extra"
 msgstr ""
 
-#: SubAndOsd.form:305
+#: SubAndOsd.form:322
 msgid ""
 "Mplayer option:\n"
 "-sub-fuzziness <mode>"
 msgstr ""
 
-#: SubAndOsd.form:312
+#: SubAndOsd.form:330
 msgid "Load subtitles"
 msgstr ""
 
-#: SubAndOsd.form:319
+#: SubAndOsd.form:337
 msgid "0 - Exact match"
 msgstr ""
 
-#: SubAndOsd.form:319
+#: SubAndOsd.form:337
 msgid "1 - Load all subs containing movie name"
 msgstr ""
 
-#: SubAndOsd.form:319
+#: SubAndOsd.form:337
 msgid "2 - Load all subs in the current directory"
 msgstr ""
 
-#: SubAndOsd.form:326
+#: SubAndOsd.form:344
 msgid ""
 "Subtitle position on the screen from top or bottom.\n"
 "(it depends the alignment you choose)\n"
@@ -3736,49 +3721,49 @@ msgid ""
 "-subpos <0-100>\n"
 msgstr ""
 
-#: SubAndOsd.form:333
+#: SubAndOsd.form:352
 msgid "Position (%)"
 msgstr ""
 
-#: SubAndOsd.form:352
+#: SubAndOsd.form:372
 msgid "Alignment"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "2) Bottom/Center"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "1) Bottom/Left"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "3) Bottom/Right"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "6) Top/Center"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "4) Top/Left"
 msgstr ""
 
-#: SubAndOsd.form:360
+#: SubAndOsd.form:380
 msgid "7) Top/Right"
 msgstr ""
 
-#: SubAndOsd.form:367
+#: SubAndOsd.form:387
 msgid ""
 "Subtitles resize factor.\n"
 "Mplayer option:  -ass-font-scale"
 msgstr ""
 
-#: SubAndOsd.form:374
+#: SubAndOsd.form:395
 msgid "Scale (%)"
 msgstr ""
 
-#: SubAndOsd.form:380
+#: SubAndOsd.form:401
 msgid ""
 "Depending on the language you select, a charset is auto detected,\n"
 "but if detection fails, the fallback charset will be used.\n"
@@ -3789,885 +3774,885 @@ msgid ""
 "-subcp enca:<language>:<fallback codepage>"
 msgstr ""
 
-#: SubAndOsd.form:387
-msgid "Charset"
+#: SubAndOsd.form:408
+msgid "Guess codepage for:"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "xx (use fallback)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "aa (Afar)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ab (Abkhazian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ae (Avestan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "af (Afrikaans)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ak (Akan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "am (Amharic)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "an (Aragonese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ar (Arabic)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "as (Assamese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "av (Avaric)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ay (Aymara)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "az (Azerbaijani)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ba (Bashkir)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "be (Belarusian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bg (Bulgarian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bh (Bihari)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bi (Bislama)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bm (Bambara)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bn (Bengali)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bo (Tibetan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "br (Breton)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "bs (Bosnian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ca (Catalan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ce (Chechen)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "co (Corsican)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "cr (Cree)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "cs (Czech)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "cu (Church)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "cv (Chuvash)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "cy (Welsh)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "da (Danish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "de (German)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "dv (Divehi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "dz (Dzongkha)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ee (Ewe)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "el (Greek)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "en (English)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "eo (Esperanto)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "es (Spanish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "et (Estonian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "eu (Basque)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fa (Persian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ff (Fulah)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fi (Finnish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fj (Fijian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fo (Faroese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fr (French)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "fy (Frisian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ga (Irish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "gd (Gaelic)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "gl (Galician)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "gn (Guarani)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "gu (Gujarati)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "gv (Manx)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ha (Hausa)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "he (Hebrew)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "hi (Hindi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ho (Hiri)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "hr (Croatian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ht (Haitian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "hu (Hungarian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "hy (Armenian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "hz (Herero)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ch (Chamorro)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ia (Interlingua)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "id (Indonesian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ie (Interlingue)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ig (Igbo)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ii (Sichuan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ik (Inupiaq)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "io (Ido)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "is (Icelandic)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "it (Italian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "iu (Inuktitut)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ja (Japanese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "jv (Javanese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ka (Georgian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kg (Kongo)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ki (Kikuyu)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kj (Kuanyama)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kk (Kazakh)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kl (Greenlandic)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "km (Khmer)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kn (Kannada)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ko (Korean)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kr (Kanuri)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ks (Kashmiri)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ku (Kurdish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kv (Komi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "kw (Cornish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ky (Kirghiz)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "la (Latin)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lb (Luxembourgish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lg (Ganda)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "li (Limburgan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ln (Lingala)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lo (Lao)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lt (Lithuanian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lu (Luba-Katanga)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "lv (Latvian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mg (Malagasy)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mh (Marshallese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mi (Maori)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mk (Macedonian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ml (Malayalam)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mn (Mongolian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mo (Moldavian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mr (Marathi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ms (Malay)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "mt (Maltese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "my (Burmese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "na (Nauru)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "nd (Ndebele)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ne (Nepali)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ng (Ndonga)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "nl (Dutch)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "nn (Norwegian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "no (Norwegian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "nr (Ndebele)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "nv (Navajo)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ny (Chichewa)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "oc (Occitan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "oj (Ojibwa)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "om (Oromo)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "or (Oriya)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "os (Ossetian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "pa (Panjabi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "pi (Pali)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "pl (Polish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ps (Pushto)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "pt (Portuguese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "qu (Quechua)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "rm (Romansh)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "rn (Rundi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ro (Romanian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ru (Russian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "rw (Kinyarwanda)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sa (Sanskrit)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sc (Sardinian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sd (Sindhi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "se (Sami)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sg (Sango)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "si (Sinhala)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sk (Slovak)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sl (Slovenian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sm (Samoan)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sn (Shona)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "so (Somali)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sq (Albanian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sr (Serbian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ss (Swati)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "st (Sotho)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "su (Sundanese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sv (Swedish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "sw (Swahili)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ta (Tamil)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "te (Telugu)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tg (Tajik)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "th (Thai)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ti (Tigrinya)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tk (Turkmen)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tl (Tagalog)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tn (Tswana)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "to (Tonga)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tr (Turkish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ts (Tsonga)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tt (Tatar)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "tw (Twi)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ty (Tahitian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ug (Uighur)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "uk (Ukrainian)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ur (Urdu)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "uz (Uzbek)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "ve (Venda)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "vi (Vietnamese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "wa (Walloon)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "wo (Wolof)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "xh (Xhosa)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "yi (Yiddish)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "yo (Yoruba)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "za (Zhuang)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "zh (Chinese)"
 msgstr ""
 
-#: SubAndOsd.form:400
+#: SubAndOsd.form:416
 msgid "zu (Zulu)"
 msgstr ""
 
-#: SubAndOsd.form:407
-msgid "  FallBack"
+#: SubAndOsd.form:422
+msgid "If guess fails, use:"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "big5"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp936"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp949"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp1250"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp1251"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp1253"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp1256"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "cp874"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "euc-kr"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "gb2312"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-2"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-3"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-4"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-5"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-6"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-7"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-8"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-9"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-10"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-11"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-12"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-13"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-14"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "iso-8859-15"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "koi8-r"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "koi8-u/ru"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "latin2"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "shift-jis"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "utf-8"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "unicode"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "windows-1250"
 msgstr ""
 
-#: SubAndOsd.form:413
+#: SubAndOsd.form:430
 msgid "windows-1251"
 msgstr ""
 
-#: SubAndOsd.form:421
+#: SubAndOsd.form:438
 msgid ""
 "Subtitle delay.\n"
 "Mplayer option: -subdelay <sec>"
 msgstr ""
 
-#: SubAndOsd.form:427
+#: SubAndOsd.form:445
 msgid ""
 "Setting a negative delay for subtitles embedded in mkv files, leads mplayer\n"
 "to shift only the subtitle end time, because it reads the file "
@@ -4679,39 +4664,29 @@ msgid ""
 "http://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 msgstr ""
 
-#: SubAndOsd.form:428
+#: SubAndOsd.form:446
 msgid "Mkv Workaround"
 msgstr ""
 
-#: SubAndOsd.form:433
+#: SubAndOsd.form:451
 msgid "Delay (Decisecs)"
-msgstr ""
-
-#: SubAndOsd.form:439
-msgid ""
-"You can specify an external subtitle file.\n"
-"Mplayer option: -subfile <filename>"
-msgstr ""
-
-#: SubAndOsd.form:446
-msgid "SubTitle File"
 msgstr ""
 
 #: SubAndOsd.form:460
 msgid "OSD"
 msgstr ""
 
-#: SubAndOsd.form:465
+#: SubAndOsd.form:470
 msgid ""
 "Mplayer option: \n"
 "-font"
 msgstr ""
 
-#: SubAndOsd.form:473
+#: SubAndOsd.form:479
 msgid "OSD Font"
 msgstr ""
 
-#: SubAndOsd.form:491
+#: SubAndOsd.form:497
 msgid ""
 "OSD Border font \"strength\", where 0 means plain white fonts and 10 means "
 "bold black outline\n"
@@ -4719,21 +4694,21 @@ msgid ""
 "\n"
 msgstr ""
 
-#: SubAndOsd.form:499
+#: SubAndOsd.form:505
 msgid "OSD outline strength"
 msgstr ""
 
-#: SubAndOsd.form:505
+#: SubAndOsd.form:511
 msgid ""
 "Sets the font outline thickness\n"
 "Mplayer option: -subfont-outline"
 msgstr ""
 
-#: SubAndOsd.form:512
+#: SubAndOsd.form:519
 msgid "OSD outline thickness"
 msgstr ""
 
-#: SubAndOsd.form:525
+#: SubAndOsd.form:532
 msgid ""
 "Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  "
 "values  mean  more\n"
@@ -4743,79 +4718,79 @@ msgid ""
 "\n"
 msgstr ""
 
-#: SubAndOsd.form:532
+#: SubAndOsd.form:540
 msgid "OSD Background alpha"
 msgstr ""
 
-#: SubAndOsd.form:544
+#: SubAndOsd.form:552
 msgid ""
 "Sets the font blur radius.\n"
 "Mplayer option: -subfont-blur"
 msgstr ""
 
-#: SubAndOsd.form:551
+#: SubAndOsd.form:560
 msgid "OSD blur radius"
 msgstr ""
 
-#: SubAndOsd.form:564
+#: SubAndOsd.form:573
 msgid ""
 "Set the duration of the OSD messages in ms.\n"
 "Mplayer option: -osd-duration"
 msgstr ""
 
-#: SubAndOsd.form:570
+#: SubAndOsd.form:580
 msgid "Osd duration (ms)"
 msgstr ""
 
-#: SubAndOsd.form:582
+#: SubAndOsd.form:592
 msgid ""
 "Sets the autoscale coefficient of the OSD elements.\n"
 "Mplayer option: -subfont-osd-scale"
 msgstr ""
 
-#: SubAndOsd.form:589
+#: SubAndOsd.form:600
 msgid "Osd Scale"
 msgstr ""
 
-#: SubAndOsd.form:608
+#: SubAndOsd.form:624
 msgid "Change me if you have problem displaying the preview."
 msgstr ""
 
-#: SubAndOsd.form:611
+#: SubAndOsd.form:627
 msgid "xv preview"
 msgstr ""
 
-#: SubAndOsd.form:611
+#: SubAndOsd.form:627
 msgid "x11 Preview"
 msgstr ""
 
-#: SubAndOsd.form:611
+#: SubAndOsd.form:627
 msgid "user Preference"
 msgstr ""
 
-#: SubAndOsd.form:612
+#: SubAndOsd.form:628
 msgid "x11 preview"
 msgstr ""
 
-#: SubAndOsd.form:617
+#: SubAndOsd.form:633
 msgid "Test the new configuration in the preview box."
 msgstr ""
 
-#: SubAndOsd.form:618
+#: SubAndOsd.form:634
 msgid "Retest"
 msgstr ""
 
-#: SubAndOsd.form:624
+#: SubAndOsd.form:640
 msgid ""
 "Use new settings without save.\n"
 "To save settings, use menu item."
 msgstr ""
 
-#: SubAndOsd.form:640
+#: SubAndOsd.form:656
 msgid "Preview"
 msgstr ""
 
-#: SubAndOsd.class:356
+#: SubAndOsd.class:347
 msgid "Don't do it"
 msgstr ""
 

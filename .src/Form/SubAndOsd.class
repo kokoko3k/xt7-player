@@ -101,7 +101,7 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
       SubCp = " -subcp " & ComboSubCp.text
     Endif
   Endif
-  Try SubFile = " -sub " & SubFileTextBox.text
+
   Try SubDelay = " -subdelay " & ToString(MySubSlider.value / 10)
     
     
@@ -165,9 +165,8 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
   Endif
 
 'Subtitle related  
-  If SubCpCHK.value Then OutCmdLine = OutCmdLine & SubCp
+  OutCmdLine = OutCmdLine & SubCp
   If SubDelayCHK.value Then OutCmdLine = OutCmdLine & SubDelay
-  If (SubFileCHK.value And (Trim(SubFileTextBox.text) <> "")) Then OutCmdLine = OutCmdLine & SubFile
   If fuzzinesschk.value Then OutCmdLine = OutCmdLine & SubFuzziness
 
 'OSD Related
@@ -261,15 +260,6 @@ End
 
 
 
-Public Sub SubFileOpen_Click()
-  Dim tmp As String[]
-  tmp = Dialog.filter
-  Dialog.filter = ["*.srt;*.sub;*.ass;*.ssa;*.txt", "SubTitle files"]
-  If Not (Dialog.OpenFile()) Then
-    SubFileTextBox.text = "\"" & Dialog.Path & "\""
-  Endif
-  Dialog.filter = tmp
-End
 
 
 Public Sub Form_Hide()
@@ -302,6 +292,7 @@ Public Sub Form_Open()
   If ((FontColorBox.color = Color.black) And (borderColorBox.color = Color.black) And (shadowColorbtn.color = Color.black)) Then FontColorBox.color = Color.white
   'ME.center
   Global.Center(Fmain, Me)
+  Try OSDFontString.text = OSDFontString.Font.name
 End
 
 Public Sub FontChooseBTN_Click()
@@ -377,8 +368,8 @@ Public Sub ASSDisableCHK_Click()
   Dim EnableSSA As Boolean = Not ASSDisableCHK.value
   FontChooseHBox2.Enabled = EnableSSA
   FontColorHBOX.Enabled = EnableSSA
-  BorderColorHBOX.Enabled = EnableSSA
-  ShadowHBox.Enabled = EnableSSA
+
+
   AlignmentHBox.Enabled = EnableSSA
   TestBTN.background = Color.Yellow
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
@@ -431,16 +422,10 @@ Public Sub MkvWorkaroundCHK_Click()
   If MkvWorkaroundCHK.value Then ASSDisableCHK.value = True
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
-Public Sub SubFileCHK_Click()
-  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
-End
 Public Sub Combofuzziness_Change()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub AlignmentCHK_Click()
-  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
-End
-Public Sub SubCpCHK_Click()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub EncaComboBox_Change()
@@ -452,12 +437,15 @@ End
 Public Sub SubDelayCHK_Click()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
-Public Sub SubFileTextBox_Change()
-  If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
-End
 Public Sub OSDDurationCHK_Click()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
 End
 Public Sub OSDDurationSpinBox_Change()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
+End
+
+Public Sub TabStripSubs_Click()
+
+  OSDFontString.text = OSDFontString.Font.name
+
 End

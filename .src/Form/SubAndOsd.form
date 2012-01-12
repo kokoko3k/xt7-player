@@ -7,6 +7,7 @@
   Icon = Picture["icon:/16/font"]
   Persistent = True
   Resizable = False
+  Spacing = True
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu
@@ -27,25 +28,29 @@
     Arrangement = Arrange.Vertical
     Spacing = True
     Margin = True
+    Padding = 3
     Count = 3
     Index = 0
     Text = ("SSA Font Style")
     Picture = Picture["icon:/16/font"]
-    { ASSDisableHbox HBox
-      MoveScaled(0,0,61,5.5714)
-      ToolTip = ("If you haven't SSA/ASS compiled in mplayer or you don't want SSA/ASS processing, then check it.\nMplayer option: Disables -ass switch.")
-      Spacing = True
-      Padding = 8
-      { ASSDisableCHK CheckBox
-        MoveScaled(1,1,35,4)
-        Text = ("Disable SSA")
-      }
+    { ASSDisableCHK CheckBox
+      MoveScaled(1,1,61,4)
+      Text = ("Disable SSA")
     }
-    { FontChooseHBox2 HBox
-      MoveScaled(0,6,61,8)
+    { Separator1 Separator
+      MoveScaled(11,4,46,0.5714)
+    }
+    { HBox5 HBox
+      MoveScaled(21,5,21,1)
+      Expand = True
+    }
+    { FontChooseHBox2 Panel
+      MoveScaled(1,7,61,8)
       ToolTip = ("Mplayer option: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>")
+      Arrangement = Arrange.Horizontal
+      AutoResize = True
       Spacing = True
-      Padding = 8
+      Margin = True
       { FontStyleCHK CheckBox SubTitleControls
         Name = "FontStyleCHK"
         MoveScaled(1,1,16,4)
@@ -64,130 +69,137 @@
         Picture = Picture["icon:/16/font"]
       }
     }
-    { FontColorHBOX HBox
-      MoveScaled(0,13,61,5)
+    { FontColorHBOX Panel
+      MoveScaled(1,16,61,21)
       ToolTip = ("Mplayer option: \n-ass-forcestyle primarycolour=HHBBGGRR")
-      Spacing = True
-      Padding = 8
-      { FontColorCHK CheckBox SubTitleControls
-        Name = "FontColorCHK"
-        MoveScaled(1,1,16,4)
+      Arrangement = Arrange.Vertical
+      Border = Border.Etched
+      { HBox4 HBox
+        MoveScaled(1,1,59,4)
         AutoResize = True
-        Text = ("Font Color")
-        Value = CheckBox.True
+        Spacing = True
+        Margin = True
+        { FontColorCHK CheckBox SubTitleControls
+          Name = "FontColorCHK"
+          MoveScaled(0,1,16,4)
+          AutoResize = True
+          Text = ("Font Color")
+          Value = CheckBox.True
+        }
+        { FontColorBox ColorButton
+          MoveScaled(17,0,8,4.5714)
+          Expand = True
+          Value = &HFFFFFF&
+        }
+        { FontColorAlphaLabel Label
+          MoveScaled(28,0,6,4)
+          Expand = True
+          AutoResize = True
+          Text = ("Alpha")
+          Alignment = Align.Right
+        }
+        { FontColorSpinBox SpinBox SubTitleControls
+          Name = "FontColorSpinBox"
+          MoveScaled(37,1,7,4)
+          Expand = True
+          MaxValue = 255
+        }
       }
-      { FontColorBox ColorButton
-        MoveScaled(18,0,12,5)
-        Expand = True
-        Value = &HFFFFFF&
-      }
-      { FontColorAlphaLabel Label
-        MoveScaled(40,2,6,4)
-        Expand = True
+      { HBox3 HBox
+        MoveScaled(1,7,59,4)
         AutoResize = True
-        Text = ("Alpha")
-        Alignment = Align.Right
+        Spacing = True
+        Margin = True
+        { OutlineCHK CheckBox SubTitleControls
+          Name = "OutlineCHK"
+          MoveScaled(0,1,16,4)
+          Expand = True
+          Text = ("Border")
+          Value = CheckBox.True
+        }
+        { BorderColorBox ColorButton
+          MoveScaled(17,0,8,4.5714)
+        }
+        { BorderSizeLabel Label
+          MoveScaled(28,1,6,4)
+          Expand = True
+          Text = ("Size")
+        }
+        { OutLineSpinBox SpinBox SubTitleControls
+          Name = "OutLineSpinBox"
+          MoveScaled(37,0,7,4)
+          Value = 1
+        }
+        { BorderColorAlphaLabel2 Label
+          MoveScaled(43,0,6,4)
+          Expand = True
+          Text = ("Alpha")
+          Alignment = Align.Right
+        }
+        { BorderColorSpinBox SpinBox SubTitleControls
+          Name = "BorderColorSpinBox"
+          MoveScaled(51,0,8,4)
+          MaxValue = 255
+        }
       }
-      { FontColorSpinBox SpinBox SubTitleControls
-        Name = "FontColorSpinBox"
-        MoveScaled(47,1,13,4)
-        Expand = True
-        MaxValue = 255
+      { HBox1 HBox
+        MoveScaled(1,13,59,5)
+        AutoResize = True
+        Spacing = True
+        Margin = True
+        { ShadowCHK CheckBox SubTitleControls
+          Name = "ShadowCHK"
+          MoveScaled(0,0,16,4)
+          Expand = True
+          Text = ("Shadow")
+          Value = CheckBox.True
+        }
+        { ShadowColorBTN ColorButton
+          MoveScaled(17,0,8,4.5714)
+          Expand = True
+        }
+        { ShadowOffsetLabel Label
+          MoveScaled(28,1,6,4)
+          Expand = True
+          Text = ("Offset")
+          Alignment = Align.Right
+        }
+        { ShadowSpinBox SpinBox SubTitleControls
+          Name = "ShadowSpinBox"
+          MoveScaled(37,1,7,4)
+          Expand = True
+          Value = 2
+        }
+        { BorderColorAlphaLabel1 Label
+          MoveScaled(44,1,6,4)
+          Expand = True
+          Text = ("Alpha")
+          Alignment = Align.Right
+        }
+        { ShadowColorSpinBox SpinBox SubTitleControls
+          Name = "ShadowColorSpinBox"
+          MoveScaled(51,1,8,4)
+          Expand = True
+          MaxValue = 255
+          Value = 127
+        }
       }
     }
-    { BorderColorHBOX HBox
-      MoveScaled(0,21,61,4)
-      ToolTip = ("Mplayer option: ass-forcestyle OutLineColour=HHBBGGRR")
-      Spacing = True
-      Padding = 8
-      { OutlineCHK CheckBox SubTitleControls
-        Name = "OutlineCHK"
-        MoveScaled(1,1,13,4)
-        AutoResize = True
-        Text = ("Border")
-        Value = CheckBox.True
-      }
-      { BorderColorBox ColorButton
-        MoveScaled(18,0,8,5)
-        Expand = True
-      }
-      { BorderSizeLabel Label
-        MoveScaled(29,1,6,4)
-        Expand = True
-        AutoResize = True
-        Text = ("Size")
-        Alignment = Align.Right
-      }
-      { OutLineSpinBox SpinBox SubTitleControls
-        Name = "OutLineSpinBox"
-        MoveScaled(38,0,7,4)
-        Expand = True
-        Value = 1
-      }
-      { BorderColorAlphaLabel2 Label
-        MoveScaled(44,0,6,4)
-        Expand = True
-        AutoResize = True
-        Text = ("Alpha")
-        Alignment = Align.Right
-      }
-      { BorderColorSpinBox SpinBox SubTitleControls
-        Name = "BorderColorSpinBox"
-        MoveScaled(52,0,8,4)
-        Expand = True
-        MaxValue = 255
-      }
-    }
-    { ShadowHBox HBox
-      MoveScaled(0,27,61,4)
-      ToolTip = ("Mplayer option: -ass-forcestyle BackColour=HHBBGGRR")
-      Spacing = True
-      Padding = 8
-      { ShadowCHK CheckBox SubTitleControls
-        Name = "ShadowCHK"
-        MoveScaled(1,1,13,4)
-        AutoResize = True
-        Text = ("Shadow")
-        Value = CheckBox.True
-      }
-      { ShadowColorBTN ColorButton
-        MoveScaled(18,0,8,5)
-        Expand = True
-      }
-      { ShadowOffsetLabel Label
-        MoveScaled(29,1,6,4)
-        Expand = True
-        AutoResize = True
-        Text = ("Offset")
-        Alignment = Align.Right
-      }
-      { ShadowSpinBox SpinBox SubTitleControls
-        Name = "ShadowSpinBox"
-        MoveScaled(38,1,7,4)
-        Expand = True
-        Value = 2
-      }
-      { BorderColorAlphaLabel1 Label
-        MoveScaled(45,1,6,4)
-        Expand = True
-        AutoResize = True
-        Text = ("Alpha")
-        Alignment = Align.Right
-      }
-      { ShadowColorSpinBox SpinBox SubTitleControls
-        Name = "ShadowColorSpinBox"
-        MoveScaled(52,1,8,4)
-        Expand = True
-        MaxValue = 255
-        Value = 127
-      }
+    { HBox6 HBox
+      MoveScaled(21,38,21,1)
+      Expand = True
     }
     Index = 1
     Text = ("Sub Extra")
     Picture = Picture["icon:/16/options"]
+    { HBox8 HBox
+      MoveScaled(18,2,21,1)
+      Expand = True
+    }
     { FuzzinessHbox HBox
-      MoveScaled(0,0,61,4)
+      MoveScaled(1,6,61,4)
       ToolTip = ("Mplayer option:\n-sub-fuzziness <mode>")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { fuzzinesschk CheckBox
@@ -204,8 +216,9 @@
       }
     }
     { PositionHBox HBox
-      MoveScaled(0,4,61,4)
+      MoveScaled(1,10,61,4)
       ToolTip = ("Subtitle position on the screen from top or bottom.\n(it depends the alignment you choose)\nMplayer option:\n-ass-force-style MarginV=<margin>\n\nIf you Disabled SSA, then the value is meant to be from top.\nMplayer Option:\n-subpos <0-100>\n")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { MarginVCHK CheckBox SubTitleControls
@@ -221,8 +234,9 @@
       }
     }
     { AlignmentHBox HBox
-      MoveScaled(0,10,61,4)
+      MoveScaled(1,14,61,4)
       ToolTip = ("Mplayer option:\n-ass-force-style Alignment=<align>")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { AlignmentCHK CheckBox
@@ -239,8 +253,9 @@
       }
     }
     { SubScaleHbox HBox
-      MoveScaled(0,16,61,4)
+      MoveScaled(1,18,61,4)
       ToolTip = ("Subtitles resize factor.\nMplayer option:  -ass-font-scale")
+      AutoResize = True
       Spacing = True
       Padding = 10
       { ScaleCHK CheckBox SubTitleControls
@@ -249,35 +264,32 @@
         Text = ("Scale (%)")
       }
     }
-    { SubCpHBox HBox
-      MoveScaled(0,22,61,4)
+    { SubCpHBox Panel
+      MoveScaled(1,22,61,11)
       ToolTip = ("Depending on the language you select, a charset is auto detected,\nbut if detection fails, the fallback charset will be used.\nNote that this has nothing to do with the subtitle language selection,\nTo configure preferred languages, use the language option in General Option window.\nMplayer option:\n-subcp enca:<language>:<fallback codepage>")
       Spacing = True
       Padding = 8
-      { SubCpCHK CheckBox
-        MoveScaled(1,1,12,4)
-        AutoResize = True
-        Text = ("Charset")
-      }
+      Border = Border.Etched
       { Label2 Label
-        MoveScaled(15,1,10,4)
-        AutoResize = True
-        Text = ("Language")
+        MoveScaled(1,1,24,4)
+        Text = ("Guess codepage for:")
+        Alignment = Align.Left
       }
       { EncaComboBox ComboBox
-        MoveScaled(26,1,14.1429,4)
+        MoveScaled(26,1,33,4)
         Expand = True
         ReadOnly = True
         List = [("xx (use fallback)"), ("aa (Afar)"), ("ab (Abkhazian)"), ("ae (Avestan)"), ("af (Afrikaans)"), ("ak (Akan)"), ("am (Amharic)"), ("an (Aragonese)"), ("ar (Arabic)"), ("as (Assamese)"), ("av (Avaric)"), ("ay (Aymara)"), ("az (Azerbaijani)"), ("ba (Bashkir)"), ("be (Belarusian)"), ("bg (Bulgarian)"), ("bh (Bihari)"), ("bi (Bislama)"), ("bm (Bambara)"), ("bn (Bengali)"), ("bo (Tibetan)"), ("br (Breton)"), ("bs (Bosnian)"), ("ca (Catalan)"), ("ce (Chechen)"), ("co (Corsican)"), ("cr (Cree)"), ("cs (Czech)"), ("cu (Church)"), ("cv (Chuvash)"), ("cy (Welsh)"), ("da (Danish)")].Insert([("de (German)"), ("dv (Divehi)"), ("dz (Dzongkha)"), ("ee (Ewe)"), ("el (Greek)"), ("en (English)"), ("eo (Esperanto)"), ("es (Spanish)"), ("et (Estonian)"), ("eu (Basque)"), ("fa (Persian)"), ("ff (Fulah)"), ("fi (Finnish)"), ("fj (Fijian)"), ("fo (Faroese)"), ("fr (French)"), ("fy (Frisian)"), ("ga (Irish)"), ("gd (Gaelic)"), ("gl (Galician)"), ("gn (Guarani)"), ("gu (Gujarati)"), ("gv (Manx)"), ("ha (Hausa)"), ("he (Hebrew)"), ("hi (Hindi)"), ("ho (Hiri)"), ("hr (Croatian)"), ("ht (Haitian)"), ("hu (Hungarian)"), ("hy (Armenian)"), ("hz (Herero)")]).Insert([("ch (Chamorro)"), ("ia (Interlingua)"), ("id (Indonesian)"), ("ie (Interlingue)"), ("ig (Igbo)"), ("ii (Sichuan)"), ("ik (Inupiaq)"), ("io (Ido)"), ("is (Icelandic)"), ("it (Italian)"), ("iu (Inuktitut)"), ("ja (Japanese)"), ("jv (Javanese)"), ("ka (Georgian)"), ("kg (Kongo)"), ("ki (Kikuyu)"), ("kj (Kuanyama)"), ("kk (Kazakh)"), ("kl (Greenlandic)"), ("km (Khmer)"), ("kn (Kannada)"), ("ko (Korean)"), ("kr (Kanuri)"), ("ks (Kashmiri)"), ("ku (Kurdish)"), ("kv (Komi)"), ("kw (Cornish)"), ("ky (Kirghiz)"), ("la (Latin)"), ("lb (Luxembourgish)"), ("lg (Ganda)"), ("li (Limburgan)")]).Insert([("ln (Lingala)"), ("lo (Lao)"), ("lt (Lithuanian)"), ("lu (Luba-Katanga)"), ("lv (Latvian)"), ("mg (Malagasy)"), ("mh (Marshallese)"), ("mi (Maori)"), ("mk (Macedonian)"), ("ml (Malayalam)"), ("mn (Mongolian)"), ("mo (Moldavian)"), ("mr (Marathi)"), ("ms (Malay)"), ("mt (Maltese)"), ("my (Burmese)"), ("na (Nauru)"), ("nd (Ndebele)"), ("ne (Nepali)"), ("ng (Ndonga)"), ("nl (Dutch)"), ("nn (Norwegian)"), ("no (Norwegian)"), ("nr (Ndebele)"), ("nv (Navajo)"), ("ny (Chichewa)"), ("oc (Occitan)"), ("oj (Ojibwa)"), ("om (Oromo)"), ("or (Oriya)"), ("os (Ossetian)"), ("pa (Panjabi)")]).Insert([("pi (Pali)"), ("pl (Polish)"), ("ps (Pushto)"), ("pt (Portuguese)"), ("qu (Quechua)"), ("rm (Romansh)"), ("rn (Rundi)"), ("ro (Romanian)"), ("ru (Russian)"), ("rw (Kinyarwanda)"), ("sa (Sanskrit)"), ("sc (Sardinian)"), ("sd (Sindhi)"), ("se (Sami)"), ("sg (Sango)"), ("si (Sinhala)"), ("sk (Slovak)"), ("sl (Slovenian)"), ("sm (Samoan)"), ("sn (Shona)"), ("so (Somali)"), ("sq (Albanian)"), ("sr (Serbian)"), ("ss (Swati)"), ("st (Sotho)"), ("su (Sundanese)"), ("sv (Swedish)"), ("sw (Swahili)"), ("ta (Tamil)"), ("te (Telugu)"), ("tg (Tajik)"), ("th (Thai)")]).Insert([("ti (Tigrinya)"), ("tk (Turkmen)"), ("tl (Tagalog)"), ("tn (Tswana)"), ("to (Tonga)"), ("tr (Turkish)"), ("ts (Tsonga)"), ("tt (Tatar)"), ("tw (Twi)"), ("ty (Tahitian)"), ("ug (Uighur)"), ("uk (Ukrainian)"), ("ur (Urdu)"), ("uz (Uzbek)"), ("ve (Venda)"), ("vi (Vietnamese)"), ("wa (Walloon)"), ("wo (Wolof)"), ("xh (Xhosa)"), ("yi (Yiddish)"), ("yo (Yoruba)"), ("za (Zhuang)"), ("zh (Chinese)"), ("zu (Zulu)")])
         Text = ("iso-8859-1")
       }
       { Label1 Label
-        MoveScaled(40,1,8,4)
-        AutoResize = True
-        Text = ("  FallBack")
+        MoveScaled(1,6,24,4)
+        Text = ("If guess fails, use:")
+        Alignment = Align.Left
       }
       { ComboSubCp ComboBox
-        MoveScaled(46,1,14.1429,4)
+        MoveScaled(26,6,33,4)
+        Expand = True
         ReadOnly = True
         List = [("big5"), ("cp936"), ("cp949"), ("cp1250"), ("cp1251"), ("cp1253"), ("cp1256"), ("cp874"), ("euc-kr"), ("gb2312"), ("iso-8859-1"), ("iso-8859-2"), ("iso-8859-3"), ("iso-8859-4"), ("iso-8859-5"), ("iso-8859-6"), ("iso-8859-7"), ("iso-8859-8"), ("iso-8859-9"), ("iso-8859-10"), ("iso-8859-11"), ("iso-8859-12"), ("iso-8859-13"), ("iso-8859-14"), ("iso-8859-15"), ("koi8-r"), ("koi8-r"), ("koi8-u/ru"), ("latin2"), ("shift-jis"), ("utf-8"), ("unicode")].Insert([("windows-1250"), ("windows-1251")])
         Text = ("iso-8859-1")
@@ -285,8 +297,9 @@
       }
     }
     { SubDelayHbox HBox
-      MoveScaled(0,28,61,4)
+      MoveScaled(1,33,61,5)
       ToolTip = ("Subtitle delay.\nMplayer option: -subdelay <sec>")
+      AutoResize = True
       Spacing = True
       Padding = 10
       { MkvWorkaroundCHK CheckBox
@@ -299,31 +312,21 @@
         Text = ("Delay (Decisecs)")
       }
     }
-    { SubFileHBox HBox
-      MoveScaled(0,34,61,4)
-      ToolTip = ("You can specify an external subtitle file.\nMplayer option: -subfile <filename>")
-      Spacing = True
-      Padding = 4
-      { SubFileCHK CheckBox
-        MoveScaled(1,0,17,4)
-        Tag = "customprog="
-        Text = ("SubTitle File")
-      }
-      { SubFileTextBox TextBox
-        MoveScaled(18,0,36,4)
-        Expand = True
-      }
-      { SubFileOpen ToolButton
-        MoveScaled(56,0,3.4286,3.4286)
-        Picture = Picture["icon:/24/open"]
-      }
+    { HBox7 HBox
+      MoveScaled(22,39,21,1)
+      Expand = True
     }
     Index = 2
     Text = ("OSD")
     Picture = Picture["icon:/16/font"]
+    { HBox10 HBox
+      MoveScaled(18,1,21,1)
+      Expand = True
+    }
     { OSDFontChooseHBox HBox
-      MoveScaled(0,0,61,4)
+      MoveScaled(0,6,61,4)
       ToolTip = ("Mplayer option: \n-font")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDFontStyleCHK CheckBox SubTitleControls
@@ -339,25 +342,26 @@
         Text = ("BitStream Vera Sans")
       }
       { OSDFontChooseBTN Button
-        MoveScaled(50,1,6,5)
+        MoveScaled(50,1,6,4)
         Picture = Picture["icon:/16/font"]
       }
     }
     { OSDOutLineHBox HBox
-      MoveScaled(0,6,61,4)
+      MoveScaled(0,10,61,4)
       ToolTip = ("OSD Border font \"strength\", where 0 means plain white fonts and 10 means bold black outline\nMplayer option: -ffactor <number>\n\n")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDOutLineCHK CheckBox SubTitleControls
         Name = "OSDOutLineCHK"
         MoveScaled(1,1,38,4)
-        AutoResize = True
         Text = ("OSD outline strength")
       }
     }
     { OSDOutlineThicknessBox HBox
-      MoveScaled(0,11,61,4)
+      MoveScaled(0,15,61,4)
       ToolTip = ("Sets the font outline thickness\nMplayer option: -subfont-outline")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDOutlineThicknessCHK CheckBox SubTitleControls
@@ -373,8 +377,9 @@
       }
     }
     { OSDBGHbox HBox
-      MoveScaled(0,16,61,4)
+      MoveScaled(0,20,61,4)
       ToolTip = ("Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  values  mean  more\ntransparency.  0 means completely transparent.\nMplayer option:\n-sub-bg-alpha <0-255>\n\n")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDBGCHK CheckBox SubTitleControls
@@ -389,8 +394,9 @@
       }
     }
     { OSDBlurHBox HBox
-      MoveScaled(0,21,61,4)
+      MoveScaled(0,24,61,4)
       ToolTip = ("Sets the font blur radius.\nMplayer option: -subfont-blur")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDBlurCHK CheckBox SubTitleControls
@@ -406,8 +412,9 @@
       }
     }
     { OSDDurationHBox HBox
-      MoveScaled(0,27,61,4)
+      MoveScaled(0,29,61,4)
       ToolTip = ("Set the duration of the OSD messages in ms.\nMplayer option: -osd-duration")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDDurationCHK CheckBox
@@ -421,8 +428,9 @@
       }
     }
     { OSDScaleHBox HBox
-      MoveScaled(0,32,61,4)
+      MoveScaled(0,34,61,4)
       ToolTip = ("Sets the autoscale coefficient of the OSD elements.\nMplayer option: -subfont-osd-scale")
+      AutoResize = True
       Spacing = True
       Padding = 8
       { OSDScaleCHK CheckBox SubTitleControls
@@ -436,6 +444,10 @@
         MoveScaled(40,0,20,4)
         Value = 4
       }
+    }
+    { HBox9 HBox
+      MoveScaled(19,39,21,1)
+      Expand = True
     }
     Index = 0
   }
@@ -479,6 +491,7 @@
     MoveScaled(65,4,59,36)
     Background = &H000000&
     Foreground = Color.Foreground
+    Border = Border.Etched
     NoBackground = True
   }
 }

@@ -2156,6 +2156,10 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
   
+  If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
+    OtherOptions = OtherOptions & "-dvd-device " & "\"" & dvd_device & "\" "
+  Endif
+  
   firstplay = False
   ' If (Not quick) Then
   '   mplayer.CurrentOptions = GetOptionsFromGui() & " " & OtherOptions
@@ -5167,6 +5171,10 @@ End
 Public Sub MenuDvdDrive_Click()
   
   Me.mouse = mouse.wait
+  If Not GeneralOptions.AlreadyLoaded Then 
+    GeneralOptions.MenuLoadDefault_Click()
+    GeneralOptions.AlreadyLoaded = True
+  Endif
   dvd_device = GeneralOptions.DvdDeviceText.text
   Play(False, "dvd://")
   Me.mouse = mouse.default

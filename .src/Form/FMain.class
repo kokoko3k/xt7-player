@@ -2189,13 +2189,9 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   OneSecTimer.start
   If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
     
-
   If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts) Then
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
-          Else 'raise player window for video files only
-      fmain.raise
-      fmain.Minimized = False
     Endif
     
     OneSecTimer_Timer()
@@ -5071,7 +5067,12 @@ Public Sub ExecuteRemote(command As String)
     parameter = NoQuotes(parameter)
     Debug "URI= " & parameter
     ButtonStop_Click()
-    Play(False, parameter)
+    
+    If Not global.IsAudioFile(parameter) Then 'raise xt7 only on video files
+      fmain.raise
+      fmain.Minimized = False
+    Endif
+      Play(False, parameter)
   Endif
 End
 

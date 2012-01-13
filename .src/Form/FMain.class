@@ -2193,7 +2193,11 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts) Then
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
+          Else 'raise player window for video files only
+      fmain.raise
+      fmain.Minimized = False
     Endif
+    
     OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.FullScreen)
     OneSecTimer.start
@@ -5067,8 +5071,6 @@ Public Sub ExecuteRemote(command As String)
     parameter = NoQuotes(parameter)
     Debug "URI= " & parameter
     ButtonStop_Click()
-    fmain.raise
-    fmain.Minimized = False
     Play(False, parameter)
   Endif
 End

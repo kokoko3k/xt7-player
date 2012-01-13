@@ -88,7 +88,6 @@
         }
         { FontColorBox ColorButton
           MoveScaled(17,0,8,4.5714)
-          Expand = True
           Value = &HFFFFFF&
         }
         { FontColorAlphaLabel Label
@@ -101,7 +100,6 @@
         { FontColorSpinBox SpinBox SubTitleControls
           Name = "FontColorSpinBox"
           MoveScaled(37,1,7,4)
-          Expand = True
           MaxValue = 255
         }
       }
@@ -124,6 +122,7 @@
           MoveScaled(28,1,6,4)
           Expand = True
           Text = ("Size")
+          Alignment = Align.Right
         }
         { OutLineSpinBox SpinBox SubTitleControls
           Name = "OutLineSpinBox"
@@ -138,7 +137,7 @@
         }
         { BorderColorSpinBox SpinBox SubTitleControls
           Name = "BorderColorSpinBox"
-          MoveScaled(51,0,8,4)
+          MoveScaled(52,0,7,4)
           MaxValue = 255
         }
       }
@@ -156,7 +155,6 @@
         }
         { ShadowColorBTN ColorButton
           MoveScaled(17,0,8,4.5714)
-          Expand = True
         }
         { ShadowOffsetLabel Label
           MoveScaled(28,1,6,4)
@@ -167,7 +165,6 @@
         { ShadowSpinBox SpinBox SubTitleControls
           Name = "ShadowSpinBox"
           MoveScaled(37,1,7,4)
-          Expand = True
           Value = 2
         }
         { BorderColorAlphaLabel1 Label
@@ -178,8 +175,7 @@
         }
         { ShadowColorSpinBox SpinBox SubTitleControls
           Name = "ShadowColorSpinBox"
-          MoveScaled(51,1,8,4)
-          Expand = True
+          MoveScaled(52,1,7,4)
           MaxValue = 255
           Value = 127
         }

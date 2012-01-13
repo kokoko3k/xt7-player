@@ -117,17 +117,12 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
     If FontStyleCHK.value Then
       AssForceStyle = AssForceStyle & FontName
       AssForceStyle = AssForceStyle & ",FontSize=" & FontString.Font.size
-      AssForceStyle = AssForceStyle & ",Bold=" & FontString.Font.Bold
-      AssForceStyle = AssForceStyle & ",Italic=" & FontString.Font.Italic
+      If FontString.Font.Bold Then AssForceStyle = AssForceStyle & ",Bold=1"
+      If FontString.Font.Italic Then AssForceStyle = AssForceStyle & ",Italic=1" 
     Endif
 
-      AssForceStyle = Replace(AssForceStyle, "Bold=T", "Bold=1")  'gambas bug?
-      AssForceStyle = Replace(AssForceStyle, "Italic=T", "Italic=1") 'gambas bug?
-      AssForceStyle = Replace(AssForceStyle, "Bold=F", "Bold=0")  'gambas bug?
-      AssForceStyle = Replace(AssForceStyle, "Italic=F", "Italic=0") 'gambas bug?
-    
 
-      If alignmentchk.value Then AssForceStyle = AssForceStyle & Alignment
+      If alignmentchk.value Then AssForceStyle = AssForceStyle & "," & Alignment
     
       If OutlineCHK.value Then
         AssForceStyle = AssForceStyle & Outline

@@ -467,8 +467,7 @@
             AutoResize = True
             Text = ("DVD Device")
           }
-          { DVDDeviceText ComboBox notifyobj
-            Name = "DVDDeviceText"
+          { DVDDeviceText ComboBox
             MoveScaled(16,0,25,4)
             Expand = True
             Text = ("Please, choose")

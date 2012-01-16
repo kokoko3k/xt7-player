@@ -797,9 +797,10 @@ Public Function FindCdDvdDevices() As String[]
   Dim device, pointsto, devicefullpath As String
   Dim cdpattern As String = "cdr*"
   Dim dvdpattern As String = "dvd*"
+  Dim srpattern As String = "sr*"
   Dim devdir As String = "/dev/"
   'find cdroms,cdrws,dvdroms,dvdrws
-  devices = Dir(devdir, cdpattern, gb.device).Insert(Dir(devdir, dvdpattern, gb.device)).sort()
+  devices = Dir(devdir, cdpattern, gb.device).Insert(Dir(devdir, dvdpattern, gb.device)).Insert(Dir(devdir, srpattern, gb.device)).sort()
   'convert them to a link (eventually with -e)
   For Each device In devices
     devicefullpath = devdir & device
@@ -898,6 +899,16 @@ Public Sub notifyobj_Change()
       If timesloaded > 1 Then global.ManageNotifies_Change(Last)
    ' Endif
   Endif
+End
+
+
+
+Public Sub CDDADeviceText_MouseDown()
+  FillCdda()
+End
+
+Public Sub DVDDeviceText_MouseDown()
+  FillDvd()
 End
 
 

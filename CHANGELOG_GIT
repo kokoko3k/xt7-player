@@ -2,7 +2,8 @@ Git changes:
 --------------------------------------
 Jan 16 2012
   CHANGE: Optionally use cddb to get audio cd information
-
+  FIX:    Add /dev/sr* to the list of auto-guessed cd/dvd devices
+  
 Jan 13 2012
   FIX:    Ass subtitle alignment was broken, fixed
   CHANGE: Raise player window for video files only

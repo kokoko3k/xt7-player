@@ -3,7 +3,8 @@ Breakpoint[1]="FMain.7535"
 Count=1
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="devices"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -482,6 +483,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/control]
 Geometry=[0,0,301,301]
 
+[DebugWindow/devices]
+Geometry=[48,-4,210,210]
+
 [DebugWindow/devices2]
 Geometry=[0,41,344,344]
 
@@ -626,6 +630,9 @@ Geometry=[61,256,344,344]
 [DebugWindow/playerprocess]
 Geometry=[588,61,301,301]
 
+[DebugWindow/playerprocess.lines]
+Geometry=[48,-4,210,210]
+
 [DebugWindow/pmts]
 Geometry=[0,0,344,344]
 
@@ -740,18 +747,19 @@ SearchString=True
 File[1]=".src/Form/XConfigureAudioDriver.form"
 File[2]=".src/Form/XConfigureAudioDriver.class:286.6"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:2598.47"
-File[5]=".src/Classi/MplayerClass.class:198.25"
+File[4]=".src/Form/FMain.class:1141.19"
+File[5]=".src/Classi/MplayerClass.class:288.4"
 File[6]=".src/Form/RealtimeForm.form"
 File[7]=".src/Form/AudioEqualizer.form"
 File[8]=".src/Form/VideoEqualizer.form"
 File[9]=".src/Form/VideoEqualizer.class:13.15"
 File[10]=".src/Form/HotKeys.form"
 Active=11
-File[11]="CHANGELOG_GIT:3.0"
+File[11]="CHANGELOG_GIT:4.65"
 File[12]="AA_ToDo:58.54"
 File[13]=".src/0_Moduli/Global.module:165.10"
-File[14]=".src/Form/GeneralOptions.class:3.19"
+File[14]=".src/Form/GeneralOptions.class:910.0"
+Fold[14]=[825]
 File[15]=".src/Classi/DbusProperties.class:395.3"
 File[16]=".src/Classi/mpris.class:65.13"
 File[17]=".src/Form/DVBTuner.form"

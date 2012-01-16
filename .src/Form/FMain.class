@@ -2830,13 +2830,25 @@ Public Sub OneSecTimer_Timer()
 End
 
 Private Sub UpdateVolumeTooltip()
-  
+
   Dim tip As String
   Dim tipw As Integer
-  
+  Dim underw As Integer
   tip = "   Volume: " & CStr(SaveVolumeSlider.value * (overboost Div SaveVolumeSlider.MaxValue)) & "%    "
+  OverlayTip.TextLabel1.font = Statusbar1.font
+  OverlayTip.TextLabel1.font.bold = Statusbar1.font.bold
   Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip)
-  OverlayTip.Redraw(tip, mouse.screenx - (tipw Div 2), controlframe.screeny - OverlayTip.h)
+  underw = OverlayTip.TextLabel1.Font.TextWidth(" 00:00:00 / 00:00:00 ")
+  OverlayTip.Textlabel1.text = tip
+  OverlayTip.Textlabel1.ignore = True
+  OverlayTip.TextLabel1.Reparent(bottomvbox)
+  If tipw < underw Then tipw = underw + 2
+  OverlayTip.TextLabel1.w = tipw 
+  OverlayTip.Textlabel1.x = bottomvbox.w - OverlayTip.Textlabel1.w
+  OverlayTip.TextLabel1.h = statusbar1.h
+  OverlayTip.Textlabel1.y = statusbar1.y
+ 
+'  OverlayTip.Redraw(tip, mouse.screenx - (tipw Div 2), controlframe.screeny - OverlayTip.h)
   
 End
 
@@ -2860,38 +2872,37 @@ Public Sub ShowVolBtn_enter()
   VolumeFocused = True
   UpdateVolumeTooltip()
   UpdateVolumeTooltip()
-  OverlayTip.raise
+ 'OverlayTip.raise
   UpdateVolumeTooltip()
   
 End
 
 Public Sub ShowVolBtn_leave()
   
-  If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
-    VolumeFocused = False
-    OverlayTip.hide
-  Endif
-  
+  ' If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
+  '   VolumeFocused = False
+  '   OverlayTip.hide
+  ' Endif
+  OverlayTip.TextLabel1.reparent(OverlayTip)
 End
 
 Public Sub SaveVolumeSlider_enter()
-  
   If Global.MouseInside(SaveVolumeSlider) Then
     VolumeFocused = True
     UpdateVolumeTooltip()
-    OverlayTip.Raise
+    'OverlayTip.Raise
     UpdateVolumeTooltip()
   Endif
-  
 End
 
 Public Sub SaveVolumeSlider_leave()
   
-  If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
-    VolumeFocused = False
-    OverlayTip.hide
-  Endif
+  ' If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
+  '   VolumeFocused = False
+  '   OverlayTip.hide
+  ' Endif
   
+  OverlayTip.TextLabel1.reparent(OverlayTip)
 End
 
 Public Sub SaveVolumeSlider_MouseUp()
@@ -2935,7 +2946,6 @@ End
 
 
 Public Sub SaveVolumeSlider_Change()
-  
   OneSecTimer.delay = OneSecTimer.delay * 100
   If Not (SaveVolumeSlider.tag = "timer") Then
     mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue))
@@ -2944,7 +2954,6 @@ Public Sub SaveVolumeSlider_Change()
   OneSecTimer.delay = OneSecTimer.delay Div 100
   'Call GetProperty"volume" now, so onesectimer will found the answer
   mplayer.Send("get_property volume")
-  
 End
 
 Public Sub SeekBar_Change()

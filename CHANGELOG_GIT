@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Jan 16 2012
+  CHANGE: don't use a window to popup volume information, works better with some WMs (metacity)
   FIX:    Always use ISO-8859-1 (and convert from/to desktop charset ) to write and read tags from audio files.
   CHANGE: Optionally use cddb to get audio cd information
   FIX:    Add /dev/sr* to the list of auto-guessed cd/dvd devices
@@ -22,15 +23,15 @@ Jan 10 2012
 
 Jan 9 2012 
   FIX:    Unsharp video filter was deleted by mistake
-  CHANGE: Workaround an problem wrong or no length reported with *ts files 
+  CHANGE: Workaround a problem with wrong or no length reported by mplayer with *ts files 
   NEW:    Support for more subtitle encodings
 
 Jan 5 2012
-  FIX:    Do not use suto to renice mplayer, if it ask for a pass xt7 can't exit
+  FIX:    Do not use sudo to renice mplayer, if it ask for a pass xt7 can't exit
   CHANGE: Use x11 as default subtitle preview driver (prevent crashes on buggy catalyst drivers)
   NEW:    Use a background/transparent png under the play controls (backpanel.png)
   FIX:    Runtime error on startup with no existing profiles
-  CHANGE: Removed startup animation as it seems to cause problems on 64bit
+  CHANGE: Removed startup animation as it seems to cause problems on 64bit and/or catalyst due to xv driver
   FIX:    If there's no cookie file, don't use "-cookies-file" option
 
 Jan 4 2012
@@ -85,18 +86,18 @@ Dec 06..13 2011
 
 
 Dec 06, 2011
-  GITFIX: Removed some wrong tooltip messages
-  FIX: Unknown symbol 'DvdminCacheCheckbox' in class 'GeneralOptions'.
+  FIX:    Removed some wrong tooltip messages
+  FIX:    Unknown symbol 'DvdminCacheCheckbox' in class 'GeneralOptions'.
 
 Dec 05, 2011
   FIX:    Copy factory settings to default profile if no previous configuration found
   CHANGE: 'Little bigger' icons in taskbar
   FIX:    Changed titlebar message when user didn't set a maximum cache value
-  GITFIX: Don't save scrollviews visibility
+  FIX:    Don't save scrollviews visibility
   FIX:    Sometimes xt7 failed to switch profiles at runtime
   FIX:    Check if confdir exists before trying to make any parent folder
   FIX:    Don't display the cover twice on start
-  GITFIX: but still update meters!
+  FIX:    ...but still update meters!
   FIX:    Catch row highlight errors
 
 

@@ -1,10 +1,9 @@
 [Breakpoints]
-Breakpoint[1]="FMain.7535"
+Breakpoint[1]="FMain.7544"
 Count=1
 
 [DebugWindow]
-Count=1
-DebugWindow[1]="devices"
+Count=0
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -744,40 +743,15 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/XConfigureAudioDriver.form"
-File[2]=".src/Form/XConfigureAudioDriver.class:286.6"
-File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:5259.13"
-File[5]=".src/Classi/MplayerClass.class:288.4"
-File[6]=".src/Form/RealtimeForm.form"
-File[7]=".src/Form/AudioEqualizer.form"
-File[8]=".src/Form/VideoEqualizer.form"
-File[9]=".src/Form/VideoEqualizer.class:13.15"
-File[10]=".src/Form/HotKeys.form"
-Active=11
-File[11]="CHANGELOG_GIT:3.2"
-File[12]="AA_ToDo:27.27"
-File[13]=".src/0_Moduli/Global.module:165.10"
-File[14]=".src/Form/GeneralOptions.class:910.0"
-Fold[14]=[825]
-File[15]=".src/Classi/DbusProperties.class:395.3"
-File[16]=".src/Classi/mpris.class:65.13"
-File[17]=".src/Form/DVBTuner.form"
-File[18]=".src/Form/GeneralOptions.form"
-File[19]=".src/Form/CountDown.class:24.17"
-File[20]=".src/Classi/PlaylistClass.class:42.0"
-File[21]=".src/Form/SubAndOsd.form"
-File[22]=".src/Form/SubAndOsd.class:123.0"
-File[23]=".src/Form/Chains.form"
-File[24]=".src/Form/Chains.class:28.2"
-File[25]="backpanel.png"
-File[26]=".src/Form/ServiceForm.form"
-File[27]=".src/Form/AudioForm.class:102.7"
-File[28]=".src/Classi/Meters.class:61.0"
-File[29]=".src/Form/CoverManager.class:265.20"
-File[30]=".src/Form/AudioForm.form"
-File[31]=".src/Classi/TagLib.class:186.14"
-Count=31
+Active=1
+File[1]="CHANGELOG_GIT:3.2"
+File[2]=".src/Form/FMain.form"
+File[3]=".src/Form/OverlayTip.form"
+File[4]=".src/Form/FMain.class:2847.40"
+File[5]=".src/Form/OverlayTrayTip.form"
+File[6]=".src/Form/OverlayTip.class:19.0"
+File[7]=".src/Form/GeneralOptions.form"
+Count=7
 
 [Watches]
 Count=11

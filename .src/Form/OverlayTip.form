@@ -11,6 +11,7 @@
   Arrangement = Arrange.Fill
   { TextLabel1 TextLabel
     MoveScaled(0,0,14,4)
+    Ignore = True
     Text = ("TextLabel1")
     Alignment = Align.Right
   }

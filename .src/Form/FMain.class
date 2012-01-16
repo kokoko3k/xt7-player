@@ -2833,22 +2833,25 @@ Private Sub UpdateVolumeTooltip()
 
   Dim tip As String
   Dim tipw As Integer
+  Dim volume As Integer
   Dim underw As Integer
-  tip = "   Volume: " & CStr(CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))) & "%    "
+  volume = CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))
+  tip = "   Volume: " & CStr(volume) & "%    "
+  If volume > 100 Then 
+    OverlayTip.TextLabel1.Foreground = color.red
+      Else
+    OverlayTip.TextLabel1.Foreground = color.white
+  Endif
   OverlayTip.TextLabel1.font = Statusbar1.font
   OverlayTip.TextLabel1.font.bold = Statusbar1.font.bold
   Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip)
   underw = OverlayTip.TextLabel1.Font.TextWidth(" 00:00:00 / 00:00:00 ")
   OverlayTip.Textlabel1.text = tip
-  OverlayTip.Textlabel1.ignore = True
   OverlayTip.TextLabel1.Reparent(bottomvbox)
   If tipw < underw Then tipw = underw + 2
-  OverlayTip.TextLabel1.w = tipw 
-  OverlayTip.Textlabel1.x = bottomvbox.w - OverlayTip.Textlabel1.w
-  OverlayTip.TextLabel1.h = statusbar1.h
-  OverlayTip.Textlabel1.y = statusbar1.y
- 
-'  OverlayTip.Redraw(tip, mouse.screenx - (tipw Div 2), controlframe.screeny - OverlayTip.h)
+  
+  OverlayTip.TextLabel1.Move(bottomvbox.w - OverlayTip.Textlabel1.w, statusbar1.y, tipw, statusbar1.h)
+
   
 End
 

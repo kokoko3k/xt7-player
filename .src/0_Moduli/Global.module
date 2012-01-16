@@ -168,6 +168,16 @@ Public Function IsNetworkURI(URI As String) As Boolean
   Endif
 End
 
+Public Function IsCddb(URI As String) As Boolean
+    Return (Lower(uri) Like "cddb://*")
+End
+Public Function IsCdda(URI As String) As Boolean
+    Return (Lower(uri) Like "cdda://*")
+End
+Public Function IsCdaudio(URI As String) As Boolean
+    Return (Lower(uri) Like "cdd?://*") Or (Lower(uri) Like "cdd?://") 
+End
+
 Public Sub AddUserExtensions(exts As String)
   Dim curext As String
   Dim returnexts As String = ""

@@ -1042,7 +1042,11 @@ Public Sub FillPropertiesGrid()
   Next 'i
   
   PropertiesGrid[0, 1].text = mplayer.Media_FullPath
-  PropertiesGrid[1, 1].text = File.Name(mplayer.Media_FullPath)
+  If global.IsCddb(mplayer.Media_FullPath_Playing) Then 
+    PropertiesGrid[1, 1].text = mplayer.media_name & " " & ("(Audio CD)")
+      Else
+    PropertiesGrid[1, 1].text = File.Name(mplayer.Media_FullPath)
+  Endif
   PropertiesGrid[2, 1].text = mplayer.Media_Size
   PropertiesGrid[3, 1].text = mplayer.FormatTime(mplayer.Media_Length)
   PropertiesGrid[4, 1].text = mplayer.Media_Type
@@ -1100,7 +1104,7 @@ Public Sub FillPropertiesGrid()
     If (Trim(PropertiesGrid[13, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[13, 1].text & "Hz"
   Endif
 
-  If (global.IsAudioFile(mplayer.Media_FullPath)) Or (global.IsNetworkURI(mplayer.Media_FullPath)) Then
+  If (global.IsAudioFile(mplayer.Media_FullPath)) Or (global.IsNetworkURI(mplayer.Media_FullPath)) Or (Lower(mplayer.Media_FullPath) Like "cdd?://*") Then
     AutoresizeAudioForm()
   Endif
   
@@ -2171,7 +2175,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   ButtonPlay.enabled = False
   
   Print mplayer.currentoptions
-  If (Fullpath Like "dvd://*") Or (Fullpath Like "dvdnav://*") Or (Fullpath Like "cdda://*") Or (Fullpath Like "cddb://*") Then
+  If global.IsCdaudio(fullpath) Then
     GeneralOptions.FillCdAndDvdDevices()
   Endif
   
@@ -2336,7 +2340,7 @@ Public Function SetRightCache() As String
       If .DvdCacheCheckbox.Value Then cachesize = "0" 'dvdnav wont work with a cache
   
   
-    Else If ((mplayer.Media_FullPath Like "cdda://*") Or (mplayer.Media_FullPath Like "cddb://*")) Then
+    Else If global.IsCdaudio(mplayer.Media_FullPath) Then
       If .CDDACacheCheckbox.Value Then cachesize = .CDDACacheSpinBox.value & " -cache-min 0"
   
   
@@ -2588,6 +2592,7 @@ Public Sub UpdateStatusBar()
   
  
     pretext = file.BaseName(mplayer.Media_FullPath_Playing)
+    If global.IsCddb(mplayer.Media_FullPath_Playing) Then pretext = mplayer.media_name & " " & ("(Audio CD)")
     If IsDvd Then Pretext = "DVD: " & mplayer.FindTagValue("ID_DVD_VOLUME_ID")
     If mplayer.IsNetworkURI Then
       If mplayer.ICYStreamTitle <> "" Then
@@ -6518,21 +6523,33 @@ Public Sub MenuCDDA_Click()
   cddagrid.Columns[0].width = -1
   SetCddaTabVisibility(True)
   'play media
-  Play(False, "cdda://1")
+  If GeneralOptions.CDDBCheckbox.value Then 
+    Play(False, "cddb://1")
+      Else
+    Play(False, "cdda://1")
+  Endif
   'get cd informations
   numtracks = mplayer.FindTagValue("ID_CDDA_TRACKS")
   If numtracks <> "" Then
     CDDAGrid.Header = GridView.Horizontal
     CDDAGrid.Rows.count = 0
-    CDDAGrid.columns.count = 2
+    CDDAGrid.columns.count = 3
     CDDAGrid.Columns[0].text = ("Track")
-    CDDAGrid.Columns[1].text = ("Length")
+    CDDAGrid.Columns[1].text = ("Name")
+    CDDAGrid.Columns[2].text = ("Length")
     CDDAGrid.Clear
     For track = 1 To numtracks
       Length = "00:" & Left(mplayer.FindTagValue("ID_CDDA_TRACK_" & track & "_MSF"), 5)
       CDDAGrid.Rows.count = CDDAGrid.Rows.count + 1
-      CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cdda://") & track
-      CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = Length
+      
+      If global.IsCddb(mplayer.Media_FullPath) Then
+        CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cddb://") & track
+        CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = (mplayer.cddbtracks[track - 1])
+          Else
+        CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cdda://") & track
+      Endif
+      
+      CDDAGrid[CDDAGrid.Rows.count - 1, 2].text = Length
     Next 'track
     cddagrid.Columns[0].width = -1
     cddagrid.Columns[1].width = -1
@@ -7807,3 +7824,14 @@ Public Sub StreamsSubtitlesMenu_show()
   Endif
 End
 
+Public querymp As MplayerClass
+Public Sub Button5_Click()
+  querymp = New MplayerClass
+  querymp.do_play("cddb://1", "-endpos 0 -cdrom-device " & GeneralOptions.CDDADeviceText.text)
+  Repeat
+    Wait 0.1
+  Until querymp.ProcessRunningOvr()
+  Debug querymp.Media_Album
+  Debug querymp.cddbtracks
+  Debug querymp.media_title
+End

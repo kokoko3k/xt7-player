@@ -19,6 +19,7 @@ Private Const MaxHeadersDVD As Integer = 400
 Private Const MaxHeadersFile As Integer = 400
 
 Private Playerprocess As Process
+Private cddbqueryprocess As Process
 Private RenicerProcess As Process
 Private Playeroutput As String = ""
 Public GotHeaders As Boolean = False
@@ -91,7 +92,7 @@ Public Media_Year As String
 Public Media_CreationDate As String
 Public audiotracks As New String[]
 Public subtitletracks As New String[]
-
+Public cddbtracks As New String[]
 
 'Realtime Media variables
 Public currentvolume As String = "0"
@@ -152,8 +153,11 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
 
   Dim tmp As String[]
   Dim media As New TagLib
+  Dim tracks As Integer = 0
+  Dim cddbtrack As Integer = 0
+  Dim i As Integer = 0
   If Media_FullPath = "" Then Return
-  
+  cddbtracks.clear()
   AudioOnly = Media_AudioOnly()
 
 
@@ -187,21 +191,42 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
         Debug "got info from taglib on " & Media_FullPath & " --"
         media.tlFree()
           Else  'there was a problem with TagLib Class initialization, fallback to mplayer
-                'or was a network uri
+                'or was a network uri or a cddb 
         tmp = Split(Media_GetLength(), ".")
         tmp = Split(tmp[0], ",")
         Media_Length = tmp[0]
-        Try Media_Artist = DConv(FindAudioTag("artist"))
-        Try Media_Author = DConv(FindAudioTag("author"))
-        Try Media_Genre = DConv(FindAudioTag("genre"))
-        Try Media_Album = DConv(FindAudioTag("album"))
-        Try Media_Year = DConv(FindAudioTag("year"))
-        Try Media_CreationDate = DConv(FindAudioTag("creation date"))
-        Try Media_TrackNo = DConv(FindAudioTag("track"))
-        Try Media_Title = DConv(FindAudioTag("title"))
-        Try Media_name = DConv(FindAudioTag("name"))
-        Try Media_Comment = DConv(FindAudioTag("comment")) ' & Media_ExtraComment
-        Try Media_Comments = DConv(FindAudioTag("comments")) ' & Media_ExtraComment
+        
+        If global.IsCddb(Media_FullPath) Then
+          Try cddbtrack = Split(Media_FullPath, "/ ", "", True, False)[1]
+          Try Media_Artist = FindTagValue("ID_CDDB_INFO_ARTIST")
+          Try Media_Author = FindTagValue("ID_CDDB_INFO_ARTIST")
+          Try Media_Genre = FindTagValue("ID_CDDB_INFO_GENRE")
+          Try Media_Album = FindTagValue("ID_CDDB_INFO_ALBUM")
+          Try tracks As Integer = FindTagValue("ID_CDDB_INFO_TRACKS")
+          If Not Error Then 
+            For i = 1 To tracks
+              Try cddbtracks.Add(FindTagValue("ID_CDDB_INFO_TRACK_" & i & "_NAME"))
+              If Error Then Break
+            Next 'i 
+          Endif
+          Try Media_TrackNo = cddbtrack
+          Try Media_Title = cddbtracks[cddbtrack - 1]
+          Try Media_Name = Media_title
+               Else
+          Try Media_Artist = DConv(FindAudioTag("artist"))
+          Try Media_Author = DConv(FindAudioTag("author"))
+          Try Media_Genre = DConv(FindAudioTag("genre"))
+          Try Media_Album = DConv(FindAudioTag("album"))
+          Try Media_Year = DConv(FindAudioTag("year"))
+          Try Media_CreationDate = DConv(FindAudioTag("creation date"))
+          Try Media_TrackNo = DConv(FindAudioTag("track"))
+          Try Media_Title = DConv(FindAudioTag("title"))
+          Try Media_name = DConv(FindAudioTag("name"))
+          Try Media_Comment = DConv(FindAudioTag("comment")) ' & Media_ExtraComment
+          Try Media_Comments = DConv(FindAudioTag("comments")) ' & Media_ExtraComment
+        Endif
+        
+        
       Endif
           Else 'for not audio only files, use mplayer in idle mode.      
         tmp = Split(Media_GetLength(), ".")
@@ -433,8 +458,7 @@ Private Function WaitForHeaders() As Boolean
   If Media_FullPath Like "*://*" Then MaxWait = 800 'increase timeout on uries. (800 = about 8secs)
   If Media_FullPath Like "dvd://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
   If Media_FullPath Like "dvdnav://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
-  If Media_FullPath Like "cdda://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
-  If Media_FullPath Like "cddb://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
+  If Global.IsCdaudio(Media_FullPath) Then MaxWait = 3000 ' for cd, we'll wait 30 secs.
   If Not Quick And Trim(Media_FullPath) <> "" Then
     While (MediaHeaders.count < maxheaders) And ProcessRunningOvr() And (Not GotHeaders) And (MaxWait > 0)
       'as wait steals cpu cycles, underlaying mplayer could soffer for it and don't output anything,
@@ -1318,3 +1342,26 @@ Public Function GetListOf(TheType As String) As String[]
   Return outlist
 End
 
+
+
+
+
+Public Function QueryCDDB(CdromDevice As String)
+  Dim cmdline As String
+  cmdline = "mplayer  -noconfig all cddb:// -identify -endpos 0 -v -v -v -v -cdrom-device " & CdromDevice & " </dev/null"
+  Debug cmdline
+  cddbqueryprocess = Shell cmdline For Read As "cddbqueryprocess"
+End
+
+Public Sub cddbqueryprocess_read()
+  Dim tmpout As String
+  'Debug cddbqueryprocess.ReadLine()
+   Try Read #playerprocess, tmpout, -1024
+   If Not Error Then Debug tmpout
+End
+
+Public Function cddbqueryprocess_error(stderr As String)
+  
+  Debug stderr
+  
+End

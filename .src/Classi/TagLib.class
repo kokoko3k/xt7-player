@@ -95,14 +95,14 @@ Public Function Init(AudioFileName As String) As Boolean
     Return False
   Endif
   If taglib_file_is_valid(TagLibFileP) Then
-    taglib_set_strings_unicode(False)
+    taglib_set_strings_unicode(False) 'Use iso-8859-1
     TagLibTagP = taglib_file_tag(TagLibFileP)
     TagLibAudioPropertiesP = taglib_file_audioproperties(TagLibFileP)
-    Title = taglib_tag_title(TagLibTagP)
-    Artist = taglib_tag_artist(TagLibTagP)
-    Album = taglib_tag_album(TagLibTagP)
-    Comment = taglib_tag_comment(TagLibTagP)
-    Genre = taglib_tag_genre(TagLibTagP)
+    Title = Conv(taglib_tag_title(TagLibTagP), "ISO-8859-1", Desktop.Charset)
+    Artist = Conv(taglib_tag_artist(TagLibTagP), "ISO-8859-1", Desktop.Charset)
+    Album = Conv(taglib_tag_album(TagLibTagP), "ISO-8859-1", Desktop.Charset)
+    Comment = Conv(taglib_tag_comment(TagLibTagP), "ISO-8859-1", Desktop.Charset)
+    Genre = Conv(taglib_tag_genre(TagLibTagP), "ISO-8859-1", Desktop.Charset)
     MyYear = taglib_tag_year(TagLibTagP)
     If MyYear = "0" Then MyYear = ""
     Track = taglib_tag_track(TagLibTagP)
@@ -146,6 +146,15 @@ Public Function tlFree() As Boolean
   Return True
 End
 
+
+Public Sub DesktopToIso88591(ByRef tag As String)
+  tag = Conv(tag, Desktop.Charset, "ISO-8859-1")
+End
+Public Sub Iso88591ToDesktop(ByRef tag As String)
+  tag = Conv(tag, "ISO-8859-1", Desktop.Charset)
+End
+
+
 Public Function WriteTags(FullPath As String, Album As String, Artist As String, Title As String, MyYear As String, Genre As String, TrackNo As String, Comment As String) As Boolean
   If Not (Init_OK) Then 
     Debug "TagLib not Initialized, use .init()"
@@ -168,11 +177,13 @@ Public Function SetTitle(titlex As String) As Boolean
     Return False
   Endif
   If titlex = "" Then Return True
+  DesktopToIso88591(ByRef titlex)
   Try taglib_tag_set_title(TagLibTagP, titlex)
   If Error Then 
     Debug "Error"
     Return False
   Endif
+  Iso88591ToDesktop(ByRef titlex)
   title = titlex
   Return True
 End
@@ -183,11 +194,13 @@ Public Function SetArtist(artistx As String) As Boolean
     Return False
   Endif
   If artistx = "" Then Return True
+  DesktopToIso88591(ByRef artistx)
   Try taglib_tag_set_artist(TagLibTagP, artistx)
   If Error Then 
     Debug "Error"
     Return False
   Endif
+  Iso88591ToDesktop(ByRef artistx)
   artist = artistx
   Return True
 End
@@ -198,11 +211,13 @@ Public Function SetAlbum(albumx As String) As Boolean
     Return False
   Endif
   If albumx = "" Then Return True
+  DesktopToIso88591(ByRef albumx)
   Try taglib_tag_set_album(TagLibTagP, albumx)
   If Error Then 
     Debug "Error"
     Return False
   Endif
+  Iso88591ToDesktop(ByRef albumx)
   album = albumx
   Return True
 End
@@ -213,11 +228,13 @@ Public Function SetComment(commentx As String) As Boolean
     Return False
   Endif
   If commentx = "" Then Return True
+  DesktopToIso88591(ByRef commentx)
   Try taglib_tag_set_comment(TagLibTagP, commentx)
   If Error Then 
     Debug "Error"
     Return False
   Endif
+  Iso88591ToDesktop(ByRef commentx)
   comment = commentx
   Return True
 End
@@ -228,11 +245,13 @@ Public Function SetGenre(genrex As String) As Boolean
     Return False
   Endif
   If genrex = "" Then Return True
+  DesktopToIso88591(ByRef genrex)
   Try taglib_tag_set_genre(TagLibTagP, genrex)
   If Error Then 
     Debug "Error"
     Return False
   Endif
+  Iso88591ToDesktop(ByRef genrex)
   genre = genrex
   Return True
 End

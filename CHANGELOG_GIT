@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Jan 16 2012
+  FIX:    Display correct volume value when the maximum can be over 100%
   CHANGE: don't use a window to popup volume information, works better with some WMs (metacity)
   FIX:    Always use ISO-8859-1 (and convert from/to desktop charset ) to write and read tags from audio files.
   CHANGE: Optionally use cddb to get audio cd information

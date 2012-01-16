@@ -2834,7 +2834,7 @@ Private Sub UpdateVolumeTooltip()
   Dim tip As String
   Dim tipw As Integer
   Dim underw As Integer
-  tip = "   Volume: " & CStr(SaveVolumeSlider.value * (overboost Div SaveVolumeSlider.MaxValue)) & "%    "
+  tip = "   Volume: " & CStr(CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))) & "%    "
   OverlayTip.TextLabel1.font = Statusbar1.font
   OverlayTip.TextLabel1.font.bold = Statusbar1.font.bold
   Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip)

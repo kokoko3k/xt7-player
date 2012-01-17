@@ -6557,7 +6557,8 @@ Public Sub MenuCDDA_Click()
       
       If global.IsCddb(mplayer.Media_FullPath) Then
         CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cddb://") & track
-        CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = (mplayer.cddbtracks[track - 1])
+        Try CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = (mplayer.cddbtracks[track - 1])
+        If Error Then CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = ("Unknown entry (connection problem?)")
           Else
         CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cdda://") & track
       Endif

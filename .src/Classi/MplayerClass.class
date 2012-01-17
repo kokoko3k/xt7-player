@@ -206,7 +206,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
           If Not Error Then 
             For i = 1 To tracks
               Try cddbtracks.Add(FindTagValue("ID_CDDB_INFO_TRACK_" & i & "_NAME"))
-              If Error Then Break
+              If Error Then cddbtracks.add(("Unknown entry (connection problem?)"))
             Next 'i 
           Endif
           Try Media_TrackNo = cddbtrack

@@ -1095,7 +1095,11 @@ Public Sub FillPropertiesGrid()
     audioform.label16.text = PropertiesGrid[11, 1].text
     audioform.label18.text = PropertiesGrid[1, 1].text
     audioform.label19.text = PropertiesGrid[3, 1].text
-    audioform.label20.text = PropertiesGrid[2, 1].text & "KB"
+    If Trim(PropertiesGrid[2, 1].text) <> "" Then 
+      audioform.label20.text = PropertiesGrid[2, 1].text & "KB"
+        Else
+       audioform.label20.text = "Unknown" 
+    Endif
     audioform.RadioLabel.text = ""
 
     If (Trim(PropertiesGrid[14, 1].text) <> "") Then audioform.label21.text = PropertiesGrid[14, 1].Text

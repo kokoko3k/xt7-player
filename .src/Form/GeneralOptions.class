@@ -412,8 +412,9 @@ End
 
 Public Sub LoadExcludeDir(ProfileName As String)
   Dim filename As String = ProfileName & ".profile/" & "Exclude.txt"
-  Dim ItemList As String[] = Split(file.Load(filename), "\n", "", True)
+  Dim ItemList As String[]
   Dim i As Integer
+  Try itemlist = Split(file.Load(filename), "\n", "", True)
   NoParseExcludedListbox.clear
   For i = 0 To ItemList.count - 1
     NoParseExcludedListbox.Add(itemlist[i])

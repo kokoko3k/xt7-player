@@ -1,5 +1,5 @@
 [Breakpoints]
-Breakpoint[1]="FMain.7553"
+Breakpoint[1]="FMain.7556"
 Count=1
 
 [DebugWindow]
@@ -332,6 +332,12 @@ Geometry=[11,111,522,603]
 [DebugWindow/SourceList]
 Geometry=[0,41,344,344]
 
+[DebugWindow/Split(Drag.Paste("text|plain"), "\n\r", "", True)]
+Geometry=[48,-4,210,210]
+
+[DebugWindow/Split(Drag.Paste("text|uri-list"), "\n\r", "", True)]
+Geometry=[48,-4,210,210]
+
 [DebugWindow/Split(dragdata, "\n\r", "", True)]
 Geometry=[1276,-3,210,210]
 
@@ -492,7 +498,7 @@ Geometry=[0,41,344,344]
 Geometry=[0,41,344,344]
 
 [DebugWindow/droppedfiles]
-Geometry=[0,212,1198,387]
+Geometry=[0,212,588,458]
 
 [DebugWindow/fields]
 Geometry=[0,0,344,344]
@@ -744,10 +750,10 @@ SearchString=True
 
 [OpenFile]
 Active=1
-File[1]="CHANGELOG_GIT:3.75"
+File[1]="CHANGELOG_GIT:3.85"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:3592.20"
+File[4]=".src/Form/FMain.class:2113.57"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
 File[7]=".src/Form/GeneralOptions.form"
@@ -759,7 +765,8 @@ File[12]=".src/Classi/MplayerClass.class:218.56"
 File[13]=".src/Classi/FlashClass.class:120.88"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"
-Count=15
+File[16]=".src/0_Moduli/Global.module:472.25"
+Count=16
 
 [Watches]
 Count=11

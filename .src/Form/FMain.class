@@ -2541,21 +2541,24 @@ Public Sub UpdateOverboostLevel()
 End
 
 Public Sub VideoAreaGroup_Drop()
-  
-  Dim droppedfiles As String[]
-  
-  droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True) 
-  droppedfiles[0] = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfiles[0])))
-  If Not ((droppedfiles[0] Like "*.iso") Or (droppedfiles[0] Like "*VIDEO_TS")) Then
-    If mplayer.IsSubFile(droppedfiles[0]) Then
-      mplayer.SubtitleAdd(droppedfiles[0]) 'add the subtitle and append it to mplayer.subtitletracks
+
+  Dim droppedfile As String
+  Try droppedfile = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)[0]
+  If Error Then 
+    Try droppedfile = Split(Drag.Paste("text/plain"), "\n\r", "", True)[0]
+    If Error Then Return
+  Endif
+  droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
+  If Not ((droppedfile Like "*.iso") Or (droppedfile Like "*VIDEO_TS")) Then
+    If mplayer.IsSubFile(droppedfile) Then
+      mplayer.SubtitleAdd(droppedfile) 'add the subtitle and append it to mplayer.subtitletracks
       Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
     Else
-      mplayer.Media_FullPath = droppedfiles[0]
+      mplayer.Media_FullPath = droppedfile
       Play(False)
     Endif
   Else
-    dvd_device = droppedfiles[0]
+    dvd_device = droppedfile
     Play(False, "dvd://")
   Endif
 End

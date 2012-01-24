@@ -73,7 +73,12 @@ Public Sub Sliders_Change()
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
     If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then 
-      FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+      'FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
+      FMain.mplayer.Send(slider1.tag & " " & slider1.value & " 1")
+      FMain.mplayer.Send(slider2.tag & " " & slider2.value & " 1")
+      FMain.mplayer.Send(slider3.tag & " " & slider3.value & " 1")
+      FMain.mplayer.Send(slider4.tag & " " & slider4.value & " 1")
+      FMain.mplayer.Send(slider5.tag & " " & slider5.value & " 1")
       VideoOsd()
     Endif
   Endif

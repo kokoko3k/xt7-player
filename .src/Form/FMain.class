@@ -830,8 +830,8 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(HotkeyGrab)
   SetSubControlsStyles(HotKeys)
   SetSubControlsStyles(OverLayTip)
-  OverlayTip.Textlabel1.Background = GeneralOptions.backcolorChooseBTN3.background
-  OverlayTip.Textlabel1.Foreground = GeneralOptions.ColorChooseBTN4.background
+  ' OverlayTip.Textlabel1.Background = GeneralOptions.backcolorChooseBTN3.background
+  ' OverlayTip.Textlabel1.Foreground = GeneralOptions.ColorChooseBTN4.background
   SetSubControlsStyles(SearchFields)
   SetSubControlsStyles(TextDialog)
   SetSubControlsStyles(VfiltersCfg)

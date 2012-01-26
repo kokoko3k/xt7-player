@@ -729,6 +729,9 @@ Public Sub ResetButton_Click()
     Try Last.next.NEXT.font.size = 13
     Try Last.next.NEXT.font.bold = True
   Endif
+  If Upper(Last.name) = "RESETBUTTON4" Then
+    ColorChooseBTN4.background = color.white
+  Endif
 End
 
 
@@ -738,7 +741,7 @@ Public Sub BackResetButton_Click()
     Try Last.next.Background = &EEEEFF&
       Else If Upper(Last.name) = "BACKRESETBUTTON3" Then  'trayicon
         ' [GB2:BCOL] Last.next.background = &HFFFF9B&
-        Last.next.Background = &HFFFF9B&
+        Last.next.Background = &2A2D3C&
       Else
     ' [GB2:BCOL] Try Last.next.background = color.default
     Try Last.next.Background = color.default

@@ -3,7 +3,8 @@
 { Form Form
   Move(0,0,266,98)
   #Scaled = False
-  Background = &HFFFF9B&
+  Background = &H000000&
+  Foreground = &HFFFFFF&
   Ignore = True
   Text = ("Xt7TrayPanel")
   Border = False
@@ -12,16 +13,39 @@
   SkipTaskbar = True
   { Panel2 Panel
     Move(0,0,329,98)
-    Background = Color.SelectedBackground
+    Background = &H2A2D3C&
+    { Timer1 #Timer
+    }
+    { Panel1 Panel
+      Move(0,0,78,78)
+      Background = &H000000&
+      Foreground = &H000000&
+      { PictureBox1 PictureBox
+        Move(0,0,77,77)
+        Background = &H000000&
+        Foreground = &H000000&
+        Stretch = True
+        Border = Border.Plain
+      }
+    }
+    { PictureBox2 PictureBox
+      Move(0,0,266,98)
+      Picture = Picture["backpanel.png"]
+      Stretch = True
+    }
     { Label1 Label
-      Move(84,0,329,91)
+      Move(84,0,175,77)
       Mouse = Mouse.SizeAll
       Expand = True
     }
-    { Timer1 #Timer
+    { pinbutton ToggleButton
+      Move(238,5,24,24)
+      Visible = False
+      Picture = Picture["icon:/16/lock"]
+      Border = False
     }
     { HBox1 HBox
-      Move(6,80,70,16)
+      Move(4,80,70,16)
       { btnprev PictureBox
         Move(0,0,18,16)
         Picture = Picture["icon:/16/start"]
@@ -38,23 +62,6 @@
         Move(42,0,18,16)
         Picture = Picture["icon:/16/end"]
       }
-    }
-    { Panel1 Panel
-      Move(0,0,78,78)
-      Background = &H000000&
-      Foreground = &H000000&
-      { PictureBox1 PictureBox
-        Move(0,0,77,77)
-        Background = &H000000&
-        Foreground = &H000000&
-        Stretch = True
-        Border = Border.Plain
-      }
-    }
-    { pinbutton ToggleButton
-      Move(238,5,24,24)
-      Visible = False
-      Picture = Picture["icon:/16/lock"]
     }
   }
 }

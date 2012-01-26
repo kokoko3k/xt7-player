@@ -775,7 +775,7 @@ Public Sub SetStyle_early()
   'Then set specific ones:
   OverlayTrayTip.font = GeneralOptions.FontChooseBTN4.font
   OverlayTrayTip.foreground = GeneralOptions.ColorChooseBTN4.Background
-  OverlayTrayTip.background = GeneralOptions.backcolorChooseBTN3.Background
+  OverlayTrayTip.Panel2.background = GeneralOptions.backcolorChooseBTN3.Background
   Librarygrid.font = GeneralOptions.FontChooseBTN1.font
   Librarygrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
   Librarygrid.Background = GeneralOptions.backcolorChooseBTN1.Background

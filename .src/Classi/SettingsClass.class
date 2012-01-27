@@ -631,7 +631,7 @@ Public Sub Save(TheForm As Object, FileName As String)
     
     Try objvalid = (theobject.name <> "")
     If Error Then Return
-    If (Not (Object.Type(TheObject) = "Menu")) And (Not Match(TheObject.name, ExcludedValues))
+    If (Not (Object.Type(TheObject) = "Menu")) And (Not Match(TheObject.name, ExcludedValues)) And (Not (theobject Is Separator)) Then
       'Don't descend in floatspinbox,Vslider and StringFileReq classes
       If Not ((Object.Type(TheObject.parent) = "FloatSpinBox") Or (Object.Type(TheObject.parent) = "VSlider") Or (Object.Type(TheObject.parent) = "StringFileReqClass")) Then
         Try Print #ConfFile, TheObject.name

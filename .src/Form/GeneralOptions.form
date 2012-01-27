@@ -56,7 +56,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse10 HBox
           MoveScaled(0,1,51,4)
           ToolTip = ("If you zoomed-in a video, this will allow you to pan it with mouse-drag operation.\nWorks in full-screen mode only.")
@@ -90,7 +90,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { Panel3 Panel
           MoveScaled(1,1,52,23)
           Arrangement = Arrange.Vertical
@@ -188,7 +188,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse31 HBox
           MoveScaled(1,1,51,4)
           ToolTip = ("Specify what additional file extensions are allowed in playlist and library.\nEx: mov,dts,h264")
@@ -297,7 +297,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse2 HBox
           MoveScaled(0,0,51,4)
           ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
@@ -392,7 +392,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse23 HBox
           MoveScaled(1,1,48,4)
           ToolTip = ("Select your CD device (es /dev/dvd, /dev/cdrom, /dev/sr2...).")
@@ -457,7 +457,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse13 HBox
           MoveScaled(1,1,48,4)
           ToolTip = ("Select your Dvd device (es /dev/dvd, /dev/cdrom, /dev/sr2...).")
@@ -529,41 +529,15 @@
       Index = 6
       Text = ("Network")
       { ScrollView4 ScrollView
-        MoveScaled(1,2,52,44)
+        MoveScaled(1,1,58,53)
         Tag = "network"
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
-        { NoParse7 HBox
-          MoveScaled(0,1,51,5)
-          ToolTip = ("Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://")
-          Spacing = True
-          { SlowTagsCHK CheckBox
-            MoveScaled(1,1,49,4)
-            Expand = True
-            Text = ("Skip tags on network streams.")
-            Value = CheckBox.True
-          }
-        }
-        { NoParse15 HBox
-          MoveScaled(0,7,50,4)
-          ToolTip = ("Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer.")
-          Spacing = True
-          { HttpProxyCHK CheckBox notifyobj
-            Name = "HttpProxyCHK"
-            MoveScaled(1,0,17,3)
-            Text = ("Http proxy")
-          }
-          { ProxyTextBox TextBox notifyobj
-            Name = "ProxyTextBox"
-            MoveScaled(19,1,23,4)
-            Expand = True
-          }
-        }
+        Padding = 6
         { NoParse26 HBox
-          MoveScaled(0,10,48,4)
+          MoveScaled(0,1,48,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
           { NetCacheCheckbox CheckBox notifyobj
@@ -584,7 +558,7 @@
           }
         }
         { NoParse32 HBox
-          MoveScaled(0,15,50,4)
+          MoveScaled(0,6,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
           { NetminCacheCheckbox CheckBox notifyobj
@@ -611,7 +585,7 @@
           }
         }
         { NoParse34 HBox
-          MoveScaled(0,20,50,4)
+          MoveScaled(0,11,50,4)
           ToolTip = ("HINT: For youtube, enable this option and set 0.\n--\n If a seek is to be made to a position within <percentage> of the cache size from the current position, \nMPlayer will wait  for  the cache to be filled to this position rather than performing a stream seek (default: 50).\nMplayer option: -cache-seek-min <percentage>")
           Spacing = True
           { NetseekCacheCheckbox CheckBox notifyobj
@@ -636,8 +610,40 @@
             Text = ("% of total cache size ")
           }
         }
+        { NOPARSESEP6 Separator
+          MoveScaled(5,16,43,1)
+        }
+        { NoParse7 HBox
+          MoveScaled(0,20,51,5)
+          ToolTip = ("Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://")
+          Spacing = True
+          { SlowTagsCHK CheckBox
+            MoveScaled(2,0,49,4)
+            Expand = True
+            Text = ("Skip tags on network streams.")
+            Value = CheckBox.True
+          }
+        }
+        { NoParse15 HBox
+          MoveScaled(1,27,50,4)
+          ToolTip = ("Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer.")
+          Spacing = True
+          { HttpProxyCHK CheckBox notifyobj
+            Name = "HttpProxyCHK"
+            MoveScaled(1,0,17,3)
+            Text = ("Http proxy")
+          }
+          { ProxyTextBox TextBox notifyobj
+            Name = "ProxyTextBox"
+            MoveScaled(18,0,23,4)
+            Expand = True
+          }
+        }
+        { NOPARSESEP7 Separator
+          MoveScaled(2,33,45,2)
+        }
         { NoParse33 HBox
-          MoveScaled(0,25,50,4)
+          MoveScaled(1,35,50,4)
           ToolTip = ("When playing youtube videos, \nprefer this format if available.")
           Spacing = True
           { Label10 Label labelcheck
@@ -654,7 +660,7 @@
           }
         }
         { NoParse35 HBox
-          MoveScaled(0,30,50,4)
+          MoveScaled(1,40,50,4)
           ToolTip = ("Choose how to download network streams\nsuch as youtube video and podcasts.\nkde4 - choose kioclient ; \nkde3 - choose kfmclient ; \nIf you wish to write your own downloader, \nremember that\n%url is the stream to download\n%destdir is the destination directory\n%destfile is the destination file (without the path)\n\nNote then kioclient and kfmclient do not work with youtubeì streams.")
           Spacing = True
           { Label13 Label labelcheck
@@ -670,6 +676,9 @@
             Text = ("xterm -e wget %url -O %destdir/%destfile")
           }
         }
+        { NOPARSESEP5 Separator
+          MoveScaled(4,45,44,2)
+        }
       }
       Index = 7
       Text = ("DVB-T")
@@ -681,7 +690,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse36 HBox
           MoveScaled(0,0,50,4)
           ToolTip = ("Select your audiotag executable.\nJust write 'audiotag' for default.")
@@ -722,8 +731,11 @@
             Picture = Picture["icon:/24/open"]
           }
         }
+        { NOPARSESEP3 Separator
+          MoveScaled(3,9,48,1)
+        }
         { NoParse38 HBox
-          MoveScaled(0,8,50,4)
+          MoveScaled(0,13,50,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
           { dvbtCacheCheckbox CheckBox notifyobj
@@ -744,7 +756,7 @@
           }
         }
         { NoParse39 HBox
-          MoveScaled(0,12,50,4)
+          MoveScaled(0,17,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
           { dvbtminCacheCheckbox CheckBox notifyobj
@@ -771,7 +783,7 @@
           }
         }
         { NOPARSEHbox3 HBox
-          MoveScaled(0,17,54,4)
+          MoveScaled(0,22,54,4)
           ToolTip = ("It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#")
           Spacing = True
           { LabelCard Label
@@ -786,7 +798,7 @@
           }
         }
         { NOPARSEHbox4 HBox
-          MoveScaled(0,23,54,4)
+          MoveScaled(0,28,54,4)
           ToolTip = ("How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n")
           Spacing = True
           { LabelCard2 Label
@@ -802,7 +814,7 @@
           }
         }
         { NOPARSEHbox5 HBox
-          MoveScaled(0,28,54,4)
+          MoveScaled(0,33,54,4)
           ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n")
           Spacing = True
           { tsprobechk CheckBox notifyobj
@@ -816,6 +828,9 @@
             List = [("64000"), ("128000"), ("256000"), ("512000"), ("1024000"), ("2048000"), ("4096000"), ("8192000")]
             Text = ("1024000")
           }
+        }
+        { NOPARSESEP4 Separator
+          MoveScaled(3,39,50,1)
         }
         { NOPARSESCANBTN Button
           MoveScaled(1,43,52,5)
@@ -832,7 +847,7 @@
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParseLabel03 Label
           MoveScaled(1,1,25,3)
           Text = ("Preferred Audio languages:")
@@ -901,13 +916,13 @@
       Index = 9
       Text = ("Misc")
       { ScrollView3 ScrollView
-        MoveScaled(0,2,55,55)
+        MoveScaled(-1,1,55,55)
         Tag = "misc"
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParse9 HBox
           MoveScaled(1,1,44,4)
           ToolTip = ("Select your mplayer executable.\nJust write 'mplayer' for default.")
@@ -986,19 +1001,22 @@
             Text = ("poweroff")
           }
         }
+        { NOPARSESEP2 Separator
+          MoveScaled(3,23,46,1)
+        }
         { NoParse6 HBox
-          MoveScaled(1,23,44,4)
+          MoveScaled(1,26,44,4)
           ToolTip = ("Enable/Disbale Tooltips")
           Spacing = True
           { ToolTipsCHK CheckBox
-            MoveScaled(0,0,43,4)
+            MoveScaled(1,0,43,4)
             Expand = True
             Text = ("Enable ToolTips")
             Value = CheckBox.True
           }
         }
         { NoParse46 HBox
-          MoveScaled(2,27,44,4)
+          MoveScaled(2,30,44,4)
           ToolTip = ("Enable this if you want xt7 to be controlled through an mpris2 compliant client.\n")
           Spacing = True
           { ToolTipsCHKDBUS CheckBox
@@ -1016,7 +1034,7 @@
           }
         }
         { NoParse47 HBox
-          MoveScaled(1,33,44,4)
+          MoveScaled(1,36,44,4)
           ToolTip = ("Enable/Disbale Tooltips")
           Spacing = True
           { RestorePlayCHK CheckBox
@@ -1027,7 +1045,7 @@
           }
         }
         { NoParse18 HBox
-          MoveScaled(1,39,44,4)
+          MoveScaled(1,42,44,4)
           ToolTip = ("When an audio file is played, the right panel will show\ninformations on the file played, allowing to set covers\nfor your library items.")
           Spacing = True
           { CoverCHK2 CheckBox
@@ -1039,7 +1057,7 @@
           }
         }
         { NoParse20 HBox
-          MoveScaled(1,43,50,4)
+          MoveScaled(1,46,50,4)
           ToolTip = ("Enable/Disbale the tray icon")
           Spacing = True
           { TrayCHK1 CheckBox
@@ -1049,8 +1067,11 @@
             Text = ("Use Tray icon (xt7-player restart needed)")
           }
         }
+        { NOPARSESEP1 Separator
+          MoveScaled(4,51,45,1)
+        }
         { NoParse12 HBox
-          MoveScaled(1,47,50,4)
+          MoveScaled(1,53,50,4)
           Spacing = True
           { SaveOnExitCHK CheckBox
             MoveScaled(1,0,47,4)
@@ -1059,7 +1080,7 @@
           }
         }
         { NoParse21 HBox
-          MoveScaled(1,51,50,4)
+          MoveScaled(1,57,50,4)
           ToolTip = ("Save xt7 position and size on program exit.")
           Spacing = True
           { SaveGeometryCHK CheckBox
@@ -1069,7 +1090,7 @@
           }
         }
         { NoParse22 HBox
-          MoveScaled(1,55,50,4)
+          MoveScaled(1,61,50,4)
           ToolTip = ("If your window manager is not kwin\nand you find that form position is not correctly restored,\ntry checking this.")
           Spacing = True
           { SaveGeometryCompizCHK CheckBox
@@ -1082,25 +1103,28 @@
       Index = 10
       Text = ("Style")
       { ScrollView9 ScrollView
-        MoveScaled(1,0,59,52)
+        MoveScaled(0,0,59,52)
         Tag = "style"
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
-        Padding = 8
+        Padding = 6
         { NoParseStyle4 HBox
-          MoveScaled(0,0,59,4)
+          MoveScaled(0,-2,59,4)
           Spacing = True
           { Label2 Label
-            MoveScaled(-1,1,58,3)
+            MoveScaled(0,0,58,3)
             Font = Font["Bold,+1"]
             Expand = True
             Text = ("* Some Options may require application restart.")
           }
         }
+        { NOPARSESEPARATOR5 Separator
+          MoveScaled(0,2,50,0.5714)
+        }
         { NoParse29 HBox
-          MoveScaled(0,13,50,4)
+          MoveScaled(1,5,50,4)
           Spacing = True
           { ShowCoversInListChk CheckBox
             MoveScaled(1,0,47,4)
@@ -1110,36 +1134,20 @@
           }
         }
         { NoParse30 HBox
-          MoveScaled(0,18,50,4)
+          MoveScaled(1,9,50,4)
           Spacing = True
           { HighlightCHK CheckBox
-            MoveScaled(1,0,48,4)
+            MoveScaled(-1,0,48,4)
             ToolTip = ("Highlight the sideview item which is under the mouse")
             Expand = True
             Text = ("Highlight listview items on mouse over (buggy!)")
           }
         }
-        { NoParse1 HBox
-          MoveScaled(0,23,50,4)
-          ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
-          Spacing = True
-          { NoParseLabel2 Label
-            MoveScaled(1,1,14,3)
-            AutoResize = True
-            Text = ("Limit gui size to")
-          }
-          { GuiPercentSpinBox SpinBox
-            MoveScaled(15,1,11,4)
-            Value = 100
-          }
-          { NoParseLabel3 Label
-            MoveScaled(28,1,15,3)
-            AutoResize = True
-            Text = ("% of the screen")
-          }
+        { NOPARSESEPARATOR1 Separator
+          MoveScaled(1,14,50,0.5714)
         }
         { NoParseStyle1 HBox
-          MoveScaled(0,28,50,4)
+          MoveScaled(1,15,50,4)
           Spacing = True
           { FontLabel1 Label
             MoveScaled(1,1,17,3)
@@ -1168,7 +1176,7 @@
           }
         }
         { NoParseStyle2 HBox
-          MoveScaled(1,34,50,4)
+          MoveScaled(1,20,50,4)
           Spacing = True
           { FontLabel2 Label
             MoveScaled(2,1,23,3)
@@ -1192,7 +1200,7 @@
           }
         }
         { NoParseStyle5 HBox
-          MoveScaled(1,38,50,5)
+          MoveScaled(1,25,50,5)
           Spacing = True
           { FontLabel4 Label
             MoveScaled(0,1,30,3)
@@ -1215,8 +1223,11 @@
             Picture = Picture["icon:/16/color"]
           }
         }
+        { NOPARSESEPARATOR2 Separator
+          MoveScaled(1,30,50,0.5714)
+        }
         { NoParseStyle8 HBox
-          MoveScaled(1,43,50,4)
+          MoveScaled(1,32,50,4)
           Spacing = True
           { FontLabel7 Label
             MoveScaled(1,1,17,3)
@@ -1245,7 +1256,7 @@
           }
         }
         { NoParseStyle7 HBox
-          MoveScaled(1,47,50,4)
+          MoveScaled(1,36,50,4)
           Spacing = True
           { FontLabel6 Label
             MoveScaled(1,1,23,3)
@@ -1268,8 +1279,11 @@
             Picture = Picture["icon:/16/color"]
           }
         }
+        { NOPARSESEPARATOR3 Separator
+          MoveScaled(1,41,50,0.5714)
+        }
         { NoParseStyle6 HBox
-          MoveScaled(1,51,50,4)
+          MoveScaled(1,43,50,4)
           Spacing = True
           { FontLabel5 Label
             MoveScaled(1,1,17,3)
@@ -1297,6 +1311,28 @@
             MoveScaled(46,0,4,4)
             Background = &HFFFFFF&
             Picture = Picture["icon:/16/color"]
+          }
+        }
+        { NOPARSESEPARATOR4 Separator
+          MoveScaled(1,48,50,0.5714)
+        }
+        { NoParse1 HBox
+          MoveScaled(1,50,50,4)
+          ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
+          Spacing = True
+          { NoParseLabel2 Label
+            MoveScaled(1,1,14,3)
+            AutoResize = True
+            Text = ("Limit gui size to")
+          }
+          { GuiPercentSpinBox SpinBox
+            MoveScaled(15,1,11,4)
+            Value = 100
+          }
+          { NoParseLabel3 Label
+            MoveScaled(28,1,15,3)
+            AutoResize = True
+            Text = ("% of the screen")
           }
         }
       }

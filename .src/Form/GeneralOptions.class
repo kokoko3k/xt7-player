@@ -178,14 +178,15 @@ Private Sub DrawFiltersGui()
     Global.DrawGui(AllParams, ("Network"), Tabstrip1, NotSwitchable, ("Send cookies to websites when playing http:// Uries,\n Cookie file must be in Netscape format.\n Mplayer Option: -cookies"))
     AllParams.Clear
   
-  '-prefer-ipv4
-    AllParams.add(["SWITCH", ("prefer-ipv4"), "ENABLED", "prefer000ipv4", ("try ipv4 first")])
-    Global.DrawGui(AllParams, ("Network"), Tabstrip1, NotSwitchable, ("Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"))
-    AllParams.Clear
-    
   '-cookies-file <filename> (network only)
     AllParams.add(["FILEREQ", "\"" & "cookies.txt" & "\"" & " " & ("location") & ": ", "DIR", "cookies000file ", " "])
     Global.DrawGui(AllParams, ("Network"), Tabstrip1, NotSwitchable, ("Specify cookies.txt location\n Mplayer Option: -cookies-file"))
+    AllParams.Clear
+
+
+  '-prefer-ipv4
+    AllParams.add(["SWITCH", ("prefer-ipv4"), "ENABLED", "prefer000ipv4", ("try ipv4 first")])
+    Global.DrawGui(AllParams, ("Network"), Tabstrip1, NotSwitchable, ("Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"))
     AllParams.Clear
 
   '-lavdopts threads

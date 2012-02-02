@@ -2889,11 +2889,7 @@ Public Sub ShowVolBtn_enter()
 End
 
 Public Sub ShowVolBtn_leave()
-  
-  ' If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
-  '   VolumeFocused = False
-  '   OverlayTip.hide
-  ' Endif
+  VolumeFocused = False
   OverlayTip.TextLabel1.reparent(OverlayTip)
 End
 
@@ -2901,18 +2897,12 @@ Public Sub SaveVolumeSlider_enter()
   If Global.MouseInside(SaveVolumeSlider) Then
     VolumeFocused = True
     UpdateVolumeTooltip()
-    'OverlayTip.Raise
     UpdateVolumeTooltip()
   Endif
 End
 
 Public Sub SaveVolumeSlider_leave()
-  
-  ' If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
-  '   VolumeFocused = False
-  '   OverlayTip.hide
-  ' Endif
-  
+  VolumeFocused = False
   OverlayTip.TextLabel1.reparent(OverlayTip)
 End
 

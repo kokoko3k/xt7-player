@@ -1297,6 +1297,7 @@ Public Sub Form_Close()
   
 End
 
+Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty
 
 Public Sub CorrectAreaAspect()
   'this sets the draweing area of the form to the aspect of the video
@@ -1307,13 +1308,15 @@ Public Sub CorrectAreaAspect()
   Dim Aspect As Float = 1.333
   Dim TmpX, TmpY, TmpW, TmpH As Integer
   
+  If fmain.closing Then Return
+  
   Try VideoW = mplayer.VideoOut_Width
   Try VideoH = mplayer.VideoOut_Height
   If (VideoW > 0) And (VideoH > 0) Then
     If ForcedAspectRT = "default" Then
       Aspect = VideoW / VideoH
     Else
-      Aspect = CFloat(ForcedAspectRT)
+      Try Aspect = CFloat(ForcedAspectRT)
     Endif
     
     'Drawing area must fit in the outerbox, so try to set the width and calculate the Height:
@@ -1327,13 +1330,21 @@ Public Sub CorrectAreaAspect()
     Endif
 
     'apply the zoom factor:
+    Select Case ForcedZoomRT
+      Case "NOBARS"
+        ResizeFactor = aspect / (outerbox.w / outerbox.h)
+      Case "HALFBARS"
+        ResizeFactor = 1 + (((aspect / (outerbox.w / outerbox.h)) - 1) / 2)
+    End Select
+    If ResizeFactor < 1 Then resizefactor = 1 / ResizeFactor
+    realtimeform.PanscanSlider.value = resizefactor * 10000
     TmpW = TmpW * resizefactor
     TmpH = TmpH * resizefactor
 
     'finally, resize and center VideoBox in Outerbox 
     TmpX = (OuterBox.Width / 2) - (TmpW / 2)
     TmpY = (OuterBox.Height / 2) - (TmpH / 2)
-    If (tmpw > 64) Then VideoBox.Move(TmpX, TmpY, TmpW, TmpH) 'don't touch (tmpw>64) or else heavy swap will occour!
+    If (tmpw > 64) Then VideoBox.Move(TmpX, TmpY, TmpW + 1, TmpH + 1) 'don't touch (tmpw>64) or else heavy swap will occour!
   Endif
 
 End
@@ -3612,6 +3623,7 @@ End
 Public Sub PanScanCorrect(delta As Float)
   Dim MaxRFactor As Float = 20
   Dim MinRFactor As Float = 0.1
+  ForcedZoomRT = ""
   If delta > 0 Then
     ResizeFactor = Resizefactor + SnapToBorders(delta)
     If ResizeFactor > MaxRFactor Then resizefactor = MaxRFactor
@@ -7783,8 +7795,12 @@ Endif
 End
 
 
+
 Public Sub PanScan_Click()
-  MyQuestion.Ask(("Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys."), "Ok", "")
+  Dim msgstr As String
+  msgstr = ("Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys.") & "\n"
+  msgstr &= ("Right click over the button will cycle through zoom modes")
+  MyQuestion.Ask(msgstr, "Ok", "")
 End
 
 Public Sub PanScan_MouseWheel()
@@ -7845,4 +7861,26 @@ Public Sub Button5_Click()
   Debug querymp.Media_Album
   Debug querymp.cddbtracks
   Debug querymp.media_title
+End
+
+Public Sub PanScan_Menu()
+  Dim mptxt As String 
+  Object.Detach(realtimeform.PanscanSlider)
+  Select Case forcedzoomrt
+    Case ""
+      forcedzoomrt = "HALFBARS"
+      mptxt = ("Zoom mode: cut half bars")
+    Case "HALFBARS"
+      forcedzoomrt = "NOBARS"
+      mptxt = ("Zoom mode: cut bars")
+    Case "NOBARS"
+      forcedzoomrt = ""
+      ResizeFactor = 1
+      mptxt = ("Zoom mode: 1:1")
+  End Select
+
+  mplayer.ShowText(mptxt, "1000")
+  CorrectAreaAspect()
+  realtimeform.PanscanSpinBox.value = realtimeform.PanscanSlider.value
+  Object.Attach(realtimeform.PanscanSlider, realtimeform, realtimeform.PanscanSlider.name)
 End

@@ -5,6 +5,7 @@ Public Sub PanscanSlider_Change()
     Try Last.Next.value = Last.value
     If FMain.FullyLoaded Then 
       FMain.resizefactor = (Last.value / 10000)
+      FMain.ForcedZoomRT = ""
       FMain.CorrectAreaAspect
     Endif
   Endif

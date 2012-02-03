@@ -1577,11 +1577,12 @@
               ToolTip = ("Next media")
               Picture = Picture["media-skip-forward.png"]
             }
-            { PanScan ToolButton
+            { PanScan Button
               MoveScaled(36,0,5,4)
               Font = Font["6"]
-              ToolTip = ("Zoom the video")
+              ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
               Picture = Picture["icon:/medium/zoom-in"]
+              Border = False
             }
           }
           { SliderBox HBox

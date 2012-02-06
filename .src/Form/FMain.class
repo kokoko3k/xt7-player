@@ -6096,6 +6096,7 @@ End
 
 Public Sub ProfileLoadBTN_Click()
   Dim i As Integer
+  Dim MySettings As New SettingsClass
   Try Global.CurrentProfile = ProfilesListBox.Current.text
   If Error Then
     For i = 0 To ProfilesListBox.count - 1
@@ -6107,6 +6108,8 @@ Public Sub ProfileLoadBTN_Click()
   Endif
   ReLoadCurrentProfile()
   UpdateProfilesTabList()
+  MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
+  Debug "wrote last profile"
 End
 
 

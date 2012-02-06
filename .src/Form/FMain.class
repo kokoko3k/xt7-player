@@ -6062,8 +6062,9 @@ End
 
 Public Sub ReLoadCurrentProfile()
   'DIM TheError AS Boolean = FALSE
-  
+  Dim cachedfile As File
   Try Global.ReallyLoadAllSettings() 'current profile is the default
+
   Try GeneralOptions.LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try GeneralOptions.LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Try HotKeys.LoadHotKeys(global.confpath & "/" & global.CurrentProfile)
@@ -6074,6 +6075,18 @@ Public Sub ReLoadCurrentProfile()
   Try ComboHistory.LoadHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(AddUriForm.UriInsComboBox, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(Fmain.UrlBox, global.confpath & "/" & global.CurrentProfile)
+
+  If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
+    cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
+    Line Input #cachedfile, cachedopts
+    Close #cachedfile
+    cachedopts = Trim(cachedopts)
+    Debug "Found cachedopts for new profile"
+      Else
+    Debug "Cannot find cachedopts for new profile, regenerating..."
+    Fmain.apply
+  Endif
+
   FMain.SetStyle_early()
   FMain.SetStyle_later()
   UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)

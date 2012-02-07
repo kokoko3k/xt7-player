@@ -674,7 +674,10 @@ Public Sub UpdateSelected(MyPlaylist As GridView)
   'Add them again
   SyncSortedTable()
   For Each fullpath In fullpaths
-      If (Not ISURI(fullpath)) Then AddFile(Myplaylist, fullpath, False, False)
+      If (Not ISURI(fullpath)) Then 
+        Try CoverManager.UnMarkUncovered(fullpath)
+        AddFile(Myplaylist, fullpath, False, False)
+      Endif
   Next
   
   'Restore visualization

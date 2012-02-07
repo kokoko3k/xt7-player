@@ -876,18 +876,21 @@ Private fastquit As Boolean = False
 Public havetoshowbrowsetab As Boolean = False
 Private PlayFromCommandline As Boolean = False
 Public Sub MainInit()
- 
+
   Dim quick As Boolean
   Dim AlreadyRunning As Boolean = False
   Dim out As String
   Dim cachedfile As File
   Dim MySettings As New SettingsClass
   'Disable Shutdown feature at start.
-  '
+
   FirstTimeXt7 = Not (Exist(global.ConfPath))
   ShutOff_Click()
-  
   MakeProfilePath()
+  
+  Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
+  
+  covermanager.MakeCoverDirs()
   'TRY TO get a LOCK file:
   Try hLock = Lock global.confpath & "/.lock"
   If Error Then
@@ -911,7 +914,7 @@ Public Sub MainInit()
         Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
         Debug "To recreate the cache file, simply reload the profile"
      Endif
-
+  Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
   If Application.Args.count >= 2 Then
     If alreadyrunning Then
       'try to play the file to the running xt7-player:
@@ -4837,6 +4840,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
   Dim fullpath As String
   Dim artist, album As String
   Dim rowheight As Integer
+  Dim coverfound As Boolean = True
   
   If Not fmain.FullyLoaded Then Return
   If Not fmain.visible Then Return
@@ -4848,7 +4852,13 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
       RowHeight = MyGrid.Rows[row].h - global.rowpadding
       artist = MyGrid[row, MyLibrary.ColumnIndex["Artist"]].text
       album = MyGrid[row, MyLibrary.ColumnIndex["Album"]].text
-      Try MyGrid.Data.Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight)
+
+      Try MyGrid.Data.Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight, ByRef coverfound)
+      If Not coverfound Then 'covermanager returned a default empty cover, let's see if there are embedded covers
+        If CoverManager.EmbeddedToCoverCache(artist, album, fullpath) Then 
+          MyGrid.Data.Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight, ByRef coverfound)
+        Endif
+      Endif
     Else
       MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
     Endif
@@ -7868,16 +7878,10 @@ Public Sub StreamsSubtitlesMenu_show()
 End
 
 Public querymp As MplayerClass
-Public Sub Button5_Click()
-  querymp = New MplayerClass
-  querymp.do_play("cddb://1", "-endpos 0 -cdrom-device " & GeneralOptions.CDDADeviceText.text)
-  Repeat
-    Wait 0.1
-  Until querymp.ProcessRunningOvr()
-  Debug querymp.Media_Album
-  Debug querymp.cddbtracks
-  Debug querymp.media_title
-End
+
+
+
+
 
 Public Sub PanScan_Menu()
   Dim mptxt As String 
@@ -7899,4 +7903,11 @@ Public Sub PanScan_Menu()
   CorrectAreaAspect()
   realtimeform.PanscanSpinBox.value = realtimeform.PanscanSlider.value
   Object.Attach(realtimeform.PanscanSlider, realtimeform, realtimeform.PanscanSlider.name)
+End
+
+Public Sub Button5_Click()
+Dim out As Picture
+  out = covermanager.LookForJpg("/media/16GBSANDISK/Dati/Grammy Nominees/04-lady_gaga_feat_beyonce-telephone.mp3")
+  'file.Save("/tmp/out.jpg", out)
+  out.Save("/tmp/out.jpg", 100)
 End

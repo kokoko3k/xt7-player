@@ -137,10 +137,12 @@ Public Sub RemoveCoverCache(coverfile As String)
   FMain.RefreshVisibleCovers(FMain.playlistgrid)
 End
 
-Public Function coverpicture(coverfile As String, uripath As String, width As Integer) As Picture
+Public Function coverpicture(coverfile As String, uripath As String, width As Integer, Optional ByRef found As Boolean) As Picture
 Dim cachefile As String = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
 Dim tmpimage As Image
 Dim FileExists As Boolean = False
+
+found = True
 
 'IF 1 = 2 THEN
 
@@ -165,40 +167,199 @@ If Exist(coverfile) Then
     coverfile = "webradio.png"
       Else If global.IsVideoFile(uripath) Then
         coverfile = "videocover.png"
-      Else
-    coverfile = "emptycover.png"
+      Else 'non è una uri di rete, non è una radio e non c'è alcuna copertina già salvata:
+      found = False
+      coverfile = "emptycover.png"
   Endif
   cachefile = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
   Try Return CoverCacheList[cachefile].Picture 'prova a restituire l'immagine dalla memoria
   If Error Then 'se non la trovi in memoria,
     'DEBUG "not found in memory!"
     tmpimage = image.Load(coverfile).stretch(width, width) 'caricala
-    CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
-    Return CoverCacheList[cachefile].Picture 'e restituiscila
   Endif
-
+  CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
+  Return CoverCacheList[cachefile].Picture 'e restituiscila
 Endif
+End
+
+Public Function newcoverpicture(coverfile As String, uripath As String, width As Integer) As Picture
+  Return LookForJpg(uripath)
+End
+
+Public Sub MakeCoverDirs()
+   Try Shell "mkdir -p " & global.confpath & "/covers/ >/dev/null 2>&1" Wait
+End
+
+Public Function IsUncovered(fullpath As String) As Boolean
+  Return Exist(global.confpath & "/covers/uncovered/" & file.Name(fullpath))
+End
+
+
+Public Sub MarkUncovered(fullpath As String)
+  Dim newfilename As String
+  Dim tmppic As Picture
+  If Not Exist(global.confpath & "/covers/uncovered") Then Return
+  file.Save(global.confpath & "/covers/uncovered/" & file.Name(fullpath), "") 
+End
+
+Public Sub UnMarkUncovered(fullpath As String)
+  Dim newfilename As String
+  Dim tmppic As Picture
+  If Exist(global.confpath & "/covers/uncovered") Then Try Kill (global.confpath & "/covers/uncovered/" & file.Name(fullpath)) 
+End
+
+Public Sub LookForJpg(filename As String, Optional saveto As String = "") As Picture
+  Dim mystream As File
+  Dim b As Byte
+  Dim myjpg As String
+  Dim m1 As String = "image/"
+  'Dim m1 As String = "JFIF"
+  Dim m2 As String
+  Dim j11, j12, j21, j22 As Byte
+  Dim c As Byte
+  Dim i As Integer
+  Dim cb As Long
+  Dim jpgstart, jpgend As Long
+  Dim hasimage As Boolean = False
+  Dim isvalid As Boolean = False
+  Dim tmpfile As String = "/dev/shm/tmp.jpg"
+  Dim tmppic As Picture
+  ' Return
+  If IsUncovered(filename) Then Return
+  
+  'Debug "Looking for embedded jpg in " & filename
+  'jfif start:
+  j11 = 255 '(0xff)
+  j12 = 216 '(0xd8)
+  'jfifend:
+  j21 = 255 '(0xff)
+  j22 = 217 '(0xd9)
+
+  myjpg = ""
+  Try mystream = Open filename For Input
+  If Error Then Return Null
+
+  For cb = 0 To 1024 ' 16384 'scan up to 16k, 1k seems to be enough
+    b = Read #mystream As Byte
+
+    For i = 1 To Len(m1) 
+      c = Asc(m1, i) 'i,m,a,g,e,/
+      If b <> c Then 
+        m2 = ""
+        Break
+          Else
+        m2 &= Mid(m1, i, 1) 
+        'Debug m2
+      Endif
+      If m2 = m1 Then 
+        hasimage = True
+        Break
+          Else
+        b = Read #mystream As Byte
+      Endif
+    Next
+    If hasimage Then Break
+  Next
+  jpgstart = -1
+
+
+  If hasimage Then 'find start jpg
+    While Not Eof(mystream)
+      b = Read #mystream As Byte
+      If b = j11 Then
+        b = Read #mystream As Byte
+        If b = j12 Then
+          jpgstart = Seek(mystream) - 2
+          Break
+        Endif
+      Endif
+    Wend
+      Else
+    MarkUncovered(filename)
+    Return Null
+  Endif
+  
+  jpgend = -1
+  If jpgstart < 0 Then Return
+
+  'se il file jpg non è valido, reitera questo finchè non è valido
+  While Not isvalid
+    While Not Eof(mystream) 'find end jpg
+      b = Read #mystream As Byte
+      If b = j21 Then
+        b = Read #mystream As Byte
+        If b = j22 Then
+          jpgend = Seek(mystream)
+          Break
+        Endif
+      Endif
+    Wend
+
+    If jpgend > 0 Then
+      Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      If (jpgend - jpgstart) > 307200 '307200 Then
+        Debug "jpg is >300KB, probably corrupted, skipping"
+        MarkUncovered(filename)
+        Return Null
+      Endif
+    Endif
+
+    Seek #mystream, jpgstart
+
+    myjpg = Read #mystream, (jpgend - jpgstart) 
+    file.Save(tmpfile, myjpg)
+    Try tmppic = picture.Load(tmpfile)
+    If Not Error Then 
+      isvalid = True
+      Seek #mystream, jpgstart
+    Endif
+    If Eof(mystream) Then
+      MarkUncovered(filename)
+      Return Null
+    Endif
+  Wend
+
+  Close mystream
+  If isvalid 
+    If saveto <> "" Then Try Copy tmpfile To saveto
+    Return tmppic
+      Else
+    MarkUncovered(filename)
+    Return Null
+  Endif
 End
 
 
 Public Sub PictureBox1_DblClick()
   Dim newfilename As String
   Dim currentfilename As String
-    'stop any previous search
-    HitCancel = True
-    'set new cover
-    Try Shell "mkdir -p " & global.confpath & "/covers/ >/dev/null 2>&1" Wait
-    'newfilename = global.confpath& "/covers/" & global.fixfilename(Upper(ArtistText.text)) & "^^^" & global.fixfilename(Upper(AlbumText.text)) & ".jpg"
-    newfilename = Coverfile(ArtistText.text, AlbumText.text)
-    Try currentfilename = Coverlist.Current.key
-    If Not Error Then
-      Try Kill newfilename
-      Try Copy currentfilename To ((newfilename))
-    Endif
-      FMain.CoverRefresh()
-      Try RemoveCoverCache(newfilename)
-      CoverManager.close
+  'stop any previous search
+  HitCancel = True
+  'set new cover
+  If Not Exist(global.confpath & "/covers/uncovered") Then Return
+  'newfilename = global.confpath& "/covers/" & global.fixfilename(Upper(ArtistText.text)) & "^^^" & global.fixfilename(Upper(AlbumText.text)) & ".jpg"
+  newfilename = Coverfile(ArtistText.text, AlbumText.text)
+  Try currentfilename = Coverlist.Current.key
+  If Not Error Then
+    Try Kill newfilename
+    Try Copy currentfilename To ((newfilename))
+  Endif
+  FMain.CoverRefresh()
+  Try RemoveCoverCache(newfilename)
+  CoverManager.close
 End
+
+
+Public Function EmbeddedToCoverCache(artist As String, album As String, fullpath As String) As Boolean
+  Dim newfilename As String
+  Dim tmppic As Picture
+  newfilename = Coverfile(Artist, Album, fullpath)
+  Try LookForJpg(fullpath, newfilename)
+  Return Exist(newfilename) 
+End
+
+
+
 
 Public Sub CoverList_DblClick()
   PictureBox1_DblClick()
@@ -224,14 +385,17 @@ Public Sub ButtonUnset_Click()
   FMain.CoverRefresh()
 End
 
-Public Function Coverfile(artist As String, album As String) As String
+Public Function Coverfile(artist As String, album As String, Optional fullpath As String = "") As String
   'return the cover file basing on album and artist information OR filename
+  If fullpath = "" Then fullpath = MediaFileFullPath
   If (Trim(artist) = "" And Trim(album) = "") Then 'use filename instead
-    Return global.confpath & "/covers/" & global.fixfilename(MediaFileFullPath) & ".jpg"
+    Return global.confpath & "/covers/" & global.fixfilename(fullpath) & ".jpg"
       Else
     Return global.confpath & "/covers/" & global.fixfilename(Upper(Trim(Artist))) & "^^^" & global.fixfilename(Upper(Trim(Album)) & ".jpg")
   Endif
 End
+
+
 
 
 Public Sub ButtonLoad_Click()

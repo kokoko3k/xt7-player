@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Feb 8 2012
+  FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()
+
 Feb 7 2012
   NEW:    Support for jpg embedded in audio files
 

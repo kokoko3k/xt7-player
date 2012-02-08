@@ -958,7 +958,7 @@ Private Sub makenewrow(librarygrid As Gridview, forcename As String, filetoadd A
   nr = nr & ts & "Track" & ts & track
   nr = nr & ts & "Title" & ts & title
   nr = nr & ts & "Genre" & ts & genre
-  nr = nr & ts & "Comment" & ts & comment
+  nr = nr & ts & "Comment" & ts & Replace(comment, "\n", " ")
   nr = nr & ts & "Type" & ts & type
   nr = nr & ts & "Audio Codec" & ts & acodec
   nr = nr & ts & "Audio Bitrate" & ts & abitrate

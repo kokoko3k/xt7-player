@@ -222,7 +222,8 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "") As Pic
   Dim jpgstart, jpgend As Long
   Dim hasimage As Boolean = False
   Dim isvalid As Boolean = False
-  Dim tmpfile As String = "/dev/shm/tmp.jpg"
+  'Dim tmpfile As String = "/dev/shm/tmp.jpg"
+  Dim tmpfile As String = Temp & ".jpg"
   Dim tmppic As Picture
   ' Return
   If IsUncovered(filename) Then Return

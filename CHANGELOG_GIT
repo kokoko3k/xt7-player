@@ -12,6 +12,7 @@ Feb 24 2012
   CHANGE: Animate covers only when they change
   FIX:    Remove cover caches when updating a library/playlist item
   FIX:    A bit faster embedded jpgs discover
+  NEW:    Support for jpgs embedded in ogg files (still inactive by now!)
   
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()

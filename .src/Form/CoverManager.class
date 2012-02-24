@@ -219,6 +219,220 @@ Public Sub readahead(ByRef mystream As File, bytes As Long)
   Seek #mystream, pseek
 End
 
+'http://easygp.net.au/
+'Thanks to EasyGP developer for the following function:
+Private Const B64Const As String = "=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+Public Sub FromB64(B64Str As String) As String
+  Dim Position As Long
+  Dim dt As Byte
+  Dim B64Decoded, u, c As String
+  Dim Tkn, p As Integer
+  '
+  Position = 1
+  Tkn = 0
+  Do Until Position > Len(B64Str)
+    Wait
+    c = Mid(B64Str, Position, 1)
+    p = InStr(B64Const, c)
+    If p > 1 Then
+      p = p - 2
+      Inc Tkn
+      Select Case Tkn
+        Case 1
+          dt = (p * &h4)
+        Case 2
+          B64Decoded = B64Decoded & Chr(dt + ((p And &H30&) / &H10&))
+          dt = (p And &HF&) * &H10&
+        Case 3
+          B64Decoded = B64Decoded & Chr(dt + ((p And &H3C&) / 4))
+          dt = (p And &H3&) * &H40&
+        Case 4
+          B64Decoded = B64Decoded & Chr(dt + p)
+      End Select
+      If Tkn = 4 Then Tkn = 0
+  Else    ' Ej skrivbart tecken
+    If p = 1 Then
+      Position = Len(B64Str) + 1
+    End If
+  Endif
+  Inc Position
+  Loop
+  Select Case Tkn
+    Case 1
+      B64Decoded = B64Decoded & Chr(dt)
+  End Select
+  Return B64Decoded
+End
+
+
+Public Sub LookForJpgB64(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
+  Dim mystream As File
+  Dim b As Byte
+  Dim myjpg As String
+  Dim m1 As String = "METADATA_BLOCK_PICTURE=" ' or "COVERART="
+  
+  'Dim m1 As String = "JFIF"
+  Dim m2 As String
+  Dim j11, j12, j21, j22 As Byte
+  Dim c As Byte
+  Dim i As Integer
+  Dim cb As Long
+  Dim jpgstart, jpgend As Long
+  Dim hasimage As Boolean = False
+  Dim isvalid As Boolean = False
+  'Dim tmpfile As String = "/dev/shm/tmp.jpg"
+  Dim tmpfile As String = Temp & ".jpg"
+  Dim tmppic As Picture
+  ' Return
+ 
+  If IsUncovered(filename) Then Return False
+  'Debug "Looking for embedded jpg in " & filename
+  'jfif start:
+  j11 = 255 '(0xff)
+  j12 = 216 '(0xd8)
+  'jfifend:
+  ' j21 = 255 '(0xff)
+  ' j22 = 217 '(0xd9)
+  j21 = 01
+  j22 = 05
+
+
+
+  myjpg = ""
+  Try mystream = Open filename For Input
+  If Error Then 
+    fileerror = True
+    'Return Null
+    Return False
+  Endif
+  Try readahead(ByRef mystream, 1024)
+  For cb = 0 To 1024 ' 16384 'scan up to 16k, 1k seems to be enough
+    b = Read #mystream As Byte
+
+    For i = 1 To Len(m1) 'M,E,T,A,D,A,T,A,_,B,L,O,C,K,_,P,I,C,T,U,R,E,=
+      c = Asc(m1, i) '
+      If b <> c Then 
+        m2 = ""
+        Break
+          Else
+        m2 &= Mid(m1, i, 1) 
+        'Debug m2
+      Endif
+      If m2 = m1 Then 
+        hasimage = True
+        Break
+          Else
+        b = Read #mystream As Byte
+      Endif
+      Wait
+    Next
+    If hasimage Then Break
+  Next
+  
+ 
+  If (Not hasimage) Then 
+    Seek #mystream, 0
+    m1 = "COVERART=" 'vorbis unsupported standard
+    For cb = 0 To 1024 ' 16384 'scan up to 16k, 1k seems to be enough
+      b = Read #mystream As Byte
+  
+      For i = 1 To Len(m1) 'C,O,V,E,R,A,R,T,=
+        c = Asc(m1, i) '
+        If b <> c Then 
+          m2 = ""
+          Break
+            Else
+          m2 &= Mid(m1, i, 1) 
+          'Debug m2
+        Endif
+        If m2 = m1 Then 
+          hasimage = True
+          Break
+            Else
+          b = Read #mystream As Byte
+        Endif
+        Wait
+      Next
+      If hasimage Then Break
+    Next
+  Endif
+ 
+
+
+  If (Not hasimage) Then
+     MarkUncovered(filename)
+     'Return Null
+     Return False
+  Endif
+ jpgstart = Seek(mystream)
+  ' jpgend = -1
+  ' If jpgstart < 0 Then Return
+
+  'se il file jpg non è valido, reitera questo finchè non è valido
+  While Not isvalid
+    Try readahead(ByRef mystream, 4096)
+    While Not Eof(mystream) 'find end jpg
+      b = Read #mystream As Byte
+      If (b = j21) Or (b = "0") Then
+        b = Read #mystream As Byte
+        If b = j22 Or (b = "0") Then
+          jpgend = Seek(mystream) 
+          Break
+        Endif
+      Endif
+      Wait
+    Wend
+
+    If jpgend > 0 Then
+      Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      If (jpgend - jpgstart) > 307200 '307200 Then
+        Debug "jpg is >300KB, probably corrupted, skipping"
+        MarkUncovered(filename)
+        'Return Null
+        Return False
+      Endif
+    Endif
+
+    Seek #mystream, jpgstart
+
+    myjpg = Read #mystream, (jpgend - jpgstart - 2) 
+
+    myjpg = FromB64(myjpg)
+
+    'make sure myjpg starts with "FF D8"
+    jpgstart = InStr(myjpg, Chr(j11) & Chr(j12))
+    myjpg = Mid(myjpg, jpgstart, Len(myjpg) - jpgstart)
+
+    file.Save(tmpfile, myjpg)
+
+
+    
+    Try tmppic = picture.Load(tmpfile)
+    If Not Error Then 
+      isvalid = True
+      Seek #mystream, jpgstart
+    Endif
+    If Eof(mystream) Then
+      MarkUncovered(filename)
+      'Return Null
+      Return False
+    Endif
+    Wait
+  Wend
+
+  Close mystream
+  If isvalid 
+    If saveto <> "" Then Try Copy tmpfile To saveto
+    'Return tmppic
+    Return True
+      Else
+    MarkUncovered(filename)
+    'Return Null
+    Return False
+  Endif
+End
+
+
 
 Public Sub LookForJpg(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
   Dim mystream As File

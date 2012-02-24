@@ -1,11 +1,12 @@
 ' Gambas class file
 
 Public Sub PanscanSlider_Change()
+  
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
     If FMain.FullyLoaded Then 
       FMain.resizefactor = (Last.value / 10000)
-      FMain.ForcedZoomRT = ""
+      If Not FMain.switchingfullscreen Then FMain.ForcedZoomRT = ""
       FMain.CorrectAreaAspect
     Endif
   Endif

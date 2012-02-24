@@ -155,7 +155,7 @@ Private Const TabStripPlaylist As Integer = 1
 Private Const TabStripMediaInfo As Integer = 2
 
 'mousedrag is incorrectly raised on dblclick on videogrouparea, so we use this:
-Private SwitchingFullScreen As Boolean = False
+Public SwitchingFullScreen As Boolean = False
 
 Private UserStopped As Boolean = False 'if user has hit stop, don't advance in playlist.
 Private FirstPlay As Boolean = False ' used to avoid playing the media at startup if togglepls button is toggled
@@ -1336,10 +1336,11 @@ Public Sub CorrectAreaAspect()
     Select Case ForcedZoomRT
       Case "NOBARS"
         ResizeFactor = aspect / (outerbox.w / outerbox.h)
+        If ResizeFactor < 1 Then resizefactor = 1 / ResizeFactor
       Case "HALFBARS"
         ResizeFactor = 1 + (((aspect / (outerbox.w / outerbox.h)) - 1) / 2)
+        If ResizeFactor < 1 Then resizefactor = 1 / ResizeFactor
     End Select
-    If ResizeFactor < 1 Then resizefactor = 1 / ResizeFactor
     realtimeform.PanscanSlider.value = resizefactor * 10000
     TmpW = TmpW * resizefactor
     TmpH = TmpH * resizefactor
@@ -1351,7 +1352,6 @@ Public Sub CorrectAreaAspect()
   Endif
 
 End
-
 Public Sub Old_SaveFormGeometry()
   'due to different window managers behaviour,
   'save and reload the form geometry to caculate the offest

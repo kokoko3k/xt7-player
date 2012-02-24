@@ -440,3 +440,61 @@ Public Sub Form_Close()
   ButtonCancel_Click()
 End
 
+Public Sub SetACover(fullpath As String, artist As String, album As String, Optional forcesearch As Boolean = False)
+  
+  Dim timeout As Integer = 15 ' how much to wait for the other fetch to finish
+  Dim tmpmessage As String
+  Dim JustFileCover As Boolean = False 'are we going to set a cover for just this file?
+  Dim tl As New TagLib
+  
+  If CoverManager.fetching Then
+    CoverManager.HitCancel = True
+    Repeat
+      Wait 0.1
+      timeout = timeout - 1
+    Until (CoverManager.fetching = False) Or (timeout = 0)
+  Endif
+  
+  If Upper(FullPath) Like "*.FLAC" Then
+    If (Trim(Artist) = "") And (Trim(Album) = "") Then
+      tl.init(FullPath)
+      Artist = tl.Artist
+      Album = tl.Album
+      tl.tlFree()
+    Endif
+  Endif
+  
+  If (Trim(Artist) = "") And (Trim(Album) = "") Then
+    JustFileCover = True
+    tmpmessage = ("\nso you are going to set a cover for this particular file/stream")
+    Message.Info(("Artist Or Album tag information are required to set a cover") & tmpmessage, ("Ok"))
+  Endif
+  progressbar1.value = 0
+  If fetching Then
+    Message.Info(("Another cover search is in progress, please wait for it to finish!"), "Ok")
+    Return
+  Endif
+
+    If global.IsAudioFile(fullpath) Then
+      If (ArtistText.text & AlbumText.text) <> Trim(Artist) & Trim(Album) Then
+        Try CoverList.Clear
+        'Try FlexSpace.Picture = picture.Load("null.png")
+        Try CoverList.Refresh
+        'Try FlexSpace.refresh
+        ArtistText.text = Trim(Artist)
+        AlbumText.text = Trim(Album)
+        TextBox1.text = ArtistText.text & " " & AlbumText.text
+        'picturebox1.picture = AudioForm.CoverBox.Picture
+        Try Picturebox1.picture = picture.Load(coverfile(artist, album, fullpath))
+        picturebox1.refresh
+        Me.show
+        Wait 0.1
+        If ((Not Exist(Coverfile(ArtistText.text, AlbumText.text))) And Not JustFileCover) Or forcesearch Then
+          textbox1_Click() 'start a fetch
+        Endif
+      Endif
+      JustFileCover = JustFileCover
+      MediaFileFullPath = FullPath
+      Me.show
+    Endif
+End

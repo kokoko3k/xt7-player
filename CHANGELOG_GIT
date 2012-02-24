@@ -11,6 +11,7 @@ Feb 24 2012
   NEW:    select a dropped item when it is present in playlist and/or library
   CHANGE: Animate covers only when they change
   FIX:    Remove cover caches when updating a library/playlist item
+  FIX:    A bit faster embedded jpgs discover
   
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()

@@ -1562,7 +1562,7 @@ Public Sub ButtonStop_Click()
   'If (Not global.initearlyformsdone) Then global.DelayLoadStates_Timer
   aspectmenu.visible = False
   videobox.clear
-  
+  Try ClearStreamsMenu()
 End
 
 Public Sub Buttonfwd_Click()

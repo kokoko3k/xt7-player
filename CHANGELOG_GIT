@@ -3,7 +3,8 @@ Git changes:
 Feb 24 2012 
   FIX:    Regression: allow panscan zoom to be < 1
   FIX:    Retain black bars cutting setting when switching to/from fullscreen
-
+  FIX:    Clear streams menu at every stop
+  
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()
 

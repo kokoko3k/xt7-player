@@ -48,6 +48,7 @@ Public Sub Timer1_Timer()
   Dim bufsize, sync, meter As Integer
   Dim i, c, s, total, avg, start, sstop As Integer
   Dim samples As New Integer[]
+  If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
   If Error Then Return
   hFile.ByteOrder = gb.LittleEndian

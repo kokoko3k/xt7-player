@@ -46,7 +46,7 @@ Public Sub TextBox1_Click()
     Return
   Endif
   If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
-  Print buffer
+  'Print buffer
 
 '   'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
   MyURL = buffer
@@ -97,6 +97,7 @@ Public Sub TextBox1_Click()
   'Progressbar1.visible = FALSE
   textbox1.enabled = True
   Me.mouse = Mouse.default
+  If ImagesURL.count = 0 Then Message.Error(("No covers found for:") & "\n" & TextBox1.text & "\n" & ("Try to use less strict terms, remove symbols and so on..."), ("Ok"))
   ButtonLoad.enabled = True
   Fetching = False
 End
@@ -330,26 +331,32 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "") As Pic
   Endif
 End
 
-
 Public Sub PictureBox1_DblClick()
   Dim newfilename As String
   Dim currentfilename As String
+  CoverManager.close
   'stop any previous search
   HitCancel = True
   'set new cover
-  If Not Exist(global.confpath & "/covers/uncovered") Then Return
-  'newfilename = global.confpath& "/covers/" & global.fixfilename(Upper(ArtistText.text)) & "^^^" & global.fixfilename(Upper(AlbumText.text)) & ".jpg"
   newfilename = Coverfile(ArtistText.text, AlbumText.text)
+  
   Try currentfilename = Coverlist.Current.key
   If Not Error Then
     Try Kill newfilename
     Try Copy currentfilename To ((newfilename))
   Endif
-  FMain.CoverRefresh()
   Try RemoveCoverCache(newfilename)
-  CoverManager.close
-End
+  FMain.CoverRefresh()
 
+  Wait 0.05
+  Try currentfilename = Coverlist.Current.key
+  If Not Error Then
+    Try Kill newfilename
+    Try Copy currentfilename To ((newfilename))
+  Endif
+  Try RemoveCoverCache(newfilename)
+  FMain.CoverRefresh()
+End
 
 Public Function EmbeddedToCoverCache(artist As String, album As String, fullpath As String) As Boolean
   Dim newfilename As String

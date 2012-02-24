@@ -7,6 +7,8 @@ Feb 24 2012
   NEW:    Set a cover via menu with right click on a list item
   NEW:    popup message when no cover could be found
   CHANGE: Slightly changed covermanager form 
+  FIX:    Get out of vmeters timer event if we're in pause, (reduce cpu usage while paused)
+  NEW:    select a dropped item when it is present in playlist and/or library
   
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()

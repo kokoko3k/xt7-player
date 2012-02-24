@@ -515,7 +515,7 @@ Public Sub SelectNext(LibraryGrid As GridView, Optional random As Boolean = Fals
   Endif
 End
 
-Private Function FindRowByPath(LibraryGrid As GridView, path As String) As Integer
+Public Function FindRowByPath(LibraryGrid As GridView, path As String) As Integer
   'will search in librarygrid for path and return the row index
   Dim i As Integer
   For i = 0 To LibraryGrid.Rows.count - 1

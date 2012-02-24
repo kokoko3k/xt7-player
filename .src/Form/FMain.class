@@ -2575,6 +2575,12 @@ Public Sub VideoAreaGroup_Drop()
     dvd_device = droppedfile
     Play(False, "dvd://")
   Endif
+  If TabSelectedLibrary() Then
+    Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, droppedfile)
+      Else If TabSelectedPlaylist() Then 
+        Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, droppedfile)
+  Endif
+  
 End
 
 Public Sub UpdateSeekSlider()
@@ -5109,8 +5115,14 @@ Public Sub ExecuteRemote(command As String)
       fmain.Minimized = False
     Endif
       Play(False, parameter)
+      If TabSelectedLibrary() Then
+        Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, parameter)
+        Return
+     Endif
+    If TabSelectedPlaylist() Then Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, parameter)
   Endif
 End
+
 
 Public Function NoQuotes(quoted As String) As String
   ' '/home/user/song.mp3' ->/home/user/song.mp3

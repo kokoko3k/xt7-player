@@ -3089,7 +3089,7 @@ Public Sub FullScreenSwitch()
   Dim MenuBarItem As Object
   Dim MaxWait As Integer = 1000
   Dim blackbox As New Panel(fmain)
-  
+
   SwitchingFullScreen = True
   blackbox.border = border.none
   blackbox.visible = False
@@ -3182,15 +3182,13 @@ Public Sub FullScreenSwitch()
     OuterBox.Background = Color.black
     VideoBox.visible = True
     FMain.fullscreen = True
-    
     'sit and wait until fmain has changed his size (is gone fullscreen)
     Repeat
       Wait 0.001
       maxwait = maxwait - 1
     Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
-    Debug rightsidepanel.Parent.name
   Endif
-
+  Debug forcedzoomrt
   TimerFullScreen.enabled = FMain.FullScreen
 
   If Fmain.Fullscreen Then
@@ -3208,6 +3206,7 @@ Public Sub FullScreenSwitch()
   Wait 0.2
   SwitchingFullScreen = False
   blackbox.visible = False
+  CorrectAreaAspect()
 End
 
 Public Sub AllmenuVisible(AreVisible As Boolean)

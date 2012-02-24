@@ -55,18 +55,19 @@
         { ProgressBar1 ProgressBar
           MoveScaled(1,36,14,4)
         }
-        { TextBox1 ButtonBox
-          MoveScaled(1,40,14,4)
-          Picture = Picture["icon:/16/find"]
-        }
       }
       { VBox3 VBox
         MoveScaled(26,-3,64,63)
+        Spacing = True
         { PictureBox1 PictureBox
           MoveScaled(4,0,54,57)
           Background = &H000000&
           Expand = True
           Alignment = Align.Center
+        }
+        { TextBox1 ButtonBox
+          MoveScaled(1,58,14,4)
+          Picture = Picture["icon:/16/find"]
         }
       }
     }

@@ -9,6 +9,7 @@ Feb 24 2012
   CHANGE: Slightly changed covermanager form 
   FIX:    Get out of vmeters timer event if we're in pause, (reduce cpu usage while paused)
   NEW:    select a dropped item when it is present in playlist and/or library
+  CHANGE: Animate covers only when they change
   
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()

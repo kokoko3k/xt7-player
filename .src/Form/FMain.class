@@ -2378,10 +2378,12 @@ End
 
 
 
+Private PreviousCoverFile As String = "NOPE"
 Public Sub CoverRefresh()
   
   Dim coverfile As String
   Dim tl As New Taglib
+  Dim samecover As Boolean
   
   If mplayer.ProcessRunningOvr() And mplayer.Media_AudioOnly() Then
     'coverfile = global.confpath& "/covers/" & global.fixfilename(Upper(Trim(mplayer.Media_Artist))) & "^^^" & global.fixfilename(Upper(Trim(mplayer.Media_Album))) & ".jpg"
@@ -2390,12 +2392,15 @@ Public Sub CoverRefresh()
         tl.init(mplayer.Media_FullPath)
         mplayer.Media_Artist = tl.Artist
         mplayer.Media_Album = tl.Album
-        tl.free
+        Try tl.free
       Endif
     Endif
 
     CoverManager.MediaFileFullPath = mplayer.Media_FullPath
+
     coverfile = CoverManager.Coverfile(mplayer.Media_Artist, mplayer.Media_Album)
+    samecover = (coverfile = PreviousCoverFile)
+    PreviousCoverFile = coverfile
 
     If Not (Exist(coverfile)) Then
       If Exist(Trim(coverfile)) Then coverfile = Trim(coverfile)
@@ -2403,13 +2408,17 @@ Public Sub CoverRefresh()
 
     audioform.coverbox.refresh
 
-    Try audioform.CoverBox.picture = covermanager.coverpicture(coverfile, mplayer.Media_FullPath, 160)
+    If Not samecover Then 
+       Try audioform.CoverBox.picture = covermanager.coverpicture(coverfile, mplayer.Media_FullPath, 160)
+       'Try audioform.CoverBox.picture = covermanager.GetPic(mplayer.Media_FullPath, mplayer.Media_Artist, mplayer.Media_Album, audioform.coversize)
+    Endif
 
-    ShowAudioPanel(True)
+    ShowAudioPanel(True, Samecover)
   Endif
   audioform.coverbox.refresh
   
 End
+
 
 Public Sub OLD_ShowAudioPanel(Show As Boolean)
   
@@ -2434,13 +2443,13 @@ Public audioformshown As Boolean = False
 Private currentfile As String = ""
 Private previousfile As String = ""
 Public mymeters As New Meters
-Public Sub ShowAudioPanel(Show As Boolean)
+Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
   If Show And (Not TagEditMode) Then
     previousfile = currentfile
     currentfile = mplayer.Media_FullPath_Playing
     If ((currentfile <> previousfile) Or (Not audioformshown)) Then  'avoid showing twice
       fmain.OuterBox.ignore = True
-      audioform.CoverBox.Resize(0, 0)
+      If Not samecover Then audioform.CoverBox.Resize(0, 0)
       If ((Lower(audioform.AudioPanel.Parent.name) <> "rightsidepanel") Or (Not audioformshown)) Then
         BottomVbox.Reparent(zzzfake)
         audioform.AudioPanel.Reparent(Rightsidepanel)
@@ -2454,9 +2463,11 @@ Public Sub ShowAudioPanel(Show As Boolean)
       mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
       mymeters.startt
     Endif
-    audioform.coverbox.Refresh
-    AudioForm.TimerZoomIn.start
-    audioform.refresh
+    If Not samecover Then
+      audioform.coverbox.Refresh
+      AudioForm.TimerZoomIn.start
+      audioform.refresh
+    Endif
     rightsidepanel.Background = audioform.AudioPanel.Background
     OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
   Else
@@ -2468,7 +2479,6 @@ Public Sub ShowAudioPanel(Show As Boolean)
     audioform.refresh
   Endif
   audioformshown = show
-  
 End
 
 Public Sub OLD_SetDvdTabVisibility(visibility As Boolean)

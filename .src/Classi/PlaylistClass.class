@@ -653,6 +653,7 @@ Public Sub UpdateSelected(MyPlaylist As GridView)
   Dim PrevScrollY As Integer = myplaylist.scrolly
   Dim tmpfullpath As String = ""
   Dim DeleteURIes As Boolean = False
+  Dim artist, album, coverfile As String
   
   Try ColToSelect = MyPlaylist.Column
   Try RowToSelect = MyPlaylist.row
@@ -663,6 +664,12 @@ Public Sub UpdateSelected(MyPlaylist As GridView)
   For r = 0 To myplaylist.rows.count - 1
     If myplaylist.Rows[r].Selected Then
       tmpfullpath = Myplaylist[r, Columnindex["Full Path"]].text
+      'remove cover caches too
+      artist = Myplaylist[r, Columnindex["Artist"]].text
+      album = Myplaylist[r, Columnindex["Album"]].text
+      coverfile = CoverManager.Coverfile(artist, album, tmpfullpath)
+      CoverManager.RemoveCoverCache(coverfile)
+      '
       If (Not ISURI(tmpfullpath)) Then fullpaths.Add(tmpfullpath)
     Endif
   Next 'r

@@ -138,6 +138,7 @@ Public Sub RemoveCoverCache(coverfile As String)
   FMain.RefreshVisibleCovers(FMain.playlistgrid)
 End
 
+
 Public Function coverpicture(coverfile As String, uripath As String, width As Integer, Optional ByRef found As Boolean) As Picture
 Dim cachefile As String = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
 Dim tmpimage As Image

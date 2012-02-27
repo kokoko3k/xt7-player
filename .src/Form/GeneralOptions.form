@@ -1124,13 +1124,23 @@
           MoveScaled(0,2,50,0.5714)
         }
         { NoParse29 HBox
-          MoveScaled(1,5,50,4)
+          MoveScaled(1,3,50,4)
           Spacing = True
           { ShowCoversInListChk CheckBox
             MoveScaled(1,0,47,4)
             ToolTip = ("Display cover thumbnails in side lists")
             Expand = True
             Text = ("Show covers in listviews")
+          }
+        }
+        { NoParse41 HBox
+          MoveScaled(1,7,50,4)
+          Spacing = True
+          { ShowThumbsCHK CheckBox
+            MoveScaled(0,0,47,4)
+            ToolTip = ("Generate and show video thumbnails to for the side lists, this is made runtime in background and thumbnails will be  cached on disk.")
+            Expand = True
+            Text = ("Show thumbnails for video files")
           }
         }
         { NoParseStyle3 HBox

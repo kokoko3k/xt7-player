@@ -927,6 +927,9 @@ Public Sub IconsizeCombobox_Click()
 End
 
 Public Sub ShowCoversInListChk_Click()
+  ShowThumbsCHK.enabled = ShowCoversInListChk.Value
+  If Not (ShowCoversInListChk.Value) Then ShowThumbsCHK.value = False
+  
   If fmain.TabSelectedLibrary() Then 
     fmain.librarygrid.refresh
     fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
@@ -936,3 +939,15 @@ Public Sub ShowCoversInListChk_Click()
   Endif
 End
 
+
+Public Sub ShowThumbsCHK_Click()
+  If fmain.TabSelectedLibrary() Then 
+    fmain.librarygrid.refresh
+    fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
+    Else If fmain.TabSelectedPlaylist() Then 
+      fmain.playlistgrid.refresh
+      fmain.RefreshVisibleRows(fmain.playlistgrid, fmain.myplaylist)
+  Endif
+  
+
+End

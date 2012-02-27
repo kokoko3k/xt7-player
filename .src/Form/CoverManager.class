@@ -151,6 +151,12 @@ found = True
 
 'IF 1 = 2 THEN
 
+If (global.isvideofile(uripath) And (generaloptions.ShowThumbsChk.value = False)) Then 
+  Return Stock[width & "/video"]
+Endif
+
+
+
 If Exist(coverfile) Then
   'DEBUG "coverfile exists"
   Try Return CoverCacheList[cachefile].Picture 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
@@ -832,8 +838,17 @@ End
 
 Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16)
   QueuedCover = New Collection
+  
+  If global.IsVideoFile(fullpath) Then
+    If Not (generaloptions.ShowThumbsCHK.value) Then
+      mygrid.data.Picture = Stock[rowheight & "/video"]
+      Return  
+    Endif
+    
+  Endif
+  
+  
   mygrid.data.Picture = Stock[rowheight & "/clock"]
-
   QueuedCover["mygrid"] = MyGrid
   QueuedCover["artist"] = artist
   QueuedCover["album"] = album
@@ -876,7 +891,9 @@ Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As S
       Return
   End Select
   
-  If global.IsVideoFile(fullpath) Then makevideothumb(fullpath, coverfilename)
+  If global.IsVideoFile(fullpath) Then
+    If generaloptions.ShowThumbsCHK.value Then makevideothumb(fullpath, coverfilename)
+  Endif
 End
 
 

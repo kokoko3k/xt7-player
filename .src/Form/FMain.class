@@ -4854,35 +4854,35 @@ End
 
 
 
-Public Sub Gridviews_Data_old(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
-  Dim fullpath As String
-  Dim artist, album As String
-  Dim rowheight As Integer
-  Dim coverfound As Boolean = True
-  If Not fmain.FullyLoaded Then Return
-  If Not fmain.visible Then Return
-
-  'draw an icon (or a cover) on the first column depending on the file extension
-  If column = 0 Then
-    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-    If (GeneralOptions.ShowCoversInListChk.value) And (mygrid.name <> "DVBTGrid") Then
-      RowHeight = MyGrid.Rows[row].h - global.rowpadding
-      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
-      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
-      MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
-        Else
-      MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
-    Endif
-  Endif
-
-  If (row Mod 2) = 0 Then
-    MyGrid.Data.background = MyGrid.Background
-  Else
-    MyGrid.data.background = Global.Alternatecolor
-  Endif
-  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
-  
-End
+' Public Sub Gridviews_Data_old(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
+'   Dim fullpath As String
+'   Dim artist, album As String
+'   Dim rowheight As Integer
+'   Dim coverfound As Boolean = True
+'   If Not fmain.FullyLoaded Then Return
+'   If Not fmain.visible Then Return
+' 
+'   'draw an icon (or a cover) on the first column depending on the file extension
+'   If column = 0 Then
+'     Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
+'     If (GeneralOptions.ShowCoversInListChk.value) And (mygrid.name <> "DVBTGrid") Then
+'       RowHeight = MyGrid.Rows[row].h - global.rowpadding
+'       artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+'       album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+'       MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
+'         Else
+'       MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
+'     Endif
+'   Endif
+' 
+'   If (row Mod 2) = 0 Then
+'     MyGrid.Data.background = MyGrid.Background
+'   Else
+'     MyGrid.data.background = Global.Alternatecolor
+'   Endif
+'   MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
+'   
+' End
 
 
 
@@ -4909,10 +4909,10 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
             Else If Exist(covermanager.Coverfile(artist, album, fullpath)) Then
               MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
                 Else
-              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row) 'fixme
+              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight)
         Endif
           Else 'the user don't want any cover
-        MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
+        MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight)
       Endif 
     
     Endif
@@ -6934,7 +6934,7 @@ Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integ
     Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(myimgfile, fullpath, RowHeight)
   Else
     fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath)
+    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight)
   Endif
   '*sometimes cell text is lost (can't understand why), so restore it
   If Lower(mygrid.name) = "librarygrid" Then
@@ -6962,7 +6962,7 @@ Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview)
     album = mygrid[hrow, MyLibrary.ColumnIndex["Album"]].text
     Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, RowHeight - global.rowpadding)
   Else
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath)
+    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight)
   Endif
   
   '*sometimes cell text is lost (can't understand why), so restore it
@@ -7172,7 +7172,7 @@ End
 Public Sub FileView1_Icon(Path As String)
   
   If IsDir(path) Then
-    FileView1.icon = Picture["folder16.png"]
+    FileView1.icon = stock["16/directory"]
   Else
     FileView1.icon = DefaultLibraryIcon(path)
   Endif

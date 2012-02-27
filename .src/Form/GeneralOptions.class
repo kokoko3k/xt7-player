@@ -9,7 +9,7 @@ Public TimesLoaded As Integer = 0 'Count how many times the form has been loaded
 
 Private LastDirectory As String = ""
 
-Public GuiPercent As Integer = 100
+
 
 Public UntranslatedTabNames As String[] = ["VIDEO", "AUDIO", "LIBRARY", "TWEAKS", "DVD", "NETWORK", "LANGUAGE", "MISC"]
 
@@ -36,7 +36,7 @@ Public Sub Form_Open()
 End
 
 Public Sub Form_Resize()
-  Global.CheckResolution(Me)
+
   TabStrip1.Y = 8
   VBox1.y = TabStrip1.Y
   VBox1.Height = Generaloptionsframe.Height - 20
@@ -393,9 +393,6 @@ Public Sub OkBTN_Click()
   If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.SetFocus()
 End
 
-Public Sub GuiPercentSpinBox_Change()
-  Global.Guipercent = 100 - GuiPercentSpinBox.value
-End
 
 
 Public Sub LoadWatchDir(ProfileName As String)

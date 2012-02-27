@@ -77,7 +77,6 @@ Public Sub VideoDriverList_MouseDrag()
 End
 
 Public Sub Form_Resize()
-  Global.CheckResolution(Me)
   DriverDescription.Width = DriverFrame.Width - DriverDescription.left - 8
   DriverDescription.Height = DriverFrame.Height - DriverDescription.top - 8
   ConfigureTabs.width = DriverFrame.width - ConfigureTabs.left - 8

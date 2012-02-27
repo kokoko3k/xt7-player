@@ -506,9 +506,7 @@ Public Function ActionRelatedTo(Hotkey As String) As String
 End
 
 
-Public Sub Form_Resize()
-  Global.CheckResolution(Me)
-End
+
 
 Public Sub MenuSaveDefault_Click()
   Try HotKeys.SaveHotKeys(global.confpath & "/" & Global.CurrentProfile)

@@ -26,7 +26,7 @@
     }
   }
   { GENERALOPTIONSFRAME Frame
-    MoveScaled(0,0,86,62)
+    MoveScaled(0,0,86,66)
     Expand = True
     { VBox1 VBox
       MoveScaled(1,1,19,58)
@@ -42,7 +42,7 @@
       }
     }
     { Tabstrip1 TabStrip
-      MoveScaled(21,0,62,60)
+      MoveScaled(21,0,62,65)
       Tag = "Audio CD"
       Expand = True
       Arrangement = Arrange.Vertical
@@ -1103,7 +1103,7 @@
       Index = 10
       Text = ("Style")
       { ScrollView9 ScrollView
-        MoveScaled(0,0,59,52)
+        MoveScaled(0,0,59,61)
         Tag = "style"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -1316,31 +1316,12 @@
         { NOPARSESEPARATOR4 Separator
           MoveScaled(1,48,50,0.5714)
         }
-        { NoParse1 HBox
-          MoveScaled(1,50,50,4)
-          ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
-          Spacing = True
-          { NoParseLabel2 Label
-            MoveScaled(1,1,14,3)
-            AutoResize = True
-            Text = ("Limit gui size to")
-          }
-          { GuiPercentSpinBox SpinBox
-            MoveScaled(15,1,11,4)
-            Value = 100
-          }
-          { NoParseLabel3 Label
-            MoveScaled(28,1,15,3)
-            AutoResize = True
-            Text = ("% of the screen")
-          }
-        }
       }
       Index = 0
     }
   }
   { HBox2 HBox
-    MoveScaled(1,63,76,4)
+    MoveScaled(1,67,76,4)
     Spacing = True
     Padding = 4
     { HBox3 HBox

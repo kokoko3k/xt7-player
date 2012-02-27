@@ -186,7 +186,6 @@ End
 
 
 Public Sub Form_Resize()
-  Global.CheckResolution(Me)
   TabStrip1.Y = 8
   TabStrip1.X = FilterList.x + FilterList.Width + 16
   TabStrip1.width = Frame1.Width - FilterList.Width - 24

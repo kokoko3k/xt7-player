@@ -19,8 +19,6 @@ Public quotes As String
 Public aboutmessage As String 
 Public Alternatecolor As Integer 
 Public FromChains As Boolean 
-Public GuiPercent As Integer 
-Public CheckingSize As Boolean
 Public LSyncing As Boolean 
 Public LSyncingMessage As String 
 Public AppName As String 
@@ -71,8 +69,6 @@ Public Sub init()
   aboutmessage = "\n" & ("Xt7-Player version ") & Application.version & (" by Antonio Orefice.\nxt7player@gmail.com\n\nThanks to Benoît Minisini for Gambas.") & "\n\n" & "I92guboj - Spanish translation \n" & "Wackenroader - Brazilian Portuguese translation \n" & "Shimingzhou - simplified Chinese translation\n" & "Jacky Bamière - French translation\n" & "SymbianFlo - Testing and 'spiritual' support\n" & "NickiNicki - Bug reports\n" & "Eloaders and all the contributors\nat https://launchpad.net/xt7-player \n" 
   Alternatecolor = &EEEEFF&
   FromChains = False 'will track if chains form has opened another window
-  GuiPercent = 0
-  CheckingSize = False
   LSyncing = False 'is true when library is syncing.
   LSyncingMessage = ("Syncing Library, please wait...")
   AppName = "Xt7-Player"
@@ -247,26 +243,7 @@ Public Function NoFileSuffix(Myfilename As String) As String
   Endif
 End
 
-Public Sub CheckResolution(TheForm As Form)
-'will resize the form if it is too big
-  Dim NewWidth As Integer = TheForm.w
-  Dim NewHeight As Integer = TheForm.h
-  Dim TooBig As Boolean = False
-  If Not (TheForm.Maximized Or CheckingSize) Then
-    CheckingSize = True
-    'WAIT 0.2
-    If (Desktop.w - TheForm.w) < ((Desktop.w Div 100) * GuiPercent) Then
-      NewWidth = (Desktop.w Div 100) * (100 - GuiPercent)
-      TooBig = True
-    Endif
-    If (Desktop.h - TheForm.h) < ((Desktop.h Div 100) * GuiPercent) Then
-      NewHeight = (Desktop.h Div 100) * (100 - GuiPercent)
-      TooBig = True
-    Endif
-    If TooBig Then TheForm.Resize(NewWidth, NewHeight)
-    CheckingSize = False
-  Endif
-End
+
 
 Public Function GetTotalFiles(dragdata As String, FromDesktop As Boolean) As Integer
   Dim droppedfiles As String[]

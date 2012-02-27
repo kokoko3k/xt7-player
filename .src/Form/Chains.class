@@ -257,8 +257,6 @@ Public Sub ApplyBTN_Click()
 End
 
 Public Sub Form_Resize()
-
-  Global.CheckResolution(Me)
   If (Me.w < 600) And (Me.parent = Null) Then
     Me.w = 600
     Return

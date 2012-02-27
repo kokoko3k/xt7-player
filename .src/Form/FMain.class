@@ -1449,10 +1449,6 @@ End
 Public Sub Form_Resize()
   
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
-  If Not FMain.fullscreen Then
-    Global.CheckResolution(Me)
-  Endif
-
   CostrainFormSizes()
   CorrectAreaAspect()
   

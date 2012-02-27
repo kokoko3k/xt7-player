@@ -913,4 +913,26 @@ Public Sub DVDDeviceText_MouseDown()
   FillDvd()
 End
 
+Public Sub BackResetButton4_Click()
+  IconsizeCombobox.text = 16
+End
+
+Public Sub IconsizeCombobox_Click()
+  fmain.ResizeShadowTemplate()
+    If fmain.TabSelectedLibrary() Then 
+    fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
+    Else If fmain.TabSelectedPlaylist() Then 
+      fmain.RefreshVisibleRows(fmain.playlistgrid, fmain.myplaylist)
+  Endif
+End
+
+Public Sub ShowCoversInListChk_Click()
+  If fmain.TabSelectedLibrary() Then 
+    fmain.librarygrid.refresh
+    fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
+    Else If fmain.TabSelectedPlaylist() Then 
+      fmain.playlistgrid.refresh
+      fmain.RefreshVisibleRows(fmain.playlistgrid, fmain.myplaylist)
+  Endif
+End
 

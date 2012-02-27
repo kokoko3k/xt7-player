@@ -4477,7 +4477,7 @@ Public Sub LibraryGrid_Select()
   If librarygrid.row >= 0 Then
     If GeneralOptions.HighlightCHK.value Then
       If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, librarygrid)
-      Try HighlightRow(librarygrid.row, librarygrid, global.Highlightmore, True)
+      Try HighlightRow(librarygrid.row, librarygrid, global.Highlightmore)
       prevHigLibRow = librarygrid.row
     Endif
   Endif
@@ -4514,7 +4514,7 @@ Public Sub PlayListGrid_Select()
   If Playlistgrid.row >= 0 Then
     If GeneralOptions.HighlightCHK.value Then
       If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
-      Try HighlightRow(Playlistgrid.row, Playlistgrid, global.Highlightmore, True)
+      Try HighlightRow(Playlistgrid.row, Playlistgrid, global.Highlightmore)
       prevHigLibRow = Playlistgrid.row
     Endif
   Endif
@@ -4889,13 +4889,15 @@ End
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
   Dim fullpath As String
   Dim artist, album As String
-  Dim rowheight As Integer = 24 - global.rowpadding
+  Dim rowheight As Integer 
   Dim coverfound As Boolean = True
 
   Dim filefound As Boolean = True
   
   If Not fmain.FullyLoaded Then Return
   If Not fmain.visible Then Return
+  rowheight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding ' + shadowoffset
+  If mygrid.Rows.H <> (rowheight + global.rowpadding) Then mygrid.Rows.H = rowheight + global.rowpadding
   'draw an icon (or a cover) on the first column depending on the file extension
   If column = 0 Then
     Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
@@ -4905,14 +4907,14 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
       album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
       
       If covermanager.filesnotfound.Find(fullpath) <> -1 Then 
-        mygrid.Data.picture = picture["icon:/" & rowheight & "/error"]
+        mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
         filefound = False
           Else 'file not (yet?) marked as not found
         If Not global.IsNetworkURI(fullpath) Then
           If Not Exist(fullpath) Then 
             Debug "Missing file! " & fullpath
             covermanager.FileNotFoundAdd(fullpath)
-            mygrid.Data.picture = picture["icon:/" & rowheight & "/error"]
+            mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
             filefound = False
           Endif
         Endif
@@ -4922,15 +4924,15 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
         If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
           If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
             If covermanager.IsUncovered(fullpath) Then '...e non può essere creato
-              MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight) 'ritorna la cover di default
+              MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la cover di default
                 Else 'il coverfile non esiste, ma potrebbe essere creato
-              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight) 'prova a crearlo
+              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight - global.rowpadding) 'prova a crearlo
             Endif
               Else 'il coverfile c'è
-            MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight) 'ritorna la cover di default
+            MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la cover di default
           Endif
             Else 'the user don't want any cover
-          MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight)
+          MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
         Endif 'user wanted covers
       Endif 'filefound was true
       
@@ -6900,13 +6902,13 @@ End
 
 Private DontHighlightHack As Boolean = False
 
-Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer, Optional showcover As Boolean = False)
+Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
   
   Dim CurBackColor As Integer
   Dim RowHeight, tmpheight As Integer
   Dim i As Integer
   Dim tmptext As String
-  Dim myimgfile As String
+  'Dim myimgfile As String
   Dim artist, album As String
   'DIM CoverOver AS Integer = 32
   Dim CoverPadding As Integer = 6
@@ -6916,9 +6918,8 @@ Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integ
     DontHighlightHack = False
     Return
   Endif
-  If GeneralOptions.ShowCoversInListChk.value Then showcover = True
   
-  If (mygrid[hrow, 0].font.size <> mygrid.font.size) And (Not showcover) Then Return 'dont highlight multiple times
+  If (mygrid[hrow, 0].font.size <> mygrid.font.size) And (Not generaloptions.ShowCoversInListChk.value) Then Return 'dont highlight multiple times
   
   CurBackColor = mygrid[hrow, 0].BackGround
   'make text rich to apply font properties (gambas bug/undocumented)
@@ -6927,33 +6928,35 @@ Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integ
   Endif
   
   mygrid[hrow, 0].font.size = mygrid.font.size + increment
-  tmpheight = mygrid.font.TextHeight("^_") + (global.rowpadding * 2)
+  rowheight = generaloptions.IconsizeCombobox.text + global.rowpadding
+  tmpheight = (rowheight + (global.rowpadding)) * 2
 
-  If showcover Then
-    If tmpheight < global.coverHeight Then
-      mygrid.Rows[hrow].h = global.coverHeight
-    Else
-      mygrid.Rows[hrow].h = tmpheight + 5
-    Endif
+  ' If generaloptions.ShowCoversInListChk.value Then
+  '   If tmpheight < rowheight Then
+  '     mygrid.Rows[hrow].h = rowheight 
+  '   Else
+  '     mygrid.Rows[hrow].h = tmpheight + 5
+  '   Endif
 
-  Else
-    mygrid.Rows[hrow].h = tmpheight
-  Endif
+  'Else
+    mygrid.Rows[hrow].h = tmpheight 
+  'Endif
   
   mygrid[hrow, 0].BackGround = CurBackColor
   If Not (mygrid[hrow, 0].font.bold) Then mygrid[hrow, 0].font.bold = True
 
   mygrid[hrow, 0].RichText = Null
   fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-  If showcover Then
+  If generaloptions.ShowCoversInListChk.value Then
     artist = mygrid[hrow, MyLibrary.ColumnIndex["Artist"]].text '''
     album = mygrid[hrow, MyLibrary.ColumnIndex["Album"]].text '''
-    RowHeight = mygrid.Rows[hrow].h - CoverPadding
-    myimgfile = CoverManager.Coverfile(artist, album)
-    Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(myimgfile, fullpath, RowHeight)
+    
+    'myimgfile = CoverManager.Coverfile(artist, album, fullpath)
+    'Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(myimgfile, fullpath, RowHeight,, WantThumbs(fullpath))
+    Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(covermanager.coverfile(artist, album, fullpath), fullpath, tmpheight - global.rowpadding)
   Else
     fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight)
+    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, tmpheight - global.rowpadding)
   Endif
   '*sometimes cell text is lost (can't understand why), so restore it
   If Lower(mygrid.name) = "librarygrid" Then
@@ -6972,17 +6975,19 @@ Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview)
   
   If ((hrow Mod 2) <> 0) Then mygrid[hrow, 0].BackGround = global.Alternatecolor
   mygrid[hrow, 0].font = mygrid.Font '<<--
-  mygrid.Rows[hrow].h = mygrid.Font.TextHeight("^_") + global.rowpadding '<<--
+  mygrid.Rows[hrow].h = generaloptions.IconsizeCombobox.text + global.rowpadding
   fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-  
+  RowHeight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding
+
   If GeneralOptions.ShowCoversInListChk.value Then
-    RowHeight = mygrid.Rows[hrow].h
     artist = mygrid[hrow, MyLibrary.ColumnIndex["Artist"]].text
     album = mygrid[hrow, MyLibrary.ColumnIndex["Album"]].text
-    Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, RowHeight - global.rowpadding)
+    MyGrid[hrow, 0].Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album, fullpath), fullpath, RowHeight - global.rowpadding)
+    'Try MyGrid[hrow, 0].Picture = covermanager.GetPic(fullpath, artist, album, rowheight, WantThumbs(fullpath))
   Else
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight)
+    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
   Endif
+  mygrid.Rows[hrow].h = rowheight + global.rowpadding
   
   '*sometimes cell text is lost (can't understand why), so restore it
   If Lower(mygrid.name) = "librarygrid" Then
@@ -7941,17 +7946,19 @@ Public Sub PanScan_Menu()
   Object.Attach(realtimeform.PanscanSlider, realtimeform, realtimeform.PanscanSlider.name)
 End
 
-Public Sub Button5_Click()
-  Dim i, j As Integer
-  For i = 0 To playlistgrid.Rows.count - 1
-    playlistgrid[i, 0].picture = picture["pipe.png"]
-    ' For j = 0 To playlistgrid.columns.count - 1
-    '   playlistgrid[i, j].picture = picture["pipe.png"]
-    ' Next
-  Next
 
+
+Public Sub ResizeShadowTemplate()
+  
+  
+  
 End
 
-
-
-
+Public Function WantThumbs(fullpath As String) As Boolean
+Return True
+ '  If Not global.IsVideoFile(fullpath) Then
+ '   Return True
+ '     Else
+ '   Return GeneralOptions.ShowThumbsCHK.Value
+ ' Endif
+End

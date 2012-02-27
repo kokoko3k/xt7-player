@@ -76,7 +76,7 @@ Public Sub init()
   CustomBindKeys = "Xt7BindKeys"
   XbindkeysBIN = global.confpath & "/" & CustomBindKeys
   SocketFile = global.confpath & "/.localsocket"
-  rowpadding = 8 'space around every row in library and playlist
+  rowpadding = 4 'space around every row in library and playlist
   Highlightmore = 1 'highlighted item font size addition
   coverHeight = (Desktop.H Div 17)
   initearlyformsdone = False

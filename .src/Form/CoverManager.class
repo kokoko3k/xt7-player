@@ -837,7 +837,7 @@ Public Sub CoversLookerTimer_timer()
   If mygrid[row, 19].text <> fullpath Then Return
   'inserisci immagine
 
-  savepic(fullpath, artist, album, rowheight, True)
+  savepic(fullpath, artist, album, generaloptions.IconsizeCombobox.text, True)
   mygrid[row, 0].clear
 
 End

@@ -4834,20 +4834,20 @@ Public Sub PlaylistGrid_Drop()
   
 End
 
-Public Function DefaultLibraryIcon(fullpath As String) As Picture
+Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16) As Picture
   
   If Global.IsAudioFile(fullpath) Then
-    Return picture["filetypeaudio.png"]
+    Return Stock[rowheight & "/audio"]
   Else If Global.IsVideoFile(fullpath) Then
-    Return picture["filetypevideo.png"]
+    Return Stock[rowheight & "/video"]
   Else If Global.IsDvbURI(fullpath) Then
     Return picture["filetypedvb.png"]
   Else If Youtube.IsYoutubeLink(fullpath) Then
     Return picture["youtubeicon.png"]
   Else If Global.IsNetworkURI(fullpath) Then
-    Return picture["filetypeuri.png"]
+    Return Stock[rowheight & "/network"]
   Else
-    Return picture["filetypeunknown.png"]
+    Return Stock[rowheight & "/file"]
   Endif
   
 End

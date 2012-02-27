@@ -513,40 +513,45 @@
     }
   }
   { MainToolBar Panel
-    MoveScaled(0,0,92,4)
+    MoveScaled(0,0,92,4.5714)
     Arrangement = Arrange.Horizontal
     { ShowVolBtn2 ToolButton DynaGuiToolbar
       Name = "ShowVolBtn2"
-      MoveScaled(1,0,4,4)
+      MoveScaled(1,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Open a file")
       AutoResize = True
       Picture = Picture["icon:/22/open"]
     }
     { OpenNetworkBTN ToolButton DynaGuiToolbar
       Name = "OpenNetworkBTN"
-      MoveScaled(6,0,4,4)
+      MoveScaled(6,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Open an URI/Network stream")
       AutoResize = True
       Picture = Picture["icon:/22/network"]
     }
     { ConfigureChainsBTN ToolButton DynaGuiToolbar
       Name = "ConfigureChainsBTN"
-      MoveScaled(10,0,4,4)
+      MoveScaled(10,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Show/hide chains window")
       AutoResize = True
       Picture = Picture["pipe.png"]
     }
     { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
-      MoveScaled(15,0,4,4)
+      MoveScaled(15,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Configuration toolbox")
       AutoResize = True
       Picture = Picture["configure.png"]
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
-      MoveScaled(19,0,4,4)
+      MoveScaled(19,0,4.5714,4.5714)
       Enabled = False
+      Font = Font["1"]
       ToolTip = ("Show/Hide AudioTag editor")
       AutoResize = True
       Picture = Picture["icon:/22/edit"]
@@ -558,35 +563,40 @@
     }
     { ShowAudioEq ToolButton DynaGuiToolbar
       Name = "ShowAudioEq"
-      MoveScaled(54,0,4,4)
+      MoveScaled(54,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Video Equalizer")
       AutoResize = True
       Picture = Picture["audioequalizer.png"]
     }
     { ShowVideoEq ToolButton DynaGuiToolbar
       Name = "ShowVideoEq"
-      MoveScaled(58,0,4,4)
+      MoveScaled(58,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Video Equalizer")
       AutoResize = True
       Picture = Picture["icon:/22/color"]
     }
     { SwitchSubBtn ToolButton DynaGuiToolbar
       Name = "SwitchSubBtn"
-      MoveScaled(62,0,4,4)
+      MoveScaled(62,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Switch subtitle track")
       AutoResize = True
       Picture = Picture["icon:/22/font"]
     }
     { SwitchAudioBTN ToolButton DynaGuiToolbar
       Name = "SwitchAudioBTN"
-      MoveScaled(67,0,4,4)
+      MoveScaled(67,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Switch audio track")
       AutoResize = True
       Picture = Picture["icon:/22/language"]
     }
     { RealtimeBTN ToolButton DynaGuiToolbar
       Name = "RealtimeBTN"
-      MoveScaled(72,0,4,4)
+      MoveScaled(72,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Other realtime commands")
       AutoResize = True
       Picture = Picture["icon:/22/clock"]
@@ -597,21 +607,24 @@
     }
     { SwitchSidePanelBTN ToolButton DynaGuiToolbar
       Name = "SwitchSidePanelBTN"
-      MoveScaled(79,0,4,4)
+      MoveScaled(79,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Hide/show left panel")
       AutoResize = True
       Picture = Picture["view-choose.png"]
     }
     { FullScreenBtn ToolButton DynaGuiToolbar
       Name = "FullScreenBtn"
-      MoveScaled(83,0,4,4)
+      MoveScaled(83,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Fullscreen Switch")
       AutoResize = True
       Picture = Picture["view-fullscreen.png"]
     }
     { PoweroffBTN ToolButton DynaGuiToolbar
       Name = "PoweroffBTN"
-      MoveScaled(87,0,4,4)
+      MoveScaled(87,0,4.5714,4.5714)
+      Font = Font["1"]
       ToolTip = ("Shutdown menu")
       AutoResize = True
       Picture = Picture["icon:/22/quit"]

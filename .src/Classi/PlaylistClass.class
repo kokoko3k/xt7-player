@@ -431,6 +431,18 @@ End
 '   
 ' END
 
+Public Function GetFullPaths(filter As String) As String[]
+  Dim out As New String[]
+  Dim i As Integer 
+  Dim fullpath As String
+  For i = 0 To PTable.count - 1
+    fullpath = GetValue(ptable[i], "Full Path")
+    If (fullpath Like filter) Then out.Push(fullpath)
+  Next
+  Return out
+End
+
+
 Public Function CellValue(LibraryGrid As Gridview, R As Integer, C As Integer) As String
   Dim ColumnCaption As String = LibraryGrid.Columns[c].text
   Dim tablerow As String

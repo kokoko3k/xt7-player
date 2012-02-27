@@ -4272,6 +4272,39 @@ Public Sub Playlistgrid_Menu()
   
 End
 
+
+Public Sub CleanVideoThumbs()
+  Dim ffile As String
+  Dim videofilter, videofile As String
+  Dim videofiles As String[]
+  Dim coverfile As String
+  Dim coverfilesOK As New String[]
+  Dim safeplace As String
+  safeplace = global.confpath & "/coverstmp"
+  Try Mkdir safeplace
+  'get a list of video files:
+  videofilter = global.videofilter & global.UncommonVideoFilters & Upper(global.videofilter) & Upper(global.UncommonVideoFilters)
+  videofilter = Replace(videofilter, "Flash*", "")
+  videofilter = Replace(videofilter, "*", "")
+  videofilter = Replace(videofilter, ";", ",")
+  videofilter = Replace(videofilter, ",,", ",")
+  videofilter = "*{" & videofilter & "}"
+  videofiles = mylibrary.GetFullPaths(videofilter).Insert(myplaylist.GetFullPaths(videofilter))
+  'generate coverfiles name and move them into a safe place
+  For Each videofile In videofiles
+    coverfile = (covermanager.Coverfile("", "", videofile))
+    'Debug "mv  '" & coverfile & "' " & safeplace & "/ &>/dev/null"
+    If Exist(coverfile, True) Then Shell "mv  '" & coverfile & "' " & safeplace & "/ &>/dev/null" Wait
+  Next
+  'remove all of the thumbnails
+  Shell "rm " & global.confpath & "/covers/" & videofilter & ".jpg* &>/dev/null" Wait 
+  'move the existing ones back
+  Shell "mv " & safeplace & "/* " & global.confpath & "/covers/ " Wait
+  'clean up
+  Shell "rm -R " & safeplace
+End
+
+
 Public Sub MenuLibraryUpdate_popup_Click()
   
   MenuLibraryUpdate_Click()
@@ -4313,6 +4346,9 @@ Public Sub MenuLibraryUpdate_Click()
     If AnswerRemove = 1 Then
       'remove non existing files
       removedfiles = MyLibrary.RemoveNonExisting()
+      Debug "Removing old video thumbnails"
+      CleanVideoThumbs()
+      Debug "Done"
     Endif
     
     For i = 0 To GeneralOptions.NoParseWatchedListbox.count - 1

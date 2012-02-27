@@ -818,35 +818,35 @@ Public Sub CoversLookerTimer_timer()
   album = WorkingCover["album"] 
   row = WorkingCover["row"] 
 
+
 'controlla se la row è visibile 'qui c'è un problema, alcune immagini si perdono
   If MyGrid.Rows.count <= 0 Then Return
-  ' FirstR = MyGrid.RowAt(MyGrid.y)
-  ' LastR = MyGrid.RowAt(MyGrid.h)
-  ' 
-  ' If LastR = -1 Then LastR = Mygrid.rows.count - 1
-  ' If firstR = -1 Then firstR = 0
-  ' If Not ((row >= firstR) And (row <= lastR)) Then Return
+  FirstR = MyGrid.RowAt(MyGrid.y)
+  LastR = MyGrid.RowAt(MyGrid.h)
+  
+  If LastR = -1 Then LastR = Mygrid.rows.count - 1
+  If firstR = -1 Then firstR = 0
+  If Not ((row >= firstR) And (row <= lastR)) Then Return
 
 
 'se lo è, controlla che ad essa corssiponda lo stesso file
   If mygrid[row, 19].text <> fullpath Then Return
 
-'nel caso, genera immagine
-  mygrid[row, 0].picture = FMain.DefaultLibraryIcon(fullpath)
-
 
   'controlla di nuovo che alla row corrisponda lo stesso file
   If mygrid[row, 19].text <> fullpath Then Return
   'inserisci immagine
-  mygrid[row, 0].Picture = GetPic(fullpath, artist, album, rowheight, True)
-End
 
+  savepic(fullpath, artist, album, rowheight, True)
+  mygrid[row, 0].clear
+
+End
 
 
 Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16)
   QueuedCover = New Collection
-  'è importante settare una picture mentre siamo ancora nell'evento grid_data
-  mygrid[row, 0].Picture = Stock[rowheight & "/clock"]
+  mygrid.data.Picture = Stock[rowheight & "/clock"]
+
   QueuedCover["mygrid"] = MyGrid
   QueuedCover["artist"] = artist
   QueuedCover["album"] = album
@@ -857,35 +857,17 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
   CoversLookerTimer.start
 End
 
-
 Public filesnotfound As New String[]
 Public Sub FileNotFoundAdd(path As String)
   If (filesnotfound.Find(path) = -1) Then filesnotfound.Add(path)
 End
 
 
-Public Function GetPic(fullpath As String, artist As String, album As String, rowheight As Integer, Optional forcethumbs As Boolean = False) As Picture
+Public Function SavePic(fullpath As String, artist As String, album As String, rowheight As Integer, Optional forcethumbs As Boolean = False)
   Dim coverfilename As String
-  'Dim t0 As Float = Timer  
-  
-  'return an error icon for files not found and take track of them into an array to avoid disk searches
-  If Not global.IsNetworkURI(fullpath) Then 
-    If filesnotfound.Find(fullpath) <> -1 Then Return picture["icon:/" & rowheight & "/error"]
-    If Not Exist(fullpath) Then 
-      Debug "Missing file! " & fullpath
-      FileNotFoundAdd(fullpath)
-      Return picture["icon:/" & rowheight & "/error"]
-    Endif
-  Endif
   coverfilename = coverfile(artist, album, fullpath)
-  'If Not (global.IsVideoFile(fullpath)) Then Return coverpicture(coverfilename, fullpath, rowheight)
   'controlla se esiste il coverfile su disco
   'se non esiste, prova a crearlo dalle immagini embedded
   If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename)
   If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath)
-  'poi richiama coverfile che ti restituirà o l'embedded creato su disco oppure l'icona di default
-
-  'Debug Timer - t0
-  Return coverpicture(coverfilename, fullpath, rowheight)
 End
-

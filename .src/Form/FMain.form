@@ -731,6 +731,9 @@
             Border = Border.Etched
           }
         }
+        { Button5 Button
+          MoveScaled(10,46,16,4)
+        }
         Index = 2
         Text = ("Browse")
         Picture = Picture["icon:/16/directory"]

@@ -636,19 +636,6 @@ Public Sub PictureBox1_DblClick()
   FMain.CoverRefresh()
 End
 
-Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String)
-  Select Case Lower(file.Ext(fullpath))
-    Case "mp3"
-      LookForJpg(fullpath, coverfilename)
-    Case "ogg"
-      LookForJpgb64(fullpath, coverfilename)
-    Case "flac"
-      LookForJpg(fullpath, coverfilename)
-  End Select
-End
-
-
-
 
 Public Sub CoverList_DblClick()
   PictureBox1_DblClick()
@@ -869,5 +856,54 @@ Public Function SavePic(fullpath As String, artist As String, album As String, r
   'controlla se esiste il coverfile su disco
   'se non esiste, prova a crearlo dalle immagini embedded
   If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename)
-  If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath)
+  If Not global.isvideofile(fullpath) Then
+    If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath)
+  Endif
 End
+
+
+
+Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String)
+  Select Case Lower(file.Ext(fullpath))
+    Case "mp3"
+      LookForJpg(fullpath, coverfilename)
+      Return
+    Case "ogg"
+      LookForJpgb64(fullpath, coverfilename)
+      Return
+    Case "flac"
+      LookForJpg(fullpath, coverfilename)
+      Return
+  End Select
+  
+  If global.IsVideoFile(fullpath) Then makevideothumb(fullpath, coverfilename)
+End
+
+
+Public ThumbsToBeMade As New String[]
+Private thumbstimer As New Timer As "thumbstimer"
+Private runningthumblers As Integer = 0
+Private mplayerthumb As Mplayerclass
+
+Public Sub makevideothumb(fullpath As String, coverfilepath As String)
+  While runningthumblers >= 3
+    'Debug runningthumblers
+    Wait 0.05
+  Wend
+  If FMain.closing Then Return
+  If Exist(coverfilepath) Then Return
+  mplayerthumb = New Mplayerclass As "thumbnailer"
+  runningthumblers += 1
+  mplayerthumb.savethumb(fullpath, coverfilepath)
+End
+
+Public Sub thumbnailer_ThumbAvailableFor(fullpath As String)
+  FMain.NewThumbReadyFor(fullpath)
+  runningthumblers -= 1
+End
+
+Public Sub thumbnailer_ThumbErrorFor(fullpath As String)
+  MarkUncovered(fullpath)
+  runningthumblers -= 1
+End
+

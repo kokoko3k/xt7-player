@@ -1365,3 +1365,53 @@ Public Function cddbqueryprocess_error(stderr As String)
   Debug stderr
   
 End
+
+
+Public thumbprocess As Process
+Private newfilenamepriv As String
+Private outdirpriv As String
+Private Thumbfullpathpriv As String
+
+Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300) 
+  Dim outdir As String = Shell(Temp()) & Rnd(0, 99999)
+  Dim cmdline As String = ""
+  Dim mpout As String
+  Mkdir outdir
+  'mplayer $file -vf scale=$width:-2 -ss 300 -frames 1 -nosound -vo jpeg:quality=80:outdir=/tmp/
+  cmdline = "mplayer" & " " & Shell(fullpath) & " "
+  cmdline &= "-vf scale=" & width & ":-2" & ",expand=:::::1/1" & " -ss " & seconds 
+  cmdline &= " -frames 1 -nosound -vo jpeg:quality=80:outdir=" & outdir
+  cmdline &= " -noconfig all -slave -quiet"
+
+  'Debug cmdline
+  
+  newfilenamepriv = newfilename
+  outdirpriv = outdir
+  Thumbfullpathpriv = fullpath
+  Debug cmdline
+  thumbprocess = Shell cmdline For Read As "thumbprocess" 
+End
+
+
+Event ThumbAvailableFor(fullpath As String)
+Event ThumbErrorFor(fullpath As String)
+
+Public Sub thumbprocess_kill()
+  Try Copy outdirpriv & "/" & Dir(outdirpriv, "*")[0] To newfilenamepriv
+  Shell "rm -R " & outdirpriv & "&>/dev/null"
+  If Exist(newfilenamepriv) Then
+    Raise ThumbAvailableFor(Thumbfullpathpriv)
+      Else
+    Raise ThumbErrorFor(Thumbfullpathpriv)
+  Endif
+End
+
+
+
+
+
+
+
+
+
+

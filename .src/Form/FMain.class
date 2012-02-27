@@ -7962,3 +7962,34 @@ Return True
  '   Return GeneralOptions.ShowThumbsCHK.Value
  ' Endif
 End
+
+
+
+
+
+
+Public Sub NewThumbReadyFor(fullpath As String)
+  If TabSelectedPlaylist() Then 
+    ThumbToGrid(myplaylist, playlistgrid, fullpath)
+      Else If TabSelectedLibrary() Then
+          ThumbToGrid(mylibrary, libraryGrid, fullpath) 
+  Endif
+End
+
+Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As String)
+  Dim r As Integer = -1
+  Dim savedtext As String
+  Dim savedback As Integer
+  Dim RowHeight As Integer
+  Try r = mypls.FindRowByPath(mygrid, fullpath)
+  If r = -1 Then Return
+  mygrid[r, 0].clear
+  ' RowHeight = MyGrid.Rows[r].h - global.rowpadding
+  ' savedtext = mygrid[r, 0].text
+  ' savedback = mygrid[r, 0].Background
+  ' mygrid[r, 0].Picture = covermanager.GetPic(fullpath, "", "", rowheight)
+  ' mygrid[r, 0].text = savedtext
+  ' mygrid[r, 0].Background = savedback
+End
+
+

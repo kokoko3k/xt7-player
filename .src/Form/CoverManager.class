@@ -146,7 +146,7 @@ Dim FileExists As Boolean = False
 'gestisce le thumbnails su disco e la loro cache in memoria
 'non crea di per sè alcuna immagine, al più restituisce delle immagini di default
 'la creazione di eventuali nuove cover va fatta all'esterno
-
+If FMain.closing Then Return
 found = True
 
 'IF 1 = 2 THEN
@@ -182,7 +182,8 @@ If Exist(coverfile) Then
     'DEBUG "not found in memory!"
     tmpimage = image.Load(coverfile).stretch(width, width) 'caricala
   Endif
-  CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
+  Try CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
+  If Error Then Return Null
   Return CoverCacheList[cachefile].Picture 'e restituiscila
 Endif
 End
@@ -842,10 +843,10 @@ End
 
 
 
-Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer)
+Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16)
   QueuedCover = New Collection
   'è importante settare una picture mentre siamo ancora nell'evento grid_data
-  mygrid[row, 0].Picture = picture["amarok_random.png"]
+  mygrid[row, 0].Picture = Stock[rowheight & "/clock"]
   QueuedCover["mygrid"] = MyGrid
   QueuedCover["artist"] = artist
   QueuedCover["album"] = album

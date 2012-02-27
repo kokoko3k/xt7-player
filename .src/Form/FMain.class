@@ -1242,6 +1242,8 @@ Public Sub Form_Close()
       MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
       Try mypodcast.SavePods(global.confpath & "/mypods.txt", PodcastTree)
 
+      Try covermanager.flushUncoveredFile()
+
       Print "Mandatory settings saved"
     Endif
   Endif
@@ -4850,11 +4852,45 @@ Public Function DefaultLibraryIcon(fullpath As String) As Picture
   
 End
 
-Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
-  
+
+
+Public Sub Gridviews_Data_old(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
   Dim fullpath As String
   Dim artist, album As String
   Dim rowheight As Integer
+  Dim coverfound As Boolean = True
+  If Not fmain.FullyLoaded Then Return
+  If Not fmain.visible Then Return
+
+  'draw an icon (or a cover) on the first column depending on the file extension
+  If column = 0 Then
+    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
+    If (GeneralOptions.ShowCoversInListChk.value) And (mygrid.name <> "DVBTGrid") Then
+      RowHeight = MyGrid.Rows[row].h - global.rowpadding
+      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+      MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
+        Else
+      MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
+    Endif
+  Endif
+
+  If (row Mod 2) = 0 Then
+    MyGrid.Data.background = MyGrid.Background
+  Else
+    MyGrid.data.background = Global.Alternatecolor
+  Endif
+  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
+  
+End
+
+
+
+
+Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
+  Dim fullpath As String
+  Dim artist, album As String
+  Dim rowheight As Integer = 24 - global.rowpadding
   Dim coverfound As Boolean = True
   
   If Not fmain.FullyLoaded Then Return
@@ -4863,35 +4899,35 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
   'draw an icon (or a cover) on the first column depending on the file extension
   If column = 0 Then
     Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-    If (GeneralOptions.ShowCoversInListChk.value) And (mygrid.name <> "DVBTGrid") Then
-      RowHeight = MyGrid.Rows[row].h - global.rowpadding
-      artist = MyGrid[row, MyLibrary.ColumnIndex["Artist"]].text
-      album = MyGrid[row, MyLibrary.ColumnIndex["Album"]].text
-
-      Try MyGrid.Data.Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight, ByRef coverfound)
-      If Not coverfound Then 'covermanager returned a default empty cover, let's see if there are embedded covers
-        If CoverManager.EmbeddedToCoverCache(artist, album, fullpath) Then 
-          MyGrid.Data.Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight, ByRef coverfound)
+    'set a default icon and queue the loading of a cover
+    If mygrid.name <> "DVBTGrid" Then 
+      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+      If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
+        If covermanager.IsUncovered(fullpath) Then 
+          MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
+            Else If Exist(covermanager.Coverfile(artist, album, fullpath)) Then
+              MyGrid.Data.Picture = covermanager.GetPic(fullpath, artist, album, rowheight)
+                Else
+              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row) 'fixme
         Endif
-      Endif
-    Else
-      MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
+          Else 'the user don't want any cover
+        MyGrid.Data.Picture = DefaultLibraryIcon(fullpath)
+      Endif 
+    
     Endif
   Endif
-  
+
   If (row Mod 2) = 0 Then
     MyGrid.data.background = MyGrid.Background
   Else
     MyGrid.data.background = Global.Alternatecolor
   Endif
   MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
-  
 End
 
 Public Sub LibraryGrid_Data(Row As Integer, Column As Integer)
-  
   Gridviews_Data(LibraryGrid, mylibrary, Row, Column)
-
 End
 
 Public Sub PlaylistGrid_Data(Row As Integer, Column As Integer)
@@ -6971,12 +7007,12 @@ Public Sub PlayListGrid_Scroll()
   
 End
 
+
 Public Sub LibraryGrid_Scroll()
   'we use this to avoid the timer to highlight rows
   '(which is a cpu heavy operation)
   
   DontHighlightHack = True
-  
 End
 
 Public Sub MenuLibrarySetCover_click()
@@ -7892,3 +7928,7 @@ Dim out As Picture
   'file.Save("/tmp/out.jpg", out)
   out.Save("/tmp/out.jpg", 100)
 End
+
+
+
+

@@ -60,6 +60,12 @@ disabled il checkbox...
 
 * permettere di scegliere quali dei codec vdpau 'autoaggiungere' ?
 
+ covermanager.QueueThumb(MyGrid, fullpath, artist, album, row) 'fixme
+ messo in gridviews_data fa sì che quando si cancella un elemento dalla playlist,
+ appare cancellato l'ultimo (in realtà è un problema di visualizzazione)
+ 
+ poi il caricamento di jpgs è lentino, per vederne 19, ci mette 8 secondi (0.4/sec.)
+ 
 
 ---------------------------------------------------------------------------
 

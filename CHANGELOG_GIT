@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Feb 27 2012
+  FIX:    Try to load covers asynchronously
+
 Feb 24 2012  
   FIX:    Regression: allow panscan zoom to be < 1
   FIX:    Retain black bars cutting setting when switching to/from fullscreen
@@ -13,6 +16,7 @@ Feb 24 2012
   FIX:    Remove cover caches when updating a library/playlist item
   FIX:    A bit faster embedded jpgs discover
   NEW:    Support for jpgs embedded in ogg files (still inactive by now!)
+  NEW:    Display an error icon near files not found library/playlist)
   
 Feb 8 2012
   FIX:    Don't allow "\n" into comment tags, prevent crashes in playlist.do_sort()

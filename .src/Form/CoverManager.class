@@ -808,13 +808,12 @@ Public Sub ResizeShadowTemplate(w As Integer)
   ShadowOffset = (CInt(generaloptions.IconsizeCombobox.text) Div 8) 
   ShadowOffsetPaint = (ShadowOffset Div 2)
   shadowpic = shadowpic.Image.Stretch(CInt(w) + ShadowOffset, CInt(w) + ShadowOffset).picture
+  Debug
 End
 
 Public Function Shadowed(src As Picture) As Picture
   Dim offset As Integer = 0
   Dim w As Integer = src.w
-  'If w < 16 Then Return src
-  If w <> shadowpic.w Then ResizeShadowTemplate(w)
   offset = - (w Div 90) 
   Return shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture
 End

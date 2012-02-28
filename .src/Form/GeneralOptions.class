@@ -918,6 +918,7 @@ Public Sub BackResetButton4_Click()
 End
 
 Public Sub IconsizeCombobox_Click()
+    covermanager.ResizeShadowTemplate(generaloptions.IconsizeCombobox.text)
     If fmain.TabSelectedLibrary() Then 
     fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
     Else If fmain.TabSelectedPlaylist() Then 

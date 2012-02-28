@@ -837,7 +837,9 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(VfiltersCfg)
   SetSubControlsStyles(XConfigureAudioDriver)
   SetSubControlsStyles(XConfigureVideoDriver)
-  
+
+  covermanager.ResizeShadowTemplate(generaloptions.IconsizeCombobox.text)
+
 End
 
 Public Sub SetSubControlsStyles(TheForm As Form)

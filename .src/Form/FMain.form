@@ -675,6 +675,7 @@
         }
         { LibraryGrid GridView
           MoveScaled(2,9,36,25)
+          Tracking = True
           ToolTip = ("Drag'n drop files, folders or media links to add them,")
           Drop = True
           Expand = True
@@ -708,6 +709,7 @@
         }
         { PlaylistGrid GridView
           MoveScaled(0,10,37,22)
+          Tracking = True
           ToolTip = ("Drag'n drop files or media links to add them,")
           Drop = True
           Expand = True
@@ -1285,20 +1287,27 @@
             Picture = Picture["icon:/16/watch"]
           }
           { SearchField ComboBox
-            MoveScaled(6,0,7,3)
+            MoveScaled(5,0,7,3)
             ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
             Expand = True
           }
           { SearchFieldPLS ComboBox
-            MoveScaled(14,0,7,3)
+            MoveScaled(12,0,7,3)
             ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
             Expand = True
           }
           { ShufflePls ToggleButton
-            MoveScaled(23,0,5,4)
+            MoveScaled(19,0,5,4)
             Background = Color.Background
             ToolTip = ("Play random media when the previous reaches the end.")
             Picture = Picture["amarok_random.png"]
+          }
+          { buttonshowtooltips ToggleButton
+            MoveScaled(24,0,5,4)
+            Background = Color.Background
+            ToolTip = ("Show media info when hovering a list item.")
+            Picture = Picture["icon:/16/info"]
+            Value = True
           }
         }
         { TogglePls ToggleButton

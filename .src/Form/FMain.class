@@ -6821,25 +6821,24 @@ Public Sub PodCastMenuAddPlaylist_Click()
 End
 
 Public Sub LibraryGrid_Enter()
-  
+  Application.ShowTooltips = Buttonshowtooltips.value
   If GeneralOptions.HighlightCHK.value Then libtimer.start
   
 End
 
 Public Sub PlaylistGrid_Enter()
-  
+  Application.ShowTooltips = Buttonshowtooltips.value
   If GeneralOptions.HighlightCHK.value Then plstimer.start
-  
 End
 
 Public Sub LibraryGrid_Leave()
-  
+  Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
   libtimer.stop
   
 End
 
 Public Sub PlaylistGrid_Leave()
-  
+  Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
   plstimer.stop
   
 End
@@ -7953,10 +7952,6 @@ Return True
 End
 
 
-
-
-
-
 Public Sub NewThumbReadyFor(fullpath As String)
   If TabSelectedPlaylist() Then 
     ThumbToGrid(myplaylist, playlistgrid, fullpath)
@@ -7973,18 +7968,194 @@ Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As S
   Try r = mypls.FindRowByPath(mygrid, fullpath)
   If r = -1 Then Return
   mygrid[r, 0].clear
-  ' RowHeight = MyGrid.Rows[r].h - global.rowpadding
-  ' savedtext = mygrid[r, 0].text
-  ' savedback = mygrid[r, 0].Background
-  ' mygrid[r, 0].Picture = covermanager.GetPic(fullpath, "", "", rowheight)
-  ' mygrid[r, 0].text = savedtext
-  ' mygrid[r, 0].Background = savedback
+End
+
+
+Public Sub SearchLabel_Click()
+    Searchfields.show
+End
+
+Public Function maketooltip(mypath As String) As String
+  Dim r As Integer
+  Dim album, myyear, genre, artist, title, track, length, vcodec, width, height, vkbps, fps, acodec, arate, akbps, channels, comment, path As String
+  Dim m As String = ""
+  Dim ms As New String[]
+  Dim i, w As Integer
+  Dim Maxw As Integer = 0
+  Dim sep As Integer 
+  Dim tmp As String
+  
+  Try r = mylibrary.FindRowByPath(LibraryGrid, mypath) 
+  If Error Then Return
+  '= librarygrid[r, Mylibrary.Columnindex["Filename"]].text
+  '
+  length = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Length"])
+  artist = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Artist"])
+  album = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Album"])
+  myyear = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Year"])
+  track = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Track"])
+  title = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Title"])
+  genre = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Genre"])
+  comment = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Comment"])
+  '= librarygrid[r, Mylibrary.Columnindex["Type"]].text
+  acodec = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Audio Codec"])
+  akbps = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Audio Bitrate"])
+  Try akbps = CInt(akbps) Div 1000
+  arate = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Audio Rate"])
+  channels = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Channels"])
+  vcodec = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Video Codec"])
+  vkbps = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Video Bitrate"])
+  Try vkbps = CInt(vkbps) Div 1000
+  fps = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Fps"])
+  width = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Width"])
+  height = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Height"])
+  path = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Full Path"])
+  '= librarygrid[r, Mylibrary.Columnindex["File Size"]].text
+  '= librarygrid[r, Mylibrary.Columnindex["Added on"]].text
+
+  ' m &= ("Filename: ") & file.name(mypath) & "\n"
+  ' m &= ("In: ") & file.Dir(path) & "\n"
+  ' 
+  ' If Trim(album) & Trim(myyear) & Trim(genre) <> "" Then
+  '   If Trim(album) = "" Then album = ("Unknown")
+  '   If Trim(myyear) = "" Then myyear = ("Unknown")
+  '   If Trim(genre) = "" Then genre = ("Unknown")
+  '   m &= ("Album: ") & album & ", " & ("Year: ") & myyear & ", " & ("Genre: ") & genre & "\n"
+  ' Endif
+  ' 
+  ' If Trim(artist) <> "" Then m &= ("Artist: ") & Artist & "\n"
+  ' If Trim(title) & Trim(track) <> "" Then
+  '   If Trim(Title) = "" Then Title = ("Unknown")
+  '   If Trim(Track) = "" Then Track = ("Unknown")
+  '   m &= ("Title: ") & Title & (", Track No.: ") & Track & "\n"
+  ' Endif
+  ' m &= ("Length: ") & length & "\n"
+  ' 
+  ' If Trim(vcodec) & Trim(width) & Trim(height) & Trim(vkbps) & Trim(fps) <> "" Then
+  '   If Trim(vcodec) = "" Then vcodec = ("Unknown")
+  '   If Trim(width) = "" Then width = ("Unknown")
+  '   If Trim(height) = "" Then height = ("Unknown")
+  '   If Trim(vkbps) = "" Then vkbps = ("Unknown")
+  '   If Trim(fps) = "" Then fps = ("Unknown")
+  '   m &= ("Video: ") & vcodec & ": " & width & "x" & height & "@" & vkbps & "kbps, " & fps & " fps" & "\n"
+  ' Endif
+  ' If Trim(acodec) & Trim(arate) & Trim(akbps) & Trim(channels) <> "" Then
+  '   If Trim(acodec) = "" Then acodec = ("Unknown")
+  '   If Trim(arate) = "" Then arate = ("Unknown")
+  '   If Trim(akbps) = "" Then akbps = ("Unknown")
+  '   If Trim(channels) = "" Then channels = ("Unknown")
+  '   m &= ("Audio: ") & acodec & ", " & arate & "Hz @" & akbps & "kbps, " & channels & " " & ("channels") & "\n"
+  ' Endif
+  ' 
+  ' If Trim(comment) <> "" Then m &= ("Comment: ") & comment 
+  ' If Right(m) = "\n" Then m = Left(m, Len(m) - 1)
+  ' Return m
+
+
+
+
+
+
+
+  ms.add(("Filename: ") & Chr(0) & file.name(mypath) & "\n")
+  ms.add(("In: ") & Chr(0) & file.Dir(path) & "\n")
+
+  If Trim(album) & Trim(myyear) & Trim(genre) <> "" Then
+    If Trim(album) = "" Then album = ("Unknown")
+    If Trim(myyear) = "" Then myyear = ("Unknown")
+    If Trim(genre) = "" Then genre = ("Unknown")
+    ms.add(("Album: ") & Chr(0) & album & ", " & ("Year: ") & myyear & ", " & ("Genre: ") & genre & "\n")
+  Endif
+  
+  If Trim(artist) <> "" Then ms.add(("Artist: ") & Chr(0) & Artist & "\n")
+  If Trim(title) & Trim(track) <> "" Then
+    If Trim(Title) = "" Then Title = ("Unknown")
+    If Trim(Track) = "" Then Track = ("Unknown")
+    ms.add(("Title: ") & Chr(0) & Title & (", Track No.: ") & Track & "\n")
+  Endif
+  ms.add(("Length: ") & Chr(0) & length & "\n")
+
+  If Trim(vcodec) & Trim(width) & Trim(height) & Trim(vkbps) & Trim(fps) <> "" Then
+    If Trim(vcodec) = "" Then vcodec = ("Unknown")
+    If Trim(width) = "" Then width = ("Unknown")
+    If Trim(height) = "" Then height = ("Unknown")
+    If Trim(vkbps) = "" Then vkbps = ("Unknown")
+    If Trim(fps) = "" Then fps = ("Unknown")
+    ms.add(("Video: ") & Chr(0) & vcodec & ": " & width & "x" & height & "@" & vkbps & "kbps, " & fps & " fps" & "\n")
+  Endif
+  If Trim(acodec) & Trim(arate) & Trim(akbps) & Trim(channels) <> "" Then
+    If Trim(acodec) = "" Then acodec = ("Unknown")
+    If Trim(arate) = "" Then arate = ("Unknown")
+    If Trim(akbps) = "" Then akbps = ("Unknown")
+    If Trim(channels) = "" Then channels = ("Unknown")
+    ms.add(("Audio: ") & Chr(0) & acodec & ", " & arate & "Hz @" & akbps & "kbps, " & channels & " " & ("channels") & "\n")
+  Endif
+  
+  If Trim(comment) <> "" Then ms.add(("Comment: ") & Chr(0) & comment)
+  
+  
+  For i = 0 To ms.count - 1
+    'w = Application.Font.TextWidth(ms[i])
+     w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
+    If (w > maxw) Then maxw = w
+  Next
+  
+  sep = Application.Font.TextWidth(" ")
+  
+  maxw = maxw + sep * 2
+  For i = 0 To ms.count - 1
+    'w = Application.Font.TextWidth(ms[i])
+    w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
+    m &= Replace(ms[i], Chr(0), pixelspaces(maxw - w, sep))
+  Next
+  
+  
+  If Right(m) = "\n" Then m = Left(m, Len(m) - 1)
+
+
+  Return m
+
+
+End
+
+
+Public Function pixelspaces(width As Integer, singlewidth As Integer) As String
+  Return Space(width Div singlewidth)
+End
+
+
+Public Sub ShowGridTooltipIn(mygrid As Gridview)
+  Dim currentpath As String
+  Dim popupmsg As String
+  Dim scrollx As Integer
+  Dim scrolly As Integer
+  Dim crow, ccolumn As Integer
+  
+  If Rnd(0, 5) > 1 Then Return 'just process one event out of 5
+  Try crow = mygrid.RowAt(mouse.screeny - mygrid.screeny)
+  If ( Error Or (crow = -1)) Then 
+    Application.ShowTooltips = False
+    Return
+  Endif
+  ccolumn = myplaylist.ColumnIndex["Full Path"]
+  Try currentpath = mygrid[crow, ccolumn].text
+  If Error Then
+    Application.ShowTooltips = False
+    Return
+  Endif
+  Application.ShowTooltips = Buttonshowtooltips.value
+  Try popupmsg = maketooltip(currentpath)
+  mygrid.tooltip = popupmsg
 End
 
 
 
-Public Sub SearchLabel_Click()
+Public Sub LibraryGrid_MouseMove()
+  If Not (Buttonshowtooltips.value) Then Return
+  ShowGridTooltipIn(librarygrid)
+End
 
-    Searchfields.show
-
+Public Sub PlaylistGrid_MouseMove()
+  If Not (Buttonshowtooltips.value) Then Return
+  ShowGridTooltipIn(playlistgrid)
 End

@@ -1277,11 +1277,11 @@
           MoveScaled(1,0,29,4)
           Expand = True
           AutoResize = True
-          { SearchLabel Label
-            MoveScaled(0,1,7,3)
-            ToolTip = ("Double Click for Search Options.")
+          { SearchLabel Button
+            MoveScaled(0,0,5,4)
             AutoResize = True
-            Text = ("Search")
+            Text = ("Fields")
+            Picture = Picture["icon:/16/watch"]
           }
           { SearchField ComboBox
             MoveScaled(6,0,7,3)

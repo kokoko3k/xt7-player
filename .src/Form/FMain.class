@@ -7985,3 +7985,9 @@ Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As S
 End
 
 
+
+Public Sub SearchLabel_Click()
+
+    Searchfields.show
+
+End

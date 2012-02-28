@@ -2677,7 +2677,7 @@ Public Sub UpdateStatusBar()
   StatusTextWidth = Statusbar1.Font.TextWidth(PreText & PostText)
   FreeSpace = Statusbar1.width - StatusTextWidth
   NeededSpaces = Freespace / SpaceWidth
-  Try LotOfSpaces = Space(NeededSpaces - 3)
+  Try LotOfSpaces = Space(NeededSpaces - 2)
   Statusbar1.text = " " & PreText & LotOfSpaces & PostText
   AudioForm.UpdateLength(PostText)
 End

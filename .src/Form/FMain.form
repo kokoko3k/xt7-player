@@ -1279,6 +1279,7 @@
           AutoResize = True
           { SearchLabel Button
             MoveScaled(0,0,5,4)
+            ToolTip = ("Show and select the possible search fields")
             AutoResize = True
             Text = ("Fields")
             Picture = Picture["icon:/16/watch"]

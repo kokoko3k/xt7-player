@@ -159,7 +159,7 @@ Endif
 
 If Exist(coverfile) Then
   'DEBUG "coverfile exists"
-  Try Return CoverCacheList[cachefile].Picture 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
+  Try Return Shadowed(CoverCacheList[cachefile].Picture) 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
   If Error Then 'Se non esiste l 'immagine in memoria, allora
     If Exist(cachefile) Then  'Se esiste una cache su disco allora
       CoverCacheList.Add(cachefile, "", picture.Load(cachefile)) 'mettila IN memoria
@@ -169,7 +169,7 @@ If Exist(coverfile) Then
         tmpimage = image.Load(coverfile).Stretch(width, width) 'caricala
         tmpimage.Save(cachefile) 'salvala come cache
         CoverCacheList.Add(cachefile, "", tmpimage.picture) 'mettila IN memoria
-        Return CoverCacheList[cachefile].Picture 'ritornala
+        Return Shadowed(CoverCacheList[cachefile].Picture) 'ritornala
       Endif
     Endif
   Endif
@@ -705,7 +705,7 @@ Public Sub CoversLookerTimer_timer()
  'inserisci immagine
 
  savepic(fullpath, artist, album, generaloptions.IconsizeCombobox.text, True)
- mygrid[row, 0].clear
+ Try mygrid[row, 0].clear
 
 End
 
@@ -796,4 +796,27 @@ Public Sub thumbnailer_ThumbErrorFor(fullpath As String)
   MarkUncovered(fullpath)
   runningthumblers -= 1
 End
+
+
+
+Private shadowpic As Picture = picture["shadow.png"]
+Private ShadowOffset As Integer
+Private ShadowOffsetPaint As Integer
+
+Public Sub ResizeShadowTemplate(w As Integer)
+  shadowpic = picture["shadow.png"]
+  ShadowOffset = (CInt(generaloptions.IconsizeCombobox.text) Div 8) 
+  ShadowOffsetPaint = (ShadowOffset Div 2)
+  shadowpic = shadowpic.Image.Stretch(CInt(w) + ShadowOffset, CInt(w) + ShadowOffset).picture
+End
+
+Public Function Shadowed(src As Picture) As Picture
+  Dim offset As Integer = 0
+  Dim w As Integer = src.w
+  'If w < 16 Then Return src
+  If w <> shadowpic.w Then ResizeShadowTemplate(w)
+  offset = - (w Div 90) 
+  Return shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture
+End
+
 

@@ -56,12 +56,12 @@
         Enabled = False
         { StreamsAudioMenu Menu
           Text = ("Audio")
-          Picture = Picture["filetypeaudio.png"]
+          Picture = Picture["speaker_small.png"]
           Enabled = False
         }
         { StreamsSubtitlesMenu Menu
           Text = ("Subtitles")
-          Picture = Picture["icon:/16/font"]
+          Picture = Picture["icon:/small/font"]
         }
       }
     }

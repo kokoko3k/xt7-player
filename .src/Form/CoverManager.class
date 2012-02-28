@@ -639,7 +639,7 @@ Public Sub PictureBox1_DblClick()
     Try Copy currentfilename To ((newfilename))
   Endif
   Try RemoveCoverCache(newfilename)
-  FMain.CoverRefresh()
+  FMain.CoverRefresh(True)
 End
 
 

@@ -2377,7 +2377,7 @@ End
 
 
 Private PreviousCoverFile As String = "NOPE"
-Public Sub CoverRefresh()
+Public Sub CoverRefresh(Optional force As Boolean = False)
   
   Dim coverfile As String
   Dim tl As New Taglib
@@ -2406,7 +2406,7 @@ Public Sub CoverRefresh()
 
     audioform.coverbox.refresh
 
-    If Not samecover Then 
+    If (Not samecover) Or force Then 
        Try audioform.CoverBox.picture = covermanager.coverpicture(coverfile, mplayer.Media_FullPath, 160)
     Endif
 

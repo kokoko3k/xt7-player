@@ -788,53 +788,74 @@ Private QueuedCover As Collection
 Private CoverQueue As New Variant[]
 
 Public Sub CoversLookerTimer_timer()
-  Dim WorkingCover As New Collection
-  Dim artist, album, fullpath As String
-  Dim row, firstR, lastR As Integer
-  Dim mygrid As Gridview
-  Dim mypicture As Picture
-  Dim fullpathcheck As String
-  Dim fullpathindex As Integer = 19 'fixme, il fullpathindex andrebbe calcolato da playlist.columnindex["full path"]
-  Dim savedtext As String
-  Dim savedback As Integer
-  Dim rowheight As Integer = 24 - global.rowpadding
+ Dim WorkingCover As New Collection
+ Dim artist, album, fullpath As String
+ Dim row, firstR, lastR As Integer
+ Dim mygrid As Gridview
+ Dim mypicture As Picture
+ Dim fullpathcheck As String
+ Dim fullpathindex As Integer = 19 'fixme, il fullpathindex andrebbe calcolato da playlist.columnindex["full path"]
+ Dim savedtext As String
+ Dim savedback As Integer
+ Dim rowheight As Integer = 24 - global.rowpadding
 
-  If CoverQueue.count = 0 Then
-    CoversLookerTimer.Stop
-    Return
-  Endif
-  If FMain.closing Then Return
-  WorkingCover = CoverQueue.Pop()
-  fullpath = CoverQueue.Pop()
-  mygrid = WorkingCover["mygrid"] 
-  artist = WorkingCover["artist"] 
-  album = WorkingCover["album"] 
-  row = WorkingCover["row"] 
+ If CoverQueue.count = 0 Then
+   CoversLookerTimer.Stop
+   Return
+ Endif
+ If FMain.closing Then Return
+ WorkingCover = CoverQueue.Pop()
+ fullpath = CoverQueue.Pop()
+ mygrid = WorkingCover["mygrid"]
+ artist = WorkingCover["artist"]
+ album = WorkingCover["album"]
+ row = WorkingCover["row"]
 
 
-'controlla se la row è visibile 'qui c'è un problema, alcune immagini si perdono
-  If MyGrid.Rows.count <= 0 Then Return
-  FirstR = MyGrid.RowAt(MyGrid.y)
-  LastR = MyGrid.RowAt(MyGrid.h)
-  
-  If LastR = -1 Then LastR = Mygrid.rows.count - 1
-  If firstR = -1 Then firstR = 0
-  If Not ((row >= firstR) And (row <= lastR)) Then Return
+
+'If the file isn't found, then mark it into the array
+'and discard the cell; next data event will paint an error icon on it.
+'we do this onto this timer event to make that async and don't block scrolling.
+ If filesnotfound.Find(fullpath) <> -1 Then
+   'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
+   mygrid[row, 0].clear
+   Return
+     Else 'file not (yet?) marked as not found
+   If Not global.IsNetworkURI(fullpath) Then
+     If Not Exist(fullpath) Then
+       Debug "Missing file! " & fullpath
+       FileNotFoundAdd(fullpath)
+        'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
+        mygrid[row, 0].clear
+       Return
+     Endif
+   Endif
+ Endif
+
+
+
+'controlla se la row è visibile:
+ If MyGrid.Rows.count <= 0 Then Return
+ FirstR = MyGrid.RowAt(MyGrid.y)
+ LastR = MyGrid.RowAt(MyGrid.h)
+
+ If LastR = -1 Then LastR = Mygrid.rows.count - 1
+ If firstR = -1 Then firstR = 0
+ If Not ((row >= firstR) And (row <= lastR)) Then Return
 
 
 'se lo è, controlla che ad essa corssiponda lo stesso file
-  If mygrid[row, 19].text <> fullpath Then Return
+ If mygrid[row, 19].text <> fullpath Then Return
 
 
-  'controlla di nuovo che alla row corrisponda lo stesso file
-  If mygrid[row, 19].text <> fullpath Then Return
-  'inserisci immagine
+ 'controlla di nuovo che alla row corrisponda lo stesso file
+ If mygrid[row, 19].text <> fullpath Then Return
+ 'inserisci immagine
 
-  savepic(fullpath, artist, album, generaloptions.IconsizeCombobox.text, True)
-  mygrid[row, 0].clear
+ savepic(fullpath, artist, album, generaloptions.IconsizeCombobox.text, True)
+ mygrid[row, 0].clear
 
 End
-
 
 Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16)
   QueuedCover = New Collection

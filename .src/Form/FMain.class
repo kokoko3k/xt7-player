@@ -4883,68 +4883,60 @@ Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Int
 End
 
 
-
-
-
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
-  Dim fullpath As String
-  Dim artist, album As String
-  Dim rowheight As Integer 
-  Dim coverfound As Boolean = True
+ Dim fullpath As String
+ Dim artist, album As String
+ Dim rowheight As Integer
+ Dim coverfound As Boolean = True
 
-  Dim filefound As Boolean = True
-  
-  If Not fmain.FullyLoaded Then Return
-  If Not fmain.visible Then Return
-  rowheight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding ' + shadowoffset
-  If mygrid.Rows.H <> (rowheight + global.rowpadding) Then mygrid.Rows.H = rowheight + global.rowpadding
-  'draw an icon (or a cover) on the first column depending on the file extension
-  If column = 0 Then
-    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-    'set a default icon and queue the loading of a cover
-    If mygrid.name <> "DVBTGrid" Then 
-      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
-      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
-      
-      If covermanager.filesnotfound.Find(fullpath) <> -1 Then 
-        mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
-        filefound = False
-          Else 'file not (yet?) marked as not found
-        If Not global.IsNetworkURI(fullpath) Then
-          If Not Exist(fullpath) Then 
-            Debug "Missing file! " & fullpath
-            covermanager.FileNotFoundAdd(fullpath)
-            mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
-            filefound = False
-          Endif
-        Endif
-      Endif
-  
-      If filefound Then
-        If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
-          If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
-            If covermanager.IsUncovered(fullpath) Then '...e non può essere creato
-              MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la cover di default
-                Else 'il coverfile non esiste, ma potrebbe essere creato
-              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight - global.rowpadding) 'prova a crearlo
-            Endif
-              Else 'il coverfile c'è
-            MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la cover di default
-          Endif
-            Else 'the user don't want any cover
-          MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
-        Endif 'user wanted covers
-      Endif 'filefound was true
-      
-    Endif
-  Endif 'column was 0
+ Dim filefound As Boolean = True
 
-  If (row Mod 2) = 0 Then
-    MyGrid.data.background = MyGrid.Background
-  Else
-    MyGrid.data.background = Global.Alternatecolor
-  Endif
-  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
+ If Not fmain.FullyLoaded Then Return
+ If Not fmain.visible Then Return
+ rowheight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding ' + shadowoffset
+ If mygrid.Rows.H <> (rowheight + global.rowpadding) Then mygrid.Rows.H = rowheight + global.rowpadding
+ 'draw an icon (or a cover) on the first column depending on the file extension
+ If column = 0 Then
+   Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
+   'set a default icon and queue the loading of a cover
+   If mygrid.name <> "DVBTGrid" Then
+     artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+     album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+
+     If Not global.IsNetworkURI(fullpath) Then
+       If covermanager.filesnotfound.Find(fullpath) <> -1 Then
+       mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
+       filefound = False
+     Endif
+
+   Endif
+   '---
+     If filefound Then
+       If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
+         If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
+           If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
+             MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la coverdi Default
+               Else 'il coverfile non esiste, ma potrebbe essere creato
+             covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight - global.rowpadding) 'prova a crearlo
+           Endif
+             Else 'il coverfile c'è
+           MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la coverdi Default
+         Endif
+           Else 'the user don't want any cover
+         MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
+       Endif 'user wanted covers
+     Endif 'filefound was true
+
+   Endif
+   
+ Endif 'column was 0
+
+ If (row Mod 2) = 0 Then
+   MyGrid.data.background = MyGrid.Background
+ Else
+   MyGrid.data.background = Global.Alternatecolor
+ Endif
+ MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
 
 

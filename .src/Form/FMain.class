@@ -4866,23 +4866,6 @@ Public Sub PlaylistGrid_Drop()
   
 End
 
-Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16) As Picture
-  
-  If Global.IsAudioFile(fullpath) Then
-    Return Stock[rowheight & "/audio"]
-  Else If Global.IsVideoFile(fullpath) Then
-    Return Stock[rowheight & "/video"]
-  Else If Global.IsDvbURI(fullpath) Then
-    Return picture["filetypedvb.png"]
-  Else If Youtube.IsYoutubeLink(fullpath) Then
-    Return picture["youtubeicon.png"]
-  Else If Global.IsNetworkURI(fullpath) Then
-    Return Stock[rowheight & "/network"]
-  Else
-    Return Stock[rowheight & "/file"]
-  Endif
-  
-End
 
 
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
@@ -4907,7 +4890,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
 
      If Not global.IsNetworkURI(fullpath) Then
        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
-       mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding) & "/error"]
+       mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding + covermanager.shadowoffset) & "/error"]
        filefound = False
      Endif
 
@@ -4922,12 +4905,10 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight - global.rowpadding) 'prova a crearlo
            Endif
              Else 'il coverfile c'è
-           'MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la coverdi Default
-           'MyGrid.Data.Picture = covermanager.shadowed(covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding))
            MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding)
          Endif
            Else 'the user don't want any cover
-         MyGrid.Data.Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
+         MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
        Endif 'user wanted covers
      Endif 'filefound was true
 
@@ -6951,7 +6932,7 @@ Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integ
     Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(covermanager.coverfile(artist, album, fullpath), fullpath, tmpheight - global.rowpadding)
   Else
     fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, tmpheight - global.rowpadding)
+    MyGrid[hrow, 0].Picture = covermanager.DefaultLibraryIcon(fullpath, tmpheight - global.rowpadding)
   Endif
   '*sometimes cell text is lost (can't understand why), so restore it
   If Lower(mygrid.name) = "librarygrid" Then
@@ -6980,7 +6961,7 @@ Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview)
     MyGrid[hrow, 0].Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album, fullpath), fullpath, RowHeight - global.rowpadding)
     'Try MyGrid[hrow, 0].Picture = covermanager.GetPic(fullpath, artist, album, rowheight, WantThumbs(fullpath))
   Else
-    MyGrid[hrow, 0].Picture = DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
+    MyGrid[hrow, 0].Picture = covermanager.DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
   Endif
   mygrid.Rows[hrow].h = rowheight + global.rowpadding
   
@@ -7193,7 +7174,7 @@ Public Sub FileView1_Icon(Path As String)
   If IsDir(path) Then
     FileView1.icon = stock["16/directory"]
   Else
-    FileView1.icon = DefaultLibraryIcon(path)
+    FileView1.icon = covermanager.DefaultLibraryIcon(path)
   Endif
   
 End

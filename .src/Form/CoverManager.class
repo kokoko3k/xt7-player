@@ -152,7 +152,7 @@ found = True
 'IF 1 = 2 THEN
 
 If (global.isvideofile(uripath) And (generaloptions.ShowThumbsChk.value = False)) Then 
-  Return Stock[width & "/video"]
+  Return Stock[CStr(width + shadowoffset) & "/video"] 
 Endif
 
 
@@ -183,7 +183,7 @@ If Exist(coverfile) Then
         coverfile = "emptycover.png"
   Endif
   cachefile = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
-  Try Return CoverCacheList[cachefile].Picture 'prova a restituire l'immagine dalla memoria
+  Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
   If Error Then 'se non la trovi in memoria,
     'DEBUG "not found in memory!"
     tmpimage = image.Load(coverfile).stretch(width, width) 'caricala
@@ -714,7 +714,7 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
   
   If global.IsVideoFile(fullpath) Then
     If Not (generaloptions.ShowThumbsCHK.value) Then
-      mygrid.data.Picture = Stock[rowheight & "/video"]
+      mygrid.data.Picture = Stock[rowheight + ShadowOffset & "/video"]
       Return  
     Endif
     
@@ -798,9 +798,28 @@ Public Sub thumbnailer_ThumbErrorFor(fullpath As String)
 End
 
 
+Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16) As Picture
+  rowheight += Shadowoffset
+  If Global.IsAudioFile(fullpath) Then
+    Return Stock[rowheight & "/audio"]
+  Else If Global.IsVideoFile(fullpath) Then
+    Return Stock[rowheight & "/video"]
+  Else If Global.IsDvbURI(fullpath) Then
+    Return picture["filetypedvb.png"].Resize(rowheight, rowheight)
+  Else If FMain.Youtube.IsYoutubeLink(fullpath) Then
+    Return picture["youtubeicon.png"].Resize(rowheight, rowheight)
+  Else If Global.IsNetworkURI(fullpath) Then
+    Return Stock[rowheight & "/network"]
+  Else
+    Return Stock[rowheight & "/file"]
+  Endif
+  
+End
+
+
 
 Private shadowpic As Picture = picture["shadow.png"]
-Private ShadowOffset As Integer
+Public ShadowOffset As Integer
 Private ShadowOffsetPaint As Integer
 
 Public Sub ResizeShadowTemplate(w As Integer)

@@ -821,9 +821,9 @@ Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Int
   Else If Global.IsVideoFile(fullpath) Then
     Return Stock[rowheight & "/video"]
   Else If Global.IsDvbURI(fullpath) Then
-    Return picture["filetypedvb.png"].Resize(rowheight, rowheight)
+    Return picture["filetypedvb.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
   Else If FMain.Youtube.IsYoutubeLink(fullpath) Then
-    Return picture["youtubeicon.png"].Resize(rowheight, rowheight)
+    Return picture["youtubeicon.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
   Else If Global.IsNetworkURI(fullpath) Then
     Return Stock[rowheight & "/network"]
   Else

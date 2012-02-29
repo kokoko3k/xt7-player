@@ -4819,6 +4819,28 @@ Public Sub PlaylistGrid_Drop()
   
 End
 
+Function BigFactorTable(w As Integer) As Integer
+  Select Case w
+    Case 16
+      Return 5
+    Case 24
+      Return 5
+    Case 32
+      Return 4
+    Case 48
+      Return 4
+    Case 64
+      Return 3
+     Case 96
+      Return 2
+    Case 128
+      Return 2
+    Case 160
+      Return 2
+    Case Else
+      Return 2
+  End Select
+End
 
 
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
@@ -4839,13 +4861,13 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  
  'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
  If row = hirow Then 
-    bigfactor = 2
+    bigfactor = BigFactorTable(generaloptions.iconwidthcombobox.text)
     'rowpadding rowpa
   Else If (mygrid.Rows[row].h <> rowheight) Then 
     bigfactor = 1
  Endif
  
- mygrid.Rows[row].h = (rowheight + rowpadding) * bigfactor
+ mygrid.Rows[row].h = (rowheight * bigfactor) + rowpadding '* bigfactor
  'draw an icon (or a cover) on the first column
  If column = 0 Then
    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
@@ -4887,6 +4909,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  Else
    MyGrid.data.background = Global.Alternatecolor
  Endif
+ If row = hirow Then mygrid.Data.Font.bold = True
  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
 

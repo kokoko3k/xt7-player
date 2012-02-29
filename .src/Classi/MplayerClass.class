@@ -1396,6 +1396,8 @@ End
 Event ThumbAvailableFor(fullpath As String)
 Event ThumbErrorFor(fullpath As String)
 
+
+
 Public Sub thumbprocess_kill()
   Try Copy outdirpriv & "/" & Dir(outdirpriv, "*")[0] To newfilenamepriv
   Shell "rm -R " & outdirpriv & "&>/dev/null"

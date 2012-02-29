@@ -183,10 +183,14 @@ If Exist(coverfile) Then
         coverfile = "emptycover.png"
   Endif
   cachefile = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
-  Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
+  If coverfile <> "webradio.png" Then 
+    Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
+      Else
+    Try Return (CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
+  Endif
   If Error Then 'se non la trovi in memoria,
     'DEBUG "not found in memory!"
-    tmpimage = image.Load(coverfile).stretch(width, width) 'caricala
+    tmpimage = image.Load(coverfile).stretch(width + shadowoffset, width + shadowoffset) 'caricala
   Endif
   Try CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
   If Error Then Return Null

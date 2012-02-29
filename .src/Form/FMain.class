@@ -838,7 +838,7 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(XConfigureAudioDriver)
   SetSubControlsStyles(XConfigureVideoDriver)
 
-  covermanager.ResizeShadowTemplate(generaloptions.IconsizeCombobox.text)
+  covermanager.ResizeShadowTemplate(generaloptions.iconwidthcombobox.text)
 
 End
 
@@ -3898,10 +3898,7 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
     LibraryGrid.visible = False
     
     MyLibrary.DeleteSelected(LibraryGrid)
-    If GeneralOptions.HighlightCHK.value Then
-      Try DeHighLightVisible(librarygrid)
-    Endif
-    
+
     LibraryGrid.scrollx = PrevScrollX
     LibraryGrid.scrollY = PrevScrollY
     LibraryGrid.visible = True
@@ -4075,9 +4072,6 @@ Public Sub RefreshVisibleCovers(mygrid As Gridview)
   LastC = MyGrid.Columns.Count - 1
   
   Debug "Doing from " & FirstR & " - to " & LastR
-  For R = FirstR To LastR
-    Try DeHighlightRow(R, mygrid)
-  Next 'R
   If Lower(mygrid.name) = "playlistgrid" Then
     Try PlaylistGrid.refresh
   Else
@@ -4475,14 +4469,6 @@ Private prevHigLibRow As Integer = -1
 Public Sub LibraryGrid_Select()
   
   Dim HowMany As Integer
-  
-  If librarygrid.row >= 0 Then
-    If GeneralOptions.HighlightCHK.value Then
-      If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, librarygrid)
-      Try HighlightRow(librarygrid.row, librarygrid, global.Highlightmore)
-      prevHigLibRow = librarygrid.row
-    Endif
-  Endif
   HowMany = MyLibrary.HowManySelected(librarygrid)
   If howmany > 1 Then
     LibrarySelInfo.visible = True
@@ -4512,14 +4498,6 @@ Public Sub PlayListGrid_Select()
   Dim HowMany As Integer
   
   If Movingitems Then Return 'spare cpu cycles when changing playlist items order
-  'Debug
-  If Playlistgrid.row >= 0 Then
-    If GeneralOptions.HighlightCHK.value Then
-      If (prevHigLibRow <> -1) Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
-      Try HighlightRow(Playlistgrid.row, Playlistgrid, global.Highlightmore)
-      prevHigLibRow = Playlistgrid.row
-    Endif
-  Endif
   HowMany = MyPlaylist.HowManySelected(playlistgrid)
   If howmany > 0 Then
     PlayListSelInfoBox.visible = True
@@ -4576,18 +4554,6 @@ Public Sub UpdateTabs()
   Searchfield.enabled = SearchLabel.enabled
   SearchfieldPLS.enabled = SearchLabel.enabled
   shufflepls.enabled = SearchLabel.enabled
-  
-  If (TabSelectedLibrary() Or TabSelectedPlaylist()) And Fmain.fullyloaded And Fmain.visible Then
-    'global variables used to track the las item highlighted are shared
-    'by playlistgrid and librarygrid, so when we switch between them, we need to
-    'dehighlight the last one
-    If TabSelectedPlaylist() Then
-      If PrevHigRow <> Librarygrid.row Then Try DeHighlightRow(PrevHigRow, librarygrid)
-    Else
-      If PrevHigRow <> Playlistgrid.row Then Try DeHighlightRow(PrevHigRow, Playlistgrid)
-    Endif
-  Endif
-  
 End
 
 Public Sub Leftsidetabs_MouseWheel()
@@ -4679,7 +4645,6 @@ Public Sub MoveUpPlsBTN_Click()
     i = i + 1
   Wend
   If i > 0 Then
-    If GeneralOptions.HighlightCHK.value Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
     MovingItems = True
     CutSelectedRows()
     howmanyselected = ClipboardRows.Count
@@ -4700,8 +4665,7 @@ Public Sub MoveDownPlsBTN_Click()
   
   Dim FirstSelected, howmanyselected As Integer
   Dim i, j As Integer
-  Dim washighlighting As Boolean = False
-  
+
   MovingItems = True
   'find the index of the Last selected row:
   i = playlistgrid.Rows.count - 1
@@ -4709,7 +4673,6 @@ Public Sub MoveDownPlsBTN_Click()
     i = i - 1
   Wend
   If i < (playlistgrid.Rows.count - 1) Then
-    If GeneralOptions.HighlightCHK.value Then Try DeHighlightRow(prevHigLibRow, Playlistgrid)
     CutSelectedRows()
     howmanyselected = ClipboardRows.Count
     PasteSelectedRows(i - howmanyselected + 2)
@@ -4791,20 +4754,10 @@ End
 
 Public Sub MenuPlaylistDelete_Click()
   MyPlaylist.DeleteSelected(Playlistgrid, True)
-  If GeneralOptions.HighlightCHK.value Then
-    Try DeHighLightVisible(playlistgrid)
-  Endif
-
 End
 
 Public Sub MenuLibraryDeleteSelected_Click()
-  
   MyLibrary.DeleteSelected(Librarygrid, True)
-  'TRY LibraryGrid_Select()
-  If GeneralOptions.HighlightCHK.value Then
-    Try DeHighLightVisible(librarygrid)
-  Endif
-  
 End
 
 Public Sub MenuPaste_Click()
@@ -4873,24 +4826,37 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  Dim artist, album As String
  Dim rowheight As Integer
  Dim coverfound As Boolean = True
-
+ Dim bigfactor As Integer = 1
  Dim filefound As Boolean = True
-
+ Dim rowpadding As Integer = global.rowpadding
+  
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
- rowheight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding ' + shadowoffset
- If mygrid.Rows.H <> (rowheight + global.rowpadding) Then mygrid.Rows.H = rowheight + global.rowpadding
- 'draw an icon (or a cover) on the first column depending on the file extension
+ 
+ 
+ 
+ rowheight = CInt(generaloptions.iconwidthcombobox.text) '+ rowpadding 
+ 
+ 'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
+ If row = hirow Then 
+    bigfactor = 2
+    'rowpadding rowpa
+  Else If (mygrid.Rows[row].h <> rowheight) Then 
+    bigfactor = 1
+ Endif
+ 
+ mygrid.Rows[row].h = (rowheight + rowpadding) * bigfactor
+ 'draw an icon (or a cover) on the first column
  If column = 0 Then
    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-   'set a default icon and queue the loading of a cover
+
    If mygrid.name <> "DVBTGrid" Then
      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
 
      If Not global.IsNetworkURI(fullpath) Then
        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
-       mygrid.Data.picture = picture["icon:/" & (rowheight - global.rowpadding + covermanager.shadowoffset) & "/error"]
+       mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
        filefound = False
      Endif
 
@@ -4900,15 +4866,15 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
        If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
          If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
            If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
-             MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding) 'ritorna la coverdi Default
+             MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor) 'ritorna la coverdi Default
                Else 'il coverfile non esiste, ma potrebbe essere creato
-             covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, rowheight - global.rowpadding) 'prova a crearlo
+             covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
            Endif
              Else 'il coverfile c'è
-           MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, rowheight - global.rowpadding)
+           MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
          Endif
            Else 'the user don't want any cover
-         MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
+         MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
        Endif 'user wanted covers
      Endif 'filefound was true
 
@@ -5081,16 +5047,11 @@ Public Sub MenuConfigureGeneralAudio_Click()
 End
 
 Public Sub MenuPlaylistZapSelected_Click()
-  
   If (PlaylistGrid.row >= 0) Then
     If Not (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
-      
       MyPlaylist.EraseSelected(PlaylistGrid)
       MyPlaylist.DeleteSelected(Playlistgrid, True)
       Try playlistgrid.Current.EnsureVisible()
-      If GeneralOptions.HighlightCHK.value Then
-        Try DeHighLightVisible(playlistgrid)
-      Endif
     Endif
   Endif
   
@@ -5103,9 +5064,6 @@ Public Sub MenuLibraryZapSelected_Click()
       MyLibrary.EraseSelected(Librarygrid)
       MyLibrary.DeleteSelected(Librarygrid, True)
       Try LibraryGrid.Current.EnsureVisible()
-      If GeneralOptions.HighlightCHK.value Then
-        Try DeHighLightVisible(librarygrid)
-      Endif
     Endif
   Endif
   
@@ -6311,7 +6269,6 @@ Public Sub startshoutSearch()
   NOSAVEHBox10.mouse = mouse.normal
   TextBox1.enabled = True
    ShutResultGrid.Rows.h = ShutResultGrid.Font.TextHeight("^_") + global.rowpadding
- ' ShutResultGrid.Rows.h = (ShutResultGrid.Font.Height * 1.4)
 End
 
 Public Sub ShutResultGrid_DblClick()
@@ -6805,176 +6762,39 @@ End
 
 Public Sub LibraryGrid_Enter()
   Application.ShowTooltips = Buttonshowtooltips.value
-  If GeneralOptions.HighlightCHK.value Then libtimer.start
-  
 End
 
 Public Sub PlaylistGrid_Enter()
   Application.ShowTooltips = Buttonshowtooltips.value
-  If GeneralOptions.HighlightCHK.value Then plstimer.start
+
 End
 
 Public Sub LibraryGrid_Leave()
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
-  libtimer.stop
-  
 End
 
 Public Sub PlaylistGrid_Leave()
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
-  plstimer.stop
-  
-End
-
-Public Sub DeHighLightVisible(mygrid As Gridview)
-  
-  Dim firstr, lastr, r, previousH As Integer
-  
-  FirstR = 0 'hack: for some reason mygrid.rowat doesn't work here, so suppose we've at most 100 visible rows.
-  LastR = 100 ' hack
-  If firstr = -1 Then firstr = 0
-  For r = firstr To lastr
-    Try DeHighlightRow(r, mygrid)
-    If Error Then Return
-  Next 'r
-  
 End
 
 Private PrevHigRow As Integer = -1
-Private highlighting As Boolean = False
 
-Public Sub LibAndPlsHighlighter(Mygrid As Gridview)
-  
-  Dim mousey As Integer
-  Dim CurHigRow As Integer
-  
-  If highlighting Then Return
-  mousey = mouse.screeny - Mygrid.screeny
-  CurHigRow = Mygrid.RowAt(mousey)
-  If CurHigRow <> PrevHigRow Then
-    highlighting = True
-    If (PrevHigRow >= 0) And (Mygrid.row <> PrevHigRow) Then Try DeHighlightRow(PrevHigRow, Mygrid)
-    If (CurHigRow >= 0) Then Try HighlightRow(CurHigRow, Mygrid, global.Highlightmore)
-    highlighting = False
-  Endif
-  If (CurHigRow >= 0) Then
-    'make the current row the previous one for next run:
-    PrevHigRow = CurHigRow
-  Endif
-  
-End
 
-Public Sub libtimer_Timer()
-  
-  LibAndPlsHighlighter(LibraryGrid)
-  
-End
-
-Public Sub plstimer_Timer()
-  
-  LibAndPlsHighlighter(PlaylistGrid)
-  
-End
-
-Private DontHighlightHack As Boolean = False
-
+Public hirow As Integer = -1
 Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
-  
-  Dim CurBackColor As Integer
-  Dim RowHeight, tmpheight As Integer
-  Dim i As Integer
-  Dim tmptext As String
-  'Dim myimgfile As String
-  Dim artist, album As String
-  'DIM CoverOver AS Integer = 32
-  Dim CoverPadding As Integer = 6
-  Dim fullpath As String
-  
-  If DontHighlightHack Then
-    DontHighlightHack = False
-    Return
-  Endif
-  
-  If (mygrid[hrow, 0].font.size <> mygrid.font.size) And (Not generaloptions.ShowCoversInListChk.value) Then Return 'dont highlight multiple times
-  
-  CurBackColor = mygrid[hrow, 0].BackGround
-  'make text rich to apply font properties (gambas bug/undocumented)
-  If mygrid[hrow, 0].text <> "" Then
-    mygrid[hrow, 0].RichText = mygrid[hrow, 0].text
-  Endif
-  
-  mygrid[hrow, 0].font.size = mygrid.font.size + increment
-  rowheight = generaloptions.IconsizeCombobox.text + global.rowpadding
-  tmpheight = (rowheight + (global.rowpadding)) * 2
-
-  ' If generaloptions.ShowCoversInListChk.value Then
-  '   If tmpheight < rowheight Then
-  '     mygrid.Rows[hrow].h = rowheight 
-  '   Else
-  '     mygrid.Rows[hrow].h = tmpheight + 5
-  '   Endif
-
-  'Else
-    mygrid.Rows[hrow].h = tmpheight 
-  'Endif
-  
-  mygrid[hrow, 0].BackGround = CurBackColor
-  If Not (mygrid[hrow, 0].font.bold) Then mygrid[hrow, 0].font.bold = True
-
-  mygrid[hrow, 0].RichText = Null
-  fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-  If generaloptions.ShowCoversInListChk.value Then
-    artist = mygrid[hrow, MyLibrary.ColumnIndex["Artist"]].text '''
-    album = mygrid[hrow, MyLibrary.ColumnIndex["Album"]].text '''
-    
-    'myimgfile = CoverManager.Coverfile(artist, album, fullpath)
-    'Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(myimgfile, fullpath, RowHeight,, WantThumbs(fullpath))
-    Try MyGrid[hrow, 0].Picture = covermanager.coverpicture(covermanager.coverfile(artist, album, fullpath), fullpath, tmpheight - global.rowpadding)
-  Else
-    fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-    MyGrid[hrow, 0].Picture = covermanager.DefaultLibraryIcon(fullpath, tmpheight - global.rowpadding)
-  Endif
-  '*sometimes cell text is lost (can't understand why), so restore it
-  If Lower(mygrid.name) = "librarygrid" Then
-    MyGrid.data.text = mylibrary.CellValue(MyGrid, hrow, 0)
-  Else
-    If Lower(mygrid.name) = "playlistgrid" Then
-      MyGrid.data.text = myplaylist.CellValue(MyGrid, hrow, 0)
-    Endif
-  Endif
+  If hirow = hrow Then Return
+  hirow = hrow
+  mygrid[hirow, 0].clear
+  Debug
   
 End
-
-Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview)
-  
-  Dim fullpath, rowheight, artist, album As String
-  
-  If ((hrow Mod 2) <> 0) Then mygrid[hrow, 0].BackGround = global.Alternatecolor
-  mygrid[hrow, 0].font = mygrid.Font '<<--
-  mygrid.Rows[hrow].h = generaloptions.IconsizeCombobox.text + global.rowpadding
-  fullpath = MyGrid[hrow, MyLibrary.ColumnIndex["Full Path"]].text
-  RowHeight = CInt(generaloptions.IconsizeCombobox.text) + global.rowpadding
-
-  If GeneralOptions.ShowCoversInListChk.value Then
-    artist = mygrid[hrow, MyLibrary.ColumnIndex["Artist"]].text
-    album = mygrid[hrow, MyLibrary.ColumnIndex["Album"]].text
-    MyGrid[hrow, 0].Picture = covermanager.coverpicture(CoverManager.coverfile(artist, album, fullpath), fullpath, RowHeight - global.rowpadding)
-    'Try MyGrid[hrow, 0].Picture = covermanager.GetPic(fullpath, artist, album, rowheight, WantThumbs(fullpath))
-  Else
-    MyGrid[hrow, 0].Picture = covermanager.DefaultLibraryIcon(fullpath, rowheight - global.rowpadding)
-  Endif
-  mygrid.Rows[hrow].h = rowheight + global.rowpadding
-  
-  '*sometimes cell text is lost (can't understand why), so restore it
-  If Lower(mygrid.name) = "librarygrid" Then
-    MyGrid.data.text = mylibrary.CellValue(MyGrid, hrow, 0)
-  Else
-    If Lower(mygrid.name) = "playlistgrid" Then
-      MyGrid.data.text = myplaylist.CellValue(MyGrid, hrow, 0)
-    Endif
-  Endif
-  
+Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
+  If hirow = hrow Then Return
+  hirow = -1
+  mygrid[hirow, 0].clear
 End
+
+
 
 Public Sub ChengeToggleColor(Tbutton As Object)
   
@@ -6998,22 +6818,6 @@ Public Sub ShufflePls_Click()
 End
 
 
-
-Public Sub PlayListGrid_Scroll()
-  'we use this to avoid the timer to highlight rows
-  '(which is a cpu heavy operation)
-  
-  DontHighlightHack = True
-  
-End
-
-
-Public Sub LibraryGrid_Scroll()
-  'we use this to avoid the timer to highlight rows
-  '(which is a cpu heavy operation)
-  
-  DontHighlightHack = True
-End
 
 Public Sub MenuLibrarySetCover_click()
   
@@ -8134,11 +7938,19 @@ End
 
 
 Public Sub LibraryGrid_MouseMove()
-  If Not (Buttonshowtooltips.value) Then Return
-  ShowGridTooltipIn(librarygrid)
+  If generaloptions.HighlightCHK.value Then
+    Try hirow = librarygrid.RowAt(mouse.screeny - librarygrid.screeny)
+    Try librarygrid[hirow, 0].clear
+  Endif
+   If Not (Buttonshowtooltips.value) Then Return
+   ShowGridTooltipIn(librarygrid)
 End
 
 Public Sub PlaylistGrid_MouseMove()
+  If generaloptions.HighlightCHK.value Then
+    Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
+    Try playlistgrid[hirow, 0].clear
+  Endif
   If Not (Buttonshowtooltips.value) Then Return
   ShowGridTooltipIn(playlistgrid)
 End

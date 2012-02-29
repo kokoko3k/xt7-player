@@ -1152,13 +1152,15 @@
             Text = ("Default icon size")
           }
           { VBox5 VBox
-            MoveScaled(21,0,3,4)
+            MoveScaled(15,0,3,4)
             Expand = True
           }
-          { IconsizeCombobox ComboBox
-            MoveScaled(24,0,10,3)
+          { !IconWidthCombobox ComboBox
+            MoveScaled(31,1,10,3)
+            #Public = True
             ReadOnly = True
             List = [("16"), ("24"), ("32"), ("48"), ("64"), ("96"), ("128"), ("192"), ("256")]
+            Text = ("24")
           }
           { BackResetButton4 ToolButton
             MoveScaled(41,1,4,4)
@@ -1169,10 +1171,10 @@
           MoveScaled(1,17,50,4)
           Spacing = True
           { HighlightCHK CheckBox
-            MoveScaled(-1,0,48,4)
+            MoveScaled(1,0,48,4)
             ToolTip = ("Highlight the sideview item which is under the mouse")
             Expand = True
-            Text = ("Highlight listview items on mouse over (buggy!)")
+            Text = ("Highlight listview items on mouse over")
           }
         }
         { NOPARSESEPARATOR1 Separator

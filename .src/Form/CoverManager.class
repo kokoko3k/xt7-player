@@ -142,28 +142,37 @@ End
 Public Function coverpicture(coverfile As String, uripath As String, width As Integer, Optional ByRef found As Boolean) As Picture
 Dim cachefile As String = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
 Dim tmpimage As Image
+Dim defaultcover As Boolean = False
 Dim FileExists As Boolean = False
+
+
+' zzzfake.Arrangement = Arrange.Fill
+' Try CoverCacheList.expand = True
+' Try zzzfake.Stacking = Window.above
+' Try zzzfake.mask = False
+' Try zzzfake.opacity = 100
+' Try zzzfake.Move(0, 0)
+' Try zzzfake.show
+
+
+
+
 'gestisce le thumbnails su disco e la loro cache in memoria
 'non crea di per sè alcuna immagine, al più restituisce delle immagini di default
 'la creazione di eventuali nuove cover va fatta all'esterno
 If FMain.closing Then Return
 found = True
 
-'IF 1 = 2 THEN
-
 If (global.isvideofile(uripath) And (generaloptions.ShowThumbsChk.value = False)) Then 
   Return Stock[CStr(width + shadowoffset) & "/video"] 
 Endif
 
-
-
 If Exist(coverfile) Then
-  'DEBUG "coverfile exists"
   Try Return Shadowed(CoverCacheList[cachefile].Picture) 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
   If Error Then 'Se non esiste l 'immagine in memoria, allora
     If Exist(cachefile) Then  'Se esiste una cache su disco allora
       CoverCacheList.Add(cachefile, "", picture.Load(cachefile)) 'mettila IN memoria
-      Return CoverCacheList[cachefile].Picture 'ritornala
+      Return Shadowed(CoverCacheList[cachefile].Picture) 'ritornala
         Else 'Altrimenti(non esiste cache su disco)
       If Exist(coverfile) 'se esiste la cover su disco, ma non la cache
         tmpimage = image.Load(coverfile).Stretch(width, width) 'caricala
@@ -176,14 +185,17 @@ If Exist(coverfile) Then
      Else ' IF NOT Exist(coverfile) THEN 'se la cover non esiste, ricava un nuovo coverfile:
   If global.IsNetworkURI(uripath) Then
     coverfile = "webradio.png"
+    defaultcover = True
       Else If global.IsVideoFile(uripath) Then
         coverfile = "videocover.png"
+        defaultcover = True
       Else 'non è una uri di rete, non è una radio e non c'è alcuna copertina già salvata:
         found = False
         coverfile = "emptycover.png"
+        defaultcover = True
   Endif
   cachefile = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
-  If coverfile <> "webradio.png" Then 
+  If Not (defaultcover) Then  
     Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
       Else
     Try Return (CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
@@ -708,7 +720,7 @@ Public Sub CoversLookerTimer_timer()
  If mygrid[row, 19].text <> fullpath Then Return
  'inserisci immagine
 
- savepic(fullpath, artist, album, generaloptions.IconsizeCombobox.text, True)
+ savepic(fullpath, artist, album, generaloptions.iconwidthcombobox.text, True)
  Try mygrid[row, 0].clear
 
 End
@@ -718,7 +730,7 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
   
   If global.IsVideoFile(fullpath) Then
     If Not (generaloptions.ShowThumbsCHK.value) Then
-      mygrid.data.Picture = Stock[rowheight + ShadowOffset & "/video"]
+      mygrid.data.Picture = Stock[CStr(rowheight + ShadowOffset) & "/video"]
       Return  
     Endif
     
@@ -828,15 +840,21 @@ Private ShadowOffsetPaint As Integer
 
 Public Sub ResizeShadowTemplate(w As Integer)
   shadowpic = picture["shadow.png"]
-  ShadowOffset = (CInt(generaloptions.IconsizeCombobox.text) Div 8) 
+  ShadowOffset = ((w - global.rowpadding) Div 8) 
   ShadowOffsetPaint = (ShadowOffset Div 2)
   shadowpic = shadowpic.Image.Stretch(CInt(w) + ShadowOffset, CInt(w) + ShadowOffset).picture
-  Debug
 End
 
 Public Function Shadowed(src As Picture) As Picture
   Dim offset As Integer = 0
   Dim w As Integer = src.w
+  If ((w + shadowoffset) <> shadowpic.w) Then 
+    ' Debug "requested: " & w
+    ' Debug "but have: " & shadowpic.w
+    ' Debug "scarto = " & CStr(shadowpic.w - w)
+    ' Debug "ShadowOffset = " & ShadowOffset
+    ResizeShadowTemplate(w)
+  Endif
   offset = - (w Div 90) 
   Return shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture
 End

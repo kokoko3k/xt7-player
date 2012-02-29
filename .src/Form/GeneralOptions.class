@@ -914,11 +914,16 @@ Public Sub DVDDeviceText_MouseDown()
 End
 
 Public Sub BackResetButton4_Click()
-  IconsizeCombobox.text = 16
+  iconwidthcombobox.text = 24
 End
 
-Public Sub IconsizeCombobox_Click()
-    covermanager.ResizeShadowTemplate(generaloptions.IconsizeCombobox.text)
+Public Sub iconwidthcombobox_Change()
+  iconwidthcombobox_Click()
+End
+
+
+Public Sub iconwidthcombobox_Click()
+    covermanager.ResizeShadowTemplate(generaloptions.iconwidthcombobox.text)
     If fmain.TabSelectedLibrary() Then 
     fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
     Else If fmain.TabSelectedPlaylist() Then 
@@ -956,3 +961,8 @@ Public Sub ShowThumbsCHK_Click()
   
 
 End
+
+Public Sub iconwidthcombobox_Activate()
+ iconwidthcombobox_Click()
+End
+

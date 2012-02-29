@@ -703,10 +703,6 @@
           Tag = "playlist"
           Text = ("Label3")
         }
-        { plstimer #Timer
-          #MoveScaled(1,1)
-          Delay = 33
-        }
         { PlaylistGrid GridView
           MoveScaled(0,10,37,22)
           Tracking = True
@@ -1643,10 +1639,6 @@
           Alignment = Align.Left
         }
       }
-    }
-    { libtimer #Timer
-      #MoveScaled(51,0)
-      Delay = 50
     }
     { DelayTimer #Timer
       #MoveScaled(58,0)

@@ -264,6 +264,5 @@ Public Sub SmartInsert(TheObject As Object, TheForm As Object)
     ' TheObject.enabled = True
     Try TheObject.enabled = ShadowObj.enabled
     Try ShadowObj.Delete
-    'highlightDestination(theform, False)
 End
 

@@ -1,5 +1,8 @@
 [Breakpoints]
-Count=0
+Breakpoint[1]="GeneralOptions.920"
+Breakpoint[2]="GeneralOptions.925"
+Breakpoint[3]="GeneralOptions.965"
+Count=3
 
 [DebugWindow]
 Count=0
@@ -77,7 +80,7 @@ Geometry=[0,0,210,210]
 Geometry=[0,0,301,301]
 
 [DebugWindow/CoverCacheList]
-Geometry=[-42,587,344,344]
+Geometry=[51,587,660,344]
 
 [DebugWindow/CoverManager]
 Geometry=[48,-4,210,210]
@@ -128,7 +131,7 @@ Geometry=[51,0,210,210]
 Geometry=[52,0,222,507]
 
 [DebugWindow/File]
-Geometry=[0,0,344,344]
+Geometry=[51,0,344,344]
 
 [DebugWindow/FileView1]
 Geometry=[0,0,564,770]
@@ -611,7 +614,7 @@ Geometry=[669,70,344,344]
 Geometry=[0,0,301,301]
 
 [DebugWindow/mystream]
-Geometry=[0,0,210,210]
+Geometry=[51,0,210,210]
 
 [DebugWindow/node]
 Geometry=[0,40,1592,525]
@@ -734,7 +737,7 @@ Geometry=[48,-4,210,210]
 Geometry=[48,-4,210,210]
 
 [DebugWindow/tmppic]
-Geometry=[48,-4,210,210]
+Geometry=[51,0,210,210]
 
 [DebugWindow/tmppicture]
 Geometry=[0,0,344,344]
@@ -778,20 +781,20 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:15.70"
+File[1]="CHANGELOG_GIT:176.29"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:4903.0"
+Active=4
+File[4]=".src/Form/FMain.class:7943.7"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
 File[7]=".src/Form/GeneralOptions.form"
-File[8]=".src/Form/GeneralOptions.class:856.17"
+File[8]=".src/Form/GeneralOptions.class:925.25"
 File[9]=".src/Form/AudioForm.form"
 File[10]=".src/Form/AudioForm.class:72.25"
-Active=11
-File[11]="AA_ToDo:67.1"
+File[11]="AA_ToDo:340.51"
 File[12]=".src/Classi/MplayerClass.class:908.16"
-File[13]=".src/Classi/FlashClass.class:120.88"
+File[13]=".src/Classi/FlashClass.class:142.13"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"
 File[16]=".src/0_Moduli/Global.module:243.0"
@@ -802,14 +805,24 @@ File[20]=".src/Form/ChooseAspect.form"
 File[21]=".src/Form/ChooseAspect.class:32.25"
 File[22]=".src/Form/DVBTuner.form"
 File[23]=".src/Classi/TagLib.class:16.33"
-File[24]=".src/Form/CoverManager.class:858.0"
-File[25]=".src/Classi/PlaylistClass.class:583.43"
+File[24]=".src/Form/CoverManager.class:841.35"
+File[25]=".src/Classi/PlaylistClass.class:404.31"
 File[26]=".src/Form/CoverManager.form"
 File[27]=".src/Form/AudioEqualizer.form"
 File[28]="amarok_random.png"
 File[29]=".src/Form/OverlayTrayTip.class:52.12"
 File[30]=".src/Classi/Meters.class:50.2"
-Count=30
+File[31]="shadow.png"
+File[32]="PlaylistTab.png"
+File[33]=".src/Form/DVBTuner.class:0.0"
+File[34]="webradio.png"
+File[35]=".src/Form/zzzFake.form"
+File[36]=".src/Form/HotKeyGrab.form"
+File[37]=".src/Form/VFiltersCfg.class:229.11"
+File[38]=".src/Form/LogWindow.class:55.11"
+File[39]=".src/Form/AFiltersCfg.class:221.11"
+File[40]=".src/Classi/DynaGuiClass.class:266.0"
+Count=40
 
 [Watches]
 Count=11

@@ -1378,7 +1378,7 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   Dim mpout As String
   Mkdir outdir
   'mplayer $file -vf scale=$width:-2 -ss 300 -frames 1 -nosound -vo jpeg:quality=80:outdir=/tmp/
-  cmdline = "mplayer" & " " & Shell(fullpath) & " "
+  cmdline = "mplayer" & " " & Shell(fullpath) & " -nocache "
   cmdline &= "-vf scale=" & width & ":-2" & ",expand=:::::1/1" & " -ss " & seconds 
   cmdline &= " -frames 1 -nosound -vo jpeg:quality=80:outdir=" & outdir
   cmdline &= " -noconfig all -slave -quiet"

@@ -505,7 +505,7 @@ Public Sub updaterecentfiles()
     If HaveToPlay <> "" Then 
       If HaveToSeek <> "" Then
         If Not (PlayFromCommandline) Then 
-         Play(False, HaveToPlay, True, " -ss " & HaveToSeek & " " & cachedopts)
+         Play(HaveToPlay, True, " -ss " & HaveToSeek & " " & cachedopts)
         Endif
       Endif
     Endif
@@ -513,7 +513,7 @@ Public Sub updaterecentfiles()
 End
 
 Public Sub RecentFileEntry_Click()
-  Try Play(False, Last.caption)
+  Try Play(Last.caption)
 End
 
 Public Sub ClearRecentFiles_Click()
@@ -937,7 +937,7 @@ Public Sub MainInit()
       fmain.Show
       Wait 
       PlayFromCommandline = True 
-      Play(False, DConv(Application.Args[1]), quick, cachedopts)
+      Play(DConv(Application.Args[1]), quick, cachedopts)
       Me.Mouse = mouse.Default
       havetoshowbrowsetab = True
     Endif
@@ -1626,9 +1626,6 @@ Public Function GetOptionsFromGui() As String
 End
 
 Public Sub ButtonPlay_Click()
-  
-  Dim FromMyLibrary As Boolean = (mplayer.Media_FullPath = "") 'pick a MyLibraryitem if no media was loaded
-
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       OneSecTimer.start
@@ -1639,7 +1636,7 @@ Public Sub ButtonPlay_Click()
     Endif
     mplayer.do_pause
   Else
-    Play(FromMyLibrary)
+    Play(mplayer.Media_FullPath)
   Endif
   VideoBox.setfocus
   
@@ -1847,7 +1844,7 @@ Public Sub TreeView1_Activate()
   
   If mplayer.ProcessRunningOvr() Then
     If (CurTitle <> NextTitle) Then
-      Play(False, "dvd://" & NextTitle, True, tmp)
+      Play("dvd://" & NextTitle, True, tmp)
       fmain.VideoBox.setfocus
     Else 'il titolo non varia
       If NextAngle <> 0 Then
@@ -1858,7 +1855,7 @@ Public Sub TreeView1_Activate()
       Endif
     Endif
   Else 'not processrunningovr
-    Play(False, "dvd://" & NextTitle, True, tmp)
+    Play("dvd://" & NextTitle, True, tmp)
     fmain.VideoBox.setfocus
   Endif
   
@@ -1879,7 +1876,7 @@ Public Sub MenuswitchTitle_click()
   Try TitleToPlay = Split(Last.caption, " ")[0]
   If Not Error Then
     If mplayer.do_stop() Then
-      Play(False, "dvd://" & TitleToPlay)
+      Play("dvd://" & TitleToPlay)
     Endif
   Endif
   
@@ -2084,7 +2081,7 @@ End
 
 Public needytcookie As Boolean = False
 
-Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "", Optional quick As Boolean = False, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
+Public Function Play(fullpath As String, Optional quick As Boolean = False, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
   
   Dim prevtabindex As Integer = Leftsidetabs.index
   Dim SelectedRow As Integer
@@ -2092,6 +2089,10 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
   Dim cookieopts As String = ""
   Dim cachingbox As MovieBox 'show an animation while caching...
   Wait
+  If fullpath = "" Then 
+    Debug "Nothing to play :/"
+    Return
+  Endif
   lastsubid = -1
   global.ResetApplyBtnColor()
   
@@ -2140,33 +2141,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
        otheroptions = cachedopts
   Endif
   
-  'If (Not firstplay) And (Not global.initearlyformsdone) Then global.DelayLoadStates_Timer
-  
-  If Fullpath = "" Then
-    If FromMyLibrary Then
-      If TabSelectedLibrary() Then
-        Try mplayer.Media_FullPath = LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text
-        If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
-          Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
-          If Error Then
-            Message.error((("Unable to get the real stream url")))
-            cachingbox.delete
-            Return
-          Endif
-        Endif
-      Else
-        Try mplayer.Media_FullPath = PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text
-        If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
-          Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
-          If Error Then
-            Message.error(("Unable to get the real stream url"))
-            cachingbox.delete
-            Return
-          Endif
-        Endif
-      Endif
-    Endif
-  Else '(fullpath parameter passed)
+
     mplayer.Media_FullPath = fullpath
     If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
       Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
@@ -2176,8 +2151,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
         Return
       Endif
     Endif
-  Endif
-  
+
   'If global.initlatelyformsdone Then otheroptions = otheroptions & " " & SetRightCache()
   otheroptions = otheroptions & " " & SetRightCache()
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
@@ -2240,7 +2214,7 @@ Public Function Play(FromMyLibrary As Boolean, Optional fullpath As String = "",
     
     If (fullpath Like "dvd://") Then 'eg: the user didn't specified a start title
       OneSecTimer.start
-      Play(False, "dvd://" & LargestDvdTitle(), False) 'play the bigger one
+      Play("dvd://" & LargestDvdTitle(), False) 'play the bigger one
       OneSecTimer_Timer()
       OneSecTimer.start
       IsDVD = True
@@ -2583,11 +2557,11 @@ Public Sub VideoAreaGroup_Drop()
       Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
     Else
       mplayer.Media_FullPath = droppedfile
-      Play(False)
+      Play()
     Endif
   Else
     dvd_device = droppedfile
-    Play(False, "dvd://")
+    Play("dvd://")
   Endif
   If TabSelectedLibrary() Then
     Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, droppedfile)
@@ -2854,7 +2828,7 @@ Public Sub OneSecTimer_Timer()
         
         Debug "Mplayer was off, so hit PLAY from here"
         If Not (mplayer.ProcessRunningOvr()) Then
-          Play(True, mplayer.Media_FullPath)
+          Play(mplayer.Media_FullPath)
             Else
           Debug "Not hitting PLay from here because ButtonNext did it first"
         Endif
@@ -3769,36 +3743,36 @@ Public Sub ButtonNext_Click()
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectNext(PlaylistGrid, ShufflePls.value)
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedLibrary() Then
     MyLibrary.SelectNext(LibraryGrid, ShufflePls.value)
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedBrowse() Then
     BrowseSelectNext()
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedCDDA() Then
     CDDANext()
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedYoutube() Then
     Youtube.Select_NextTreeItem(youtubetree)
     Wait 0.025
     If mplayerwasrunning Or (TogglePls.value) Then
       youtubetitle = youtubetree.Current.text
       Debug "mplayer was off so hit play from here"
-      Play(False, mplayer.Media_FullPath)
+      Play(mplayer.Media_FullPath)
     Endif
   Else If TabSelectedShoutcast() Then
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_NextTreeItem(genresTree)
       Wait 0.025
-      If mplayerwasrunning Then Play(False, mplayer.Media_FullPath,,, GenresTree.Current.text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, GenresTree.Current.text)
     Else 'gridview
       MyRadio.Select_NextGridItem(ShutResultGrid)
       Wait 0.025
-      If mplayerwasrunning Then Play(False, mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
     Endif
   Endif
   fmain.mouse = mouse.normal
@@ -3870,23 +3844,23 @@ Public Sub ButtonPrev_Click()
   Else If TabSelectedCDDA() Then
     CDDAPrev()
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedBrowse() Then
     BrowseSelectPrev()
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedYoutube() Then
     Youtube.Select_PrevTreeItem(youtubetree)
     Wait 0.025
-    If mplayerwasrunning Then Play(False, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedShoutcast() Then
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_PrevTreeItem(genresTree)
       Wait 0.025
-      If mplayerwasrunning Then Play(False, mplayer.Media_FullPath,,, GenresTree.Current.text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, GenresTree.Current.text)
     Else 'gridview
       MyRadio.Select_PrevGridItem(ShutResultGrid)
       Wait 0.025
-      If mplayerwasrunning Then Play(False, mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
     Endif
   Endif
   
@@ -3915,7 +3889,7 @@ End
 Public Sub LibraryGrid_Keypress()
   
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
-    Play(True)
+    Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
     Return
   Endif
   GridKeyRelease(LibraryGrid, MyLibrary)
@@ -3926,7 +3900,7 @@ End
 Public Sub PlayListGrid_Keypress()
   
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
-    Play(True)
+    Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
     Return
   Endif
   GridKeyRelease(PlayListGrid, MyPlaylist)
@@ -3937,7 +3911,7 @@ End
 Public Sub dvbtgrid_Keypress()
   
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
-    Play(True)
+    Play(dvbtgrid[dvbtgrid.row, MyPlayList.Columnindex["Full Path"]].text)
     Return
   Endif
   If Key.code = Key.delete Then
@@ -3976,7 +3950,7 @@ Public Sub PlayListGrid_DblClick()
   If MouseInsideGrid(PlayListGrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Filename"]].text
-    Try Play(False, SelectedPath,,, myradiolabel)
+    Try Play(SelectedPath,,, myradiolabel)
   Endif
   Last.mouse = mouse.Default
   
@@ -3995,7 +3969,7 @@ Public Sub LibraryGrid_DblClick()
   If MouseInsideGrid(Librarygrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
-    Try Play(False, SelectedPath,,, myradiolabel)
+    Try Play(SelectedPath,,, myradiolabel)
   Endif
   Last.mouse = mouse.Default
   
@@ -4008,7 +3982,7 @@ Public Sub playselecteddvb()
   
   Last.mouse = mouse.wait
   Try SelectedPath = dvbtGrid[dvbtGrid.row, MyDVBTList.Columnindex["Full Path"]].text
-  Try Play(False, SelectedPath)
+  Try Play(SelectedPath)
   Last.mouse = mouse.Default
   
 End
@@ -4154,11 +4128,11 @@ Public Sub SearchFieldPLS_KeyRelease()
 End
 
 Public Sub SearchField_Activate()
-  Play(True)
+  Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(Searchfield, Searchfield.text)
 End
 Public Sub SearchFieldPLS_Activate()
-  Play(True)
+  Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
 End
 
@@ -5158,7 +5132,7 @@ Public Sub ExecuteRemote(command As String)
       fmain.raise
       fmain.Minimized = False
     Endif
-      Play(False, parameter)
+      Play(parameter)
       If TabSelectedLibrary() Then
         Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, parameter)
         Return
@@ -5271,7 +5245,7 @@ Public Sub MenuDvdDrive_Click()
     GeneralOptions.AlreadyLoaded = True
   Endif
   dvd_device = GeneralOptions.DvdDeviceText.text
-  Play(False, "dvd://")
+  Play("dvd://")
   Me.mouse = mouse.default
   
 End
@@ -5280,7 +5254,7 @@ Public Sub MenuDvdFolder_Click()
   
   If Dialog.SelectDirectory() Then Return
   dvd_device = DConv(Dialog.Path)
-  Play(False, "dvd://")
+  Play("dvd://")
   
 End
 
@@ -5289,7 +5263,7 @@ Public Sub MenuDvdFile_Click()
   Dialog.filter = ["*.iso;*.ISO;*.Iso", ("iso files"), "*", ("All files")]
   If Dialog.OpenFile() Then Return
   dvd_device = DConv(Dialog.Path)
-  Play(False, "dvd://")
+  Play("dvd://")
   
 End
 
@@ -5774,7 +5748,7 @@ Public Sub FlashGrid_DblClick()
   Try SelectedPath = Last[Last.row, 1].text
   If (Not Error ) Then
     If MouseInsideGrid(Last) Then
-      Try Play(False, SelectedPath)
+      Try Play(SelectedPath)
     Endif
   Endif
   
@@ -5834,7 +5808,7 @@ Public Sub MyFlash_NewVideo(lastvideopath As String) 'when a new flash video is 
   
   If FlashCHK2.value = True Then
     If MyQuestion.Ask(Question, ("Play now"), ("Don't Play"), FlashCHK2.text, FlashCHK2) = 1 Then
-      Fmain.Play(False, lastvideopath)
+      Fmain.Play(lastvideopath)
       Fmain.Show
     Endif
   Endif
@@ -6279,7 +6253,7 @@ Public Sub GenresTree_Activate()
   IsChild = Not (GenresTree.moveparent())
   If IsChild Then
     TogglePls.value = False
-    Play(False, GenresTree.Current.key,,, GenresTree.Current.text)
+    Play(GenresTree.Current.key,,, GenresTree.Current.text)
   Else
     Last.mouse = mouse.wait
     Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
@@ -6320,7 +6294,7 @@ Public Sub ShutResultGrid_DblClick()
   Try SelectedPath = Last[Last.row, 3].text
   If Error Then Return
   If MouseInsideGrid(Last) Then
-    Play(False, SelectedPath,,, Last[Last.row, 0].text)
+    Play(SelectedPath,,, Last[Last.row, 0].text)
   Endif
   
 End
@@ -6386,7 +6360,9 @@ Public Sub ShoutCastGridaddtoplaylist_Click()
 End
 
 Public Sub FilterTextBox_Change()
-  
+  Dim previous_search As String = FilterTextBox.text
+  Wait 0.5
+  If previous_search <> FilterTextBox.text Then Return
   Highlight_shout_results()
   
 End
@@ -6570,9 +6546,9 @@ Public Sub MenuCDDA_Click()
   SetCddaTabVisibility(True)
   'play media
   If GeneralOptions.CDDBCheckbox.value Then 
-    Play(False, "cddb://1")
+    Play("cddb://1")
       Else
-    Play(False, "cdda://1")
+    Play("cdda://1")
   Endif
   'get cd informations
   numtracks = mplayer.FindTagValue("ID_CDDA_TRACKS")
@@ -6619,7 +6595,7 @@ End
 Public Sub CDDAGrid_DblClick()
   
   Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
-  Play(False, mplayer.Media_FullPath)
+  Play(mplayer.Media_FullPath)
   
 End
 
@@ -6651,7 +6627,7 @@ Public Sub PodcastTree_Activate()
   IsChild = Not (PodcastTree.moveparent())
   If IsChild Then
     If global.IsNetworkURI(PodcastTree.current.key) Then
-      Try fmain.Play(False, PodcastTree.current.key)
+      Try fmain.Play(PodcastTree.current.key)
     Endif
   Else
     If (PodcastTree.Current.Children = 0) Then
@@ -6992,7 +6968,7 @@ Public Sub ActivateFile(fullpathitem As String)
     If String.Right(urlbox.text, 1) = "/" Then urlbox.text = String.Left(urlbox.text, Len(urlbox.text) - 1)
   Else
     ComboHistory.AddHistory(urlbox, FileView1.dir)
-    Play(False, fullpathitem)
+    Play(fullpathitem)
   Endif
   
 End
@@ -7174,7 +7150,7 @@ Public Sub youtubeTree_Activate()
         Return
       Endif
       needytcookie = True
-      fmain.Play(False, RealYTVideoUrl, False)
+      fmain.Play(RealYTVideoUrl, False)
       youtubetitle = youtubetree.Current.Text
     Endif
   Else

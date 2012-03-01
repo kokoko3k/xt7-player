@@ -2,6 +2,8 @@ Git changes:
 --------------------------------------
 
 Mar 01 2012
+  CHANGE: Simplified play() function
+  CHANGE: Be lighter with highlightresults on logarea and shoutcast window  (start searching after 0.5sec after user typed)
   CHANGE: Be lighter with updatesearchresults(), (start searching after 0.5sec after user typed)
   FIX:    Avoid twice updatesearchresults() at startup
 

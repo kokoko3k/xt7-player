@@ -207,5 +207,5 @@ Public Function org_mpris_MediaPlayer2_Player_SetPosition(o As Long, p As Long)
 End
 
 Public Function org_mpris_MediaPlayer2_Player_OpenUri(p As String)
-  FMain.Play(False, p, True)
+  FMain.Play(p, True)
 End

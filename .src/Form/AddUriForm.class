@@ -74,7 +74,7 @@ Public Sub btnPlay_Click()
   
   If (URI Like "*dvd://*") Then FMain.dvd_device = GeneralOptions.DvdDeviceText.text
   AddUriForm.mouse = Mouse.Wait
-  If Fmain.Play(False, URI) Then
+  If Fmain.Play(URI) Then
     'PRINT "Debug: AddUriForm: btnplay_Click()" 
     Last.enabled = True
     AddUriForm.mouse = Mouse.Default

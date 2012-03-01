@@ -1,4 +1,5 @@
 ' Gambas class file
+
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 
@@ -63,6 +64,9 @@ End
 
 
 Public Sub Searchterm_Keyrelease()
+  Dim previous_search As String = searchterm.text
+  Wait 0.5
+  If previous_search <> searchterm.text Then Return
   HighLight(logarea, Last.text)
 End
 

@@ -2585,7 +2585,7 @@ Public Sub UpdateSeekSlider()
     SeekBar.tag = "user"
 End
 
-Public youtubetitle As String = ""
+Public customtitle As String = ""
 
 Public Sub UpdateStatusBar()
   'Print the current filename and playing time on the status bar
@@ -2608,8 +2608,8 @@ Public Sub UpdateStatusBar()
     If mplayer.IsNetworkURI Then
       If mplayer.ICYStreamTitle <> "" Then
         Pretext = mplayer.ICYStreamTitle ' Pretext & ": " & mplayer.ICYStreamTitle
-      Else If youtubetitle <> "" Then
-        pretext = youtubetitle
+      Else If customtitle <> "" Then
+        pretext = customtitle
       Endif
     Endif 
     
@@ -2805,7 +2805,7 @@ Public Sub OneSecTimer_Timer()
       EndOfMediaReached = True
       VEqHasBeenSet = False
       IsDvd = False
-      youtubetitle = ""
+      customtitle = ""
       MenumediaExplorer.Enabled = False
       'reset overboost value
       overboost = 100
@@ -3756,7 +3756,7 @@ Public Sub ButtonNext_Click()
     Youtube.Select_NextTreeItem(youtubetree)
     Wait 0.025
     If mplayerwasrunning Or (TogglePls.value) Then
-      youtubetitle = youtubetree.Current.text
+      Try customtitle = youtubetree.Current.text
       Debug "mplayer was off so hit play from here"
       Play(mplayer.Media_FullPath)
     Endif
@@ -3937,7 +3937,7 @@ Public Sub PlayListGrid_DblClick()
   
   Dim SelectedPath As String
   Dim myradiolabel As String
-  
+  Try customtitle = PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]].text
   Last.mouse = mouse.wait
   Try SelectedPath = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Full Path"]].text
   If (Not Error ) Then
@@ -3956,7 +3956,7 @@ Public Sub LibraryGrid_DblClick()
   
   Dim SelectedPath As String
   Dim myradiolabel As String
-  
+  Try customtitle = librarygrid[librarygrid.row, myplaylist.ColumnIndex["Filename"]].text
   Last.mouse = mouse.wait
   Try SelectedPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
   If (Not Error ) Then
@@ -4124,10 +4124,12 @@ Public Sub SearchFieldPLS_KeyRelease()
 End
 
 Public Sub SearchField_Activate()
+  Try customtitle = librarygrid[librarygrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(Searchfield, Searchfield.text)
 End
 Public Sub SearchFieldPLS_Activate()
+  Try customtitle = PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
 End
@@ -7146,8 +7148,8 @@ Public Sub youtubeTree_Activate()
         Return
       Endif
       needytcookie = True
-      fmain.Play(RealYTVideoUrl, False)
-      youtubetitle = youtubetree.Current.Text
+      fmain.Play(RealYTVideoUrl)
+      Try customtitle = youtubetree.Current.Text
     Endif
   Else
     If (youtubeTree.Current.Children = 0) Then

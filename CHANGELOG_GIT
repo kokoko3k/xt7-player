@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 
 Mar 01 2012
+  CHANGE: Be lighter with updatesearchresults(), (start searching after 0.5sec after user typed)
   FIX:    Avoid twice updatesearchresults() at startup
 
 Feb 29 2012

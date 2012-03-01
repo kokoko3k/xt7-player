@@ -505,7 +505,7 @@ Public Sub updaterecentfiles()
     If HaveToPlay <> "" Then 
       If HaveToSeek <> "" Then
         If Not (PlayFromCommandline) Then 
-         Play(HaveToPlay, True, " -ss " & HaveToSeek & " " & cachedopts)
+         Play(HaveToPlay, " -ss " & HaveToSeek & " " & cachedopts)
         Endif
       Endif
     Endif
@@ -916,7 +916,6 @@ Public Sub MainInit()
         Close #cachedfile
         cachedopts = Trim(cachedopts)
         Debug cachedopts
-        quick = True '(say to play() to skip getoptionsfromgui)
           Else
         Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
         Debug "To recreate the cache file, simply reload the profile"
@@ -937,7 +936,7 @@ Public Sub MainInit()
       fmain.Show
       Wait 
       PlayFromCommandline = True 
-      Play(DConv(Application.Args[1]), quick, cachedopts)
+      Play(DConv(Application.Args[1]), cachedopts)
       Me.Mouse = mouse.Default
       havetoshowbrowsetab = True
     Endif
@@ -1844,7 +1843,7 @@ Public Sub TreeView1_Activate()
   
   If mplayer.ProcessRunningOvr() Then
     If (CurTitle <> NextTitle) Then
-      Play("dvd://" & NextTitle, True, tmp)
+      Play("dvd://" & NextTitle, tmp)
       fmain.VideoBox.setfocus
     Else 'il titolo non varia
       If NextAngle <> 0 Then
@@ -1855,7 +1854,7 @@ Public Sub TreeView1_Activate()
       Endif
     Endif
   Else 'not processrunningovr
-    Play("dvd://" & NextTitle, True, tmp)
+    Play("dvd://" & NextTitle, tmp)
     fmain.VideoBox.setfocus
   Endif
   
@@ -2081,7 +2080,7 @@ End
 
 Public needytcookie As Boolean = False
 
-Public Function Play(fullpath As String, Optional quick As Boolean = False, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
+Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
   
   Dim prevtabindex As Integer = Leftsidetabs.index
   Dim SelectedRow As Integer
@@ -2162,11 +2161,8 @@ Public Function Play(fullpath As String, Optional quick As Boolean = False, Opti
   Endif
   
   firstplay = False
-  ' If (Not quick) Then
-  '   mplayer.CurrentOptions = GetOptionsFromGui() & " " & OtherOptions
-  ' Else
-     mplayer.CurrentOptions = OtherOptions
-  ' Endif
+  mplayer.CurrentOptions = OtherOptions
+
   
   Try Last.mouse = Mouse.wait
   ButtonPlay.enabled = False
@@ -2214,7 +2210,7 @@ Public Function Play(fullpath As String, Optional quick As Boolean = False, Opti
     
     If (fullpath Like "dvd://") Then 'eg: the user didn't specified a start title
       OneSecTimer.start
-      Play("dvd://" & LargestDvdTitle(), False) 'play the bigger one
+      Play("dvd://" & LargestDvdTitle()) 'play the bigger one
       OneSecTimer_Timer()
       OneSecTimer.start
       IsDVD = True
@@ -3768,11 +3764,11 @@ Public Sub ButtonNext_Click()
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_NextTreeItem(genresTree)
       Wait 0.025
-      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, GenresTree.Current.text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,, GenresTree.Current.text)
     Else 'gridview
       MyRadio.Select_NextGridItem(ShutResultGrid)
       Wait 0.025
-      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,, ShutResultGrid[ShutResultGrid.row, 0].text)
     Endif
   Endif
   fmain.mouse = mouse.normal
@@ -3827,7 +3823,7 @@ End
 
 Public Sub ButtonPrev_Click()
   
-  Dim FromGrid As Boolean = True
+
   Dim Returnvalue As Boolean
   Dim mplayerwasrunning As Boolean = False
   
@@ -3836,11 +3832,11 @@ Public Sub ButtonPrev_Click()
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectPrev(PlaylistGrid) ', ShufflePls.value)
     Wait 0.025
-    If mplayer.ProcessRunningOvr() Then Play(FromGrid, mplayer.Media_FullPath)
+    If mplayer.ProcessRunningOvr() Then Play(mplayer.Media_FullPath)
   Else If TabSelectedLibrary() Then
     MyLibrary.SelectPrev(LibraryGrid) ', ShufflePls.value)
     Wait 0.025
-    If mplayerwasrunning Then Play(FromGrid, mplayer.Media_FullPath)
+    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedCDDA() Then
     CDDAPrev()
     Wait 0.025
@@ -3856,11 +3852,11 @@ Public Sub ButtonPrev_Click()
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_PrevTreeItem(genresTree)
       Wait 0.025
-      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, GenresTree.Current.text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,, GenresTree.Current.text)
     Else 'gridview
       MyRadio.Select_PrevGridItem(ShutResultGrid)
       Wait 0.025
-      If mplayerwasrunning Then Play(mplayer.Media_FullPath,,, ShutResultGrid[ShutResultGrid.row, 0].text)
+      If mplayerwasrunning Then Play(mplayer.Media_FullPath,, ShutResultGrid[ShutResultGrid.row, 0].text)
     Endif
   Endif
   
@@ -3950,7 +3946,7 @@ Public Sub PlayListGrid_DblClick()
   If MouseInsideGrid(PlayListGrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Filename"]].text
-    Try Play(SelectedPath,,, myradiolabel)
+    Try Play(SelectedPath,, myradiolabel)
   Endif
   Last.mouse = mouse.Default
   
@@ -3969,7 +3965,7 @@ Public Sub LibraryGrid_DblClick()
   If MouseInsideGrid(Librarygrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
-    Try Play(SelectedPath,,, myradiolabel)
+    Try Play(SelectedPath,, myradiolabel)
   Endif
   Last.mouse = mouse.Default
   
@@ -6253,7 +6249,7 @@ Public Sub GenresTree_Activate()
   IsChild = Not (GenresTree.moveparent())
   If IsChild Then
     TogglePls.value = False
-    Play(GenresTree.Current.key,,, GenresTree.Current.text)
+    Play(GenresTree.Current.key,, GenresTree.Current.text)
   Else
     Last.mouse = mouse.wait
     Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
@@ -6294,7 +6290,7 @@ Public Sub ShutResultGrid_DblClick()
   Try SelectedPath = Last[Last.row, 3].text
   If Error Then Return
   If MouseInsideGrid(Last) Then
-    Play(SelectedPath,,, Last[Last.row, 0].text)
+    Play(SelectedPath,, Last[Last.row, 0].text)
   Endif
   
 End

@@ -1371,6 +1371,7 @@ Public thumbprocess As Process
 Private newfilenamepriv As String
 Private outdirpriv As String
 Private Thumbfullpathpriv As String
+Private widthpriv As Integer
 
 Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300) 
   Dim outdir As String = Shell(Temp()) & Rnd(0, 99999)
@@ -1388,6 +1389,7 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   newfilenamepriv = newfilename
   outdirpriv = outdir
   Thumbfullpathpriv = fullpath
+  widthpriv = width
   Debug cmdline
   thumbprocess = Shell cmdline For Read As "thumbprocess" 
 End
@@ -1397,23 +1399,20 @@ Event ThumbAvailableFor(fullpath As String)
 Event ThumbErrorFor(fullpath As String)
 
 
-
+Private ShortMovieChecked As Boolean = False
 Public Sub thumbprocess_kill()
   Try Copy outdirpriv & "/" & Dir(outdirpriv, "*")[0] To newfilenamepriv
   Shell "rm -R " & outdirpriv & "&>/dev/null"
   If Exist(newfilenamepriv) Then
     Raise ThumbAvailableFor(Thumbfullpathpriv)
       Else
-    Raise ThumbErrorFor(Thumbfullpathpriv)
+    If ShortMovieChecked Then 
+      Raise ThumbErrorFor(Thumbfullpathpriv)
+        Else 'maybe the movie was very short, try to get a screen at 5th second:
+      Debug "Couldn't get a thumb, retrying with an earlier time"
+      ShortMovieChecked = True
+      savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, 5)
+    Endif
   Endif
 End
-
-
-
-
-
-
-
-
-
 

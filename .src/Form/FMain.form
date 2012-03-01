@@ -120,7 +120,7 @@
     { separator005849 Menu
     }
     { MenuLibrarySetCover Menu
-      Text = ("Set a cover")
+      Text = ("Set/Update cover")
       Picture = Picture["icon:/16/color"]
     }
     { Separator43057 Menu
@@ -183,7 +183,7 @@
     { separator5384058 Menu
     }
     { MenuPlsSetCover Menu
-      Text = ("Set a cover")
+      Text = ("Set/Update cover")
       Picture = Picture["icon:/16/color"]
     }
     { Separator3849348 Menu
@@ -704,7 +704,7 @@
           Text = ("Label3")
         }
         { PlaylistGrid GridView
-          MoveScaled(0,10,37,22)
+          MoveScaled(2,7,37,22)
           Tracking = True
           ToolTip = ("Drag'n drop files or media links to add them,")
           Drop = True

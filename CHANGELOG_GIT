@@ -2,6 +2,9 @@ Git changes:
 --------------------------------------
 
 Mar 01 2012
+  NEW:    heuristic support For jpg embedded into mkv containers (attachments)
+  NEW:    heuristic support For jpg embedded into mp4 containers
+  CHANGE: Defaults to ".mp4" for youtube downloader
   FIX:    Try harder to take a thumb from video files
   FIX:    Video thumbnailer: use "-nocache" to speedup things
   FIX:    If present, display any custom item title (eg: youtube streams added to playlist) instead of url at play time

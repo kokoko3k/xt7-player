@@ -992,7 +992,6 @@ Public Sub ShowBrowseTabTo(fullpath As String)
   Wait 0.001
   FileView1.Current = file.name(fullpath)
    FileView1.refresh
-  'FileView1.Current = "fiorano.flv"
   Wait 0.001
 End
 
@@ -7407,7 +7406,7 @@ Public Sub youtubetreeDownload_Click()
     Message.error(("Unable to get the real stream url"))
     Return
   Endif
-  StreamDownload(RealYTVideoUrl, CurrentText & ".flv")
+  StreamDownload(RealYTVideoUrl, CurrentText & ".mp4")
   
 End
 

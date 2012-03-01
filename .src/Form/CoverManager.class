@@ -384,7 +384,7 @@ Public Function FindAndSeek(mystream As File, myblock As Long, mypattern As Stri
   Chunk = Read #mystream, myblock
   mypos = InStr(chunk, mypattern)
   If mypos > 0 Then 
-    Seek #mystream, mypos
+    Seek #mystream, mypos + mystart
     Return mystart + mypos
       Else
     Return 0
@@ -481,6 +481,88 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "", Option
   Endif
 End
 
+
+Public Sub LookForJpgHeuristic(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
+   Dim mystream As File
+   Dim myjpg As String = ""
+   Dim m1 As String
+   Dim isvalid As Boolean = False
+   Dim tmpfile As String = Temp & ".jpg"
+   Dim tmppic As Picture
+   Dim chunk As String
+   Dim m1pos As Long
+   Dim jpgstartmarker As String = Chr(255) & Chr(216) 'FF D8
+   Dim jpgendmarker As String = Chr(255) & Chr(217) 'FF D9
+   Dim jpgstart, jpgend As Long
+   
+  If IsUncovered(filename) Then Return False
+
+  Try mystream = Open filename For Input
+  If Error Then 
+    fileerror = True
+    Return False
+  Endif
+  Wait
+
+  m1 = "JFIF"  
+  Repeat
+    Try m1pos = FindAndSeek(mystream, 10240, m1) 'look into the first 100K
+    If Error Then Return False
+  Until (Seek(mystream) >= 1024000) Or (m1pos > 0) 'read at most 1MB
+  If m1pos = 0 Then Return False
+  
+  
+  Seek #mystream, m1pos - 10 'rewind a little
+
+  Try jpgstart = FindAndSeek(mystream, 2048, jpgstartmarker)
+  If Error Then Return False
+  If jpgstart = 0 Then Return False
+  jpgstart = jpgstart - 1
+  Wait
+   'se il file jpg non è valido, reitera questo finchè non è valido
+  While Not isvalid
+    Repeat
+      Try Chunk = Read #mystream, 4096 'look for jpeg end marker in the next 4K
+      If Error Then Return False 'eof...
+      jpgend = InStr(chunk, jpgendmarker)
+      Wait
+    Until jpgend > 0
+    jpgend = Seek(mystream) - 4096 + jpgend + 1
+
+    If jpgend > 0 Then
+      'Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      If (jpgend - jpgstart) > 307200 '307200 Then
+        Debug "jpg is >300KB, probably corrupted, skipping"
+        'Return Null
+        Return False
+      Endif
+    Endif
+    Wait
+    Seek #mystream, jpgstart
+
+    myjpg = Read #mystream, (jpgend - jpgstart) 
+    file.Save(tmpfile, myjpg)
+    Try tmppic = picture.Load(tmpfile)
+    If Not Error Then 
+      isvalid = True
+      Seek #mystream, jpgstart
+        Else
+      Seek #mystream, jpgend
+    Endif
+    If Eof(mystream) Then
+      Return False
+    Endif
+    Wait
+  Wend
+
+  Close mystream
+  If isvalid 
+    If saveto <> "" Then Try Copy tmpfile To saveto
+    Return True
+      Else
+    Return False
+  Endif
+End
 
 
 Public Sub PictureBox1_DblClick()
@@ -778,6 +860,10 @@ Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As S
     Case "flac"
       LookForJpg(fullpath, coverfilename)
       Return
+    Case "mp4"
+      If LookForJpgHeuristic(fullpath, coverfilename) Then Return 'return only when we found an embedded cover into mp4
+    Case "mkv"
+      If LookForJpgHeuristic(fullpath, coverfilename) Then Return 'return only when we found an embedded cover into mp4
   End Select
   
   If global.IsVideoFile(fullpath) Then

@@ -120,8 +120,12 @@
     { separator005849 Menu
     }
     { MenuLibrarySetCover Menu
-      Text = ("Set/Update cover")
+      Text = ("Set a cover")
       Picture = Picture["icon:/16/color"]
+    }
+    { MenuEmbeddedCoversLibrary Menu
+      Text = ("Search for embedded covers")
+      Picture = Picture["icon:/16/attach"]
     }
     { Separator43057 Menu
     }
@@ -183,8 +187,12 @@
     { separator5384058 Menu
     }
     { MenuPlsSetCover Menu
-      Text = ("Set/Update cover")
+      Text = ("Set a cover")
       Picture = Picture["icon:/16/color"]
+    }
+    { MenuEmbeddedCoversPls Menu
+      Text = ("Search for embedded covers")
+      Picture = Picture["icon:/16/attach"]
     }
     { Separator3849348 Menu
     }

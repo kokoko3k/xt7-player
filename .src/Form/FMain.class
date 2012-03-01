@@ -843,7 +843,7 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(XConfigureAudioDriver)
   SetSubControlsStyles(XConfigureVideoDriver)
 
-  covermanager.ResizeShadowTemplate(generaloptions.iconwidthcombobox.text)
+  covermanager.ResizeShadowTemplate(generaloptions.IconWidthCombobox.text)
 
 End
 
@@ -4847,11 +4847,11 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
  
- rowheight = CInt(generaloptions.iconwidthcombobox.text) '+ rowpadding 
+ rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
  
  'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
  If row = hirow Then 
-    bigfactor = BigFactorTable(generaloptions.iconwidthcombobox.text)
+    bigfactor = BigFactorTable(generaloptions.IconWidthCombobox.text)
     'rowpadding rowpa
   Else If (mygrid.Rows[row].h <> rowheight) Then 
     bigfactor = 1
@@ -6835,31 +6835,55 @@ End
 
 
 Public Sub MenuLibrarySetCover_click()
-  
   Dim artist, album, filepath As String
-  
-  With librarygrid
-    Artist = librarygrid[.row, MyLibrary.ColumnIndex["Artist"]].text
-    Album = librarygrid[.row, MyLibrary.ColumnIndex["Album"]].text
-    filepath = librarygrid[.row, MyLibrary.ColumnIndex["Full Path"]].text
-  End With
-  covermanager.SetACover(filepath, Artist, Album, True)
-  'CoverBox_DblClick()
-  
+    With librarygrid
+      Artist = librarygrid[.row, MyLibrary.ColumnIndex["Artist"]].text
+      Album = librarygrid[.row, MyLibrary.ColumnIndex["Album"]].text
+      filepath = librarygrid[.row, MyLibrary.ColumnIndex["Full Path"]].text
+    End With
+    covermanager.SetACover(filepath, Artist, Album, True)
 End
 
+Public Sub MenuEmbeddedCoversLibrary_click()
+  UpdateEmbeddedFromSelected(librarygrid)
+End
+
+
+Public Sub MenuEmbeddedCoversPls_click()
+  UpdateEmbeddedFromSelected(Playlistgrid)
+End
+
+
+
 Public Sub MenuPlsSetCover_click()
-  
   Dim artist, album, filepath As String
+    With playlistgrid
+      Artist = playlistgrid[.row, Myplaylist.ColumnIndex["Artist"]].text
+      Album = playlistgrid[.row, Myplaylist.ColumnIndex["Album"]].text
+      filepath = playlistgrid[.row, Myplaylist.ColumnIndex["Full Path"]].text
+    End With
+    covermanager.SetACover(filepath, Artist, Album, True)
+End
+
+
+Public Sub UpdateEmbeddedFromSelected(mygrid As Gridview)
+  Dim r As Integer
+  Dim coverfilename As String
+  Dim fullpath As String
   
-  With playlistgrid
-    Artist = playlistgrid[.row, Myplaylist.ColumnIndex["Artist"]].text
-    Album = playlistgrid[.row, Myplaylist.ColumnIndex["Album"]].text
-    filepath = playlistgrid[.row, Myplaylist.ColumnIndex["Full Path"]].text
-  End With
-  covermanager.SetACover(filepath, Artist, Album, True)
-  'CoverBox_DblClick()
-  
+  If MyQuestion.Ask(("Xt7 will try to find and update embedded covers,\nBeware that covers explicitely set without album/artist information will be lost."), "Ok", "Cancel") = 2 Then Return
+  mygrid.mouse = mouse.wait
+  mygrid.enabled = False
+  For r = 0 To mygrid.rows.count - 1
+    If mygrid.Rows[r].Selected Then
+      fullpath = mygrid[r, myplaylist.Columnindex["Full Path"]].text
+      coverfilename = covermanager.Coverfile("", "", fullpath) 'generate a coverfilename using just filename (not album/artist)
+      Try covermanager.RemoveCoverCache(coverfilename, True)
+      mygrid[r, 0].Clear
+    Endif
+  Next 'r
+  mygrid.mouse = mouse.Default
+  mygrid.enabled = True
 End
 
 

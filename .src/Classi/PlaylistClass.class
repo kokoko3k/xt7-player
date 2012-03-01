@@ -680,7 +680,7 @@ Public Sub UpdateSelected(MyPlaylist As GridView)
       artist = Myplaylist[r, Columnindex["Artist"]].text
       album = Myplaylist[r, Columnindex["Album"]].text
       coverfile = CoverManager.Coverfile(artist, album, tmpfullpath)
-      CoverManager.RemoveCoverCache(coverfile)
+      CoverManager.RemoveCoverCache(coverfile, False)
       '
       If (Not ISURI(tmpfullpath)) Then fullpaths.Add(tmpfullpath)
     Endif

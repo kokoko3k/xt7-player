@@ -42,7 +42,7 @@
       }
     }
     { Tabstrip1 TabStrip
-      MoveScaled(21,0,62,65)
+      MoveScaled(21,1,62,65)
       Tag = "Audio CD"
       Expand = True
       Arrangement = Arrange.Vertical
@@ -1156,11 +1156,11 @@
             Expand = True
           }
           { !IconWidthCombobox ComboBox
-            MoveScaled(31,1,10,3)
+            MoveScaled(27,0,10,3)
             #Public = True
             ReadOnly = True
             List = [("16"), ("24"), ("32"), ("48"), ("64"), ("96"), ("128"), ("160")]
-            Text = ("24")
+            Text = ("32")
           }
           { BackResetButton4 ToolButton
             MoveScaled(41,1,4,4)

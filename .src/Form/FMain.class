@@ -393,6 +393,11 @@ Public Sub AllInit_Post()
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
+Debug   
+  librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
+  playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
+  dvbtgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
+  '
   'some gtk component problem here
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
@@ -403,10 +408,10 @@ Public Sub AllInit_Post()
   Myflash = New FlashClass As "MyFlash"
   InitFlashGrid()
   SetStyle_early()
-  UpdateSearchResults(MyLibrary, LibraryGrid, False, Searchfield.text)
-  UpdateSearchResults(MyPlaylist, PlaylistGrid, False, SearchfieldPLS.text)
-  LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
-  PlayListGrid.Rows.h = PlayListGrid.Font.TextHeight("^_") + global.rowpadding
+  ' UpdateSearchResults(MyLibrary, LibraryGrid, False, Searchfield.text)
+  ' UpdateSearchResults(MyPlaylist, PlaylistGrid, False, SearchfieldPLS.text)
+  ' LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
+  ' PlayListGrid.Rows.h = PlayListGrid.Font.TextHeight("^_") + global.rowpadding
   Leftsidepanel.mouse = mouse.Default
   Try GeneralOptions.LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try GeneralOptions.LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
@@ -4099,13 +4104,16 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
   'some gtk component problem here
   
   HideGrid(LibraryGrid)
-  Debug
+  If (Not fmain.fullyloaded) Then
+      If Not (librarygrid.tag = "FORCEUPDATE") Then Return
+    Endif
+  Debug librarygrid.name
   LibraryGrid.clear
   MyLibrary.Search(LibraryGrid, Searchterm)
   If autosize Then
     MyLibrary.AutoSizeColumns(LibraryGrid)
     ' [GB2:FNTH] LibraryGrid.Rows.h = LibraryGrid.Font.Textheight("^_") + global.rowpadding
-    LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
+    'LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   Endif
   If fmain.fullyloaded Then ShowGrid(LibraryGrid)
   
@@ -4854,8 +4862,6 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
   
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
- 
- 
  
  rowheight = CInt(generaloptions.iconwidthcombobox.text) '+ rowpadding 
  

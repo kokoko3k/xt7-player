@@ -59,7 +59,16 @@ disabled il checkbox...
 * permettere di scegliere quali dei codec vdpau 'autoaggiungere' ?
 
  
-i tooltip nella libreria per l'audio mancano di no zero :/
+* mplayer con i file piccoli non genera thumb;
+  -sb non funge ; quindi, in caso di errore, dobbiamo ricavare la lunghezza del video e prendere il frame dal mezzo.
+  magari sarebbe possibile mandare alla funzione la lunghezza, presa stesso dalla libreria per scongiurare l'errore
+  iniziale.
+
+
+* usare il titolo di youtube come caption della finestra quando si playa
+
+* la fase di ricerca runtime in xt7-player.slow è stata ottimizzata? controllare"xt7
+
 
 ---------------------------------------------------------------------------
 

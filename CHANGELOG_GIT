@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+
+Mar 01 2012
+  FIX:    Avoid twice updatesearchresults() at startup
+
 Feb 29 2012
   CHANGE: Use an hardcoded table to choose the highlight factor
   FIX:    Runtime error when a youtube link was added into playlist

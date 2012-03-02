@@ -140,13 +140,15 @@ Public Sub RemoveCoverCache(coverfile As String, Optional RemoveSourceToo As Boo
 End
 
 
-Public Function coverpicture(coverfile As String, uripath As String, width As Integer, Optional ByRef found As Boolean) As Picture
-Dim cachefile As String = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
+Public Function coverpicture(coverfile As String, uripath As String, height As Integer, Optional ByRef found As Boolean) As Picture
+Dim cachefile As String = coverfile & "_thumbcache" & height & "." & File.ext(coverfile)
 Dim tmpimage As Image
 Dim defaultcover As Boolean = False
 Dim FileExists As Boolean = False
-
-
+Dim width As Integer
+Dim neww, newh As Integer
+Dim newx, newy As Integer
+  
 ' zzzfake.Arrangement = Arrange.Fill
 ' Try CoverCacheList.expand = True
 ' Try zzzfake.Stacking = Window.above
@@ -157,6 +159,9 @@ Dim FileExists As Boolean = False
 
 
 
+  'neww = generaloptions.IconWidthCombobox.text + shadowoffsetpaint 
+  neww = height + (shadowoffsetpaint * 2)
+  'Return cornice(imgandshadow, neww, neww).Picture
 
 'gestisce le thumbnails su disco e la loro cache in memoria
 'non crea di per sè alcuna immagine, al più restituisce delle immagini di default
@@ -165,21 +170,28 @@ If FMain.closing Then Return
 found = True
 
 If (global.isvideofile(uripath) And (generaloptions.ShowThumbsChk.value = False)) Then 
-  Return Stock[CStr(width + shadowoffset) & "/video"] 
+  Return cornice(Stock[CStr(height + shadowoffset) & "/video"].Image, neww)
 Endif
 
 If Exist(coverfile) Then
-  Try Return Shadowed(CoverCacheList[cachefile].Picture) 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
+  Try Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
   If Error Then 'Se non esiste l 'immagine in memoria, allora
     If Exist(cachefile) Then  'Se esiste una cache su disco allora
       CoverCacheList.Add(cachefile, "", picture.Load(cachefile)) 'mettila IN memoria
-      Return Shadowed(CoverCacheList[cachefile].Picture) 'ritornala
+      Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'ritornala
         Else 'Altrimenti(non esiste cache su disco)
       If Exist(coverfile) 'se esiste la cover su disco, ma non la cache
-        tmpimage = image.Load(coverfile).Stretch(width, width) 'caricala
+        tmpimage = image.Load(coverfile)
+        If (tmpimage.w < tmpimage.h) Then
+          width = (tmpimage.w / tmpimage.h) * height
+            Else
+          width = height 
+          height = (tmpimage.h / tmpimage.w) * width
+        Endif
+        tmpimage = tmpimage.Stretch(width, height) 'caricala
         tmpimage.Save(cachefile) 'salvala come cache
         CoverCacheList.Add(cachefile, "", tmpimage.picture) 'mettila IN memoria
-        Return Shadowed(CoverCacheList[cachefile].Picture) 'ritornala
+        Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'ritornala
       Endif
     Endif
   Endif
@@ -195,19 +207,19 @@ If Exist(coverfile) Then
         coverfile = "emptycover.png"
         defaultcover = True
   Endif
-  cachefile = coverfile & "_thumbcache" & width & "." & File.ext(coverfile)
+  cachefile = coverfile & "_thumbcache" & CStr(height) & "." & File.ext(coverfile)
   If Not (defaultcover) Then  
     Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
       Else
-    Try Return (CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
+    Try Return cornice((CoverCacheList[cachefile].Picture.image), neww) 'prova a restituire l'immagine dalla memoria
   Endif
   If Error Then 'se non la trovi in memoria,
     'DEBUG "not found in memory!"
-    tmpimage = image.Load(coverfile).stretch(width + shadowoffset, width + shadowoffset) 'caricala
+    tmpimage = image.Load(coverfile).stretch(height + shadowoffset, height + shadowoffset) 'caricala
   Endif
   Try CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
   If Error Then Return Null
-  Return CoverCacheList[cachefile].Picture 'e restituiscila
+  Return cornice(CoverCacheList[cachefile].Picture.Image, neww) 'e restituiscila
 Endif
 End
 
@@ -907,9 +919,9 @@ Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Int
   Else If Global.IsVideoFile(fullpath) Then
     Return Stock[rowheight & "/video"]
   Else If Global.IsDvbURI(fullpath) Then
-    Return picture["filetypedvb.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
+    Return picture["filetypedvb.png"].Image.Stretch(rowheight - global.rowpadding + rowheight - global.rowpadding).picture
   Else If FMain.Youtube.IsYoutubeLink(fullpath) Then
-    Return picture["youtubeicon.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
+    Return picture["youtubeicon.png"].Image.Stretch(rowheight - global.rowpadding + rowheight - global.rowpadding).picture
   Else If Global.IsNetworkURI(fullpath) Then
     Return Stock[rowheight & "/network"]
   Else
@@ -920,29 +932,47 @@ End
 
 
 
-Private shadowpic As Picture = picture["shadow.png"]
+
+Private canvas As Image = Image.Load("null.png")
+Private shadowimg As Image = image.load("shadow.png")
 Public ShadowOffset As Integer
 Private ShadowOffsetPaint As Integer
 
-Public Sub ResizeShadowTemplate(w As Integer)
-  shadowpic = picture["shadow.png"]
-  ShadowOffset = ((w - global.rowpadding) Div 8) 
-  ShadowOffsetPaint = (ShadowOffset Div 2)
-  shadowpic = shadowpic.Image.Stretch(CInt(w) + ShadowOffset, CInt(w) + ShadowOffset).picture
+Public Function cornice(img As Image, neww As Integer, Optional newh As Integer = -1) As Picture
+  Dim canvas As Image
+  Dim newx, newy As Integer
+  If newh = -1 Then newh = neww
+  canvas = Image.Load("null.png").Stretch(neww, newh)
+  newx = CInt((neww / 2) - (img.w / 2))
+  newy = CInt((newh / 2) - (img.h / 2))
+  Return canvas.DrawImage(img, newx, newy).picture
 End
 
-Public Function Shadowed(src As Picture) As Picture
+Public Sub ResizeShadowTemplate(w As Integer, Optional h As Integer = -1)
+  If h = -1 Then h = w
+  shadowimg = image.load("shadow.png")
+  shadowimg = shadowimg.Stretch(w + ShadowOffset, h + ShadowOffset)
+  canvas = canvas.Stretch(w + ShadowOffset, h + ShadowOffset)
+End
+
+Public Function Shadowed(src As Picture) As Image
   Dim offset As Integer = 0
   Dim w As Integer = src.w
-  If ((w + shadowoffset) <> shadowpic.w) Then 
-    ' Debug "requested: " & w
-    ' Debug "but have: " & shadowpic.w
-    ' Debug "scarto = " & CStr(shadowpic.w - w)
-    ' Debug "ShadowOffset = " & ShadowOffset
-    ResizeShadowTemplate(w)
-  Endif
+  Dim h As Integer = src.h
+
+  Dim imgandshadow As Image
+  ShadowOffset = ((h - global.rowpadding) Div 8) 
+  ShadowOffsetPaint = (ShadowOffset Div 2)
   offset = - (w Div 90) 
-  Return shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture
+  If (((w + shadowoffset) <> shadowimg.w) Or ((h + shadowoffset) <> shadowimg.h)) Then 
+    ResizeShadowTemplate(w, h)
+  Endif
+ 
+  Return shadowimg.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset)
+  'Return imgandshadow.picture
+
+
+  'Return shadowpic.image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture
 End
 
 

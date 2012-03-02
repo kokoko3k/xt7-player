@@ -1,5 +1,7 @@
 Git changes:
 --------------------------------------
+Mar 02 2012
+  FIX:    Proper support of unsquared covers
 
 Mar 01 2012
   NEW:    popup menu item for library and playlist to explicitely search for embedded covers
@@ -17,7 +19,7 @@ Mar 01 2012
 
 Feb 29 2012
   CHANGE: Use an hardcoded table to choose the highlight factor
-  FIX:    Runtime error when a youtube link was added into playlist
+  FIX:    Runtime   Return img.pictureerror when a youtube link was added into playlist
   FIX:    item highlighter was broken by long time, fixed
   FIX:    Transparent background for webradio.png
   FIX:    Have the same size for all icons in view.

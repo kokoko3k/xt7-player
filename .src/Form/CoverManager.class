@@ -194,8 +194,9 @@ If Exist(coverfile) Then
         Endif
         tmpimage = tmpimage.Stretch(width, height) 'caricala
         tmpimage.Save(cachefile, 100) 'salvala come cache
-        Try CoverCacheList.Add(cachefile, "", cornice(Shadowed(picture.Load(cachefile)), neww)) 'mettila IN memoria ****************************************
-        Return CoverCacheList[cachefile].picture 'ritornala
+        Debug cachefile & " saved"
+        CoverCacheList.Add(cachefile, "", cornice(Shadowed(picture.Load(cachefile)), neww)) 'mettila IN memoria ****************************************
+        Try Return CoverCacheList[cachefile].picture 'ritornala
       Endif
     Endif
   Endif

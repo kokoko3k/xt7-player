@@ -121,7 +121,19 @@ End
 Public Function fixfilename(filename As String) As String
   'make a filename more bash friendly...
   Dim out As String
-  out = Replace(filename, "/", "_")
+  Dim cod As Integer
+  Dim i As Integer
+  
+  For i = 1 To Len(filename) 
+    cod = Asc(filename, i)
+    If (cod < 32) Or (cod > 126) Then
+      out &= "_"
+        Else
+      out &= Mid(filename, i, 1) 
+    Endif
+  Next
+  
+  out = Replace(out, "/", "_")
   out = Replace(out, "&", "_")
   out = Replace(out, "*", "_")
   out = Replace(out, "?", "_")
@@ -132,6 +144,7 @@ Public Function fixfilename(filename As String) As String
   out = Replace(out, "[", "_")
   out = Replace(out, "]", "_")
   Return out
+  
 End
 
 

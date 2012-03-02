@@ -79,6 +79,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/CoverCacheList]
 Geometry=[51,587,660,344]
 
+[DebugWindow/CoverCacheList[cachefile]]
+Geometry=[47,-3,210,210]
+
 [DebugWindow/CoverManager]
 Geometry=[48,-4,210,210]
 
@@ -174,6 +177,9 @@ Geometry=[0,0,210,210]
 
 [DebugWindow/ICYTagArray]
 Geometry=[0,0,683,353]
+
+[DebugWindow/Image]
+Geometry=[51,0,210,210]
 
 [DebugWindow/ImagesURL]
 Geometry=[-62,344,845,344]
@@ -294,6 +300,9 @@ Geometry=[0,0,1014,714]
 
 [DebugWindow/PTableFile]
 Geometry=[0,0,975,310]
+
+[DebugWindow/Picture]
+Geometry=[51,0,210,210]
 
 [DebugWindow/PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]]]
 Geometry=[51,0,210,210]
@@ -539,7 +548,10 @@ Geometry=[1280,0,580,802]
 Geometry=[52,0,758,210]
 
 [DebugWindow/image]
-Geometry=[0,0,301,301]
+Geometry=[51,0,301,301]
+
+[DebugWindow/img]
+Geometry=[51,0,210,210]
 
 [DebugWindow/infile]
 Geometry=[0,0,301,301]
@@ -694,6 +706,12 @@ Geometry=[0,41,344,344]
 [DebugWindow/settings]
 Geometry=[0,0,210,210]
 
+[DebugWindow/shadowpic]
+Geometry=[51,0,210,210]
+
+[DebugWindow/shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture]
+Geometry=[47,-3,210,210]
+
 [DebugWindow/splitted]
 Geometry=[0,0,210,210]
 
@@ -784,14 +802,15 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:29.60"
+Active=1
+File[1]="CHANGELOG_GIT:3.10"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:845.68"
+File[4]=".src/Form/FMain.class:4082.29"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
 File[7]=".src/Form/GeneralOptions.form"
-File[8]=".src/Form/GeneralOptions.class:917.2"
+File[8]=".src/Form/GeneralOptions.class:933.19"
 File[9]=".src/Form/AudioForm.form"
 File[10]=".src/Form/AudioForm.class:72.25"
 File[11]="AA_ToDo:60.96"
@@ -799,17 +818,16 @@ File[12]=".src/Classi/MplayerClass.class:1409.31"
 File[13]=".src/Classi/FlashClass.class:142.13"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"
-File[16]=".src/0_Moduli/Global.module:812.70"
-File[17]=".src/Classi/SettingsClass.class:457.27"
+File[16]=".src/0_Moduli/Global.module:131.12"
+File[17]=".src/Classi/SettingsClass.class:510.27"
 File[18]=".src/Form/RealtimeForm.form"
 File[19]=".src/Form/RealtimeForm.class:114.36"
 File[20]=".src/Form/ChooseAspect.form"
 File[21]=".src/Form/ChooseAspect.class:32.25"
 File[22]=".src/Form/DVBTuner.form"
 File[23]=".src/Classi/TagLib.class:16.33"
-Active=24
-File[24]=".src/Form/CoverManager.class:666.26"
-File[25]=".src/Classi/PlaylistClass.class:682.35"
+File[24]=".src/Form/CoverManager.class:730.60"
+File[25]=".src/Classi/PlaylistClass.class:1387.40"
 File[26]=".src/Form/CoverManager.form"
 File[27]=".src/Form/AudioEqualizer.form"
 File[28]="amarok_random.png"
@@ -821,7 +839,7 @@ File[33]=".src/Form/DVBTuner.class:0.0"
 File[34]="webradio.png"
 File[35]=".src/Form/zzzFake.form"
 File[36]=".src/Form/HotKeyGrab.form"
-File[37]=".src/Form/VFiltersCfg.class:229.11"
+File[37]=".src/Form/VFiltersCfg.class:451.15"
 File[38]=".src/Form/LogWindow.class:62.3"
 File[39]=".src/Form/AFiltersCfg.class:221.11"
 File[40]=".src/Classi/DynaGuiClass.class:266.0"

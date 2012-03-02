@@ -4814,15 +4814,15 @@ End
 Function BigFactorTable(w As Integer) As Integer
   Select Case w
     Case 16
-      Return 5
+      Return 4
     Case 24
-      Return 5
+      Return 4
     Case 32
-      Return 4
-    Case 48
-      Return 4
-    Case 64
       Return 3
+    Case 48
+      Return 3
+    Case 64
+      Return 2
      Case 96
       Return 2
     Case 128

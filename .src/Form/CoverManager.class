@@ -194,7 +194,6 @@ If Exist(coverfile) Then
         Endif
         tmpimage = tmpimage.Stretch(width, height) 'caricala
         tmpimage.Save(cachefile, 100) 'salvala come cache
-        Debug cachefile & " saved"
         CoverCacheList.Add(cachefile, "", cornice(Shadowed(picture.Load(cachefile)), neww)) 'mettila IN memoria ****************************************
         Try Return CoverCacheList[cachefile].picture 'ritornala
       Endif
@@ -1008,13 +1007,13 @@ End
 Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16) As Picture
   rowheight += Shadowoffset
   If Global.IsAudioFile(fullpath) Then
-    Return Stock[rowheight & "/audio"]
+    Return Stock[CStr(rowheight - global.rowpadding) & "/audio"]
   Else If Global.IsVideoFile(fullpath) Then
-    Return Stock[rowheight & "/video"]
+    Return Stock[CStr(rowheight - global.rowpadding) & "/video"]
   Else If Global.IsDvbURI(fullpath) Then
-    Return picture["filetypedvb.png"].Image.Stretch(rowheight - global.rowpadding + rowheight - global.rowpadding).picture
+    Return picture["filetypedvb.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
   Else If FMain.Youtube.IsYoutubeLink(fullpath) Then
-    Return picture["youtubeicon.png"].Image.Stretch(rowheight - global.rowpadding + rowheight - global.rowpadding).picture
+    Return picture["youtubeicon.png"].Image.Stretch(rowheight - global.rowpadding, rowheight - global.rowpadding).picture
   Else If Global.IsNetworkURI(fullpath) Then
     Return Stock[rowheight & "/network"]
   Else

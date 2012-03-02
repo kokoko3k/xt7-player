@@ -1378,9 +1378,23 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
       MyGrid.Columns[C].W = 80
     Next 'c
 
+
+
     Debug "Doing from " & FirstR & " - to " & LastR
     For R = FirstR To LastR
-      For C = FirstC To LastC
+        Text = MyGrid[R, firstc].text
+        ' [GB2:FNTW] TextW = MyGrid.Font.TextWidth(text & "_____")
+        TextW = MyGrid.Font.TextWidth(text & "_____") + MyGrid.Rows.H 'the first column has an image so it is wider
+        If TextW > MyGrid.Columns[firstc].W Then
+          MyGrid.Columns[firstc].W = TextW
+        Endif
+
+    Next 'R
+    
+    
+    
+    For R = FirstR To LastR
+      For C = FirstC + 1 To LastC
         Text = MyGrid[R, C].text
         ' [GB2:FNTW] TextW = MyGrid.Font.TextWidth(text & "_____")
         TextW = MyGrid.Font.TextWidth(text & "_____")

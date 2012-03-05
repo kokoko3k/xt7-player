@@ -1469,7 +1469,7 @@ Public Sub ButtonOpen_Click()
   If Dialog.OpenFile() Then Return
   mplayer.Media_FullPath = DConv(Dialog.Path)
   TogglePls.value = False
-  Play(False)
+  Play(mplayer.Media_FullPath)
   
 End
 
@@ -2552,7 +2552,7 @@ Public Sub VideoAreaGroup_Drop()
       Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
     Else
       mplayer.Media_FullPath = droppedfile
-      Play()
+      Play(droppedfile)
     Endif
   Else
     dvd_device = droppedfile

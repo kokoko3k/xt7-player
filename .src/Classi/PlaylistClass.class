@@ -35,11 +35,6 @@ Public Sub Init(WithMplayer As Boolean)
   Randomize
   If WithMplayer Then
     MplayerTag.quick = True
-    ' MplayerTag.do_play("", "-idle -ao null -vo null -channels 6 -demuxer ogg", TRUE) 'we hack -demuxer ogg here because
-    '                                                                                  'of lavf demuxer doesn't report
-    '                                                                                  'tags anymore on ogg streams...
-    '...but unfortunately, specifiyng a demuxer seems to force it, so mplayer_idle whouldn't be able to get any
-    'info on other files... we'll use audiotag for oggs too.
     MplayerTag.do_play("", "-idle -ao null -vo null -channels 6", True)
   Endif
   Columnindex["Filename"] = 0

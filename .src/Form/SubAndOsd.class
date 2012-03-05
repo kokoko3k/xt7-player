@@ -236,8 +236,7 @@ Public Sub TestBTN_Click()
     mplayer.AoDriver = "-ao null"
     'mplayer.quick = TRUE
     mplayer.do_play("mf://" & global.confpath & "/SubBackImage*.bmp", MyOptions & " -zoom -osdlevel 3 -vf-add scale -vf-pre scale")
-    'PRINT "Debug: SubAndOsd: TestBTN_Click(): mplayer.do_play() " & "mf://" & global.confpath& "/SubBackImage*.png", MyOptions & " -osdlevel 3 "
-    
+
     Me.mouse = Mouse.default
     PreviewDriverCombobox.enabled = True
     TestBTN.enabled = True

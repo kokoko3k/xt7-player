@@ -2366,7 +2366,7 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
         tl.init(mplayer.Media_FullPath)
         mplayer.Media_Artist = tl.Artist
         mplayer.Media_Album = tl.Album
-        Try tl.free
+        Try tl.tlfree
       Endif
     Endif
 
@@ -5492,7 +5492,7 @@ Public Sub SetACover(Album As String, Artist As String, filepath As String)
       tl.init(filepath)
       Artist = tl.Artist
       Album = tl.Album
-      tl.free()
+      tl.tlfree()
     Endif
   Endif
   

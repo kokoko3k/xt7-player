@@ -811,7 +811,7 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
     Return
   Endif
 
-    If global.IsAudioFile(fullpath) Then
+    If Not global.IsVideoFile(fullpath) Then
       If (ArtistText.text & AlbumText.text) <> Trim(Artist) & Trim(Album) Then
         Try CoverList.Clear
         'Try FlexSpace.Picture = picture.Load("null.png")

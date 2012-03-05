@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Mar 05 2012
+  FIX:    Reset "previouscoverfile" when user changes cover
   FIX:    keep cover aspect ratio in the right side panel
   FIX:    Don't crop covers in the right side panel
   FIX:    Regression: Wrong sized icons when not viewing covers ( DefaultLibraryIcon() )

@@ -5478,7 +5478,7 @@ Public Sub SetACover(Album As String, Artist As String, filepath As String)
   Dim tmpmessage As String
   Dim JustFileCover As Boolean = False 'are we going to set a cover for just this file?
   Dim tl As New Taglib
-  
+  PreviousCoverFile = "NOPE"
   If CoverManager.fetching Then
     CoverManager.HitCancel = True
     Repeat

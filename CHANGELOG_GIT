@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Mar 05 2012
+  FIX:    Don't return the previous cover if the current doesn't exists
   FIX:    Reset "previouscoverfile" when user changes cover
   FIX:    keep cover aspect ratio in the right side panel
   FIX:    Don't crop covers in the right side panel

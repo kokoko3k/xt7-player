@@ -4,6 +4,7 @@ Mar 05 2012
   FIX:    Regression: Wrong sized icons when not viewing covers ( DefaultLibraryIcon() )
   FIX:    Regression: allow to set a custom cover for network streams too.
   FIX:    Play() fuinction changed interface, some calls needed to be fixed
+  FIX:    RemoveCoverCache(): check if there is something in memory to clean before trying to
 
 Mar 02 2012
   FIX:    Tuned highlight row table

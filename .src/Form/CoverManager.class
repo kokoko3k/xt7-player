@@ -124,16 +124,18 @@ Public Sub RemoveCoverCache(coverfile As String, Optional RemoveSourceToo As Boo
   Dim catcherror As Boolean
   Shell "rm '" & cachefile & "'" & "*.*" 'rimuovilo dal disco
   'cercalo in memoria e rimuovilo:
-  CoverCacheList.Movefirst
-  Repeat
-    If CoverCacheList.Item.key Like cachefile & "*" Then
-      Debug "invalidating memory cache: " & CoverCacheList.Item.key
-      CoverCacheList.Item.delete
-      Try CoverCacheList.MoveFirst ' ci si muove all'inizio, perchè dopo la cancellazione
-                                    ' l'item corrente non è più valido, quindi non ha un successivo
-      If Error Then Return
-    Endif
-  Until CoverCacheList.MoveBelow()
+  If CoverCacheList.Count > 0 Then 
+    CoverCacheList.Movefirst
+    Repeat
+      If CoverCacheList.Item.key Like cachefile & "*" Then
+        Debug "invalidating memory cache: " & CoverCacheList.Item.key
+        CoverCacheList.Item.delete
+        Try CoverCacheList.MoveFirst ' ci si muove all'inizio, perchè dopo la cancellazione
+                                      ' l'item corrente non è più valido, quindi non ha un successivo
+        If Error Then Return
+      Endif
+    Until CoverCacheList.MoveBelow()
+  Endif
   If RemoveSourceToo Then Try Kill coverfile
   FMain.RefreshVisibleCovers(FMain.librarygrid)
   FMain.RefreshVisibleCovers(FMain.playlistgrid)

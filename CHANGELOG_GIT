@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Mar 02 2012
+  FIX:    Regression: Wrong sized icons when not viewing covers ( DefaultLibraryIcon() )
   FIX:    Regression: allow to set a custom cover for network streams too.
   FIX:    Tuned highlight row table
   FIX:    Safer coverfile()/fixfilename() function

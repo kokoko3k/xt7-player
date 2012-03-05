@@ -4072,7 +4072,7 @@ End
 
 Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridview, Optional autosize As Boolean = True, searchterm As String)
   'some gtk component problem here
-  
+  Dim crow As Integer
   HideGrid(LibraryGrid)
   If (Not fmain.fullyloaded) Then
       If Not (librarygrid.tag = "FORCEUPDATE") Then Return
@@ -4085,8 +4085,19 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
     ' [GB2:FNTH] LibraryGrid.Rows.h = LibraryGrid.Font.Textheight("^_") + global.rowpadding
     'LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   Endif
-  If fmain.fullyloaded Then ShowGrid(LibraryGrid)
-  
+  If fmain.fullyloaded Then 
+    ShowGrid(LibraryGrid)
+      'Wait
+      If mplayer.ProcessRunningOvr() Then
+      'Wait
+        crow = mylibrary.FindRowByPath(librarygrid, mplayer.Media_FullPath_playing)
+        If crow <> -1 Then
+          librarygrid.MoveTo(crow, 0)
+          librarygrid.Rows[crow].selected = True
+          librarygrid[crow, 0].EnsureVisible()
+        Endif
+      Endif
+  Endif
 End
 
 

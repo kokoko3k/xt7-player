@@ -2384,6 +2384,7 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
 
     If (Not samecover) Or force Then 
        Try audioform.CoverBox.picture = covermanager.coverpicture(coverfile, mplayer.Media_FullPath, 160)
+       Try audioform.CoverBox.picture = covermanager.keepaspect(Image.Load(coverfile), 160).picture
     Endif
 
     ShowAudioPanel(True, Samecover)

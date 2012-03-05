@@ -1061,4 +1061,9 @@ Public Function Shadowed(src As Picture) As Image
   Return shadowimg.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset)
 End
 
+Public Function keepaspect(img As Image, width As Integer) As Image
+  
+  Return img.Stretch(width, width)
+  
+End
 

@@ -1673,6 +1673,12 @@ Public Function FillStreamsMenu()
   
   Dim i As Integer
   Dim AudioMenu, SubMenu As Menu
+  Dim menuopensubtitles As Menu
+  Dim menuopensubsearchbyname As Menu
+  Dim menuopensubsearchbyhash As Menu
+  Dim menuopensubsearchmanual As Menu
+  Dim menuopensubconfigurelanguages As Menu
+  
   'read audiotracks and subtitletracks from mplayer class
   'and compile streams menu accordingly
   Streamsmenu.Enabled = ((mplayer.audiotracks.count > 0) Or (mplayer.subtitletracks.count > 0))
@@ -1709,8 +1715,35 @@ Public Function FillStreamsMenu()
   SubMenu.name = "Streamssubtitlesmenu"
   SubMenu.caption = ("Load from disk...")
   submenu.Picture = picture["icon:/medium/insert-text"]
-  
+
+'opensubtitles.org:
+    menuopensubtitles = New Menu(Streamssubtitlesmenu) As "menuopensubtitles"
+    menuopensubtitles.caption = ("Opensubtitles.org:")
+
+        menuopensubconfigurelanguages = New Menu(menuopensubtitles) As "menuopensubconfigurelanguages"
+        menuopensubconfigurelanguages.caption = (("Configure preferred languages"))
+        menuopensubconfigurelanguages.picture = picture["icon:/16/options"]
+
+        menuopensubsearchmanual = New Menu(menuopensubtitles) As "menuopensubsearchmanual"
+        menuopensubsearchmanual.caption = (("Manual search"))
+        menuopensubsearchmanual.picture = picture["icon:/16/find"]
+
+        menuopensubsearchbyname = New Menu(menuopensubtitles) As "menuopensubsearchbyname"
+        menuopensubsearchbyname.caption = (("By Name (guess):"))
+        menuopensubsearchbyname.picture = picture["icon:/16/wizard"]
+        FillOpensubtitleLanguages(menuopensubsearchbyname)
+
+        menuopensubsearchbyhash = New Menu(menuopensubtitles) As "menuopensubsearchbyhash"
+        menuopensubsearchbyhash.caption = (("By Hash (exact):"))
+        menuopensubsearchbyhash.picture = picture["icon:/16/wizard"]
+        FillOpensubtitleLanguages(menuopensubsearchbyhash)
+
+
+
 End
+
+
+
 
 Public Function FillTitlesAndChaptersMenu() As Boolean
   
@@ -1802,6 +1835,61 @@ Public Function FillTitlesAndChaptersMenu() As Boolean
   Return True
   
 End
+
+Public Sub FillOpensubtitleLanguages(parentmenu As Menu)
+  Dim langcode As String
+  Dim menuopensublang As Menu
+  Dim fakemenu As Menu
+  Dim preferredlangs As New String[]
+  For Each langcode In Split(generaloptions.SubLangList.text, ",")
+    If (Len(langcode) <> 3) Then langcode = makeiso6392(langcode)
+    If preferredlangs.Find(langcode) = -1 Then preferredlangs.Add(langcode)
+  Next
+
+  For Each langcode In preferredlangs
+    menuopensublang = New Menu(parentmenu) As "menuopensublang"
+    menuopensublang.text = langcode
+    menuopensublang.picture = picture["icon:/16/language"]
+    If Lower(parentmenu.name) Like "*hash*" Then
+      menuopensublang.name = "hash"
+      Debug "hash added"
+        Else
+      menuopensublang.name = "query"
+      Debug "query added"
+    Endif
+        fakemenu = New Menu(menuopensublang)
+        fakemenu.text = ("Search results:")
+        fakemenu.enabled = False
+  Next
+End
+
+Public Function makeiso6392(langcode As String) As String
+'convert from 2 digits langcodes to 3digits langcodes
+  Dim lang As String = ""
+  For Each lang In generaloptions.SlangComboBox.List
+    If (lang Like langcode & "*") Then
+      lang = Split(lang, ",", "", True)[0]
+      Break
+    Endif
+  Next
+  If lang = "" Then 
+    Return langcode
+      Else
+    Return lang
+  Endif
+End
+
+
+Public Function menuopensublang_show()
+  Dim type As String = Last.name 'hash or query
+  Dim lang As String = Last.text 'langcode
+End
+
+
+
+
+
+
 
 Public Sub TreeView1_Activate()
   
@@ -8005,3 +8093,5 @@ Public Sub PlaylistGrid_MouseMove()
   If Not (Buttonshowtooltips.value) Then Return
   ShowGridTooltipIn(playlistgrid)
 End
+
+

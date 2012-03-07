@@ -62,6 +62,9 @@
         { StreamsSubtitlesMenu Menu
           Text = ("Subtitles")
           Picture = Picture["icon:/small/font"]
+          { MenuOpenSubtitlesOrg Menu
+            Text = ("OpenSubtitles.org")
+          }
         }
       }
     }

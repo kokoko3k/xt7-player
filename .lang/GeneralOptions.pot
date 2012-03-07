@@ -427,15 +427,71 @@ msgid "Add the selected language to the list of preferred languages.\nMplayer Op
 msgstr ""
 
 #: GeneralOptions.form:1279
-msgid "zh,chi,zho (chinese)"
+msgid "alb,sq,(Albanian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
-msgid "nl,dut,nld (dutch,flemish)"
+msgid "ara,ar,(Arabic)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "arm,hy,(Armenian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "baq,eu,(Basque)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ben,bn,(Bengali)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "bos,bs,(Bosnian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "bre,br,(Breton)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "bul,bg,(Bulgarian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "cat,ca,(Catalan)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "cze,cs,(Czech)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "dan,da,(Danish)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "de,ger,deu (german)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ell,el,(Greek)"
 msgstr ""
 
 #: GeneralOptions.form:1279
 msgid "en,eng (english)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "epo,eo,(Esperanto)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "es,spa (spanish)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "est,et,(Estonian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
@@ -447,7 +503,35 @@ msgid "fr,fre (french)"
 msgstr ""
 
 #: GeneralOptions.form:1279
-msgid "de,ger,deu (german)"
+msgid "geo,ka,(Georgian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "glg,gl,(Galician)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "heb,he,(Hebrew)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "hin,hi,(Hindi)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "hrv,hr,(Croatian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "hun,hu,(Hungarian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ice,is,(Icelandic)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ind,id,(Indonesian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
@@ -455,11 +539,59 @@ msgid "it,ita (italian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
-msgid "ja,jpn  (japanese)"
+msgid "ja,jpn (japanese)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "kaz,kk,(Kazakh)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "kor,ko,(Korean)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "lav,lv,(Latvian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "lit,lt,(Lithuanian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ltz,lb,(Luxembourgish)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "mac,mk,(Macedonian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "may,ms,(Malay)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "nl,dut,nld (dutch,flemish)"
 msgstr ""
 
 #: GeneralOptions.form:1279
 msgid "no,nor (norwegian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "oci,oc,(Occitan)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "per,fa,(Farsi)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "pob,pb,(Portuguese-BR)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "pol,pl,(Polish)"
 msgstr ""
 
 #: GeneralOptions.form:1279
@@ -471,11 +603,59 @@ msgid "ru,rus (russian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
-msgid "es,spa (spanish)"
+msgid "rum,ro,(Romanian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "scc,sr,(Serbian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "sin,si,(Sinhalese)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "slo,sk,(Slovak)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "slv,sl,(Slovenian)"
 msgstr ""
 
 #: GeneralOptions.form:1279
 msgid "sv,swe (swedish)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "syr,sy,(Syriac)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "tgl,tl,(Tagalog)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "tha,th,(Thai)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "tur,tr,(Turkish)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "ukr,uk,(Ukrainian)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "urd,ur,(Urdu)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "vie,vi,(Vietnamese)"
+msgstr ""
+
+#: GeneralOptions.form:1279
+msgid "zh,chi,zho (chinese)"
 msgstr ""
 
 #: GeneralOptions.form:1280
@@ -491,7 +671,59 @@ msgid "Preferred Subtitle languages:"
 msgstr ""
 
 #: GeneralOptions.form:1309
-msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-slang \"language list\""
+msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-slang \"language list\"\n\nThis option also allows you to search for online subtitles at Opensubtitles.org"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "ger,deu,de (german)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "eng,en (english)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "spa,esp (spanish)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "fin,fi (finnish)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "fre,fr (french)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "ita,it (italian)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "jpn,ja (japanese)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "dut,nld,nl (dutch,flemish)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "nor,no (norwegian)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "por,pt (portuguese)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "rus,ru (russian)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "swe,sv (swedish)"
+msgstr ""
+
+#: GeneralOptions.form:1317
+msgid "chi,zh,zho (chinese)"
 msgstr ""
 
 #: GeneralOptions.form:1341

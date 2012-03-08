@@ -7589,7 +7589,7 @@ Public Sub YoutubetreeTreeaddtoLibrary_Click()
   
   Dim r As Integer
   Dim QuickMode As Boolean
-  QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
+  QuickMode = True
   Try MyLibrary.AddFile(librarygrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
     MyQuestion.ask(("Error while adding one or more items"), ("Damn!"), "")
@@ -7603,7 +7603,7 @@ Public Sub YoutubetreeTreeaddtoPlaylist_Click()
   Dim r As Integer
   Dim QuickMode As Boolean
 
-  QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
+  QuickMode = True
   Try MyPlaylist.AddFile(PlaylistGrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
     MyQuestion.ask(("Error while adding one or more items"), ("Damn!"), "")

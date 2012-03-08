@@ -1581,7 +1581,7 @@
               Picture = Picture["media-seek-backward.png"]
             }
             { ButtonPlay ToolButton
-              MoveScaled(17,0,4,4)
+              MoveScaled(16,0,4,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"

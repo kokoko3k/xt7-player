@@ -191,7 +191,7 @@ Public Function SearchByHash(token As String, Language As String, moviehash As S
               "</methodCall>"
 
   subs = AnswerTo(question)
-Debug subs
+'Debug subs
   Repeat
     mysub = New Collection
     For Each field In Split(XmlFields, ",")

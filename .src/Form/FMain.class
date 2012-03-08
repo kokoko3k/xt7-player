@@ -1555,7 +1555,7 @@ End
 Public Sub ButtonStop_Click()
   
   Try LibraryGrid.Columns[0].Refresh
-  lastmovie = "" 'needed to avoid hammering opensubtitles.org
+  myopensubs.clear 'needed to avoid hammering opensubtitles.org
   UserStopped = True
   mplayer.do_stop
   VideoBox.Refresh
@@ -1650,6 +1650,8 @@ Public Sub ClearStreamsMenu()
     For Each child In Streamsaudiomenu.Children
       child.delete
     Next 'child
+   Until (Streamsaudiomenu.Children.count = 0)
+  Repeat
     For Each child In Streamssubtitlesmenu.Children
       child.delete
     Next 'child
@@ -1751,13 +1753,11 @@ Public Function FillStreamsMenu()
         menuopensubsearchbyhash = New Menu(menuopensubtitles) As "menuopensubsearchbyhash"
         menuopensubsearchbyhash.caption = (("I feel lucky"))
         menuopensubsearchbyhash.picture = picture["icon:/16/wizard"]
-        
-        If (mplayer.Media_FullPath_playing <> lastmovie) Then
-          fakemenu = New Menu(menuopensubsearchbyhash)
-          fakemenu.text = ("Please Wait...")
-          fakemenu.picture = picture["icon:/16/clock"]
-          fakemenu.enabled = False
-        Endif
+        ''L
+            fakemenu = New Menu(menuopensubsearchbyhash)
+            fakemenu.text = ("Please Wait...")
+            fakemenu.picture = picture["icon:/16/clock"]
+            fakemenu.enabled = False
 End
 
 Public Sub menuopensubconfigurelanguages_Click()
@@ -1881,28 +1881,26 @@ Private OpenSubsAgent As String = "OS Test User Agent"
 Private TimerMenuHashSearch As New Timer As "TimerMenuHashSearch"
 
 
-Private lastmovie As String
+
 
 Public Sub menuopensubsearchbyhash_Show()
   Dim currentmovie As String
   currentmovie = mplayer.Media_FullPath_playing
   If global.IsNetworkURI(currentmovie) Then Return
-  If currentmovie = lastmovie Then Return 'don't hammer!
-  lastmovie = currentmovie
 
- 
   If Not (global.IsVideoFile(currentmovie)) Then Return
 
-  TimerMenuHashSearch.delay = 10
+  TimerMenuHashSearch.delay = 1
   TimerMenuHashSearch.start
   Debug
 
 End
 
 
+Private myopensubs As New Collection[]
+
 Public Sub TimerMenuHashSearch_timer()
   Dim token As String
-  Dim mysubs As Collection[]
   Dim mysub As Collection
   Dim menuitemopensubtitle As Menu
   Dim langcode As String
@@ -1913,7 +1911,10 @@ Public Sub TimerMenuHashSearch_timer()
   Dim AllLangs As String
   Dim tmplang As String
   Dim currentmovie As String
- currentmovie = mplayer.Media_FullPath_playing
+
+  currentmovie = mplayer.Media_FullPath_playing
+
+  
   If Not mplayer.ProcessRunningOvr() Then Return
   
   TimerMenuHashSearch.stop
@@ -1925,12 +1926,15 @@ Public Sub TimerMenuHashSearch_timer()
     fakemenu.picture = stock["16/error"]
     Return
   Endif
-  moviehash = OpenSubs.MovieHash(currentmovie)
-  If moviehash = -1 Then
-    Debug "Sorry, couldn't calculate the moviehash"
-    fakemenu.text = "Hash error"
-    fakemenu.picture = stock["16/error"]
-    Return
+  
+  If myopensubs.count = 0 Then
+    moviehash = OpenSubs.MovieHash(currentmovie)
+    If moviehash = -1 Then
+      Debug "Sorry, couldn't calculate the moviehash"
+      fakemenu.text = "Hash error"
+      fakemenu.picture = stock["16/error"]
+      Return
+    Endif
   Endif
   
   For Each langcode In Split(generaloptions.SubLangList.text, ",")
@@ -1941,21 +1945,25 @@ Public Sub TimerMenuHashSearch_timer()
     Endif
   Next
   AllLangs = Left(allLangs, Len(alllangs) - 1)
-  
-  Try filesize = Stat(currentmovie).size
-  If Error Then
-    Debug "Sorry, couldn't calculate file size"
-    fakemenu.text = "File error"
-    fakemenu.picture = stock["16/error"]
-    Return
+
+  If myopensubs.count = 0 Then  
+    Try filesize = Stat(currentmovie).size
+    If Error Then
+      Debug "Sorry, couldn't calculate file size"
+      fakemenu.text = "File error"
+      fakemenu.picture = stock["16/error"]
+      Return
+    Endif
   Endif
 
-  mysubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
-  If mysubs.count = 0 Then
-    Debug "Sorry, no hash results from opensubtitles.org"
-    fakemenu.text = "No results"
-    fakemenu.picture = stock["16/error"]
-    Return
+  If myopensubs.count = 0 Then 
+    myopensubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
+    If myopensubs.count = 0 Then
+      Debug "Sorry, no hash results from opensubtitles.org"
+      fakemenu.text = "No results"
+      fakemenu.picture = stock["16/error"]
+      Return
+    Endif
   Endif
 
   ClearMenu(menuopensubsearchbyhash)
@@ -1963,7 +1971,7 @@ Public Sub TimerMenuHashSearch_timer()
     menuopensublang = New Menu(menuopensubsearchbyhash) As "menuopensublang"
     menuopensublang.text = langcode
     menuopensublang.picture = picture["icon:/16/language"]
-    For Each mysub In mysubs
+    For Each mysub In myopensubs
       tmplang = "Napoletano!"
       Try tmplang = mysub["SubLanguageID"]
       If tmplang = langcode Then
@@ -2276,6 +2284,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cookieopts As String = ""
   Dim cachingbox As MovieBox 'show an animation while caching...
   Wait
+  myopensubs.clear 
   If fullpath = "" Then 
     Debug "Nothing to play :/"
     Return

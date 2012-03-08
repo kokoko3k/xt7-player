@@ -5064,7 +5064,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
 
-     If Not global.IsNetworkURI(fullpath) Then
+     If Not myplaylist.ISURI(fullpath) Then
        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
        mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
        filefound = False

@@ -1555,6 +1555,7 @@ End
 Public Sub ButtonStop_Click()
   
   Try LibraryGrid.Columns[0].Refresh
+  lastmovie = "" 'needed to avoid hammering opensubtitles.org
   UserStopped = True
   mplayer.do_stop
   VideoBox.Refresh
@@ -1656,6 +1657,16 @@ Public Sub ClearStreamsMenu()
   
 End
 
+Public Sub ClearMenu(target As Menu)
+  Dim child As Menu
+  Repeat
+    For Each child In target.Children
+      child.delete
+    Next 'child
+  Until target.children.count = 0
+End
+
+
 Public Sub ClearChaptersAndTitlesMenu()
   
   Dim child As Menu
@@ -1669,15 +1680,19 @@ Public Sub ClearChaptersAndTitlesMenu()
   
 End
 
+
+Private menuopensubsearchbyhash As Menu
+Private fakemenu As Menu
 Public Function FillStreamsMenu()
   
   Dim i As Integer
   Dim AudioMenu, SubMenu As Menu
   Dim menuopensubtitles As Menu
   Dim menuopensubsearchbyname As Menu
-  Dim menuopensubsearchbyhash As Menu
+
   Dim menuopensubsearchmanual As Menu
   Dim menuopensubconfigurelanguages As Menu
+
   
   'read audiotracks and subtitletracks from mplayer class
   'and compile streams menu accordingly
@@ -1718,8 +1733,8 @@ Public Function FillStreamsMenu()
 
 'opensubtitles.org:
     menuopensubtitles = New Menu(Streamssubtitlesmenu) As "menuopensubtitles"
-    menuopensubtitles.caption = ("Opensubtitles.org:")
-
+    menuopensubtitles.caption = ("Ask Opensubtitles.org")
+    menuopensubtitles.picture = picture["opensubtitles.png"]
         menuopensubconfigurelanguages = New Menu(menuopensubtitles) As "menuopensubconfigurelanguages"
         menuopensubconfigurelanguages.caption = (("Configure preferred languages"))
         menuopensubconfigurelanguages.picture = picture["icon:/16/options"]
@@ -1728,20 +1743,28 @@ Public Function FillStreamsMenu()
         menuopensubsearchmanual.caption = (("Manual search"))
         menuopensubsearchmanual.picture = picture["icon:/16/find"]
 
-        menuopensubsearchbyname = New Menu(menuopensubtitles) As "menuopensubsearchbyname"
-        menuopensubsearchbyname.caption = (("By Name (guess):"))
-        menuopensubsearchbyname.picture = picture["icon:/16/wizard"]
-        FillOpensubtitleLanguages(menuopensubsearchbyname)
+        ' menuopensubsearchbyname = New Menu(menuopensubtitles) As "menuopensubsearchbyname"
+        ' menuopensubsearchbyname.caption = (("By Name (guess):"))
+        ' menuopensubsearchbyname.picture = picture["icon:/16/wizard"]
+        ' 'FillOpensubtitleLanguages(menuopensubsearchbyname)
 
         menuopensubsearchbyhash = New Menu(menuopensubtitles) As "menuopensubsearchbyhash"
-        menuopensubsearchbyhash.caption = (("By Hash (exact):"))
+        menuopensubsearchbyhash.caption = (("I feel lucky"))
         menuopensubsearchbyhash.picture = picture["icon:/16/wizard"]
-        FillOpensubtitleLanguages(menuopensubsearchbyhash)
-
-
-
+        
+        If (mplayer.Media_FullPath_playing <> lastmovie) Then
+          fakemenu = New Menu(menuopensubsearchbyhash)
+          fakemenu.text = ("Please Wait...")
+          fakemenu.picture = picture["icon:/16/clock"]
+          fakemenu.enabled = False
+        Endif
 End
 
+Public Sub menuopensubconfigurelanguages_Click()
+  If (Not global.initearlyformsdone) Then InitEarlyForms()
+  GeneralOptions.show
+  Try GeneralOptions.TabStrip1.index = Global.TabIndexByName(("Language"), GeneralOptions.TabStrip1)
+End
 
 
 
@@ -1836,32 +1859,6 @@ Public Function FillTitlesAndChaptersMenu() As Boolean
   
 End
 
-Public Sub FillOpensubtitleLanguages(parentmenu As Menu)
-  Dim langcode As String
-  Dim menuopensublang As Menu
-  Dim fakemenu As Menu
-  Dim preferredlangs As New String[]
-  For Each langcode In Split(generaloptions.SubLangList.text, ",")
-    If (Len(langcode) <> 3) Then langcode = makeiso6392(langcode)
-    If preferredlangs.Find(langcode) = -1 Then preferredlangs.Add(langcode)
-  Next
-
-  For Each langcode In preferredlangs
-    menuopensublang = New Menu(parentmenu) As "menuopensublang"
-    menuopensublang.text = langcode
-    menuopensublang.picture = picture["icon:/16/language"]
-    If Lower(parentmenu.name) Like "*hash*" Then
-      menuopensublang.name = "hash"
-      Debug "hash added"
-        Else
-      menuopensublang.name = "query"
-      Debug "query added"
-    Endif
-        fakemenu = New Menu(menuopensublang)
-        fakemenu.text = ("Search results:")
-        fakemenu.enabled = False
-  Next
-End
 
 Public Function makeiso6392(langcode As String) As String
 'convert from 2 digits langcodes to 3digits langcodes
@@ -1879,12 +1876,116 @@ Public Function makeiso6392(langcode As String) As String
   Endif
 End
 
+Private OpenSubs As New OpenSubtitlesAPI
+Private OpenSubsAgent As String = "OS Test User Agent"
+Private TimerMenuHashSearch As New Timer As "TimerMenuHashSearch"
 
-Public Function menuopensublang_show()
-  Dim type As String = Last.name 'hash or query
-  Dim lang As String = Last.text 'langcode
+
+Private lastmovie As String
+
+Public Sub menuopensubsearchbyhash_Show()
+  Dim currentmovie As String
+  currentmovie = mplayer.Media_FullPath_playing
+  If global.IsNetworkURI(currentmovie) Then Return
+  If currentmovie = lastmovie Then Return 'don't hammer!
+  lastmovie = currentmovie
+
+ 
+  If Not (global.IsVideoFile(currentmovie)) Then Return
+
+  TimerMenuHashSearch.delay = 10
+  TimerMenuHashSearch.start
+  Debug
+
 End
 
+
+Public Sub TimerMenuHashSearch_timer()
+  Dim token As String
+  Dim mysubs As Collection[]
+  Dim mysub As Collection
+  Dim menuitemopensubtitle As Menu
+  Dim langcode As String
+  Dim menuopensublang As Menu
+  Dim preferredlangs As New String[]
+  Dim moviehash As String
+  Dim filesize As String
+  Dim AllLangs As String
+  Dim tmplang As String
+  Dim currentmovie As String
+ currentmovie = mplayer.Media_FullPath_playing
+  If Not mplayer.ProcessRunningOvr() Then Return
+  
+  TimerMenuHashSearch.stop
+
+  token = OpenSubs.TokenFromLogIn("", "", "en", OpensubsAgent)
+  If token = -1 Then
+    Debug "Sorry, couldn't take the token from opensubtitles.org"
+    fakemenu.text = "Token error"
+    fakemenu.picture = stock["16/error"]
+    Return
+  Endif
+  moviehash = OpenSubs.MovieHash(currentmovie)
+  If moviehash = -1 Then
+    Debug "Sorry, couldn't calculate the moviehash"
+    fakemenu.text = "Hash error"
+    fakemenu.picture = stock["16/error"]
+    Return
+  Endif
+  
+  For Each langcode In Split(generaloptions.SubLangList.text, ",")
+    If (Len(langcode) <> 3) Then langcode = makeiso6392(langcode)
+    If preferredlangs.Find(langcode) = -1 Then
+      preferredlangs.Add(langcode)
+      AllLangs &= langcode & ","
+    Endif
+  Next
+  AllLangs = Left(allLangs, Len(alllangs) - 1)
+  
+  Try filesize = Stat(currentmovie).size
+  If Error Then
+    Debug "Sorry, couldn't calculate file size"
+    fakemenu.text = "File error"
+    fakemenu.picture = stock["16/error"]
+    Return
+  Endif
+
+  mysubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
+  If mysubs.count = 0 Then
+    Debug "Sorry, no hash results from opensubtitles.org"
+    fakemenu.text = "No results"
+    fakemenu.picture = stock["16/error"]
+    Return
+  Endif
+
+  ClearMenu(menuopensubsearchbyhash)
+  For Each langcode In preferredlangs
+    menuopensublang = New Menu(menuopensubsearchbyhash) As "menuopensublang"
+    menuopensublang.text = langcode
+    menuopensublang.picture = picture["icon:/16/language"]
+    For Each mysub In mysubs
+      tmplang = "Napoletano!"
+      Try tmplang = mysub["SubLanguageID"]
+      If tmplang = langcode Then
+        menuitemopensubtitle = New Menu(menuopensublang) As "menuitemopensubtitle"
+        menuitemopensubtitle.text = mysub["SubFileName"]
+        menuitemopensubtitle.tag = mysub["SubDownloadLink"]
+      Endif
+    Next
+  Next
+End
+
+
+
+Public Sub menuitemopensubtitle_Click()
+  Dim suburl As String = Last.tag
+  Dim subname As String = Last.text
+  Dim subfile As String = Temp() & "." & subname
+  If OpenSubs.savesub(suburl, subfile) Then
+    mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
+    Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
+  Endif
+End
 
 
 
@@ -5063,7 +5164,7 @@ Public Sub ShowVolBtn2_Click()
 End
 
 Public Sub SwitchSubBtn_Click()
-
+  If Not (mplayer.ProcessRunningOvr()) Then Return
  ' If Streamssubtitlesmenu.enabled Then
     ' Streamssubtitlesmenu.Popup
   ' Else
@@ -5075,7 +5176,7 @@ Public Sub SwitchSubBtn_Click()
 End
 
 Public Sub SwitchAudioBTN_Click()
-  
+  If Not (mplayer.ProcessRunningOvr()) Then Return
   If Streamsaudiomenu.enabled Then
     Streamsaudiomenu.Popup
   Else

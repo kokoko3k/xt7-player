@@ -541,6 +541,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/fmain.Controls["Button1"]]
 Geometry=[0,0,344,344]
 
+[DebugWindow/generaloptions]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/global]
 Geometry=[1280,0,580,802]
 
@@ -573,6 +576,9 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/mediaheaders]
 Geometry=[0,41,816,458]
+
+[DebugWindow/menuopensublang]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/mouse]
 Geometry=[0,0,344,344]
@@ -805,10 +811,10 @@ SearchString=True
 File[1]="CHANGELOG_GIT:17.28"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:1731.57"
+Active=4
+File[4]=".src/Form/FMain.class:1885.46"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
-Active=7
 File[7]=".src/Form/GeneralOptions.form"
 File[8]=".src/Form/GeneralOptions.class:933.19"
 File[9]=".src/Form/AudioForm.form"
@@ -850,7 +856,8 @@ File[44]=".src/Classi/mpris.class:209.14"
 File[45]=".src/Classi/OpenSubtitlesAPI.class:12.0"
 File[46]="Hash.py:32.47"
 File[47]=".src/Form/SubAndOsd.form"
-Count=47
+File[48]=".src/Form/AllOptions.form"
+Count=48
 
 [Watches]
 Count=11

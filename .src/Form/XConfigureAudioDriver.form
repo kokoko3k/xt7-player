@@ -199,23 +199,22 @@
       Text = ("Pcm")
       { PcmParseMeHBox2 HBox
         MoveScaled(1,2,45,6)
-        Spacing = True
         Padding = 8
         { CheckBox2 CheckBox
-          MoveScaled(1,2,17,4)
+          MoveScaled(1,0,17,4)
           Tag = "file="
           Text = ("File")
         }
         { TextBox8 TextBox
-          MoveScaled(19,1,19,4)
+          MoveScaled(20,0,19,4)
         }
         { PcmFileOpen ToolButton
-          MoveScaled(40,2,3.2857,3.2857)
+          MoveScaled(40,0,3.2857,3.2857)
           Picture = Picture["icon:/24/open"]
         }
       }
       { PcmParseMeHBox3 HBox
-        MoveScaled(1,9,45,6)
+        MoveScaled(1,9,45,4)
         Tag = "noestimate"
         Padding = 8
         { CheckBox3 CheckBox
@@ -225,7 +224,7 @@
         }
       }
       { PcmParseMeHBox4 HBox
-        MoveScaled(1,16,45,6)
+        MoveScaled(1,16,45,4)
         Tag = "noestimate"
         Padding = 8
         { CheckBox4 CheckBox
@@ -242,7 +241,6 @@
       }
       { HBox2 HBox
         MoveScaled(1,6,55,5)
-        Spacing = True
         Margin = True
         Padding = 6
         { TextBox5 TextBox

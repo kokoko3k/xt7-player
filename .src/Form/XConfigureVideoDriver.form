@@ -36,19 +36,19 @@
       Wrap = True
     }
     { Label2 Label
-      MoveScaled(1,2,14,4)
+      MoveScaled(1,1,14,4)
       AutoResize = True
       Text = ("Driver Priority")
     }
     { ConfigureTabs TabStrip
-      MoveScaled(17,2,59,38)
+      MoveScaled(17,1,59,39)
       Expand = True
       Arrangement = Arrange.Vertical
       Count = 8
       Index = 0
       Text = ("Xv")
       { XvParseMeHbox1 HBox
-        MoveScaled(2,3,45,6)
+        MoveScaled(2,1,45,6)
         Padding = 6
         { XVPortChk CheckBox
           MoveScaled(1,1,15,4)
@@ -61,7 +61,7 @@
         }
       }
       { XvParseMeHbox4 HBox
-        MoveScaled(2,9,45,6)
+        MoveScaled(2,7,45,6)
         Padding = 6
         { XVPortChk2 CheckBox
           MoveScaled(1,1,15,4)
@@ -75,7 +75,7 @@
         }
       }
       { XvParseMeHbox2 HBox
-        MoveScaled(2,16,45,6)
+        MoveScaled(2,13,45,6)
         Padding = 6
         { XVckChk CheckBox
           MoveScaled(1,1,15,4)
@@ -91,7 +91,7 @@
         }
       }
       { XvParseMeHbox3 HBox
-        MoveScaled(2,23,45,6)
+        MoveScaled(2,19,45,6)
         Padding = 6
         { XVckmethodChk CheckBox
           MoveScaled(1,1,15,4)
@@ -108,24 +108,26 @@
       }
       { XvHbox4 HBox notifyobj
         Name = "XvHbox4"
-        MoveScaled(2,29,45,6)
+        MoveScaled(2,25,45,6)
+        Spacing = True
+        Margin = True
         Padding = 6
         { ColorButton1 ColorButton
-          MoveScaled(1,1,5,4)
+          MoveScaled(1,0,4,4)
         }
         { Label1 Label
-          MoveScaled(7,1,10,4)
+          MoveScaled(7,0,10,4)
           Text = ("ColorKey")
         }
         { ColorKeyBox TextBox
-          MoveScaled(18,1,17,4)
+          MoveScaled(18,0,16,4)
           Text = ("0xFF00FF")
         }
       }
       Index = 1
       Text = ("GL")
       { GLScrollView ScrollView
-        MoveScaled(0,0,50,37)
+        MoveScaled(1,1,57,34)
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
@@ -133,8 +135,10 @@
         Border = False
         { GLParseMeHPanel HPanel
           MoveScaled(1,1,45,20)
+          AutoResize = True
           Spacing = True
-          Padding = 10
+          Margin = True
+          Padding = 4
           { CheckBox3 CheckBox
             MoveScaled(1,2,20,4)
             Tag = "scaled-osd"
@@ -172,10 +176,10 @@
           }
         }
         { GLParseMePanel2 Panel
-          MoveScaled(1,23,45,13)
+          MoveScaled(0,23,45,13)
           Border = Border.Raised
           { CheckBox11 CheckBox
-            MoveScaled(0,1,14,4)
+            MoveScaled(0.5714,1,14,4)
             Tag = "osdcolor="
             Text = ("OsdColor")
           }
@@ -192,8 +196,9 @@
             MoveScaled(32,1,4,4)
           }
           { Label4 Label
-            MoveScaled(0,7,15,4)
+            MoveScaled(0.5714,7,15,4)
             Text = ("Transparency")
+            Alignment = Align.Right
           }
         }
         { GLParseMeHBox2 HBox
@@ -278,7 +283,6 @@
         }
         { GLParseMeHBox6 HBox
           MoveScaled(1,73,45,6)
-          Spacing = True
           Padding = 8
           { CheckBox16 CheckBox
             MoveScaled(1,2,17,4)
@@ -295,7 +299,6 @@
         }
         { GLParseMeHBox7 HBox
           MoveScaled(1,79,45,6)
-          Spacing = True
           Padding = 8
           { CheckBox17 CheckBox
             MoveScaled(1,2,17,4)
@@ -338,7 +341,7 @@
       Index = 3
       Text = ("Vdpau")
       { VdPauScrollView ScrollView
-        MoveScaled(3,0,54,33)
+        MoveScaled(1,0,57,35)
         Arrangement = Arrange.Vertical
         Border = False
         { vdpauHBox6 HBox
@@ -459,8 +462,8 @@
           }
         }
         { vdpauParseMeHBox9 HBox
-          MoveScaled(0,53,45,5)
-          Padding = 6
+          MoveScaled(0,53,45,6)
+          Padding = 8
           { CheckBox29 CheckBox
             MoveScaled(1,1,18,4)
             Text = ("Additional options")
@@ -475,7 +478,7 @@
       Index = 4
       Text = ("Vaapi")
       { VdPauScrollView2 ScrollView
-        MoveScaled(2,1,54,33)
+        MoveScaled(1,0,57,35)
         Arrangement = Arrange.Vertical
         Border = False
         { vaapiHBox2 HBox
@@ -625,7 +628,7 @@
       Index = 5
       Text = ("Xvmc")
       { XvmcScrollView ScrollView
-        MoveScaled(1,1,46,34)
+        MoveScaled(1,0,57,35)
         Expand = True
         Arrangement = Arrange.Vertical
         Border = False
@@ -673,7 +676,9 @@
         }
         { XvmcHbox1 HBox
           MoveScaled(0,21,45,6)
-          Padding = 10
+          Spacing = True
+          Margin = True
+          Padding = 6
           { ColorButton2 ColorButton
             MoveScaled(1,2,5,4)
           }
@@ -688,7 +693,9 @@
         }
         { XvmcParseMeVpanel VPanel
           MoveScaled(0,28,38,11)
+          AutoResize = True
           Spacing = True
+          Margin = True
           Padding = 10
           { benchmarkchk CheckBox
             MoveScaled(0,0,14,4)
@@ -728,7 +735,6 @@
       }
       { SDLParseMeVBox1 VBox
         MoveScaled(1,9,45,13)
-        Spacing = True
         Padding = 10
         { CheckBox1 CheckBox
           MoveScaled(2,1,17,4)
@@ -748,8 +754,7 @@
         Text = (" Custom Driver(s) options, \"-vo \" is implicit.")
       }
       { HBox2 HBox
-        MoveScaled(1,6,48,5)
-        Spacing = True
+        MoveScaled(1,6,48,6)
         Padding = 6
         { TextBox5 TextBox
           MoveScaled(1,1,48,4)

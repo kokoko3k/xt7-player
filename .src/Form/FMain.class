@@ -3587,7 +3587,7 @@ Public Sub LibraryGrid_Drop()
       Try IsPlaylist = ((ext = "M3U") Or (ext = "PLS") Or (ext = "XPL"))
       IsUri = (droppedfile Like "*://*")
 
-      If IsPlayList Then
+      If IsPlayList And (Not isuri) Then 
         MyLibrary.LoadFile(droppedfile, LibraryGrid, True)
       Else If IsFile Then
         MyLibrary.AddFile(LibraryGrid, DroppedFile, False)
@@ -5006,7 +5006,7 @@ Public Sub PlaylistGrid_Drop()
       ext = Upper(File.Ext(Droppedfile))
       Try IsPlaylist = ((ext = "M3U") Or (ext = "PLS") Or (ext = "XPL"))
       IsUri = (droppedfile Like "*://*")
-      If IsPlayList Then
+      If IsPlayList And (Not isuri) Then
         MyPlaylist.LoadFile(droppedfile, PlayListGrid, True)
       Else If IsFile Then
         MyPlaylist.AddFile(Playlistgrid, DroppedFile, False, False)

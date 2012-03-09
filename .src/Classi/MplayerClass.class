@@ -230,8 +230,8 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
       Endif
           Else 'for not audio only files, use mplayer in idle mode.      
         tmp = Split(Media_GetLength(), ".")
-        tmp = Split(tmp[0], ",")
-        Media_Length = tmp[0]
+        Try tmp = Split(tmp[0], ",")
+        Try Media_Length = tmp[0]
         Try Media_VideoBitrate = FindTagValue("ID_VIDEO_BITRATE")
         Try Media_Width = FindTagValue("ID_VIDEO_WIDTH")
         Try Media_Height = FindTagValue("ID_VIDEO_HEIGHT")

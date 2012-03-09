@@ -1399,8 +1399,9 @@ End
 
 Public Sub SyncGrid(LibraryGrid As Gridview, SearchTable As String[], RowToSelect As Integer, ColToSelect As Integer)
 Dim r, c As Integer
-Dim rowheight As Integer = librarygrid.Rows[RowToSelect].h
-
+Dim rowheight As Integer
+  Try rowheight = librarygrid.Rows[RowToSelect].h
+  If Error Then rowheight = 32
 'will sync LibraryGrid to SearchTable.
   'It is not necessary to blank the entire Playlist,
   '(We'll blank only the "FileName" Column because FillRows checks just it)

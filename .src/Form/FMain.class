@@ -8206,3 +8206,19 @@ Public Sub PlaylistGrid_MouseMove()
 End
 
 
+Private scrollingtimer As New Timer As "scrollingtimer"
+Public gridscrolling As Boolean = False
+Public Sub PlaylistGrid_Scroll()
+  gridscrolling = True
+  scrollingtimer.delay = 100
+  scrollingtimer.start
+End
+Public Sub LibraryGrid_Scroll()
+  gridscrolling = True
+  scrollingtimer.delay = 100
+  scrollingtimer.start
+End
+Public Sub scrollingtimer_Timer()
+  scrollingtimer.Stop
+  gridscrolling = False
+End

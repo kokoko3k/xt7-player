@@ -859,6 +859,7 @@ Public Sub CoversLookerTimer_timer()
    CoversLookerTimer.Stop
    Return
  Endif
+ If FMain.gridscrolling Then Return
  If FMain.closing Then Return
  WorkingCover = CoverQueue.Pop()
  fullpath = CoverQueue.Pop()

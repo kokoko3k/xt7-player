@@ -1882,7 +1882,7 @@ Public Function makeiso6392(langcode As String) As String
 End
 
 Private OpenSubs As New OpenSubtitlesAPI
-Private OpenSubsAgent As String = "OS Test User Agent"
+Private OpenSubsAgent As String = "xt7player"
 Private TimerMenuHashSearch As New Timer As "TimerMenuHashSearch"
 
 
@@ -1924,7 +1924,7 @@ Public Sub TimerMenuHashSearch_timer()
   
   TimerMenuHashSearch.stop
 
-  token = OpenSubs.TokenFromLogIn("", "", "en", OpensubsAgent)
+  token = OpenSubs.TokenFromLogIn("", "", "en", OpenSubs.defaultagent)
   If token = -1 Then
     Debug "Sorry, couldn't take the token from opensubtitles.org"
     fakemenu.text = ("Token error")

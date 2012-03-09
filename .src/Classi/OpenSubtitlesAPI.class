@@ -5,6 +5,8 @@
 
 Public OpenSubsUrl As String = "http://api.opensubtitles.org/xml-rpc"
 
+Public defaultagent As String = "xt7player"
+
 Public Function AnswerTo(question As String) As String
   Dim responsefile As String = Temp()
   Dim timeout As Integer = 1000 ' centisecs

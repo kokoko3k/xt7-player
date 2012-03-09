@@ -1172,6 +1172,7 @@ Public Sub Form_Close()
   Try CoverManager.hide
   Try DVBTuner.hide
   Try FMain.hide
+  Try OpenSubtitesForm.hide
   Try GeneralOptions.hide
   Try HotKeyGrab.hide
   Try HotKeys.hide
@@ -1282,6 +1283,7 @@ Public Sub Form_Close()
   Try DVBTuner.close
   Try FMain.close
   Try GeneralOptions.close
+  Try OpenSubtitesForm.close
   Try HotKeyGrab.close
   Try HotKeys.close
   Try LogWindow.close
@@ -1766,6 +1768,9 @@ Public Sub menuopensubconfigurelanguages_Click()
   Try GeneralOptions.TabStrip1.index = Global.TabIndexByName(("Language"), GeneralOptions.TabStrip1)
 End
 
+Public Function menuopensubsearchmanual_Click()
+  OpenSubtitesForm.Show()
+End
 
 
 Public Function FillTitlesAndChaptersMenu() As Boolean
@@ -1922,7 +1927,7 @@ Public Sub TimerMenuHashSearch_timer()
   token = OpenSubs.TokenFromLogIn("", "", "en", OpensubsAgent)
   If token = -1 Then
     Debug "Sorry, couldn't take the token from opensubtitles.org"
-    fakemenu.text = "Token error"
+    fakemenu.text = ("Token error")
     fakemenu.picture = stock["16/error"]
     Return
   Endif
@@ -1931,7 +1936,7 @@ Public Sub TimerMenuHashSearch_timer()
     moviehash = OpenSubs.MovieHash(currentmovie)
     If moviehash = -1 Then
       Debug "Sorry, couldn't calculate the moviehash"
-      fakemenu.text = "Hash error"
+      fakemenu.text = ("Hash error")
       fakemenu.picture = stock["16/error"]
       Return
     Endif
@@ -1950,7 +1955,7 @@ Public Sub TimerMenuHashSearch_timer()
     Try filesize = Stat(currentmovie).size
     If Error Then
       Debug "Sorry, couldn't calculate file size"
-      fakemenu.text = "File error"
+      fakemenu.text = ("File error")
       fakemenu.picture = stock["16/error"]
       Return
     Endif
@@ -1960,7 +1965,7 @@ Public Sub TimerMenuHashSearch_timer()
     myopensubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
     If myopensubs.count = 0 Then
       Debug "Sorry, no hash results from opensubtitles.org"
-      fakemenu.text = "No results"
+      fakemenu.text = ("No results")
       fakemenu.picture = stock["16/error"]
       Return
     Endif
@@ -1989,9 +1994,17 @@ Public Sub menuitemopensubtitle_Click()
   Dim suburl As String = Last.tag
   Dim subname As String = Last.text
   Dim subfile As String = Temp() & "." & subname
+  Dim fileout As String
   If OpenSubs.savesub(suburl, subfile) Then
     mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
     Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
+    Dialog.Title = ("Save the selected subtitle")
+    Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
+    If MyQuestion.Ask(("Do you want to save") & " " & subname & "?", "Save", "Don't Save") = 1 Then
+      Dialog.SaveFile()
+      fileout = Dialog.path 
+      If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
+    Endif
   Endif
 End
 

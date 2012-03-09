@@ -874,7 +874,7 @@ Public Sub CoversLookerTimer_timer()
 'we do this onto this timer event to make that async and don't block scrolling.
  If filesnotfound.Find(fullpath) <> -1 Then
    'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
-   mygrid[row, 0].clear
+   Try mygrid[row, 0].clear
    Return
      Else 'file not (yet?) marked as not found
    If Not global.IsNetworkURI(fullpath) Then

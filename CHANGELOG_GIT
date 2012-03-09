@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Mar 08 2012
+  FIX:    use shell() instead of double quotes in mplayer.do_play()
   FIX:    Make scrolling in grids smoother by delaying coverslookertimer when scrolling
   FIX:    fixed Possible bad row index at CoverManager.CoversLookerTimer_timer.877
   FIX:    Allows to drag'n drop playlists (.m3u,.pls...) from browsers into the library or playlist 

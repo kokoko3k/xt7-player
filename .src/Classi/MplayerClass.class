@@ -603,7 +603,8 @@ Public Function do_play(filename As String, options As String, Optional restart 
     ' Else If (filename Like "*.ogg") And (Not (commandline Like "* -demuxer *")) Then
     '   commandline = commandline & " -demuxer ogg "
     Endif
-    commandline = commandline & " " & "\"" & SConv(filename) & "\""
+    'commandline = commandline & " " & "\"" & SConv(filename) & "\""
+    commandline = commandline & " " & Shell(SConv(filename))
 
     
     

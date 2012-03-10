@@ -49,9 +49,8 @@ Public Sub ButtonSearch_Click()
     mywait(False)
     Return
   Endif
-
-  'mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
-  mysubs = opensubs.SearchByTag(token, Split(combobox1.text, ",")[0], TextBox1.text)
+  mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
+  mysubs.Insert(opensubs.SearchByTag(token, Split(combobox1.text, ",")[0], TextBox1.text))
   If mysubs.count = 1 Then
     subsview.rows.Count = 2
     subsview[0, 0].text = ("No results, try with a less restrictive search")
@@ -70,7 +69,6 @@ Public Sub ButtonSearch_Click()
     Next 'field
   Next 'mysubs
   If token <> "-1" Then Debug "Logging out: " & opensubs.LogOut(token)
-  SubsView.Rows.count -= 1 'hacky 
   SubsView.Columns[0].Width = -1
   mywait(False)
 End
@@ -128,4 +126,8 @@ Public Sub MenuSaveSub_Click()
   Dialog.SaveFile()
   fileout = Dialog.path
   If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
+End
+
+Public Sub ComboBox1_KeyPress()
+    If (Key.code = Key.enter) Or (Key.code = Key.return) Then ButtonSearch_Click()
 End

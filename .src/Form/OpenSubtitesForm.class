@@ -44,6 +44,7 @@ Public Sub ButtonSearch_Click()
   Dim mysub As Collection
   Dim mysubs As Collection[]
   Dim i As Integer
+  Dim languages As String
   mywait(True)
   subsview.clear
   subsview.Rows.count = 0
@@ -54,8 +55,9 @@ Public Sub ButtonSearch_Click()
     mywait(False)
     Return
   Endif
-  mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
-  mysubs.Insert(opensubs.SearchByTag(token, Split(combobox1.text, ",")[0], TextBox1.text))
+  Try languages = Split(combobox1.text, "(")[0]
+  mysubs = opensubs.SearchByQuery(token, languages, TextBox1.text)
+  mysubs.Insert(opensubs.SearchByTag(token, languages, TextBox1.text))
   If mysubs.count = 0 Then
     subsview.rows.Count = 2
     subsview[0, 0].text = ("No results, try with a less restrictive search")

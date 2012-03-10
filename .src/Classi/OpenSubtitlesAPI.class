@@ -148,7 +148,17 @@ Public Function SearchByTag(token As String, Language As String, myquery As Stri
     Next 'field
     mysubs.Add(mysub)
   Until Not (mysubs[mysubs.count - 1].Exist("SubFileName")) 'exit as soon as a no filename has been added
-  Try mysubs.pop 'last element is null
+  mysubs = removenullitems(mysubs)
+  Debug "results: " & mysubs.count
+  Return mysubs
+End
+
+Public Function removenullitems(mysubs As Collection[]) As Collection[]
+  Dim mysub As Collection
+  Dim i As Integer
+  For i = 0 To mysubs.count - 1
+    If Trim(mysubs[i]["SubDownloadLink"]) = "" Then mysubs.Remove(i)
+  Next
   Return mysubs
 End
 
@@ -203,7 +213,9 @@ Public Function SearchByQuery(token As String, Language As String, myquery As St
     Next 'field
     mysubs.Add(mysub)
   Until Not (mysubs[mysubs.count - 1].Exist("SubFileName")) 'exit as soon as a no filename has been added
-  Try mysubs.pop 'last element is null
+  If Trim(mysub["SubDownloadLink"]) <> "" Then mysubs.Add(mysub)
+  mysubs = removenullitems(mysubs)
+  Debug "results: " & mysubs.count
   Return mysubs
 End
 

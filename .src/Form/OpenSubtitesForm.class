@@ -17,6 +17,7 @@ Public Sub Form_Open()
     SubsView.Columns[i].Width = -1
   Next 'i
   Try TextBox1.text = File.basename(FMain.mplayer.Media_FullPath_Playing)
+  Try ComboBox1.text = GeneralOptions.SubLangList.text
 End
 
 
@@ -24,12 +25,16 @@ Public Sub mywait(dowait As Boolean)
   
   If dowait Then
     subsview.mouse = mouse.wait
+    TextBox1.mouse = mouse.wait
+    combobox1.mouse = mouse.wait
     hbox1.mouse = mouse.wait
     buttonsearch.enabled = False
       Else
     subsview.mouse = mouse.Normal
     hbox1.mouse = mouse.normal
     buttonsearch.enabled = True
+    TextBox1.mouse = mouse.Normal
+    combobox1.mouse = mouse.Normal
   Endif
 End
 
@@ -51,7 +56,7 @@ Public Sub ButtonSearch_Click()
   Endif
   mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
   mysubs.Insert(opensubs.SearchByTag(token, Split(combobox1.text, ",")[0], TextBox1.text))
-  If mysubs.count = 1 Then
+  If mysubs.count = 0 Then
     subsview.rows.Count = 2
     subsview[0, 0].text = ("No results, try with a less restrictive search")
     subsview[1, 0].text = ("try also to remove file tags.")

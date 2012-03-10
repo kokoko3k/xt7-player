@@ -2,7 +2,8 @@
 Count=0
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="tmp"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -772,6 +773,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/tl]
 Geometry=[0,0,210,210]
 
+[DebugWindow/tmp]
+Geometry=[51,0,210,210]
+
 [DebugWindow/tmpimage.Picture]
 Geometry=[48,-4,210,210]
 
@@ -823,10 +827,10 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:3.67"
+Active=1
+File[1]="CHANGELOG_GIT:3.10"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-Active=4
 File[4]=".src/Form/FMain.class:1179.20"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
@@ -835,7 +839,7 @@ File[8]=".src/Form/GeneralOptions.class:930.30"
 File[9]=".src/Form/AudioForm.form"
 File[10]=".src/Form/AudioForm.class:72.25"
 File[11]="AA_ToDo:60.56"
-File[12]=".src/Classi/MplayerClass.class:606.60"
+File[12]=".src/Classi/MplayerClass.class:235.16"
 File[13]=".src/Classi/FlashClass.class:142.13"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"

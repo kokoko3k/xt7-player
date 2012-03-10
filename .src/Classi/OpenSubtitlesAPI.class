@@ -98,6 +98,60 @@ End
 
 Public XmlFields As String = "SubFileName,SubLanguageID,SubFormat,SubRating,SubDownloadsCnt,SubDownloadLink,SubtitlesLink"
 
+Public Function SearchByTag(token As String, Language As String, myquery As String) As Collection[]
+  Dim question, subs, status As String
+  Dim field, fields As String 
+  Dim mysub As Collection
+  Dim mysubs As New Collection[]
+  Dim t As String
+  question = "<?xml version='1.0'?>"
+                     "<methodCall>"
+                     "  <methodName>SearchSubtitles</methodName>"
+                     "  <params>"
+                     "    <param>"
+                     "      <value><string>" & token & "</string></value>"
+                     "    </param>"
+                     "  <param>"
+                     "   <value>"
+                     "    <array>"
+                     "     <data>"
+                     "      <value>"
+                     "       <struct>"
+                     "        <member>"
+                     "         <name>sublanguageid</name>"
+                     "         <value><string>" & language & "</string>"
+                     "         </value>"
+                     "        </member>"
+                     "        <member>"
+                     "         <name>tag</name>"
+                     "         <value><string>" & myquery & "</string></value>"
+                     "        </member>"
+                     "       </struct>"
+                     "      </value>"
+                     "     </data>"
+                     "    </array>"
+                     "   </value>"
+                     "  </param>"
+                     " </params>"
+                     "</methodCall>"
+
+  subs = AnswerTo(question)
+
+  Repeat
+    mysub = New Collection
+    For Each field In Split(XmlFields, ",")
+      t = StringFromName(ByRef subs, field, True)
+      If Trim(t) <> "" Then 
+        mysub.Add(t, field)
+        'Debug field & ": " & t
+      Endif
+    Next 'field
+    mysubs.Add(mysub)
+  Until Not (mysubs[mysubs.count - 1].Exist("SubFileName")) 'exit as soon as a no filename has been added
+  Return mysubs
+End
+
+
 Public Function SearchByQuery(token As String, Language As String, myquery As String) As Collection[]
   Dim question, subs, status As String
   Dim field, fields As String 

@@ -1,6 +1,9 @@
 Git changes:
 --------------------------------------
-Mar 08 2012
+Mar 10 2012
+  CHANGE: Manual search by tag instead of query on Opensubtitles.org (more results)
+
+Mar 09 2012
   FIX:    Avoid crashes when unable to get video length
   FIX:    use shell() instead of double quotes in mplayer.do_play()
   FIX:    Make scrolling in grids smoother by delaying coverslookertimer when scrolling

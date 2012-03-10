@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,87,76)
+  MoveScaled(0,0,87,43)
   Text = ("Search Opensubtitles.org")
   Icon = Picture["opensubtitles.png"]
   Arrangement = Arrange.Vertical
@@ -18,13 +18,13 @@
     }
   }
   { SubsView GridView
-    MoveScaled(1,1,85,69)
+    MoveScaled(1,1,86,35)
     Expand = True
     Mode = Select.Single
     Header = GridView.Horizontal
   }
   { HBox1 HBox
-    MoveScaled(1,71,85,4)
+    MoveScaled(2,38,85,4)
     { TextBox1 TextBox
       MoveScaled(0,0,63,4)
       Expand = True

@@ -50,7 +50,8 @@ Public Sub ButtonSearch_Click()
     Return
   Endif
 
-  mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
+  'mysubs = opensubs.SearchByQuery(token, Split(combobox1.text, ",")[0], TextBox1.text)
+  mysubs = opensubs.SearchByTag(token, Split(combobox1.text, ",")[0], TextBox1.text)
   If mysubs.count = 1 Then
     subsview.rows.Count = 2
     subsview[0, 0].text = ("No results, try with a less restrictive search")

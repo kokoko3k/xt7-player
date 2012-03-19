@@ -65,6 +65,7 @@ Public Sub ButtonSearch_Click()
     subsview.Columns[0].Width = -1
     subsview.refresh
     mywait(False)
+      subsview.Rows.H = CInt(subsview.Font.TextHeight("Ij|") * 1.5)
     Return
   Endif
 
@@ -75,9 +76,12 @@ Public Sub ButtonSearch_Click()
       SubsView[i, columnindex[field]].text = mysub[field]
     Next 'field
   Next 'mysubs
+  subsview.Rows.H = CInt(subsview.Font.TextHeight("Ij|") * 1.5)
   If token <> "-1" Then Debug "Logging out: " & opensubs.LogOut(token)
   SubsView.Columns[0].Width = -1
   mywait(False)
+  
+
 End
 
 Public Sub TextBox1_KeyPress()
@@ -138,3 +142,5 @@ End
 Public Sub ComboBox1_KeyPress()
     If (Key.code = Key.enter) Or (Key.code = Key.return) Then ButtonSearch_Click()
 End
+
+

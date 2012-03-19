@@ -105,7 +105,7 @@ msgstr "*Video correlati"
 
 #: FMain.class:8111
 msgid ", Track No.: "
-msgstr ""
+msgstr ", Traccia numero:"
 
 #: XConfigureVideoDriver.form:619
 msgid "-0.1"
@@ -187,7 +187,7 @@ msgstr "0 - Disabilita l'approssimazione automatica"
 msgid "0 - Dont use QP from bFrames"
 msgstr "0 - Non usare il QP dei Bframe"
 
-#: SubAndOsd.form:333
+#: SubAndOsd.form:332
 msgid "0 - Exact match"
 msgstr "0 - Il sottotitolo chiamato come il nome del filmato"
 
@@ -319,7 +319,7 @@ msgstr "1 - Impedisci se una dimensione eccede il suo valore originale"
 msgid "1 - Enable Accurate rounding"
 msgstr "1 - Abilita l'approssimazione automatica"
 
-#: SubAndOsd.form:333
+#: SubAndOsd.form:332
 msgid "1 - Load all subs containing movie name"
 msgstr "1 - Tutti i sottotitoli contenenti il nome del filmato"
 
@@ -371,7 +371,7 @@ msgstr "1 - Usa il QP dai BFrame"
 msgid "1 Turns on soft clipping"
 msgstr "1 Abilita la saturazione morbida"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "1) Bottom/Left"
 msgstr "1) Basso/Sinistra"
 
@@ -471,7 +471,7 @@ msgstr "2 - File iniziale di tuning"
 msgid "2 - Like 0 but skips spatial interlacing check."
 msgstr "2 - Come 0 ma salta il controllo spaziale."
 
-#: SubAndOsd.form:333
+#: SubAndOsd.form:332
 msgid "2 - Load all subs in the current directory"
 msgstr "2 - Tutti i sottotitoli nella directory corrente"
 
@@ -495,7 +495,7 @@ msgstr "2 - Bicubico (buona qualità) (predefinito)"
 msgid "2 - bob deinterlacing"
 msgstr "2 - Deinterlacciamento bob"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "2) Bottom/Center"
 msgstr "2) Basso/Centro"
 
@@ -547,7 +547,7 @@ msgstr "3 - Usa solo 1 su 8 linee per il croma"
 msgid "3 - experimental"
 msgstr "3 - Sperimentale"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "3) Bottom/Right"
 msgstr "3) Basso/Destra"
 
@@ -579,7 +579,7 @@ msgstr "4 - Come 0, ma usa anche i B-frame"
 msgid "4 - nearest neighbor (bad quality)"
 msgstr "4 - Più vicino (scarsa qualità)"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "4) Top/Left"
 msgstr "4) Alto/Sinistra"
 
@@ -631,7 +631,7 @@ msgstr "-"
 msgid "6 - luma bicubic/chroma bilinear"
 msgstr "6 - luminanza bicubica/crominanza bilineare"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "6) Top/Center"
 msgstr "6) Alto/Centro"
 
@@ -651,7 +651,7 @@ msgstr "-"
 msgid "7"
 msgstr "-"
 
-#: SubAndOsd.form:376
+#: SubAndOsd.form:375
 msgid "7) Top/Right"
 msgstr "7) Alto/Destra"
 
@@ -757,7 +757,7 @@ msgstr "Aggiungi la lingua selezionata alla lista delle lingue preferite. \n Opz
 
 #: GeneralOptions.form:1309
 msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-slang \"language list\"\n\nThis option also allows you to search for online subtitles at Opensubtitles.org"
-msgstr "Dodaj wybrany język do listy preferowanych języków.\nOpcja mplayer:\n-slang \"lista języków\"\n\nOpcja ta pozwala także na wyszukiwanie napisów w opensubtitles.org"
+msgstr "Aggiungi la lingua selezionata alla lista di quelle preferite.\nOpzione mplayer:\n-slang \"Lista lingue\"\n\nQuesta opzione ti permette anche di cercare sottotitoli in rete su Opensubtitles.org"
 
 #: FMain.form:975
 msgid "Add this folder to history"
@@ -797,9 +797,9 @@ msgstr "Album:"
 
 #: FMain.class:8104
 msgid "Album: "
-msgstr ""
+msgstr "Album:"
 
-#: SubAndOsd.form:368
+#: SubAndOsd.form:367
 msgid "Alignment"
 msgstr "Posizione"
 
@@ -811,7 +811,7 @@ msgstr "Tutti i file"
 msgid "Allow video panning via mouse-drag"
 msgstr "Consenti il panning del video tramite mouse"
 
-#: SubAndOsd.form:200
+#: SubAndOsd.form:199
 msgid "Alpha"
 msgstr "Trasp."
 
@@ -909,7 +909,7 @@ msgstr "Artista/Autore:"
 
 #: FMain.class:8107
 msgid "Artist: "
-msgstr ""
+msgstr "Artista:"
 
 #: XConfigureAudioDriver.form:407
 msgid "Arts"
@@ -917,7 +917,7 @@ msgstr "-"
 
 #: FMain.class:1740
 msgid "Ask Opensubtitles.org"
-msgstr "Zapytaj OpenSubtitles.org"
+msgstr "Chiedi a Opensubtitles.org"
 
 #: HotKeys.class:298
 msgid "Assign nevertheless"
@@ -997,7 +997,7 @@ msgstr "Demuxer Audio/Video"
 
 #: FMain.class:8128
 msgid "Audio: "
-msgstr ""
+msgstr "Audio:"
 
 #: Chains.form:375
 msgid "AudioChain"
@@ -1043,7 +1043,7 @@ msgstr "-"
 msgid "BitRate"
 msgstr "BitRate"
 
-#: SubAndOsd.form:162
+#: SubAndOsd.form:161
 msgid "BitStream Vera Sans"
 msgstr "-"
 
@@ -1051,7 +1051,7 @@ msgstr "-"
 msgid "Bobdeint"
 msgstr "-"
 
-#: SubAndOsd.form:221
+#: SubAndOsd.form:220
 msgid "Border"
 msgstr "Bordo"
 
@@ -1119,7 +1119,7 @@ msgstr "Catena"
 msgid "Chains Editor"
 msgstr "Editor della catena"
 
-#: SubAndOsd.form:620
+#: SubAndOsd.form:619
 msgid "Change me if you have problem displaying the preview."
 msgstr "Modifica qui se hai problemi nella visualizzazione dell' anteprima."
 
@@ -1297,7 +1297,7 @@ msgstr "Commento"
 
 #: FMain.class:8131
 msgid "Comment: "
-msgstr ""
+msgstr "Commento:"
 
 #: FMain.form:2161
 msgid "Commit"
@@ -1329,7 +1329,7 @@ msgstr "Configurazione cartelle"
 
 #: FMain.class:1743
 msgid "Configure preferred languages"
-msgstr "Skonfiguruj preferowane języki"
+msgstr "Configura le lingue preferite"
 
 #: FMain.form:834
 msgid "Configure shutdown command"
@@ -1357,7 +1357,7 @@ msgstr "Impossibile cancellare la cronologia!"
 
 #: OpenSubtitesForm.class:99
 msgid "Couldn't load the subtitle because\nNo video is playing"
-msgstr "Nie można załadować napisów ponieważ\nNie jest odtwarzane żaden plik Video"
+msgstr "Non posso caricare un sottotitolo\nse non c'è un video in riproduzione"
 
 #: CoverManager.form:29
 msgid "Cover fetcher"
@@ -1469,7 +1469,7 @@ msgstr "Prefefinito"
 
 #: GeneralOptions.form:1622
 msgid "Default icon size"
-msgstr "Domyślny rozmiar ikony"
+msgstr "Dimensione predefinita delle icone"
 
 #: FMain.class:3710
 msgid "Default profile has been set to factory values.\nRestart is needed."
@@ -1503,7 +1503,7 @@ msgstr "Rimuovi"
 msgid "Delay"
 msgstr "-"
 
-#: SubAndOsd.form:447
+#: SubAndOsd.form:446
 msgid "Delay (Decisecs)"
 msgstr "Ritardo (Decimi)"
 
@@ -1547,7 +1547,7 @@ msgstr "Demuxer"
 msgid "Denoise3D"
 msgstr "-"
 
-#: SubAndOsd.form:397
+#: SubAndOsd.form:396
 msgid "Depending on the language you select, a charset is auto detected,\nbut if detection fails, the fallback charset will be used.\nNote that this has nothing to do with the subtitle language selection,\nTo configure preferred languages, use the language option in General Option window.\nMplayer option:\n-subcp enca:<language>:<fallback codepage>"
 msgstr "A seconda del linguaggio scelto, un set di caratteri sarà scelto automaticamente, \nnel caso non sia possibile, sarà utilizzato il set di caratteri scelto esplicitamente. \nNB: questo non ha nulla a che fare con la lingua dei sottotitoli, per configurare un set dilingue predefinite, \nusa l'opzione \"Linguaggio\" nella finestra \"Opzioni Generali. \nOpzione mplayer: \n-subcp enca:language:fallback codepage"
 
@@ -1609,7 +1609,7 @@ msgstr "Vuoi anche cancellare i file non trovati dalla libreria?"
 
 #: FMain.class:2003
 msgid "Do you want to save"
-msgstr "Czy chcesz zapisać?"
+msgstr "Vuoi salvare"
 
 #: HotKeys.class:518
 msgid "Don't"
@@ -1885,7 +1885,7 @@ msgstr "Campo diominante"
 
 #: FMain.form:1886
 msgid "Fields"
-msgstr "Pola"
+msgstr "Cambi"
 
 #: FMain.form:347 OpenSubtitesForm.form:20 XConfigureAudioDriver.form:316
 msgid "File"
@@ -1897,7 +1897,7 @@ msgstr "Dimensione File"
 
 #: FMain.class:1958
 msgid "File error"
-msgstr "Błąd pliku"
+msgstr "Errore sul file"
 
 #: FlashClass.class:57
 msgid "File name"
@@ -1913,7 +1913,7 @@ msgstr "Dimensione"
 
 #: FMain.class:8097
 msgid "Filename: "
-msgstr ""
+msgstr "Nome File:"
 
 #: FMain.form:1357
 msgid "Filter"
@@ -1955,7 +1955,7 @@ msgstr "Piattezza"
 msgid "Font"
 msgstr "Carattere"
 
-#: SubAndOsd.form:187
+#: SubAndOsd.form:186
 msgid "Font Color"
 msgstr "Colore del carattere"
 
@@ -2049,7 +2049,7 @@ msgstr "Opzioni generali"
 
 #: GeneralOptions.form:1609
 msgid "Generate and show video thumbnails to for the side lists, this is made runtime in background and thumbnails will be  cached on disk."
-msgstr "Generuj i pokazuj miniaturki wideo na listach bocznych, podczas pracy, w tle miniatury będą buforowane na dysku."
+msgstr "Genera e mostra miniature per i video nella lista laterale\nciò verrà fatto in tempo reale e le miniature saranno mantenute in una cache su disco."
 
 #: FMain.form:2067 Searchfields.form:82
 msgid "Genre"
@@ -2057,7 +2057,7 @@ msgstr "Genere"
 
 #: FMain.class:8104
 msgid "Genre: "
-msgstr ""
+msgstr "Genere:"
 
 #: FMain.form:1594
 msgid "Germany:DE"
@@ -2095,7 +2095,7 @@ msgstr "Compensa la desincronizzazione Audio/Video misurando il ritardo audio."
 msgid "Great Britain:BG"
 msgstr "-"
 
-#: SubAndOsd.form:404
+#: SubAndOsd.form:403
 msgid "Guess codepage for:"
 msgstr "-"
 
@@ -2109,7 +2109,7 @@ msgstr "-"
 
 #: FMain.class:1939
 msgid "Hash error"
-msgstr "Hash error"
+msgstr "Errore Hash"
 
 #: Searchfields.form:195 VFiltersCfg.class:252
 msgid "Height"
@@ -2133,7 +2133,7 @@ msgstr "Evidenzia"
 
 #: GeneralOptions.form:1651
 msgid "Highlight listview items on mouse over"
-msgstr "-"
+msgstr "Evidenzia gli oggetti della lista al passaggio del mouse"
 
 #: GeneralOptions.form:1649
 msgid "Highlight the sideview item which is under the mouse"
@@ -2197,7 +2197,7 @@ msgstr "-"
 
 #: FMain.class:1756
 msgid "I feel lucky"
-msgstr "Szczęśliwy traf"
+msgstr "Mi sento fortunato"
 
 #: FMain.class:6334
 msgid "I know, proceed"
@@ -2207,7 +2207,7 @@ msgstr "Lo so, procedi"
 msgid "If equalizer doesn't work, you can try to:\n\n- Change video output driver\n- Enable eq2 and hue filters under General Options\n- Add Eq2 filter in chains window\n- Add Hue filter in chains window"
 msgstr "Se l'equalizzatore non funziona, puoi provare a:\n\n- Cambiare driver video\n- Abilitare i filtri eq2 ed hue nelle opzioni generali\n- Aggiungere il filtro Eq2 alla catena dei filtri video\n- Aggiungere il filtro hue alla catena dei filtri video."
 
-#: SubAndOsd.form:418
+#: SubAndOsd.form:417
 msgid "If guess fails, use:"
 msgstr "-"
 
@@ -2249,7 +2249,7 @@ msgstr "Importa un channels.conf esterno"
 
 #: FMain.class:8098
 msgid "In: "
-msgstr ""
+msgstr "In:"
 
 #: FMain.form:1594
 msgid "India:IN"
@@ -2353,7 +2353,7 @@ msgstr "Durata"
 
 #: FMain.class:8113
 msgid "Length: "
-msgstr ""
+msgstr "Lunghezza;"
 
 #: Chains.class:141
 msgid "Let's see..."
@@ -2387,7 +2387,7 @@ msgstr "Carica da disco"
 msgid "Load from disk..."
 msgstr "Carica da disco..."
 
-#: SubAndOsd.form:326
+#: SubAndOsd.form:325
 msgid "Load subtitles"
 msgstr "Carica i sottotitoli"
 
@@ -2465,7 +2465,7 @@ msgstr "Fa sì che xt7 registri un' istanza in Dbus\nesportanto le proprietà de
 
 #: FMain.class:1747
 msgid "Manual search"
-msgstr "Ręczne wyszukiwanie"
+msgstr "Ricerca manuale"
 
 #: GeneralOptions.class:117
 msgid "Maximum Amplification"
@@ -2535,7 +2535,7 @@ msgstr "-"
 msgid "Mixer-Device"
 msgstr "-"
 
-#: SubAndOsd.form:442
+#: SubAndOsd.form:441
 msgid "Mkv Workaround"
 msgstr "-"
 
@@ -2579,19 +2579,19 @@ msgstr "Sposta la selezione nella lista.\nPuoi usare anche la rotellina del mous
 msgid "Mplayer option: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 msgstr "Opzione mplayer: \n-ass-force-style FontName=<fontname>,FontSize=<fontsize>"
 
-#: SubAndOsd.form:173
+#: SubAndOsd.form:172
 msgid "Mplayer option: \n-ass-forcestyle primarycolour=HHBBGGRR"
 msgstr "Opzione Mplayer:  \n-ass-forcestyle primarycolour=HHBBGGRR"
 
-#: SubAndOsd.form:466
+#: SubAndOsd.form:465
 msgid "Mplayer option: \n-font"
 msgstr "Opzione mplayer: \n-font"
 
-#: RealtimeForm.form:281 SubAndOsd.form:361
+#: RealtimeForm.form:281 SubAndOsd.form:360
 msgid "Mplayer option:\n-ass-force-style Alignment=<align>"
 msgstr "Opzione mplayer: \n-ass-force-style Alignment=<align>"
 
-#: SubAndOsd.form:318
+#: SubAndOsd.form:317
 msgid "Mplayer option:\n-sub-fuzziness <mode>"
 msgstr "Opzione Mplayer: \n-sub-fuzziness <mode>"
 
@@ -2641,7 +2641,7 @@ msgstr "Prossimo media"
 
 #: CoverManager.class:100
 msgid "No covers found for:"
-msgstr "Nie znaleziono okładek dla:"
+msgstr "Nessuna copartina trovata per:"
 
 #: Chains.form:361
 msgid "No driver Defined"
@@ -2653,11 +2653,11 @@ msgstr "Nessuna scorciatoia definita per la navigazione dvd \n Si prega di confi
 
 #: FMain.class:1968
 msgid "No results"
-msgstr "Brak wyników"
+msgstr "Nessun risultato"
 
 #: OpenSubtitesForm.class:63
 msgid "No results, try with a less restrictive search"
-msgstr "Brak wyników, spróbuj wyszukiwania mniej restrykcyjnego"
+msgstr "Nessun risultato, prova una ricerca meno restrittiva"
 
 #: FMain.class:7509
 msgid "No, thanks"
@@ -2715,35 +2715,35 @@ msgstr "-"
 msgid "Number of threads to use for decoding.\nYou may need the 'mt' version of mplayer and ffmmpeg\nMplayer Option: -lavdopts threads=n"
 msgstr "Numero di sottoprocessi usati per la decodifica\nProbabilmente hai bisogno della versione \"mt\" di mplayer ed ffmpeg\nOpzione mplayer: -lavdopts threads=n"
 
-#: SubAndOsd.form:456
+#: SubAndOsd.form:455
 msgid "OSD"
 msgstr "-"
 
-#: SubAndOsd.form:536
+#: SubAndOsd.form:535
 msgid "OSD Background alpha"
 msgstr "Trasparenza dello sfondo OSD"
 
-#: SubAndOsd.form:493
+#: SubAndOsd.form:492
 msgid "OSD Border font \"strength\", where 0 means plain white fonts and 10 means bold black outline\nMplayer option: -ffactor <number>\n\n"
 msgstr "Marcatura del bordo OSD,\n dove 0 significa carattere nero e 10 significa contorno nero molto marcato\nOpzione mplayer: -ffactor <numero>\n\n"
 
-#: SubAndOsd.form:475
+#: SubAndOsd.form:474
 msgid "OSD Font"
 msgstr "Font OSD"
 
-#: SubAndOsd.form:556
+#: SubAndOsd.form:555
 msgid "OSD blur radius"
 msgstr "Raggio di sfocatura OSD"
 
-#: SubAndOsd.form:501
+#: SubAndOsd.form:500
 msgid "OSD outline strength"
 msgstr "Marcatura del bordo OSD"
 
-#: SubAndOsd.form:515
+#: SubAndOsd.form:514
 msgid "OSD outline thickness"
 msgstr "Spessore del bordo OSD"
 
-#: SubAndOsd.form:277
+#: SubAndOsd.form:276
 msgid "Offset"
 msgstr "Offset"
 
@@ -2789,7 +2789,7 @@ msgstr "Apri un file recente"
 
 #: FMain.form:416
 msgid "OpenSubtitles.org"
-msgstr "OpenSubtitles.org"
+msgstr "-"
 
 #: FMain.class:209
 msgid "Or disable any audio driver to use the default one"
@@ -2803,11 +2803,11 @@ msgstr "Ordina per"
 msgid "Original image position; -1 to center"
 msgstr "Posizione dell' immagine originale; -1 per centro"
 
-#: SubAndOsd.form:596
+#: SubAndOsd.form:595
 msgid "Osd Scale"
 msgstr "Coefficiente di autoscalatura"
 
-#: SubAndOsd.form:576
+#: SubAndOsd.form:575
 msgid "Osd duration (ms)"
 msgstr "Durata OSD (ms)"
 
@@ -2913,7 +2913,7 @@ msgstr "Playlist"
 
 #: FMain.class:1760
 msgid "Please Wait..."
-msgstr "Proszę czekać..."
+msgstr "Attendi..."
 
 #: GeneralOptions.form:738
 msgid "Please, choose"
@@ -2955,7 +2955,7 @@ msgstr "Mostra un PopUp per riprodurre i video intercettati"
 msgid "Port"
 msgstr "-"
 
-#: SubAndOsd.form:348
+#: SubAndOsd.form:347
 msgid "Position (%)"
 msgstr "Posizione (%)"
 
@@ -2995,7 +2995,7 @@ msgstr "Preimpostazioni"
 msgid "Press a Key\nor (some) Mouse button(s)\n"
 msgstr "Premi un tasto\no uno o più pulsanti del mouse\n"
 
-#: SubAndOsd.form:652
+#: SubAndOsd.form:651
 msgid "Preview"
 msgstr "Anteprima"
 
@@ -3159,7 +3159,7 @@ msgstr "Reset"
 msgid "Results"
 msgstr "Risultati"
 
-#: SubAndOsd.form:630
+#: SubAndOsd.form:629
 msgid "Retest"
 msgstr "Riprova"
 
@@ -3213,7 +3213,7 @@ msgstr "Salva come"
 
 #: OpenSubtitesForm.form:29
 msgid "Save The selected subtitle"
-msgstr "Zapisz wybrane napisy"
+msgstr "Salva il sottotitolo selezionato"
 
 #: GeneralOptions.form:1534
 msgid "Save all settings to profile on program exit"
@@ -3233,7 +3233,7 @@ msgstr "Salva le impostazioni correnti in un nuovo profilo"
 
 #: FMain.class:2001 OpenSubtitesForm.class:131
 msgid "Save the selected subtitle"
-msgstr "Zapisz zaznaczone napisy"
+msgstr "Salva il sottotitolo selezionato"
 
 #: FMain.form:1823
 msgid "Save the settings to the selected profile"
@@ -3255,7 +3255,7 @@ msgstr "Salva la posizione e le dimensioni di xt7 all'uscita."
 msgid "Scale"
 msgstr "-"
 
-#: SubAndOsd.form:391
+#: SubAndOsd.form:390
 msgid "Scale (%)"
 msgstr "Scala (%)"
 
@@ -3293,11 +3293,11 @@ msgstr "Cerca"
 
 #: OpenSubtitesForm.form:15
 msgid "Search Opensubtitles.org"
-msgstr "Opensubtitles.org Szukaj"
+msgstr "Cerca su Opensubtitles.org"
 
 #: FMain.form:497
 msgid "Search for embedded covers"
-msgstr ""
+msgstr "Cerca copertine incorporate"
 
 #: FMain.form:1541
 msgid "Search now"
@@ -3387,7 +3387,7 @@ msgstr "Imposta il campo primario per contenuti interlacciati\n Opzione mplayer:
 msgid "Set initial playback tempo/pitch"
 msgstr "Imposta la velocità, il tempo o il tono iniziali."
 
-#: SubAndOsd.form:569
+#: SubAndOsd.form:568
 msgid "Set the duration of the OSD messages in ms.\nMplayer option: -osd-duration"
 msgstr "Imposta la durata dei messaggi OSD in millisecondi.\nOpzione mplayer: -osd-duration"
 
@@ -3395,23 +3395,23 @@ msgstr "Imposta la durata dei messaggi OSD in millisecondi.\nOpzione mplayer: -o
 msgid "Set the maximum amplification level in percent (default: 110).\n A value of 200 will allow you to adjust the volume up to a maximum of double the current level.\n Mplayer Option: -softvol-max"
 msgstr "Imposta il livello di amplificazione massima in percentuale (di default 110).\n Un valore di 200 permetterà di aumentare il volume fino al doppio del volume.\n Opzione mplayer: -softvol-max"
 
-#: SubAndOsd.form:588
+#: SubAndOsd.form:587
 msgid "Sets the autoscale coefficient of the OSD elements.\nMplayer option: -subfont-osd-scale"
 msgstr "Imposta il coefficioente di autoscalature per gli elementi OSD\nOpzione mplayer: -subfont-osd-scale"
 
-#: SubAndOsd.form:548
+#: SubAndOsd.form:547
 msgid "Sets the font blur radius.\nMplayer option: -subfont-blur"
 msgstr "Imposta il raggio di sfocatura del font.\nOpzione mplayer: -subfont-blur"
 
-#: SubAndOsd.form:507
+#: SubAndOsd.form:506
 msgid "Sets the font outline thickness\nMplayer option: -subfont-outline"
 msgstr "Imposta lo spessore del bordo\nOpzione mplayer: -subfont-outline"
 
-#: SubAndOsd.form:441
+#: SubAndOsd.form:440
 msgid "Setting a negative delay for subtitles embedded in mkv files, leads mplayer\nto shift only the subtitle end time, because it reads the file sequentially.\nChecking this box will workaround the problem by adding:\n-subfile yourfile.mkv to mplayer options, forcing mplayer to read\nand shift the subtitles correctly.\nAlso, any ass rendering will be disabled.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 msgstr "Impostare un ritardo negativo per i sottotitoli incorporati nei file mkv, porta mplayer\na traslare solo la fine del sottotitolo, in quanto esso legge il file in maniera sequenziale.\nSelezionando questo box, aggirerai il problema con l'opzione\n:-subfile tuofile.mkv\nche forzerà mplayer a leggere il file video come un sottotitolo.\nGli stili ass saranno inoltre disabilitati.\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870"
 
-#: SubAndOsd.form:266
+#: SubAndOsd.form:265
 msgid "Shadow"
 msgstr "Ombra"
 
@@ -3453,7 +3453,7 @@ msgstr "Mostra le opzioni di ricerca avanzate"
 
 #: FMain.form:1884
 msgid "Show and select the possible search fields"
-msgstr "Pokaż i zaznacz możliwe pola wyszukiwania"
+msgstr "Mostra e seleziona i campi di ricerca possibili"
 
 #: GeneralOptions.form:1599
 msgid "Show covers in listviews"
@@ -3477,11 +3477,11 @@ msgstr "Mostra il log"
 
 #: FMain.form:1912
 msgid "Show media info when hovering a list item."
-msgstr "Pokaż informacje o multimediach po najechaniu na element z listy."
+msgstr "Mostra le informazioni sul media al passaggio del mouse"
 
 #: GeneralOptions.form:1611
 msgid "Show thumbnails for video files"
-msgstr "Pokaż miniatury dla plików Video"
+msgstr "Mostra miniature per i file video"
 
 #: FMain.form:1510
 msgid "Show youtube video information"
@@ -3531,7 +3531,7 @@ msgstr "Segnale"
 msgid "Simple Dvb-T Tuner"
 msgstr "Semplice tuner DVB-T"
 
-#: SubAndOsd.form:232
+#: SubAndOsd.form:231
 msgid "Size"
 msgstr "Dimensione"
 
@@ -3585,7 +3585,7 @@ msgstr "Controllo del volume software"
 
 #: FMain.class:2006 OpenSubtitesForm.class:135
 msgid "Sorry, couldn't save the file"
-msgstr "Przepraszam, nie mogę zapisać pliku"
+msgstr "Spiacente, non ho potuto salvare il file."
 
 #: FMain.form:1594
 msgid "South Africa:ZA"
@@ -3611,7 +3611,7 @@ msgstr "Intensità spaziale della luminanza"
 msgid "Specify cookies.txt location\n Mplayer Option: -cookies-file"
 msgstr "Specifica la posizione di cookies.txt \n Opzione mplayer: -cookies-file"
 
-#: SubAndOsd.form:528
+#: SubAndOsd.form:527
 msgid "Specify the alpha channel value for subtitles and OSD  backgrounds.   Big  values  mean  more\ntransparency.  0 means completely transparent.\nMplayer option:\n-sub-bg-alpha <0-255>\n\n"
 msgstr "Specifica il valore di trasparenza per i sottotitoli e lo sfondo dei messaggi OSD.\nGrandi valori significano più trasparenza.\n0 significa trasparenza totale.\nOpzione mplayer:\n-sub-bg-alpha <0-255>\n\n"
 
@@ -3675,7 +3675,7 @@ msgstr "-"
 msgid "Style"
 msgstr "Stile"
 
-#: SubAndOsd.form:308
+#: SubAndOsd.form:307
 msgid "Sub Extra"
 msgstr "Sub Extra"
 
@@ -3691,11 +3691,11 @@ msgstr "Sottotitoli ed OSD..."
 msgid "Subtitle delay"
 msgstr "Ritardo sottotitoli"
 
-#: SubAndOsd.form:434
+#: SubAndOsd.form:433
 msgid "Subtitle delay.\nMplayer option: -subdelay <sec>"
 msgstr "Ritardo sottotitoli:\nOpzione Mplayer: -subdelay <sec>"
 
-#: SubAndOsd.form:340
+#: SubAndOsd.form:339
 msgid "Subtitle position on the screen from top or bottom.\n(it depends the alignment you choose)\nMplayer option:\n-ass-force-style MarginV=<margin>\n\nIf you Disabled SSA, then the value is meant to be from top.\nMplayer Option:\n-subpos <0-100>\n"
 msgstr "Posizione dei sottotitoli sullo schermo dall' alto o dal basso\n(dipende dall' allineamento scelto)\nOpzione mplayer:\n-ass-force-style MarginV=<margin>\n\nSe hai disabilitato SSA, il valore è inteso dall' alto.\nOpzione mplayer:\n-subpos <0-100>\n"
 
@@ -3711,7 +3711,7 @@ msgstr "Sottotitoli"
 msgid "Subtitles And Osd"
 msgstr "Sottotitoli ed OSD"
 
-#: SubAndOsd.form:383
+#: SubAndOsd.form:382
 msgid "Subtitles resize factor.\nMplayer option:  -ass-font-scale"
 msgstr "Fattore di scalatura dei sottotitoli.\nOpzione mplayer: -ass-force-scale"
 
@@ -3795,7 +3795,7 @@ msgstr "Intensità temporale della luminanza"
 msgid "Test"
 msgstr "Test"
 
-#: SubAndOsd.form:629
+#: SubAndOsd.form:628
 msgid "Test the new configuration in the preview box."
 msgstr "Prova la nuova configurazione nella preview."
 
@@ -3881,7 +3881,7 @@ msgstr "Titolo"
 
 #: FMain.class:8111
 msgid "Title: "
-msgstr ""
+msgstr "Titolo:"
 
 #: FMain.form:396
 msgid "Titles"
@@ -3897,7 +3897,7 @@ msgstr "Per usare il nuovo profilo, impostalo e riavvia xt7."
 
 #: FMain.class:1930 OpenSubtitesForm.class:53
 msgid "Token error"
-msgstr "Token error"
+msgstr "Errore token"
 
 #: DVBTuner.class:426
 msgid "Too bad..."
@@ -3961,7 +3961,7 @@ msgstr "Prova altri codec"
 
 #: OpenSubtitesForm.form:24
 msgid "Try the selected subtitle"
-msgstr "Spróbuj Wybrane napisy"
+msgstr "Prova il sottotitolo selezionato"
 
 #: GeneralOptions.class:235
 msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
@@ -3973,7 +3973,7 @@ msgstr "Prova a limitare la velocità del cd. 0 Vuol dire nessun cambiamemto.\nI
 
 #: CoverManager.class:100
 msgid "Try to use less strict terms, remove symbols and so on..."
-msgstr "Spróbuj użyć mniej rygorystyczne warunki, usuń symbole i tak dalej ..."
+msgstr "Prova ad usare termini meno stretti, rimuovi i simboli e così via..."
 
 #: GeneralOptions.form:1212
 msgid "Tuner Timeout"
@@ -4013,7 +4013,7 @@ msgstr "-"
 
 #: FMain.class:8101
 msgid "Unknown"
-msgstr "Nieznany"
+msgstr "Sconosciuto"
 
 #: FMain.class:6778 MplayerClass.class:209
 msgid "Unknown entry (connection problem?)"
@@ -4087,7 +4087,7 @@ msgstr "Usalo per riparare file danneggiati"
 msgid "Use new settings without save"
 msgstr "Usa le nuove impostazioni senza salvare"
 
-#: SubAndOsd.form:636
+#: SubAndOsd.form:635
 msgid "Use new settings without save.\nTo save settings, use menu item."
 msgstr "Usa le nuove impostazioni senza salvare.\n Per salvare le impostazioni usa la voce nel menu."
 
@@ -4169,7 +4169,7 @@ msgstr "Catena Audio/Video"
 
 #: FMain.class:8121
 msgid "Video: "
-msgstr ""
+msgstr "Video:"
 
 #: Chains.form:344
 msgid "VideoChain"
@@ -4253,7 +4253,7 @@ msgstr "Livello nice di Xt7Player"
 
 #: FMain.class:7085
 msgid "Xt7 will try to find and update embedded covers,\nBeware that covers explicitely set without album/artist information will be lost."
-msgstr ""
+msgstr "Xt7 cercherà e aggiornerà le copertine incorporate,\nNota che le cover impostate esplicitamente per i file senza informazioni su artista/album\n saranno perse."
 
 #: FMain.form:340
 msgid "Xt7-Player"
@@ -4293,7 +4293,7 @@ msgstr "Anno"
 
 #: FMain.class:8104
 msgid "Year: "
-msgstr ""
+msgstr "Anno:"
 
 #: FMain.class:5275 GeneralOptions.class:488 ProfileManager.class:38
 msgid "Yes, Delete"
@@ -4387,23 +4387,23 @@ msgstr "\nChe sembra non essere supportato dal tuo mplayer.\n"
 msgid "\nso you are going to set a cover for this particular file/stream"
 msgstr "\nQuindi la copertina che imposterai sarà solo per questo file o stream"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "aa (Afar)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ab (Abkhazian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ae (Avestan)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "af (Afrikaans)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ak (Akan)"
 msgstr "-"
 
@@ -4415,15 +4415,15 @@ msgstr "-"
 msgid "all_time"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "am (Amharic)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "an (Aragonese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ar (Arabic)"
 msgstr "-"
 
@@ -4435,7 +4435,7 @@ msgstr "-"
 msgid "arm,hy,(Armenian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "as (Assamese)"
 msgstr "-"
 
@@ -4455,15 +4455,15 @@ msgstr "-"
 msgid "automatic brightness / contrast correction"
 msgstr "Correzione automatica di luminosità/contrasto"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "av (Avaric)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ay (Aymara)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "az (Azerbaijani)"
 msgstr "-"
 
@@ -4471,7 +4471,7 @@ msgstr "-"
 msgid "bFrames"
 msgstr "bframe"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ba (Bashkir)"
 msgstr "-"
 
@@ -4479,7 +4479,7 @@ msgstr "-"
 msgid "baq,eu,(Basque)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "be (Belarusian)"
 msgstr "-"
 
@@ -4491,31 +4491,31 @@ msgstr "-"
 msgid "bg"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bg (Bulgarian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bh (Bihari)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bi (Bislama)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "big5"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bm (Bambara)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bn (Bengali)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bo (Tibetan)"
 msgstr "-"
 
@@ -4523,7 +4523,7 @@ msgstr "-"
 msgid "bos,bs,(Bosnian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "br (Breton)"
 msgstr "-"
 
@@ -4531,7 +4531,7 @@ msgstr "-"
 msgid "bre,br,(Breton)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "bs (Bosnian)"
 msgstr "-"
 
@@ -4543,7 +4543,7 @@ msgstr "-"
 msgid "c - Denoise both"
 msgstr "c - Applica denoise a entrambi"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ca (Catalan)"
 msgstr "-"
 
@@ -4559,17 +4559,17 @@ msgstr "-"
 msgid "cddb://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ce (Chechen)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ch (Chamorro)"
 msgstr "-"
 
 #: FMain.class:8128
 msgid "channels"
-msgstr " kanały"
+msgstr "canali"
 
 #: GeneralOptions.form:1317 OpenSubtitesForm.form:52
 msgid "chi,zh,zho (chinese)"
@@ -4579,7 +4579,7 @@ msgstr "-"
 msgid "chroma-deint"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "co (Corsican)"
 msgstr "-"
 
@@ -4587,43 +4587,43 @@ msgstr "-"
 msgid "colorspace"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp1250"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp1251"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp1253"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp1256"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp874"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp936"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "cp949"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "cr (Cree)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "cs (Czech)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "cu (Church)"
 msgstr "-"
 
@@ -4639,11 +4639,11 @@ msgstr "-"
 msgid "cur"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "cv (Chuvash)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "cy (Welsh)"
 msgstr "-"
 
@@ -4651,7 +4651,7 @@ msgstr "-"
 msgid "cze,cs,(Czech)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "da (Danish)"
 msgstr "-"
 
@@ -4659,7 +4659,7 @@ msgstr "-"
 msgid "dan,da,(Danish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "de (German)"
 msgstr "-"
 
@@ -4693,13 +4693,13 @@ msgstr "-"
 
 #: OpenSubtitesForm.form:47
 msgid "donnie darko"
-msgstr "donnie darko"
+msgstr "-"
 
 #: GeneralOptions.form:1317 OpenSubtitesForm.form:52
 msgid "dut,nld,nl (dutch,flemish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "dv (Divehi)"
 msgstr "-"
 
@@ -4719,15 +4719,15 @@ msgstr "-"
 msgid "dvdnav://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "dz (Dzongkha)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ee (Ewe)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "el (Greek)"
 msgstr "-"
 
@@ -4735,7 +4735,7 @@ msgstr "-"
 msgid "ell,el,(Greek)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "en (English)"
 msgstr "-"
 
@@ -4759,7 +4759,7 @@ msgstr "-"
 msgid "eng,en (english)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "eo (Esperanto)"
 msgstr "-"
 
@@ -4771,7 +4771,7 @@ msgstr "-"
 msgid "equalizer"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "es (Spanish)"
 msgstr "-"
 
@@ -4783,19 +4783,19 @@ msgstr "-"
 msgid "est,et,(Estonian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "et (Estonian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "eu (Basque)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "euc-kr"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fa (Persian)"
 msgstr "-"
 
@@ -4811,7 +4811,7 @@ msgstr "-"
 msgid "femon executable"
 msgstr "Eseguibile femon"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ff (Fulah)"
 msgstr "-"
 
@@ -4819,7 +4819,7 @@ msgstr "-"
 msgid "ffmpegdeint - FFmpeg"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fi (Finnish)"
 msgstr "-"
 
@@ -4835,11 +4835,11 @@ msgstr "-"
 msgid "fin,fi (finnish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fj (Fijian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fo (Faroese)"
 msgstr "-"
 
@@ -4855,7 +4855,7 @@ msgstr "Trovato vdpau o vaapi nei driver video opssibili, disabilito tutto i fil
 msgid "fps"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fr (French)"
 msgstr "-"
 
@@ -4871,11 +4871,11 @@ msgstr "-"
 msgid "ftp://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "fy (Frisian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ga (Irish)"
 msgstr "-"
 
@@ -4891,11 +4891,11 @@ msgstr "Gamma per la componente verde (predefinito: 1.0)"
 msgid "gamma for the red component (default: 1.0)"
 msgstr "Gamma per la componente rossa (predefinito: 1.0)"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "gb2312"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "gd (Gaelic)"
 msgstr "-"
 
@@ -4911,7 +4911,7 @@ msgstr "-"
 msgid "gl"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "gl (Galician)"
 msgstr "-"
 
@@ -4923,23 +4923,23 @@ msgstr "-"
 msgid "glg,gl,(Galician)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "gn (Guarani)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "gu (Gujarati)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "gv (Manx)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ha (Hausa)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "he (Hebrew)"
 msgstr "-"
 
@@ -4951,7 +4951,7 @@ msgstr "-"
 msgid "help"
 msgstr "Aiuto"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "hi (Hindi)"
 msgstr "-"
 
@@ -4963,7 +4963,7 @@ msgstr "Valori alti producono maggior deblock"
 msgid "hin,hi,(Hindi)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ho (Hiri)"
 msgstr "-"
 
@@ -4975,7 +4975,7 @@ msgstr "hq - Usa un ridimensionamento di alta qualità, forse lento"
 msgid "hqscaling"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "hr (Croatian)"
 msgstr "-"
 
@@ -4983,7 +4983,7 @@ msgstr "-"
 msgid "hrv,hr,(Croatian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ht (Haitian)"
 msgstr "-"
 
@@ -4999,7 +4999,7 @@ msgstr "-"
 msgid "http_proxy://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "hu (Hungarian)"
 msgstr "-"
 
@@ -5007,15 +5007,15 @@ msgstr "-"
 msgid "hun,hu,(Hungarian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "hy (Armenian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "hz (Herero)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ia (Interlingua)"
 msgstr "-"
 
@@ -5023,23 +5023,23 @@ msgstr "-"
 msgid "ice,is,(Icelandic)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "id (Indonesian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ie (Interlingue)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ig (Igbo)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ii (Sichuan)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ik (Inupiaq)"
 msgstr "-"
 
@@ -5047,11 +5047,11 @@ msgstr "-"
 msgid "ind,id,(Indonesian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "io (Ido)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "is (Icelandic)"
 msgstr "-"
 
@@ -5059,67 +5059,67 @@ msgstr "-"
 msgid "iso files"
 msgstr "file iso"
 
-#: GeneralOptions.form:1280 SubAndOsd.form:413
+#: GeneralOptions.form:1280 SubAndOsd.form:412
 msgid "iso-8859-1"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-10"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-11"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-12"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-13"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-14"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-15"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-2"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-3"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-4"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-5"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-6"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-7"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-8"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "iso-8859-9"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "it (Italian)"
 msgstr "-"
 
@@ -5131,11 +5131,11 @@ msgstr "-"
 msgid "ita,it (italian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "iu (Inuktitut)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ja (Japanese)"
 msgstr "-"
 
@@ -5147,11 +5147,11 @@ msgstr "-"
 msgid "jpn,ja (japanese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "jv (Javanese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ka (Georgian)"
 msgstr "-"
 
@@ -5163,11 +5163,11 @@ msgstr "-"
 msgid "kfmclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kg (Kongo)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ki (Kikuyu)"
 msgstr "-"
 
@@ -5175,35 +5175,35 @@ msgstr "-"
 msgid "kioclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kj (Kuanyama)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kk (Kazakh)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kl (Greenlandic)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "km (Khmer)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kn (Kannada)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ko (Korean)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "koi8-r"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "koi8-u/ru"
 msgstr "-"
 
@@ -5211,35 +5211,35 @@ msgstr "-"
 msgid "kor,ko,(Korean)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kr (Kanuri)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ks (Kashmiri)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ku (Kurdish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kv (Komi)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "kw (Cornish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ky (Kirghiz)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "la (Latin)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "latin2"
 msgstr "-"
 
@@ -5247,15 +5247,15 @@ msgstr "-"
 msgid "lav,lv,(Latvian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lb (Luxembourgish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lg (Ganda)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "li (Limburgan)"
 msgstr "-"
 
@@ -5275,11 +5275,11 @@ msgstr "linipoldeint - interpolazione lineare"
 msgid "lit,lt,(Lithuanian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ln (Lingala)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lo (Lao)"
 msgstr "-"
 
@@ -5303,7 +5303,7 @@ msgstr "Basso=lento"
 msgid "lowpass5 - FIR lowpass"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lt (Lithuanian)"
 msgstr "-"
 
@@ -5311,11 +5311,11 @@ msgstr "-"
 msgid "ltz,lb,(Luxembourgish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lu (Luba-Katanga)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "lv (Latvian)"
 msgstr "-"
 
@@ -5347,23 +5347,23 @@ msgstr "mediandeint - filtro median"
 msgid "mf://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mg (Malagasy)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mh (Marshallese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mi (Maori)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mk (Macedonian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ml (Malayalam)"
 msgstr "-"
 
@@ -5371,11 +5371,11 @@ msgstr "-"
 msgid "mms://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mn (Mongolian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mo (Moldavian)"
 msgstr "-"
 
@@ -5391,7 +5391,7 @@ msgstr "Eseguibile mplayer"
 msgid "mpst://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mr (Marathi)"
 msgstr "-"
 
@@ -5399,15 +5399,15 @@ msgstr "-"
 msgid "ms"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ms (Malay)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "mt (Maltese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "my (Burmese)"
 msgstr "-"
 
@@ -5415,23 +5415,23 @@ msgstr "-"
 msgid "n - Just denoise Chroma"
 msgstr "n - applica denoise alla sola crominanza"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "na (Nauru)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "nd (Ndebele)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ne (Nepali)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ng (Ndonga)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "nl (Dutch)"
 msgstr "-"
 
@@ -5443,11 +5443,11 @@ msgstr "-"
 msgid "nla - use non-linear anamorphic scaling"
 msgstr "nla - Usa un ridimensionamento anamorfico non lineare"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "nn (Norwegian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "no (Norwegian)"
 msgstr "-"
 
@@ -5463,7 +5463,7 @@ msgstr "-"
 msgid "nor,no (norwegian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "nr (Ndebele)"
 msgstr "-"
 
@@ -5471,15 +5471,15 @@ msgstr "-"
 msgid "ntsc - 720x480 (standard NTSC)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "nv (Navajo)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ny (Chichewa)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "oc (Occitan)"
 msgstr "-"
 
@@ -5487,11 +5487,11 @@ msgstr "-"
 msgid "oci,oc,(Occitan)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "oj (Ojibwa)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "om (Oromo)"
 msgstr "-"
 
@@ -5499,15 +5499,15 @@ msgstr "-"
 msgid "only valid for searches"
 msgstr "Valido solo per le ricerche"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "or (Oriya)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "os (Ossetian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "pa (Panjabi)"
 msgstr "-"
 
@@ -5519,11 +5519,11 @@ msgstr "-"
 msgid "per,fa,(Farsi)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "pi (Pali)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "pl (Polish)"
 msgstr "-"
 
@@ -5575,11 +5575,11 @@ msgstr "-"
 msgid "prefer-ipv4"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ps (Pushto)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "pt (Portuguese)"
 msgstr "-"
 
@@ -5607,7 +5607,7 @@ msgstr "qntsc - 352x240 (NTSC quarto di schermo)"
 msgid "qpal - 352x288 (PAL quarter screen)"
 msgstr "qpal - 352x288 (PAL quarto di schermo)"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "qu (Quechua)"
 msgstr "-"
 
@@ -5631,15 +5631,15 @@ msgstr "-"
 msgid "resolution"
 msgstr "risoluzione"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "rm (Romansh)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "rn (Rundi)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ro (Romanian)"
 msgstr "-"
 
@@ -5651,7 +5651,7 @@ msgstr "-"
 msgid "rtsp://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ru (Russian)"
 msgstr "-"
 
@@ -5667,11 +5667,11 @@ msgstr "-"
 msgid "rus,ru (russian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "rw (Kinyarwanda)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sa (Sanskrit)"
 msgstr "-"
 
@@ -5679,7 +5679,7 @@ msgstr "-"
 msgid "samples"
 msgstr "Campioni"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sc (Sardinian)"
 msgstr "-"
 
@@ -5699,7 +5699,7 @@ msgstr "exeguibile scan"
 msgid "scc,sr,(Serbian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sd (Sindhi)"
 msgstr "-"
 
@@ -5707,7 +5707,7 @@ msgstr "-"
 msgid "sdp://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "se (Sami)"
 msgstr "-"
 
@@ -5719,7 +5719,7 @@ msgstr "secondi..."
 msgid "set"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sg (Sango)"
 msgstr "-"
 
@@ -5727,11 +5727,11 @@ msgstr "-"
 msgid "sharpen"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "shift-jis"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "si (Sinhala)"
 msgstr "-"
 
@@ -5739,11 +5739,11 @@ msgstr "-"
 msgid "sin,si,(Sinhalese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sk (Slovak)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sl (Slovenian)"
 msgstr "-"
 
@@ -5755,7 +5755,7 @@ msgstr "-"
 msgid "slv,sl,(Slovenian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sm (Samoan)"
 msgstr "-"
 
@@ -5763,7 +5763,7 @@ msgstr "-"
 msgid "smb://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sn (Shona)"
 msgstr "-"
 
@@ -5771,7 +5771,7 @@ msgstr "-"
 msgid "sntsc - 640x480 (square pixel NTSC)"
 msgstr "sntsc - 640x480 (NTSC a pixel quadrati)"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "so (Somali)"
 msgstr "-"
 
@@ -5791,27 +5791,27 @@ msgstr "spal - 768x576 (PAL a pixel quadrati)"
 msgid "spdif"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sq (Albanian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sr (Serbian)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ss (Swati)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "st (Sotho)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "su (Sundanese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sv (Swedish)"
 msgstr "-"
 
@@ -5819,7 +5819,7 @@ msgstr "-"
 msgid "sv,swe (swedish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "sw (Swahili)"
 msgstr "-"
 
@@ -5831,11 +5831,11 @@ msgstr "-"
 msgid "syr,sy,(Syriac)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ta (Tamil)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "te (Telugu)"
 msgstr "-"
 
@@ -5843,7 +5843,7 @@ msgstr "-"
 msgid "tfp"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tg (Tajik)"
 msgstr "-"
 
@@ -5851,7 +5851,7 @@ msgstr "-"
 msgid "tgl,tl,(Tagalog)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "th (Thai)"
 msgstr "-"
 
@@ -5867,7 +5867,7 @@ msgstr "-"
 msgid "this_week"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ti (Tigrinya)"
 msgstr "-"
 
@@ -5875,19 +5875,19 @@ msgstr "-"
 msgid "tivo://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tk (Turkmen)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tl (Tagalog)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tn (Tswana)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "to (Tonga)"
 msgstr "-"
 
@@ -5899,19 +5899,19 @@ msgstr "-"
 msgid "topLeft Corner"
 msgstr "Angolo superiore sinistro"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tr (Turkish)"
 msgstr "-"
 
 #: OpenSubtitesForm.class:64
 msgid "try also to remove file tags."
-msgstr "Spróbuj również usunąć tagi plików."
+msgstr "Prova anche a rimuovere le tag del file."
 
 #: GeneralOptions.class:188
 msgid "try ipv4 first"
 msgstr "Prova prima IPV4"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ts (Tsonga)"
 msgstr "-"
 
@@ -5919,7 +5919,7 @@ msgstr "-"
 msgid "tsprobe"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tt (Tatar)"
 msgstr "-"
 
@@ -5931,11 +5931,11 @@ msgstr "-"
 msgid "tv://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "tw (Twi)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ty (Tahitian)"
 msgstr "-"
 
@@ -5943,11 +5943,11 @@ msgstr "-"
 msgid "udp://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ug (Uighur)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "uk (Ukrainian)"
 msgstr "-"
 
@@ -5955,7 +5955,7 @@ msgstr "-"
 msgid "ukr,uk,(Ukrainian)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "unicode"
 msgstr "-"
 
@@ -5963,7 +5963,7 @@ msgstr "-"
 msgid "unsv://"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ur (Urdu)"
 msgstr "-"
 
@@ -5975,15 +5975,15 @@ msgstr "-"
 msgid "use"
 msgstr "-"
 
-#: SubAndOsd.form:623
+#: SubAndOsd.form:622
 msgid "user Preference"
 msgstr "Preferenza utente"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "utf-8"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "uz (Uzbek)"
 msgstr "-"
 
@@ -5991,11 +5991,11 @@ msgstr "-"
 msgid "vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau"
 msgstr "vdpau ha bisogno che alcuni codec siano caricati, \nselezionando questa opzione caricherai: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "ve (Venda)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "vi (Vietnamese)"
 msgstr "-"
 
@@ -6007,31 +6007,31 @@ msgstr "-"
 msgid "viewCount"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "wa (Walloon)"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "windows-1250"
 msgstr "-"
 
-#: SubAndOsd.form:426
+#: SubAndOsd.form:425
 msgid "windows-1251"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "wo (Wolof)"
 msgstr "-"
 
-#: SubAndOsd.form:623
+#: SubAndOsd.form:622
 msgid "x11 Preview"
 msgstr "-"
 
-#: SubAndOsd.form:624
+#: SubAndOsd.form:623
 msgid "x11 preview"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "xh (Xhosa)"
 msgstr "-"
 
@@ -6051,11 +6051,11 @@ msgstr "-"
 msgid "xterm -e wget %url -O %destdir/%destfile"
 msgstr "-"
 
-#: SubAndOsd.form:623
+#: SubAndOsd.form:622
 msgid "xv preview"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "xx (use fallback)"
 msgstr "xx (usa il ripiego)"
 
@@ -6063,19 +6063,19 @@ msgstr "xx (usa il ripiego)"
 msgid "y - Just denoise Luma"
 msgstr "y - applica denoise alla sola luminanza"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "yi (Yiddish)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "yo (Yoruba)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "za (Zhuang)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "zh (Chinese)"
 msgstr "-"
 
@@ -6083,7 +6083,7 @@ msgstr "-"
 msgid "zh,chi,zho (chinese)"
 msgstr "-"
 
-#: SubAndOsd.form:412
+#: SubAndOsd.form:411
 msgid "zu (Zulu)"
 msgstr "-"
 

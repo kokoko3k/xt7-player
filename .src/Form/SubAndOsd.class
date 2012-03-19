@@ -148,12 +148,14 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
       If (Trim(AssForceStyle) <> "-ass-force-style") Then OutCmdLine = AssForceStyle
 
     If ScaleCHK.value Then
-      If ForPreview Then
+      'If ForPreview Then
         'scale more to display a true title size
-        AssFontscale = " -ass-font-scale " & ToString(MyScaleslider.Value / 100 * (((Desktop.h / DrawingArea1.h) + (Desktop.w / DrawingArea1.w)) / 2))
-          Else
+        'AssFontscale = " -ass-font-scale " & ToString(MyScaleslider.Value / 100 * (((Desktop.h / DrawingArea1.h) + (Desktop.w / DrawingArea1.w)) / 2))
+        'AssFontscale = " -ass-font-scale " & ToString((MyScaleslider.Value / 100) / (Screen.AvailableWidth / DrawingArea1.w) * 3)
         AssFontscale = " -ass-font-scale " & ToString(MyScaleslider.Value / 100)
-      Endif
+       '   Else
+        'AssFontscale = " -ass-font-scale " & ToString(MyScaleslider.Value / 100)
+      'Endif
       OutCmdLine = OutCmdLine & AssFontScale
     Endif
 
@@ -189,8 +191,10 @@ End
 Public Sub TestBTN_Click()
   Dim AnImage As New Image
   Dim Filename As String
-  Dim MyOptions As String
+  Dim MyOptions, previewoptions As String
+  
   Dim MySrtFile As File
+  
   'If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
   If SubAndOsd.visible Then 'we wanna preview only if the form is visible
     FileName = Temp("SubSrt.srt")
@@ -235,7 +239,8 @@ Public Sub TestBTN_Click()
     mplayer.VoDriver = ChooseDriver()
     mplayer.AoDriver = "-ao null"
     'mplayer.quick = TRUE
-    mplayer.do_play("mf://" & global.confpath & "/SubBackImage*.bmp", MyOptions & " -zoom -osdlevel 3 -vf-add scale -vf-pre scale")
+    'previewoptions = " -ass-force-style PlayresX=1024 -ass-force-style PlayresY=768"
+    mplayer.do_play("mf://" & global.confpath & "/SubBackImage*.bmp", MyOptions & previewoptions & " -zoom -osdlevel 3 -vf-add scale -vf-pre scale")
 
     Me.mouse = Mouse.default
     PreviewDriverCombobox.enabled = True

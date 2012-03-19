@@ -59,7 +59,7 @@
       }
       { FontString Label
         MoveScaled(18,1,26,4)
-        Font = Font["Bitstream Vera Sans,Bold,18"]
+        Font = Font["Bitstream Vera Sans,Bold,14"]
         Expand = True
         Text = ("BitStream Vera Sans")
       }
@@ -257,6 +257,7 @@
         Name = "ScaleCHK"
         MoveScaled(1,1,17,4)
         Text = ("Scale (%)")
+        Value = CheckBox.True
       }
     }
     { SubCpHBox Panel

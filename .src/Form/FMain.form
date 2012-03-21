@@ -112,6 +112,19 @@
       Text = ("Open containing folder")
       Picture = Picture["icon:/16/open"]
     }
+    { MenuSortLibraryPopup Menu
+      Text = ("Sort by")
+      Picture = Picture["icon:/16/sort-ascent"]
+      { MenuLibrarySortByAlbum Menu
+        Text = ("Album")
+      }
+      { MenuLibrarySortByArtist Menu
+        Text = ("Artist")
+      }
+      { MenuLibrarySortByPath Menu
+        Text = ("Path")
+      }
+    }
     { MenuLibraryUpdate_popup Menu
       Text = ("Sync library")
       Picture = Picture["icon:/16/watch"]
@@ -657,7 +670,7 @@
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(0,0,39,59)
+        MoveScaled(1,0,39,59)
         Tag = "1"
         ToolTip = ("Right click to select which tabs to show.")
         Expand = True
@@ -1557,7 +1570,6 @@
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True
-            Border = Border.Sunken
           }
           { ControlPanel Panel
             MoveScaled(8,6,43,4)

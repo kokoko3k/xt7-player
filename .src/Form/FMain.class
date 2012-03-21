@@ -4434,6 +4434,8 @@ Public Sub LibraryGrid_Menu()
   
   MenuLibraryZapSelected.Enabled = (LibraryGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuOpenContainingFolderPopUp.visible = True
+  MenuSortLibraryPopup.enabled = True
+  MenuSortLibraryPopup.visible = True
   MenuOpenContainingFolderPopUp.enabled = MyLibrary.OnlyOneSelected(librarygrid)
   Menupopuplibrary.Popup
   
@@ -8234,4 +8236,29 @@ End
 Public Sub scrollingtimer_Timer()
   scrollingtimer.Stop
   gridscrolling = False
+End
+
+Public Sub MenuLibraryInvertSort_Click()
+
+  
+
+End
+
+Public Sub MenuLibrarySortByAlbum_Click()
+
+  ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Album"], Searchfield.text)
+  
+
+End
+
+Public Sub MenuLibrarySortByArtist_Click()
+
+  ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Artist"], Searchfield.text)
+
+End
+
+Public Sub MenuLibrarySortByPath_Click()
+
+  ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Full Path"], Searchfield.text)
+
 End

@@ -5053,22 +5053,34 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  Dim bigfactor As Integer = 1
  Dim filefound As Boolean = True
  Dim rowpadding As Integer = global.rowpadding
-  
+ Dim prevscrollX As Integer
+ 
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
  
  rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
  
  'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
- If row = hirow Then 
-    bigfactor = BigFactorTable(generaloptions.IconWidthCombobox.text)
+ If (row = hirow) Then 
+    If row <> 0 Then bigfactor = BigFactorTable(generaloptions.IconWidthCombobox.text)
     'rowpadding rowpa
   Else If (mygrid.Rows[row].h <> rowheight) Then 
     bigfactor = 1
  Endif
  
  'mygrid.Rows[row].h = (rowheight * bigfactor) + rowpadding '* bigfactor
- If mygrid.Rows.h <> ((rowheight * bigfactor) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
+'If mygrid.Rows.h <> ((rowheight * bigfactor) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
+  'If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
+  If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight) + rowpadding)
+  If mygrid.Rows[row].h <> ((rowheight * bigfactor) + rowpadding) Then
+    mygrid.Rows[row].h = ((rowheight * bigfactor) + rowpadding)
+    prevscrollx = mygrid.Scrollx
+    mygrid[row, column].EnsureVisible
+    mygrid.scrollx = prevscrollx
+  Endif
+
+
+ 
  'draw an icon (or a cover) on the first column
  If column = 0 Then
    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])

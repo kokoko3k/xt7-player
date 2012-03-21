@@ -1557,6 +1557,7 @@
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True
+            Border = Border.Sunken
           }
           { ControlPanel Panel
             MoveScaled(8,6,43,4)

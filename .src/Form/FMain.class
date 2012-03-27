@@ -1163,7 +1163,6 @@ Public Sub Form_Close()
   Try AddUriForm.hide
   Try AllOptions.hide
   Try AskName.hide
-  Try AudioEqualizer.hide
   Try AudioForm.hide
   Try AudioVideoCodecs.hide
   Try Chains.hide
@@ -1273,7 +1272,6 @@ Public Sub Form_Close()
   Try AddUriForm.close
   Try AllOptions.close
   Try AskName.close
-  Try AudioEqualizer.close
   Try AudioForm.close
   Try AudioVideoCodecs.close
   Try Chains.close
@@ -1587,6 +1585,7 @@ Public Function GetOptionsFromGui() As String
   'or else we'll only get factory defaults values.
     generaloptions.FirstLoadIfNeeded()
     Chains.FirstLoadIfNeeded()
+      'chains.firstloadifneeded will call [afilterscfg,vfilterscfg].firstloadifneeded()
     XConfigureAudioDriver.FirstLoadIfNeeded()
     XConfigureVideoDriver.FirstLoadIfNeeded()
     AudioVideoCodecs.FirstLoadIfNeeded()
@@ -3663,16 +3662,14 @@ Public Sub MenuSaveDefault_Click()
     Endif
   Endif
  
-  ReallySaveAllSettings(global.CurrentProfile, True, True)
-  GetOptionsFromGui()
-  UpdateProfilesTabList()
+  Try ReallySaveAllSettings(global.CurrentProfile, True, True)
+  'GetOptionsFromGui() 'commented because it is called by reallysaveallsettings
   If Error Then Message.Error(("Error while saving default settings"))
+  UpdateProfilesTabList()
 End
 
 Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibraryAndPls As Boolean = True, Optional WithCachedopts As Boolean = True)
   'Dim cachedopts As String
-  
-  Dim obj As Object
   
   
   If (Not global.initearlyformsdone) Then InitEarlyForms()

@@ -7242,13 +7242,12 @@ Public Sub Urlbox_KeyPress()
 End
 
 Public Sub FileView1_Icon(Path As String)
-  
+  Dim iconsize As Integer = FileView1.Font.TextHeight("|èJj")
   If IsDir(path) Then
-    FileView1.icon = stock["16/directory"]
+    FileView1.icon = stock[CStr(iconsize) & "/directory"]
   Else
-    FileView1.icon = covermanager.DefaultLibraryIcon(path)
+    FileView1.icon = covermanager.DefaultLibraryIcon(path, iconsize, True)
   Endif
-  
 End
 
 Public Sub ButtonHome_Click()

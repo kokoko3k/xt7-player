@@ -1007,12 +1007,20 @@ Public Sub thumbnailer_ThumbErrorFor(fullpath As String)
 End
 
 
-Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16) As Picture
+Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Integer = 16, Optional strictsize As Boolean = False) As Picture
   'rowheight -= Shadowoffset
+  'strictsize mean we don't want shadows/padding and so on...
+  Dim localrowpadding As Integer
+  If strictsize Then 
+    localrowpadding = 0
+      Else
+    localrowpadding = global.rowpadding
+  Endif    
+    
   If Global.IsAudioFile(fullpath) Then
-    Return Stock[CStr(rowheight) & "/audio"]
+    Return Stock[CStr(rowheight - localrowpadding) & "/audio"]
   Else If Global.IsVideoFile(fullpath) Then
-    Return Stock[CStr(rowheight - global.rowpadding) & "/video"]
+    Return Stock[CStr(rowheight - localrowpadding) & "/video"]
   Else If Global.IsDvbURI(fullpath) Then
     Return picture["filetypedvb.png"].Image.Stretch(rowheight, rowheight).picture
   Else If FMain.Youtube.IsYoutubeLink(fullpath) Then
@@ -1022,7 +1030,7 @@ Public Function DefaultLibraryIcon(fullpath As String, Optional rowheight As Int
   Else
     Return Stock[rowheight & "/file"]
   Endif
-  
+
 End
 
 

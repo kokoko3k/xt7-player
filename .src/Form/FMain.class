@@ -350,7 +350,7 @@ Public Sub AllInit_Pre()
   If Not (Exist(global.confpath & "/" & "Factory_Defaults.profile")) Then
     'inizializza prma tutto:
     InitEarlyForms()
-    ReallySaveAllSettings("Factory_Defaults", False) 'before loading user settings, make a profile with factory values.
+    ReallySaveAllSettings("Factory_Defaults", False, False) 'before loading user settings, make a profile with factory values.
   Endif
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
   HideGrid(PlaylistGrid)
@@ -1585,6 +1585,7 @@ Public Function GetOptionsFromGui() As String
 
   'we need to load any form which hasn't been loaded yet,
   'or else we'll only get factory defaults values.
+    generaloptions.FirstLoadIfNeeded()
     Chains.FirstLoadIfNeeded()
     XConfigureAudioDriver.FirstLoadIfNeeded()
     XConfigureVideoDriver.FirstLoadIfNeeded()
@@ -3661,15 +3662,19 @@ Public Sub MenuSaveDefault_Click()
       Return
     Endif
   Endif
-  ReallySaveAllSettings(global.CurrentProfile)
+ 
+  ReallySaveAllSettings(global.CurrentProfile, True, True)
   GetOptionsFromGui()
   UpdateProfilesTabList()
   If Error Then Message.Error(("Error while saving default settings"))
 End
 
-Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibraryAndPls As Boolean = True, Optional WithCachedopts As Boolean = False)
-  
+Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibraryAndPls As Boolean = True, Optional WithCachedopts As Boolean = True)
   'Dim cachedopts As String
+  
+  Dim obj As Object
+  
+  
   If (Not global.initearlyformsdone) Then InitEarlyForms()
   If (DestinationProfile = "Factory_Defaults") Then ReLoadCurrentProfile()
   If WithCachedopts Then
@@ -3678,7 +3683,8 @@ Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibr
     cachedopts = cachedopts & " " & mplayer.VoDriver & " " & mplayer.VoAdditionalopts & " " & mplayer.AoAdditionalopts
     cachedopts = cachedopts & " " & mplayer.AVcodecs
   Endif
-  
+
+
   Global.SaveAllSettings(DestinationProfile, WithLibraryAndPls, cachedopts)
   GeneralOptions.SaveWatchDir(global.confpath & "/" & DestinationProfile)
   GeneralOptions.SaveExcludeDir(global.confpath & "/" & DestinationProfile)

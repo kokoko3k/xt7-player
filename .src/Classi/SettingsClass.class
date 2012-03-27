@@ -628,7 +628,6 @@ Public Sub Save(TheForm As Object, FileName As String)
   Endif
   
   For Each TheObject In TheForm.controls
-    
     Try objvalid = (theobject.name <> "")
     If Error Then Return
     If (Not (Object.Type(TheObject) = "Menu")) And (Not Match(TheObject.name, ExcludedValues)) And (Not (theobject Is Separator)) Then

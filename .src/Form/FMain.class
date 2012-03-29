@@ -4458,11 +4458,7 @@ Public Sub Hsplit1_MyRefresh()
 
 End
 
-Public Sub HSplit1_Resize()
-  
-  If Not fmain.fullscreen Then Hsplit1_MyRefresh
-  
-End
+
 
 Public Sub LibraryGrid_Menu()
   
@@ -7845,9 +7841,15 @@ Public Sub FakeSplitRefresh()
 End
 
 Public Sub Fakesplit_MouseUp()
-  
   FakeSplitRefresh()
-  
+End
+
+
+
+Public Sub HSplit1_Resize()
+  fakesplit.hide
+  If Not fmain.fullscreen Then Hsplit1_MyRefresh
+
 End
 
 Public Sub HSplit1_MouseMove()
@@ -7859,9 +7861,9 @@ Public Sub HSplit1_MouseMove()
   fakesplit.x = hsplit1.Layout[0]
   fakesplit.Ignore = True
   fakesplit.x = hsplit1.Layout[0]
-  fakesplit.w = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
-  fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("JIq") - desktop.scale
-  fakesplit.h = hsplit1.h
+  fakesplit.w = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1]) 
+  fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
+  fakesplit.h = hsplit1.h 
   fakesplit.raise
   fakesplit.visible = True
   fakesplit.SetFocus()

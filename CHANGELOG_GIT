@@ -1,7 +1,8 @@
 Git changes:
 --------------------------------------
 Mar 28 2012
- FIX:     Runtime error at start if Excludedirs.txt doesn't exist
+ FIX:     Fakesplitter doesn't work with some qt styles (like oxygen), cosmetic fix
+ FIX:     Runtime error at start if Excludedirs.txt doesn't exists
 
 Mar 27 2012
   FIX:    When saving all forms settings at once, some options were restored to factory defaults

@@ -3,6 +3,7 @@ Git changes:
 Mar 28 2012
  FIX:     Fakesplitter doesn't work with some qt styles (like oxygen), cosmetic fix
  FIX:     Catch network errors when trying to search for covers
+ CHANGE:  replace à,è,é,ì,ò,ù with a,e,e,i,o,u when querying amazon
  
  3.0.1:
  FIX:     Runtime error at start if Excludedirs.txt doesn't exists

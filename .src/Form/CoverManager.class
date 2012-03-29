@@ -35,6 +35,14 @@ Public Sub TextBox1_Click()
   Keyword = Replace(keyword, ",", "%20")
   Keyword = Replace(keyword, ";", "%20")
   Keyword = Replace(keyword, "-", "%20")
+  
+  Keyword = Replace(keyword, "à", "a")
+  Keyword = Replace(keyword, "è", "e")
+  Keyword = Replace(keyword, "é", "e")
+  Keyword = Replace(keyword, "ì", "i")
+  Keyword = Replace(keyword, "ò", "o")
+  Keyword = Replace(keyword, "ù", "u")
+  
   PreRequest = "http://xt7-player.sourceforge.net/xt7forum/hmac.php?keywords=" & Keyword
   Print PreRequest
   HttpClient1.url = PreRequest

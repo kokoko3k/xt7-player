@@ -413,6 +413,7 @@ Public Sub LoadExcludeDir(ProfileName As String)
   Dim ItemList As String[]
   Dim i As Integer
   Try itemlist = Split(file.Load(filename), "\n", "", True)
+  If Error Then Return
   NoParseExcludedListbox.clear
   For i = 0 To ItemList.count - 1
     NoParseExcludedListbox.Add(itemlist[i])
@@ -535,7 +536,7 @@ Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
-  LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
+  Try LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
   TimesLoaded += 1
 End

@@ -69,6 +69,8 @@ disabled il checkbox...
 
 * tenere traccia dell'attuale ordinamento delle righe (serve?)
 
+il parametro sws è inutile a meno che non si usi una scalatura software, quindi
+al più bisogna aggiungere -vf-add scale=1280:-2 (dove 1280 e la larghezza dello schermo)
 ---------------------------------------------------------------------------
 
 

@@ -4097,6 +4097,37 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
 End
 
 Public Sub LibraryGrid_Keypress()
+  ' Dim tmp As Panel
+  ' Dim y As Integer = 0 
+  ' Dim offsetY As Integer = librarygrid.screeny - fmain.screeny
+  ' Dim offsetX As Integer = librarygrid.screenx - fmain.screenx + librarygrid.clientx
+  ' 
+  ' If key.code = key.Esc Then
+  '   
+  ' 
+  '   Debug fmain.ScreenY
+  '   Debug mouse.screeny
+  '   
+  '   
+  '   tmp = New Panel(fmain)
+  '   tmp.visible = False
+  '   tmp.h = 1
+  '   tmp.ignore = True
+  '   tmp.x = offsetx
+  ' 
+  '   tmp.y = offsety '- (librarygrid.clienty Div 2)
+  '   tmp.Background = color.red
+  '   tmp.show
+  '   Wait 0.5
+  '   
+  ' 
+  '   
+  '   
+  '   tmp.y = offsety + librarygrid.ClientHeight + (librarygrid.clienty) ' Div 2) 'y - offsety 'offsety + librarygrid.Height
+  '   Wait 1
+  '   tmp.Delete
+  '   
+  ' Endif
   
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
     Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)

@@ -50,7 +50,11 @@ Public Sub TextBox1_Click()
 
 '   'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
   MyURL = buffer
-  HttpClient1.url = MYURL
+  Try HttpClient1.url = MYURL
+  If Error Then 
+    Message.Error(("Network error"))
+    Return
+  Endif
   HttpClient1.Async = False
   HttpClient1.timeout = 60
   HttpClient1.get

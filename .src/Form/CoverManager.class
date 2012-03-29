@@ -53,13 +53,22 @@ Public Sub TextBox1_Click()
   Try HttpClient1.url = MYURL
   If Error Then 
     Message.Error(("Network error"))
+    textbox1.enabled = True
+    Me.mouse = Mouse.default
+    ButtonLoad.enabled = True
+    Fetching = False
     Return
+
   Endif
   HttpClient1.Async = False
   HttpClient1.timeout = 60
   HttpClient1.get
   If HttpClient1.status < 0 Then
     Debug "Covermanager: HTTP ERROR while contacting Amazon"
+    textbox1.enabled = True
+    Me.mouse = Mouse.default
+    ButtonLoad.enabled = True
+    Fetching = False
     Return
   Endif
   

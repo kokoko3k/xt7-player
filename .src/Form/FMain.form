@@ -536,6 +536,14 @@
       Picture = Picture["icon:/16/erase"]
     }
   }
+  { MenuDvbt Menu
+    Text = ("MenuDvbt")
+    Visible = False
+    { MenuRename Menu
+      Text = ("Rename channel(s)")
+      Picture = Picture["icon:/16/edit"]
+    }
+  }
   { MainToolBar Panel
     MoveScaled(0,0,92,4.5714)
     Arrangement = Arrange.Horizontal

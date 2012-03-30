@@ -4,9 +4,14 @@ Public answer As String = " "
 Private MessageAlreadyShown As Boolean = False
 
 
-Public Function Ask(TheQuestionString As String) As String
+Public Function Ask(TheQuestionString As String, Optional defaultvalue As String = "--1") As String
+ 
   If Not MessageAlreadyShown Then
-    ProfileNameBox.text = ""
+    If defaultvalue <> "--1" Then 
+      ProfileNameBox.text = defaultvalue
+        Else
+      ProfileNameBox.text = ""
+    Endif
     MessageAlreadyShown = True
     answer = " "
     Me.caption = TheQuestionString
@@ -14,7 +19,7 @@ Public Function Ask(TheQuestionString As String) As String
     Me.y = Mouse.screeny - Me.h - 90
     Me.show
     Repeat
-      Wait 0.25
+      Wait 0.1
     Until answer <> " "
     MyQuestion.close
     MyQuestion.hide

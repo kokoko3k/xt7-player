@@ -8300,4 +8300,48 @@ End
 
 Public Sub DVBTGrid_Menu()
   'if i'm alone, then leave me here!
+  menudvbt.Popup
+End
+
+Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Playlistclass, newname As String)
+  Dim fullpath, sep, oldname As String
+  Dim pRow As String
+  Dim i As Integer
+  Try fullpath = myplaylist.ColumnIndex["Full Path"]
+  If Error Then Return
+  
+  sep = myplaylist.TableSeparator
+  oldname = mygrid[myrow, myplaylist.ColumnIndex["Filename"]].text
+  
+
+  'find pRow to update ptable too (other than searchtable)
+  For i = 0 To myplaylist.PTable.count - 1
+    If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then Break
+  Next
+  If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then
+    pRow = i
+      Else
+    Debug "cannot rename, couldn't find searchtable element into ptable (!?)"
+    Return
+  Endif
+
+  myplaylist.SearchTable[myrow] = Replace(myplaylist.PTable[myrow], sep & oldname & sep, sep & newname & sep)
+  myplaylist.ptable[pRow] = myplaylist.SearchTable[myrow]
+
+  
+  mygrid[myrow, 0].Clear
+End
+
+
+Public Sub MenuRename_Click()
+  Dim i As Integer
+  Dim newname As String
+  dvbtgrid.enabled = False
+  For i = 0 To dvbtgrid.Rows.Count - 1 
+    If dvbtgrid.Rows[i].Selected Then
+      newname = MyAskName.Ask(("Rename to:"), dvbtgrid[i, 0].text)
+      RenameGridItem(dvbtgrid, i, MyDVBTList, newname)
+    Endif
+  Next
+  dvbtgrid.enabled = True
 End

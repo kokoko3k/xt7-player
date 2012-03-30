@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+Mar 29 2012
+  CHANGE: Async http client in covermanager (don't block the ui while downloading)
+
+
 Mar 28 2012
  FIX:     Fakesplitter doesn't work with some qt styles (like oxygen), cosmetic fix
  FIX:     Catch network errors when trying to search for covers

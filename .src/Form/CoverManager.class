@@ -17,9 +17,21 @@ Public Function waitforhttp(myhttpclient As HttpClient, timeout As Integer) As B
   Return False
 End
 
+Public Function WebFriendly(keyword As String) As String
+  Keyword = Replace(keyword, ",", "%20")
+  Keyword = Replace(keyword, ";", "%20")
+  Keyword = Replace(keyword, "-", "%20")
+  Keyword = Replace(keyword, "à", "a")
+  Keyword = Replace(keyword, "è", "e")
+  Keyword = Replace(keyword, "é", "e")
+  Keyword = Replace(keyword, "ì", "i")
+  Keyword = Replace(keyword, "ò", "o")
+  Keyword = Replace(keyword, "ù", "u")
+  Return keyword
+End
 
 
-Public Sub GetCoversFromAmazon()
+Public Sub GetCoversFromAmazon(query As String)
   Dim PreRequest As String = ""
   Dim Keyword As String
   Dim MYURL As String
@@ -30,35 +42,12 @@ Public Sub GetCoversFromAmazon()
   Dim timeout As Integer = 1000 ' centisecs
   Dim hastimedout As Boolean = True
 
-
-  Progressbar1.value = 0
-  'Progressbar1.visible = TRUE
-  Progressbar1.h = 24
-
-  HitCancel = False
-  Fetching = True
-  textbox1.enabled = False
-  Me.mouse = Mouse.wait
-  ButtonLoad.enabled = False
-  Coverlist.Clear
-  Coverlist.refresh
-  
-  Wait 0.01
   'Since August, 15, 2009, amazon requires signed requests.
   'I did request signing via an external php page
 
-  Keyword = Chr(34) & Replace(TextBox1.text, " ", "%20") & Chr(34)
-  Keyword = Replace(keyword, ",", "%20")
-  Keyword = Replace(keyword, ";", "%20")
-  Keyword = Replace(keyword, "-", "%20")
-  
-  Keyword = Replace(keyword, "à", "a")
-  Keyword = Replace(keyword, "è", "e")
-  Keyword = Replace(keyword, "é", "e")
-  Keyword = Replace(keyword, "ì", "i")
-  Keyword = Replace(keyword, "ò", "o")
-  Keyword = Replace(keyword, "ù", "u")
-  
+  Keyword = Chr(34) & Replace(query, " ", "%20") & Chr(34)
+  Keyword = WebFriendly(keyword)
+
   PreRequest = "http://xt7-player.sourceforge.net/xt7forum/hmac.php?keywords=" & Keyword
   Print PreRequest
   HttpClient1.url = PreRequest
@@ -73,19 +62,13 @@ Public Sub GetCoversFromAmazon()
     Return
   Endif
   If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
-  'Print buffer
 
-'   'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
+  'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
   MyURL = buffer
   Try HttpClient1.url = MYURL
   If Error Then 
-    Message.Error(("Network error"))
-    textbox1.enabled = True
-    Me.mouse = Mouse.default
-    ButtonLoad.enabled = True
-    Fetching = False
+    MyQuestion.Ask(("Amazon search: Network error"), ("Ok"))
     Return
-
   Endif
   HttpClient1.Async = True
   HttpClient1.timeout = 10
@@ -93,16 +76,11 @@ Public Sub GetCoversFromAmazon()
   HttpClient1.get
   hastimedout = waitforhttp(HttpClient1, timeout)
 
-  
   If ((HttpClient1.status < 0) Or hastimedout) Then
     Debug "Covermanager: HTTP ERROR while contacting Amazon"
-    textbox1.enabled = True
-    Me.mouse = Mouse.default
-    ButtonLoad.enabled = True
-    Fetching = False
     Return
   Endif
-  
+
   If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
   Splitted = Split(buffer, "<", "", True)
   Debug "CoverManaer: Button1_Click(): Check dupes"
@@ -125,46 +103,144 @@ Public Sub GetCoversFromAmazon()
       HttpClient1.get
       timeout = 1000
       hastimedout = waitforhttp(HttpClient1, timeout)
-      
-      Wait 0.01
+
       If ((HttpClient1.status >= 0) And Not (hastimedout)) Then
         tempfile = global.confpath & "/covertmp/temp" & Rnd(0, 999999) & ".jpg"
         If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
         File.Save(tempfile, buffer)
-        MyImage = image.Load(tempfile)
-        IWidth = Myimage.W
-        IHeigth = MyImage.h
-        MyImage = MyImage.Stretch(32, 32)
-        Try Coverlist.Add(tempfile, IWidth & "x" & IHeigth, MyImage.Picture)
+        Try MyImage = image.Load(tempfile)
+        If Not Error Then
+          IWidth = Myimage.W
+          IHeigth = MyImage.h
+          MyImage = MyImage.Stretch(32, 32)
+          Try Coverlist.Add(tempfile, IWidth & "x" & IHeigth, MyImage.Picture)
+        Endif
       Endif
-      Wait 0.01
       i = i + 1
       Progressbar1.value = i / ImagesURL.count
     Endif
   Next 'ImageUrl
   If HitCancel Then Me.close
-  'Progressbar1.visible = FALSE
-  textbox1.enabled = True
-  Me.mouse = Mouse.default
-  If ImagesURL.count = 0 Then Message.Error(("No covers found for:") & "\n" & TextBox1.text & "\n" & ("Try to use less strict terms, remove symbols and so on..."), ("Ok"))
-  ButtonLoad.enabled = True
-  Fetching = False
 End
 
 
-Public Sub OldGetCoversFromAmazon()
-  Dim PreRequest As String = ""
-  Dim Keyword As String
-  Dim MYURL As String
-  Dim buffer, Tempfile, myline, ImageUrl, Iwidth, IHeigth As String
-  Dim Splitted, ImagesURL As New String[]
+Public Sub GetCoversFromGoogle(query As String)
+  Dim baseurl As String = "http://images.google.com/images?q=${QUERY}&svnum=100&hl=en&lr=&safe=off&sa=G&imgsz=${SIZE}&start=${START}"
+  Dim url As String
+  Dim resultfile As String = Temp()
+  Dim result As String
+  Dim resultlines As String[]
+  Dim myline As String
+  Dim mystart, myend, mylen As Integer
+  Dim imgurls As New String[]
+  Dim imgurl As String
+  Dim imgfile As String = Temp()
+  Dim size As String = "medium" '"icon|small|medium|large|xlarge|xxlarge"
+  Dim timeout As Integer = 1000 ' centisecs
+  Dim hastimedout As Boolean = True
+  Dim tempfile, Iwidth, IHeigth As String
   Dim Myimage As New Image
   Dim i As Integer = 0
+  Dim options As String = "&tbs="
+  
+  'query = WebFriendly(query)
+  query = "\"" & Replace(query, " ", "\"+\"") & "\""
+  url = Replace(baseurl, "${QUERY}", query)
+  url = Replace(url, "${SIZE}", size)
+  url = Replace(url, "${START}", "1")
+  
+  
+  'options:
+  'iar:s _ _ _ quadratic pictures only
+  'isz: s _ _ _ small(side length under 400 px)
+  'isz: m _ _ _ medium(side length between 400 And 800 px)
+  'isz: l _ _ _ large(side length over 800 px)
+  'isz: lt, islt: qsvga _ _ _ larger than 400 x300
+  'isz: lt, islt: vga _ _ _ larger than 640 x480
+  'isz: lt, islt: svga _ _ _ larger than 800 x600
+  'isz: lt, islt: xga _ _ _ larger than 1024 x768
+  'isz: ex, iszw: 500, iszh: 500 _ _ _ exact file size(500 x500 In this example)
+  'ift: jpg _ _ _.jpg files only
+  'ift: png _ _ _.png files only
+  'ift: bmp _ _ _.bmp files only
+  'ift: gif _ _ _.gif files only
+  'ift: svg _ _ _.svg files only
+  
+  options &= "iar:s,ift:jpg"
+  url &= options
+  
+  Debug url
+  
+  
+  HttpClient1 = New HttpClient
+  HttpClient1.async = True
+  HttpClient1.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
+  HttpClient1.timeout = 10
+  HttpClient1.async = True
+  HttpClient1.url = url
+  HttpClient1.Get
+  hastimedout = waitforhttp(HttpClient1, timeout)
+  
+  If ((HttpClient1.status < 0) Or hastimedout) Then
+    Message.Error(("Network error"))
+    Return
+  Endif
+  If Lof(HttpClient1) Then Read #HttpClient1, result, Lof(HttpClient1)
 
+  Try resultlines = Split(result, "<", "", True)
+  If Error Then
+    Message.Error(("Ambiguous results"))
+    Return
+  Endif
+  For Each myline In resultlines
+    If myline Like "*href*" Then
+      If myline Like "*.jpg*" Then
+        If myline Like "*http*" Then
+          Debug myline
+          'the final url begins with http and ends with .jpg
+          mystart = InStr(myline, "http", 0)
+          If mystart = 0 Then Break
+          myend = InStr(myline, ".jpg", (mystart + 1)) + 4
+          If myend = 0 Then Break
+          mylen = myend - mystart
+          If mylen < 0 Then Break
+          imgurls.Add(Mid(myline, mystart, mylen))
+        Endif
+      Endif
+    Endif
+  Next
+  
+  If imgurls.count > 0 Then
+    For Each imgurl In imgurls
+      HttpClient1.Async = True
+      HttpClient1.url = imgurl
+      HttpClient1.timeout = 10
+      timeout = 1000
+      tempfile = global.confpath & "/covertmp/temp" & Rnd(0, 999999) & ".jpg"
+      HttpClient1.Get(, tempfile)
+      hastimedout = waitforhttp(HttpClient1, timeout)
+      If ((HttpClient1.status >= 0) And Not (hastimedout)) Then
+        Try MyImage = image.Load(tempfile)
+        If Not Error Then 
+          IWidth = Myimage.W
+          IHeigth = MyImage.h
+          IHeigth = MyImage.h
+          MyImage = MyImage.Stretch(32, 32)
+          Try Coverlist.Add(tempfile, IWidth & "x" & IHeigth, MyImage.Picture)
+        Endif
+      Endif
+      i = i + 1
+      Progressbar1.value = i / imgurls.count
+      If HitCancel Then Me.close
+    Next
+  Endif
+End
+
+
+
+Public Sub Search()
   Progressbar1.value = 0
-  'Progressbar1.visible = TRUE
   Progressbar1.h = 24
-
   HitCancel = False
   Fetching = True
   textbox1.enabled = False
@@ -172,111 +248,15 @@ Public Sub OldGetCoversFromAmazon()
   ButtonLoad.enabled = False
   Coverlist.Clear
   Coverlist.refresh
-  
-  Wait 0.01
-  'Since August, 15, 2009, amazon requires signed requests.
-  'I did request signing via an external php page
 
-  Keyword = Chr(34) & Replace(TextBox1.text, " ", "%20") & Chr(34)
-  Keyword = Replace(keyword, ",", "%20")
-  Keyword = Replace(keyword, ";", "%20")
-  Keyword = Replace(keyword, "-", "%20")
-  
-  Keyword = Replace(keyword, "à", "a")
-  Keyword = Replace(keyword, "è", "e")
-  Keyword = Replace(keyword, "é", "e")
-  Keyword = Replace(keyword, "ì", "i")
-  Keyword = Replace(keyword, "ò", "o")
-  Keyword = Replace(keyword, "ù", "u")
-  
-  PreRequest = "http://xt7-player.sourceforge.net/xt7forum/hmac.php?keywords=" & Keyword
-  Print PreRequest
-  HttpClient1.url = PreRequest
-  HttpClient1.Async = False
-  HttpClient1.timeout = 10
-  HttpClient1.get
-  If HttpClient1.status < 0 Then
-    Debug "Error: Covermanager: Button1_Click() HTTP ERROR Doing Prerequest to signing proxy"
-    Return
-  Endif
-  If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
-  'Print buffer
+  If checkboxamazon.value Then GetCoversFromAmazon(textbox1.text)
+  If checkboxGoogle.value Then GetCoversFromGoogle(textbox1.text)
+  If Coverlist.count = 0 Then Message.Error(("No covers found for:") & "\n" & textbox1.text & "\n" & ("Try to use less strict terms, remove symbols and so on..."), ("Ok"))
 
-'   'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
-  MyURL = buffer
-  Try HttpClient1.url = MYURL
-  If Error Then 
-    Message.Error(("Network error"))
-    textbox1.enabled = True
-    Me.mouse = Mouse.default
-    ButtonLoad.enabled = True
-    Fetching = False
-    Return
-
-  Endif
-  HttpClient1.Async = False
-  HttpClient1.timeout = 60
-  HttpClient1.get
-  If HttpClient1.status < 0 Then
-    Debug "Covermanager: HTTP ERROR while contacting Amazon"
-    textbox1.enabled = True
-    Me.mouse = Mouse.default
-    ButtonLoad.enabled = True
-    Fetching = False
-    Return
-  Endif
-  
-  If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
-  Splitted = Split(buffer, "<", "", True)
-  Debug "CoverManaer: Button1_Click(): Check dupes"
-  For Each myline In Splitted
-    If (myline Like "*http://*") And (myline Like "*.jpg") Then
-      ImageUrl = Split(myline, ">")[1]
-      If ImagesURL.Find(ImageUrl) < 0 Then ImagesURL.Add(ImageUrl)
-    Endif
-    Wait 0.001
-  Next 'myline
-  Try Shell "rm -R " & global.confpath & "/covertmp/* >/dev/null 2>&1" Wait
-  Try Shell "mkdir -p " & global.confpath & "/covertmp/ >/dev/null 2>&1" Wait
-  'PRINT buffer
-  Debug "CoverManaer: Button1_Click(): Start downloading covers Now"
-  For Each ImageUrl In ImagesURL
-    If (Imageurl Like "http://*") And (Not HitCancel) Then
-      HttpClient1.url = ImageUrl
-      HttpClient1.get
-      Wait 0.01
-      If HttpClient1.status >= 0 Then
-        tempfile = global.confpath & "/covertmp/temp" & Rnd(0, 999999) & ".jpg"
-        If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
-        File.Save(tempfile, buffer)
-        MyImage = image.Load(tempfile)
-        IWidth = Myimage.W
-        IHeigth = MyImage.h
-        MyImage = MyImage.Stretch(32, 32)
-        Try Coverlist.Add(tempfile, IWidth & "x" & IHeigth, MyImage.Picture)
-      Endif
-      Wait 0.01
-      i = i + 1
-      Progressbar1.value = i / ImagesURL.count
-    Endif
-  Next 'ImageUrl
-  If HitCancel Then Me.close
-  'Progressbar1.visible = FALSE
   textbox1.enabled = True
   Me.mouse = Mouse.default
-  If ImagesURL.count = 0 Then Message.Error(("No covers found for:") & "\n" & TextBox1.text & "\n" & ("Try to use less strict terms, remove symbols and so on..."), ("Ok"))
   ButtonLoad.enabled = True
   Fetching = False
-End
-
-
-
-
-
-
-
-Public Sub TextBox1_Click()
-  GetCoversFromAmazon()
 End
 
 Public Sub CoverList_Select()
@@ -286,7 +266,7 @@ Public Sub CoverList_Select()
 End
 
 Public Sub TextBox1_Activate()
- textbox1_click()
+ search()
 End
 
 Public Sub Form_Open()
@@ -1005,7 +985,7 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
         Me.show
         Wait 0.1
         If ((Not Exist(Coverfile(ArtistText.text, AlbumText.text))) And Not JustFileCover) Or forcesearch Then
-          textbox1_Click() 'start a fetch
+          search() 'start a fetch
         Endif
       Endif
       JustFileCover = JustFileCover
@@ -1257,3 +1237,7 @@ Public Function keepaspect(img As Image, width As Integer) As Picture
 End
 
  
+
+Public Sub Button1_Click()
+  Search()
+End

@@ -46,18 +46,36 @@
       { VBox1 VBox
         MoveScaled(1,2,24,57)
         Spacing = True
-        { HttpClient1 #HttpClient
+        { VPanel1 HPanel
+          MoveScaled(1,1,22,8)
+          AutoResize = True
+          Spacing = True
+          { CheckboxAmazon CheckBox
+            MoveScaled(0,0,20,3)
+            AutoResize = True
+            Text = ("Amazon")
+            Value = CheckBox.True
+          }
+          { CheckboxGoogle CheckBox
+            MoveScaled(0,3,20,3)
+            AutoResize = True
+            Text = ("Google")
+            Value = CheckBox.True
+          }
         }
         { CoverList ListView
-          MoveScaled(2,1,13,33)
+          MoveScaled(1,10,22,41)
           Expand = True
         }
+        { HttpClient1 #HttpClient
+          #MoveScaled(2,15)
+        }
         { ProgressBar1 ProgressBar
-          MoveScaled(1,36,14,4)
+          MoveScaled(1,52,14,4)
         }
       }
       { VBox3 VBox
-        MoveScaled(26,-3,64,63)
+        MoveScaled(25,-3,64,63)
         Spacing = True
         { PictureBox1 PictureBox
           MoveScaled(4,0,54,57)
@@ -65,9 +83,17 @@
           Expand = True
           Alignment = Align.Center
         }
-        { TextBox1 ButtonBox
-          MoveScaled(1,58,14,4)
-          Picture = Picture["icon:/16/find"]
+        { Panel1 HBox
+          MoveScaled(1,58,58,4)
+          { TextBox1 TextBox
+            MoveScaled(1,0,52,4)
+            Expand = True
+          }
+          { Button1 Button
+            MoveScaled(53,0,5,4)
+            AutoResize = True
+            Picture = Picture["icon:/16/find"]
+          }
         }
       }
     }

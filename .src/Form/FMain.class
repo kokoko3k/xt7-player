@@ -5090,7 +5090,13 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
  
- rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
+ If mygrid.name <> "DVBTGrid" Then
+  rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
+    Else
+  rowheight = dvbtgrid.Font.TextHeight("|")
+  rowheight *= 1.2
+  mygrid.Columns[0].Width = dvbtgrid.Font.TextWidth("0") * 120
+ Endif
  
  'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
  If (row = hirow) Then 
@@ -5123,13 +5129,12 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
 
      If Not myplaylist.ISURI(fullpath) Then
        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
-       mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
-       filefound = False
+         mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
+         filefound = False
+       Endif
      Endif
-
-   Endif
    '---
-     If filefound Then
+     If filefound Or (Lower(fullpath) Like "*dvb*://*") Then
        If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
          If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
            If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
@@ -5145,6 +5150,8 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
        Endif 'user wanted covers
      Endif 'filefound was true
 
+      Else 'for dvbt
+     MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
    Endif
    
  Endif 'column was 0
@@ -8280,20 +8287,17 @@ Public Sub MenuLibraryInvertSort_Click()
 End
 
 Public Sub MenuLibrarySortByAlbum_Click()
-
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Album"], Searchfield.text)
-  
-
 End
 
 Public Sub MenuLibrarySortByArtist_Click()
-
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Artist"], Searchfield.text)
-
 End
 
 Public Sub MenuLibrarySortByPath_Click()
-
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Full Path"], Searchfield.text)
+End
 
+Public Sub DVBTGrid_Menu()
+  'if i'm alone, then leave me here!
 End

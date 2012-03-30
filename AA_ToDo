@@ -72,11 +72,7 @@ disabled il checkbox...
 il parametro sws è inutile a meno che non si usi una scalatura software, quindi
 al più bisogna aggiungere -vf-add scale=1280:-2 (dove 1280 e la larghezza dello schermo)
 
-scorporare la ricerca delle cover tramite amazon,
-  renderla più leggera usando cicli e wait con controllo (cfr quello che fai con os.org)
-  aggiungere una combobox per cercare anche con google
-  aggiungere la ricerca con google (cfr programma di prova)
-
+filesize nella gridview dev'essere un long per evitare overflow
 ---------------------------------------------------------------------------
 
 

@@ -1140,7 +1140,8 @@ Public Sub Form_Close()
   
   Dim i As Integer
   Dim MySettings As New SettingsClass
-
+  
+  If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
 
   Try Unlock hLock
   Repeat
@@ -1560,6 +1561,8 @@ End
 
 
 Public Sub ButtonStop_Click()
+  If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
+
   buttoncapture.enabled = False
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
@@ -3044,6 +3047,7 @@ Public Sub OneSecTimer_Timer()
       SubNotSet = True
       If (Not Userstopped) And (Shutdown = "MEDIA") Then CountDown.engage
       EndOfMediaReached = True
+      If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
       buttoncapture.enabled = False
       VEqHasBeenSet = False
       IsDvd = False
@@ -8399,7 +8403,7 @@ Private Sub StopDumping(destfile As String)
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
-
+  Ismp3 = Ismp3 And mplayer.AudioOnly
   
   If ismp3 Then 
     destfile &= ".mp3"
@@ -8413,6 +8417,7 @@ Private Sub StopDumping(destfile As String)
   mymsg = Replace(mymsg, "$(destfile)", destfile)
   mymsg &= ("\n\nYou can configure the paths in Generaloptions -> dvb-t")
   Message.Info(mymsg)
+  buttoncapture.value = 0
   Try myplaylist.AddFile(playlistgrid, destfile, False)
 End
 

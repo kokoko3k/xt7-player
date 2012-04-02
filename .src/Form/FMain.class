@@ -2365,10 +2365,16 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   otheroptions = otheroptions & " " & SetRightCache()
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
+  'initialvolume
+  If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
+  OtherOptions = otheroptions & " " & " -volume " & lastvolume
   
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
     OtherOptions = OtherOptions & "-dvd-device " & "\"" & dvd_device & "\" "
   Endif
+  
+  
+  
   
   firstplay = False
   mplayer.CurrentOptions = OtherOptions
@@ -2870,9 +2876,8 @@ Public Sub UpdateStatusBar()
   AudioForm.UpdateLength(PostText)
 End
 
-
+Private lastvolume As String = -2 'remember the exit volume so that we can set it when opening new medias
 Public Sub UpdateVolumeSlider()
-  
   Dim tmp As String
   Dim newvolume As Integer
   'DEBUG "asking for volume level..."
@@ -2882,10 +2887,12 @@ Public Sub UpdateVolumeSlider()
   Try newvolume = Left(tmp, InStr(tmp, ".") - 1)
   If newvolume = 0 Then
     Try newvolume = Left(tmp, InStr(tmp, ",") - 1)
+    If Error Then Return
   Endif
   Try SaveVolumeSlider.Value = newvolume Div 4
+  If Error Then Return
   SaveVolumeSlider.tag = "user"
-
+  lastvolume = newvolume
 End
 
 Public Sub UpdateStreamsMenu()

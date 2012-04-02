@@ -1584,50 +1584,50 @@
             Font = Font["6"]
             AutoResize = True
             { ButtonOpen ToolButton
-              MoveScaled(3,0,4.4286,4)
+              MoveScaled(1,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Open a file...")
               Picture = Picture["icon:/22/open"]
             }
             { ButtonPrev ToolButton
-              MoveScaled(7,0,4.4286,4)
+              MoveScaled(6,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Previous media")
               Picture = Picture["media-skip-backward.png"]
             }
             { ButtonRew ToolButton
-              MoveScaled(12,0,4.4286,4)
+              MoveScaled(10,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Slowdown")
               Picture = Picture["media-seek-backward.png"]
             }
             { ButtonPlay ToolButton
-              MoveScaled(16,0,4,4)
+              MoveScaled(14,0,4,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"
               Picture = Picture["media-playback-start.png"]
             }
             { ButtonStop ToolButton
-              MoveScaled(21,0,4.4286,4)
+              MoveScaled(18,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
             { Buttonfwd ToolButton
-              MoveScaled(26,0,4.4286,4)
+              MoveScaled(23,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
             { ButtonNext ToolButton
-              MoveScaled(31,0,4,4)
+              MoveScaled(28,0,4,4)
               Font = Font["6"]
               ToolTip = ("Next media")
               Picture = Picture["media-skip-forward.png"]
             }
             { PanScan Button
-              MoveScaled(36,0,5,4)
+              MoveScaled(38,0,5,4)
               Font = Font["6"]
               ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
               Picture = Picture["icon:/medium/zoom-in"]

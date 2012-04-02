@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Apr 02 2012
+  NEW:    Use the last volume level as the initial volume for new media
   FIX:    hitting cancel when renaming dvb channels resulted into an empty name, fixed.
   FIX:    Explicitely set libtag_c version 0 for distro that don't make libtag_c.so -> .so.0 symlinks
   FIX:    Use full paths to mark uncovered files

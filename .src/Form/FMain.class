@@ -8339,7 +8339,7 @@ Public Sub MenuRename_Click()
   dvbtgrid.enabled = False
   For i = 0 To dvbtgrid.Rows.Count - 1 
     If dvbtgrid.Rows[i].Selected Then
-      newname = MyAskName.Ask(("Rename to:"), dvbtgrid[i, 0].text)
+      newname = MyAskName.Ask(("Rename to:"), dvbtgrid[i, 0].text, False)
       RenameGridItem(dvbtgrid, i, MyDVBTList, newname)
     Endif
   Next

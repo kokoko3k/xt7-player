@@ -1563,7 +1563,7 @@
         }
       }
       { BottomVbox VBox
-        MoveScaled(0,47,71,15)
+        MoveScaled(0,46,71,15)
         Background = Color.Background
         { cachebar ProgressBar
           MoveScaled(1,0,54,1.5714)
@@ -1601,27 +1601,35 @@
               ToolTip = ("Slowdown")
               Picture = Picture["media-seek-backward.png"]
             }
+            { ButtonCapture ToggleButton
+              MoveScaled(15,0,5,4)
+              Enabled = False
+              Font = Font["6"]
+              ToolTip = ("Capture the playing stream.\nIt will work only you are playing mpeg files.")
+              Picture = Picture["media-record.png"]
+              Border = False
+            }
             { ButtonPlay ToolButton
-              MoveScaled(14,0,4,4)
+              MoveScaled(19,0,5,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"
               Picture = Picture["media-playback-start.png"]
             }
             { ButtonStop ToolButton
-              MoveScaled(18,0,4.4286,4)
+              MoveScaled(25,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
             { Buttonfwd ToolButton
-              MoveScaled(23,0,4.4286,4)
+              MoveScaled(29,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
             { ButtonNext ToolButton
-              MoveScaled(28,0,4,4)
+              MoveScaled(34,0,4,4)
               Font = Font["6"]
               ToolTip = ("Next media")
               Picture = Picture["media-skip-forward.png"]

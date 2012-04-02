@@ -562,7 +562,7 @@ End
 
 Private mplayeroptions As String = ""
 
-Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "") As Boolean
+Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg") As Boolean
 
   CurrentCache = "0"
   mplayeroptions = options
@@ -616,6 +616,12 @@ Public Function do_play(filename As String, options As String, Optional restart 
       commandline = commandline & " -vf-clr "
       Debug ""
       Debug ""
+    Endif
+    
+    If commandline Like "*-dumpfile *" Then
+      Debug "-dumpfile option found in the command line, you will not be able to dump streams"
+        Else
+      commandline = commandline & " -capture -dumpfile " & dumpfile
     Endif
     
     

@@ -1,6 +1,8 @@
 Git changes:
 --------------------------------------
 Apr 02 2012
+  NEW:    Allow to capture in realtime any mpeg muxed media (useful for dvbt://*)
+  FIX:    media tooltips in playlist now works correctly
   NEW:    Use the last volume level as the initial volume for new media
   FIX:    hitting cancel when renaming dvb channels resulted into an empty name, fixed.
   FIX:    Explicitely set libtag_c version 0 for distro that don't make libtag_c.so -> .so.0 symlinks

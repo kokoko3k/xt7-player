@@ -710,26 +710,14 @@ Private Sub InitGenresTag()
   tagbox5.add("Vocal")
 End
 
-Public Sub SetStyle_early()
-  
+Public Sub ArrangeCpl(NumButtonsCPL As Integer)
+ Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
   Dim TheObject As Object
-  Dim ButtonWovr, ButtonHovr, PaddingOvr, NumButtonsCPL, NumButtonsZoom As Integer
-  Dim h1, h2, h3 As String
-  
-  cachebar.h = (fmain.font.textHeight("iJ") Div 2)
-  If desktop.Height > 600 Then
-    Maintoolbar.h = 32
-  Else
-    Maintoolbar.h = 24
-  Endif
-  'Set font size AND stile OF the whole form; beware the AudioForm!
-  
   'fix bottom panel for high sized fonts
   '---------------------------------------------------------------------------
    ButtonWovr = 36 '36
    ButtonHovr = 36 '36
    PaddingOvr = 5 '5
-   NumButtonsCPL = 8 '7
    
    theobject = buttonopen
    theobject.x = 0
@@ -747,9 +735,28 @@ Public Sub SetStyle_early()
    ControlPanel.y = SliderBox.y + SliderBox.h
    controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
    Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
-
    
   '---------------------------------------------------------------------------
+End
+
+
+
+Public Sub SetStyle_early()
+  
+  Dim TheObject As Object
+ 
+  Dim h1, h2, h3 As String
+  
+  cachebar.h = (fmain.font.textHeight("iJ") Div 2)
+  If desktop.Height > 600 Then
+    Maintoolbar.h = 32
+  Else
+    Maintoolbar.h = 24
+  Endif
+  'Set font size AND stile OF the whole form; beware the AudioForm!
+  
+  ArrangeCpl(9)
+
   
   If audioform.AudioPanel.parent = Rightsidepanel Then
     If (Not mplayer.ProcessRunningOvr()) Then ShowAudioPanel(False) 
@@ -1553,7 +1560,7 @@ End
 
 
 Public Sub ButtonStop_Click()
-  
+  buttoncapture.enabled = False
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
   UserStopped = True
@@ -2289,14 +2296,19 @@ End
 
 Public needytcookie As Boolean = False
 
-Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean
-  
+Private dumpfile As String
+Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
   Dim prevtabindex As Integer = Leftsidetabs.index
   Dim SelectedRow As Integer
   Dim MkvSubsWorkaround As Boolean
   Dim cookieopts As String = ""
   Dim cachingbox As MovieBox 'show an animation while caching...
+  Dim ismp3 As Boolean = False
   Wait
+
+  generaloptions.FirstLoadIfNeeded() 'we need the temporary directory to store captured streams
+  dumpfile = generaloptions.dvbtmpdir.text & "/" & "xt7.dumpfile.ts"
+  
   myopensubs.clear 
   If fullpath = "" Then 
     Debug "Nothing to play :/"
@@ -2402,7 +2414,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   OneSecTimer.start
   If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
     
-  If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts) Then
+  If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts, dumpfile) Then
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
     Endif
@@ -2473,6 +2485,17 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   LogWindow.ShowLogs()
 
   videobox.cached = True
+  
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
+  
+  
+  buttoncapture.enabled = (Lower(mplayer.Media_Type) Like "*mpeg*")  'all mpeg demuxed files (ts,ps..)
+  buttoncapture.enabled = buttoncapture.enabled Or (Lower(mplayer.Media_FullPath_Playing) Like "*dvb*://*") 'all dvb channels
+  buttoncapture.enabled = buttoncapture.enabled Or (mplayer.AudioOnly And ismp3) 'all audio only mp3s
+  
+  
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
   cachingbox.delete
   global.ResetApplyBtnColor()
@@ -3021,6 +3044,7 @@ Public Sub OneSecTimer_Timer()
       SubNotSet = True
       If (Not Userstopped) And (Shutdown = "MEDIA") Then CountDown.engage
       EndOfMediaReached = True
+      buttoncapture.enabled = False
       VEqHasBeenSet = False
       IsDvd = False
       customtitle = ""
@@ -8076,7 +8100,7 @@ Public Sub SearchLabel_Click()
     Searchfields.show
 End
 
-Public Function maketooltip(mypath As String) As String
+Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary As Playlistclass) As String
   Dim r As Integer
   Dim album, myyear, genre, artist, title, track, length, vcodec, width, height, vkbps, fps, acodec, arate, akbps, channels, comment, path As String
   Dim m As String = ""
@@ -8085,6 +8109,7 @@ Public Function maketooltip(mypath As String) As String
   Dim Maxw As Integer = 0
   Dim sep As Integer 
   Dim tmp As String
+  
   
   Try r = mylibrary.FindRowByPath(LibraryGrid, mypath) 
   If Error Then Return
@@ -8225,7 +8250,7 @@ Public Function pixelspaces(width As Integer, singlewidth As Integer) As String
 End
 
 
-Public Sub ShowGridTooltipIn(mygrid As Gridview)
+Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Dim currentpath As String
   Dim popupmsg As String
   Dim scrollx As Integer
@@ -8245,7 +8270,7 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview)
     Return
   Endif
   Application.ShowTooltips = Buttonshowtooltips.value
-  Try popupmsg = maketooltip(currentpath)
+  Try popupmsg = maketooltip(currentpath, mygrid, myplaylist)
   mygrid.tooltip = popupmsg
 End
 
@@ -8257,7 +8282,7 @@ Public Sub LibraryGrid_MouseMove()
     Try librarygrid[hirow, 0].clear
   Endif
    If Not (Buttonshowtooltips.value) Then Return
-   ShowGridTooltipIn(librarygrid)
+   ShowGridTooltipIn(librarygrid, mylibrary)
 End
 
 Public Sub PlaylistGrid_MouseMove()
@@ -8266,7 +8291,7 @@ Public Sub PlaylistGrid_MouseMove()
     Try playlistgrid[hirow, 0].clear
   Endif
   If Not (Buttonshowtooltips.value) Then Return
-  ShowGridTooltipIn(playlistgrid)
+  ShowGridTooltipIn(playlistgrid, myplaylist)
 End
 
 
@@ -8351,4 +8376,53 @@ Public Sub MenuRename_Click()
     Endif
   Next
   dvbtgrid.enabled = True
+End
+
+
+Public Sub Startdumping()
+  mplayer.Send("capturing") 'enable
+End
+
+Private Sub StopDumping(destfile As String)
+  Dim mymsg As String
+  Dim mynow As String = Now()
+  Dim ismp3 As Boolean = False
+  mynow = Replace(mynow, "/", "-")
+  mynow = Replace(mynow, " ", "_")
+  
+  mplayer.Send("capturing 0") 'disable
+  If Trim(destfile) = "" Then destfile = User.Home
+  destfile &= "/Xt7.REC."
+  destfile &= file.Name(mplayer.Media_FullPath_Playing) & "-" & mynow
+  destfile = Replace(destfile, ".pls", "")
+  
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
+  Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
+
+  
+  If ismp3 Then 
+    destfile &= ".mp3"
+      Else
+    destfile &= ".ts"
+  Endif
+  
+  Shell "mv " & dumpfile & " " & destfile
+  mymsg = (("Moving $(dumpfile) \nTo: \n$(destfile)"))
+  mymsg = Replace(mymsg, "$(dumpfile)", dumpfile)
+  mymsg = Replace(mymsg, "$(destfile)", destfile)
+  mymsg &= ("\n\nYou can configure the paths in Generaloptions -> dvb-t")
+  Message.Info(mymsg)
+  Try myplaylist.AddFile(playlistgrid, destfile, False)
+End
+
+Public Sub ButtonCapture_Click()
+  If mplayer.ProcessRunningOvr() Then
+    If Last.value Then
+      'StopDumping(generaloptions.dvbfinaldir.text)
+      Startdumping()
+        Else
+      StopDumping(generaloptions.dvbfinaldir.text)
+    Endif
+  Endif
 End

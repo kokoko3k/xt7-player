@@ -408,8 +408,8 @@
             Text = ("Please, choose")
           }
           { CDDADeviceOpen ToolButton
-            MoveScaled(43,0,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
+            MoveScaled(43,0,4,4)
+            Picture = Picture["icon:/small/open"]
           }
         }
         { NoParse25 HBox
@@ -451,7 +451,7 @@
       Index = 5
       Text = ("DVD")
       { ScrollView7 ScrollView
-        MoveScaled(1,3,50,44)
+        MoveScaled(1,3,57,47)
         Tag = "dvd"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -473,8 +473,8 @@
             Text = ("Please, choose")
           }
           { DvdDeviceOpen2 ToolButton
-            MoveScaled(43,0,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
+            MoveScaled(43,0,4,4)
+            Picture = Picture["icon:/small/open"]
           }
         }
         { NoParse24 HBox
@@ -683,7 +683,7 @@
       Index = 7
       Text = ("DVB-T")
       { ScrollView11 ScrollView
-        MoveScaled(1,4,56,50)
+        MoveScaled(1,5,56,50)
         Tag = "dvb-t"
         ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer Option: -tsprobe <byte position>")
         Expand = True
@@ -707,8 +707,8 @@
             Text = ("scan")
           }
           { ScanExeOpen ToolButton
-            MoveScaled(38,0,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
+            MoveScaled(38,0,4,4)
+            Picture = Picture["icon:/small/open"]
           }
         }
         { NoParse37 HBox
@@ -727,15 +727,54 @@
             Text = ("femon")
           }
           { FemonExeOpen ToolButton
-            MoveScaled(38,0,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
+            MoveScaled(38,0,4,4)
+            Picture = Picture["icon:/small/open"]
+          }
+        }
+        { NoParse1 HBox
+          MoveScaled(0,9,50,4)
+          ToolTip = ("Temporary recording folder")
+          Spacing = True
+          { NoParseLabel2 Label
+            MoveScaled(1,1,22,3)
+            AutoResize = True
+            Text = ("Temporary recording folder")
+          }
+          { dvbtmpdir TextBox
+            MoveScaled(24,0,19,3)
+            ToolTip = ("Select your femon executable.\nJust write 'femon' for default.")
+            Expand = True
+            Text = ("/tmp/")
+          }
+          { dvbtmpdirbtn ToolButton
+            MoveScaled(45,0,4,4)
+            Picture = Picture["icon:/small/open"]
+          }
+        }
+        { NoParse48 HBox
+          MoveScaled(0,13,50,4)
+          ToolTip = ("Temporary recording folder")
+          Spacing = True
+          { NoParseLabel3 Label
+            MoveScaled(1,1,22,3)
+            AutoResize = True
+            Text = ("Final recording folder")
+          }
+          { dvbfinaldir TextBox
+            MoveScaled(24,0,19,3)
+            ToolTip = ("Select your femon executable.\nJust write 'femon' for default.")
+            Expand = True
+          }
+          { dvbtmpdirbtn2 ToolButton
+            MoveScaled(45,0,4,4)
+            Picture = Picture["icon:/small/open"]
           }
         }
         { NOPARSESEP3 Separator
-          MoveScaled(3,9,48,1)
+          MoveScaled(4,17,48,1)
         }
         { NoParse38 HBox
-          MoveScaled(0,13,50,4)
+          MoveScaled(1,18,50,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
           { dvbtCacheCheckbox CheckBox notifyobj
@@ -756,7 +795,7 @@
           }
         }
         { NoParse39 HBox
-          MoveScaled(0,17,50,4)
+          MoveScaled(1,23,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
           { dvbtminCacheCheckbox CheckBox notifyobj
@@ -783,7 +822,7 @@
           }
         }
         { NOPARSEHbox3 HBox
-          MoveScaled(0,22,54,4)
+          MoveScaled(0,28,54,4)
           ToolTip = ("It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#")
           Spacing = True
           { LabelCard Label
@@ -798,7 +837,7 @@
           }
         }
         { NOPARSEHbox4 HBox
-          MoveScaled(0,28,54,4)
+          MoveScaled(0,33,54,4)
           ToolTip = ("How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n")
           Spacing = True
           { LabelCard2 Label
@@ -814,7 +853,7 @@
           }
         }
         { NOPARSEHbox5 HBox
-          MoveScaled(0,33,54,4)
+          MoveScaled(0,37,54,4)
           ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n")
           Spacing = True
           { tsprobechk CheckBox notifyobj
@@ -830,7 +869,7 @@
           }
         }
         { NOPARSESEP4 Separator
-          MoveScaled(3,39,50,1)
+          MoveScaled(3,42,50,1)
         }
         { NOPARSESCANBTN Button
           MoveScaled(1,43,52,5)
@@ -938,8 +977,8 @@
             Text = ("mplayer")
           }
           { MplayerExeOpen ToolButton
-            MoveScaled(38,1,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
+            MoveScaled(38,1,4,4)
+            Picture = Picture["icon:/small/open"]
           }
         }
         { NoParse5 HBox

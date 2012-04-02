@@ -793,6 +793,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/toSaveImg]
 Geometry=[0,41,344,344]
 
+[DebugWindow/uncovered]
+Geometry=[664,142,359,803]
+
 [DebugWindow/urlfmt]
 Geometry=[0,0,1148,344]
 
@@ -829,11 +832,11 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-Active=1
-File[1]="CHANGELOG_GIT:36.59"
+File[1]="CHANGELOG_GIT:17.67"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:8335.3"
+Active=4
+File[4]=".src/Form/FMain.class:2366.62"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
 File[7]=".src/Form/GeneralOptions.form"
@@ -846,15 +849,15 @@ File[13]=".src/Classi/FlashClass.class:142.13"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"
 File[16]=".src/0_Moduli/Global.module:312.70"
-File[17]=".src/Classi/SettingsClass.class:630.0"
+File[17]=".src/Classi/SettingsClass.class:14.70"
 File[18]=".src/Form/RealtimeForm.form"
 File[19]=".src/Form/RealtimeForm.class:114.36"
 File[20]=".src/Form/ChooseAspect.form"
 File[21]=".src/Form/ChooseAspect.class:32.25"
 File[22]=".src/Form/DVBTuner.form"
-File[23]=".src/Classi/TagLib.class:16.33"
-File[24]=".src/Form/CoverManager.class:67.27"
-File[25]=".src/Classi/PlaylistClass.class:608.8"
+File[23]=".src/Classi/TagLib.class:42.41"
+File[24]=".src/Form/CoverManager.class:523.34"
+File[25]=".src/Classi/PlaylistClass.class:679.30"
 File[26]=".src/Form/CoverManager.form"
 File[27]="amarok_random.png"
 File[28]=".src/Form/OverlayTrayTip.class:52.12"
@@ -898,7 +901,7 @@ File[65]=".src/Classi/VSlider.class:30.0"
 File[66]=".src/Form/HotKeys.class:642.2"
 File[67]=".src/Form/Chains.class:69.0"
 File[68]=".hidden/CHANGELOG:0.0"
-File[69]=".src/Form/MyAskName.class:19.11"
+File[69]=".src/Form/MyAskName.class:58.38"
 Count=69
 
 [Watches]

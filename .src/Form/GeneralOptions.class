@@ -981,3 +981,29 @@ Public Sub NoParseStyle3_Enter()
      IconWidthCombobox_Click()
 
 End
+
+Public Sub dvbtmpdirbtn_Click()
+  Dim expat As String = Dialog.Path
+  expat = Dialog.path
+  Dialog.path = dvbtmpdir.text
+  If Not (Dialog.SelectDirectory()) Then
+    dvbtmpdir.text = Dialog.Path
+  Endif
+  Dialog.path = expat
+End
+
+
+Public Sub dvbtmpdirbtn2_Click()
+  Dim tmp As String[]
+  Dim expat As String = Dialog.Path
+  tmp = Dialog.filter
+  Dialog.filter = ["*.*;*", "femon executable"]
+  Dialog.path = "/usr"
+  If Not (Dialog.OpenFile()) Then
+    dvbfinaldir.text = Dialog.Path
+  Endif
+  Dialog.filter = tmp
+  Dialog.path = expat
+  
+
+End

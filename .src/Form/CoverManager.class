@@ -503,13 +503,13 @@ End
 
 Public Function IsUncovered(fullpath As String) As Boolean
   If Not UncoveredInitialized Then UncoveredInit()
-  Return Uncovered.Exist(file.Name(fullpath))
+  Return Uncovered.Exist(fullpath) '(file.Name(fullpath))
 End
 
 Public Sub MarkUncovered(fullpath As String)
   Dim newfilename As String
   Dim tmppic As Picture
-  If (Uncovered.Find(fullpath) = -1) Then Uncovered.Add(file.Name(fullpath))
+  If (Uncovered.Find(fullpath) = -1) Then Uncovered.Add(fullpath) 'Uncovered.Add(file.Name(fullpath))
 End
 
 Public Sub UnMarkUncovered(fullpath As String)

@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Apr 02 2012
+  FIX:    Use full paths to mark uncovered files
+
 Mar 29 2012
   CHANGE: Async http client in covermanager (don't block the ui while downloading)
   NEW:    Added google image search to cover providers

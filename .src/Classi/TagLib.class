@@ -6,36 +6,36 @@
 ' all parameter has to be in utf-8
 
 'file i/o
-  Private Extern taglib_file_new(filename As String) As Pointer In "libtag_c"           'open the file
-  Private Extern taglib_file_is_valid(TagLibFileP As Pointer) As Boolean In "libtag_c"  'check if file is ok
-  Private Extern taglib_file_save(TagLibFileP As Pointer) As Boolean In "libtag_c"      'save the file
-  Private Extern taglib_file_free(TagLibFileP As Pointer) In "libtag_c"                 'close the file  
-  Private Extern taglib_set_strings_unicode(unicode As Boolean) In "libtag_c"           'false=use iso-8859-1
+  Private Extern taglib_file_new(filename As String) As Pointer In "libtag_c:0"           'open the file
+  Private Extern taglib_file_is_valid(TagLibFileP As Pointer) As Boolean In "libtag_c:0"  'check if file is ok
+  Private Extern taglib_file_save(TagLibFileP As Pointer) As Boolean In "libtag_c:0"      'save the file
+  Private Extern taglib_file_free(TagLibFileP As Pointer) In "libtag_c:0"                 'close the file  
+  Private Extern taglib_set_strings_unicode(unicode As Boolean) In "libtag_c:0"           'false=use iso-8859-1
 'Get tag functions
-  Private Extern taglib_file_tag(TagLibFileP As Pointer) As Pointer In "libtag_c"             'returns a pointer to tags
-  Private Extern taglib_tag_title(TagLibTagP As Pointer) As String In "libtag_c"
-  Private Extern taglib_tag_artist(TagLibTagP As Pointer) As String In "libtag_c"
-  Private Extern taglib_tag_album(TagLibTagP As Pointer) As String In "libtag_c"
-  Private Extern taglib_tag_comment(TagLibTagP As Pointer) As String In "libtag_c"
-  Private Extern taglib_tag_genre(TagLibTagP As Pointer) As String In "libtag_c"
-  Private Extern taglib_tag_year(TagLibTagP As Pointer) As Integer In "libtag_c"
-  Private Extern taglib_tag_track(TagLibTagP As Pointer) As Integer In "libtag_c"
+  Private Extern taglib_file_tag(TagLibFileP As Pointer) As Pointer In "libtag_c:0"             'returns a pointer to tags
+  Private Extern taglib_tag_title(TagLibTagP As Pointer) As String In "libtag_c:0"
+  Private Extern taglib_tag_artist(TagLibTagP As Pointer) As String In "libtag_c:0"
+  Private Extern taglib_tag_album(TagLibTagP As Pointer) As String In "libtag_c:0"
+  Private Extern taglib_tag_comment(TagLibTagP As Pointer) As String In "libtag_c:0"
+  Private Extern taglib_tag_genre(TagLibTagP As Pointer) As String In "libtag_c:0"
+  Private Extern taglib_tag_year(TagLibTagP As Pointer) As Integer In "libtag_c:0"
+  Private Extern taglib_tag_track(TagLibTagP As Pointer) As Integer In "libtag_c:0"
 
 'Set tag functions
-  Private Extern taglib_tag_set_title(TagLibTagP As Pointer, title As String) In "libtag_c"
-  Private Extern taglib_tag_set_artist(TagLibTagP As Pointer, artist As String) In "libtag_c"
-  Private Extern taglib_tag_set_album(TagLibTagP As Pointer, album As String) In "libtag_c"
-  Private Extern taglib_tag_set_comment(TagLibTagP As Pointer, comment As String) In "libtag_c"
-  Private Extern taglib_tag_set_genre(TagLibTagP As Pointer, genre As String) In "libtag_c"
-  Private Extern taglib_tag_set_year(TagLibTagP As Pointer, MyYear As Integer) In "libtag_c"
-  Private Extern taglib_tag_set_track(TagLibTagP As Pointer, track As Integer) In "libtag_c"
+  Private Extern taglib_tag_set_title(TagLibTagP As Pointer, title As String) In "libtag_c:0"
+  Private Extern taglib_tag_set_artist(TagLibTagP As Pointer, artist As String) In "libtag_c:0"
+  Private Extern taglib_tag_set_album(TagLibTagP As Pointer, album As String) In "libtag_c:0"
+  Private Extern taglib_tag_set_comment(TagLibTagP As Pointer, comment As String) In "libtag_c:0"
+  Private Extern taglib_tag_set_genre(TagLibTagP As Pointer, genre As String) In "libtag_c:0"
+  Private Extern taglib_tag_set_year(TagLibTagP As Pointer, MyYear As Integer) In "libtag_c:0"
+  Private Extern taglib_tag_set_track(TagLibTagP As Pointer, track As Integer) In "libtag_c:0"
 
 'Get audio propeties functions
-  Private Extern taglib_file_audioproperties(TagLibFileP As Pointer) As Pointer In "libtag_c" 'returns a pointer to audio properties
-  Private Extern taglib_audioproperties_length(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c"
-  Private Extern taglib_audioproperties_bitrate(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c"
-  Private Extern taglib_audioproperties_samplerate(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c"
-  Private Extern taglib_audioproperties_channels(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c"
+  Private Extern taglib_file_audioproperties(TagLibFileP As Pointer) As Pointer In "libtag_c:0" 'returns a pointer to audio properties
+  Private Extern taglib_audioproperties_length(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c:0"
+  Private Extern taglib_audioproperties_bitrate(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c:0"
+  Private Extern taglib_audioproperties_samplerate(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c:0"
+  Private Extern taglib_audioproperties_channels(TagLibAudioPropertiesP As Pointer) As Integer In "libtag_c:0"
 
 
 Private TagLibFileP As Pointer

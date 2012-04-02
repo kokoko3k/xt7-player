@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Apr 02 2012
+  FIX:    Explicitely set libtag_c version 0 for distro that don't make libtag_c.so -> .so.0 symlinks
   FIX:    Use full paths to mark uncovered files
 
 Mar 29 2012

@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Apr 02 2012
+  FIX:    Avoid overflows when displaying filesize
   FIX:    Save capturing stream on stop and on exit too
   NEW:    Allow to capture in realtime any mpeg muxed media (useful for dvbt://*)
   FIX:    media tooltips in playlist now works correctly

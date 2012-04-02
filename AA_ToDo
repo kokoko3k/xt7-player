@@ -73,6 +73,13 @@ il parametro sws è inutile a meno che non si usi una scalatura software, quindi
 al più bisogna aggiungere -vf-add scale=1280:-2 (dove 1280 e la larghezza dello schermo)
 
 filesize nella gridview dev'essere un long per evitare overflow
+
+Covers inside the album folder are not supported (yet?), but embedded jpg covers are.
+
+** Album view:
+  (on double click) a popup message showing the tracks and asking if you want to append the album to the playlist.
+  -a tooltip showing the tracks when you hover it with the mouse pointer?
+**
 ---------------------------------------------------------------------------
 
 

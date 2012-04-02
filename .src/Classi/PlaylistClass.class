@@ -953,7 +953,7 @@ End
 Private Sub makenewrow(librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String)  
   Dim nr As String 'newrow
   Dim ts As String = TableSeparator
-  Dim filesize As Integer = 0
+  Dim filesize As Long = 0
 
   If track = 0 Then track = ""
   If myYear = 0 Then myYear = ""

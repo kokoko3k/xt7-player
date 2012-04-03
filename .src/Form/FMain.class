@@ -2308,7 +2308,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
-
+  generaloptions.Init()
   generaloptions.FirstLoadIfNeeded() 'we need the temporary directory to store captured streams
   dumpfile = generaloptions.dvbtmpdir.text & "/" & "xt7.dumpfile.ts"
   

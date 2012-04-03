@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Apr 03 2012
+  FIX:    Regression: call generaloptions.init() before loading it
+
 Apr 02 2012
   FIX:    Avoid overflows when displaying filesize
   FIX:    Save capturing stream on stop and on exit too

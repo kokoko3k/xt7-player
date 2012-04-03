@@ -8393,13 +8393,13 @@ Private Sub StopDumping(destfile As String)
   Dim ismp3 As Boolean = False
   mynow = Replace(mynow, "/", "-")
   mynow = Replace(mynow, " ", "_")
+  mynow = Replace(mynow, ":", ".")
   
   mplayer.Send("capturing 0") 'disable
   If Trim(destfile) = "" Then destfile = User.Home
   destfile &= "/Xt7.REC."
   destfile &= file.Name(mplayer.Media_FullPath_Playing) & "-" & mynow
   destfile = Replace(destfile, ".pls", "")
-  
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
@@ -8410,8 +8410,8 @@ Private Sub StopDumping(destfile As String)
       Else
     destfile &= ".ts"
   Endif
-  
-  Shell "mv " & dumpfile & " " & destfile
+  Debug "mv " & dumpfile & " " & Shell(destfile)
+  Shell "mv " & dumpfile & " " & Shell(destfile)
   mymsg = (("Moving $(dumpfile) \nTo: \n$(destfile)"))
   mymsg = Replace(mymsg, "$(dumpfile)", dumpfile)
   mymsg = Replace(mymsg, "$(destfile)", destfile)

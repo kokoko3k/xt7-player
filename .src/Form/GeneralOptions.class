@@ -994,16 +994,15 @@ End
 
 
 Public Sub dvbtmpdirbtn2_Click()
-  Dim tmp As String[]
   Dim expat As String = Dialog.Path
-  tmp = Dialog.filter
-  Dialog.filter = ["*.*;*", "femon executable"]
-  Dialog.path = "/usr"
-  If Not (Dialog.OpenFile()) Then
+  expat = Dialog.path
+  If Trim(dvbfinaldir.text) <> "" Then 
+    Dialog.path = dvbfinaldir.text
+      Else
+    Dialog.path = User.home
+  Endif
+  If Not (Dialog.SelectDirectory()) Then
     dvbfinaldir.text = Dialog.Path
   Endif
-  Dialog.filter = tmp
   Dialog.path = expat
-  
-
 End

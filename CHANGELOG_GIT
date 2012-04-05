@@ -1,5 +1,10 @@
 Git changes:
 --------------------------------------
+Apr 05 2012
+  CHANGE: Avoid volume=0 as softvol has issues with it
+  FIX:    Make sure user typed option are always appended to the end of command line
+
+
 Apr 03 2012
   FIX:    Regression: call generaloptions.init() before loading it
 

@@ -2379,16 +2379,16 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'If global.initlatelyformsdone Then otheroptions = otheroptions & " " & SetRightCache()
   otheroptions = otheroptions & " " & SetRightCache()
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
-  OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
   'initialvolume
   If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
+  If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0
   OtherOptions = otheroptions & " " & " -volume " & lastvolume
   
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
     OtherOptions = OtherOptions & "-dvd-device " & "\"" & dvd_device & "\" "
   Endif
   
-  
+   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
   
   
   firstplay = False
@@ -3199,7 +3199,7 @@ End
 Public Sub SaveVolumeSlider_Change()
   OneSecTimer.delay = OneSecTimer.delay * 100
   If Not (SaveVolumeSlider.tag = "timer") Then
-    mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue))
+    mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue) + 1) 'don't allow volume=0 as it has problems with softvol
     If VolumeFocused Then UpdateVolumeTooltip()
   Endif
   OneSecTimer.delay = OneSecTimer.delay Div 100

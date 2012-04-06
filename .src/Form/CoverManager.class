@@ -491,7 +491,9 @@ Public Sub flushUncoveredFile()
   For Each myitem In Uncovered
     tmp &= myitem & "\n"
   Next
-  file.Save(uncoveredfile, tmp)
+  If (Uncovered.count > 0 And Len(tmp) > 1) Then
+    file.Save(uncoveredfile, tmp)
+  Endif
 End
 
 

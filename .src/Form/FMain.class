@@ -927,7 +927,7 @@ Public Sub MainInit()
         Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
         Debug "To recreate the cache file, simply reload the profile"
      Endif
-  Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
+  'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
   If Application.Args.count >= 2 Then
     If alreadyrunning Then
       'try to play the file to the running xt7-player:

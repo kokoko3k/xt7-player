@@ -8260,8 +8260,13 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Dim scrollx As Integer
   Dim scrolly As Integer
   Dim crow, ccolumn As Integer
-  
-  If Rnd(0, 5) > 1 Then Return 'just process one event out of 5
+  Dim msx, msy As Integer
+
+  msx = mouse.screenx
+  msy = mouse.ScreenY
+  Wait 0.01
+  If ((msx <> mouse.screenx) Or (msy <> mouse.ScreenY)) Then Return 'mouse is moving
+
   Try crow = mygrid.RowAt(mouse.screeny - mygrid.screeny)
   If ( Error Or (crow = -1)) Then 
     Application.ShowTooltips = False

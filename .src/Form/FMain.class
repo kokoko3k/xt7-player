@@ -8261,7 +8261,7 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Dim scrolly As Integer
   Dim crow, ccolumn As Integer
   Dim msx, msy As Integer
-
+  If mouse.left Or mouse.right Or mouse.middle Then Return
   msx = mouse.screenx
   msy = mouse.ScreenY
   Wait 0.01

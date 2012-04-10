@@ -6274,8 +6274,10 @@ Public Sub UpdateProfilesTabList()
   
   ProfilesListBox.clear
   For Each profilename In Dir(global.confpath & "/", "*.profile")
-    If Stat(global.confpath & "/" & profilename, True).type = gb.Directory Then
-      ProfilesListBox.Add(Split(profilename, ".")[0])
+    If Exist(global.confpath & "/" & profilename, True) Then
+      If Stat(global.confpath & "/" & profilename, True).type = gb.Directory Then
+        ProfilesListBox.Add(Split(profilename, ".")[0])
+      Endif
     Endif
   Next
   ProfilesListBox.sorted = True

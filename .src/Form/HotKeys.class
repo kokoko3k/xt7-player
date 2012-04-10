@@ -427,37 +427,44 @@ Public Sub LoadHotKeys(ProfileName As String)
   DefaultFill()
   
   'Local Hotkeys
-  HotFile = Open filename For Read
-  For c = 0 To HotKeysGrid.Columns.Count - 1
-    For r = 0 To HotKeysGrid.Rows.Count - 1
-      HotKeysGrid[R, C].text = Read #HotFile As String
-      'Expand the column
-      w1 = HotKeysGrid.Columns[c].width
-      ' [GB2:FNTW] w2 = HotKeysGrid.Font.TextWidth(HotKeysGrid[r, c].Text)
-      w2 = HotKeysGrid.Font.TextWidth(HotKeysGrid[r, c].Text)
-      If w1 < w2 Then
-        HotKeysGrid.Columns[c].width = w2 + 8
-      Endif
-    Next 'r
-  Next 'c
-  Close #HotFile
+  If Exist(filename) Then 
+    If Stat(filename, True).size > 0 Then
+        HotFile = Open filename For Read
+        For c = 0 To HotKeysGrid.Columns.Count - 1
+          For r = 0 To HotKeysGrid.Rows.Count - 1
+            HotKeysGrid[R, C].text = Read #HotFile As String
+            'Expand the column
+            w1 = HotKeysGrid.Columns[c].width
+            ' [GB2:FNTW] w2 = HotKeysGrid.Font.TextWidth(HotKeysGrid[r, c].Text)
+            w2 = HotKeysGrid.Font.TextWidth(HotKeysGrid[r, c].Text)
+            If w1 < w2 Then
+              HotKeysGrid.Columns[c].width = w2 + 8
+            Endif
+          Next 'r
+        Next 'c
+        Close #HotFile
+    Endif
+  Endif
   
   'Global Hotkeys grid:
-    GlobalHotFile = Open Globalfilename For Read
-    For c = 0 To GlobalHotKeysGrid.Columns.Count - 1
-      For r = 0 To GlobalHotKeysGrid.Rows.Count - 1
-        GlobalHotKeysGrid[R, C].text = Read #GlobalHotFile As String
-        'Expand the column
-        w1 = GlobalHotKeysGrid.Columns[c].width
-        ' [GB2:FNTW] w2 = GlobalHotKeysGrid.Font.TextWidth(GlobalHotKeysGrid[r, c].Text)
-        w2 = GlobalHotKeysGrid.Font.TextWidth(GlobalHotKeysGrid[r, c].Text)
-        If w1 < w2 Then
-          GlobalHotKeysGrid.Columns[c].width = w2 + 8
-        Endif
-      Next 'r
-    Next 'c
-    Close #GlobalHotFile
-    
+   If Exist(filename) Then 
+    If Stat(filename, True).size > 0 Then
+      GlobalHotFile = Open Globalfilename For Read
+      For c = 0 To GlobalHotKeysGrid.Columns.Count - 1
+        For r = 0 To GlobalHotKeysGrid.Rows.Count - 1
+          GlobalHotKeysGrid[R, C].text = Read #GlobalHotFile As String
+          'Expand the column
+          w1 = GlobalHotKeysGrid.Columns[c].width
+          ' [GB2:FNTW] w2 = GlobalHotKeysGrid.Font.TextWidth(GlobalHotKeysGrid[r, c].Text)
+          w2 = GlobalHotKeysGrid.Font.TextWidth(GlobalHotKeysGrid[r, c].Text)
+          If w1 < w2 Then
+            GlobalHotKeysGrid.Columns[c].width = w2 + 8
+          Endif
+        Next 'r
+      Next 'c
+      Close #GlobalHotFile
+    Endif
+   Endif
     RestartXbindKeys(xbindkeysfilename)
 End
 

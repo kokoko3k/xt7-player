@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+Apr 10 2012
+  FIX:    Segmentation fault with gambas 3.1 fixed
+
+
 Apr 06 2012
   FIX:    Don't allow uncovered.txt to be 0 bytes (temporary fix) 
   FIX:    Spare cpu cycles when the pointer moves into the grid with active tooltips

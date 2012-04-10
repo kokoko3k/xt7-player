@@ -4742,8 +4742,8 @@ End
 Private prevHigLibRow As Integer = -1
 
 Public Sub LibraryGrid_Select()
-  
   Dim HowMany As Integer
+  Wait
   HowMany = MyLibrary.HowManySelected(librarygrid)
   If howmany > 1 Then
     LibrarySelInfo.visible = True
@@ -4771,8 +4771,8 @@ Private movingitems As Boolean = False
 Public Sub PlayListGrid_Select()
   
   Dim HowMany As Integer
-  
   If Movingitems Then Return 'spare cpu cycles when changing playlist items order
+  Wait
   HowMany = MyPlaylist.HowManySelected(playlistgrid)
   If howmany > 0 Then
     PlayListSelInfoBox.visible = True

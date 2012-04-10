@@ -5,6 +5,7 @@ Apr 10 2012
   FIX:    Possible runtime error when a profile wasn't found
   FIX:    Changed gridview code to be compatible with gambas3.1
   FIX:    Hotkeysgrid now has correct row height
+  FIX:    Keep the gui more reactive when selecting items in a huge library
 
 Apr 06 2012
   FIX:    Don't allow uncovered.txt to be 0 bytes (temporary fix) 

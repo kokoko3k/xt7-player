@@ -496,17 +496,13 @@ Public Function SelectRandom(LibraryGrid As GridView) As Integer
     'if we got a new successful roll, remember it!
     If timeout > 0 Then RandomArray.Add(random)
   Endif
-  ' PRINT "current array:"
-  ' FOR i = 0 TO RandomArray.count - 1
-  '   PRINT RandomArray[i]
-  ' NEXT 'i
-  ' PRINT "last random= " & random
   Return random
 End
 
 Public Sub SelectNext(LibraryGrid As GridView, Optional random As Boolean = False)
   'will return false if we reached the end, true if the next has been selected.
   Dim NextRandom As Integer = 0
+  librarygrid.rows[librarygrid.row].selected = False
   Try AlreadyPlayedString.Push(librarygrid[librarygrid.row, Columnindex["Full Path"]].text)
   If Random Then
     NextRandom = SelectRandom(LibraryGrid)
@@ -520,6 +516,7 @@ Public Sub SelectNext(LibraryGrid As GridView, Optional random As Boolean = Fals
       Global.IsNextSelected = True
     Endif
   Endif
+  librarygrid.rows[librarygrid.row].selected = True
 End
 
 Public Function FindRowByPath(LibraryGrid As GridView, path As String) As Integer
@@ -535,6 +532,7 @@ End
 
 Public Sub SelectPrev(LibraryGrid As Gridview)
   Dim previouspath As String
+  librarygrid.rows[librarygrid.row].selected = False
   Try previouspath = LibraryGrid[LibraryGrid.row, Columnindex["Full Path"]].text
   'first, try to play the prevoiusly played item:
   Try LibraryGrid.row = FindRowByPath(librarygrid, AlreadyPlayedString.Pop())
@@ -549,7 +547,9 @@ Public Sub SelectPrev(LibraryGrid As Gridview)
       Try LibraryGrid.row = LibraryGrid.row - 1
     Endif
   Endif
+  librarygrid.rows[librarygrid.row].selected = True
 End
+
 
 Public Sub clear(myplaylist As GridView)
  Ptable.Remove(0, ptable.count)

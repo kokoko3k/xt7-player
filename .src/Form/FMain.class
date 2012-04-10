@@ -2806,9 +2806,13 @@ Public Sub VideoAreaGroup_Drop()
     Play("dvd://")
   Endif
   If TabSelectedLibrary() Then
+    Try librarygrid.rows[librarygrid.row].Selected = False
     Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, droppedfile)
+    Try librarygrid.rows[librarygrid.row].Selected = True
       Else If TabSelectedPlaylist() Then 
+        Try playlistgrid.rows[playlistgrid.row].Selected = False
         Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, droppedfile)
+        Try playlistgrid.rows[playlistgrid.row].Selected = True
   Endif
   
 End
@@ -4990,6 +4994,7 @@ Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
     playlistgrid.Rows[targetrow + i].text = ClipboardRows[totalrows - i]
   Next 'i
   ClipboardRows.clear
+  
   playlistgrid.row = targetrow
   playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   
@@ -5529,10 +5534,14 @@ Public Sub ExecuteRemote(command As String)
     Endif
       Play(parameter)
       If TabSelectedLibrary() Then
+        Try librarygrid.rows[librarygrid.row].Selected = False
         Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, parameter)
-        Return
-     Endif
-    If TabSelectedPlaylist() Then Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, parameter)
+        Try librarygrid.rows[librarygrid.row].Selected = True
+          Else If TabSelectedPlaylist() Then 
+            Try playlistgrid.rows[playlistgrid.row].Selected = False
+            Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, parameter)
+            Try playlistgrid.rows[playlistgrid.row].Selected = True
+        Endif
   Endif
 End
 
@@ -6884,7 +6893,7 @@ Public Sub ShoutCastTreeaddtoplaylist_Click()
 End
 
 Public Sub CDDANext()
-  
+  Try cddagrid.Rows[cddagrid.row].selected = False  
   If cddagrid.row = (cddagrid.Rows.count - 1) Then
     Try cddagrid.row = 0
     Global.IsNextSelected = False
@@ -6892,19 +6901,19 @@ Public Sub CDDANext()
     Try cddagrid.row = cddagrid.row + 1
     Global.IsNextSelected = True
   Endif
+  Try cddagrid.Rows[cddagrid.row].selected = True
   Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
-  
 End
 
 Public Sub CDDAPrev()
-  
+  Try cddagrid.Rows[cddagrid.row].selected = False  
   If cddagrid.row = 0 Then
     Try cddagrid.row = (cddagrid.Rows.count - 1)
   Else
     Try cddagrid.row = cddagrid.row - 1
   Endif
+  Try cddagrid.Rows[cddagrid.row].selected = True
   Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
-  
 End
 
 Public Function PopupCddaError() As Boolean
@@ -6980,7 +6989,9 @@ Public Sub MenuCDDA_Click()
     If fmain.TogglePls.value = True Then fmain.TogglePls.value = False
   Endif
   
+  Try cddagrid.Rows[cddagrid.row].selected = False
   Try cddagrid.row = 0
+  Try cddagrid.Rows[cddagrid.row].selected = True
   fmain.mouse = mouse.normal
   
 End
@@ -8539,8 +8550,3 @@ Public Sub ButtonCapture_Click()
   Endif
 End
 
-Public Sub PlaylistGrid_ColumnResize(Column As Integer)
-
-  
-
-End

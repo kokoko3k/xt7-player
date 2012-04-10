@@ -2,6 +2,8 @@
 
 Public Fetching As Boolean = False
 Public HitCancel As Boolean = False
+Public ForceStop As Boolean = False
+
 
 Public JustFileCover As Boolean = False
 Public MediaFileFullPath As String
@@ -12,6 +14,9 @@ Public Function waitforhttp(myhttpclient As HttpClient, timeout As Integer) As B
   While (timeout > 0) And ((myhttpclient.status = Net.connecting) Or (myhttpclient.status = Net.ReceivingData))
     Wait 0.01
     timeout -= 1
+    If forcestop Then 
+      Return 
+    Endif
   Wend
   If timeout = 0 Then Return True
   Return False
@@ -56,6 +61,9 @@ Public Sub GetCoversFromAmazon(query As String)
   HttpClient1.get
   
   hastimedout = waitforhttp(HttpClient1, timeout)
+  If forcestop Then 
+    Return 
+  Endif
   
   If ((HttpClient1.status < 0) Or hastimedout) Then
     Debug "Error: Covermanager: Button1_Click() HTTP ERROR Doing Prerequest to signing proxy"
@@ -75,6 +83,9 @@ Public Sub GetCoversFromAmazon(query As String)
   timeout = 1000
   HttpClient1.get
   hastimedout = waitforhttp(HttpClient1, timeout)
+  If forcestop Then 
+    Return 
+  Endif
 
   If ((HttpClient1.status < 0) Or hastimedout) Then
     Debug "Covermanager: HTTP ERROR while contacting Amazon"
@@ -90,6 +101,9 @@ Public Sub GetCoversFromAmazon(query As String)
       If ImagesURL.Find(ImageUrl) < 0 Then ImagesURL.Add(ImageUrl)
     Endif
     Wait 0.001
+    If forcestop Then 
+      Return 
+    Endif
   Next 'myline
   Try Shell "rm -R " & global.confpath & "/covertmp/* >/dev/null 2>&1" Wait
   Try Shell "mkdir -p " & global.confpath & "/covertmp/ >/dev/null 2>&1" Wait
@@ -103,6 +117,9 @@ Public Sub GetCoversFromAmazon(query As String)
       HttpClient1.get
       timeout = 1000
       hastimedout = waitforhttp(HttpClient1, timeout)
+      If forcestop Then 
+        Return 
+      Endif
 
       If ((HttpClient1.status >= 0) And Not (hastimedout)) Then
         tempfile = global.confpath & "/covertmp/temp" & Rnd(0, 999999) & ".jpg"
@@ -118,6 +135,9 @@ Public Sub GetCoversFromAmazon(query As String)
       Endif
       i = i + 1
       Progressbar1.value = i / ImagesURL.count
+    Endif
+    If forcestop Then 
+      Return 
     Endif
   Next 'ImageUrl
   If HitCancel Then Me.close
@@ -180,7 +200,9 @@ Public Sub GetCoversFromGoogle(query As String)
   HttpClient1.url = url
   HttpClient1.Get
   hastimedout = waitforhttp(HttpClient1, timeout)
-  
+  If forcestop Then 
+    Return 
+  Endif
   If ((HttpClient1.status < 0) Or hastimedout) Then
     Message.Error(("Network error"))
     Return
@@ -208,6 +230,9 @@ Public Sub GetCoversFromGoogle(query As String)
         Endif
       Endif
     Endif
+    If forcestop Then 
+      Return 
+    Endif
   Next
   
   If imgurls.count > 0 Then
@@ -219,6 +244,9 @@ Public Sub GetCoversFromGoogle(query As String)
       tempfile = global.confpath & "/covertmp/temp" & Rnd(0, 999999) & ".jpg"
       HttpClient1.Get(, tempfile)
       hastimedout = waitforhttp(HttpClient1, timeout)
+      If forcestop Then 
+        Return 
+      Endif
       If ((HttpClient1.status >= 0) And Not (hastimedout)) Then
         Try MyImage = image.Load(tempfile)
         If Not Error Then 
@@ -232,18 +260,36 @@ Public Sub GetCoversFromGoogle(query As String)
       i = i + 1
       Progressbar1.value = i / imgurls.count
       If HitCancel Then Me.close
+      If forcestop Then Return
     Next
+    If forcestop Then 
+      Return 
+    Endif
   Endif
 End
 
 
 
 Public Sub Search()
+
+  Dim timeout As Integer = 10
+
+  If CoverManager.fetching Then
+    'CoverManager.HitCancel = True
+    forcestop = True
+    Repeat
+      Wait 0.1
+      timeout = timeout - 1
+    Until (CoverManager.fetching = False) Or (timeout = 0)
+  Endif
+
+
   Progressbar1.value = 0
   Progressbar1.h = 24
   HitCancel = False
+  forcestop = False
   Fetching = True
-  textbox1.enabled = False
+  'textbox1.enabled = False
   Me.mouse = Mouse.wait
   ButtonLoad.enabled = False
   Coverlist.Clear
@@ -253,7 +299,7 @@ Public Sub Search()
   If checkboxGoogle.value Then GetCoversFromGoogle(textbox1.text)
   If Coverlist.count = 0 Then Message.Error(("No covers found for:") & "\n" & textbox1.text & "\n" & ("Try to use less strict terms, remove symbols and so on..."), ("Ok"))
 
-  textbox1.enabled = True
+  'textbox1.enabled = True
   Me.mouse = Mouse.default
   ButtonLoad.enabled = True
   Fetching = False
@@ -869,6 +915,7 @@ End
 
 Public Sub ButtonCancel_Click()
   HitCancel = True
+  forcestop = True
   Me.close
 End
 
@@ -938,20 +985,11 @@ Public Sub Form_Close()
 End
 
 Public Sub SetACover(fullpath As String, artist As String, album As String, Optional forcesearch As Boolean = False)
-  
-  Dim timeout As Integer = 15 ' how much to wait for the other fetch to finish
   Dim tmpmessage As String
   Dim JustFileCover As Boolean = False 'are we going to set a cover for just this file?
   Dim tl As New TagLib
   
-  If CoverManager.fetching Then
-    CoverManager.HitCancel = True
-    Repeat
-      Wait 0.1
-      timeout = timeout - 1
-    Until (CoverManager.fetching = False) Or (timeout = 0)
-  Endif
-  
+  Me.show
   If Upper(FullPath) Like "*.FLAC" Then
     If (Trim(Artist) = "") And (Trim(Album) = "") Then
       tl.init(FullPath)
@@ -967,10 +1005,7 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
     Message.Info(("Artist Or Album tag information are required to set a cover") & tmpmessage, ("Ok"))
   Endif
   progressbar1.value = 0
-  If fetching Then
-    Message.Info(("Another cover search is in progress, please wait for it to finish!"), "Ok")
-    Return
-  Endif
+
 
     If Not global.IsVideoFile(fullpath) Then
       If (ArtistText.text & AlbumText.text) <> Trim(Artist) & Trim(Album) Then
@@ -984,15 +1019,15 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
         'picturebox1.picture = AudioForm.CoverBox.Picture
         Try Picturebox1.picture = picture.Load(coverfile(artist, album, fullpath))
         picturebox1.refresh
-        Me.show
+        'Me.show
         Wait 0.1
         If ((Not Exist(Coverfile(ArtistText.text, AlbumText.text))) And Not JustFileCover) Or forcesearch Then
-          search() 'start a fetch
+          Try search() 'start a fetch
         Endif
       Endif
       JustFileCover = JustFileCover
       MediaFileFullPath = FullPath
-      Me.show
+      'Me.show
     Endif
 End
 
@@ -1241,5 +1276,5 @@ End
  
 
 Public Sub Button1_Click()
-  Search()
+  Try Search()
 End

@@ -132,7 +132,9 @@ Public Function UpdateGrid() As Boolean
         ' Grid[Grid.Rows.count - 1, 2].background = Grid.background
     Endif
   Next 'FlashFile
+  Grid.rows[Grid.row].selected = False
   Grid.row = LastSelected
+  Grid.rows[Grid.row].selected = True
 
   'At the end, CatchedFlashes and libraryGrid Has to be in sync:
   CatchedFlashes.clear

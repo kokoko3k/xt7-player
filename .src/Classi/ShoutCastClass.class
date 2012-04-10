@@ -260,20 +260,24 @@ Public Sub Select_PrevTreeItem(MyTree As Treeview)
 End
 
 Public Sub Select_PrevGridItem(mygrid As Gridview)
+  mygrid.rows[mygrid.row].Selected = False
   If mygrid.row = 0 Then
     mygrid.row = mygrid.Rows.count - 1
       Else
     MyGrid.row = mygrid.row - 1
   Endif
+  mygrid.rows[mygrid.row].Selected = True
   Wait 0.1 'needed for grid select event to fill new mplayer.media_fullpath,maybe tunable
 End
 
 Public Sub Select_NextGridItem(mygrid As Gridview)
+  mygrid.rows[mygrid.row].Selected = False
   If mygrid.row = mygrid.Rows.count - 1 Then
     mygrid.row = 0
       Else
     MyGrid.row = mygrid.row + 1
   Endif
+  mygrid.rows[mygrid.row].Selected = True
   Wait 0.1 'needed for grid select event to fill new mplayer.media_fullpath,maybe tunable
 End
 

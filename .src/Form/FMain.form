@@ -698,22 +698,31 @@
           Text = ("Label3")
         }
         { WaitPanel TextLabel
-          MoveScaled(17,1,37,4)
+          MoveScaled(13,1,37,4)
           Visible = False
           Background = Color.TextBackground
           Expand = True
           Alignment = Align.Center
           Border = Border.Raised
         }
-        { LibraryGrid GridView
-          MoveScaled(2,9,36,25)
-          Tracking = True
-          ToolTip = ("Drag'n drop files, folders or media links to add them,")
-          Drop = True
+        { Panel2 Panel
+          MoveScaled(0,8,37,26)
+          Background = Color.TextBackground
           Expand = True
-          Mode = Select.Multiple
-          Grid = False
-          Header = GridView.Horizontal
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { LibraryGrid GridView
+            MoveScaled(2,1,32,22)
+            Background = Color.TextBackground
+            Tracking = True
+            ToolTip = ("Drag'n drop files, folders or media links to add them,")
+            Drop = True
+            Expand = True
+            Mode = Select.Multiple
+            Grid = False
+            Header = GridView.Horizontal
+            Border = False
+          }
         }
         { LibrarySelInfo Label
           MoveScaled(2,38,36,4)
@@ -735,15 +744,23 @@
           Tag = "playlist"
           Text = ("Label3")
         }
-        { PlaylistGrid GridView
-          MoveScaled(1,7,37,22)
-          Tracking = True
-          ToolTip = ("Drag'n drop files or media links to add them,")
-          Drop = True
+        { Panel1 Panel
+          MoveScaled(0,6,38,23)
+          Background = Color.TextBackground
           Expand = True
-          Mode = Select.Multiple
-          Grid = False
-          Header = GridView.Horizontal
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { PlaylistGrid GridView
+            MoveScaled(4,1,30,18)
+            Tracking = True
+            ToolTip = ("Drag'n drop files or media links to add them,")
+            Expand = True
+            Mode = Select.Multiple
+            Grid = False
+            Header = GridView.Horizontal
+            Border = False
+            AutoResize = False
+          }
         }
         { WaitPanel2 TextLabel
           MoveScaled(0,32,36,5)
@@ -869,13 +886,21 @@
             Expand = True
           }
         }
-        { DVBTGrid GridView
-          MoveScaled(0,17,37,32)
-          Drop = True
+        { Panel3 Panel
+          MoveScaled(1,17,38,33)
+          Background = Color.TextBackground
           Expand = True
-          Mode = Select.Multiple
-          Grid = False
-          Header = GridView.Horizontal
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { DVBTGrid GridView
+            MoveScaled(3,3,28,21)
+            Drop = True
+            Expand = True
+            Mode = Select.Multiple
+            Grid = False
+            Header = GridView.Horizontal
+            Border = False
+          }
         }
         { ScanBtn Button
           MoveScaled(1,50,35,4)
@@ -891,11 +916,20 @@
           Tag = "audio cd"
           Text = ("Label3")
         }
-        { CDDAGrid GridView
-          MoveScaled(2,5,35,43)
+        { Panel4 Panel
+          MoveScaled(2,5,36,44)
+          Background = Color.TextBackground
           Expand = True
-          Mode = Select.Single
-          Grid = False
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { CDDAGrid GridView
+            MoveScaled(2,3,28,33)
+            Background = Color.TextBackground
+            Expand = True
+            Mode = Select.Single
+            Grid = False
+            Border = False
+          }
         }
         Index = 5
         Text = ("DVD")
@@ -928,21 +962,30 @@
           #MoveScaled(2,2)
           Delay = 2000
         }
-        { FlashGrid GridView
-          MoveScaled(-1,7,38,20)
-          ToolTip = ("Drag'n drop files or media links to add them,")
-          Drop = True
+        { Panel5 Panel
+          MoveScaled(1,7,34,22)
+          Background = Color.TextBackground
           Expand = True
-          Mode = Select.Single
-          Header = GridView.Horizontal
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { FlashGrid GridView
+            MoveScaled(0,1,33,18)
+            ToolTip = ("Drag'n drop files or media links to add them,")
+            Drop = True
+            Expand = True
+            Mode = Select.Single
+            Grid = False
+            Header = GridView.Horizontal
+            Border = False
+          }
         }
         { FlashCHK CheckBox
-          MoveScaled(0,26,37,4)
+          MoveScaled(0,31,37,4)
           ToolTip = ("Show flash videos in /tmp folder in the upper list, allowing you to play them.")
           Text = ("Catch Flash videos in /tmp folder")
         }
         { FlashCHK2 CheckBox
-          MoveScaled(0,29,37,4)
+          MoveScaled(0,36,37,4)
           ToolTip = ("When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager.")
           Text = ("PopUp window to play new catched videos")
         }
@@ -1134,7 +1177,7 @@
           }
         }
         { NOSAVEVBox2 VBox
-          MoveScaled(1,27,35,21)
+          MoveScaled(1,23,35,26)
           Visible = False
           Expand = True
           Spacing = True
@@ -1172,11 +1215,19 @@
               Expand = True
             }
           }
-          { ShutResultGrid GridView
-            MoveScaled(1,15,34,9)
+          { Panel6 Panel
+            MoveScaled(4,15,30,10)
+            Background = Color.TextBackground
             Expand = True
-            Mode = Select.Multiple
-            Grid = False
+            Arrangement = Arrange.Fill
+            Border = Border.Plain
+            { ShutResultGrid GridView
+              MoveScaled(0,0,26,9)
+              Expand = True
+              Mode = Select.Multiple
+              Grid = False
+              Border = False
+            }
           }
         }
         { NOSAVEHBox10 HBox
@@ -1222,9 +1273,17 @@
           Tag = "media info"
           Text = ("Label3")
         }
-        { PropertiesGrid GridView
-          MoveScaled(1,6,33,30)
+        { Panel7 Panel
+          MoveScaled(1,6,35,27)
+          Background = Color.TextBackground
           Expand = True
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { PropertiesGrid GridView
+            MoveScaled(4,2,23,22)
+            Expand = True
+            Border = False
+          }
         }
         Index = 11
         Text = ("Profiles")

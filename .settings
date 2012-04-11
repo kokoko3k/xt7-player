@@ -547,6 +547,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/fmain.Controls["Button1"]]
 Geometry=[0,0,344,344]
 
+[DebugWindow/g.Children]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/generaloptions]
 Geometry=[1280,0,497,854]
 
@@ -665,7 +668,13 @@ Geometry=[0,0,344,344]
 Geometry=[0,64,301,301]
 
 [DebugWindow/obj]
-Geometry=[52,0,301,301]
+Geometry=[625,404,301,301]
+
+[DebugWindow/obj.Children]
+Geometry=[1276,-3,210,210]
+
+[DebugWindow/obj.view]
+Geometry=[571,138,392,857]
 
 [DebugWindow/objs]
 Geometry=[0,0,301,301]
@@ -836,23 +845,23 @@ SearchString=True
 
 [OpenFile]
 Active=1
-File[1]="CHANGELOG_GIT:8.10"
+File[1]="CHANGELOG_GIT:20.46"
 File[2]=".src/Form/FMain.form"
 File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:6991.0"
+File[4]=".src/Form/FMain.class:3329.0"
 File[5]=".src/Form/OverlayTrayTip.form"
 File[6]=".src/Form/OverlayTip.class:19.0"
 File[7]=".src/Form/GeneralOptions.form"
 File[8]=".src/Form/GeneralOptions.class:933.42"
 File[9]=".src/Form/AudioForm.form"
 File[10]=".src/Form/AudioForm.class:72.25"
-File[11]="AA_ToDo:86.2"
-File[12]=".src/Classi/MplayerClass.class:601.47"
+File[11]="AA_ToDo:88.0"
+File[12]=".src/Classi/MplayerClass.class:81.16"
 File[13]=".src/Classi/FlashClass.class:134.0"
 File[14]=".src/Form/VideoEqualizer.form"
 File[15]=".src/Form/VideoEqualizer.class:74.7"
 File[16]=".src/0_Moduli/Global.module:312.70"
-File[17]=".src/Classi/SettingsClass.class:14.70"
+File[17]=".src/Classi/SettingsClass.class:117.6"
 File[18]=".src/Form/RealtimeForm.form"
 File[19]=".src/Form/RealtimeForm.class:114.36"
 File[20]=".src/Form/ChooseAspect.form"

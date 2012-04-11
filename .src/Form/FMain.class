@@ -292,7 +292,7 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
     i = i + 1
   Next
   MyLibrary.Load(LibraryGrid, global.confpath)
-
+  Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
@@ -6988,7 +6988,7 @@ Public Sub MenuCDDA_Click()
     SetCDDATabVisibility(False)
     If fmain.TogglePls.value = True Then fmain.TogglePls.value = False
   Endif
-  
+
   Try cddagrid.Rows[cddagrid.row].selected = False
   Try cddagrid.row = 0
   Try cddagrid.Rows[cddagrid.row].selected = True

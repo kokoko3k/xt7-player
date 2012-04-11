@@ -1,7 +1,11 @@
 Git changes:
 --------------------------------------
 Apr 11 2012
-  NEW:    Show sort indicator and shade the sorted column into grids
+  NEW:    Show sort indicator and shade the sorted grid column
+  NEW:    execute ~/.config/gambas3/Xt7-Player/switch.fs.command.sh <fps> or switch.win.command.sh
+          when switching to fullscreen/windowed mode, so you can write a script that change video mode
+          to match video refresh rate.
+
 
 Apr 10 2012
   FIX:    Segmentation fault with gambas 3.1 fixed

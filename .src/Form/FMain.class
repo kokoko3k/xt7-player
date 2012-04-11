@@ -3327,6 +3327,39 @@ End
 
 Private KdeEffectsWereActive As Boolean = False
 
+Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
+  Dim fscommand As String = global.ConfPath & "/switch.fs.command.sh"
+  Dim windowcommand As String = global.ConfPath & "/switch.win.command.sh"
+  
+  If fullscreen Then
+    If Exist(fscommand) Then 
+      Debug "Executing " & fscommand & " " & fps
+      Shell ". " & fscommand & " " & fps
+        Else
+      Debug "!!!"
+      Debug ("Hint: create (and make executable) a script named") & " " & fscommand 
+      Debug ("xt7 will execute it with and pass fps argument when switching to fullscreen")
+      Debug ("Eg: xrandr --rate \"$1\" ")
+      Debug "!!!"
+    Endif
+    Return
+  Endif
+  
+  'if windowed
+    If Exist(windowcommand) Then
+      Debug "Executing " & windowcommand 
+      Shell ". " & windowcommand
+        Else
+      Debug "!!!"
+      Debug ("Hint: create (and make executable) a script named ") & " " & windowcommand
+      Debug ("xt7 will execute it when switching from fullscreen to window mode")
+      Debug "!!!"
+    Endif
+    Return  
+End
+
+
+
 Public Sub FullScreenSwitch()
   
   Dim MenuBarItem As Object
@@ -3348,7 +3381,7 @@ Public Sub FullScreenSwitch()
   
   OuterBox.Mouse = 0
   VideoBox.Mouse = 0
-  If FMain.fullscreen Then 'prepare to return in window mode
+  If FMain.fullscreen Then                                           'prepare to return in window mode
     If GeneralOptions.NoEffectsCheckbox.value Then
       If KdeEffectsWereActive Then EnableKDECompositing()
     Endif
@@ -3383,8 +3416,11 @@ Public Sub FullScreenSwitch()
     VideoBox.Mouse = mouse.default
     AllmenuVisible(True)
     
+    If mplayer.ProcessRunningOvr() Then 
+      If Not (mplayer.AudioOnly) Then FsCommandsExec(False, mplayer.Media_VideoFps)
+    Endif
     
-  Else '(fit fullscreen mode) **************************
+  Else                                                                 '(fit fullscreen mode) **************************
     If GeneralOptions.NoEffectsCheckbox.value Then
       Try KdeEffectsWereActive = DisableKDECompositing()
       If Error Then
@@ -3430,8 +3466,11 @@ Public Sub FullScreenSwitch()
       Wait 0.001
       maxwait = maxwait - 1
     Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
+    If mplayer.ProcessRunningOvr() Then 
+      If Not (mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
+    Endif
   Endif
-  Debug forcedzoomrt
+  
   TimerFullScreen.enabled = FMain.FullScreen
 
   If Fmain.Fullscreen Then
@@ -4501,9 +4540,7 @@ Public Sub Hsplit1_MyRefresh()
 End
 
 
-
 Public Sub LibraryGrid_Menu()
-  
   MenuLibraryZapSelected.Enabled = (LibraryGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuOpenContainingFolderPopUp.visible = True
   MenuSortLibraryPopup.enabled = True
@@ -4525,9 +4562,7 @@ Public Sub MenuOpenContainingFolderPopUp_Click()
 End
 
 Public Sub MenuplaylistOpenFolder_Click()
-  
   Dim item As String
-  
   Try item = playlistgrid[playlistgrid.row, Myplaylist.ColumnIndex["Full Path"]].text
   If Error Then Return
   desktop.open(File.Dir(item))
@@ -4536,12 +4571,10 @@ Public Sub MenuplaylistOpenFolder_Click()
 End
 
 Public Sub Playlistgrid_Menu()
-  
   MenuplaylistOpenFolder.visible = True
   MenuplaylistOpenFolder.enabled = MyPlaylist.OnlyOneSelected(playlistgrid)
   MenuPlaylistZapSelected.Enabled = (PlaylistGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuPlaylist.popup
-  
 End
 
 
@@ -8550,3 +8583,9 @@ Public Sub ButtonCapture_Click()
   Endif
 End
 
+
+Public Sub PlaylistGrid_MouseDown()
+
+  
+
+End

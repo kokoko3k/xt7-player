@@ -1090,395 +1090,415 @@ msgstr ""
 msgid "GotIt!"
 msgstr ""
 
-#: FMain.class:3700
+#: FMain.class:3340
+msgid "Hint: create (and make executable) a script named"
+msgstr ""
+
+#: FMain.class:3341
+msgid "xt7 will execute it with and pass fps argument when switching to fullscreen"
+msgstr ""
+
+#: FMain.class:3342
+msgid "Eg: xrandr --rate \"$1\" "
+msgstr ""
+
+#: FMain.class:3354
+msgid "Hint: create (and make executable) a script named "
+msgstr ""
+
+#: FMain.class:3355
+msgid "xt7 will execute it when switching from fullscreen to window mode"
+msgstr ""
+
+#: FMain.class:3739
 msgid "You can't modify the current profile\nbecause it is the Factory defaults one"
 msgstr ""
 
-#: FMain.class:3700
+#: FMain.class:3739
 msgid "Switch to ''default'' profile and save"
 msgstr ""
 
-#: FMain.class:3700
+#: FMain.class:3739
 msgid "Don't save"
 msgstr ""
 
-#: FMain.class:3709
+#: FMain.class:3748
 msgid "Error while saving default settings"
 msgstr ""
 
-#: FMain.class:3750
+#: FMain.class:3789
 msgid "Are you sure you want to reset the default profile\nto factory values?"
 msgstr ""
 
-#: FMain.class:3750
+#: FMain.class:3789
 msgid "Don't Reset"
 msgstr ""
 
-#: FMain.class:3750
+#: FMain.class:3789
 msgid "Reset"
 msgstr ""
 
-#: FMain.class:3753
+#: FMain.class:3792
 msgid "There was a problem while deleting"
 msgstr ""
 
-#: FMain.class:3755
+#: FMain.class:3794
 msgid "Default profile has been set to factory values.\nRestart is needed."
 msgstr ""
 
-#: FMain.class:3881
+#: FMain.class:3920
 msgid "Video snaps to borders"
 msgstr ""
 
-#: FMain.class:4619
+#: FMain.class:4652
 msgid "Do you also want to remove non existent files from library?"
 msgstr ""
 
-#: FMain.class:4619
+#: FMain.class:4652
 msgid "Remove"
 msgstr ""
 
-#: FMain.class:4619
+#: FMain.class:4652
 msgid "Don't remove"
 msgstr ""
 
-#: FMain.class:4740
+#: FMain.class:4773
 msgid "Selected: "
 msgstr ""
 
-#: FMain.class:5054
+#: FMain.class:5087
 msgid "Are you sure you want to clear your library?"
 msgstr ""
 
-#: FMain.class:5054
+#: FMain.class:5087
 msgid "Don't clear my library"
 msgstr ""
 
-#: FMain.class:5054
+#: FMain.class:5087
 msgid "Clear my library"
 msgstr ""
 
-#: FMain.class:5063
+#: FMain.class:5096
 msgid "Are you sure you want to clear the Playlist?"
 msgstr ""
 
-#: FMain.class:5063
+#: FMain.class:5096
 msgid "Don't clear the playlist"
 msgstr ""
 
-#: FMain.class:5063
+#: FMain.class:5096
 msgid "Clear the playlist"
 msgstr ""
 
-#: FMain.class:5467
+#: FMain.class:5500
 msgid "Are you sure you want to delete selected item(s) from disk?"
 msgstr ""
 
-#: FMain.class:5467
+#: FMain.class:5500
 msgid "Don't Delete"
 msgstr ""
 
-#: FMain.class:5467
+#: FMain.class:5500
 msgid "Yes, Delete"
 msgstr ""
 
-#: FMain.class:5667
+#: FMain.class:5700
 msgid "iso files"
 msgstr ""
 
-#: FMain.class:5667
+#: FMain.class:5700
 msgid "All files"
 msgstr ""
 
-#: FMain.class:5838
+#: FMain.class:5871
 msgid "There was an error while saving the playlist"
 msgstr ""
 
-#: FMain.class:5838
+#: FMain.class:5871
 msgid "Ok"
 msgstr ""
 
-#: FMain.class:5908
+#: FMain.class:5941
 msgid "\nso you are going to set a cover for this particular file/stream"
 msgstr ""
 
-#: FMain.class:5909
+#: FMain.class:5942
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr ""
 
-#: FMain.class:5913
+#: FMain.class:5946
 msgid "Another cover search is in progress, please wait for it to finish!"
 msgstr ""
 
-#: FMain.class:5985
+#: FMain.class:6018
 msgid "Please, disable random playing first!"
 msgstr ""
 
-#: FMain.class:6181
+#: FMain.class:6214
 msgid "Choose a destination file"
 msgstr ""
 
-#: FMain.class:6210
+#: FMain.class:6243
 msgid "New Flash(tm) video detected: \n"
 msgstr ""
 
-#: FMain.class:6210
+#: FMain.class:6243
 msgid "\n  Would you like to play it now in Xt7-Player?"
 msgstr ""
 
-#: FMain.class:6214
+#: FMain.class:6247
 msgid "Play now"
 msgstr ""
 
-#: FMain.class:6214
+#: FMain.class:6247
 msgid "Don't Play"
 msgstr ""
 
-#: FMain.class:6245
+#: FMain.class:6278
 msgid "Use vertical tabs"
 msgstr ""
 
-#: FMain.class:6261
+#: FMain.class:6294
 msgid "Show"
 msgstr ""
 
-#: FMain.class:6407
+#: FMain.class:6440
 msgid "You can't delete the current profile!"
 msgstr ""
 
-#: FMain.class:6410
+#: FMain.class:6443
 msgid "Are you sure you want to delete "
 msgstr ""
 
-#: FMain.class:6410
+#: FMain.class:6443
 msgid "Don't delete"
 msgstr ""
 
-#: FMain.class:6416
+#: FMain.class:6449
 msgid "This is a read-only profile"
 msgstr ""
 
-#: FMain.class:6513
+#: FMain.class:6546
 msgid "Enter the new profile name"
 msgstr ""
 
-#: FMain.class:6532
+#: FMain.class:6565
 msgid "You are going to overwrite the selected profile\nwith the current settings."
 msgstr ""
 
-#: FMain.class:6532
+#: FMain.class:6565
 msgid "I know, proceed"
 msgstr ""
 
-#: FMain.class:6532
+#: FMain.class:6565
 msgid "Cancel"
 msgstr ""
 
-#: FMain.class:6569
+#: FMain.class:6602
 msgid "Enter a name for the new profile:"
 msgstr ""
 
-#: FMain.class:6615
+#: FMain.class:6648
 msgid "No hotkeys defined for dvd navigation mode\nPlease configure dvdnav hotkeys first."
 msgstr ""
 
-#: FMain.class:6685
+#: FMain.class:6718
 msgid "Error reading from shoutcast server"
 msgstr ""
 
-#: FMain.class:6732
+#: FMain.class:6765
 msgid "How do you want to add?"
 msgstr ""
 
-#: FMain.class:6732
+#: FMain.class:6765
 msgid "Add quickly"
 msgstr ""
 
-#: FMain.class:6732
+#: FMain.class:6765
 msgid "Get Stream info"
 msgstr ""
 
-#: FMain.class:6740
+#: FMain.class:6773
 msgid "Error while adding one or more items"
 msgstr ""
 
-#: FMain.class:6740
+#: FMain.class:6773
 msgid "Damn!"
 msgstr ""
 
-#: FMain.class:6921
+#: FMain.class:6954
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr ""
 
-#: FMain.class:6950
+#: FMain.class:6983
 msgid "Please, wait while getting disc information"
 msgstr ""
 
-#: FMain.class:6965
+#: FMain.class:6998
 msgid "Track"
 msgstr ""
 
-#: FMain.class:6966
+#: FMain.class:6999
 msgid "Name"
 msgstr ""
 
-#: FMain.class:6967
+#: FMain.class:7000
 msgid "Length"
 msgstr ""
 
-#: FMain.class:6974
+#: FMain.class:7007
 msgid "cddb://"
 msgstr ""
 
-#: FMain.class:6976
+#: FMain.class:7009
 msgid "Unknown entry (connection problem?)"
 msgstr ""
 
-#: FMain.class:6978
+#: FMain.class:7011
 msgid "cdda://"
 msgstr ""
 
-#: FMain.class:6986
+#: FMain.class:7019
 msgid "Error, failed to get disc information"
 msgstr ""
 
-#: FMain.class:7045
+#: FMain.class:7078
 msgid "Error refreshing the feed"
 msgstr ""
 
-#: FMain.class:7090
+#: FMain.class:7123
 msgid "Enter a new podcast url"
 msgstr ""
 
-#: FMain.class:7094
+#: FMain.class:7127
 msgid "Error adding new feed"
 msgstr ""
 
-#: FMain.class:7124
+#: FMain.class:7157
 msgid "Cannot delete child items!"
 msgstr ""
 
-#: FMain.class:7149
+#: FMain.class:7182
 msgid "Error: Cannot get current item"
 msgstr ""
 
-#: FMain.class:7238
+#: FMain.class:7271
 msgid "Please, disable playlist shutdown option first!"
 msgstr ""
 
-#: FMain.class:7285
+#: FMain.class:7318
 msgid "Xt7 will try to find and update embedded covers,\nBeware that covers explicitely set without album/artist information will be lost."
 msgstr ""
 
-#: FMain.class:7454
+#: FMain.class:7487
 msgid "Are you sure you want to\nrecursively add this directory?"
 msgstr ""
 
-#: FMain.class:7543
+#: FMain.class:7576
 msgid "There was an error while trying to delete the item"
 msgstr ""
 
-#: FMain.class:7708
+#: FMain.class:7741
 msgid "Would you like to go to the video homepage?"
 msgstr ""
 
-#: FMain.class:7708
+#: FMain.class:7741
 msgid "Yes, Go to Youtube"
 msgstr ""
 
-#: FMain.class:7708
+#: FMain.class:7741
 msgid "No, thanks"
 msgstr ""
 
-#: FMain.class:8103
+#: FMain.class:8136
 msgid "Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys."
 msgstr ""
 
-#: FMain.class:8104
+#: FMain.class:8137
 msgid "Right click over the button will cycle through zoom modes"
 msgstr ""
 
-#: FMain.class:8138
+#: FMain.class:8171
 msgid "SubTitle files"
 msgstr ""
 
-#: FMain.class:8168
+#: FMain.class:8201
 msgid "Zoom mode: cut half bars"
 msgstr ""
 
-#: FMain.class:8171
+#: FMain.class:8204
 msgid "Zoom mode: cut bars"
 msgstr ""
 
-#: FMain.class:8175
+#: FMain.class:8208
 msgid "Zoom mode: 1:1"
 msgstr ""
 
-#: FMain.class:8303
+#: FMain.class:8336
 msgid "Filename: "
 msgstr ""
 
-#: FMain.class:8304
+#: FMain.class:8337
 msgid "In: "
 msgstr ""
 
-#: FMain.class:8307
+#: FMain.class:8340
 msgid "Unknown"
 msgstr ""
 
-#: FMain.class:8310
+#: FMain.class:8343
 msgid "Album: "
 msgstr ""
 
-#: FMain.class:8310
+#: FMain.class:8343
 msgid "Year: "
 msgstr ""
 
-#: FMain.class:8310
+#: FMain.class:8343
 msgid "Genre: "
 msgstr ""
 
-#: FMain.class:8313
+#: FMain.class:8346
 msgid "Artist: "
 msgstr ""
 
-#: FMain.class:8317
+#: FMain.class:8350
 msgid "Title: "
 msgstr ""
 
-#: FMain.class:8317
+#: FMain.class:8350
 msgid ", Track No.: "
 msgstr ""
 
-#: FMain.class:8319
+#: FMain.class:8352
 msgid "Length: "
 msgstr ""
 
-#: FMain.class:8327
+#: FMain.class:8360
 msgid "Video: "
 msgstr ""
 
-#: FMain.class:8334
+#: FMain.class:8367
 msgid "Audio: "
 msgstr ""
 
-#: FMain.class:8334
+#: FMain.class:8367
 msgid "channels"
 msgstr ""
 
-#: FMain.class:8337
+#: FMain.class:8370
 msgid "Comment: "
 msgstr ""
 
-#: FMain.class:8496
+#: FMain.class:8529
 msgid "Rename to:"
 msgstr ""
 
-#: FMain.class:8533
+#: FMain.class:8566
 msgid "Moving $(dumpfile) \nTo: \n$(destfile)"
 msgstr ""
 
-#: FMain.class:8536
+#: FMain.class:8569
 msgid "\n\nYou can configure the paths in Generaloptions -> dvb-t"
 msgstr ""
 

@@ -6,6 +6,7 @@ Apr 11 2012
           when switching to fullscreen/windowed mode, so you can write a script that change video mode
           to match video refresh rate.
   CHANGE: Thanks to Arabian Man , there's a new Faenza like default icon.
+  FIX:    Workaround for the buggy Gridview.RowAt() that comes with gb3.1
 
 Apr 10 2012
   FIX:    Segmentation fault with gambas 3.1 fixed

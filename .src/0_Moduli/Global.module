@@ -893,3 +893,16 @@ Public Sub RedApplyBtnColor()
   Try XConfigureVideoDriver.ApplyBTN.Background = color.red
   Try SubAndOsd.ApplyBTN.Background = color.red
 End
+
+
+Public Function MyRowAt(g As Gridview, y As Integer) As Integer
+  'workaround a bug with new gridviews in gb 3.1 which doesn't take header into account :(
+  Dim workaround As Integer = 0
+  If (g.header = GridView.Horizontal) Or (g.header = GridView.both) Then
+    If g.RowAt(g.Font.TextHeight("9") Div 2) <> -1 Then 'means that the bug is still unresolved
+      workaround = g.Columns.Height
+    Endif
+  Endif
+  Return g.RowAt(y - workaround)
+End
+

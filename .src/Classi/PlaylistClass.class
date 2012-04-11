@@ -1356,8 +1356,11 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
     
     If fmain.closing Then Return
     If MyGrid.Rows.count <= 0 Then Return
-    FirstR = MyGrid.RowAt(MyGrid.y)
-    LastR = MyGrid.RowAt(MyGrid.h)
+    'FirstR = MyGrid.RowAt(MyGrid.y)
+    'LastR = MyGrid.RowAt(MyGrid.h)
+    FirstR = global.MyRowAt(MyGrid, MyGrid.y)
+    LastR = global.MyRowAt(MyGrid, MyGrid.h)
+    
     If LastR = -1 Then LastR = Mygrid.rows.count - 1
     If firstR = -1 Then firstR = 0
     

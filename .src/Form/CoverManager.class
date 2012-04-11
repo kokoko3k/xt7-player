@@ -1087,9 +1087,11 @@ Public Sub CoversLookerTimer_timer()
 
 'controlla se la row è visibile:
  If MyGrid.Rows.count <= 0 Then Return
- FirstR = MyGrid.RowAt(MyGrid.y)
- LastR = MyGrid.RowAt(MyGrid.h)
-
+ 'FirstR = MyGrid.RowAt(MyGrid.y)
+ 'LastR = MyGrid.RowAt(MyGrid.h)
+ FirstR = global.MyRowAt(MyGrid, MyGrid.y)
+ LastR = global.MyRowAt(MyGrid, MyGrid.h)
+ 
  If LastR = -1 Then LastR = Mygrid.rows.count - 1
  If firstR = -1 Then firstR = 0
  If Not ((row >= firstR) And (row <= lastR)) Then Return

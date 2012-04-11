@@ -4339,8 +4339,10 @@ Public Sub RefreshVisibleRows(mygrid As Gridview, mylibrary As Playlistclass)
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
-  FirstR = MyGrid.RowAt(MyGrid.y)
-  LastR = MyGrid.RowAt(MyGrid.h)
+  'FirstR = MyGrid.RowAt(MyGrid.y)
+  'LastR = MyGrid.RowAt(MyGrid.h)
+  FirstR = global.MyRowAt(mygrid, MyGrid.y)
+  LastR = global.MyRowAt(mygrid, MyGrid.h)
   If LastR = -1 Then LastR = Mygrid.rows.count - 1
   If firstR = -1 Then firstR = 0
   
@@ -4364,8 +4366,10 @@ Public Sub RefreshVisibleCovers(mygrid As Gridview)
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
-  FirstR = MyGrid.RowAt(MyGrid.y)
-  LastR = MyGrid.RowAt(MyGrid.h)
+  'FirstR = MyGrid.RowAt(MyGrid.y)
+  'LastR = MyGrid.RowAt(MyGrid.h)
+  FirstR = Global.MyRowAt(mygrid, MyGrid.y)
+  LastR = Global.MyRowAt(mygrid, MyGrid.h)
   If LastR = -1 Then LastR = Mygrid.rows.count - 1
   If firstR = -1 Then firstR = 0
   
@@ -8413,7 +8417,8 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Wait 0.01
   If ((msx <> mouse.screenx) Or (msy <> mouse.ScreenY)) Then Return 'mouse is moving
 
-  Try crow = mygrid.RowAt(mouse.screeny - mygrid.screeny)
+  'Try crow = mygrid.RowAt(mouse.screeny - mygrid.screeny)
+  Try crow = global.MyRowAt(mygrid, mouse.screeny - mygrid.screeny)
   If ( Error Or (crow = -1)) Then 
     Application.ShowTooltips = False
     Return
@@ -8433,7 +8438,8 @@ End
 
 Public Sub LibraryGrid_MouseMove()
   If generaloptions.HighlightCHK.value Then
-    Try hirow = librarygrid.RowAt(mouse.screeny - librarygrid.screeny)
+    'Try hirow = librarygrid.RowAt(mouse.screeny - librarygrid.screeny)
+    Try hirow = global.MyRowAt(librarygrid, mouse.screeny - librarygrid.screeny)
     Try librarygrid[hirow, 0].clear
   Endif
    If Not (Buttonshowtooltips.value) Then Return
@@ -8442,7 +8448,8 @@ End
 
 Public Sub PlaylistGrid_MouseMove()
   If generaloptions.HighlightCHK.value Then
-    Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
+    'Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
+    Try hirow = global.MyRowAt(playlistgrid, mouse.screeny - playlistgrid.screeny)
     Try playlistgrid[hirow, 0].clear
   Endif
   If Not (Buttonshowtooltips.value) Then Return

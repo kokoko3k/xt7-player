@@ -1344,60 +1344,76 @@ Public Sub LegacyAutoSizeColumns(MyGrid As GridView) 'will autosize Every Row.
    Next 'thecolumn
 End
 
-
-
-
 Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way faster,but incomplete)
-    Dim TheColumn As Integer
+
     Dim R, FirstR, LastR As Integer
-    Dim C, FirstC, LastC As Integer
+    Dim C, FirstC, LastC, CharW As Integer
     Dim TextW As Integer
-    Dim Text As String
-    
-    If fmain.closing Then Return
+    Dim Text, ccaption As String
+    Dim t0 As Float = Timer()
+    Dim t1 As Float
+    Dim RStep As Integer
+    Dim MaxW, MaxGbW As Integer
     If MyGrid.Rows.count <= 0 Then Return
-    'FirstR = MyGrid.RowAt(MyGrid.y)
-    'LastR = MyGrid.RowAt(MyGrid.h)
+
+    'find the maximum Gambas column width
+    For TextW = 3000 DownTo 0 Step 4
+      Try MyGrid.Columns[0].w = TextW
+      If MyGrid.Columns[0].w = TextW Then Break
+    Next
+    maxgbw = TextW
+
     FirstR = global.MyRowAt(MyGrid, MyGrid.y)
     LastR = global.MyRowAt(MyGrid, MyGrid.h)
-    
+
     If LastR = -1 Then LastR = Mygrid.rows.count - 1
     If firstR = -1 Then firstR = 0
-    
-    FirstC = 0
-    LastC = MyGrid.Columns.Count - 1
 
-    'reset width
-    For c = FirstC To LastC
-      MyGrid.Columns[C].W = 80
+    For c = firstC To LastC 'visible rows are always correct
+      MaxW = CInt((Len(MyGrid.Columns[c].text) + 4) * CharW)
+      ccaption = MyGrid.Columns[c].text
+      For r = firstR To lastR Step rstep
+        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 4) * CharW
+        If MaxW < TextW Then MaxW = textW
+        If MaxW >= MaxGbW Then 
+          MaxW = MaxGbw
+          Break
+        Endif
+      Next 'r
+      Mygrid.Columns[c].w = CInt(MaxW)
     Next 'c
 
-
-
-    Debug "Doing from " & FirstR & " - to " & LastR
-    For R = FirstR To LastR
-        Text = MyGrid[R, firstc].text
-        ' [GB2:FNTW] TextW = MyGrid.Font.TextWidth(text & "_____")
-        TextW = MyGrid.Font.TextWidth(text & "_____") + MyGrid.Rows.H 'the first column has an image so it is wider
-        If TextW > MyGrid.Columns[firstc].W Then
-          MyGrid.Columns[firstc].W = TextW
+    FirstC = 0
+    LastC = MyGrid.Columns.max
+    FirstR = 0
+    LastR = Mygrid.Rows.max
+    CharW = MyGrid.Font.TextWidth("_")
+    charw = CInt(charw * 1.1)
+    Rstep = (LastR Div 100) 'get 100 samples
+    If rstep = 0 Then rstep = 1
+    For c = firstC To LastC
+      MaxW = CInt((Len(MyGrid.Columns[c].text) + 4) * CharW)
+      ccaption = MyGrid.Columns[c].text
+      For r = firstR To lastR Step rstep
+        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 4) * CharW
+        If MaxW < TextW Then MaxW = textW
+        If MaxW >= MaxGbW Then 
+          MaxW = MaxGbw
+          Break
         Endif
-
-    Next 'R
+      Next 'r
+      Mygrid.Columns[c].w = CInt(MaxW)
+    Next 'c
+    
+    'The first column has a picture
+    MyGrid.Columns[0].w = MyGrid.Columns[0].w + Mygrid[0, 0].Picture.W
     
     
-    
-    For R = FirstR To LastR
-      For C = FirstC + 1 To LastC
-        Text = MyGrid[R, C].text
-        ' [GB2:FNTW] TextW = MyGrid.Font.TextWidth(text & "_____")
-        TextW = MyGrid.Font.TextWidth(text & "_____")
-        If TextW > MyGrid.Columns[C].W Then
-          MyGrid.Columns[C].W = TextW
-        Endif
-      Next 'C
-    Next 'R
+    t1 = Timer()
+    Debug "AutosizeColumns, total time: " & CStr((t1 - t0))
+    Debug
 End
+
 
 
 

@@ -38,10 +38,9 @@
       Arrangement = Arrange.Fill
       Border = Border.Plain
       { HotKeysGrid GridView
-        MoveScaled(0,0,50,34)
+        MoveScaled(0,1,50,34)
         Expand = True
         Mode = Select.Single
-        ShowCursor = True
         Header = GridView.Both
         Border = False
       }

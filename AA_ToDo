@@ -85,15 +85,17 @@ Covers inside the album folder are not supported (yet?), but embedded jpg covers
   
   
 **
-coordinate del mouse sballate per rowat...
-
 
 una url http://*.ogg si vede con l'icona del file audio
 capita quando non si visualizzano le cover.
 inoltre forse è meglio usare le stesse icone tra visualizzazione cover
 e non, cambiare solo che si vedano le cover.
 
-
+Autosize columns è lento o incompleto.
+proviamo a farlo completo ricavando la lunghezza del testo non dalle singole celle,
+ma dalla searchtable.
+Inoltre, non serve a nulla calcolare la larghezza del testo usando .textwidth("stringa"), o meglio
+è eccessivo; possiamo valutare quanto è largo un carattere medio e poi moltiplicarlo per il numero di lettere.
 
 
 ---------------------------------------------------------------------------

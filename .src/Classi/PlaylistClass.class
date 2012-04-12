@@ -595,6 +595,7 @@ Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolea
   Dim RowToSelect As Integer = 0
   Dim tmpfullpath As String = ""
   Dim rowheight As Integer
+  Dim i As Integer
   
   Try ColToSelect = MyPlaylist.Column
   Try RowToSelect = MyPlaylist.row
@@ -606,8 +607,15 @@ Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolea
     If myplaylist.Rows[r].Selected Then
       tmpfullpath = Myplaylist[r, Columnindex["Full Path"]].text
       If ((Not ISURI(tmpfullpath)) Or DeleteURIes) Then
-        PTable.Remove(PTable.Find(Searchtable[r]))
+        'PTable.Remove(PTable.Find(Searchtable[r]))
         Searchtable.Remove(r)
+        'find the ptable row to delete
+        For i = 0 To ptable.Max
+          If GetValue(ptable[i], "Full Path") = tmpfullpath Then
+            ptable.Remove(i)
+            Break
+          Endif
+        Next 'i
         RowToSelect = r
       Endif
     Endif
@@ -1280,25 +1288,25 @@ End
 '   Next 'r
 ' End
 
-Public Sub DoSort(Field As String)
+Public Sub DoSort(Field As String, Optional table As String[] = ptable)
   Dim i As Integer
   Dim Startpos, MidPos, EndPos As Integer
   Dim MyValue As String
-  For i = 0 To ptable.count - 1
-    StartPos = InStr(Ptable[i], TableSeparator & Field)
-    MidPos = InStr(Ptable[i], TableSeparator, StartPos + 1)
-    EndPos = InStr(Ptable[i], TableSeparator, Midpos + 1)
-    MyValue = Mid(Ptable[i], Startpos, Endpos - startpos)
-    Replace(Ptable[i], MyValue, "")
-    Ptable[i] = MyValue & Ptable[i]
+  For i = 0 To table.count - 1
+    StartPos = InStr(table[i], TableSeparator & Field)
+    MidPos = InStr(table[i], TableSeparator, StartPos + 1)
+    EndPos = InStr(table[i], TableSeparator, Midpos + 1)
+    MyValue = Mid(table[i], Startpos, Endpos - startpos)
+    Replace(table[i], MyValue, "")
+    table[i] = MyValue & table[i]
   Next 'i
 
   If Ascendent Then
     ' [GB2:TEXT] ptable = ptable.Sort(gb.Ascent + gb.text)
-    ptable = ptable.Sort(gb.Ascent + gb.IgnoreCase)
+    table = table.Sort(gb.Ascent + gb.IgnoreCase)
       Else
     ' [GB2:TEXT] Ptable = ptable.Sort(gb.Descent + gb.text)
-    Ptable = ptable.Sort(gb.Descent + gb.IgnoreCase)
+    table = table.Sort(gb.Descent + gb.IgnoreCase)
   Endif
   Ascendent = Not Ascendent
   '"public" the last sorted field
@@ -1404,11 +1412,10 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
       Next 'r
       Mygrid.Columns[c].w = CInt(MaxW)
     Next 'c
-    
+
     'The first column has a picture
     MyGrid.Columns[0].w = MyGrid.Columns[0].w + Mygrid[0, 0].Picture.W
-    
-    
+
     t1 = Timer()
     Debug "AutosizeColumns, total time: " & CStr((t1 - t0))
     Debug

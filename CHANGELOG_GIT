@@ -2,7 +2,9 @@ Git changes:
 --------------------------------------
 Apr 12 2012
   FIX:    Make xt7 work with gb3.0 by just "trying" to use new gb3.1 features
-
+  CHANGE: Better Columns autosize
+  CHANGE: Faster columns sort when grid display is filtered
+  
 Apr 11 2012
   NEW:    Show sort indicator and shade the sorted grid column
   NEW:    execute ~/.config/gambas3/Xt7-Player/switch.fs.command.sh <fps> or switch.win.command.sh

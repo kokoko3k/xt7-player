@@ -4492,16 +4492,13 @@ Public Sub dvbtGrid_ColumnClick(Column As Integer)
 End
 
 Public Sub ColumnClick(Grid As GridView, pls As PlaylistClass, column As Integer, search As String)
-  
   Dim ClickedColumn As String = Grid.Columns[column].text
   Dim PrevScrollX As Integer = Grid.scrollX
-  
   Grid.mouse = mouse.Wait
-  pls.DoSort(ClickedColumn)
-  UpdateSearchResults(pls, grid, fmain.FullyLoaded, search)
+  pls.DoSort(ClickedColumn, pls.searchtable)
+  pls.AutoSizeColumns(grid)
   grid.scrollX = PrevScrollX
   grid.mouse = mouse.Default
-  
 End
 '-----------------------------------
 

@@ -91,12 +91,13 @@ capita quando non si visualizzano le cover.
 inoltre forse è meglio usare le stesse icone tra visualizzazione cover
 e non, cambiare solo che si vedano le cover.
 
-Autosize columns è lento o incompleto.
-proviamo a farlo completo ricavando la lunghezza del testo non dalle singole celle,
-ma dalla searchtable.
-Inoltre, non serve a nulla calcolare la larghezza del testo usando .textwidth("stringa"), o meglio
-è eccessivo; possiamo valutare quanto è largo un carattere medio e poi moltiplicarlo per il numero di lettere.
+ColumnClick è inutilmente lento,
+prima ordina tutta la ptable, poi la rifiltra,
+mentre sarebbe molto più veloce ordinare direttamente la searchtable!
 
+ok, fatto più veloce, ma updateselected zompa
+
+l'apparizione del menu deseleziona tutte le righe
 
 ---------------------------------------------------------------------------
 

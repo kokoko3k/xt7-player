@@ -91,11 +91,14 @@ capita quando non si visualizzano le cover.
 inoltre forse è meglio usare le stesse icone tra visualizzazione cover
 e non, cambiare solo che si vedano le cover.
 
-ColumnClick è inutilmente lento,
-prima ordina tutta la ptable, poi la rifiltra,
-mentre sarebbe molto più veloce ordinare direttamente la searchtable!
-
-ok, fatto più veloce, ma updateselected zompa
+UpdateSelected() fa operazioni superflue che inoltre comportano anche che la voce 
+aggiornata venga posizionata infondo alla lista.
+per la posizione, si potrebbe anche inserire la row nella posizione precedente,
+ma le operazioni inutili resterebbero e sono il fatto che
+rimuove l'item da aggiornare dalla griglia, ricrea la ptable row aggiornate, e poi
+rimette l'item in griglia (alla fine), mentre basterebbe semplicemente
+aggiornare la ptable row e fare il clear delle celle, in modo che l'evento
+data possa riempirle.
 
 l'apparizione del menu deseleziona tutte le righe
 

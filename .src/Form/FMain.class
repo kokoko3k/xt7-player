@@ -4896,6 +4896,7 @@ Public Sub EnableDisableTagBtn()
 End
 
 Public Sub LeftSideTabs_Click()
+
   EnableDisableTagBtn()
   resizerows(librarygrid)
   resizerows(playlistgrid)
@@ -4966,7 +4967,7 @@ Public Sub MoveUpPlsBTN_Click()
     howmanyselected = ClipboardRows.Count
     playlistgrid.scrolly = playlistgrid.scrolly - playlistgrid.Rows.H
     PasteSelectedRows(i - 1)
-    
+
     'SELECT the items again:
     For j = (i - 1) To (i + HowManySelected - 2)
       playlistgrid.Rows[j].selected = True
@@ -5012,7 +5013,6 @@ Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
   Dim IsFile, IsURI, IsDirectory As Boolean
   Dim droppedfiles As String[]
   Dim DroppedFile As String
-  
   If TargetRowOverride <> -1 Then
     TargetRow = TargetRowOverride
   Else
@@ -5030,7 +5030,7 @@ Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
   ClipboardRows.clear
   
   playlistgrid.row = targetrow
-  playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
+  'playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   
 End
 
@@ -5052,7 +5052,7 @@ End
 Public Sub CutSelectedRows()
   
   CopySelectedRows()
-  playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
+  'playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   MyPlaylist.DeleteSelected(Playlistgrid, True)
 
 End

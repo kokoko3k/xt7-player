@@ -721,6 +721,7 @@ Public Sub UpdateSelected(G As Gridview)
   
         'invalida la riga della gridview in modo che l'evento data la ricompili con le info aggiornate
         For c = 0 To g.Columns.Max
+          g[iRow, c].text = ""
           g[iRow, c].clear
         Next
       Endif

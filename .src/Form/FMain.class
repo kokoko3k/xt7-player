@@ -7282,6 +7282,7 @@ Public hirow As Integer = -1
 Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
   If hirow = hrow Then Return
   hirow = hrow
+  mygrid[hirow, 0].text = ""
   mygrid[hirow, 0].clear
   Debug
   
@@ -7289,6 +7290,7 @@ End
 Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
   If hirow = hrow Then Return
   hirow = -1
+  mygrid[hirow, 0].text = ""
   mygrid[hirow, 0].clear
 End
 
@@ -7362,6 +7364,7 @@ Public Sub UpdateEmbeddedFromSelected(mygrid As Gridview)
       fullpath = mygrid[r, myplaylist.Columnindex["Full Path"]].text
       coverfilename = covermanager.Coverfile("", "", fullpath) 'generate a coverfilename using just filename (not album/artist)
       Try covermanager.RemoveCoverCache(coverfilename, True)
+      mygrid[r, 0].text = ""
       mygrid[r, 0].Clear
     Endif
   Next 'r
@@ -8281,6 +8284,7 @@ Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As S
   Dim RowHeight As Integer
   Try r = mypls.FindRowByPath(mygrid, fullpath)
   If r = -1 Then Return
+  mygrid[r, 0].text = ""
   mygrid[r, 0].clear
 End
 
@@ -8436,6 +8440,7 @@ Public Sub LibraryGrid_MouseMove()
   If generaloptions.HighlightCHK.value Then
     'Try hirow = librarygrid.RowAt(mouse.screeny - librarygrid.screeny)
     Try hirow = global.MyRowAt(librarygrid, mouse.screeny - librarygrid.screeny)
+    Try librarygrid[hirow, 0].text = ""
     Try librarygrid[hirow, 0].clear
   Endif
    If Not (Buttonshowtooltips.value) Then Return
@@ -8446,6 +8451,7 @@ Public Sub PlaylistGrid_MouseMove()
   If generaloptions.HighlightCHK.value Then
     'Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
     Try hirow = global.MyRowAt(playlistgrid, mouse.screeny - playlistgrid.screeny)
+    Try playlistgrid[hirow, 0].text = ""
     Try playlistgrid[hirow, 0].clear
   Endif
   If Not (Buttonshowtooltips.value) Then Return
@@ -8518,7 +8524,7 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
   myplaylist.SearchTable[myrow] = Replace(myplaylist.PTable[myrow], sep & oldname & sep, sep & newname & sep)
   myplaylist.ptable[pRow] = myplaylist.SearchTable[myrow]
 
-  
+  mygrid[myrow, 0].text = ""
   mygrid[myrow, 0].Clear
 End
 

@@ -259,6 +259,7 @@ Public Sub selectcell(r As Integer, c As Integer)
   If (previousrow <> -1) And (previouscol <> -1) Then
      Try view[previousrow, previouscol].Background = Color.default
      Try view[previousrow, previouscol].Foreground = Color.default
+     Try view[previousrow, previouscol].text = ""
      Try view[previousrow, previouscol].clear
   Endif
 

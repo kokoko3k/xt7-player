@@ -270,7 +270,7 @@ Public Function downloadpicture(uri As String, Optional resizew As Integer = 0) 
       tmppicture = tmppicture.Image.Stretch(resizew, CInt(resizew / aspect)).picture
     Endif
   Try Kill picturefile
-  Return tmppicture
+  Return CoverManager.Shadowed(tmppicture).picture
 End
 
 

@@ -1,0 +1,291 @@
+' Gambas class file
+
+'Public mycolumnview As Columnview
+
+Public ts As String
+Private localtable As String[]
+Private localplaylist As Playlistclass
+Private albums As New String[]
+Private iconsize As Integer = 64
+Private columnwidth As Integer = 128
+Private view As Gridview
+Private paddingfactor As Float = 1.2
+
+Public Sub DoSortTable(Field As String)
+  Dim i As Integer
+  Dim Startpos, MidPos, EndPos As Integer
+  Dim MyValue As String
+  For i = 0 To localtable.count - 1
+    StartPos = InStr(localtable[i], ts & Field)
+    MidPos = InStr(localtable[i], ts, StartPos + 1)
+    EndPos = InStr(localtable[i], ts, Midpos + 1)
+    MyValue = Mid(localtable[i], Startpos, Endpos - startpos)
+    Replace(localtable[i], MyValue, "")
+    localtable[i] = MyValue & localtable[i]
+  Next 'i
+
+  'If Ascendent Then
+    ' [GB2:TEXT] ptable = ptable.Sort(gb.Ascent + gb.text)
+    localtable = localtable.Sort(gb.Ascent + gb.IgnoreCase)
+  '    Else
+    ' [GB2:TEXT] Ptable = ptable.Sort(gb.Descent + gb.text)
+   ' localtable = localtable.Sort(gb.Descent + gb.IgnoreCase)
+  'Endif
+  'Ascendent = Not Ascendent
+  '"public" the last sorted field
+  ''LastSortedField = field
+End
+' 
+  ' 
+  ' Columnindex["Filename"] = 0
+  ' Columnindex["Length"] = 1
+  ' Columnindex["Artist"] = 2
+  ' Columnindex["Album"] = 3
+  ' Columnindex["Year"] = 4
+  ' Columnindex["Track"] = 5
+  ' Columnindex["Title"] = 6
+  ' Columnindex["Genre"] = 7
+  ' Columnindex["Comment"] = 8
+  ' Columnindex["Type"] = 9
+  ' Columnindex["Audio Codec"] = 10
+  ' Columnindex["Audio Bitrate"] = 11
+  ' Columnindex["Audio Rate"] = 12
+  ' Columnindex["Channels"] = 13
+  ' Columnindex["Video Codec"] = 14
+  ' Columnindex["Video Bitrate"] = 15
+  ' Columnindex["Fps"] = 16
+  ' Columnindex["Width"] = 17
+  ' Columnindex["Height"] = 18
+  ' Columnindex["Full Path"] = 19
+  ' Columnindex["File Size"] = 20
+  ' Columnindex["Added on"] = 21
+
+Public Function Init(playlist As Playlistclass, theview As Gridview, Optional filters As String = "*")
+  Dim i As Integer
+  Dim album, nextalbum As String
+  Dim path As String
+  Dim artist As String
+  Dim coverfile As String
+  Dim filter As String
+  Dim matchfilter As Boolean = False
+  
+  view = theview
+  localplaylist = playlist
+  ts = localplaylist.TableSeparator
+
+  localtable = localplaylist.PTable.Copy()
+
+  'strip out non audio files
+  For i = (localtable.count - 1) DownTo 0
+    path = localplaylist.GetValue(localtable[i], "Full Path")
+    If Not (Global.IsAudioFile(path)) Then 
+      localtable.Remove(i)
+    Endif
+  Next 'i
+
+  'remove duplicates album
+  DoSortTable("Album")
+  i = localtable.count - 1
+  If localtable.count > 1 Then
+    Repeat 'remove duplicate albums
+      album = Trim(localplaylist.GetValue(localtable[i], "Album"))
+      If album = "" Then album = ("Unknown")
+      nextalbum = Trim(localplaylist.GetValue(localtable[i - 1], "Album"))
+      If nextalbum = "" Then nextalbum = ("Unknown")
+      If Lower(Trim(album)) = Lower(Trim(nextalbum)) Then 
+        localtable.Remove(i - 1) ' + 1)
+      Endif
+      i = i - 1
+    Until (i = 1)
+  Endif
+
+  'filter the results
+  If Trim(filters) <> "" Then
+    For i = (localtable.count - 1) DownTo 0
+      album = Trim(localplaylist.GetValue(localtable[i], "Album"))
+      artist = Trim(localplaylist.GetValue(localtable[i], "Artist"))
+      matchfilter = False
+      For Each filter In Split(filters, "|", "", True)
+        If ((Lower(album) Like "*" & Lower(filter) & "*")) Or ((Lower(artist) Like "*" & Lower(filter) & "*")) Then matchfilter = True
+      Next 'filter
+      If Not matchfilter Then 
+        localtable.Remove(i)
+        '   Else
+        ' Debug
+      Endif
+    Next 'i
+  Endif
+
+
+
+  'we want this sorting: Artist->album date
+  DoSortTable("Album")
+  DoSortTable("Year")
+  DoSortTable("Artist")
+End
+
+
+Public Sub Arrange(Optional rowsize As Integer = 96, Optional albumtext As Integer = 40)
+  Dim maxcols, maxrows As Integer
+  If localtable.count = 0 Then Return
+  If rowsize < 48 Then rowsize = 48
+  iconsize = rowsize
+  columnwidth = rowsize + (view.Font.TextWidth("X") * albumtext)
+
+  maxcols = view.clientw Div columnwidth
+  If maxcols > localtable.count Then maxcols = localtable.count
+  maxrows = localtable.count Div maxcols
+  'If maxrows = 0 Then maxrows = localtable.count
+  Debug view.clientw
+
+  view.Rows.count = 0
+  view.columns.count = 0
+
+  view.Columns.count = maxcols
+  view.Rows.Count = maxrows
+  view.Columns.Width = view.clientw Div view.Columns.count 'columnwidth 
+  view.Rows.Height = iconsize * paddingfactor
+  
+  selectcell(-1, -1) 'unselect previous
+  
+End
+
+Public Function AlbumToolTip(album As String) As String
+  Dim i As Integer
+  Dim outmsg As String
+  Dim row As String
+  Dim p As PlaylistClass = localplaylist
+  Dim tracks As New String[]
+  Dim TrackNo As String
+  Dim SongName As String
+  Dim tline As String
+  Dim track As String
+  
+  For i = 0 To (p.PTable.count - 1)
+    row = p.PTable[i]
+    If Trim(Lower(p.GetValue(row, "Album"))) = Trim(Lower(album)) Then
+      SongName = p.GetValue(row, "Title")
+      If Trim(songname) <> "" Then 
+        TrackNo = p.GetValue(row, "Track")
+        If Len(trackNo) = 1 Then Trackno = "0" & Trackno
+        If Trim(trackno) <> "" Then trackno &= " - "
+        tline = TrackNo & SongName 
+          Else 'use filename
+        tline = File.Name(p.GetValue(row, "Full Path"))
+      Endif
+      tracks.add(tline)
+    Endif
+  Next
+  tracks.sort()
+  
+  If tracks.count > 50 Then
+    outmsg = ("more than 50 tracks!")
+    Return outmsg
+  Endif
+  
+  
+  outmsg = Album & ":\n"
+  For Each track In tracks
+    outmsg &= "   " & track & "\n"
+  Next
+  outmsg = Left(outmsg, Len(outmsg) - 1)
+  Return outmsg
+End
+
+
+Public Function GetTracks(r As Integer, c As Integer) As String[]
+  Dim i As Integer
+  Dim album As String
+  Dim row As String 
+  Dim paths As New String[]
+  Dim p As Playlistclass = localplaylist
+  Dim TrackNo As String
+  Dim path As String
+  
+  album = AlbumFromCoordinates(r, c)
+  For i = 0 To (p.PTable.count - 1)
+    row = p.PTable[i]
+    path = p.GetValue(row, "Full Path")
+    If Global.IsAudioFile(path) Then
+      If Trim(Lower(p.GetValue(row, "Album"))) = Trim(Lower(album)) Then
+        TrackNo = p.GetValue(row, "Track")
+        paths.Add(TrackNo & ts & path)
+      Endif
+    Endif
+  Next
+  paths.Sort
+  
+  For i = 0 To paths.count - 1
+    paths[i] = Split(paths[i], ts, "", False)[1]
+  Next
+  Return paths
+End
+
+
+
+Public Sub data(r As Integer, c As Integer)
+  Dim i As Integer
+  Dim album, artist, coverfile, MyYear, path As String
+  If view.Data.text <> "" Then Return
+  i = (view.columns.count * r) + c
+  'album and artist are inverted because array is sorted by artist
+  album = Trim(localplaylist.GetValue(localtable[i], "Album")) 'GetArtist(albums[i]) 
+  If album <> "" Then
+    artist = localplaylist.GetValue(localtable[i], "Artist") 'GetAlbum(albums[i])
+    path = localplaylist.GetValue(localtable[i], "Full Path") 'GetPath(albums[i])
+    MyYear = localplaylist.GetValue(localtable[i], "Year") 
+    If Trim(MyYear) = "" Then MyYear = ("Unknown Year")
+    MyYear = " (" & MyYear & ")"
+      Else
+    album = ("Unknown")
+  Endif
+  coverfile = CoverManager.Coverfile(artist, album, path)
+
+ 
+  
+
+  view.Data.text = artist & "\n" & album & MyYear
+  view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)
+End
+
+
+Private previousrow As Integer = -1
+Private previouscol As Integer = -1
+
+Public Sub selectcell(r As Integer, c As Integer)
+  Dim savetext As String
+  Dim savepic As Picture
+
+  If (previousrow <> -1) And (previouscol <> -1) Then
+     Try view[previousrow, previouscol].Background = Color.default
+     Try view[previousrow, previouscol].Foreground = Color.default
+     Try view[previousrow, previouscol].clear
+  Endif
+
+  If r = -1 Then Return 'argoument = -1 means to just deselect previous.
+
+  savetext = view[r, c].text
+  savepic = view[r, c].picture
+  savepic = savepic.Image.Stretch(savepic.Image.w * 0.95, savepic.Image.h * 0.95).picture
+  savepic = savepic.Image.PaintRect(0, 0, 400, 400, Color.SetAlpha(Color.blue, 220)).picture
+  view[r, c].picture = savepic
+  view[r, c].text = savetext
+  view[r, c].RichText = "<b>" & Replace(savetext, "\n", "<br>") 
+  view[r, c].Font.bold = True
+  previousrow = r
+  previouscol = c
+End
+
+
+Public Function PathFromCoordinates(r As String, c As String) As String
+  Try Return localplaylist.GetValue(localtable[(r * view.columns.count) + c], "Full Path")
+End
+
+Public Function AlbumFromCoordinates(r As String, c As String) As String
+  Try Return localplaylist.GetValue(localtable[(r * view.columns.count) + c], "Album")
+End
+
+Public Function ArtistFromCoordinates(r As String, c As String) As String
+  Try Return localplaylist.GetValue(localtable[(r * view.columns.count) + c], "Artist")
+End
+

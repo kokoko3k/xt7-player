@@ -4727,7 +4727,7 @@ Public Sub MenuItemsUpdate_Click()
   Debug "start at " & Time
   If LibraryGrid.Rows.count > 0 Then
     MyLibrary.UpdateSelected(LibraryGrid)
-    UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
+    'UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
   Endif
   Debug "end at " & Time
 End
@@ -4735,7 +4735,7 @@ End
 Public Sub MenuItemsUpdatePls_Click()
   If PlaylistGrid.Rows.count > 0 Then
     MyPlaylist.UpdateSelected(PlaylistGrid)
-    SearchFieldPLS_Click()
+    'SearchFieldPLS_Click()
   Endif
 End
 
@@ -7226,7 +7226,6 @@ End
 
 Public Sub PlaylistGrid_Enter()
   Application.ShowTooltips = Buttonshowtooltips.value
-
 End
 
 Public Sub LibraryGrid_Leave()

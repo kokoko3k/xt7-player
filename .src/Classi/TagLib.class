@@ -91,8 +91,10 @@ Public Function Init(AudioFileName As String) As Boolean
     Return False
   Endif
   If (TagLibFileP = Null) Then 
-    Debug "Error while initializing"
+    Debug "Error while initializing with file:\n " & AudioFileName
     Return False
+      Else
+    Debug "Successfully initializing with file:\n " & AudioFileName
   Endif
   If taglib_file_is_valid(TagLibFileP) Then
     taglib_set_strings_unicode(False) 'Use iso-8859-1

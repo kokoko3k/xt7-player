@@ -754,6 +754,7 @@
             MoveScaled(4,1,30,18)
             Tracking = True
             ToolTip = ("Drag'n drop files or media links to add them,")
+            Drop = True
             Expand = True
             Mode = Select.Multiple
             Grid = False

@@ -395,36 +395,17 @@ End
 Public Function GetValue(TableRow As String, Field As String) As String
   Dim Startpos, MidPos, EndPos As Integer
   Dim myvalue As String
+  Dim out As String
   StartPos = InStr(TableRow, TableSeparator & Field)
   MidPos = InStr(TableRow, TableSeparator, StartPos + 2)
   EndPos = InStr(TableRow, TableSeparator, Midpos + 1)
-  Return Mid(TableRow, midpos + 1, Endpos - (midpos + 1))
+  out = Mid(TableRow, midpos + 1, Endpos - (midpos + 1))
+  'the following is needed to strip out some spurious byte from the string
+  'my fault or gambas fault? Anyway, this works...
+  Return Left(out, Len(out) - 1) & Right(out)
 End
 
-' PUBLIC FUNCTION CellValue(LibraryGrid AS gridview, R AS Integer, C AS Integer) AS String
-'   DIM ColumnCaption AS String = LibraryGrid.Columns[c].text
-'   DIM tablerow AS String
-'   DIM GotValue AS String
-'   DIM TextW, CaptionW AS Integer
-'   TRY tablerow = SearchTable[r]
-'   
-'   'IF librarygrid.columns[c].w <> 10 THEN librarygrid.columns[c].w = 10
-'   GotValue = GetValue(tablerow, ColumnCaption)
-'   TextW = Librarygrid.Font.TextWidth(gotvalue)
-'   
-'      'ShutResultGrid.Columns[0].text = ("Name")
-' 
-'   IF (TextW > Librarygrid[R, C].W) AND (TextW > 100) THEN 
-'     Librarygrid.columns[C].W = TextW + 1
-'  '   DEBUG "GotValue= " & Gotvalue
-'  '   DEBUG "TextW= " & TextW
-'       ELSE IF textW <= 100 THEN 
-'         Librarygrid.columns[C].W = 100
-'   ENDIF
-'   WAIT 0.001
-'   RETURN GotValue
-'   
-' END
+
 
 Public Function GetFullPaths(filter As String) As String[]
   Dim out As New String[]
@@ -658,7 +639,7 @@ Public Function ISURI(fullpath As String) As Boolean
 End
 
 
-Public Sub UpdateSelected(MyPlaylist As GridView)
+Public Sub OLD_UpdateSelected(MyPlaylist As GridView)
   Dim r As Integer = myplaylist.Rows.Count - 1
   Dim fullpaths As New String[]
   Dim fullpath As String
@@ -720,6 +701,44 @@ Public Sub UpdateSelected(MyPlaylist As GridView)
   myplaylist.mouse = mouse.Default
 
 End
+
+Public Function TableRowByPath(p As String, t As String[]) As Integer
+  Dim fstr As String = (TableSeparator & "Full Path" & TableSeparator & p)
+  Dim i As Integer
+  For i = 0 To t.Max
+    If t[i] Like "*" & fstr & "*" Then Return i
+  Next
+  Return -1
+End
+
+
+Public Sub UpdateSelected(G As Gridview)
+  Dim iRow, sRow, pRow, c As Integer
+  Dim p As String
+  For iRow = 0 To g.Rows.Max                      ' cerca in tutte le righe
+    If g.Rows[iRow].selected Then                 ' ...solo quelle selezionate
+      p = g[iRow, Columnindex["Full Path"]].Text  
+      If (Not ISURI(p)) Then                      ' ...(che siano file, e non uri)
+        sRow = TableRowByPath(p, searchtable)       'poi tramite il path p trova gli elementi da aggiornare
+        pRow = TableRowByPath(p, Ptable)            '...in ptable e searchtable
+        If (sRow = -1) Or (pRow = -1) Then
+          Debug "UpdateSelected failed to find the row to update (!?)"
+          Debug "sRow= " & sRow
+          Debug "pRow= " & pRow
+          Return
+        Endif
+        Searchtable[sRow] = UpdateTableRow(Searchtable[sRow]) 'aggiornali in searchtable
+        Ptable[pRow] = Searchtable[sRow]                      '...e rifletti la modifica in ptable
+  
+        'invalida la riga della gridview in modo che l'evento data la ricompili con le info aggiornate
+        For c = 0 To g.Columns.Max
+          g[iRow, c].clear
+        Next
+      Endif
+    Endif
+  Next
+End
+
 
 
 Public Sub Alternatecolor(myplaylist As GridView)
@@ -958,7 +977,7 @@ Public Sub FormatTime(seconds As String) As String
 
 End
   
-Private Sub makenewrow(librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String)  
+Private Function makenewrow(Optional librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String, Optional ReturnSth As Boolean = False, Optional OldAddedOn As String = Now) As String
   Dim nr As String 'newrow
   Dim ts As String = TableSeparator
   Dim filesize As Long = 0
@@ -993,16 +1012,124 @@ Private Sub makenewrow(librarygrid As Gridview, forcename As String, filetoadd A
   nr = nr & ts & "Height" & ts & h
   nr = nr & ts & "Full Path" & ts & filetoadd
   nr = nr & ts & "File Size" & ts & filesize
-  nr = nr & ts & "Added on" & ts & Now & ts
-  
-  ptable.Add(nr)
-  Searchtable.Add(nr)
-  LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
+  If Not ReturnSth Then 
+    nr = nr & ts & "Added on" & ts & Now & ts
+      Else
+    nr = nr & ts & "Added on" & ts & oldaddedon & ts
+  Endif
+   
+  If Not ReturnSth Then 
+    ptable.Add(nr)
+    Searchtable.Add(nr)
+    LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
+    Return
+      Else
+    Return nr
+  Endif
 End
 
-  
-  
+Public Sub GetTags(f As String, ByRef Leng As String, ByRef Art As String, ByRef Alb As String, ByRef tra As String, ByRef Yea As String, ByRef tit As String, ByRef gen As String, ByRef com As String, ByRef typ As String, ByRef aco As String, ByRef abi As String, ByRef ara As String, ByRef cha As String, ByRef vco As String, ByRef vbi As String, ByRef fps As String, ByRef w As String, ByRef h As String, ByRef fsi As String, quick As Boolean)
+Dim tl As New Taglib
+Dim fileUtf8 As String
+  Try fileUtf8 = DConv(f) 'from system charset to utf8
+  If Error Then fileutf8 = f
+  fileutf8 = f
+  fileutf8 = Trim(fileutf8)
+  If tl.IsSupported(fileUtf8) And tl.Init(fileutf8) Then 'use fast taglib when possible
+    Leng = tl.Length
+    typ = "audio"
+    aco = file.Ext(fileUtf8)
+    abi = tl.Bitrate
+    ara = tl.Samplerate
+    cha = tl.Channels
+    vco = ""
+    vbi = ""
+    fps = ""
+    w = ""
+    h = ""
+    art = (tl.Artist)
+    alb = (tl.Album)
+    yea = tl.MyYear
+    tra = tl.Track
+    tit = (tl.Title)
+    gen = (tl.Genre)
+    com = (tl.Comment)
+    tl.tlFree()
+      Else 'but fallback to mplayertag if needed
+    Debug "TagLib doesnt support " & f & ",fallback to mplayer routines..."
+    CheckPlayerAlive()
+    MplayerTag.quick = quick
+    If Not quick Then MplayerTag.do_idleplay(f)
+    Leng = mplayertag.Media_Length
+    typ = mplayertag.Media_Type
+    aco = mplayertag.Media_AudioCodec
+    abi = mplayertag.Media_AudioBitrate
+    ara = mplayertag.Media_AudioRate
+    cha = mplayertag.Media_Channels
+    vco = mplayertag.Media_VideoCodec
+    vbi = mplayertag.Media_VideoBitrate
+    fps = mplayertag.Media_VideoFps
+    w = mplayertag.Media_Width
+    h = mplayertag.Media_Height
+    art = mplayertag.Media_Artist
+    alb = mplayertag.Media_Album
+    yea = mplayertag.Media_Year
+    tra = mplayertag.Media_TrackNo
+    tit = mplayertag.Media_Title
+    gen = mplayertag.Media_Genre
+    com = OneOf(MplayerTag.Media_Comment, MplayerTag.Media_Comments)
+  Endif
+End
+
 Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
+  Dim LastRow As Integer
+  Dim i As Integer
+  Dim filesize As Long = 0
+  Dim quickmode As Boolean = quick And (GeneralOptions.SlowTagsCHK.value Or Global.IsNonTaggableMedia(FileToAdd))
+  Dim tl As New Taglib
+  Dim fileutf8 As String
+  Dim length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, fullpath As String
+  Dim artist, album, myyear, track, title, genre, comment As String
+  
+  FilesProcessed = FilesProcessed + 1
+  UpdateProgress(FMain.MyLibraryProgressBar)
+  Wait 0.0001
+
+  If Trim(filetoadd) = "" Then Return True
+
+  If quickmode Then
+    makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
+    Return True
+  Endif
+  
+  Try filesize = Stat(FileToAdd).Size
+  If filesize = 0 Then Return True
+  If Not (Exist(filetoadd)) Then Return True
+  If Not (global.IsMediaFile(filetoadd)) Then Return True  
+  If IsDupe(filetoadd) Then Return True
+
+  GetTags(filetoadd, ByRef Length, ByRef Artist, ByRef Album, ByRef track, ByRef myyear, ByRef title, ByRef genre, ByRef comment, ByRef type, ByRef acodec, ByRef abitrate, ByRef arate, ByRef channels, ByRef vcodec, ByRef vbitrate, ByRef fps, ByRef w, ByRef h, ByRef filesize, quickmode)
+  makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
+  Return True
+End
+
+Public Function UpdateTableRow(Tablerow As String) As String
+  Dim length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, fullpath As String
+  Dim artist, album, myyear, track, title, genre, comment As String
+  Dim oldaddedon As String
+  Dim forcename As String
+  Dim filesize As Long = 0
+    
+  Fullpath = GetValue(Tablerow, "Full Path")
+  forcename = GetValue(TableRow, "Filename")
+  oldaddedon = GetValue(TableRow, "Added on")
+  GetTags(FullPath, ByRef Length, ByRef Artist, ByRef Album, ByRef track, ByRef myyear, ByRef title, ByRef genre, ByRef comment, ByRef type, ByRef acodec, ByRef abitrate, ByRef arate, ByRef channels, ByRef vcodec, ByRef vbitrate, ByRef fps, ByRef w, ByRef h, ByRef filesize, False)
+  Return makenewrow(, forcename, fullpath, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment, True, OldAddedOn)
+End
+
+
+  
+Public Function OLD_AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
   Dim LastRow As Integer
   Dim i As Integer
   Dim filesize As Integer = 0
@@ -1052,7 +1179,6 @@ Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional q
     genre = (tl.Genre)
     comment = (tl.Comment)
     tl.tlFree()
-    
       Else 'but fallback to mplayertag if needed
     Debug "TagLib doesnt support " & FileToAdd & ",fallback to mplayer routines..."
     If (Not quickmode) Then CheckPlayerAlive()
@@ -1086,165 +1212,6 @@ End
 
 
 
-' Public Function oldAddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
-'   Dim LastRow As Integer
-'   Dim audiotag As New AudiotagClass
-'   Dim i As Integer
-'   Dim NewRow As String
-'   Dim filesize As Integer = 0
-'   Dim quickmode As Boolean = quick And (GeneralOptions.SlowTagsCHK.value Or Global.IsNonTaggableMedia(FileToAdd))
-' 
-'   FilesProcessed = FilesProcessed + 1
-'   UpdateProgress(FMain.MyLibraryProgressBar)
-' 
-'   If (Exist(filetoadd) Or UriMode) And Trim(filetoadd) <> "" Then
-'     If (Global.IsMediaFile(FileToAdd) Or Urimode) Then
-'       Try filesize = Stat(FileToAdd).Size
-'       Debug IsDupe(fileToAdd)
-'       Debug (filesize <> 0)
-'       Debug urimode
-'       
-'       If ((Not (IsDupe(FileToAdd))) And ((filesize <> 0) Or Urimode)) Then
-'         If (Not quickmode) Then CheckPlayerAlive()
-'         
-'         MplayerTag.quick = quickmode
-'         If Not quick Then MplayerTag.do_idleplay(FileToAdd)
-' 
-'         
-'         
-'         If (Trim(FileToAdd) <> "") Then
-'           If Forcename <> "" Then
-'             NewRow = Newrow & TableSeparator & "Filename" & TableSeparator & Forcename
-'               Else
-'             NewRow = Newrow & TableSeparator & "Filename" & TableSeparator & File.Name(FileToAdd)
-'           Endif
-'           NewRow = Newrow & TableSeparator & "Length" & TableSeparator & MplayerTag.FormatTime(MplayerTag.Media_Length)
-'           NewRow = Newrow & TableSeparator & "Type" & TableSeparator & MplayerTag.Media_Type
-'           NewRow = Newrow & TableSeparator & "Audio Codec" & TableSeparator & MplayerTag.Media_AudioCodec
-'           NewRow = Newrow & TableSeparator & "Audio Bitrate" & TableSeparator & MplayerTag.Media_AudioBitrate
-'           NewRow = Newrow & TableSeparator & "Audio Rate" & TableSeparator & MplayerTag.Media_AudioRate
-'           NewRow = Newrow & TableSeparator & "Channels" & TableSeparator & MplayerTag.Media_Channels
-'           NewRow = Newrow & TableSeparator & "Video Codec" & TableSeparator & MplayerTag.Media_VideoCodec
-'           NewRow = Newrow & TableSeparator & "Video Bitrate" & TableSeparator & MplayerTag.Media_VideoBitrate
-'           NewRow = Newrow & TableSeparator & "Fps" & TableSeparator & MplayerTag.Media_VideoFps
-'           NewRow = Newrow & TableSeparator & "Width" & TableSeparator & MplayerTag.Media_Width
-'           NewRow = Newrow & TableSeparator & "Height" & TableSeparator & MplayerTag.Media_Height
-'           NewRow = Newrow & TableSeparator & "Full Path" & TableSeparator & FileToAdd
-'           Try NewRow = Newrow & TableSeparator & "File Size" & TableSeparator & filesize
-'           NewRow = Newrow & TableSeparator & "Added on" & TableSeparator & Now
-'           
-'           If (((Upper(filetoadd) Like "*.FLAC") Or (Upper(filetoadd) Like "*.OGG")) And (Not quickmode)) Then 'use audiotag for flac files
-'             Audiotag.GetTags(FileToAdd)
-'             NewRow = Newrow & TableSeparator & "Artist" & TableSeparator & audiotag.Artist
-'             NewRow = Newrow & TableSeparator & "Album" & TableSeparator & audiotag.album
-'             NewRow = Newrow & TableSeparator & "Year" & TableSeparator & OneOf(audiotag.MyDate, audiotag.MyYear)
-'             NewRow = Newrow & TableSeparator & "Track" & TableSeparator & OneOf(audiotag.Tracknum, audiotag.Tracknumber)
-'             NewRow = Newrow & TableSeparator & "Title" & TableSeparator & audiotag.Title
-'             NewRow = Newrow & TableSeparator & "Genre" & TableSeparator & audiotag.Genre
-'             NewRow = Newrow & TableSeparator & "Comment" & TableSeparator & OneOf(audiotag.comment, audiotag.Comments)
-'               Else
-'             NewRow = Newrow & TableSeparator & "Album" & TableSeparator & MplayerTag.Media_Album
-'             NewRow = Newrow & TableSeparator & "Artist" & TableSeparator & OneOf(MplayerTag.Media_Artist, MplayerTag.Media_Author)
-'             NewRow = Newrow & TableSeparator & "Title" & TableSeparator & OneOf(MplayerTag.Media_Title, MplayerTag.Media_Name)
-'             NewRow = Newrow & TableSeparator & "Year" & TableSeparator & OneOf(MplayerTag.Media_Year, MplayerTag.Media_CreationDate)
-'             NewRow = Newrow & TableSeparator & "Genre" & TableSeparator & MplayerTag.media_genre
-'             NewRow = Newrow & TableSeparator & "Track" & TableSeparator & MplayerTag.Media_TrackNo
-'             NewRow = Newrow & TableSeparator & "Comment" & TableSeparator & OneOf(MplayerTag.Media_Comment, MplayerTag.Media_Comments) & TableSeparator
-'           Endif
-'           
-'           'PRINT "Debug: PlaylistClass: AddFile(): NewRow= " & NewRow  
-'           PTable.Add(NewRow)
-'           SearchTable.Add(NewRow)
-'           LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
-'           'FillColumns(LibraryGrid, SearchTable.count - 1)
-'         Endif
-'       Endif
-'     Endif
-'   Endif
-'   Return True
-' End
-
-
-' Public Function tryAddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
-'   Dim LastRow As Integer
-'   Dim audiotag As New AudiotagClass
-'   Dim i As Integer
-'   Dim NewRow As String
-'   Dim filesize As Integer = 0
-'   Dim quickmode As Boolean = quick And (GeneralOptions.SlowTagsCHK.value Or Global.IsNonTaggableMedia(FileToAdd))
-' 
-'   FilesProcessed = FilesProcessed + 1
-'   UpdateProgress(FMain.MyLibraryProgressBar)
-' 
-'   If (Exist(filetoadd) Or UriMode) And Trim(filetoadd) <> "" Then
-'     If (Global.IsMediaFile(FileToAdd) Or Urimode) Then
-'       Try filesize = Stat(FileToAdd).Size
-'       Debug IsDupe(fileToAdd)
-'       Debug (filesize <> 0)
-'       Debug urimode
-'       
-'       If (Not (IsDupe(FileToAdd))) Then
-'         Debug (Not (IsDupe(FileToAdd)))
-'         Debug (IsDupe(FileToAdd))
-'         If ((filesize <> 0) Or Urimode) Then
-'           If (Not quickmode) Then CheckPlayerAlive()
-'           
-'           MplayerTag.quick = quickmode
-'           If Not quick Then MplayerTag.do_idleplay(FileToAdd)
-'   
-'   
-'           If (Trim(FileToAdd) <> "") Then
-'             If Forcename <> "" Then
-'               NewRow = Newrow & TableSeparator & "Filename" & TableSeparator & Forcename
-'                 Else
-'               NewRow = Newrow & TableSeparator & "Filename" & TableSeparator & File.Name(FileToAdd)
-'             Endif
-'             NewRow = Newrow & TableSeparator & "Length" & TableSeparator & MplayerTag.FormatTime(MplayerTag.Media_Length)
-'             NewRow = Newrow & TableSeparator & "Type" & TableSeparator & MplayerTag.Media_Type
-'             NewRow = Newrow & TableSeparator & "Audio Codec" & TableSeparator & MplayerTag.Media_AudioCodec
-'             NewRow = Newrow & TableSeparator & "Audio Bitrate" & TableSeparator & MplayerTag.Media_AudioBitrate
-'             NewRow = Newrow & TableSeparator & "Audio Rate" & TableSeparator & MplayerTag.Media_AudioRate
-'             NewRow = Newrow & TableSeparator & "Channels" & TableSeparator & MplayerTag.Media_Channels
-'             NewRow = Newrow & TableSeparator & "Video Codec" & TableSeparator & MplayerTag.Media_VideoCodec
-'             NewRow = Newrow & TableSeparator & "Video Bitrate" & TableSeparator & MplayerTag.Media_VideoBitrate
-'             NewRow = Newrow & TableSeparator & "Fps" & TableSeparator & MplayerTag.Media_VideoFps
-'             NewRow = Newrow & TableSeparator & "Width" & TableSeparator & MplayerTag.Media_Width
-'             NewRow = Newrow & TableSeparator & "Height" & TableSeparator & MplayerTag.Media_Height
-'             NewRow = Newrow & TableSeparator & "Full Path" & TableSeparator & FileToAdd
-'             Try NewRow = Newrow & TableSeparator & "File Size" & TableSeparator & filesize
-'             NewRow = Newrow & TableSeparator & "Added on" & TableSeparator & Now
-'             
-'             If (((Upper(filetoadd) Like "*.FLAC") Or (Upper(filetoadd) Like "*.OGG")) And (Not quickmode)) Then 'use audiotag for flac files
-'               Audiotag.GetTags(FileToAdd)
-'               NewRow = Newrow & TableSeparator & "Artist" & TableSeparator & audiotag.Artist
-'               NewRow = Newrow & TableSeparator & "Album" & TableSeparator & audiotag.album
-'               NewRow = Newrow & TableSeparator & "Year" & TableSeparator & OneOf(audiotag.MyDate, audiotag.MyYear)
-'               NewRow = Newrow & TableSeparator & "Track" & TableSeparator & OneOf(audiotag.Tracknum, audiotag.Tracknumber)
-'               NewRow = Newrow & TableSeparator & "Title" & TableSeparator & audiotag.Title
-'               NewRow = Newrow & TableSeparator & "Genre" & TableSeparator & audiotag.Genre
-'               NewRow = Newrow & TableSeparator & "Comment" & TableSeparator & OneOf(audiotag.comment, audiotag.Comments)
-'                 Else
-'               NewRow = Newrow & TableSeparator & "Album" & TableSeparator & MplayerTag.Media_Album
-'               NewRow = Newrow & TableSeparator & "Artist" & TableSeparator & OneOf(MplayerTag.Media_Artist, MplayerTag.Media_Author)
-'               NewRow = Newrow & TableSeparator & "Title" & TableSeparator & OneOf(MplayerTag.Media_Title, MplayerTag.Media_Name)
-'               NewRow = Newrow & TableSeparator & "Year" & TableSeparator & OneOf(MplayerTag.Media_Year, MplayerTag.Media_CreationDate)
-'               NewRow = Newrow & TableSeparator & "Genre" & TableSeparator & MplayerTag.media_genre
-'               NewRow = Newrow & TableSeparator & "Track" & TableSeparator & MplayerTag.Media_TrackNo
-'               NewRow = Newrow & TableSeparator & "Comment" & TableSeparator & OneOf(MplayerTag.Media_Comment, MplayerTag.Media_Comments) & TableSeparator
-'             Endif
-'             
-'             'PRINT "Debug: PlaylistClass: AddFile(): NewRow= " & NewRow  
-'             PTable.Add(NewRow)
-'             SearchTable.Add(NewRow)
-'             LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
-'             'FillColumns(LibraryGrid, SearchTable.count - 1)
-'           Endif
-'         Endif
-'       Endif
-'     Endif
-'   Endif
-'   Return True
-' End
 
 
 Private Sub UpdateProgress(TheProgressbar As ProgressBar)
@@ -1273,20 +1240,6 @@ End
 
 
 
-
-
-
-' Public Sub FillRows(LibraryGrid As Gridview, StartRow As Integer, EndRow As Integer, AlternateColors As Boolean)
-' 'will draw rows LibraryGrid in range StartRow...EndRow with values from SearchTable
-'   Dim r As Integer
-'   For r = StartRow To EndRow
-'     If LibraryGrid[r, Columnindex["Filename"]].text = "" Then
-'       FillColumns(LibraryGrid, r)
-'       If AlternateColors Then AlternatecolorRange(LibraryGrid, r, r)
-'         Else
-'     Endif
-'   Next 'r
-' End
 
 Public Sub DoSort(Field As String, Optional table As String[] = ptable)
   Dim i As Integer

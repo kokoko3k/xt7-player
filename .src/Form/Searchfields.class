@@ -4,7 +4,7 @@
 ' Gambas class file
 
 Public Sub Form_Show()
-  Me.Caption = "Select search fields"
+  Me.Caption = ("Select search fields")
   Global.Center(Fmain, Me)
 End
 

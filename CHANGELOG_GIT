@@ -4,27 +4,28 @@ Apr 13 2012
   FIX:    Don't reset playlist row height when moving items
   FIX:    Workaround for weird gambas behaviour with playlistclass.getvalue()
   FIX:    Manual rows update is now faster and with no glitches.
-
+  NEW:    New albumview tab, not fully tested, but not harmful at all.
+  
+  
 Apr 12 2012
   FIX:    Make xt7 work with gb3.0 by just "trying" to use new gb3.1 features
   CHANGE: Better Columns autosize
   CHANGE: Faster columns sort when grid display is filtered
-  
+
 Apr 11 2012
-  NEW:    Show sort indicator and shade the sorted grid column
+  NEW:    Show sort indicator and shade the sorted column into grids
   NEW:    execute ~/.config/gambas3/Xt7-Player/switch.fs.command.sh <fps> or switch.win.command.sh
           when switching to fullscreen/windowed mode, so you can write a script that change video mode
           to match video refresh rate.
   CHANGE: Thanks to Arabian Man , there's a new Faenza like default icon.
   FIX:    Workaround for the buggy Gridview.RowAt() that comes with gb3.1
-
+  
 Apr 10 2012
   FIX:    Segmentation fault with gambas 3.1 fixed
   FIX:    Possible runtime error when a profile wasn't found
   FIX:    Changed gridview code to be compatible with gambas3.1
-  FIX:    Hotkeysgrid now has correct row height
   FIX:    Keep the gui more reactive when selecting items in a huge library
-  FIX:    Changed grid items selection code to be compatible with gambas 3.1
+  FIX:    Changed grids selection code to be compatible with gambas 3.1
 
 Apr 06 2012
   FIX:    Don't allow uncovered.txt to be 0 bytes (temporary fix) 
@@ -35,8 +36,8 @@ Apr 05 2012
   CHANGE: Avoid volume=0 as softvol has issues with it
   FIX:    Make sure user typed option are always appended to the end of command line
 
-
 Apr 03 2012
+  FIX:    Use directory chooser, not file chooser to set dvb recording folder
   FIX:    Regression: call generaloptions.init() before loading it
 
 Apr 02 2012

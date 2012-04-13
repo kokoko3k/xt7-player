@@ -116,6 +116,7 @@ Private Sub newReparent(TheObject As Object, TheParentName As String, TheForm As
       Endif
     Endif
   Next
+  
 End
 
 Private Sub Reconfigure(theObject As Object, TheSettings As String[], TheForm As Object)

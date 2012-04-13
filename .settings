@@ -10,6 +10,12 @@ Geometry=[928,154,344,344]
 [DebugWindow/AFiltersCfg]
 Geometry=[52,0,210,920]
 
+[DebugWindow/AlbumGridView.Current]
+Geometry=[51,0,508,410]
+
+[DebugWindow/AlbumView]
+Geometry=[47,-3,698,661]
+
 [DebugWindow/AllParams]
 Geometry=[0,0,301,301]
 
@@ -239,7 +245,7 @@ Geometry=[304,489,761,765]
 Geometry=[0,0,301,301]
 
 [DebugWindow/MyGrid]
-Geometry=[51,41,344,344]
+Geometry=[0,41,344,344]
 
 [DebugWindow/MyGrid.Data.Picture]
 Geometry=[48,-4,210,210]
@@ -267,9 +273,6 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/MyQuestion]
 Geometry=[-4,-3,210,210]
-
-[DebugWindow/Mygrid.Columns[c]]
-Geometry=[1280,0,210,210]
 
 [DebugWindow/Mylibrary]
 Geometry=[-14,145,344,344]
@@ -346,9 +349,6 @@ Geometry=[0,0,1014,714]
 [DebugWindow/SearchTerms]
 Geometry=[40,224,301,301]
 
-[DebugWindow/Searchtable]
-Geometry=[1280,0,210,210]
-
 [DebugWindow/Settings]
 Geometry=[539,0,422,351]
 
@@ -372,6 +372,9 @@ Geometry=[1276,-3,210,210]
 
 [DebugWindow/Split(file.Load(filename), "\n", "", TRUE)]
 Geometry=[1482,250,344,344]
+
+[DebugWindow/Split(filters, "|", "", True)]
+Geometry=[51,0,210,210]
 
 [DebugWindow/Split(findout, "\n", "", TRUE)]
 Geometry=[0,0,344,344]
@@ -508,6 +511,12 @@ Geometry=[0,41,344,344]
 [DebugWindow/[ColumnIndex.count]]
 Geometry=[0,0,301,301]
 
+[DebugWindow/albums]
+Geometry=[47,-3,1229,1002]
+
+[DebugWindow/albums.Sort()]
+Geometry=[51,0,632,651]
+
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
@@ -553,9 +562,6 @@ Geometry=[0,0,344,344]
 [DebugWindow/fmain.Controls["Button1"]]
 Geometry=[0,0,344,344]
 
-[DebugWindow/g.Children]
-Geometry=[1280,0,210,210]
-
 [DebugWindow/generaloptions]
 Geometry=[1280,0,497,854]
 
@@ -589,6 +595,15 @@ Geometry=[0,0,1186,344]
 [DebugWindow/listview]
 Geometry=[0,0,301,301]
 
+[DebugWindow/localplaylist]
+Geometry=[51,0,210,210]
+
+[DebugWindow/localplaylist.PTable]
+Geometry=[51,0,210,210]
+
+[DebugWindow/localtable]
+Geometry=[1280,0,845,633]
+
 [DebugWindow/mediaheaders]
 Geometry=[0,41,816,458]
 
@@ -617,10 +632,7 @@ Geometry=[0,0,301,301]
 Geometry=[52,0,606,604]
 
 [DebugWindow/mygrid]
-Geometry=[51,41,483,383]
-
-[DebugWindow/mygrid.Rows]
-Geometry=[1280,0,210,210]
+Geometry=[0,41,344,344]
 
 [DebugWindow/mygrid.font]
 Geometry=[224,159,344,344]
@@ -674,19 +686,16 @@ Geometry=[0,0,344,344]
 Geometry=[0,64,301,301]
 
 [DebugWindow/obj]
-Geometry=[625,404,301,301]
-
-[DebugWindow/obj.Children]
-Geometry=[1276,-3,210,210]
-
-[DebugWindow/obj.view]
-Geometry=[571,138,392,857]
+Geometry=[52,0,301,301]
 
 [DebugWindow/objs]
 Geometry=[0,0,301,301]
 
 [DebugWindow/outarray.Sort()]
 Geometry=[0,0,259,330]
+
+[DebugWindow/p.PTable]
+Geometry=[51,0,210,210]
 
 [DebugWindow/panel2]
 Geometry=[0,0,301,301]
@@ -790,6 +799,9 @@ Geometry=[883,273,344,581]
 [DebugWindow/thesettings]
 Geometry=[0,0,301,301]
 
+[DebugWindow/theview]
+Geometry=[51,0,210,210]
+
 [DebugWindow/tl]
 Geometry=[0,0,210,210]
 
@@ -810,6 +822,12 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/toSaveImg]
 Geometry=[0,41,344,344]
+
+[DebugWindow/tracks]
+Geometry=[51,0,722,281]
+
+[DebugWindow/tree]
+Geometry=[47,-3,279,770]
 
 [DebugWindow/uncovered]
 Geometry=[664,142,359,803]
@@ -832,6 +850,12 @@ Geometry=[46,405,425,458]
 [DebugWindow/videourls.sort(gb.text)]
 Geometry=[0,0,632,997]
 
+[DebugWindow/view]
+Geometry=[51,239,225,665]
+
+[DebugWindow/view.Font]
+Geometry=[51,0,210,210]
+
 [DebugWindow/xbindkeys]
 ShowHidden=True
 Geometry=[0,0,344,344]
@@ -850,80 +874,15 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:3.10"
-File[2]=".src/Form/FMain.form"
-File[3]=".src/Form/OverlayTip.form"
-File[4]=".src/Form/FMain.class:4497.12"
-File[5]=".src/Form/OverlayTrayTip.form"
-File[6]=".src/Form/OverlayTip.class:19.0"
-File[7]=".src/Form/GeneralOptions.form"
-File[8]=".src/Form/GeneralOptions.class:933.42"
-File[9]=".src/Form/AudioForm.form"
-File[10]=".src/Form/AudioForm.class:72.25"
-File[11]="AA_ToDo:98.70"
-File[12]=".src/Classi/MplayerClass.class:81.16"
-File[13]=".src/Classi/FlashClass.class:134.0"
-File[14]=".src/Form/VideoEqualizer.form"
-File[15]=".src/Form/VideoEqualizer.class:74.7"
-File[16]=".src/0_Moduli/Global.module:905.16"
-File[17]=".src/Classi/SettingsClass.class:117.6"
-File[18]=".src/Form/RealtimeForm.form"
-File[19]=".src/Form/RealtimeForm.class:114.36"
-File[20]=".src/Form/ChooseAspect.form"
-File[21]=".src/Form/ChooseAspect.class:32.25"
-File[22]=".src/Form/DVBTuner.form"
-File[23]=".src/Classi/TagLib.class:42.41"
-File[24]=".src/Form/CoverManager.class:1091.0"
-Active=25
-File[25]=".src/Classi/PlaylistClass.class:728.0"
-File[26]=".src/Form/CoverManager.form"
-File[27]="amarok_random.png"
-File[28]=".src/Form/OverlayTrayTip.class:52.12"
-File[29]=".src/Classi/Meters.class:50.2"
-File[30]="shadow.png"
-File[31]="PlaylistTab.png"
-File[32]=".src/Form/DVBTuner.class:0.0"
-File[33]="webradio.png"
-File[34]=".src/Form/zzzFake.form"
-File[35]=".src/Form/HotKeyGrab.form"
-File[36]=".src/Form/VFiltersCfg.class:451.15"
-File[37]=".src/Form/LogWindow.class:62.3"
-File[38]=".src/Form/AFiltersCfg.class:539.84"
-File[39]=".src/Classi/DynaGuiClass.class:266.0"
-File[40]=".src/Form/LogWindow.form"
-File[41]=".src/Form/SubAndOsd.class:154.6"
-File[42]=".src/Form/AddUriForm.class:41.75"
-File[43]=".src/Classi/mpris.class:209.14"
-File[44]=".src/Classi/OpenSubtitlesAPI.class:9.0"
-File[45]="Hash.py:32.47"
-File[46]=".src/Form/SubAndOsd.form"
-File[47]=".src/Form/AllOptions.form"
-File[48]=".src/Classi/WgetClass.class:2.38"
-File[49]="opensubtitles.png"
-File[50]=".src/Form/HotKeyGrab.class:0.0"
-File[51]=".src/Form/XConfigureAudioDriver.form"
-File[52]=".src/Form/XConfigureVideoDriver.form"
-File[53]=".src/Form/XConfigureAudioDriver.class:0.0"
-File[54]=".src/Form/HotKeys.form"
-File[55]=".src/Form/MyAskName.form"
-File[56]=".src/Form/MyQuestion.form"
-File[57]=".src/Form/Searchfields.form"
-File[58]=".src/Form/TextDialog.form"
-File[59]=".src/Form/Xt7Egg.form"
-File[60]=".src/Form/AFiltersCfg.form"
-File[61]=".src/Form/AddUriForm.form"
-File[62]=".src/Form/CountDown.form"
-File[63]=".src/Form/OpenSubtitesForm.form"
-File[64]=".src/Form/OpenSubtitesForm.class:92.31"
-File[65]=".src/Classi/VSlider.class:30.0"
-File[66]=".src/Form/HotKeys.class:648.2"
-File[67]=".src/Form/Chains.class:69.0"
-File[68]=".hidden/CHANGELOG:0.0"
-File[69]=".src/Form/MyAskName.class:58.38"
-File[70]="configure.png"
-File[71]=".src/Classi/ShoutCastClass.class:262.34"
-File[72]="xt7-player.png"
-Count=72
+File[1]=".src/Classi/AlbumView.class:93.0"
+File[2]="AA_ToDo:83.69"
+File[3]=".src/Form/FMain.form"
+File[4]=".src/Form/FMain.class:4515.21"
+File[5]=".src/Classi/PlaylistClass.class:1382.60"
+File[6]="amarok_random.png"
+Active=7
+File[7]="CHANGELOG_GIT:6.70"
+Count=7
 
 [Watches]
 Count=11

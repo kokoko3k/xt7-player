@@ -5,6 +5,7 @@
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 Private exportfilespath As String
 Public cachedopts As String = ""
+Public albumviewtexlen As Integer = 30
 
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
   
@@ -82,6 +83,11 @@ Public Function TabSelectedMediaInfo() As Boolean
   Return IsTabChildren("NOPARSETABMEDIAINFO")
 End
 
+Public Function TabSelectedAlbums() As Boolean
+  Return IsTabChildren("NOPARSETABALBUMS")
+End
+
+
 Public Function TabSelectedProfiles() As Boolean
   Return IsTabChildren("NOPARSETABPROFILES")
 End
@@ -107,6 +113,8 @@ Public MyPlaylist As New PlaylistClass
 Public MyDVBTList As New PlaylistClass
 Public Host As Object
 Public dvd_device As String
+Public MyAlbumsLib As New AlbumView
+
 
 Public overboost As Integer = 100 'contains softvol max value.
 
@@ -314,7 +322,7 @@ Public Sub HideGrid(Librarygrid As Gridview)
   '     HBox19.visible = False
   '     WaitPanel3.visible = True
   ' End Select
-  librarygrid.visible = False
+    librarygrid.visible = False
 End
 
 Public Sub ShowGrid(LibraryGrid As Gridview)
@@ -395,6 +403,10 @@ Public Sub AllInit_Post()
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
+  If TabSelectedAlbums() Then 
+    Albums_Select()
+  Endif  
+  
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
 Debug   
   librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
@@ -404,6 +416,7 @@ Debug
   'some gtk component problem here
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
+  Try ComboHistory.LoadHistory(searchfieldalbums, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(AddUriForm.UriInsComboBox, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(Fmain.UrlBox, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
@@ -825,6 +838,8 @@ Public Sub SetStyle_early()
   PodcastTree.Background = GeneralOptions.backcolorChooseBTN1.Background
   SearchField.Font.size = zzzFake.Font.size
   SearchFieldPLS.Font.size = zzzFake.Font.size
+  SearchFieldalbums.Font.size = zzzFake.Font.size
+  SearchFieldDVB.Font.size = zzzFake.Font.size
   HBox12.background = Color.lighter(Color.Lighter((Hbox12.Parent.background)))
   HBox12.Foreground = Color.black
   Label2.Font.bold = True
@@ -1244,12 +1259,14 @@ Public Sub Form_Close()
       GeneralOptions.SaveExcludeDir(global.confpath & "/" & global.CurrentProfile)
       ComboHistory.AddHistory(Searchfield, Searchfield.text)
       ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
+      ComboHistory.AddHistory(Searchfieldalbums, Searchfieldalbums.text)
       ComboHistory.AddHistory(youSearchfield, youSearchfield.text)
       ComboHistory.AddHistory(SearchFieldDVB, SearchFieldDVB.text)
       ComboHistory.addhistory(Fmain.Urlbox, Fmain.Urlbox.text)
       ComboHistory.SaveHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
       ComboHistory.SaveHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
       ComboHistory.SaveHistory(Searchfielddvb, global.confpath & "/" & global.CurrentProfile)
+      ComboHistory.SaveHistory(Searchfieldalbums, global.confpath & "/" & global.CurrentProfile)
       ComboHistory.SaveHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
       ComboHistory.SaveHistory(Fmain.Urlbox, global.confpath & "/" & global.CurrentProfile)
       'library and playlist are profile indipendant
@@ -2390,10 +2407,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
     OtherOptions = OtherOptions & "-dvd-device " & "\"" & dvd_device & "\" "
   Endif
-  
-   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
-  
-  
+  OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
+    
   firstplay = False
   mplayer.CurrentOptions = OtherOptions
 
@@ -2636,7 +2651,8 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
     ShowAudioPanel(True, Samecover)
   Endif
   audioform.coverbox.refresh
-  
+  'AlbumGridView.Current.Refresh()
+  MyAlbumsLib.selectcell(AlbumGridView.Row, AlbumGridView.Column)
 End
 
 
@@ -3769,6 +3785,7 @@ Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibr
   HotKeys.SaveHotKeys(global.confpath & "/" & DestinationProfile)
   ComboHistory.SaveHistory(Searchfield, global.confpath & "/" & DestinationProfile)
   ComboHistory.SaveHistory(SearchfieldPLS, global.confpath & "/" & DestinationProfile)
+  ComboHistory.SaveHistory(Searchfieldalbums, global.confpath & "/" & DestinationProfile)
   ComboHistory.SaveHistory(SearchfieldDVB, global.confpath & "/" & DestinationProfile)
   ComboHistory.SaveHistory(youSearchfield, global.confpath & "/" & DestinationProfile)
   ComboHistory.SaveHistory(AddUriForm.UriInsComboBox, global.confpath & "/" & DestinationProfile)
@@ -4537,8 +4554,9 @@ Public Sub Hsplit1_MyRefresh()
     audioform.AudioPanel.visible = True
   Endif
   YouVideoInfo.w = scrollviewyt.w - 64
-
+    Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
 End
+
 
 
 Public Sub LibraryGrid_Menu()
@@ -4563,7 +4581,9 @@ Public Sub MenuOpenContainingFolderPopUp_Click()
 End
 
 Public Sub MenuplaylistOpenFolder_Click()
+  
   Dim item As String
+  
   Try item = playlistgrid[playlistgrid.row, Myplaylist.ColumnIndex["Full Path"]].text
   If Error Then Return
   desktop.open(File.Dir(item))
@@ -4723,6 +4743,22 @@ Public Sub SearchLabel_DblClick()
   
 End
 
+' Public Sub OLD_MenuItemsUpdate_Click()
+'   Debug "start at " & Time
+'   If LibraryGrid.Rows.count > 0 Then
+'     MyLibrary.UpdateSelected(LibraryGrid)
+'     UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
+'   Endif
+'   Debug "end at " & Time
+' End
+' 
+' Public Sub OLD_MenuItemsUpdatePls_Click()
+'   If PlaylistGrid.Rows.count > 0 Then
+'     MyPlaylist.UpdateSelected(PlaylistGrid)
+'     SearchFieldPLS_Click()
+'   Endif
+' End
+
 Public Sub MenuItemsUpdate_Click()
   Debug "start at " & Time
   If LibraryGrid.Rows.count > 0 Then
@@ -4851,7 +4887,7 @@ End
 
 Public Sub UpdateTabs()
   'force a select to handle the correct item to tag
-  
+
   If TabSelectedLibrary() Then
     LibraryGrid_Select()
   Else If TabSelectedPlaylist() Then
@@ -4860,9 +4896,11 @@ Public Sub UpdateTabs()
     If fullyloaded Then ShoutCast_Select()
   Else If TabSelectedyoutube() Then
     If fullyloaded Then Youtube_Select()
+   Else If TabSelectedAlbums() Then
+    If fullyloaded Then Albums_Select()
   Endif
 
-  HBox2.visible = (TabSelectedLibrary() Or TabSelectedPlaylist() Or tabselectedcdda() Or TabSelectedBrowse())
+  HBox2.visible = (TabSelectedLibrary() Or TabSelectedPlaylist() Or tabselectedcdda() Or TabSelectedBrowse() Or TabselectedAlbums())
   SearchLabel.enabled = Not (tabselectedcdda() Or tabselectedbrowse())
   Searchfield.enabled = SearchLabel.enabled
   SearchfieldPLS.enabled = SearchLabel.enabled
@@ -4876,9 +4914,10 @@ Public Sub Leftsidetabs_MouseWheel()
 End
 
 Public Sub EnableDisableTagBtn()
-  Dim tablib, tabpls As Boolean
+  Dim tablib, tabpls, tabalbum As Boolean
   tablib = TabSelectedLibrary()
   tabpls = TabSelectedPlaylist() Or TabSelectedBrowse()
+  tabalbum = TabSelectedAlbums()
   
   UpdateTabs()
   If TabSelectedyoutube() Then 
@@ -4893,14 +4932,17 @@ Public Sub EnableDisableTagBtn()
   
   Searchfield.Visible = tablib
   SearchfieldPLS.Visible = tabpls
+  searchfieldalbums.visible = tabalbum
 End
 
 Public Sub LeftSideTabs_Click()
-
   EnableDisableTagBtn()
   resizerows(librarygrid)
   resizerows(playlistgrid)
   resizerows(dvbtgrid)
+   If TabSelectedAlbums() Then
+     If fullyloaded Then MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+   Endif
 End
 
 Public Sub LeftSideTabs_KeyRelease()
@@ -4955,19 +4997,20 @@ Public Sub MoveUpPlsBTN_Click()
   
   Dim FirstSelected, howmanyselected As Integer
   Dim i, j As Integer = 0
-  
+
   MovingItems = True
   'find the index of the first selected row:
   While Not (playlistgrid.Rows[i].Selected Or i = playlistgrid.Rows.count)
     i = i + 1
   Wend
+ 
   If i > 0 Then
     MovingItems = True
     CutSelectedRows()
     howmanyselected = ClipboardRows.Count
     playlistgrid.scrolly = playlistgrid.scrolly - playlistgrid.Rows.H
     PasteSelectedRows(i - 1)
-
+    
     'SELECT the items again:
     For j = (i - 1) To (i + HowManySelected - 2)
       playlistgrid.Rows[j].selected = True
@@ -5013,6 +5056,7 @@ Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
   Dim IsFile, IsURI, IsDirectory As Boolean
   Dim droppedfiles As String[]
   Dim DroppedFile As String
+  
   If TargetRowOverride <> -1 Then
     TargetRow = TargetRowOverride
   Else
@@ -5028,7 +5072,6 @@ Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
     playlistgrid.Rows[targetrow + i].text = ClipboardRows[totalrows - i]
   Next 'i
   ClipboardRows.clear
-  
   playlistgrid.row = targetrow
   'playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   
@@ -5038,7 +5081,6 @@ Public Function CopySelectedRows()
   'prepare the dragging, fill draggingrows
   
   Dim i As Integer = PlayListGrid.Rows.count - 1
-  
   ClipboardRows.clear
   While i >= 0 'for every selected rows in playlistgrid
     If PlayListGrid.Rows[i].selected Then
@@ -5172,7 +5214,6 @@ Public Sub resizerows(mygrid As Gridview)
  If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight) + rowpadding)
 End
 
-
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
  Dim fullpath As String
  Dim artist, album As String
@@ -5183,11 +5224,10 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  Dim filefound As Boolean = True
  Dim prevscrollX As Integer
  
- 
  If mygrid.data = Null Then Return
- 
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
+
 
 
  If mygrid.name <> "DVBTGrid" Then
@@ -5245,7 +5285,6 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  If row = hirow Then mygrid.Data.Font.bold = True
  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
-
 
 
 Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
@@ -5314,7 +5353,7 @@ Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Ro
              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
            Endif
              Else 'il coverfile c'è
-           MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
+           Try MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
          Endif
            Else 'the user don't want any cover
          MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
@@ -5328,15 +5367,13 @@ Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Ro
  Endif 'column was 0
 
  If (row Mod 2) = 0 Then
-   MyGrid.data.background = MyGrid.Background
+   Try MyGrid.data.background = MyGrid.Background
  Else
-   MyGrid.data.background = Global.Alternatecolor
+   Try MyGrid.data.background = Global.Alternatecolor
  Endif
  If row = hirow Then mygrid.Data.Font.bold = True
- MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
+ Try MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
-
-
 
 
 
@@ -5347,7 +5384,6 @@ End
 Public Sub PlaylistGrid_Data(Row As Integer, Column As Integer)
   Gridviews_Data(PlayListGrid, myplaylist, Row, Column)
 End
-
 
 Public Sub DVBTGRID_Data(Row As Integer, Column As Integer)
   
@@ -6494,6 +6530,7 @@ Public Sub ReLoadCurrentProfile()
   
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
+  Try ComboHistory.LoadHistory(Searchfieldalbums, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(Searchfielddvb, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(AddUriForm.UriInsComboBox, global.confpath & "/" & global.CurrentProfile)
@@ -6849,6 +6886,7 @@ Public Sub Youtube_Select()
   
 End
 
+
 Public Sub TextBox1_Click()
   
   If Trim(TextBox1.text) <> "" Then startshoutSearch()
@@ -7022,7 +7060,7 @@ Public Sub MenuCDDA_Click()
     SetCDDATabVisibility(False)
     If fmain.TogglePls.value = True Then fmain.TogglePls.value = False
   Endif
-
+  
   Try cddagrid.Rows[cddagrid.row].selected = False
   Try cddagrid.row = 0
   Try cddagrid.Rows[cddagrid.row].selected = True
@@ -7226,6 +7264,7 @@ End
 
 Public Sub PlaylistGrid_Enter()
   Application.ShowTooltips = Buttonshowtooltips.value
+
 End
 
 Public Sub LibraryGrid_Leave()
@@ -8125,7 +8164,7 @@ End
 
 Public Sub HBox2_Arrange()
 If fmain.fullyloaded Then
- hbox20.enabled = (TabSelectedLibrary() Or TabSelectedPlaylist())
+ hbox20.enabled = (TabSelectedLibrary() Or TabSelectedPlaylist() Or TabSelectedAlbums())
 Endif
 End
 
@@ -8286,52 +8325,6 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
   width = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Width"])
   height = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Height"])
   path = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Full Path"])
-  '= librarygrid[r, Mylibrary.Columnindex["File Size"]].text
-  '= librarygrid[r, Mylibrary.Columnindex["Added on"]].text
-
-  ' m &= ("Filename: ") & file.name(mypath) & "\n"
-  ' m &= ("In: ") & file.Dir(path) & "\n"
-  ' 
-  ' If Trim(album) & Trim(myyear) & Trim(genre) <> "" Then
-  '   If Trim(album) = "" Then album = ("Unknown")
-  '   If Trim(myyear) = "" Then myyear = ("Unknown")
-  '   If Trim(genre) = "" Then genre = ("Unknown")
-  '   m &= ("Album: ") & album & ", " & ("Year: ") & myyear & ", " & ("Genre: ") & genre & "\n"
-  ' Endif
-  ' 
-  ' If Trim(artist) <> "" Then m &= ("Artist: ") & Artist & "\n"
-  ' If Trim(title) & Trim(track) <> "" Then
-  '   If Trim(Title) = "" Then Title = ("Unknown")
-  '   If Trim(Track) = "" Then Track = ("Unknown")
-  '   m &= ("Title: ") & Title & (", Track No.: ") & Track & "\n"
-  ' Endif
-  ' m &= ("Length: ") & length & "\n"
-  ' 
-  ' If Trim(vcodec) & Trim(width) & Trim(height) & Trim(vkbps) & Trim(fps) <> "" Then
-  '   If Trim(vcodec) = "" Then vcodec = ("Unknown")
-  '   If Trim(width) = "" Then width = ("Unknown")
-  '   If Trim(height) = "" Then height = ("Unknown")
-  '   If Trim(vkbps) = "" Then vkbps = ("Unknown")
-  '   If Trim(fps) = "" Then fps = ("Unknown")
-  '   m &= ("Video: ") & vcodec & ": " & width & "x" & height & "@" & vkbps & "kbps, " & fps & " fps" & "\n"
-  ' Endif
-  ' If Trim(acodec) & Trim(arate) & Trim(akbps) & Trim(channels) <> "" Then
-  '   If Trim(acodec) = "" Then acodec = ("Unknown")
-  '   If Trim(arate) = "" Then arate = ("Unknown")
-  '   If Trim(akbps) = "" Then akbps = ("Unknown")
-  '   If Trim(channels) = "" Then channels = ("Unknown")
-  '   m &= ("Audio: ") & acodec & ", " & arate & "Hz @" & akbps & "kbps, " & channels & " " & ("channels") & "\n"
-  ' Endif
-  ' 
-  ' If Trim(comment) <> "" Then m &= ("Comment: ") & comment 
-  ' If Right(m) = "\n" Then m = Left(m, Len(m) - 1)
-  ' Return m
-
-
-
-
-
-
 
   ms.add(("Filename: ") & Chr(0) & file.name(mypath) & "\n")
   ms.add(("In: ") & Chr(0) & file.Dir(path) & "\n")
@@ -8366,10 +8359,8 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
     If Trim(channels) = "" Then channels = ("Unknown")
     ms.add(("Audio: ") & Chr(0) & acodec & ", " & arate & "Hz @" & akbps & "kbps, " & channels & " " & ("channels") & "\n")
   Endif
-  
   If Trim(comment) <> "" Then ms.add(("Comment: ") & Chr(0) & comment)
-  
-  
+
   For i = 0 To ms.count - 1
     'w = Application.Font.TextWidth(ms[i])
      w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
@@ -8384,14 +8375,10 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
     w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
     m &= Replace(ms[i], Chr(0), pixelspaces(maxw - w, sep))
   Next
-  
-  
+
   If Right(m) = "\n" Then m = Left(m, Len(m) - 1)
-
-
+  
   Return m
-
-
 End
 
 
@@ -8401,11 +8388,11 @@ End
 
 
 Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
-  Dim currentpath As String
+  Dim currentpath, album As String
   Dim popupmsg As String
   Dim scrollx As Integer
   Dim scrolly As Integer
-  Dim crow, ccolumn As Integer
+  Dim crow, fpcolumn, ccolumn As Integer
   Dim msx, msy As Integer
   If mouse.left Or mouse.right Or mouse.middle Then Return
   msx = mouse.screenx
@@ -8419,14 +8406,27 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
     Application.ShowTooltips = False
     Return
   Endif
-  ccolumn = myplaylist.ColumnIndex["Full Path"]
-  Try currentpath = mygrid[crow, ccolumn].text
-  If Error Then
-    Application.ShowTooltips = False
-    Return
+  fpcolumn = myplaylist.ColumnIndex["Full Path"]
+
+  If mygrid.name <> "AlbumGridView" Then
+    Try currentpath = mygrid[crow, fpcolumn].text
+    If Error Then
+      Application.ShowTooltips = False
+      Return
+    Endif
+      Else 'is albumgrid
+    ccolumn = mygrid.ColumnAt(mouse.screenx - mygrid.screenx)
+    If ccolumn = -1 Then Return
+    currentpath = MyAlbumsLib.PathFromCoordinates(crow, ccolumn)
   Endif
   Application.ShowTooltips = Buttonshowtooltips.value
-  Try popupmsg = maketooltip(currentpath, mygrid, myplaylist)
+  If mygrid.name <> "AlbumGridView" Then
+    Try popupmsg = maketooltip(currentpath, mygrid, myplaylist)
+      Else
+    album = MyAlbumsLib.AlbumFromCoordinates(crow, ccolumn)
+    If album = "" Then Return
+    Try popupmsg = MyAlbumsLib.AlbumToolTip(album)
+  Endif
   mygrid.tooltip = popupmsg
 End
 
@@ -8587,8 +8587,118 @@ Public Sub ButtonCapture_Click()
 End
 
 
-Public Sub PlaylistGrid_MouseDown()
-
-  
-
+Private albumsinitialized As Boolean = False
+Public Sub Albums_Select()
+  If Not fmain.fullyloaded Then Return
+    If Not albumsinitialized Then 
+      MyAlbumsLib.init(mylibrary, AlbumGridView, searchfieldalbums.text)
+      albumsinitialized = True
+      MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    Endif
 End
+
+
+Public Sub SearchFieldAlbums_Click()
+  'If Not fmain.fullyloaded Then Return
+    MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+    MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    albumsinitialized = True
+End
+
+
+
+Public Sub AlbumGridView_Data(Row As Integer, Column As Integer)
+  MyAlbumsLib.data(row, column)
+End
+
+
+Public Sub AlbumGridView_change()
+  If Not fmain.FullyLoaded Then Return
+  If AlbumGridView.row < 0 Then Return
+  If AlbumGridView.column < 0 Then Return
+  
+  MyAlbumsLib.SelectCell(AlbumGridView.row, AlbumGridView.Column)
+End
+
+Public Sub SearchFieldAlbums_KeyRelease()
+  Dim previous_search As String
+  If Not fmain.fullyloaded Then Return
+  If (Key.code < Key.space) Or (Key.code > Key.delete) Then Return
+  If key.code = key.tab Then Return
+  previous_search = searchfieldalbums.text
+  'If ((Len(Searchfieldpls.text) > 2) Or (Len(Searchfieldpls.text) = 0)) Then
+    Wait 0.5
+    If previous_search = searchfieldalbums.text Then
+      'UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
+      MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+      MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+        Else
+      Return
+    Endif
+  'Endif
+  'MenuPlaylistZapSelected.enabled = (PlaylistGrid.row > 0)
+End
+
+Public Sub SearchFieldAlbums_Activate()
+  ComboHistory.AddHistory(Searchfieldalbums, Searchfieldalbums.text)
+End
+
+Public Sub AlbumGridView_MouseMove()
+   If Not (Buttonshowtooltips.value) Then Return
+   ShowGridTooltipIn(AlbumGridView, mylibrary)
+End
+
+
+Public Sub AlbumGridView_Activate()
+  Dim tracks As String[]
+  Dim track As String
+  Dim firstrow As Integer
+  Dim answer As Integer
+  tracks = MyAlbumsLib.GetTracks(AlbumGridView.row, AlbumGridView.Column)
+  answer = MyQuestion.Ask(("What do you want to do with this album tracks?"), ("Append to playlist"), ("Append and play"))
+  If answer = -1 Then Return
+  If (tracks.count > 50) Then 
+    If MyQuestion.Ask(("Append more than 50 tracks?"), ("yes"), ("no")) = 2 Then Return
+  Endif
+  If tracks.count > 0 Then 
+    firstrow = playlistgrid.Rows.count 
+    For Each track In tracks
+      myplaylist.AddFile(playlistgrid, track, False)
+      Wait
+    Next
+    playlistgrid.UnSelectAll()
+    playlistgrid.row = firstrow
+    playlistgrid.Rows[playlistgrid.row].selected = True
+    TogglePls.value = 1
+    If answer = 2 Then 
+      Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
+      Leftsidetabs.index = Global.TabIndexByName("playlist", Leftsidetabs)
+      Leftsidetabs.Refresh
+    Endif
+  Endif
+End
+
+Public Sub AlbumGridView_Menu()
+
+  MyAlbumsLib.SelectCell(AlbumGridView.row, AlbumGridView.Column)
+  
+  menupopupalbumview.Popup()
+End
+
+Public Sub MenuSetACover_Click()
+  Dim album, artist, filepath As String
+  Dim r, c As Integer
+  r = AlbumGridView.Row
+  c = AlbumGridView.Column
+  
+  album = MyAlbumsLib.AlbumFromCoordinates(r, c)
+  artist = MyAlbumsLib.ArtistFromCoordinates(r, c)
+  filepath = MyAlbumsLib.pathFromCoordinates(r, c)
+
+  covermanager.SetACover(filepath, artist, album)
+End
+
+Public Sub AlbumGridView_Leave()
+  Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
+End
+

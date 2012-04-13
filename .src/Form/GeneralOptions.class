@@ -927,8 +927,8 @@ End
 Public Sub IconWidthCombobox_Click()
     covermanager.ResizeShadowTemplate(generaloptions.IconWidthCombobox.text)
     If fmain.TabSelectedLibrary() Then 
-    fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
-    fmain.resizerows(fmain.librarygrid)
+      fmain.RefreshVisibleRows(fmain.librarygrid, fmain.mylibrary)
+      fmain.resizerows(fmain.librarygrid)
     Else If fmain.TabSelectedPlaylist() Then 
       fmain.RefreshVisibleRows(fmain.playlistgrid, fmain.myplaylist)
       fmain.resizerows(fmain.playlistgrid)
@@ -938,6 +938,11 @@ Public Sub IconWidthCombobox_Click()
       Else If fmain.TabSelectedPlaylist() Then 
         fmain.playlistgrid.Current.EnsureVisible
   Endif
+  
+  If fmain.TabSelectedAlbums() Then 
+    If fmain.fullyloaded Then fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, fmain.albumviewtexlen)
+  Endif
+  
 End
 
 Public Sub ShowCoversInListChk_Click()

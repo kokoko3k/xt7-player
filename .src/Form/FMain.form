@@ -544,6 +544,14 @@
       Picture = Picture["icon:/16/edit"]
     }
   }
+  { MenuPopupAlbumView Menu
+    Text = ("MenuPopupAlbumView")
+    Visible = False
+    { MenuSetACover Menu
+      Text = ("Set a cover")
+      Picture = Picture["icon:/small/color"]
+    }
+  }
   { MainToolBar Panel
     MoveScaled(0,0,92,4.5714)
     Arrangement = Arrange.Horizontal
@@ -671,14 +679,14 @@
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
-      MoveScaled(1,3,39,64)
+      MoveScaled(1,3,41,64)
       Expand = True
       Arrangement = Arrange.Vertical
       Spacing = True
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(0,0,39,59)
+        MoveScaled(-1,-1,39,59)
         Tag = "1"
         ToolTip = ("Right click to select which tabs to show.")
         Expand = True
@@ -686,7 +694,8 @@
         Spacing = True
         Margin = True
         Padding = 4
-        Count = 12
+        Count = 13
+        Orientation = Align.Left
         Index = 0
         Text = ("Library")
         Picture = Picture["icon:/16/book"]
@@ -698,7 +707,7 @@
           Text = ("Label3")
         }
         { WaitPanel TextLabel
-          MoveScaled(13,1,37,4)
+          MoveScaled(10,1,37,4)
           Visible = False
           Background = Color.TextBackground
           Expand = True
@@ -706,14 +715,13 @@
           Border = Border.Raised
         }
         { Panel2 Panel
-          MoveScaled(0,8,37,26)
+          MoveScaled(4,8,31,32)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { LibraryGrid GridView
-            MoveScaled(2,1,32,22)
-            Background = Color.TextBackground
+            MoveScaled(1,1,28,29)
             Tracking = True
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
@@ -725,17 +733,40 @@
           }
         }
         { LibrarySelInfo Label
-          MoveScaled(2,38,36,4)
+          MoveScaled(1,47,36,4)
           Visible = False
           Background = &HFFFF9B&
           Alignment = Align.Center
           Border = Border.Etched
         }
         { MyLibraryProgressBar ProgressBar
-          MoveScaled(1,43,38,4)
+          MoveScaled(0,51,38,4)
           Visible = False
         }
         Index = 1
+        Text = ("Albums")
+        Picture = Picture["icon:/small/audio"]
+        { NOPARSETABALBUMS Label
+          MoveScaled(2,0,8,3)
+          Visible = False
+          Tag = "albumview"
+          Text = ("Label3")
+        }
+        { Panel8 Panel
+          MoveScaled(2,4,35,25)
+          Background = Color.TextBackground
+          Expand = True
+          Arrangement = Arrange.Fill
+          Border = Border.Plain
+          { AlbumGridView GridView
+            MoveScaled(1,1,30,21)
+            Tracking = True
+            Expand = True
+            Grid = False
+            Border = False
+          }
+        }
+        Index = 2
         Text = ("Playlist")
         Picture = Picture["PlaylistTab.png"]
         { NOPARSETABPLAYLIST Label
@@ -745,13 +776,13 @@
           Text = ("Label3")
         }
         { Panel1 Panel
-          MoveScaled(0,6,38,23)
+          MoveScaled(2,3,35,27)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { PlaylistGrid GridView
-            MoveScaled(4,1,30,18)
+            MoveScaled(2,2,29,18)
             Tracking = True
             ToolTip = ("Drag'n drop files or media links to add them,")
             Drop = True
@@ -760,7 +791,6 @@
             Grid = False
             Header = GridView.Horizontal
             Border = False
-            AutoResize = False
           }
         }
         { WaitPanel2 TextLabel
@@ -792,7 +822,7 @@
             Border = Border.Etched
           }
         }
-        Index = 2
+        Index = 3
         Text = ("Browse")
         Picture = Picture["icon:/16/directory"]
         { NOPARSETABBROWSE Label
@@ -854,7 +884,7 @@
           ShowDetailed = True
           ShowDirectory = True
         }
-        Index = 3
+        Index = 4
         Text = ("DVB-T")
         Picture = Picture["filetypedvb.png"]
         { NOPARSETABDVB Label
@@ -888,13 +918,13 @@
           }
         }
         { Panel3 Panel
-          MoveScaled(1,17,38,33)
+          MoveScaled(4,19,26,23)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { DVBTGrid GridView
-            MoveScaled(3,3,28,21)
+            MoveScaled(0,0,25,22)
             Drop = True
             Expand = True
             Mode = Select.Multiple
@@ -908,7 +938,7 @@
           Text = ("Scan for channels")
           Picture = Picture["icon:/16/find"]
         }
-        Index = 4
+        Index = 5
         Text = ("Audio CD")
         Picture = Picture["cdaudio16.png"]
         { NOPARSETABCDDA Label
@@ -918,21 +948,20 @@
           Text = ("Label3")
         }
         { Panel4 Panel
-          MoveScaled(2,5,36,44)
+          MoveScaled(2,5,30,37)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { CDDAGrid GridView
-            MoveScaled(2,3,28,33)
-            Background = Color.TextBackground
+            MoveScaled(-1,0,29,36)
             Expand = True
             Mode = Select.Single
             Grid = False
             Border = False
           }
         }
-        Index = 5
+        Index = 6
         Text = ("DVD")
         Picture = Picture["icon:/16/cdrom"]
         { NOPARSETABDVD Label
@@ -950,7 +979,7 @@
           MoveScaled(1,15,36,22)
           Expand = True
         }
-        Index = 6
+        Index = 7
         Text = ("Flash")
         Picture = Picture["flashIcon16.png"]
         { NOPARSETABFLASH Label
@@ -964,13 +993,13 @@
           Delay = 2000
         }
         { Panel5 Panel
-          MoveScaled(1,7,34,22)
+          MoveScaled(2,10,30,15)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { FlashGrid GridView
-            MoveScaled(0,1,33,18)
+            MoveScaled(0,0,22,13)
             ToolTip = ("Drag'n drop files or media links to add them,")
             Drop = True
             Expand = True
@@ -981,16 +1010,16 @@
           }
         }
         { FlashCHK CheckBox
-          MoveScaled(0,31,37,4)
+          MoveScaled(0,26,37,4)
           ToolTip = ("Show flash videos in /tmp folder in the upper list, allowing you to play them.")
           Text = ("Catch Flash videos in /tmp folder")
         }
         { FlashCHK2 CheckBox
-          MoveScaled(0,36,37,4)
+          MoveScaled(0,29,37,4)
           ToolTip = ("When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager.")
           Text = ("PopUp window to play new catched videos")
         }
-        Index = 7
+        Index = 8
         Text = ("YouTube")
         Picture = Picture["youtubeicon.png"]
         { NOPARSETABYOUTUBE Label
@@ -1155,7 +1184,7 @@
             }
           }
         }
-        Index = 8
+        Index = 9
         Text = ("ShoutCast")
         Picture = Picture["shoutcast16.png"]
         { NOPARSETABSHOUTCAST Label
@@ -1178,7 +1207,7 @@
           }
         }
         { NOSAVEVBox2 VBox
-          MoveScaled(1,23,35,26)
+          MoveScaled(1,22,35,25)
           Visible = False
           Expand = True
           Spacing = True
@@ -1204,7 +1233,7 @@
             }
           }
           { HBox11 HBox
-            MoveScaled(1,9,36,4)
+            MoveScaled(1,6,36,4)
             Spacing = True
             { ShoutSearchLabel2 Label
               MoveScaled(1,1,9,3)
@@ -1217,13 +1246,13 @@
             }
           }
           { Panel6 Panel
-            MoveScaled(4,15,30,10)
+            MoveScaled(3,13,27,10)
             Background = Color.TextBackground
             Expand = True
             Arrangement = Arrange.Fill
             Border = Border.Plain
             { ShutResultGrid GridView
-              MoveScaled(0,0,26,9)
+              MoveScaled(0,0,24,8)
               Expand = True
               Mode = Select.Multiple
               Grid = False
@@ -1240,7 +1269,7 @@
             Picture = Picture["icon:/16/find"]
           }
         }
-        Index = 9
+        Index = 10
         Text = ("Podcasts")
         Picture = Picture["rss.png"]
         { NOPARSETABPODCAST Label
@@ -1265,7 +1294,7 @@
           Text = ("New feed")
           Picture = Picture["icon:/16/new"]
         }
-        Index = 10
+        Index = 11
         Text = ("Media Info")
         Picture = Picture["MediaInfoTab.png"]
         { NOPARSETABMEDIAINFO Label
@@ -1275,18 +1304,18 @@
           Text = ("Label3")
         }
         { Panel7 Panel
-          MoveScaled(1,6,35,27)
+          MoveScaled(1,6,34,31)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { PropertiesGrid GridView
-            MoveScaled(4,2,23,22)
+            MoveScaled(0,0,33,30)
             Expand = True
             Border = False
           }
         }
-        Index = 11
+        Index = 12
         Text = ("Profiles")
         Picture = Picture["icon:/16/properties"]
         { NOPARSETABPROFILES Label
@@ -1362,7 +1391,7 @@
         Index = 0
       }
       { HBox2 HBox
-        MoveScaled(0,59,37,4)
+        MoveScaled(0,59,38,4)
         { HBox20 HBox
           MoveScaled(1,0,29,4)
           Expand = True
@@ -1375,12 +1404,17 @@
             Picture = Picture["icon:/16/watch"]
           }
           { SearchField ComboBox
-            MoveScaled(5,0,7,3)
+            MoveScaled(5,0,5,3)
             ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
             Expand = True
           }
           { SearchFieldPLS ComboBox
-            MoveScaled(12,0,7,3)
+            MoveScaled(10,0,4,3)
+            ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
+            Expand = True
+          }
+          { SearchFieldAlbums ComboBox
+            MoveScaled(15,0,4,3)
             ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
             Expand = True
           }

@@ -406,7 +406,6 @@ Public Function GetValue(TableRow As String, Field As String) As String
 End
 
 
-
 Public Function GetFullPaths(filter As String) As String[]
   Dim out As New String[]
   Dim i As Integer 
@@ -702,16 +701,6 @@ Public Sub OLD_UpdateSelected(MyPlaylist As GridView)
 
 End
 
-Public Function TableRowByPath(p As String, t As String[]) As Integer
-  Dim fstr As String = (TableSeparator & "Full Path" & TableSeparator & p)
-  Dim i As Integer
-  For i = 0 To t.Max
-    If t[i] Like "*" & fstr & "*" Then Return i
-  Next
-  Return -1
-End
-
-
 Public Sub UpdateSelected(G As Gridview)
   Dim iRow, sRow, pRow, c As Integer
   Dim p As String
@@ -738,7 +727,6 @@ Public Sub UpdateSelected(G As Gridview)
     Endif
   Next
 End
-
 
 
 Public Sub Alternatecolor(myplaylist As GridView)
@@ -976,7 +964,7 @@ Public Sub FormatTime(seconds As String) As String
   Return Shh & ":" & Smm & ":" & Sss
 
 End
-  
+
 Private Function makenewrow(Optional librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String, Optional ReturnSth As Boolean = False, Optional OldAddedOn As String = Now) As String
   Dim nr As String 'newrow
   Dim ts As String = TableSeparator
@@ -1027,6 +1015,7 @@ Private Function makenewrow(Optional librarygrid As Gridview, forcename As Strin
     Return nr
   Endif
 End
+
 
 Public Sub GetTags(f As String, ByRef Leng As String, ByRef Art As String, ByRef Alb As String, ByRef tra As String, ByRef Yea As String, ByRef tit As String, ByRef gen As String, ByRef com As String, ByRef typ As String, ByRef aco As String, ByRef abi As String, ByRef ara As String, ByRef cha As String, ByRef vco As String, ByRef vbi As String, ByRef fps As String, ByRef w As String, ByRef h As String, ByRef fsi As String, quick As Boolean)
 Dim tl As New Taglib
@@ -1081,7 +1070,75 @@ Dim fileUtf8 As String
   Endif
 End
 
-Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
+
+Public Function TableRowByPath(p As String, t As String[]) As Integer
+  Dim fstr As String = (TableSeparator & "Full Path" & TableSeparator & p)
+  Dim i As Integer
+  For i = 0 To t.Max
+    If t[i] Like "*" & fstr & "*" Then Return i
+  Next
+  Return -1
+End
+
+
+Public Function UpdateTableRow(Tablerow As String) As String
+  Dim length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, fullpath As String
+  Dim artist, album, myyear, track, title, genre, comment As String
+  Dim oldaddedon As String
+  Dim forcename As String
+  Dim filesize As Long = 0
+    
+  Fullpath = GetValue(Tablerow, "Full Path")
+  forcename = GetValue(TableRow, "Filename")
+  oldaddedon = GetValue(TableRow, "Added on")
+  GetTags(FullPath, ByRef Length, ByRef Artist, ByRef Album, ByRef track, ByRef myyear, ByRef title, ByRef genre, ByRef comment, ByRef type, ByRef acodec, ByRef abitrate, ByRef arate, ByRef channels, ByRef vcodec, ByRef vbitrate, ByRef fps, ByRef w, ByRef h, ByRef filesize, False)
+  Return makenewrow(, forcename, fullpath, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment, True, OldAddedOn)
+End
+
+
+Private Sub OLD_makenewrow(librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String)  
+  Dim nr As String 'newrow
+  Dim ts As String = TableSeparator
+  Dim filesize As Long = 0
+
+  If track = 0 Then track = ""
+  If myYear = 0 Then myYear = ""
+  
+  Try filesize = Stat(filetoadd).size Div 1024
+  If forcename <> "" Then
+    nr = nr & ts & "Filename" & ts & forcename
+      Else
+    nr = nr & ts & "Filename" & ts & file.Name(filetoadd)
+  Endif
+
+  nr = nr & ts & "Length" & ts & FormatTime(length)
+  nr = nr & ts & "Artist" & ts & artist
+  nr = nr & ts & "Album" & ts & album
+  nr = nr & ts & "Year" & ts & myyear
+  nr = nr & ts & "Track" & ts & track
+  nr = nr & ts & "Title" & ts & title
+  nr = nr & ts & "Genre" & ts & genre
+  nr = nr & ts & "Comment" & ts & Replace(comment, "\n", " ")
+  nr = nr & ts & "Type" & ts & type
+  nr = nr & ts & "Audio Codec" & ts & acodec
+  nr = nr & ts & "Audio Bitrate" & ts & abitrate
+  nr = nr & ts & "Audio Rate" & ts & arate
+  nr = nr & ts & "Channels" & ts & channels
+  nr = nr & ts & "Video Codec" & ts & vcodec
+  nr = nr & ts & "Video Bitrate" & ts & vbitrate
+  nr = nr & ts & "Fps" & ts & fps
+  nr = nr & ts & "Width" & ts & w
+  nr = nr & ts & "Height" & ts & h
+  nr = nr & ts & "Full Path" & ts & filetoadd
+  nr = nr & ts & "File Size" & ts & filesize
+  nr = nr & ts & "Added on" & ts & Now & ts
+  
+  ptable.Add(nr)
+  Searchtable.Add(nr)
+  LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
+End
+
+  Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
   Dim LastRow As Integer
   Dim i As Integer
   Dim filesize As Long = 0
@@ -1112,22 +1169,6 @@ Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional q
   makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
   Return True
 End
-
-Public Function UpdateTableRow(Tablerow As String) As String
-  Dim length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, fullpath As String
-  Dim artist, album, myyear, track, title, genre, comment As String
-  Dim oldaddedon As String
-  Dim forcename As String
-  Dim filesize As Long = 0
-    
-  Fullpath = GetValue(Tablerow, "Full Path")
-  forcename = GetValue(TableRow, "Filename")
-  oldaddedon = GetValue(TableRow, "Added on")
-  GetTags(FullPath, ByRef Length, ByRef Artist, ByRef Album, ByRef track, ByRef myyear, ByRef title, ByRef genre, ByRef comment, ByRef type, ByRef acodec, ByRef abitrate, ByRef arate, ByRef channels, ByRef vcodec, ByRef vbitrate, ByRef fps, ByRef w, ByRef h, ByRef filesize, False)
-  Return makenewrow(, forcename, fullpath, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment, True, OldAddedOn)
-End
-
-
   
 Public Function OLD_AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
   Dim LastRow As Integer
@@ -1179,6 +1220,7 @@ Public Function OLD_AddFile(LibraryGrid As GridView, FileToAdd As String, Option
     genre = (tl.Genre)
     comment = (tl.Comment)
     tl.tlFree()
+    
       Else 'but fallback to mplayertag if needed
     Debug "TagLib doesnt support " & FileToAdd & ",fallback to mplayer routines..."
     If (Not quickmode) Then CheckPlayerAlive()
@@ -1213,7 +1255,6 @@ End
 
 
 
-
 Private Sub UpdateProgress(TheProgressbar As ProgressBar)
   If FilesToProcess = 0 Then FilesToProcess = 1
   TheProgressBar.Value = Filesprocessed / FilesToProcess
@@ -1236,6 +1277,8 @@ Public Sub ClearAround(LibraryGrid As Gridview, FirstVisibleRow As Integer, Last
   '   LibraryGrid.Rows.insert(lastVisibleRow, howmanyrows)
   ' ENDIF
 End
+
+
 
 
 
@@ -1305,6 +1348,9 @@ Public Sub LegacyAutoSizeColumns(MyGrid As GridView) 'will autosize Every Row.
    Next 'thecolumn
 End
 
+
+
+
 Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way faster,but incomplete)
 
     Dim R, FirstR, LastR As Integer
@@ -1331,10 +1377,10 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
     If firstR = -1 Then firstR = 0
 
     For c = firstC To LastC 'visible rows are always correct
-      MaxW = CInt((Len(MyGrid.Columns[c].text) + 4) * CharW)
+      MaxW = CInt((Len(MyGrid.Columns[c].text) + 6) * CharW)
       ccaption = MyGrid.Columns[c].text
       For r = firstR To lastR Step rstep
-        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 4) * CharW
+        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 6) * CharW
         If MaxW < TextW Then MaxW = textW
         If MaxW >= MaxGbW Then 
           MaxW = MaxGbw
@@ -1353,10 +1399,10 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
     Rstep = (LastR Div 100) 'get 100 samples
     If rstep = 0 Then rstep = 1
     For c = firstC To LastC
-      MaxW = CInt((Len(MyGrid.Columns[c].text) + 4) * CharW)
+      MaxW = CInt((Len(MyGrid.Columns[c].text) + 6) * CharW)
       ccaption = MyGrid.Columns[c].text
       For r = firstR To lastR Step rstep
-        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 4) * CharW
+        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 6) * CharW
         If MaxW < TextW Then MaxW = textW
         If MaxW >= MaxGbW Then 
           MaxW = MaxGbw
@@ -1373,8 +1419,6 @@ Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way 
     Debug "AutosizeColumns, total time: " & CStr((t1 - t0))
     Debug
 End
-
-
 
 
 Public Sub SyncGrid(LibraryGrid As Gridview, SearchTable As String[], RowToSelect As Integer, ColToSelect As Integer)

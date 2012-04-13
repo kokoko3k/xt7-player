@@ -3,13 +3,14 @@
 Title=xt7-player
 Startup=StartClass
 Icon=xt7-player.png
-Version=3.0.2
+Version=3.0.3
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
 Component=gb.compress
 Component=gb.dbus
 Component=gb.desktop
+Component=gb.form.dialog
 Component=gb.settings
 Component=gb.form.mdi
 Component=gb.net

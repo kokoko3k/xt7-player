@@ -468,7 +468,6 @@ Public Sub LoadHotKeys(ProfileName As String)
     RestartXbindKeys(xbindkeysfilename)
 End
 
-
 Public Sub RestartXbindKeys(xbindkeysfilename As String)
   If FMain.closing Then Return
   Debug "Hotkeys: RestartXbindKeys()"

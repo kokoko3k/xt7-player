@@ -317,11 +317,13 @@ Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As 
   HotKeys.SaveHotKeys(Global.confpath & "/" & ProfileName)
   ComboHistory.AddHistory(FMain.Searchfield, FMain.Searchfield.text)
   ComboHistory.AddHistory(FMain.SearchfieldPLS, FMain.SearchfieldPLS.text)
+  ComboHistory.AddHistory(FMain.Searchfieldalbums, FMain.Searchfieldalbums.text)
   ComboHistory.AddHistory(FMain.Searchfielddvb, FMain.Searchfielddvb.text)
   ComboHistory.AddHistory(FMain.youSearchfield, FMain.youSearchfield.text)
   ComboHistory.SaveHistory(Fmain.Searchfield, Global.confpath & "/" & ProfileName)
   ComboHistory.SaveHistory(Fmain.SearchfieldPLS, Global.confpath & "/" & ProfileName)
   ComboHistory.SaveHistory(Fmain.Searchfielddvb, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.Searchfieldalbums, Global.confpath & "/" & ProfileName)
   ComboHistory.SaveHistory(Fmain.Urlbox, Global.confpath & "/" & ProfileName)
   ComboHistory.SaveHistory(Fmain.youSearchfield, Global.confpath & "/" & ProfileName)
   GeneralOptions.SaveWatchDir(Global.confpath & "/" & ProfileName)
@@ -894,7 +896,6 @@ Public Sub RedApplyBtnColor()
   Try SubAndOsd.ApplyBTN.Background = color.red
 End
 
-
 Public Function MyRowAt(g As Gridview, y As Integer) As Integer
   'workaround a bug with new gridviews in gb 3.1 which doesn't take header into account :(
   Dim workaround As Integer = 0
@@ -905,4 +906,3 @@ Public Function MyRowAt(g As Gridview, y As Integer) As Integer
   Endif
   Return g.RowAt(y - workaround)
 End
-

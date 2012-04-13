@@ -65,42 +65,23 @@ disabled il checkbox...
   creata, potrebbe essere semplicemente nera :(
   quindi ahimè, occorre vedere veramente quanto dura, prima di creare la thumb
 
-- dvbt non ha le icone
+
 
 * tenere traccia dell'attuale ordinamento delle righe (serve?)
 
 il parametro sws è inutile a meno che non si usi una scalatura software, quindi
 al più bisogna aggiungere -vf-add scale=1280:-2 (dove 1280 e la larghezza dello schermo)
 
-filesize nella gridview dev'essere un long per evitare overflow
 
 Covers inside the album folder are not supported (yet?), but embedded jpg covers are.
 
-** Album view:
-  (on double click) a popup message showing the tracks and asking if you want to append the album to the playlist.
-  -a tooltip showing the tracks when you hover it with the mouse pointer?
-  
-  capire quando è necessario inizializzarlo e dare l'arrange
-  la larghezza della colonna dev'essere uguale a quella dell'immagine più la larghezza del testo "aaaaaaaaaaa...aaa"
-  
-  
-**
 
 una url http://*.ogg si vede con l'icona del file audio
 capita quando non si visualizzano le cover.
 inoltre forse è meglio usare le stesse icone tra visualizzazione cover
 e non, cambiare solo che si vedano le cover.
 
-UpdateSelected() fa operazioni superflue che inoltre comportano anche che la voce 
-aggiornata venga posizionata infondo alla lista.
-per la posizione, si potrebbe anche inserire la row nella posizione precedente,
-ma le operazioni inutili resterebbero e sono il fatto che
-rimuove l'item da aggiornare dalla griglia, ricrea la ptable row aggiornate, e poi
-rimette l'item in griglia (alla fine), mentre basterebbe semplicemente
-aggiornare la ptable row e fare il clear delle celle, in modo che l'evento
-data possa riempirle.
-
-l'apparizione del menu deseleziona tutte le righe
+l'apparizione del menu deseleziona tutte le righe (aspettare gb >3.1)
 
 ---------------------------------------------------------------------------
 

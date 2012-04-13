@@ -37,7 +37,7 @@
         Alignment = Align.Justify
       }
       { OptionsList ListView
-        MoveScaled(2,5,15,52)
+        MoveScaled(1,5,15,52)
         Expand = True
       }
     }
@@ -1208,7 +1208,6 @@
         }
         { NoParse30 HBox
           MoveScaled(1,17,50,4)
-          Enabled = False
           Spacing = True
           { HighlightCHK CheckBox
             MoveScaled(1,0,48,4)

@@ -1351,7 +1351,7 @@ End
 
 
 
-Public Sub AutoSizeColumns(MyGrid As GridView) 'Just autosize visible rows (way faster,but incomplete)
+Public Sub AutoSizeColumns(MyGrid As GridView) 
 
     Dim R, FirstR, LastR As Integer
     Dim C, FirstC, LastC, CharW As Integer

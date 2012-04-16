@@ -4950,7 +4950,11 @@ Public Sub LeftSideTabs_Click()
   resizerows(playlistgrid)
   resizerows(dvbtgrid)
    If TabSelectedAlbums() Then
-     If fullyloaded Then MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+     If fullyloaded Then 
+       Wait
+       MyAlbumsLib.Init(mylibrary, AlbumGridView, SearchFieldAlbums.text)
+       MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+     Endif
    Endif
 End
 
@@ -5814,7 +5818,7 @@ Public Sub ButtonTag_Click()
   Last.enabled = True
   Librarygrid.enabled = True
   PlaylistGrid.enabled = True  
-  SearchField_Click()
+  'SearchField_Click() '16/04/2012: useless?
   MyLibrary.AutoSizeColumns(Librarygrid)
   MyPlaylist.AutoSizeColumns(PlayListGrid)
   Fmain.mouse = mouse.default

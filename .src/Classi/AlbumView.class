@@ -70,6 +70,7 @@ Public Function Init(playlist As Playlistclass, theview As Gridview, Optional fi
   Dim matchfilter As Boolean = False
   
   view = theview
+  view.clear
   localplaylist = playlist
   ts = localplaylist.TableSeparator
 
@@ -134,7 +135,7 @@ Public Sub Arrange(Optional rowsize As Integer = 96, Optional albumtext As Integ
 
   maxcols = view.clientw Div columnwidth
   If maxcols > localtable.count Then maxcols = localtable.count
-  maxrows = localtable.count Div maxcols
+  maxrows = CInt((localtable.count / maxcols) + 0.999999999999999999999)
   'If maxrows = 0 Then maxrows = localtable.count
   Debug view.clientw
 
@@ -229,7 +230,8 @@ Public Sub data(r As Integer, c As Integer)
   If view.Data.text <> "" Then Return
   i = (view.columns.count * r) + c
   'album and artist are inverted because array is sorted by artist
-  album = Trim(localplaylist.GetValue(localtable[i], "Album")) 'GetArtist(albums[i]) 
+  Try album = Trim(localplaylist.GetValue(localtable[i], "Album")) 'GetArtist(albums[i]) 
+  If Error Then Return
   If album <> "" Then
     artist = localplaylist.GetValue(localtable[i], "Artist") 'GetAlbum(albums[i])
     path = localplaylist.GetValue(localtable[i], "Full Path") 'GetPath(albums[i])
@@ -246,6 +248,9 @@ Public Sub data(r As Integer, c As Integer)
 
   view.Data.text = artist & "\n" & album & MyYear
   view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)
+  
+  view.Data.Alignment = Align.BottomLeft
+  
 End
 
 

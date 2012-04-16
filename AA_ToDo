@@ -73,15 +73,17 @@ il parametro sws è inutile a meno che non si usi una scalatura software, quindi
 al più bisogna aggiungere -vf-add scale=1280:-2 (dove 1280 e la larghezza dello schermo)
 
 
-Covers inside the album folder are not supported (yet?), but embedded jpg covers are.
+* Covers inside the album folder are not supported (yet?), but embedded jpg covers are.
 
 
-una url http://*.ogg si vede con l'icona del file audio
+* una url http://*.ogg si vede con l'icona del file audio
 capita quando non si visualizzano le cover.
 inoltre forse è meglio usare le stesse icone tra visualizzazione cover
 e non, cambiare solo che si vedano le cover.
 
-l'apparizione del menu deseleziona tutte le righe (aspettare gb >3.1)
+* l'apparizione del menu deseleziona tutte le righe (aspettare gb >3.1)
+
+* possibilità di non visualizzare il menu? nel caso usare un bottone nella toolbar che lo faccia apparire
 
 ---------------------------------------------------------------------------
 

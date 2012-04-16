@@ -128,8 +128,11 @@ End
 
 Public Sub Arrange(Optional rowsize As Integer = 96, Optional albumtext As Integer = 40)
   Dim maxcols, maxrows As Integer
+  Dim th As Integer
   If localtable.count = 0 Then Return
-  If rowsize < 48 Then rowsize = 48
+  
+  th = (view.Font.TextHeight("X") * 2)
+  If rowsize < (th + (th Div 10)) Then rowsize = (th + (th Div 10)) 
   iconsize = rowsize
   columnwidth = rowsize + (view.Font.TextWidth("X") * albumtext)
 

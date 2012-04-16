@@ -940,7 +940,7 @@ Public Sub IconWidthCombobox_Click()
   Endif
   
   If fmain.TabSelectedAlbums() Then 
-    If fmain.fullyloaded Then fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, fmain.albumviewtexlen)
+    If fmain.fullyloaded Then fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, fmain.albumviewtexlen)
   Endif
   
 End
@@ -1012,4 +1012,24 @@ Public Sub dvbtmpdirbtn2_Click()
     dvbfinaldir.text = Dialog.Path
   Endif
   Dialog.path = expat
+End
+
+Public Sub BackResetButton5_Click()
+  IconWidthAlbums.text = 32
+  IconWidthAlbums()
+End
+
+Public Sub IconWidthAlbums_click()
+  covermanager.ResizeShadowTemplate(generaloptions.IconWidthAlbums.text)
+  If fmain.TabSelectedAlbums() Then 
+    If fmain.fullyloaded Then fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, fmain.albumviewtexlen)
+  Endif
+End
+
+Public Sub IconWidthAlbums_Activate()
+  IconWidthAlbums_click()
+End
+
+Public Sub IconWidthAlbums_Change()
+  IconWidthAlbums_click()
 End

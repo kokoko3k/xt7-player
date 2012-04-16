@@ -721,7 +721,7 @@
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { LibraryGrid GridView
-            MoveScaled(1,1,28,29)
+            MoveScaled(2,1,28,29)
             Tracking = True
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
@@ -753,13 +753,13 @@
           Text = ("Label3")
         }
         { Panel8 Panel
-          MoveScaled(2,4,35,25)
+          MoveScaled(0,2,35,54)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { AlbumGridView GridView
-            MoveScaled(1,1,30,21)
+            MoveScaled(2,8,27,31)
             Tracking = True
             Expand = True
             Grid = False

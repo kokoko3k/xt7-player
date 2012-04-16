@@ -26,7 +26,7 @@ Public Sub btnOK_Click()
         .UpdateSearchResults(fmain.MyLibrary, .LibraryGrid, fmain.FullyLoaded, fmain.Searchfield.text)
         Try fmain.MyAlbumsLib.Init(fmain.mylibrary, fmain.AlbumGridView, fmain.searchfieldalbums.text)
         If Error Then Debug "Error while initializing albums view"
-        Try fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, fmain.albumviewtexlen)
+        Try fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, fmain.albumviewtexlen)
         If Error Then Debug "Error while Arranging albums view"
         FMain.searchfield.text = ""
       Endif
@@ -47,7 +47,7 @@ Public Sub btnOK_Click()
           .UpdateSearchResults(fmain.MyLibrary, fmain.LibraryGrid, fmain.FullyLoaded, fmain.Searchfield.text)
           Try fmain.MyAlbumsLib.Init(fmain.mylibrary, fmain.AlbumGridView, fmain.searchfieldalbums.text)
           If Error Then Debug "Error while initializing albums view"
-          Try fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, fmain.albumviewtexlen)
+          Try fmain.MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, fmain.albumviewtexlen)
           If Error Then Debug "Error while Arranging albums view"
           FMain.searchfield.text = ""
         Endif

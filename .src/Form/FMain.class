@@ -3698,7 +3698,7 @@ Public Sub LibraryGrid_Drop()
   MyLibrary.SyncSortedTable() '<-necessary for MyLibrary.isdupe() function
   Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
   If Error Then Debug "Error while initializing albums view"
-  Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+  Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
   If Error Then Debug "Error while Arranging albums view"
   Debug "End at: " & Time
   
@@ -4558,7 +4558,7 @@ Public Sub Hsplit1_MyRefresh()
     audioform.AudioPanel.visible = True
   Endif
   YouVideoInfo.w = scrollviewyt.w - 64
-    Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
 End
 
 
@@ -4729,7 +4729,7 @@ Public Sub MenuLibraryUpdate_Click()
 
     Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
     If Error Then Debug "Error while initializing albums view"
-    Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     If Error Then Debug "Error while Arranging albums view"
     Debug "Ended at: " & Time
   Endif
@@ -4953,7 +4953,7 @@ Public Sub LeftSideTabs_Click()
      If fullyloaded Then 
        Wait
        MyAlbumsLib.Init(mylibrary, AlbumGridView, SearchFieldAlbums.text)
-       MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+       MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
      Endif
    Endif
 End
@@ -7550,7 +7550,7 @@ Public Sub menubrowseaddtolibrary_Click()
   Endif
   Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
   If Error Then Debug "Error while initializing albums view"
-  Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+  Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
   If Error Then Debug "Error while Arranging albums view"
 End
 
@@ -8615,7 +8615,7 @@ Public Sub Albums_Select()
     If Not albumsinitialized Then 
       MyAlbumsLib.init(mylibrary, AlbumGridView, searchfieldalbums.text)
       albumsinitialized = True
-      MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+      MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     Endif
 End
 
@@ -8623,7 +8623,7 @@ End
 Public Sub SearchFieldAlbums_Click()
   'If Not fmain.fullyloaded Then Return
     MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
-    MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     albumsinitialized = True
 End
 
@@ -8653,7 +8653,7 @@ Public Sub SearchFieldAlbums_KeyRelease()
     If previous_search = searchfieldalbums.text Then
       'UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
       MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
-      MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+      MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
         Else
       Return
     Endif

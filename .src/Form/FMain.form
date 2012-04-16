@@ -6,6 +6,51 @@
   Icon = Picture["xt7-player.png"]
   Persistent = True
   Arrangement = Arrange.Vertical
+  { AllMenus Menu
+    Text = ("AllMenus")
+    { MenuXfile Menu
+      Text = ("File")
+      { MenuFakeFile Menu
+        Text = ("Menu8")
+      }
+    }
+    { MenuXLibrary Menu
+      Text = ("Library")
+      { Menu7 Menu
+        Text = ("Menu7")
+      }
+    }
+    { MenuXPlaylist Menu
+      Text = ("Playlist")
+      { Menu6 Menu
+        Text = ("Menu6")
+      }
+    }
+    { MenuXWindows Menu
+      Text = ("Windows")
+      { Menu5 Menu
+        Text = ("Menu5")
+      }
+    }
+    { MenuXVideoAspect Menu
+      Text = ("Video Aspect")
+      { Menu4 Menu
+        Text = ("Menu4")
+      }
+    }
+    { MenuXProfile Menu
+      Text = ("Profile")
+      { Menu3 Menu
+        Text = ("Menu3")
+      }
+    }
+    { MenuXAbout Menu
+      Text = ("?")
+      { Menu2 Menu
+        Text = ("Menu2")
+      }
+    }
+  }
   { MenuMain Menu MainMenu
     Name = "MenuMain"
     Text = ("File")
@@ -573,7 +618,7 @@
     }
     { ConfigureChainsBTN ToolButton DynaGuiToolbar
       Name = "ConfigureChainsBTN"
-      MoveScaled(10,0,4.5714,4.5714)
+      MoveScaled(11,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Show/hide chains window")
       AutoResize = True
@@ -581,7 +626,7 @@
     }
     { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
-      MoveScaled(15,0,4.5714,4.5714)
+      MoveScaled(16,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Configuration toolbox")
       AutoResize = True
@@ -589,7 +634,7 @@
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
-      MoveScaled(19,0,4.5714,4.5714)
+      MoveScaled(21,0,4.5714,4.5714)
       Enabled = False
       Font = Font["1"]
       ToolTip = ("Show/Hide AudioTag editor")
@@ -597,7 +642,7 @@
       Picture = Picture["icon:/22/edit"]
     }
     { FlexSpace PictureBox
-      MoveScaled(33,0,9,4)
+      MoveScaled(30,0,19,4)
       Font = Font["1"]
       Expand = True
     }

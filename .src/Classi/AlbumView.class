@@ -138,7 +138,12 @@ Public Sub Arrange(Optional rowsize As Integer = 96, Optional albumtext As Integ
 
   maxcols = view.clientw Div columnwidth
   If maxcols > localtable.count Then maxcols = localtable.count
-  maxrows = CInt((localtable.count / maxcols) + 0.999999999999999999999)
+  
+  If maxcols = 1 Then 
+    maxrows = localtable.count
+      Else
+    maxrows = CInt((localtable.count / maxcols) + 0.999999999999999999999)
+  Endif
   'If maxrows = 0 Then maxrows = localtable.count
   Debug view.clientw
 

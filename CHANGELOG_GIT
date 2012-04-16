@@ -8,6 +8,7 @@ Apr 16 2012
   NEW:    Allow to use a different size for covers in albums view
   FIX:    Don't show the last empty row when albums view is just one column
   FIX:    "all menus" debug voice removed
+  CHANGE: Use a timer to update total selection length, it is lighter and less glitchy
 
 Apr 13 2012
   FIX:    Don't reset playlist row height when moving items

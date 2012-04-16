@@ -4806,6 +4806,10 @@ End
 
 '-----------------------------------
 
+
+
+
+
 Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gridview, InfoWidget As Label)
   
   Dim row, count, Length As Integer
@@ -4814,6 +4818,9 @@ Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gri
   Dim TextW As Integer
   Dim FreeSpace, NeededSpaces As Integer
   Dim SpaceWidth As Integer = InfoWidget.Font.TextWidth(" ")
+  
+
+  
   
   answer = Split(MyLibrary.GetSelectedAndLength(Playlistgrid), ";")
   PreText = ("Selected: ") & answer[0] & "/" & answer[1]
@@ -4825,16 +4832,12 @@ End
 Private prevHigLibRow As Integer = -1
 
 Public Sub LibraryGrid_Select()
-  Dim HowMany As Integer
-  Wait
-  HowMany = MyLibrary.HowManySelected(librarygrid)
-  If howmany > 1 Then
-    LibrarySelInfo.visible = True
-    CalcTotalLengthInfoOn(Mylibrary, Librarygrid, LibrarySelInfo)
-    mplayer.Media_FullPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
-  Else
-    LibrarySelInfo.visible = False
-  Endif
+
+  TimerCalcTotalLengthLib = New Timer As "TimerCalcTotalLengthLib"
+  TimerCalcTotalLengthLib.delay = 100
+  TimerCalcTotalLengthLib.stop
+  TimerCalcTotalLengthLib.start
+
   Try mplayer.Media_FullPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
   Try filetaglabel.text = MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Full Path")
   
@@ -4846,25 +4849,55 @@ Public Sub LibraryGrid_Select()
   tagbox5.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Genre"))
   tagbox6.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Track"))
   tagbox7.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Comment"))
-  
 End
 
-Private movingitems As Boolean = False
 
-Public Sub PlayListGrid_Select()
-  
-  Dim HowMany As Integer
-  If Movingitems Then Return 'spare cpu cycles when changing playlist items order
-  Wait
-  HowMany = MyPlaylist.HowManySelected(playlistgrid)
-  If howmany > 0 Then
-    PlayListSelInfoBox.visible = True
-    PlayListSelInfo.visible = True
-    CalcTotalLengthInfoOn(Myplaylist, playlistgrid, playlistSelInfo)
+
+Public TimerCalcTotalLengthLib As Timer 
+
+Public Sub TimerCalcTotalLengthLib_Timer()
+  Dim howmany As Integer
+  HowMany = MyLibrary.HowManySelected(librarygrid)
+  If howmany > 1 Then
+    LibrarySelInfo.visible = True
+    CalcTotalLengthInfoOn(Mylibrary, Librarygrid, LibrarySelInfo)
+    mplayer.Media_FullPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
   Else
-    PlayListSelInfoBox.visible = False
-    PlayListSelInfo.visible = False
+    LibrarySelInfo.visible = False
   Endif
+  TimerCalcTotalLengthLib.stop
+End
+
+
+Public TimerCalcTotalLengthPls As Timer 
+
+Public Sub TimerCalcTotalLengthPls_Timer()
+  'Dim howmany As Integer
+  'HowMany = myplaylist.HowManySelected(playlistgrid)
+  'If howmany > 1 Then
+    PlayListSelInfo.visible = True
+    CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
+    mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
+  ' Else
+  '   PlayListSelInfo.visible = False
+  'Endif
+  Debug
+  TimerCalcTotalLengthPls.stop
+End
+
+
+
+
+Private movingitems As Boolean = False
+Public Sub PlayListGrid_Select()
+
+  If Movingitems Then Return 'spare cpu cycles when changing playlist items order
+
+  TimerCalcTotalLengthPls = New Timer As "TimerCalcTotalLengthPls"
+  TimerCalcTotalLengthPls.delay = 100
+  TimerCalcTotalLengthPls.stop
+  TimerCalcTotalLengthPls.start
+
   Try mplayer.Media_FullPath = PlaylistGrid[PlaylistGrid.row, MyPlaylist.Columnindex["Full Path"]].text
   Try filetaglabel.text = myplaylist.GetValue(myplaylist.SearchTable[playlistgrid.row], "Full Path")
   

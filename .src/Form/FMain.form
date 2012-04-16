@@ -6,51 +6,6 @@
   Icon = Picture["xt7-player.png"]
   Persistent = True
   Arrangement = Arrange.Vertical
-  { AllMenus Menu
-    Text = ("AllMenus")
-    { MenuXfile Menu
-      Text = ("File")
-      { MenuFakeFile Menu
-        Text = ("Menu8")
-      }
-    }
-    { MenuXLibrary Menu
-      Text = ("Library")
-      { Menu7 Menu
-        Text = ("Menu7")
-      }
-    }
-    { MenuXPlaylist Menu
-      Text = ("Playlist")
-      { Menu6 Menu
-        Text = ("Menu6")
-      }
-    }
-    { MenuXWindows Menu
-      Text = ("Windows")
-      { Menu5 Menu
-        Text = ("Menu5")
-      }
-    }
-    { MenuXVideoAspect Menu
-      Text = ("Video Aspect")
-      { Menu4 Menu
-        Text = ("Menu4")
-      }
-    }
-    { MenuXProfile Menu
-      Text = ("Profile")
-      { Menu3 Menu
-        Text = ("Menu3")
-      }
-    }
-    { MenuXAbout Menu
-      Text = ("?")
-      { Menu2 Menu
-        Text = ("Menu2")
-      }
-    }
-  }
   { MenuMain Menu MainMenu
     Name = "MenuMain"
     Text = ("File")

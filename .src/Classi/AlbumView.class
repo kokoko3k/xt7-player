@@ -249,7 +249,7 @@ Public Sub data(r As Integer, c As Integer)
   view.Data.text = artist & "\n" & album & MyYear
   view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)
   
-  view.Data.Alignment = Align.BottomLeft
+  'view.Data.Alignment = Align.BottomLeft
   
 End
 
@@ -272,7 +272,8 @@ Public Sub selectcell(r As Integer, c As Integer)
 
   savetext = view[r, c].text
   savepic = view[r, c].picture
-  savepic = savepic.Image.Stretch(savepic.Image.w * 0.95, savepic.Image.h * 0.95).picture
+  Try savepic = savepic.Image.Stretch(savepic.Image.w * 0.95, savepic.Image.h * 0.95).picture
+  If Error Then Return
   savepic = savepic.Image.PaintRect(0, 0, 400, 400, Color.SetAlpha(Color.blue, 220)).picture
   view[r, c].picture = savepic
   view[r, c].text = savetext

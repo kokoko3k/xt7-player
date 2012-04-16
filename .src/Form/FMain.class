@@ -3696,6 +3696,10 @@ Public Sub LibraryGrid_Drop()
     Endif
   Next
   MyLibrary.SyncSortedTable() '<-necessary for MyLibrary.isdupe() function
+  Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+  If Error Then Debug "Error while initializing albums view"
+  Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+  If Error Then Debug "Error while Arranging albums view"
   Debug "End at: " & Time
   
   'reset the progressbar
@@ -4722,6 +4726,11 @@ Public Sub MenuLibraryUpdate_Click()
     global.LSyncing = False
     GeneralOptions.NOPARSEVBox2.mouse = Mouse.Default
     GeneralOptions.NOPARSEVBox2.enabled = True
+
+    Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+    If Error Then Debug "Error while initializing albums view"
+    Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+    If Error Then Debug "Error while Arranging albums view"
     Debug "Ended at: " & Time
   Endif
   
@@ -7535,7 +7544,10 @@ Public Sub menubrowseaddtolibrary_Click()
       UpdateSearchResults(mylibrary, librarygrid, Searchfield.text)
     Endif
   Endif
-  
+  Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+  If Error Then Debug "Error while initializing albums view"
+  Try MyAlbumsLib.Arrange(generaloptions.IconWidthCombobox.text, albumviewtexlen)
+  If Error Then Debug "Error while Arranging albums view"
 End
 
 Public Sub menubrowseaddtoplaylist_Click()

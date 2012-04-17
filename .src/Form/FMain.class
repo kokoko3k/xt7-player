@@ -4877,7 +4877,7 @@ Public Sub TimerCalcTotalLengthPls_Timer()
   'If howmany > 1 Then
     PlayListSelInfo.visible = True
     CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
-    mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
+    Try mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
   ' Else
   '   PlayListSelInfo.visible = False
   'Endif

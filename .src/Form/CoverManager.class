@@ -1041,6 +1041,7 @@ Public Sub CoversLookerTimer_timer()
  Dim WorkingCover As New Collection
  Dim artist, album, fullpath As String
  Dim row, firstR, lastR As Integer
+ Dim column As Integer = 0
  Dim mygrid As Gridview
  Dim mypicture As Picture
  Dim fullpathcheck As String
@@ -1065,6 +1066,7 @@ Public Sub CoversLookerTimer_timer()
  album = WorkingCover["album"]
  row = WorkingCover["row"]
 
+ If mygrid.name = "AlbumGridView" Then column = WorkingCover["column"]
 
 
 'If the file isn't found, then mark it into the array
@@ -1072,8 +1074,8 @@ Public Sub CoversLookerTimer_timer()
 'we do this onto this timer event to make that async and don't block scrolling.
  If filesnotfound.Find(fullpath) <> -1 Then
    'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
-   Try mygrid[row, 0].text = ""
-   Try mygrid[row, 0].clear
+   Try mygrid[row, column].text = ""
+   Try mygrid[row, column].clear
    Return
      Else 'file not (yet?) marked as not found
    If Not global.IsNetworkURI(fullpath) Then
@@ -1081,8 +1083,8 @@ Public Sub CoversLookerTimer_timer()
        Debug "Missing file! " & fullpath
        FileNotFoundAdd(fullpath)
         'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
-        mygrid[row, 0].text = ""
-        mygrid[row, 0].clear
+        mygrid[row, column].text = ""
+        mygrid[row, column].clear
        Return
      Endif
    Endif
@@ -1102,12 +1104,17 @@ Public Sub CoversLookerTimer_timer()
  If Not ((row >= firstR) And (row <= lastR)) Then Return
 
 
-'se lo è, controlla che ad essa corssiponda lo stesso file
- If mygrid[row, 19].text <> fullpath Then Return
+'se lo è, controlla che ad essa corssiponda lo stesso file.
+  If mygrid.name <> "AlbumGridView" Then
+    If mygrid[row, 19].text <> fullpath Then Return
+  Endif
+ 
 
 
  'controlla di nuovo che alla row corrisponda lo stesso file
- If mygrid[row, 19].text <> fullpath Then Return
+ If mygrid.name <> "AlbumGridView" Then
+  If mygrid[row, 19].text <> fullpath Then Return
+ Endif
  'inserisci immagine
 
  savepic(fullpath, artist, album, generaloptions.IconWidthCombobox.text, True)
@@ -1116,7 +1123,7 @@ Public Sub CoversLookerTimer_timer()
 
 End
 
-Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16)
+Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16, Optional column As Integer = 0)
   QueuedCover = New Collection
   
   If global.IsVideoFile(fullpath) Then
@@ -1133,6 +1140,7 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
   QueuedCover["artist"] = artist
   QueuedCover["album"] = album
   QueuedCover["row"] = row
+  QueuedCover["column"] = column
   CoverQueue.Push(fullpath)
   CoverQueue.Push(QueuedCover)
   CoversLookerTimer.delay = 1
@@ -1154,7 +1162,7 @@ Public Function SavePic(fullpath As String, artist As String, album As String, r
   If (Not Exist(coverfilename, True)) Then FolderPictureToCoverCache(file.Dir(fullpath), coverfilename)
   If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename)
   If Not global.isvideofile(fullpath) Then
-    If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath)
+    If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath) 'non esiste folder.jpg e nemmeno è embedded...
   Endif
 End
 

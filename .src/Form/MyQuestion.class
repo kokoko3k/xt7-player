@@ -49,6 +49,8 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     Button2.W = Button2.Font.TextWidth(Button2.text & "------")
     Me.x = Mouse.screenx - (Me.w Div 2)
     Me.y = Mouse.screeny - Me.h '- 90
+    If Me.x <= 0 Then Me.x = 1
+    If Me.y <= 0 Then Me.y = 1
 
     Checkbox1.visible = (Checkboxstring <> "")
     If checkboxstring <> "" Then

@@ -1049,6 +1049,9 @@ Public Sub CoversLookerTimer_timer()
  Dim savedback As Integer
  Dim rowheight As Integer = 24 - global.rowpadding
 
+
+'will check for embedded covers or covers inside folders.
+
  If CoverQueue.count = 0 Then
    CoversLookerTimer.Stop
    Return
@@ -1146,13 +1149,46 @@ Public Function SavePic(fullpath As String, artist As String, album As String, r
   Dim coverfilename As String
   coverfilename = coverfile(artist, album, fullpath)
   'controlla se esiste il coverfile su disco
-  'se non esiste, prova a crearlo dalle immagini embedded
+  'se non esiste, prova a crearlo prima dalla folder.jpg, poi dalle immagini embedded
+  
+  If (Not Exist(coverfilename, True)) Then FolderPictureToCoverCache(file.Dir(fullpath), coverfilename)
   If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename)
   If Not global.isvideofile(fullpath) Then
     If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath)
   Endif
 End
 
+Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As String)
+  Dim Files As New String[]
+  Files = Dir(Directory, "*front*.jpg")
+  If Files.count > 0 Then Goto FILEFOUND  
+  
+  Files.Insert(Dir(Directory, "front*.JPEG"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "front*.PNG"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "front*.BMP"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "*.JPG"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "*.JPEG"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "*.PNG"))
+  If Files.count > 0 Then Goto FILEFOUND
+  
+  Files.Insert(Dir(Directory, "*.BMP"))
+
+  FILEFOUND:
+  If Files.count > 0 Then 
+    Copy Directory & "/" & Files[0] To coverfilename
+  Endif
+
+End
 
 
 Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String)

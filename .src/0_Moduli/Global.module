@@ -290,20 +290,46 @@ Public Sub SaveCachedOpts(ProfileName As String, cachedopts As String)
 End
 
 
+Public Sub SaveMandatorySettings(Profilename As String)
+  Dim MySettings As New SettingsClass
+  MySettings.Save(Fmain, global.confpath & "/" & Profilename)
+  MySettings.Save(SearchFields, global.confpath & "/" & Profilename)
+  GeneralOptions.SaveWatchDir(global.confpath & "/" & Profilename)
+  GeneralOptions.SaveExcludeDir(global.confpath & "/" & Profilename)
+
+  ComboHistory.AddHistory(FMain.Searchfield, FMain.Searchfield.text)
+  ComboHistory.AddHistory(FMain.SearchfieldPLS, FMain.SearchfieldPLS.text)
+  ComboHistory.AddHistory(FMain.Searchfieldalbums, FMain.Searchfieldalbums.text)
+  ComboHistory.AddHistory(FMain.Searchfielddvb, FMain.Searchfielddvb.text)
+  ComboHistory.AddHistory(FMain.youSearchfield, FMain.youSearchfield.text)
+  ComboHistory.addhistory(Fmain.Urlbox, Fmain.Urlbox.text)
+
+  ComboHistory.SaveHistory(Fmain.Searchfield, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.SearchfieldPLS, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.Searchfielddvb, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.Searchfieldalbums, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.Urlbox, Global.confpath & "/" & ProfileName)
+  ComboHistory.SaveHistory(Fmain.youSearchfield, Global.confpath & "/" & ProfileName)
+
+  'library and playlist are profile indipendant
+  fmain.MyLibrary.Save(fmain.LibraryGrid, global.confpath)
+  fmain.MyPlaylist.Save(fmain.PlaylistGrid, global.confpath)
+  fmain.MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
+  Try fmain.mypodcast.SavePods(global.confpath & "/mypods.txt", fmain.PodcastTree)
+
+  Try covermanager.flushUncoveredFile()
+
+  Debug "Mandatory settings saved"
+End
+
 
 Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As Boolean = True, Optional cachedopts As String = "")
   Dim MySettings As New SettingsClass
   Dim cachefile As File
   If cachedopts <> "" Then SaveCachedOpts(ProfileName, cachedopts)
-    ' cachefile = Open Global.confpath & "/" & ProfileName & ".profile.cache" For Write Create
-    '   Print #cachefile, cachedopts
-    ' Close cachefile
-    ' 'PRINT "Debug: SaveAllSettings(): cachedopts= " & cachedopts
-    ' 'SHELL "echo " & cachedopts & " > " & Global.confpath & "/" & ProfileName & ".profile.cache"
-  'Endif
   
+  SaveMandatorySettings(Profilename)
   
-  MySettings.Save(Fmain, Global.confpath & "/" & ProfileName)
   MySettings.Save(Chains, Global.confpath & "/" & ProfileName)
   MySettings.Save(XConfigureAudioDriver, Global.confpath & "/" & ProfileName)
   MySettings.Save(XConfigureVideoDriver, Global.confpath & "/" & ProfileName)
@@ -311,31 +337,11 @@ Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As 
   MySettings.Save(AFiltersCfg, Global.confpath & "/" & ProfileName)
   MySettings.Save(SubAndOsd, Global.confpath & "/" & ProfileName)
   MySettings.Save(GeneralOptions, Global.confpath & "/" & ProfileName)
-  MySettings.Save(SearchFields, Global.confpath & "/" & ProfileName)
+
   MySettings.Save(AudioVideoCodecs, Global.ConfPath & "/" & ProfileName)
   MySettings.Save(VideoEqualizer, Global.ConfPath & "/" & ProfileName)
   HotKeys.SaveHotKeys(Global.confpath & "/" & ProfileName)
-  ComboHistory.AddHistory(FMain.Searchfield, FMain.Searchfield.text)
-  ComboHistory.AddHistory(FMain.SearchfieldPLS, FMain.SearchfieldPLS.text)
-  ComboHistory.AddHistory(FMain.Searchfieldalbums, FMain.Searchfieldalbums.text)
-  ComboHistory.AddHistory(FMain.Searchfielddvb, FMain.Searchfielddvb.text)
-  ComboHistory.AddHistory(FMain.youSearchfield, FMain.youSearchfield.text)
-  ComboHistory.SaveHistory(Fmain.Searchfield, Global.confpath & "/" & ProfileName)
-  ComboHistory.SaveHistory(Fmain.SearchfieldPLS, Global.confpath & "/" & ProfileName)
-  ComboHistory.SaveHistory(Fmain.Searchfielddvb, Global.confpath & "/" & ProfileName)
-  ComboHistory.SaveHistory(Fmain.Searchfieldalbums, Global.confpath & "/" & ProfileName)
-  ComboHistory.SaveHistory(Fmain.Urlbox, Global.confpath & "/" & ProfileName)
-  ComboHistory.SaveHistory(Fmain.youSearchfield, Global.confpath & "/" & ProfileName)
-  GeneralOptions.SaveWatchDir(Global.confpath & "/" & ProfileName)
-  GeneralOptions.SaveExcludeDir(Global.confpath & "/" & ProfileName)
-  If WithLibraryAndPls Then
-    'playlist and library are profile indipendent
-    Fmain.MyLibrary.Save(Fmain.LibraryGrid, Global.confpath)
-    Fmain.MyPlaylist.Save(Fmain.PlayListGrid, Global.confpath)
-    Fmain.MyDVBTList.Save(Fmain.dvbtgrid, Global.confpath)
-  Endif
-  'Settings.Write(Fmain)
-  fmain.mypodcast.SavePods(global.ConfPath & "/mypods.txt", fmain.PodcastTree)
+
 End
 
 

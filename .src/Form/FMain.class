@@ -1253,31 +1253,7 @@ Public Sub Form_Close()
         Print "All settings saved"
       Endif
     Else
-      MySettings.Save(Fmain, global.confpath & "/" & global.CurrentProfile)
-      MySettings.Save(SearchFields, global.confpath & "/" & global.CurrentProfile)
-      GeneralOptions.SaveWatchDir(global.confpath & "/" & global.CurrentProfile)
-      GeneralOptions.SaveExcludeDir(global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.AddHistory(Searchfield, Searchfield.text)
-      ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
-      ComboHistory.AddHistory(Searchfieldalbums, Searchfieldalbums.text)
-      ComboHistory.AddHistory(youSearchfield, youSearchfield.text)
-      ComboHistory.AddHistory(SearchFieldDVB, SearchFieldDVB.text)
-      ComboHistory.addhistory(Fmain.Urlbox, Fmain.Urlbox.text)
-      ComboHistory.SaveHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.SaveHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.SaveHistory(Searchfielddvb, global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.SaveHistory(Searchfieldalbums, global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.SaveHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
-      ComboHistory.SaveHistory(Fmain.Urlbox, global.confpath & "/" & global.CurrentProfile)
-      'library and playlist are profile indipendant
-      MyLibrary.Save(LibraryGrid, global.confpath)
-      MyPlaylist.Save(PlaylistGrid, global.confpath)
-      MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
-      Try mypodcast.SavePods(global.confpath & "/mypods.txt", PodcastTree)
-
-      Try covermanager.flushUncoveredFile()
-
-      Print "Mandatory settings saved"
+      global.SaveMandatorySettings(global.CurrentProfile)
     Endif
   Endif
   SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it

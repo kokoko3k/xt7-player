@@ -112,6 +112,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/Dialog.filter]
 Geometry=[0,35,344,344]
 
+[DebugWindow/Dir(Directory, "*.MP3")]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/Dir(devdir, cdpattern).Insert(Dir(devdir, dvdpattern))]
 Geometry=[0,41,344,344]
 
@@ -144,6 +147,9 @@ Geometry=[0,0,564,770]
 
 [DebugWindow/FileView1.filter]
 Geometry=[0,35,1073,466]
+
+[DebugWindow/Files]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/FilterList]
 Geometry=[0,0,344,344]
@@ -547,6 +553,12 @@ Geometry=[0,41,344,344]
 [DebugWindow/devices2.Sort()]
 Geometry=[0,41,344,344]
 
+[DebugWindow/dir(directory)]
+Geometry=[1280,0,210,210]
+
+[DebugWindow/dir(directory, "*.WAV")]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/droppedfiles]
 Geometry=[0,212,588,458]
 
@@ -573,6 +585,12 @@ Geometry=[52,0,758,210]
 
 [DebugWindow/image]
 Geometry=[51,0,301,301]
+
+[DebugWindow/image.Load(tmpfile)]
+Geometry=[1280,0,210,363]
+
+[DebugWindow/image.Load(tmpfile).picture]
+Geometry=[1498,0,210,363]
 
 [DebugWindow/img]
 Geometry=[51,0,210,210]
@@ -632,7 +650,7 @@ Geometry=[0,0,301,301]
 Geometry=[52,0,606,604]
 
 [DebugWindow/mygrid]
-Geometry=[0,41,344,344]
+Geometry=[51,41,344,344]
 
 [DebugWindow/mygrid.font]
 Geometry=[224,159,344,344]
@@ -705,6 +723,9 @@ Geometry=[1280,0,210,210]
 
 [DebugWindow/picture]
 Geometry=[0,0,344,344]
+
+[DebugWindow/picture.Load(tmpfile)]
+Geometry=[1280,0,251,316]
 
 [DebugWindow/picture["filetypeuri.png"]]
 Geometry=[0,0,344,344]
@@ -808,6 +829,9 @@ Geometry=[0,0,210,210]
 [DebugWindow/tmp]
 Geometry=[51,0,210,210]
 
+[DebugWindow/tmpimage]
+Geometry=[1280,0,210,265]
+
 [DebugWindow/tmpimage.Picture]
 Geometry=[48,-4,210,210]
 
@@ -874,18 +898,24 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Classi/AlbumView.class:93.0"
-File[2]="AA_ToDo:83.69"
+File[1]=".src/Classi/AlbumView.class:87.9"
+File[2]="AA_ToDo:101.0"
+Active=3
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:4515.21"
+File[4]=".src/Form/FMain.class:8244.19"
 File[5]=".src/Classi/PlaylistClass.class:1382.60"
 File[6]="amarok_random.png"
-Active=7
-File[7]="CHANGELOG_GIT:9.28"
-Count=7
+File[7]="CHANGELOG_GIT:15.0"
+File[8]="cdaudio16.png"
+File[9]=".src/Form/GeneralOptions.form"
+File[10]=".src/Form/AskName.form"
+File[11]=".src/Form/CoverManager.class:1179.28"
+File[12]="configure.png"
+File[13]=".src/Classi/FlashClass.class:144.0"
+Count=13
 
 [Watches]
-Count=11
+Count=12
 Watch[1]="TheObject.name"
 Watch[2]="media_size"
 Watch[3]="media_length"
@@ -897,4 +927,5 @@ Watch[8]="lines[i+1]"
 Watch[9]="lines[i+2]"
 Watch[10]="settings[0]"
 Watch[11]="cachedopts"
+Watch[12]="dir(directory, \"*.WAV\")"
 

@@ -8128,8 +8128,28 @@ End
 Public Sub HSplit1_Resize()
   fakesplit.hide
   If Not fmain.fullscreen Then Hsplit1_MyRefresh
-
+  'ShadeList()
 End
+
+' Public Sub ShadeList()
+'   ' Dim Shadesize As Integer = 16
+'   ' shadeuppicture.x = Panel2.x
+'   ' shadeuppicture.w = librarygrid.clientw
+'   ' shadeuppicture.y = Panel2.y + librarygrid.Columns.Height
+'   ' shadeuppicture.h = 16
+'   ' 
+'   ' shadelowpicture.x = shadelowpicture.x
+'   ' shadelowpicture.x = shadelowpicture.w
+'   ' shadelowpicture.y = Panel2.y + Panel2.h - 16
+'   
+'   Dim i As Integer
+'   For i = 0 To fmain.W
+'     Debug librarygrid.Find(i
+'   Next
+'   
+' End
+
+
 
 Public Sub HSplit1_MouseMove()
   If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
@@ -8656,6 +8676,7 @@ End
 Public Sub SearchFieldAlbums_Click()
   'If Not fmain.fullyloaded Then Return
     MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+    Wait
     MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     albumsinitialized = True
 End
@@ -8758,3 +8779,9 @@ Public Sub AlbumGridView_Leave()
 End
 
 
+
+' Public Sub shadeuppicture_MouseWheel()
+' 
+'   librarygrid.Proxy = shadeuppicture
+' 
+' End

@@ -674,7 +674,9 @@ Public Sub LookForJpgB64(filename As String, Optional saveto As String = "", Opt
     myjpg = Mid(myjpg, jpgstart, Len(myjpg) - jpgstart)
     'If Error Then Return False
     file.Save(tmpfile, myjpg)
-    Try tmppic = picture.Load(tmpfile)
+    'Try tmppic = picture.Load(tmpfile)
+    Try tmppic = image.Load(tmpfile).picture
+    
     If Not Error Then 
       isvalid = True
       Seek #mystream, jpgstart

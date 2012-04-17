@@ -74,7 +74,8 @@ Public Function Init(playlist As Playlistclass, theview As Gridview, Optional fi
   localplaylist = playlist
   ts = localplaylist.TableSeparator
 
-  localtable = localplaylist.PTable.Copy()
+  Try localtable = localplaylist.PTable.Copy()
+  If Error Then Return
 
   'strip out non audio files
   For i = (localtable.count - 1) DownTo 0

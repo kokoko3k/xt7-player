@@ -715,13 +715,13 @@
           Border = Border.Raised
         }
         { Panel2 Panel
-          MoveScaled(4,8,31,32)
+          MoveScaled(2,11,31,32)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { LibraryGrid GridView
-            MoveScaled(2,1,28,29)
+            MoveScaled(2,1,24,26)
             Tracking = True
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
@@ -759,7 +759,7 @@
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { AlbumGridView GridView
-            MoveScaled(2,8,27,31)
+            MoveScaled(2,8,29,35)
             Tracking = True
             Expand = True
             Grid = False

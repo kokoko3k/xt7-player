@@ -11,7 +11,11 @@
   SkipTaskbar = True
   Opacity = 0
   { VSplit1 VSplit
-    MoveScaled(9,5,5,4)
+    MoveScaled(13,9,5,4)
     Expand = True
+  }
+  { ScrollView1 ScrollView
+    MoveScaled(1,1,9,9)
+    Border = False
   }
 }

@@ -3,7 +3,7 @@
 'Public mycolumnview As Columnview
 
 Public ts As String
-Private localtable As String[]
+Private localtable As New String[]
 Private localplaylist As Playlistclass
 Private albums As New String[]
 Private iconsize As Integer = 64

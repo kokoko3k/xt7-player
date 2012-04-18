@@ -52,6 +52,8 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     If Me.x <= 0 Then Me.x = 1
     If Me.y <= 0 Then Me.y = 1
 
+
+
     Checkbox1.visible = (Checkboxstring <> "")
     If checkboxstring <> "" Then
       Checkbox1.text = CheckboxString

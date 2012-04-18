@@ -356,5 +356,17 @@ Public Sub Form_Show()
       Endif
     Endif
   Next
+End
 
+
+Public Sub DragBox_Enter()
+   Try Last.mouse = 17 'missing constant for this
+End
+
+Public Sub DragBox_Leave()
+  Try Last.mouse = mouse.Default
+End
+
+Public Sub AudioFilterObj_MouseDown()
+  Try Last.mouse = 18 'missing mouse constant
 End

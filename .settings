@@ -1,5 +1,7 @@
 [Breakpoints]
-Count=0
+Breakpoint[1]="FMain.4681"
+Breakpoint[2]="GeneralOptions.468"
+Count=2
 
 [DebugWindow]
 Count=0
@@ -128,7 +130,7 @@ Geometry=[0,0,301,301]
 Geometry=[21,413,646,301]
 
 [DebugWindow/ExcludeList]
-Geometry=[0,0,344,820]
+Geometry=[51,0,344,820]
 
 [DebugWindow/ExcludedValues]
 Geometry=[52,0,210,210]
@@ -162,6 +164,9 @@ Geometry=[-4,-3,210,210]
 
 [DebugWindow/GeneralOptions]
 Geometry=[0,41,344,344]
+
+[DebugWindow/GeneralOptions.NoParseExcludedListbox]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/GenresGrid]
 Geometry=[0,0,344,344]
@@ -312,6 +317,9 @@ Geometry=[0,0,1014,714]
 
 [DebugWindow/PTableFile]
 Geometry=[0,0,975,310]
+
+[DebugWindow/Panel2]
+Geometry=[700,269,292,618]
 
 [DebugWindow/Picture]
 Geometry=[51,0,210,210]
@@ -778,6 +786,9 @@ Geometry=[0,41,344,344]
 [DebugWindow/settings]
 Geometry=[0,0,210,210]
 
+[DebugWindow/shadelowpicture]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/shadowpic]
 Geometry=[51,0,210,210]
 
@@ -898,21 +909,9 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Classi/AlbumView.class:87.9"
-File[2]="AA_ToDo:101.0"
-Active=3
-File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:8244.19"
-File[5]=".src/Classi/PlaylistClass.class:1382.60"
-File[6]="amarok_random.png"
-File[7]="CHANGELOG_GIT:15.0"
-File[8]="cdaudio16.png"
-File[9]=".src/Form/GeneralOptions.form"
-File[10]=".src/Form/AskName.form"
-File[11]=".src/Form/CoverManager.class:1179.28"
-File[12]="configure.png"
-File[13]=".src/Classi/FlashClass.class:144.0"
-Count=13
+Active=1
+File[1]=".src/Form/MyQuestion.class:52.30"
+Count=1
 
 [Watches]
 Count=12

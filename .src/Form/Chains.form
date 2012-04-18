@@ -44,7 +44,8 @@
           Text = ("Video Filters Toolbox")
           Alignment = Align.Left
         }
-        { VideoFiltersBox ScrollView
+        { VideoFiltersBox ScrollView DragBox
+          Name = "VideoFiltersBox"
           MoveScaled(1,2,20,44)
           Background = Color.TextBackground
           Expand = True
@@ -250,7 +251,8 @@
           Text = ("VideoChain")
           Alignment = Align.Left
         }
-        { VideoChainBox ScrollView
+        { VideoChainBox ScrollView DragBox
+          Name = "VideoChainBox"
           MoveScaled(2,4,13,28)
           Background = Color.TextBackground
           Expand = True
@@ -277,7 +279,8 @@
           Text = ("AudioChain")
           Alignment = Align.Left
         }
-        { AudioChainBox ScrollView
+        { AudioChainBox ScrollView DragBox
+          Name = "AudioChainBox"
           MoveScaled(1,4,14,28)
           Background = Color.TextBackground
           Expand = True
@@ -308,7 +311,8 @@
           Text = ("Audio Filters Toolbox")
           Alignment = Align.Left
         }
-        { AudioFiltersBox ScrollView
+        { AudioFiltersBox ScrollView DragBox
+          Name = "AudioFiltersBox"
           MoveScaled(2,5,20,41)
           Background = Color.TextBackground
           Expand = True

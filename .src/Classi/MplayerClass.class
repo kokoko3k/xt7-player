@@ -642,7 +642,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
       Debug "-dumpfile option found in the command line, probably you will not be able to dump streams using the rec button"
       Debug
         Else
-      commandline = commandline & " -capture -dumpfile " & dumpfile
+      If (Not ImIdlePlaying) Then commandline = commandline & " -capture -dumpfile " & dumpfile
     Endif
     
     

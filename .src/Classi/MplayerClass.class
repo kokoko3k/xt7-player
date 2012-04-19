@@ -7,7 +7,7 @@
 
 
 'Public Audiofilter As String = "*.mp3;*.ogg;*.aac;*.flac;*.mpc;*.ac3;"
-Private ImIdlePlaying As Boolean = False 'setted by do_idle_play
+Public ImIdlePlaying As Boolean = False 'setted by do_idle_play or from outside
 
 Public IsNetworkURI As Boolean = False
 Public ICY As String
@@ -36,13 +36,24 @@ Public InputPipe As String = ""
 Public exportfile As String = ""
 
 Public Function executable() As String
+  Dim out As String
+  out &= out & GeneralOptions.MplayerEnvVars.text & " " 'user specified environment variables
+  
+  'user specified http proxy
+  If (GeneralOptions.HttpProxyCHK.value) And (Trim(GeneralOptions.ProxyTextBox.text) <> "") Then
+    out &= "http_proxy=" & GeneralOptions.ProxyTextBox.text & " "
+  Endif
 
-   If (GeneralOptions.HttpProxyCHK.value) And (Trim(GeneralOptions.ProxyTextBox.text) <> "") Then
-     Return "http_proxy=" & GeneralOptions.ProxyTextBox.text & " " & GeneralOptions.MplayerExeText.Text
-   Else
-     Return GeneralOptions.MplayerExeText.Text
-   Endif
+  'stop idle mplayer after 10 minutes
+  If ImIdlePlaying Then 
+    out &= "timeout 600 "
+      Else
+    'add c locale to workaround somw buggy ladspa filters which calls setlocale
+    out &= "LC_ALL=C "
+  Endif
 
+  out &= GeneralOptions.MplayerExeText.Text & " "
+  Return out
 End
 
 
@@ -586,6 +597,8 @@ Public Function do_play(filename As String, options As String, Optional restart 
     ClearMediaProperties()
     Media_FullPath = filename
     
+    
+    
     commandline = executable() & " " & "-identify -slave "
     If wid <> "" Then commandline = commandline & " -wid " & wid
     commandline = commandline & " -noconfig all "
@@ -651,8 +664,6 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Else
       MaxHeaders = MaxHeadersFile
     Endif
-    'add c locale to workaround somw buggy ladspa filters which calls setlocale
-    commandline = "LC_ALL=C " & commandline
 
     Debug "Starting mplayer now:"
     Debug "commandline=" & commandline
@@ -1394,8 +1405,8 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   Dim cmdline As String = ""
   Dim mpout As String
   Mkdir outdir
-  'mplayer $file -vf scale=$width:-2 -ss 300 -frames 1 -nosound -vo jpeg:quality=80:outdir=/tmp/
-  cmdline = "mplayer" & " " & Shell(fullpath) & " -nocache "
+  'Create the thumb, but exit after 30 seconds 
+  cmdline = "timeout 30 mplayer" & " " & Shell(fullpath) & " -nocache "
   cmdline &= "-vf scale=" & width & ":-2" & ",expand=:::::1/1" & " -ss " & seconds 
   cmdline &= " -frames 1 -nosound -vo jpeg:quality=80:outdir=" & outdir
   cmdline &= " -noconfig all -slave -quiet"

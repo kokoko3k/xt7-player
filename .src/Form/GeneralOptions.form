@@ -42,7 +42,7 @@
       }
     }
     { Tabstrip1 TabStrip
-      MoveScaled(21,1,62,65)
+      MoveScaled(22,1,62,65)
       Tag = "Audio CD"
       Expand = True
       Arrangement = Arrange.Vertical
@@ -962,8 +962,23 @@
         Spacing = True
         Margin = True
         Padding = 6
+        { NoParse49 HBox
+          MoveScaled(1,0,50,4)
+          ToolTip = ("Select your mplayer executable.\nJust write 'mplayer' for default.")
+          Spacing = True
+          { NoParseLabel21 Label
+            MoveScaled(1,1,20,3)
+            AutoResize = True
+            Text = ("Environment Variables")
+          }
+          { MplayerEnvVars TextBox
+            MoveScaled(21,0,19,3)
+            ToolTip = ("You can override some environment variables here, write them in thre form:\nVARIABLE1=VALUE VARIABLE2=VALUE")
+            Expand = True
+          }
+        }
         { NoParse9 HBox
-          MoveScaled(1,1,44,4)
+          MoveScaled(1,5,44,4)
           ToolTip = ("Select your mplayer executable.\nJust write 'mplayer' for default.")
           Spacing = True
           { NoParseLabel9 Label
@@ -982,7 +997,7 @@
           }
         }
         { NoParse5 HBox
-          MoveScaled(1,5,44,4)
+          MoveScaled(1,10,44,4)
           ToolTip = ("Here you can specify additional mplayer options.")
           Spacing = True
           { NoParseLabel6 Label
@@ -997,7 +1012,7 @@
           }
         }
         { NoParse3 HBox
-          MoveScaled(1,9,44,4)
+          MoveScaled(1,15,44,4)
           ToolTip = ("Command or commands (semicolon separated) which\nwill be executed before a file is played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one.")
           Spacing = True
           { NoParseLabel5 Label
@@ -1011,7 +1026,7 @@
           }
         }
         { NoParse4 HBox
-          MoveScaled(1,13,44,4)
+          MoveScaled(1,20,44,4)
           ToolTip = ("Command or commands (semicolon separated) which\nwill be executed after a file has been played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one.")
           Spacing = True
           { NoParseLabel7 Label
@@ -1025,7 +1040,7 @@
           }
         }
         { NoParse19 HBox
-          MoveScaled(1,18,44,4)
+          MoveScaled(1,25,44,4)
           ToolTip = ("Enter the shutdown command \\n (make sure your  have rights to do it)")
           Spacing = True
           { NoParseLabel12 Label
@@ -1041,21 +1056,21 @@
           }
         }
         { NOPARSESEP2 Separator
-          MoveScaled(3,23,46,1)
+          MoveScaled(1,30,46,1)
         }
         { NoParse6 HBox
-          MoveScaled(1,26,44,4)
+          MoveScaled(1,32,44,4)
           ToolTip = ("Enable/Disbale Tooltips")
           Spacing = True
           { ToolTipsCHK CheckBox
-            MoveScaled(1,0,43,4)
+            MoveScaled(1,0,40,4)
             Expand = True
             Text = ("Enable ToolTips")
             Value = CheckBox.True
           }
         }
         { NoParse46 HBox
-          MoveScaled(2,30,44,4)
+          MoveScaled(1,36,44,4)
           ToolTip = ("Enable this if you want xt7 to be controlled through an mpris2 compliant client.\n")
           Spacing = True
           { ToolTipsCHKDBUS CheckBox
@@ -1073,22 +1088,22 @@
           }
         }
         { NoParse47 HBox
-          MoveScaled(1,36,44,4)
+          MoveScaled(1,40,44,4)
           ToolTip = ("Enable/Disbale Tooltips")
           Spacing = True
           { RestorePlayCHK CheckBox
-            MoveScaled(1,0,43,4)
+            MoveScaled(1,0,41,4)
             ToolTip = ("If you close xt7-player while playing a local file,\nxt7 will start just were you left the next time.")
             Expand = True
             Text = ("Start were you left")
           }
         }
         { NoParse18 HBox
-          MoveScaled(1,42,44,4)
+          MoveScaled(1,44,50,4)
           ToolTip = ("When an audio file is played, the right panel will show\ninformations on the file played, allowing to set covers\nfor your library items.")
           Spacing = True
           { CoverCHK2 CheckBox
-            MoveScaled(1,0,43,4)
+            MoveScaled(1,0,41,4)
             ToolTip = ("When an audio file is played, the right panel will show\ninformations on the file played, allowing to set covers\nfor your library items.")
             Expand = True
             Text = ("Use cover manager.")
@@ -1096,7 +1111,7 @@
           }
         }
         { NoParse20 HBox
-          MoveScaled(1,46,50,4)
+          MoveScaled(1,48,50,4)
           ToolTip = ("Enable/Disbale the tray icon")
           Spacing = True
           { TrayCHK1 CheckBox
@@ -1107,7 +1122,7 @@
           }
         }
         { NOPARSESEP1 Separator
-          MoveScaled(4,51,45,1)
+          MoveScaled(4,52,45,1)
         }
         { NoParse12 HBox
           MoveScaled(1,53,50,4)

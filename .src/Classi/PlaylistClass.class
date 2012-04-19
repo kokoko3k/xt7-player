@@ -35,6 +35,7 @@ Public Sub Init(WithMplayer As Boolean)
   Randomize
   If WithMplayer Then
     MplayerTag.quick = True
+    mplayertag.ImIdlePlaying = True
     MplayerTag.do_play("", "-idle -ao null -vo null -channels 6", True)
   Endif
   Columnindex["Filename"] = 0

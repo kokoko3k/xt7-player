@@ -3,7 +3,11 @@ Git changes:
 Apr 19 2012
   NEW:    Prebuffer cover dir + some old code cleanup + more readable debug messages
   CHANGE: Split mplayer logs for "-*" for better readablity
+  NEW:    Allow user to override environment variables (generaloptions -> misc)
+          Beware that if you specified an environment varialbe right into the mplayer
+          textbox in the past, now you NEED to move it into the new textbox
 
+  
 Apr 18 2012
   FIX:    Tweaks and fixes to the drag'n drop routines (chains window)
 

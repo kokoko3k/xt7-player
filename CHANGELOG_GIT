@@ -8,6 +8,8 @@ Apr 19 2012
           textbox in the past, now you NEED to move it into the new textbox
   NEW:    Avoid idling mplayers to be left if xt7-crashes or something by start them with timeout (10 minutes)
   NEW:    Use a timeout for mplayer thumbnailer processes too (30sec)
+  FIX:    Remove useless capture parameter from idle mplayer processes
+  NEW:    Draw a rounded box under the current albumview item
   
 Apr 18 2012
   FIX:    Tweaks and fixes to the drag'n drop routines (chains window)

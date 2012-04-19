@@ -646,8 +646,8 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "", Option
    Dim tmppic As Picture
    Dim chunk As String
    Dim m1pos As Long
-   Dim jpgstartmarker As String = Chr(255) & Chr(216)
-   Dim jpgendmarker As String = Chr(255) & Chr(217)
+   Dim jpgstartmarker As String = Chr(255) & Chr(216) 'FFD8
+   Dim jpgendmarker As String = Chr(255) & Chr(217)   'FFD9
    Dim jpgstart, jpgend As Long
    
   If IsUncovered(filename) Then Return False

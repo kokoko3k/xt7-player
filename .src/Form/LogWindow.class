@@ -44,7 +44,8 @@ Public Sub ShowLogs()
   'Logarea.Clear
   If FMain.mplayer.mediaheaders.Count > 1 Then
     tmp = "Commandline:" & "\n"
-    tmp = tmp & FMain.mplayer.Commandline & "\n" & "\n"
+    tmp = tmp & Replace(FMain.mplayer.Commandline, " -", "\n -") & "\n" & "\n"
+    tmp &= "------------------------------------------------------------------------------\n\n"
     For i = 0 To FMain.mplayer.mediaheaders.Count - 1
       tmp = tmp & FMain.mplayer.mediaheaders[i] & "\n"
     Next 'i

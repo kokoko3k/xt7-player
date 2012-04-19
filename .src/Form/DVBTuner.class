@@ -72,8 +72,10 @@ Public Sub Button1_Click()
   'scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 1>&2" For Read As "scanprocess"
   scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 2>&1" For Read As "scanprocess"
   Debug scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 1>&2" 
+  Debug
   monprocess = Shell femonexe & " -a " & cardn & " -H" For Read As "monprocess"
   Debug femonexe & " -a " & cardn & " -H" 
+  Debug
   Button1.enabled = False
   ComboBox1.enabled = False
   Button5.enabled = True
@@ -87,6 +89,7 @@ Public Sub scanprocess_read()
   For Each sLine In scanprocess.Lines
     If sLine Like "*dumping lists*" Then
       Debug "Headers Done ***********************"
+      Debug
       HeadersDone = True
       Textarea1.Insert(Sline & "\n")
       Return
@@ -108,7 +111,6 @@ Public Sub monprocess_read()
   Dim splitted As String[]
   Dim signal, snr As Integer
   Read #Last, sLine, -1024
-  'DEBUG "** femon: " & sline
   sline = Split(sline, "\n", "", True)[0]
   If sLine Like "status*" Then
     sLine = Replace(sLine, "%", "")
@@ -133,6 +135,7 @@ Public Sub initprogress()
   Try tempfile = Split(File.Load(ftablefilesource), "\n", "", True).Sort()
   If Error Then Return
   Debug "Successfully opened and sorted " & ftablefilesource
+  Debug
   'remove unuseful lines from the sorted file (eg. comments '#')
   For myline = 0 To tempfile.count - 1
     If tempfile[myline] Like "T *" Then
@@ -168,7 +171,7 @@ Public Sub ProcessScanHeaders(stderr As String)
   Dim service, pmt, ac3id As String
   
   Debug stderr
-  
+  Debug
   Try stderrlines = Split(stderr, "\n", "", True)
 
   For Each stderrline In stderrlines

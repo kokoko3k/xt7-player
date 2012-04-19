@@ -271,7 +271,6 @@ Public Function GetTotalFiles(dragdata As String, FromDesktop As Boolean) As Int
         Else
       droppedfile = Global.NoFileSuffix(Global.FormatDrag(droppedfile))
     Endif
-    'PRINT "DEBUG: Global: GetTotalFiles(): ls -laRL " & DroppedFile & " |wc -l"
     Shell "sync" Wait
     ' [GB2:QUOT] Shell "ls -LR1 " & Quote.Shell(DroppedFile) & " |grep \\. |grep -v \\/ |sort -u |wc -l" Wait To subtotal
     Shell "ls -LR1 " & Shell$(DroppedFile) & " |grep \\. |sort -u |wc -l" Wait To subtotal
@@ -320,6 +319,7 @@ Public Sub SaveMandatorySettings(Profilename As String)
   Try covermanager.flushUncoveredFile()
 
   Debug "Mandatory settings saved"
+  Debug
 End
 
 
@@ -387,6 +387,7 @@ Public Sub ReallyLoadAllSettings()
   Dim TheForm As Object
   Dim WasVisible As Boolean = False
   Debug "Start at: " & Time
+  Debug
   Try fmain.mouse = Mouse.wait
   If (Not global.initearlyformsdone) Then
     fmain.InitEarlyForms()
@@ -409,6 +410,7 @@ Public Sub ReallyLoadAllSettings()
   Next
   Try fmain.mouse = Mouse.default
   Debug "Ends at: " & Time
+  Debug
 End
 
 
@@ -422,16 +424,15 @@ Public Sub DelayLoadStates_Timer()
   Dim WasVisible As Boolean = False
   
   Debug "Start at: " & Time
-  'IF NOT FMain.visible THEN 
+  Debug
   Try fmain.mouse = Mouse.wait
   If Not (fmain.visible Or Fmain.Closing) Then
     Debug "Waiting..."
+    Debug
     Return
   Endif
   DelayLoadStates.Stop
-  'IF (NOT fmain.fullyloaded) THEN 
   If (Not global.initearlyformsdone) Then
-    'WAIT 0.5
     fmain.InitEarlyForms()
   Endif
   
@@ -456,7 +457,7 @@ Public Sub DelayLoadStates_Timer()
   initlatelyformsdone = True
   Try fmain.mouse = Mouse.default
   Debug "Ends at: " & Time
-
+  Debug
 End
 
 
@@ -541,11 +542,7 @@ Dim UPTabName As String
 Dim theobject As Object
       UPTABName = Upper(TabName)
       If UPTABNAME = "MYEXPAND" Then UPTABName = "EXPAND" 'gb3 workaround
-      ' IF TheTabstrip.Parent.name = "GENERALOPTIONSFRAME" THEN
-      '   FOR i = 0 TO GeneralOptions.UntranslatedTabNames.Count - 1
-      '     IF UPTABName = GeneralOptions.UntranslatedTabNames[i] THEN RETURN i
-      '   NEXT 'i      
-      '     ELSE
+
         For i = 0 To TheTabStrip.count - 1
           If (UPTABName = Upper(RemoveShortCut(TheTabStrip[i].text))) Or (UPTABName = pre & Upper(RemoveShortCut(TheTabStrip[i].text))) Then Return i
           For Each theobject In TheTabStrip[i].Children
@@ -553,13 +550,12 @@ Dim theobject As Object
               If (Upper(theobject.tag) = upTabName) Then Return i
                 Else
               If theobject Is Label And theobject.name Like "NOPARSETAB*" Then
-                'debug theobject.tag
+
                 If (Upper(theobject.tag) = upTabName) Then Return i
               Endif
             Endif
           Next 'theobject
         Next 'i
-      'ENDIF   
       
       'try to find the tab in a different way too:
       'TabIndexByName scrollview
@@ -784,8 +780,6 @@ Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip
     If CurrentParams[CurrentParams.Count - 1] <> "" Then
         AComment = New Label(AnHBox) As "dynaobj"
         AComment.name = CurrentParams[CurrentParams.count - 2] & ".CommentLabel"
-        'PRINT AComment.name 'debug
-        'AComment.text = "(" & TheParameters[TheParameters.Count - 1] & ")"
         AComment.text = CurrentParams[CurrentParams.Count - 1]
         AComment.AutoResize = True
         AComment.font = TheTabStrip.font
@@ -864,6 +858,7 @@ Public Sub NotifyChanges(obj As Object)
     If myform.visible Then
       RedApplyBtnColor()
       Debug "Cached Options unvalidated"
+      Debug
       fmain.cachedopts = ""
     Endif
   Endif
@@ -873,6 +868,7 @@ Public Sub NotifyApplyNeeds()
   RedApplyBtnColor()
   If fmain.cachedopts <> "" Then
     Debug "Cached Options unvalidated"
+    Debug
     fmain.cachedopts = ""
   Endif
 End

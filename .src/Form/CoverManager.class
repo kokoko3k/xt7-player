@@ -67,6 +67,7 @@ Public Sub GetCoversFromAmazon(query As String)
   
   If ((HttpClient1.status < 0) Or hastimedout) Then
     Debug "Error: Covermanager: Button1_Click() HTTP ERROR Doing Prerequest to signing proxy"
+    Debug
     Return
   Endif
   If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
@@ -95,6 +96,7 @@ Public Sub GetCoversFromAmazon(query As String)
   If Lof(HttpClient1) Then Read #HttpClient1, buffer, Lof(HttpClient1)
   Splitted = Split(buffer, "<", "", True)
   Debug "CoverManaer: Button1_Click(): Check dupes"
+  Debug
   For Each myline In Splitted
     If (myline Like "*http://*") And (myline Like "*.jpg") Then
       ImageUrl = Split(myline, ">")[1]
@@ -109,6 +111,7 @@ Public Sub GetCoversFromAmazon(query As String)
   Try Shell "mkdir -p " & global.confpath & "/covertmp/ >/dev/null 2>&1" Wait
   'PRINT buffer
   Debug "CoverManaer: Button1_Click(): Start downloading covers Now"
+  Debug
   For Each ImageUrl In ImagesURL
     If (Imageurl Like "http://*") And (Not HitCancel) Then
       HttpClient1.Async = True
@@ -190,7 +193,7 @@ Public Sub GetCoversFromGoogle(query As String)
   url &= options
   
   Debug url
-  
+  Debug
   
   HttpClient1 = New HttpClient
   HttpClient1.async = True
@@ -218,7 +221,6 @@ Public Sub GetCoversFromGoogle(query As String)
     If myline Like "*href*" Then
       If myline Like "*.jpg*" Then
         If myline Like "*http*" Then
-          Debug myline
           'the final url begins with http and ends with .jpg
           mystart = InStr(myline, "http", 0)
           If mystart = 0 Then Break
@@ -433,93 +435,6 @@ Endif
 End
 
 
-
-
-
-
-Public Function OLD_coverpicture(coverfile As String, uripath As String, height As Integer, Optional ByRef found As Boolean) As Picture
-Dim cachefile As String = coverfile & "_thumbcache" & height & "." & File.ext(coverfile)
-Dim tmpimage As Image
-Dim defaultcover As Boolean = False
-Dim FileExists As Boolean = False
-Dim width As Integer
-Dim neww, newh As Integer
-Dim newx, newy As Integer
-  
-' zzzfake.Arrangement = Arrange.Fill
-' Try CoverCacheList.expand = True
-' Try zzzfake.Stacking = Window.above
-' Try zzzfake.mask = False
-' Try zzzfake.opacity = 100
-' Try zzzfake.Move(0, 0)
-' Try zzzfake.show
-
-
-
-  'neww = generaloptions.IconWidthCombobox.text + shadowoffsetpaint 
-  neww = height + (shadowoffsetpaint * 2)
-  'Return cornice(imgandshadow, neww, neww).Picture
-
-'gestisce le thumbnails su disco e la loro cache in memoria
-'non crea di per sè alcuna immagine, al più restituisce delle immagini di default
-'la creazione di eventuali nuove cover va fatta all'esterno
-If FMain.closing Then Return
-found = True
-
-If (global.isvideofile(uripath) And (generaloptions.ShowThumbsChk.value = False)) Then 
-  Return cornice(Stock[CStr(height + shadowoffset) & "/video"].Image, neww)
-Endif
-
-If Exist(coverfile) Then
-  Try Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'Se esiste l 'immagine in memoria dai l 'immagine in memoria ed esci
-  If Error Then 'Se non esiste l 'immagine in memoria, allora
-    If Exist(cachefile) Then  'Se esiste una cache su disco allora
-      CoverCacheList.Add(cachefile, "", picture.Load(cachefile)) 'mettila IN memoria
-      Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'ritornala
-        Else 'Altrimenti(non esiste cache su disco)
-      If Exist(coverfile) 'se esiste la cover su disco, ma non la cache
-        tmpimage = image.Load(coverfile)
-        If (tmpimage.w < tmpimage.h) Then
-          width = (tmpimage.w / tmpimage.h) * height
-            Else
-          width = height 
-          height = (tmpimage.h / tmpimage.w) * width
-        Endif
-        tmpimage = tmpimage.Stretch(width, height) 'caricala
-        tmpimage.Save(cachefile) 'salvala come cache
-        CoverCacheList.Add(cachefile, "", tmpimage.picture) 'mettila IN memoria
-        Return cornice(Shadowed(CoverCacheList[cachefile].picture), neww) 'ritornala
-      Endif
-    Endif
-  Endif
-     Else ' IF NOT Exist(coverfile) THEN 'se la cover non esiste, ricava un nuovo coverfile:
-  If global.IsNetworkURI(uripath) Then
-    coverfile = "webradio.png"
-    defaultcover = True
-      Else If global.IsVideoFile(uripath) Then
-        coverfile = "videocover.png"
-        defaultcover = True
-      Else 'non è una uri di rete, non è una radio e non c'è alcuna copertina già salvata:
-        found = False
-        coverfile = "emptycover.png"
-        defaultcover = True
-  Endif
-  cachefile = coverfile & "_thumbcache" & CStr(height) & "." & File.ext(coverfile)
-  If Not (defaultcover) Then  
-    Try Return Shadowed(CoverCacheList[cachefile].Picture) 'prova a restituire l'immagine dalla memoria
-      Else
-    Try Return cornice((CoverCacheList[cachefile].Picture.image), neww) 'prova a restituire l'immagine dalla memoria
-  Endif
-  If Error Then 'se non la trovi in memoria,
-    'DEBUG "not found in memory!"
-    tmpimage = image.Load(coverfile).stretch(height + shadowoffset, height + shadowoffset) 'caricala
-  Endif
-  Try CoverCacheList.Add(cachefile, "", tmpimage.Picture) 'mettila IN memoria
-  If Error Then Return Null
-  Return cornice(CoverCacheList[cachefile].Picture.Image, neww) 'e restituiscila
-Endif
-End
-
 Public Function newcoverpicture(coverfile As String, uripath As String, width As Integer) As Picture
   Return LookForJpg(uripath)
 End
@@ -660,9 +575,11 @@ Public Sub LookForJpgB64(filename As String, Optional saveto As String = "", Opt
       Wait
     Until jpgend > 0
     Debug "Found a potential jpeg of " & (jpgend - jpgstart - 1) & " bytes for " & filename
+    Debug
     Wait
     If (jpgend - jpgstart) > 307200 '307200 Then
       Debug "jpg is >300KB, probably corrupted, skipping"
+      Debug
       Return False
     Endif
 
@@ -761,9 +678,11 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "", Option
     jpgend = Seek(mystream) - 4096 + jpgend + 1
 
     If jpgend > 0 Then
-      'Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      Debug
       If (jpgend - jpgstart) > 307200 '307200 Then
         Debug "jpg is >300KB, probably corrupted, skipping"
+        Debug
         'Return Null
         Return False
       Endif
@@ -844,10 +763,11 @@ Public Sub LookForJpgHeuristic(filename As String, Optional saveto As String = "
     jpgend = Seek(mystream) - 4096 + jpgend + 1
 
     If jpgend > 0 Then
-      'Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      Debug "Found a potential jpeg of " & (jpgend - jpgstart) & " bytes for " & filename
+      Debug
       If (jpgend - jpgstart) > 307200 '307200 Then
         Debug "jpg is >300KB, probably corrupted, skipping"
-        'Return Null
+        Debug
         Return False
       Endif
     Endif
@@ -943,6 +863,9 @@ End
 
 
 
+Public Sub Prebuffer()
+  Shell "nice -n 19 ls -laR " & global.confpath & "/covers/" & "&>/dev/null"
+End
 
 
 Public Sub ButtonLoad_Click()
@@ -1083,6 +1006,7 @@ Public Sub CoversLookerTimer_timer()
    If Not global.IsNetworkURI(fullpath) Then
      If Not Exist(fullpath) Then
        Debug "Missing file! " & fullpath
+       Debug
        FileNotFoundAdd(fullpath)
         'mygrid[row, 0].picture = picture["icon:/" & (rowheight -global.rowpadding) & "/error"]
         mygrid[row, column].text = ""

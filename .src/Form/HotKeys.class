@@ -10,6 +10,7 @@ Public Sub xbindkeys_read()
   Dim comando As String
   Line Input #xbindkeys, comando
     Debug "Remote Command = " & comando
+    Debug
     Select Case comando
       Case "Start play"
         FMain.ButtonStop_Click()
@@ -471,6 +472,7 @@ End
 Public Sub RestartXbindKeys(xbindkeysfilename As String)
   If FMain.closing Then Return
   Debug "Hotkeys: RestartXbindKeys()"
+  Debug
     Try xbindkeys.Kill
     If Stat(xbindkeysfilename).Size > 0 Then
       xbindkeys = Shell Global.XbindkeysBIN & " -n -f " & xbindkeysfilename For Read As "xbindkeys"
@@ -501,7 +503,6 @@ Public Function ActionRelatedTo(Hotkey As String) As String
   If FMain.timerdvd.enabled Then
     If Lower(Split(Hotkey, " ")[0]) = "mouse=1" Then Return "dvdnav select"
   Endif
-  'debug hotkey
   If hotkey = "" Then Return "Nope"
     For c = 0 To HotKeysGrid.Columns.Count - 1
       For r = 0 To HotKeysGrid.Rows.Count - 1

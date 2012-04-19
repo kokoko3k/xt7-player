@@ -189,6 +189,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
         Media_Channels = media.Channels
         Media_AudioRate = media.Samplerate
         Debug "got info from taglib on " & Media_FullPath & " --"
+        Debug
         media.tlFree()
           Else  'there was a problem with TagLib Class initialization, fallback to mplayer
                 'or was a network uri or a cddb 
@@ -254,6 +255,7 @@ Public Sub Renice(nice As Integer)
   Dim out As String
 
   Debug "nice=" & nice
+  Debug
   RenicerProcess = Shell "renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
   RenicerProcess = Shell "renice " & (nice - 1) & " -p " & playerprocess.id  'renice the whole application to 'nice'-1
 
@@ -384,6 +386,7 @@ Public Sub playerprocess_read()
       If (Playeroutput Like "*ICY Info*") Then
         ICY = playeroutput
         Debug "ICY= " & ICY
+        Debug
         ICYStreamTitle = Get_ICYStreamTitle(ICY)
         'Debug "return from 5"
         If GotHeaders Then Return
@@ -398,6 +401,7 @@ Public Sub playerprocess_read()
           tmp = Trim(playeroutput)
           currentcache = Trim(Right(playeroutput, 4))
           Debug "currentcache=" & currentcache
+          Debug
         Endif
       Endif
     Endif
@@ -438,6 +442,7 @@ Public Sub playerprocess_read()
            currentcache = Trim(tmp) & "%"
         'currentcache = tmpout
         Debug currentcache
+        Debug
         Return
       Endif
     Endif
@@ -471,6 +476,7 @@ Private Function WaitForHeaders() As Boolean
     Wend
     If (maxwait = 0) Or (MediaHeaders.count >= maxheaders) Then
       Debug "Timeout! or maxheaders reached on Media_FullPath=" & Media_FullPath
+      Debug
       ' if the player is in idle mode (used to sync library) then 
       ' stop it to clear the pipe, so that it wont interfree with next media
       If ImIdlePlaying Then
@@ -483,6 +489,7 @@ Private Function WaitForHeaders() As Boolean
   Endif
   If (mediaheaders.count < 2) And (Not QUICK) Then
     Debug "mediaheaders.count= " & mediaheaders.count
+    Debug
   Endif
   Return True
 
@@ -495,7 +502,7 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
   Dim NewOptions As String
   Dim CurrentSeconds As Integer
   Dim timeout As Integer = 1000
-  Debug "do_restart()"
+  Debug 
   fmain.subnotset = True
   CurrentCache = "0"
   If Paused Then do_leave_pause()
@@ -547,12 +554,15 @@ Public Sub stucktimer_timer()
   Silences = silences + 1
   If (ProcessRunningOvr() And (silences >= 2) And (Not paused)) Then
     Debug "WARNING: Not receiving any output from mplayer which is not paused... did it freezed?"
+    Debug
     If StuckRestartedTimes <= 3 Then
       Debug "WARNING: Trying to restart it..."
+      Debug
       do_restart(Media_FullPath_Playing, mplayeroptions, False)
       StuckRestartedTimes = StuckRestartedTimes + 1
     Else
       Debug "WARNING: Giving up..."
+      Debug
     Endif
   Else
     StuckRestartedTimes = 0
@@ -610,29 +620,24 @@ Public Function do_play(filename As String, options As String, Optional restart 
     
     
     If (commandline Like "*-vo vdpau*") Or (commandline Like "*-vo *,vdpau*") Or (commandline Like "*-vo vaapi*") Or (commandline Like "*-vo *,vaapi*") Or (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
-      Debug ""
-      Debug ""
       Debug ("found vdpau/vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
       commandline = commandline & " -vf-clr "
-      Debug ""
-      Debug ""
+      Debug
     Endif
     
     If commandline Like "*-dumpfile *" Then
-      Debug "-dumpfile option found in the command line, you will not be able to dump streams"
+      Debug "-dumpfile option found in the command line, probably you will not be able to dump streams using the rec button"
+      Debug
         Else
       commandline = commandline & " -capture -dumpfile " & dumpfile
     Endif
     
     
     If (commandline Like "*-ac *hwac3*") Or (commandline Like "*-ac *hwdts*") Or (commandline Like "*-ac *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Then
-      Debug ""
-      Debug ""
       Debug ("found one of (-ac,af) hwac3,hwdts or hwmpa audio passthrough options in the commandline")
       Debug ("Disabling any audio filters in chain by appending -af-clr")
         commandline = commandline & " -af-clr "
-      Debug ""
-      Debug ""
+      Debug 
     Endif
     
     commandline = commandline & " " & cookieopts
@@ -649,10 +654,9 @@ Public Function do_play(filename As String, options As String, Optional restart 
     'add c locale to workaround somw buggy ladspa filters which calls setlocale
     commandline = "LC_ALL=C " & commandline
 
-    Debug
-    Debug
     Debug "Starting mplayer now:"
     Debug "commandline=" & commandline
+    Debug
     playerprocess = Shell commandline For Read As "playerprocess"
     MaxCache = parsecacheparam(commandline)
 
@@ -863,6 +867,7 @@ Public Function do_pause_insist() As Boolean 'crea problemi...
   Dim totalwait As Float = maxwait * interval
   'WaitForHeaders()  <-- removed fixme, is it still needed?
   Debug "trying to pause, will insist for " & CStr(totalwait) & " seconds"
+  Debug
   Repeat
     Wait interval / 2 
     If (Not paused) Then send("pause")
@@ -1091,9 +1096,11 @@ Public Sub SubtitleAdd(SubFilePath As String)
   'Try TotalSubtitles = CStr(CInt(FindTagValue("ID_FILE_SUB_ID")) + 1) + addedsubs
   TotalSubtitles = subtitletracks.count
   Debug "TotalSubtitles= " & TotalSubtitles
+  Debug
   LastSubId = CInt(TotalSubtitles) - 1
   Send("sub_load '" & SubFilePath & "'") 'NOTE THE Triple quotes ( "'subfile'", mplayer bug)
   Debug "Send()" & "sub_load \"" & SubFilePath & "\""
+  Debug
   ' Send("sub_select " & CStr(LastSubId + 1))
   ' Debug "selecting sub id " & (LastSubId + 1)
   'Send("sub_file '" & CStr(LastSubId + 1) & "'")
@@ -1139,6 +1146,7 @@ Public Function GetScreenShot(DeleteFILE As Boolean) As Picture
   Wend
   If timeout = 0 Then
     Debug "Timeout Error: Screenshot file does not exists!"
+    Debug
     If Deletefile Then Try Kill lastscreenshot
     Takingscreenshot = False
     Return picture["null.png"]
@@ -1357,6 +1365,7 @@ Public Function QueryCDDB(CdromDevice As String)
   Dim cmdline As String
   cmdline = "mplayer  -noconfig all cddb:// -identify -endpos 0 -v -v -v -v -cdrom-device " & CdromDevice & " </dev/null"
   Debug cmdline
+  Debug
   cddbqueryprocess = Shell cmdline For Read As "cddbqueryprocess"
 End
 
@@ -1370,7 +1379,7 @@ End
 Public Function cddbqueryprocess_error(stderr As String)
   
   Debug stderr
-  
+  Debug
 End
 
 
@@ -1398,6 +1407,7 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   Thumbfullpathpriv = fullpath
   widthpriv = width
   Debug cmdline
+  Debug
   thumbprocess = Shell cmdline For Read As "thumbprocess" 
 End
 
@@ -1417,6 +1427,7 @@ Public Sub thumbprocess_kill()
       Raise ThumbErrorFor(Thumbfullpathpriv)
         Else 'maybe the movie was very short, try to get a screen at 5th second:
       Debug "Couldn't get a thumb, retrying with an earlier time"
+      Debug
       ShortMovieChecked = True
       savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, 5)
     Endif

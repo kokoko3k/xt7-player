@@ -29,6 +29,7 @@ Public Sub GetFeed(feed As String, tree As Treeview, Optional resizew As Integer
    'remove all child items
   Dim AskUrl As String = "http://gdata.youtube.com/feeds/api/standardfeeds/"
   Debug "region = " & region
+  Debug
   If Trim(region) <> "" Then askurl = askurl & region & "/"
   askurl = askurl & feed
   askurl = askurl & "?&max-results=" & Str(maxresults + 1)
@@ -456,8 +457,10 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   videoid = getvideoid(sourceurl)
   Cookiesfile = Temp("ytcookie")
   Debug cookiesfile
+  Debug
   Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " --max-quality " & maxfmt To stream
   Debug stream
+  Debug
   Return Trim(stream)
 End
 
@@ -520,11 +523,14 @@ Public Function Oldrealvideourl2(sourceurl As String, maxformat As String) As St
     mq = mq - 1
     Debug "checking url: " & out
   Until wget.ExistsUrl("'" & out & "'") Or (mq = -1)
+  Debug
   If mq >= -1 Then
     Debug "best format found is: " & fmta[mq + 1]
+    Debug
     Return out
       Else
     Debug "no good format found, sorry..."
+    Debug
     Return ""
   Endif
 End
@@ -597,8 +603,9 @@ Public Sub AvailableSubs(VideoId As String) As String[]
       If (outarray.Find(out) = -1) Then outarray.Add(out)
     Endif
     Debug out
+
   Next 'linea
-  
+  Debug
   Return outarray.Sort()
 End
 
@@ -619,6 +626,7 @@ Public Function GetSub(VideoId As String, trackname As String, langcode As Strin
   TimedText = wget.DownloadAsync(SubUrl)
   If Trim(TimedText) = "" Then
     Debug "Could not download subtitle with LangCode " & Langcode & " for video id " & VideoId
+    Debug
     Return ""
   Endif
   Tmp = TimedText

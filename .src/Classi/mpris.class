@@ -180,6 +180,7 @@ Public Function org_mpris_MediaPlayer2_Player_Pause()
 
     If FMain.mplayer.Paused Then 
       Debug "Already paused!"
+      Debug
         Else
       FMain.ButtonPlay_click()
   Endif
@@ -204,6 +205,7 @@ End
 
 Public Function org_mpris_MediaPlayer2_Player_SetPosition(o As Long, p As Long)
   Debug "Uninmplemented"
+  Debug
 End
 
 Public Function org_mpris_MediaPlayer2_Player_OpenUri(p As String)

@@ -20,6 +20,7 @@ Public Function DownloadAsync(URL As String, Optional AsFile As Boolean = False)
   Repeat
     wgetprocess1 = Shell commandline For Output As "wgetprocess1"
     Debug "trying " & commandline
+    Debug
     While (ProcessRunningOvr(wgetprocess1))
       Wait 0.05
     Wend
@@ -34,7 +35,6 @@ Public Function DownloadAsync(URL As String, Optional AsFile As Boolean = False)
    Until ((tries = 0) Or wgetdone)
   If (Not AsFile) Then
     Try Kill tmpfile
-    'DEBUG "deleted " & tmpfile
     Return out
       Else
     Return tmpfile

@@ -52,6 +52,7 @@ Public Sub ButtonSearch_Click()
   If token = -1 Then 
     Message.Error(("Token error"), "Ok")
     Debug "Token error"
+    Debug
     mywait(False)
     Return
   Endif

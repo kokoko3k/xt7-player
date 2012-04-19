@@ -31,11 +31,13 @@ Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pe
   Try Object.Detach(timer1)
   'If Not AlreadyInit Then 
     Debug "Made new meters timer"
+    Debug
     timer1 = New Timer As "timer1"
   '  AlreadyInit = True
   'Endif
   timer1.delay = 1000 Div fps
   Debug "meters initialized at " & fps & " fps"
+  Debug
 End
 
 Public Function ChangeFps(fps As Integer)
@@ -76,6 +78,7 @@ Public Sub Stopp()
   Try timer1.stop
   buffer.clear
   Debug "meters timer stopped"
+  Debug
 End
 
 Public Sub Startt()

@@ -87,9 +87,11 @@ Public Function TokenFromLogIn(Username As String, Password As String, Language 
   status = StringFromName(answer, "status", False)
   If status Like "200 *" Then
     Debug "Ok, got token from opensubtitles"
+    Debug
     Return StringFromName(answer, "token", False)
       Else
     Debug "Error status= " & status
+    Debug
     Return "-1"
   Endif
 End
@@ -143,13 +145,13 @@ Public Function SearchByTag(token As String, Language As String, myquery As Stri
       t = StringFromName(ByRef subs, field, True)
       If Trim(t) <> "" Then 
         mysub.Add(t, field)
-        'Debug field & ": " & t
       Endif
     Next 'field
     mysubs.Add(mysub)
   Until Not (mysubs[mysubs.count - 1].Exist("SubFileName")) 'exit as soon as a no filename has been added
   mysubs = removenullitems(mysubs)
   Debug "results: " & mysubs.count
+  Debug
   Return mysubs
 End
 
@@ -208,7 +210,6 @@ Public Function SearchByQuery(token As String, Language As String, myquery As St
       t = StringFromName(ByRef subs, field, True)
       If Trim(t) <> "" Then 
         mysub.Add(t, field)
-        'Debug field & ": " & t
       Endif
     Next 'field
     mysubs.Add(mysub)
@@ -261,14 +262,13 @@ Public Function SearchByHash(token As String, Language As String, moviehash As S
               "</methodCall>"
 
   subs = AnswerTo(question)
-'Debug subs
+
   Repeat
     mysub = New Collection
     For Each field In Split(XmlFields, ",")
       t = StringFromName(ByRef subs, field, True)
       If Trim(t) <> "" Then 
         mysub.Add(t, field)
-        'Debug field & ": " & t
       Endif
     Next 'field
     mysubs.Add(mysub)
@@ -286,6 +286,7 @@ Public Function MovieHash(filename As String) As String
   Try Copy "Hash.py" To tmp & "/Hash.py"
   If Error Then 
     Debug "error on copying hash.py"
+    Debug
     Return
   Endif
   Shell "python " & tmp & "/Hash.py " & filename To out 
@@ -297,6 +298,7 @@ Public Function MovieHash(filename As String) As String
 
   If Trim(out) = "" Then 
     Debug "Hash.py failed"
+    Debug
     Return "-1"
       Else
     Return Trim(out)

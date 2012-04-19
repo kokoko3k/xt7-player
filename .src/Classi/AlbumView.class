@@ -112,8 +112,6 @@ Public Function Init(playlist As Playlistclass, theview As Gridview, Optional fi
       Next 'filter
       If Not matchfilter Then 
         localtable.Remove(i)
-        '   Else
-        ' Debug
       Endif
     Next 'i
   Endif
@@ -264,36 +262,6 @@ Public Sub data(r As Integer, c As Integer)
   Endif
   view.Data.text = artist & "\n" & album & MyYear
 End
-
-Public Sub OLD_data(r As Integer, c As Integer)
-  Dim i As Integer
-  Dim album, artist, coverfile, MyYear, path As String
-  If view.Data.text <> "" Then Return
-  i = (view.columns.count * r) + c
-  'album and artist are inverted because array is sorted by artist
-  Try album = Trim(localplaylist.GetValue(localtable[i], "Album")) 'GetArtist(albums[i]) 
-  If Error Then Return
-  If album <> "" Then
-    artist = localplaylist.GetValue(localtable[i], "Artist") 'GetAlbum(albums[i])
-    path = localplaylist.GetValue(localtable[i], "Full Path") 'GetPath(albums[i])
-    MyYear = localplaylist.GetValue(localtable[i], "Year") 
-    If Trim(MyYear) = "" Then MyYear = ("Unknown Year")
-    MyYear = " (" & MyYear & ")"
-      Else
-    album = ("Unknown")
-  Endif
-  coverfile = CoverManager.Coverfile(artist, album, path)
-
- 
-  
-
-  view.Data.text = artist & "\n" & album & MyYear
-  view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)
-  
-  'view.Data.Alignment = Align.BottomLeft
-  
-End
-
 
 Private previousrow As Integer = -1
 Private previouscol As Integer = -1

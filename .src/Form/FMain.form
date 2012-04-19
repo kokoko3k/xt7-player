@@ -1696,7 +1696,7 @@
               Picture = Picture["media-seek-backward.png"]
             }
             { ButtonCapture ToggleButton
-              MoveScaled(15,0,5,4)
+              MoveScaled(14,0,5,4)
               Enabled = False
               Font = Font["6"]
               ToolTip = ("Capture the playing stream.\nIt will work only you are playing mpeg files.")

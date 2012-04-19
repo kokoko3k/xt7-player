@@ -11,6 +11,8 @@ Public Sub Start()
   Print "-append (add a media to the playlist)"
   Print ""
   Print ""
+  Debug "Start at: " & Timer
+  Debug
   global.init()
   If (Application.Args.count = 3) And (Application.Args[1] = "-append") Then
       Sock_Append(Application.Args[2])

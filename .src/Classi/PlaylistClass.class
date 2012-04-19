@@ -70,6 +70,7 @@ Private Sub CheckPlayerAlive()
     mplayertag = New Mplayerclass
     MplayerTag.do_play("", "-idle -ao null -vo null -channels 6", restart)
     Debug "(Re)starting player"
+    Debug
     Wait 0.5
   Endif
 End
@@ -107,6 +108,7 @@ Public Sub Load(myplaylist As Gridview, profilename As String)
 
   InitSearchTable()
   Debug "Load()at: " & Time
+  Debug
 End
 
 Public Sub SaveAs(FileName As String)
@@ -130,6 +132,7 @@ Public Sub LoadFile(Filename As String, Grid As Gridview, Optional Appendit As B
   Dim ext As String
   Loading = True
   Debug "PlaylistClass: Load()at: " & Time
+  Debug
   ext = Upper(file.ext(filename))
   If (Not Appendit) Then Ptable.Resize(0)
   If ext = "M3U" Then
@@ -638,69 +641,6 @@ Public Function ISURI(fullpath As String) As Boolean
 End
 
 
-Public Sub OLD_UpdateSelected(MyPlaylist As GridView)
-  Dim r As Integer = myplaylist.Rows.Count - 1
-  Dim fullpaths As New String[]
-  Dim fullpath As String
-  Dim ColToSelect As Integer = 0
-  Dim RowToSelect As Integer = 0
-  Dim PrevScrollX As Integer = myplaylist.scrollx
-  Dim PrevScrollY As Integer = myplaylist.scrolly
-  Dim tmpfullpath As String = ""
-  Dim DeleteURIes As Boolean = False
-  Dim artist, album, coverfile As String
-  
-  Try ColToSelect = MyPlaylist.Column
-  Try RowToSelect = MyPlaylist.row
-  myplaylist.Enabled = False
-  myplaylist.mouse = mouse.wait
-  Wait 0.001
-  'find fullpaths in myplaylist
-  For r = 0 To myplaylist.rows.count - 1
-    If myplaylist.Rows[r].Selected Then
-      tmpfullpath = Myplaylist[r, Columnindex["Full Path"]].text
-      'remove cover caches too
-      artist = Myplaylist[r, Columnindex["Artist"]].text
-      album = Myplaylist[r, Columnindex["Album"]].text
-      coverfile = CoverManager.Coverfile(artist, album, tmpfullpath)
-      CoverManager.RemoveCoverCache(coverfile, False)
-      '
-      If (Not ISURI(tmpfullpath)) Then fullpaths.Add(tmpfullpath)
-    Endif
-  Next 'r
-  
-  'Remove them from playlist
-  DeleteURIes = False
-  DeleteSelected(Myplaylist, DeleteURIes)
-
-  'Add them again
-  SyncSortedTable()
-  For Each fullpath In fullpaths
-      If (Not ISURI(fullpath)) Then 
-        Try CoverManager.UnMarkUncovered(fullpath)
-        AddFile(Myplaylist, fullpath, False, False)
-      Endif
-  Next
-  
-  'Restore visualization
-  Ascendent = Not Ascendent
-    If LastSortedField <> "" Then 'Fixme
-      FMain.LibraryGrid_ColumnClick(ColumnIndex[LastSortedField])
-        Else
-      FMain.LibraryGrid_ColumnClick(0)
-      Ascendent = Not Ascendent
-    Endif
-  SyncGrid(MyPlaylist, SearchTable, RowToSelect, ColToSelect)
-  Myplaylist.scrollx = PrevScrollX + 1
-  Myplaylist.scrollx = PrevScrollX - 1
-  Myplaylist.scrolly = PrevScrolly + 1
-  Myplaylist.scrolly = PrevScrolly - 1
-  
-  myplaylist.enabled = True
-  myplaylist.mouse = mouse.Default
-
-End
-
 Public Sub UpdateSelected(G As Gridview)
   Dim iRow, sRow, pRow, c As Integer
   Dim p As String
@@ -714,6 +654,7 @@ Public Sub UpdateSelected(G As Gridview)
           Debug "UpdateSelected failed to find the row to update (!?)"
           Debug "sRow= " & sRow
           Debug "pRow= " & pRow
+          Debug
           Return
         Endif
         Searchtable[sRow] = UpdateTableRow(Searchtable[sRow]) 'aggiornali in searchtable
@@ -767,6 +708,7 @@ Public Sub AddDir(LibraryGrid As Gridview, DirToAdd As String, ExcludeList As Li
     If (DirToAdd = ExcludeList[i].text) Or (DirToAdd & "/" = ExcludeList[i].text) Then
       MatchExcluded = True
       Debug "Excluded item: " & DirToAdd
+      Debug
       Break
     Endif
   Next 'i
@@ -1047,6 +989,7 @@ Dim fileUtf8 As String
     tl.tlFree()
       Else 'but fallback to mplayertag if needed
     Debug "TagLib doesnt support " & f & ",fallback to mplayer routines..."
+    Debug
     CheckPlayerAlive()
     MplayerTag.quick = quick
     If Not quick Then MplayerTag.do_idleplay(f)
@@ -1097,48 +1040,6 @@ Public Function UpdateTableRow(Tablerow As String) As String
 End
 
 
-Private Sub OLD_makenewrow(librarygrid As Gridview, forcename As String, filetoadd As String, length As String, type As String, acodec As String, abitrate As String, arate As String, channels As String, vcodec As String, vbitrate As String, fps As String, w As String, h As String, artist As String, album As String, myyear As String, track As String, title As String, genre As String, comment As String)  
-  Dim nr As String 'newrow
-  Dim ts As String = TableSeparator
-  Dim filesize As Long = 0
-
-  If track = 0 Then track = ""
-  If myYear = 0 Then myYear = ""
-  
-  Try filesize = Stat(filetoadd).size Div 1024
-  If forcename <> "" Then
-    nr = nr & ts & "Filename" & ts & forcename
-      Else
-    nr = nr & ts & "Filename" & ts & file.Name(filetoadd)
-  Endif
-
-  nr = nr & ts & "Length" & ts & FormatTime(length)
-  nr = nr & ts & "Artist" & ts & artist
-  nr = nr & ts & "Album" & ts & album
-  nr = nr & ts & "Year" & ts & myyear
-  nr = nr & ts & "Track" & ts & track
-  nr = nr & ts & "Title" & ts & title
-  nr = nr & ts & "Genre" & ts & genre
-  nr = nr & ts & "Comment" & ts & Replace(comment, "\n", " ")
-  nr = nr & ts & "Type" & ts & type
-  nr = nr & ts & "Audio Codec" & ts & acodec
-  nr = nr & ts & "Audio Bitrate" & ts & abitrate
-  nr = nr & ts & "Audio Rate" & ts & arate
-  nr = nr & ts & "Channels" & ts & channels
-  nr = nr & ts & "Video Codec" & ts & vcodec
-  nr = nr & ts & "Video Bitrate" & ts & vbitrate
-  nr = nr & ts & "Fps" & ts & fps
-  nr = nr & ts & "Width" & ts & w
-  nr = nr & ts & "Height" & ts & h
-  nr = nr & ts & "Full Path" & ts & filetoadd
-  nr = nr & ts & "File Size" & ts & filesize
-  nr = nr & ts & "Added on" & ts & Now & ts
-  
-  ptable.Add(nr)
-  Searchtable.Add(nr)
-  LibraryGrid.Rows.count = LibraryGrid.Rows.count + 1
-End
-
   Public Function AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
   Dim LastRow As Integer
   Dim i As Integer
@@ -1170,89 +1071,6 @@ End
   makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
   Return True
 End
-  
-Public Function OLD_AddFile(LibraryGrid As GridView, FileToAdd As String, Optional quick As Boolean = True, Optional Urimode As Boolean = False, Optional Forcename As String = "") As Boolean
-  Dim LastRow As Integer
-  Dim i As Integer
-  Dim filesize As Integer = 0
-  Dim quickmode As Boolean = quick And (GeneralOptions.SlowTagsCHK.value Or Global.IsNonTaggableMedia(FileToAdd))
-  Dim tl As New Taglib
-  Dim fileutf8 As String
-  Dim length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, fullpath As String
-  Dim artist, album, myyear, track, title, genre, comment As String
-  
-  FilesProcessed = FilesProcessed + 1
-  UpdateProgress(FMain.MyLibraryProgressBar)
-  Wait 0.0001
-
-  If Trim(filetoadd) = "" Then Return True
-
-  If quickmode Then
-    makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
-    Return True
-  Endif
-  
-  Try filesize = Stat(FileToAdd).Size
-  If filesize = 0 Then Return True
-  If Not (Exist(filetoadd)) Then Return True
-  If Not (global.IsMediaFile(filetoadd)) Then Return True  
-  If IsDupe(filetoadd) Then Return True
-
-  Try fileUtf8 = DConv(filetoadd) 'from system charset to utf8
-  If Error Then fileutf8 = filetoadd
-  fileutf8 = filetoadd
-  If tl.IsSupported(fileUtf8) And tl.Init(fileUtf8) Then 'use fast taglib when possible
-    length = tl.Length
-    type = "audio"
-    acodec = file.Ext(fileUtf8)
-    abitrate = tl.Bitrate
-    arate = tl.Samplerate
-    channels = tl.Channels
-    vcodec = ""
-    vbitrate = ""
-    fps = ""
-    w = ""
-    h = ""
-    artist = (tl.Artist)
-    album = (tl.Album)
-    myyear = tl.MyYear
-    track = tl.Track
-    title = (tl.Title)
-    genre = (tl.Genre)
-    comment = (tl.Comment)
-    tl.tlFree()
-    
-      Else 'but fallback to mplayertag if needed
-    Debug "TagLib doesnt support " & FileToAdd & ",fallback to mplayer routines..."
-    If (Not quickmode) Then CheckPlayerAlive()
-    MplayerTag.quick = quickmode
-    If Not quick Then MplayerTag.do_idleplay(FileToAdd)
-    length = mplayertag.Media_Length
-    type = mplayertag.Media_Type
-    acodec = mplayertag.Media_AudioCodec
-    abitrate = mplayertag.Media_AudioBitrate
-    arate = mplayertag.Media_AudioRate
-    channels = mplayertag.Media_Channels
-    vcodec = mplayertag.Media_VideoCodec
-    vbitrate = mplayertag.Media_VideoBitrate
-    fps = mplayertag.Media_VideoFps
-    w = mplayertag.Media_Width
-    h = mplayertag.Media_Height
-    artist = mplayertag.Media_Artist
-    album = mplayertag.Media_Album
-    myyear = mplayertag.Media_Year
-    track = mplayertag.Media_TrackNo
-    title = mplayertag.Media_Title
-    genre = mplayertag.Media_Genre
-    comment = OneOf(MplayerTag.Media_Comment, MplayerTag.Media_Comments)
-  Endif
-
-
-  makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
-  Return True
-End
-
-
 
 
 

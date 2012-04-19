@@ -304,24 +304,6 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
-  ' Select Case librarygrid.name
-  '   Case "PlaylistGrid"
-  '     If WaitPanel2.Text <> "" Then WaitPanel2.Text = ""
-  '     playlistgrid.visible = False
-  '     WaitPanel2.visible = True
-  '     PlayListSelInfo.visible = False
-  '     PlayListSelInfoBox.Visible = False
-  '   Case "LibraryGrid"
-  '     If WaitPanel.Text <> "" Then WaitPanel.Text = ""
-  '     librarygrid.visible = False
-  '     WaitPanel.visible = True
-  '     LibrarySelInfo.visible = False
-  '   Case "DVBTGrid"
-  '     If WaitPanel3.Text <> "" Then WaitPanel3.Text = ""
-  '     dvbtgrid.visible = False
-  '     HBox19.visible = False
-  '     WaitPanel3.visible = True
-  ' End Select
     librarygrid.visible = False
 End
 
@@ -364,6 +346,15 @@ Public Sub AllInit_Pre()
     ReallySaveAllSettings("Factory_Defaults", False, False) 'before loading user settings, make a profile with factory values.
   Endif
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
+  'the following has to be called after loadearlysettings because 
+  'is there where we load generaloptions form settings
+  If generaloptions.ShowCoversInListChk.value Then
+    covermanager.prebuffer()
+    Debug "the User likes cover, so we prebuffer cover list In background..."
+    Debug
+  Endif
+  
+  
   HideGrid(PlaylistGrid)
   HideGrid(LibraryGrid)
   HideGrid(dvbtGrid)
@@ -374,6 +365,7 @@ End
 
 Public Sub InitEarlyForms()
   Debug "start at: " & Time
+  Debug
   Try Last.mouse = mouse.wait
   fmain.mouse = mouse.wait
   global.initearlyformsdone = True
@@ -384,6 +376,7 @@ Public Sub InitEarlyForms()
   Try Last.mouse = mouse.default
   fmain.mouse = mouse.default
   Debug "Ends at:" & Time
+  Debug
 End
 
 Public Sub AllInit_Post()
@@ -408,7 +401,6 @@ Public Sub AllInit_Post()
   Endif  
   
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
-Debug   
   librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
   playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
   dvbtgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
@@ -901,7 +893,8 @@ Public Sub DelayTimer_Timer()
   
   DelayTimer.stop
   AllInit_Post()
-  
+  Debug "Ended at: " & Timer
+  Debug
 End
 Private FirstTimeXt7 As Boolean = True ' has the user ever used xt7?
 Private fastquit As Boolean = False
@@ -923,6 +916,7 @@ Public Sub MainInit()
   Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
   
   covermanager.MakeCoverDirs()
+
   'TRY TO get a LOCK file:
   Try hLock = Lock global.confpath & "/.lock"
   If Error Then
@@ -941,9 +935,11 @@ Public Sub MainInit()
         Close #cachedfile
         cachedopts = Trim(cachedopts)
         Debug cachedopts
+        Debug
           Else
         Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
         Debug "To recreate the cache file, simply reload the profile"
+        Debug
      Endif
   'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
   If Application.Args.count >= 2 Then
@@ -978,10 +974,10 @@ Public Sub MainInit()
   If (Application.Args.count = 1) Or ((Application.Args.count > 1) And (Not alreadyrunning)) Then
     'FMain.LoadFormGeometry()
     fmain.Show
-    Debug "Timer = " & Timer
   Endif
   LeftSideTabs_Click()
-
+  Debug "Myinit ended at: " & Timer
+  Debug
 End
 
 
@@ -989,6 +985,7 @@ Public Sub SyncCachedOpts()
     If (Not global.initearlyformsdone) Then InitEarlyForms()
     cachedopts = GetOptionsFromGui()
     Debug "CACHED OPTIONS ARE: " & cachedopts
+    Debug
     cachedopts = cachedopts & " " & mplayer.AoAdditionalopts & " " & mplayer.AoDriver & " "
     cachedopts = cachedopts & " " & mplayer.VoDriver & " " & mplayer.VoAdditionalopts & " " & mplayer.AoAdditionalopts
     cachedopts = cachedopts & " " & mplayer.AVcodecs
@@ -1002,11 +999,13 @@ Public Sub ShowBrowseTabTo(fullpath As String)
   Try path = file.Dir(fullpath)
   If Error Then 
     Debug "error, please report"
+    Debug
     Return
   Endif
   Try tabID = Global.TabIndexByName("browse", Leftsidetabs)
   If Error Then 
     Debug "error, please report"
+    Debug
     Return
   Endif
   Try UrlBox.text = path
@@ -1166,6 +1165,7 @@ Public Sub Form_Close()
     FMain.Mysocket.Close
   Until FMain.Mysocket.status = Net.inactive
   Debug "closed socket"
+  Debug
 
   Try HotKeys.xbindkeys.kill
 
@@ -1220,7 +1220,7 @@ Public Sub Form_Close()
   Try zzzFake.hide
   Try realtimeform.hide
   Debug "hidden all forms"
-
+  Debug
   If ChooseAspect.visible Then ChooseAspect.CancelBtn_Click
 
   'delete temporary covers on exit:
@@ -1235,11 +1235,11 @@ Public Sub Form_Close()
     ExecutePostCmd()
   Endif
   Debug "post command executed"
-
+  Debug
   MyLibrary.MplayerTag.do_stop()
   MyPlaylist.MplayerTag.do_stop()
   Debug "mplayer stopped"
-
+  Debug
   Try HotKeys.xbindkeys.kill
   Print "xbindkeys killed"
 
@@ -1249,8 +1249,10 @@ Public Sub Form_Close()
       Try Global.SaveAllSettings(global.CurrentProfile)
       If Error Then 
         Debug "couldn't save all settings at exit as requested..."
+        Debug
           Else
-        Print "All settings saved"
+        Debug "All settings saved"
+        Debug
       Endif
     Else
       global.SaveMandatorySettings(global.CurrentProfile)
@@ -1260,6 +1262,7 @@ Public Sub Form_Close()
   If Not fastquit Then
     MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
     Debug "wrote last profile"
+    Debug
   Endif
 
 
@@ -1363,29 +1366,7 @@ Public Sub CorrectAreaAspect()
   Endif
 
 End
-Public Sub Old_SaveFormGeometry()
-  'due to different window managers behaviour,
-  'save and reload the form geometry to caculate the offest
-  'then save again the geometry with offset correction.
-  
-  Dim prevscreenx As Integer = fmain.screenx
-  Dim prevscreeny As Integer = fmain.screeny
-  Dim offsetx, offsety As Integer
-  
-  SubSaveFormGeometry(0, 0)
-  fmain.Hide
-  fmain.refresh
-  Wait 0.05
-  LoadFormGeometry()
-  fmain.minimized = True
-  fmain.show
-  fmain.refresh
-  Wait 0.05
-  offsetx = prevscreenx - fmain.screenx
-  offsety = prevscreeny - fmain.screeny
-  SubSaveFormGeometry(offsetx * 2, offsety * 2)
-  
-End
+
 
 Public Sub SaveFormGeometry()
   
@@ -1530,6 +1511,7 @@ Public Sub mplayererroravailable(outline As String)
                 Debug "problem seeking on " & mplayer.Media_FullPath
                 Debug "mplayer.currenttime is " & mplayer.CurrentTime()
                 Debug "restarting mplayer"
+                Debug
                 mplayer.do_restart(mplayer.Media_FullPath, mplayer.CurrentOptions)
               Endif
             Endif
@@ -1614,6 +1596,7 @@ Public Function GetOptionsFromGui() As String
     SubAndOsd.Init()
     GotOptions = GotOptions & SubAndOsd.ParseSubGui(False)
     Debug "Exception, doing SubAndOsd.Init() now..."
+    Debug
   Endif
   GotOptions = GotOptions & GeneralOptions.Parse((mplayer.media_fullpath Like "dvd://*") Or (mplayer.media_fullpath Like "dvdnav://*"))
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
@@ -1629,7 +1612,6 @@ Public Function GetOptionsFromGui() As String
   GotOptions = GotOptions & postvfilters
   
   Return GotOptions
-  'Debug "Cachedoptions= " & Cachedoptions
 End
 
 Public Sub ButtonPlay_Click()
@@ -1903,8 +1885,6 @@ Public Sub menuopensubsearchbyhash_Show()
 
   TimerMenuHashSearch.delay = 1
   TimerMenuHashSearch.start
-  Debug
-
 End
 
 
@@ -1933,6 +1913,7 @@ Public Sub TimerMenuHashSearch_timer()
   token = OpenSubs.TokenFromLogIn("", "", "en", OpenSubs.defaultagent)
   If token = -1 Then
     Debug "Sorry, couldn't take the token from opensubtitles.org"
+    Debug
     fakemenu.text = ("Token error")
     fakemenu.picture = stock["16/error"]
     Return
@@ -1942,6 +1923,7 @@ Public Sub TimerMenuHashSearch_timer()
     moviehash = OpenSubs.MovieHash(currentmovie)
     If moviehash = -1 Then
       Debug "Sorry, couldn't calculate the moviehash"
+      Debug
       fakemenu.text = ("Hash error")
       fakemenu.picture = stock["16/error"]
       Return
@@ -1961,6 +1943,7 @@ Public Sub TimerMenuHashSearch_timer()
     Try filesize = Stat(currentmovie).size
     If Error Then
       Debug "Sorry, couldn't calculate file size"
+      Debug
       fakemenu.text = ("File error")
       fakemenu.picture = stock["16/error"]
       Return
@@ -1971,6 +1954,7 @@ Public Sub TimerMenuHashSearch_timer()
     myopensubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
     If myopensubs.count = 0 Then
       Debug "Sorry, no hash results from opensubtitles.org"
+      Debug
       fakemenu.text = ("No results")
       fakemenu.picture = stock["16/error"]
       Return
@@ -2049,7 +2033,7 @@ Public Sub TreeView1_Activate()
   Debug "NextTitle= " & NextTitle
   Debug "NextChapter= " & NextChapter
   Debug "NextAngle= " & NextAngle
-  
+  Debug
   'SWITCH_ANGLE (di slave mode) non funziona come dovrebbe, (bug mplayer)quindi al cambio di angolo, 
   'occorre riavviare il player.
   
@@ -2194,8 +2178,8 @@ Public Function Displaysub(MenuLine As String)
         emax += 1
     Endif
   Next
-  Debug "fmax=" & fmax
-  Debug "emax=" & emax
+  ' Debug "fmax=" & fmax
+  ' Debug "emax=" & emax
 
 
   Try ID = Split(MenuLine, " ")[0] - 1
@@ -2240,11 +2224,13 @@ Public Sub ExportDbusProperties()
     Try DBus.Name = "org.mpris.MediaPlayer2.xt7"
     If Error Then 
       Debug "Error setting up dbus"
+      Debug
       Return
     Endif
     Try DBus.Session.Register(mpris, "/org/mpris/MediaPlayer2", ["org.mpris.MediaPlayer2", "org.mpris.MediaPlayer2.Player", "org.mpris.MediaPlayer2.TrackList", "org.mpris.MediaPlayer2.Playlists", "org.freedesktop.Dbus.Properties", "org.freedesktop.Dbus.Introspectable"])
     If Error Then 
       Debug "Error setting up dbus"
+      Debug
       Return
     Endif
   Endif
@@ -2311,6 +2297,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   myopensubs.clear 
   If fullpath = "" Then 
     Debug "Nothing to play :/"
+    Debug
     Return
   Endif
   lastsubid = -1
@@ -2448,7 +2435,6 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Try Last.mouse = Mouse.default
     ButtonPlay.enabled = True
     MenumediaExplorer.Enabled = True
-    Debug fmain.fullyloaded
     addhistory(mplayer.Media_FullPath)
   Endif
   
@@ -2513,6 +2499,7 @@ Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
     Try history = file.Load(global.Historyfile) 
     If Error Then 
       Debug "Error: could not access " & global.historyfile & ""
+      Debug
       Return
     Endif
     For Each entry In Split(history, "\n", "", True)
@@ -2632,24 +2619,6 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
 End
 
 
-Public Sub OLD_ShowAudioPanel(Show As Boolean)
-  
-  If Show And Not TagEditMode Then
-    audioform.CoverBox.Resize(0, 0)
-    OuterBox.Reparent(zzzfake)
-    audioform.AudioPanel.Reparent(Rightsidepanel)
-    audioform.VBox2.w = 0 'gambas bug with autoresize...
-    audioform.VBox4.w = 0 'gambas bug with autoresize...
-    audioform.coverbox.Refresh
-    AudioForm.TimerZoomIn.start
-  Else
-    audioform.AudioPanel.Reparent(audioform)
-    audioform.close 'close audioforum due to a gambas bug with autoresize...
-    audioform.refresh
-    OuterBox.Reparent(Rightsidepanel)
-  Endif
-  
-End
 
 Public audioformshown As Boolean = False
 Private currentfile As String = ""
@@ -2693,22 +2662,6 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
   audioformshown = show
 End
 
-Public Sub OLD_SetDvdTabVisibility(visibility As Boolean)
-  
-  Dim i As Integer
-  
-  If DVDTabID = -1 Then
-    For i = 0 To Leftsidetabs.count - 1
-      If TabSelectedDVD() Then
-        DvdTabId = i
-        Break
-      Endif
-    Next 'i
-  Endif
-  Leftsidetabs[DvdTabId].visible = visibility
-  If visibility Then Leftsidetabs.index = DvdTabId
-  
-End
 
 Public Sub SetCddaTabVisibility(visibility As Boolean)
   
@@ -2930,6 +2883,7 @@ Public Sub UpdateStreamsMenu()
   tmpaudio = mplayer.CurrentAudioStream
   Debug "tmpsub= " & tmpsub
   Debug "tmpaudio= " & tmpaudio
+  Debug
   Repeat
   Until Streamsaudiomenu
   
@@ -3063,15 +3017,18 @@ Public Sub OneSecTimer_Timer()
 
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) Then
         Debug "end of media reached, playing next video..."
+        Debug
         ButtonNext_Click()
         PlaylistFinished = Not global.IsNextSelected
         If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
         
         Debug "Mplayer was off, so hit PLAY from here"
+        Debug
         If Not (mplayer.ProcessRunningOvr()) Then
           Play(mplayer.Media_FullPath)
             Else
           Debug "Not hitting PLay from here because ButtonNext did it first"
+          Debug
         Endif
       Else
         Playstarted = False
@@ -3112,20 +3069,7 @@ Private Sub UpdateVolumeTooltip()
   
 End
 
-Public Sub Old_ShowVolBtn_enter()
-  
-  VolumeFocused = True
-  UpdateVolumeTooltip()
-  OverlayTip.show
-  
-End
 
-Public Sub Old_ShowVolBtn_leave()
-  
-  VolumeFocused = False
-  OverlayTip.hide
-  
-End
 
 Public Sub ShowVolBtn_enter()
   
@@ -3161,14 +3105,6 @@ Public Sub SaveVolumeSlider_MouseUp()
     VolumeFocused = False
     OverlayTip.hide
   Endif
-  
-End
-
-Public Sub Old_SaveVolumeSlider_enter()
-  
-  VolumeFocused = True
-  UpdateVolumeTooltip()
-  OverlayTip.show
   
 End
 
@@ -3326,6 +3262,7 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
   If fullscreen Then
     If Exist(fscommand) Then 
       Debug "Executing " & fscommand & " " & fps
+      Debug
       Shell ". " & fscommand & " " & fps
         Else
       Debug "!!!"
@@ -3333,6 +3270,7 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
       Debug ("xt7 will execute it with and pass fps argument when switching to fullscreen")
       Debug ("Eg: xrandr --rate \"$1\" ")
       Debug "!!!"
+      Debug
     Endif
     Return
   Endif
@@ -3340,12 +3278,14 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
   'if windowed
     If Exist(windowcommand) Then
       Debug "Executing " & windowcommand 
+      Debug
       Shell ". " & windowcommand
         Else
       Debug "!!!"
       Debug ("Hint: create (and make executable) a script named ") & " " & windowcommand
       Debug ("xt7 will execute it when switching from fullscreen to window mode")
       Debug "!!!"
+      Debug
     Endif
     Return  
 End
@@ -3416,7 +3356,8 @@ Public Sub FullScreenSwitch()
     If GeneralOptions.NoEffectsCheckbox.value Then
       Try KdeEffectsWereActive = DisableKDECompositing()
       If Error Then
-        Debug "Unable to disable kde effects, are you sure use kwin window manager?"
+        Debug "Unable to disable kde effects, are you sure you use kwin window manager?"
+        Debug
         KdeEffectsWereActive = False
       Endif
     Endif
@@ -3639,7 +3580,7 @@ Public Sub LibraryGrid_Drop()
   dragdata = Drag.Paste("text/uri-list")
   droppedfiles = Split(dragdata, "\n\r", "", True)
   Debug "Start at: " & Time
-
+  Debug
   'prepare the progressbar
   MyLibraryProgressBar.visible = True
   MyLibraryProgressBar.h = 32
@@ -3677,7 +3618,7 @@ Public Sub LibraryGrid_Drop()
   Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
   If Error Then Debug "Error while Arranging albums view"
   Debug "End at: " & Time
-  
+  Debug
   'reset the progressbar
   MyLibraryProgressBar.h = 0
   MyLibraryProgressBar.visible = False
@@ -3809,6 +3750,7 @@ End
 
 Public Sub Apply()
   Debug "Cached Options unvalidated"
+  Debug
   global.ResetApplyBtnColor()
   fmain.cachedopts = ""
   VEqHasBeenSet = False
@@ -4050,6 +3992,7 @@ Public Sub ButtonNext_Click()
     If mplayerwasrunning Or (TogglePls.value) Then
       Try customtitle = youtubetree.Current.text
       Debug "mplayer was off so hit play from here"
+      Debug
       Play(mplayer.Media_FullPath)
     Endif
   Else If TabSelectedShoutcast() Then
@@ -4175,38 +4118,6 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
 End
 
 Public Sub LibraryGrid_Keypress()
-  ' Dim tmp As Panel
-  ' Dim y As Integer = 0 
-  ' Dim offsetY As Integer = librarygrid.screeny - fmain.screeny
-  ' Dim offsetX As Integer = librarygrid.screenx - fmain.screenx + librarygrid.clientx
-  ' 
-  ' If key.code = key.Esc Then
-  '   
-  ' 
-  '   Debug fmain.ScreenY
-  '   Debug mouse.screeny
-  '   
-  '   
-  '   tmp = New Panel(fmain)
-  '   tmp.visible = False
-  '   tmp.h = 1
-  '   tmp.ignore = True
-  '   tmp.x = offsetx
-  ' 
-  '   tmp.y = offsety '- (librarygrid.clienty Div 2)
-  '   tmp.Background = color.red
-  '   tmp.show
-  '   Wait 0.5
-  '   
-  ' 
-  '   
-  '   
-  '   tmp.y = offsety + librarygrid.ClientHeight + (librarygrid.clienty) ' Div 2) 'y - offsety 'offsety + librarygrid.Height
-  '   Wait 1
-  '   tmp.Delete
-  '   
-  ' Endif
-  
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
     Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
     Return
@@ -4347,6 +4258,7 @@ Public Sub RefreshVisibleRows(mygrid As Gridview, mylibrary As Playlistclass)
   LastC = MyGrid.Columns.Count - 1
   
   Debug "Doing from " & FirstR & " - to " & LastR
+  Debug
   For R = FirstR To LastR
     Gridviews_Data(mygrid, mylibrary, R, 0)
   Next 'R
@@ -4374,6 +4286,7 @@ Public Sub RefreshVisibleCovers(mygrid As Gridview)
   LastC = MyGrid.Columns.Count - 1
   
   Debug "Doing from " & FirstR & " - to " & LastR
+  Debug
   If Lower(mygrid.name) = "playlistgrid" Then
     Try PlaylistGrid.refresh
   Else
@@ -4391,7 +4304,6 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
   If (Not fmain.fullyloaded) Then
       If Not (librarygrid.tag = "FORCEUPDATE") Then Return
     Endif
-  Debug librarygrid.name
   LibraryGrid.clear
   MyLibrary.Search(LibraryGrid, Searchterm)
   If autosize Then
@@ -4599,7 +4511,6 @@ Public Sub CleanVideoThumbs()
   'generate coverfiles name and move them into a safe place
   For Each videofile In videofiles
     coverfile = (covermanager.Coverfile("", "", videofile))
-    'Debug "mv  '" & coverfile & "' " & safeplace & "/ &>/dev/null"
     If Exist(coverfile, True) Then Shell "mv  '" & coverfile & "' " & safeplace & "/ &>/dev/null" Wait
   Next
   'remove all of the thumbnails
@@ -4647,7 +4558,7 @@ Public Sub MenuLibraryUpdate_Click()
     Wait 0.1
     FMain.MenuLibraryUpdate_Click()
     Debug "Started at: " & Time
-    
+    Debug
     'ask user if he wants to delete non existend files
     'AnswerRemove = Message.Question(("Do you also want to remove non existent files from library?"), ("Remove"), ("Don't remove"))
     AnswerRemove = MyQuestion.Ask(("Do you also want to remove non existent files from library?"), ("Remove"), ("Don't remove"))
@@ -4657,6 +4568,7 @@ Public Sub MenuLibraryUpdate_Click()
       Debug "Removing old video thumbnails"
       CleanVideoThumbs()
       Debug "Done"
+      Debug
     Endif
     
     For i = 0 To GeneralOptions.NoParseWatchedListbox.count - 1
@@ -4708,6 +4620,7 @@ Public Sub MenuLibraryUpdate_Click()
     Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     If Error Then Debug "Error while Arranging albums view"
     Debug "Ended at: " & Time
+    Debug
   Endif
   
 End
@@ -4728,21 +4641,7 @@ Public Sub SearchLabel_DblClick()
   
 End
 
-' Public Sub OLD_MenuItemsUpdate_Click()
-'   Debug "start at " & Time
-'   If LibraryGrid.Rows.count > 0 Then
-'     MyLibrary.UpdateSelected(LibraryGrid)
-'     UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
-'   Endif
-'   Debug "end at " & Time
-' End
-' 
-' Public Sub OLD_MenuItemsUpdatePls_Click()
-'   If PlaylistGrid.Rows.count > 0 Then
-'     MyPlaylist.UpdateSelected(PlaylistGrid)
-'     SearchFieldPLS_Click()
-'   Endif
-' End
+
 
 Public Sub MenuItemsUpdate_Click()
   Debug "start at " & Time
@@ -4751,6 +4650,7 @@ Public Sub MenuItemsUpdate_Click()
     'UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
   Endif
   Debug "end at " & Time
+  Debug
 End
 
 Public Sub MenuItemsUpdatePls_Click()
@@ -4848,16 +4748,9 @@ End
 Public TimerCalcTotalLengthPls As Timer 
 
 Public Sub TimerCalcTotalLengthPls_Timer()
-  'Dim howmany As Integer
-  'HowMany = myplaylist.HowManySelected(playlistgrid)
-  'If howmany > 1 Then
-    PlayListSelInfo.visible = True
-    CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
-    Try mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
-  ' Else
-  '   PlayListSelInfo.visible = False
-  'Endif
-  Debug
+  PlayListSelInfo.visible = True
+  CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
+  Try mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
   TimerCalcTotalLengthPls.stop
 End
 
@@ -5592,15 +5485,13 @@ Public Sub Mysocket_Connection(RemoteHostIP As String)
 End
 
 Public Sub socket_Read()
-  
   Dim command As String = ""
-  
   Line Input #Last, command
   Debug "command= " & command
+  Debug
   Mysocket.close
   ExecuteRemote(command)
   Mysocket.Listen(1)
-  
 End
 
 Public Sub ExecuteRemote(command As String)
@@ -5609,15 +5500,18 @@ Public Sub ExecuteRemote(command As String)
   parameter = Mid(command, InStr(command, " ") + 1)
   Debug "command= " & command
   Debug "parameter= " & parameter
+  Debug
   If command Like "append *" Then
     parameter = NoQuotes(parameter)
     Debug "URI= " & parameter
+    Debug
     MyPlaylist.AddFile(playlistgrid, parameter, MyPlaylist.ISURI(parameter), MyPlaylist.ISURI(parameter))
     MyPlaylist.AutoSizeColumns(playlistgrid)
     
   Else If command Like "play *" Then
     parameter = NoQuotes(parameter)
     Debug "URI= " & parameter
+    Debug
     ButtonStop_Click()
     
     If Not global.IsAudioFile(parameter) Then 'raise xt7 only on video files
@@ -6209,6 +6103,7 @@ Public Function ObjectByName(Objectname As String) As Object
   For Each obj In Me.Controls
     If Upper(obj.name) = Upper(Objectname) Then
       Debug "found" & objectname
+      Debug
       Return obj
     Else
       Print Upper(objectname) & " differ from " & Upper(obj.name)
@@ -6567,6 +6462,7 @@ Public Sub ReLoadCurrentProfile()
       Else
     Debug "Cannot find cachedopts for new profile, regenerating..."
     Fmain.apply
+    Debug
   Endif
 
   FMain.SetStyle_early()
@@ -7854,7 +7750,7 @@ Public Sub youtubeappendmenu_Click()
       Try youtubetree.Item.selected = True
   Endif
    Debug youtubetree.Current.key
-
+   Debug
   Try youtubetree.Remove(tmpkey)
   If Not ischild Then
     fmain.mouse = mouse.wait
@@ -7974,6 +7870,7 @@ Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   Endif
   
   Debug commandline
+  Debug
   Shell commandline
   
 End
@@ -8106,25 +8003,6 @@ Public Sub HSplit1_Resize()
   If Not fmain.fullscreen Then Hsplit1_MyRefresh
   'ShadeList()
 End
-
-' Public Sub ShadeList()
-'   ' Dim Shadesize As Integer = 16
-'   ' shadeuppicture.x = Panel2.x
-'   ' shadeuppicture.w = librarygrid.clientw
-'   ' shadeuppicture.y = Panel2.y + librarygrid.Columns.Height
-'   ' shadeuppicture.h = 16
-'   ' 
-'   ' shadelowpicture.x = shadelowpicture.x
-'   ' shadelowpicture.x = shadelowpicture.w
-'   ' shadelowpicture.y = Panel2.y + Panel2.h - 16
-'   
-'   Dim i As Integer
-'   For i = 0 To fmain.W
-'     Debug librarygrid.Find(i
-'   Next
-'   
-' End
-
 
 
 Public Sub HSplit1_MouseMove()
@@ -8563,6 +8441,7 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
     pRow = i
       Else
     Debug "cannot rename, couldn't find searchtable element into ptable (!?)"
+    Debug
     Return
   Endif
 
@@ -8617,6 +8496,7 @@ Private Sub StopDumping(destfile As String)
   Endif
   Debug "mv " & dumpfile & " " & Shell(destfile)
   Shell "mv " & dumpfile & " " & Shell(destfile)
+  Debug
   mymsg = (("Moving $(dumpfile) \nTo: \n$(destfile)"))
   mymsg = Replace(mymsg, "$(dumpfile)", dumpfile)
   mymsg = Replace(mymsg, "$(destfile)", destfile)
@@ -8753,11 +8633,3 @@ End
 Public Sub AlbumGridView_Leave()
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
 End
-
-
-
-' Public Sub shadeuppicture_MouseWheel()
-' 
-'   librarygrid.Proxy = shadeuppicture
-' 
-' End

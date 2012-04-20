@@ -798,6 +798,14 @@ Public Sub LookForJpgHeuristic(filename As String, Optional saveto As String = "
   Endif
 End
 
+Public Sub DeleteThumbsBy(album As String, artist As String, p As String)
+  Dim mycoverfile As String
+  mycoverfile = coverfile(artist, album, p)
+  Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
+End
+
+
+
 
 Public Sub PictureBox1_DblClick()
   Dim newfilename As String

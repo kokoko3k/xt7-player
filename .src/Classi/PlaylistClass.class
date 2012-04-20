@@ -585,11 +585,15 @@ Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolea
   Try RowToSelect = MyPlaylist.row
   Try PrevScrollX = MyPlaylist.scrollx
   Try PrevScrollY = MyPlaylist.scrollY
+
   'Remove selected items from PTable in reverse order
   r = myplaylist.Rows.Count - 1
   While (r >= 0)
     If myplaylist.Rows[r].Selected Then
       tmpfullpath = Myplaylist[r, Columnindex["Full Path"]].text
+      If myplaylist.name = "LibraryGrid" Then 
+        DeleteThumbsOf(tmpfullpath)
+      Endif
       If ((Not ISURI(tmpfullpath)) Or DeleteURIes) Then
         'PTable.Remove(PTable.Find(Searchtable[r]))
         Searchtable.Remove(r)
@@ -630,6 +634,19 @@ Public Sub EraseSelected(MyPlaylist As GridView)
     r = r - 1
   Wend
   fmain.mouse = mouse.Default
+End
+
+Public Sub DeleteThumbsOf(p As String)
+  Dim myrow, album, artist As String
+  Dim mycoverfile As String
+  Try myrow = ptable[TableRowByPath(p, ptable)]
+  If Error Then
+    Debug "couldn't delete thumbnails"
+    Debug 
+  Endif
+  album = GetValue(myrow, "Album")
+  Artist = GetValue(myrow, "Artist")
+  CoverManager.DeleteThumbsBy(album, artist, p)
 End
 
 
@@ -1020,7 +1037,9 @@ Public Function TableRowByPath(p As String, t As String[]) As Integer
   Dim fstr As String = (TableSeparator & "Full Path" & TableSeparator & p)
   Dim i As Integer
   For i = 0 To t.Max
-    If t[i] Like "*" & fstr & "*" Then Return i
+    If t[i] Like "*" & fstr & "*" Then 
+      Return i
+    Endif
   Next
   Return -1
 End

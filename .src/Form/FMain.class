@@ -3348,7 +3348,8 @@ Public Sub FullScreenSwitch()
     OuterBox.Mouse = mouse.default
     VideoBox.Mouse = mouse.default
     AllmenuVisible(True)
-    Try Shell "xrefresh -black &>/dev/null"
+    Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+
   Else                                                                 '(fit fullscreen mode) **************************
     If GeneralOptions.NoEffectsCheckbox.value Then
       Try KdeEffectsWereActive = DisableKDECompositing()

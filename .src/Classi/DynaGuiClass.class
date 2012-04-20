@@ -139,7 +139,7 @@ End
 Public Sub MoveObject(TheObject As Object, TheForm As Object)
   Dim MenuHeight As Integer
   Dim SafeBack As Integer = 8
-    Try Theform.mouse = 18 'missing mouse constant
+    If mouse.left Then Try Theform.mouse = 18 'missing mouse constant
     Try MenuHeight = TheForm.Font.textheight("Ij") + 4 'gambas3
     If Error Then   'gambas2
       MenuHeight = TheForm.Font.Textheight("Ij") + 4
@@ -265,4 +265,5 @@ Public Sub SmartInsert(TheObject As Object, TheForm As Object)
     ' TheObject.enabled = True
     Try TheObject.enabled = ShadowObj.enabled
     Try ShadowObj.Delete
+    Try Last.mouse = mouse.default
 End

@@ -88,6 +88,7 @@ Public Sub CancelBTN_Click()
 End
 
 Public Sub VideoDriverList_MouseDown()
+  Try Last.mouse = 18
   VideoDriverList_Click()
 End
 
@@ -290,4 +291,23 @@ Public Sub Form_Show()
       Endif
     Endif
   Next
+End
+
+
+Public Sub DriversPanel_Enter()
+
+  Try Last.mouse = 17
+
+End
+
+Public Sub DriversPanel_Leave()
+
+  Try Last.mouse = mouse.default
+
+End
+
+Public Sub DriversPanel_MouseDown()
+
+  Try Last.mouse = 18
+
 End

@@ -3263,7 +3263,7 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
     If Exist(fscommand) Then 
       Debug "Executing " & fscommand & " " & fps
       Debug
-      Shell ". " & fscommand & " " & fps
+      Shell ". " & fscommand & " " & fps Wait
         Else
       Debug "!!!"
       Debug ("Hint: create (and make executable) a script named") & " " & fscommand 
@@ -3279,7 +3279,7 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
     If Exist(windowcommand) Then
       Debug "Executing " & windowcommand 
       Debug
-      Shell ". " & windowcommand
+      Shell ". " & windowcommand Wait
         Else
       Debug "!!!"
       Debug ("Hint: create (and make executable) a script named ") & " " & windowcommand
@@ -3289,8 +3289,6 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
     Endif
     Return  
 End
-
-
 
 Public Sub FullScreenSwitch()
   
@@ -3314,6 +3312,9 @@ Public Sub FullScreenSwitch()
   OuterBox.Mouse = 0
   VideoBox.Mouse = 0
   If FMain.fullscreen Then                                           'prepare to return in window mode
+    FsCommandsExec(False, mplayer.Media_VideoFps)
+    Wait
+
     If GeneralOptions.NoEffectsCheckbox.value Then
       If KdeEffectsWereActive Then EnableKDECompositing()
     Endif
@@ -3347,17 +3348,12 @@ Public Sub FullScreenSwitch()
     OuterBox.Mouse = mouse.default
     VideoBox.Mouse = mouse.default
     AllmenuVisible(True)
-    
-    If mplayer.ProcessRunningOvr() Then 
-      If Not (mplayer.AudioOnly) Then FsCommandsExec(False, mplayer.Media_VideoFps)
-    Endif
-    
+    Try Shell "xrefresh -black &>/dev/null"
   Else                                                                 '(fit fullscreen mode) **************************
     If GeneralOptions.NoEffectsCheckbox.value Then
       Try KdeEffectsWereActive = DisableKDECompositing()
       If Error Then
-        Debug "Unable to disable kde effects, are you sure you use kwin window manager?"
-        Debug
+        Debug "Unable to disable kde effects, are you sure use kwin window manager?"
         KdeEffectsWereActive = False
       Endif
     Endif
@@ -3379,7 +3375,7 @@ Public Sub FullScreenSwitch()
     Rightsidepanel.Reparent(zzzfake.vsplit1)
     zzzfake.VSplit1.visible = False
     zzzfake.VSplit1.Reparent(fmain)
-    blackbox.raise()
+    'blackbox.raise()
     zzzfake.VSplit1.visible = True
     tagpanel.Reparent(zzzfake)
     EditTagModeSwitch1.Checked = False
@@ -3387,23 +3383,30 @@ Public Sub FullScreenSwitch()
 
     ' BottomVbox.visible = False
     BottomVbox.Reparent(fmain)
-    blackbox.raise()
+    'blackbox.raise()
     BottomVbox.visible = True
     LeftsidePanel.h = (Desktop.Height Div 2)
     LeftsidePanel.visible = False
     OuterBox.Background = Color.black
     VideoBox.visible = True
+    
+    If mplayer.ProcessRunningOvr() Then 
+      If Not (mplayer.AudioOnly) Then 
+        FsCommandsExec(True, mplayer.Media_VideoFps)
+      Endif
+    Endif
+'blackbox.Resize(Screen.x * 4, Screen.y * 4)
+
+'videobox.visible = False
     FMain.fullscreen = True
     'sit and wait until fmain has changed his size (is gone fullscreen)
     Repeat
       Wait 0.001
       maxwait = maxwait - 1
     Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
-    If mplayer.ProcessRunningOvr() Then 
-      If Not (mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
-    Endif
   Endif
-  
+'videobox.visible = True
+
   TimerFullScreen.enabled = FMain.FullScreen
 
   If Fmain.Fullscreen Then
@@ -3418,11 +3421,12 @@ Public Sub FullScreenSwitch()
   CostrainFormSizes()
   fmain.VideoBox.setfocus
   'wait a little bit before setting switchingfullscreen to false
-  Wait 0.2
+  Wait 0.1
   SwitchingFullScreen = False
   blackbox.visible = False
   CorrectAreaAspect()
 End
+
 
 Public Sub AllmenuVisible(AreVisible As Boolean)
   Menuplaylist.visible = AreVisible
@@ -8334,7 +8338,6 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
     Return
   Endif
   fpcolumn = myplaylist.ColumnIndex["Full Path"]
-
   If mygrid.name <> "AlbumGridView" Then
     Try currentpath = mygrid[crow, fpcolumn].text
     If Error Then
@@ -8567,15 +8570,19 @@ Public Sub SearchFieldAlbums_KeyRelease()
         Else
       Return
     Endif
-  'Endif
-  'MenuPlaylistZapSelected.enabled = (PlaylistGrid.row > 0)
+
 End
 
 Public Sub SearchFieldAlbums_Activate()
   ComboHistory.AddHistory(Searchfieldalbums, Searchfieldalbums.text)
 End
 
+
+' Private pr As Integer
+' Private pc As Integer
+
 Public Sub AlbumGridView_MouseMove()
+   MyAlbumsLib.highlighter(mouse.screenx, mouse.screeny)
    If Not (Buttonshowtooltips.value) Then Return
    ShowGridTooltipIn(AlbumGridView, mylibrary)
 End
@@ -8586,34 +8593,37 @@ Public Sub AlbumGridView_Activate()
   Dim track As String
   Dim firstrow As Integer
   Dim answer As Integer
+  Dim selectedrow As Integer
   tracks = MyAlbumsLib.GetTracks(AlbumGridView.row, AlbumGridView.Column)
   answer = MyQuestion.Ask(("What do you want to do with this album tracks?"), ("Append to playlist"), ("Append and play"))
   If answer = -1 Then Return
   If (tracks.count > 50) Then 
     If MyQuestion.Ask(("Append more than 50 tracks?"), ("yes"), ("no")) = 2 Then Return
   Endif
+  selectedrow = playlistgrid.row
   If tracks.count > 0 Then 
     firstrow = playlistgrid.Rows.count 
     For Each track In tracks
       myplaylist.AddFile(playlistgrid, track, False)
       Wait
     Next
-    playlistgrid.UnSelectAll()
-    playlistgrid.row = firstrow
-    playlistgrid.Rows[playlistgrid.row].selected = True
+
     TogglePls.value = 1
     If answer = 2 Then 
+      playlistgrid.UnSelectAll()
+      playlistgrid.row = firstrow
+      playlistgrid.Rows[playlistgrid.row].selected = True
       Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
       Leftsidetabs.index = Global.TabIndexByName("playlist", Leftsidetabs)
       Leftsidetabs.Refresh
+        Else
+      playlistgrid.Rows[selectedrow].selected = True
     Endif
   Endif
 End
 
 Public Sub AlbumGridView_Menu()
-
   MyAlbumsLib.SelectCell(AlbumGridView.row, AlbumGridView.Column)
-  
   menupopupalbumview.Popup()
 End
 

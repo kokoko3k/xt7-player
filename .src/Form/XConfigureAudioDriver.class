@@ -93,6 +93,7 @@ Public Sub CancelBTN_Click()
 End
 
 Public Sub AudioDriverList_MouseDown()
+  Try Last.mouse = 18
   AudioDriverList_Click()
 End
 
@@ -289,3 +290,21 @@ Public Sub notifyobj_Change()
   Endif
 End
 
+
+Public Sub DriversPanel_Enter()
+
+  Try Last.mouse = 17
+
+End
+
+Public Sub DriversPanel_Leave()
+
+  Try Last.mouse = mouse.default
+
+End
+
+Public Sub DriversPanel_MouseDown()
+
+  Try Last.mouse = 18
+
+End

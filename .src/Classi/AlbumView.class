@@ -275,7 +275,7 @@ Public Sub selectcell(r As Integer, c As Integer)
   Dim ox, oy As Integer
   Dim selectioncolor As Integer
   Dim tmpsat As Integer
-
+  Try unzoompic(r, c)
   If (previousrow <> -1) And (previouscol <> -1) Then
      Try view[previousrow, previouscol].Background = Color.default
      Try view[previousrow, previouscol].Foreground = Color.default
@@ -306,9 +306,7 @@ Public Sub selectcell(r As Integer, c As Integer)
   
   selectionbox = selectionbox.Load("selectionbox.png").Stretch(imax, imax).Colorize(selectioncolor)
   selectionbox.PaintImage(savepic.Image, ox, oy) ', 30, 30)
-  
-  
-  
+
   savepic = selectionbox.Picture
 
   view[r, c].picture = savepic
@@ -318,6 +316,67 @@ Public Sub selectcell(r As Integer, c As Integer)
   previousrow = r
   previouscol = c
 End
+
+
+Private pr As Integer = -1
+Private pc As Integer = -1
+
+Public Sub highlighter(mousex As Integer, mousey As Integer)
+  Dim r, c As Integer
+  Try r = Global.MyRowAt(view, mouse.screeny - view.screeny)
+  If Error Then Return
+  If r = -1 Then Return
+  Try c = view.ColumnAt(mouse.screenx - view.screenx)
+  If Error Then Return
+  If c = -1 Then Return
+
+  If ((pr <> r) Or (pc <> c)) Then
+    Try unzoompic(pr, pc)
+    Try zoompic(r, c)
+  Endif
+
+  pr = r
+  pc = c
+
+End
+
+
+Private lastcelltext As String 
+Private timg As New Image
+Private big As Integer
+
+Public Sub zoompic(r As Integer, c As Integer)
+  Dim img As New Image
+  Dim nw, nh As Integer
+  Dim savetext As String
+  Dim mystep As Integer = 0
+  'nw = view[r, c].Picture.w
+  'nh = view[r, c].Picture.h
+
+  'img = view[r, c].Picture.image
+  'Try savetext = view[r, c].text
+  ' mystep = CInt((iconsize / 5) / 10)
+  ' While (nw - iconsize) < (iconsize / 5)
+  '   nw = view[r, c].Picture.w + mystep 'timg.w + CInt(img.w + (img.w / 10))
+  '   nh = view[r, c].Picture.h + mystep 'timg.h + CInt(img.h + (img.h / 10))
+  '   view[r, c].Picture = img.Stretch(nw, nh).Picture
+  '   view[r, c].text = savetext
+  '   Wait 
+  ' Wend
+
+  nw = CInt(view[r, c].Picture.w * 1.1)
+  nh = CInt(view[r, c].Picture.h * 1.1)
+  Try savetext = view[r, c].text 
+  view[r, c].Picture = view[r, c].Picture.Image.stretch(nw, nh).Picture
+    view[r, c].RichText = "<b>" & Replace(savetext, "\n", "<br>") 
+  'view[r, c].text = savetext
+End
+
+Public Sub unzoompic(r As Integer, c As Integer)
+  view[r, c].text = ""
+  view[r, c].clear
+End
+
 
 
 Public Function PathFromCoordinates(r As String, c As String) As String

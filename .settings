@@ -15,7 +15,7 @@ Geometry=[52,0,210,920]
 Geometry=[51,0,508,410]
 
 [DebugWindow/AlbumView]
-Geometry=[47,-3,698,661]
+Geometry=[51,0,698,661]
 
 [DebugWindow/AllParams]
 Geometry=[0,0,301,301]
@@ -138,7 +138,7 @@ Geometry=[51,0,344,820]
 Geometry=[52,0,210,210]
 
 [DebugWindow/FMain]
-Geometry=[51,0,210,210]
+Geometry=[-60,268,776,554]
 
 [DebugWindow/FMain.mplayer.GetListOf("ao")]
 Geometry=[52,0,222,507]
@@ -163,6 +163,9 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/Filterlist]
 Geometry=[-4,-3,210,210]
+
+[DebugWindow/Fmain]
+Geometry=[-4,-4,227,299]
 
 [DebugWindow/GeneralOptions]
 Geometry=[0,41,344,344]
@@ -536,6 +539,9 @@ Geometry=[51,0,632,651]
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
+[DebugWindow/blackbox]
+Geometry=[794,22,315,922]
+
 [DebugWindow/button]
 Geometry=[-4,-3,210,210]
 
@@ -581,6 +587,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/findouts]
 Geometry=[0,0,344,344]
 
+[DebugWindow/fmain]
+Geometry=[-4,-4,561,728]
+
 [DebugWindow/fmain.Controls["Button1"]]
 Geometry=[0,0,344,344]
 
@@ -604,6 +613,9 @@ Geometry=[1498,0,210,363]
 
 [DebugWindow/img]
 Geometry=[51,0,210,210]
+
+[DebugWindow/img.Stretch(nw, nh).picture]
+Geometry=[1276,-3,210,210]
 
 [DebugWindow/infile]
 Geometry=[0,0,301,301]
@@ -911,21 +923,25 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/MyQuestion.class:50.37"
+File[1]=".src/Form/MyQuestion.class:85.22"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:8551.24"
+Active=4
+File[4]=".src/Form/FMain.class:3320.34"
 File[5]="CHANGELOG_GIT:24.0"
 File[6]=".src/Form/CoverManager.class:649.59"
-File[7]=".src/Classi/MplayerClass.class:645.9"
+File[7]=".src/Classi/MplayerClass.class:293.9"
 File[8]=".src/Classi/PlaylistClass.class:43.26"
 File[9]=".src/Form/GeneralOptions.form"
 File[10]=".src/Form/GeneralOptions.class:0.0"
-File[11]="AA_ToDo:98.0"
-Active=12
-File[12]=".src/Classi/AlbumView.class:286.2"
+File[11]="AA_ToDo:90.0"
+File[12]=".src/Classi/AlbumView.class:13.39"
 File[13]=".src/Form/FMain.form"
-Count=13
+File[14]="selectionbox.png"
+File[15]="MoreResults.png"
+File[16]="shadow.png"
+File[17]=".src/0_Moduli/Global.module:900.0"
+Count=17
 
 [Watches]
 Count=12

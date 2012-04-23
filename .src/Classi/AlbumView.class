@@ -252,10 +252,7 @@ Public Sub data(r As Integer, c As Integer)
       view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize) 'ritorna quello di default
         Else
       CoverManager.QueueThumb(view, path, artist, album, r, iconsize, c) 'prova a crearlo
-      'CoverManager.savepic(path, artist, album, iconsize, False) ' prova a crearlo
-      'view[r, c].clear
-      'view[r, c].text = ""
-      'data(r, c)
+
     Endif
       Else ' il coverfile c'è
     view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)

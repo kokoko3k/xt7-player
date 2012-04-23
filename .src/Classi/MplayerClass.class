@@ -1399,12 +1399,21 @@ Private newfilenamepriv As String
 Private outdirpriv As String
 Private Thumbfullpathpriv As String
 Private widthpriv As Integer
+Private columnpriv As Integer
+Private rowpriv As Integer
+Private gridpriv As Gridview
 
-Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300) 
+
+Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300, mygrid As Gridview, row As Integer, column As Integer) 
   Dim outdir As String = Shell(Temp()) & Rnd(0, 99999)
   Dim cmdline As String = ""
   Dim mpout As String
   Mkdir outdir
+
+  rowpriv = row
+  columnpriv = column
+  gridpriv = mygrid
+
   'Create the thumb, but exit after 30 seconds 
   cmdline = "timeout 30 mplayer" & " " & Shell(fullpath) & " -nocache "
   cmdline &= "-vf scale=" & width & ":-2" & ",expand=:::::1/1" & " -ss " & seconds 
@@ -1423,8 +1432,8 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
 End
 
 
-Event ThumbAvailableFor(fullpath As String)
-Event ThumbErrorFor(fullpath As String)
+Event ThumbAvailableFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
+Event ThumbErrorFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
 
 
 Private ShortMovieChecked As Boolean = False
@@ -1432,10 +1441,10 @@ Public Sub thumbprocess_kill()
   Try Copy outdirpriv & "/" & Dir(outdirpriv, "*")[0] To newfilenamepriv
   Shell "rm -R " & outdirpriv & "&>/dev/null"
   If Exist(newfilenamepriv) Then
-    Raise ThumbAvailableFor(Thumbfullpathpriv)
+    Raise ThumbAvailableFor(Thumbfullpathpriv, gridpriv, rowpriv, columnpriv)
       Else
     If ShortMovieChecked Then 
-      Raise ThumbErrorFor(Thumbfullpathpriv)
+      Raise ThumbErrorFor(Thumbfullpathpriv, gridpriv, rowpriv, columnpriv)
         Else 'maybe the movie was very short, try to get a screen at 5th second:
       Debug "Couldn't get a thumb, retrying with an earlier time"
       Debug

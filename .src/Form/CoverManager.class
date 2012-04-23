@@ -983,11 +983,12 @@ Public Sub CoversLookerTimer_timer()
  Dim savedback As Integer
  Dim rowheight As Integer = 24 - global.rowpadding
 
-
-
 'will check for embedded covers or covers inside folders.
 
+
  If CoverQueue.count = 0 Then
+   Debug "stopping coverlookertimer"
+   Debug
    CoversLookerTimer.Stop
    Return
  Endif
@@ -1026,14 +1027,15 @@ Public Sub CoversLookerTimer_timer()
  Endif
 
 
-
 'controlla se la row è visibile:
  If MyGrid.Rows.count <= 0 Then Return
  'FirstR = MyGrid.RowAt(MyGrid.y)
  'LastR = MyGrid.RowAt(MyGrid.h)
  FirstR = global.MyRowAt(MyGrid, MyGrid.y)
  LastR = global.MyRowAt(MyGrid, MyGrid.h)
- 
+
+
+
  If LastR = -1 Then LastR = Mygrid.rows.count - 1
  If firstR = -1 Then firstR = 0
  If Not ((row >= firstR) And (row <= lastR)) Then Return
@@ -1044,17 +1046,13 @@ Public Sub CoversLookerTimer_timer()
     If mygrid[row, 19].text <> fullpath Then Return
   Endif
  
-
-
  'controlla di nuovo che alla row corrisponda lo stesso file
  If mygrid.name <> "AlbumGridView" Then
   If mygrid[row, 19].text <> fullpath Then Return
  Endif
  'inserisci immagine
 
- savepic(fullpath, artist, album, generaloptions.IconWidthCombobox.text, True)
- Try mygrid[row, 0].text = ""
- Try mygrid[row, 0].clear
+  savepic(fullpath, artist, album, generaloptions.IconWidthCombobox.text, True, mygrid, row, column)
 
 End
 
@@ -1066,16 +1064,16 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
       mygrid.data.Picture = Stock[CStr(rowheight + ShadowOffset) & "/video"]
       Return  
     Endif
-    
+
   Endif
-  
-  
+
   mygrid.data.Picture = Stock[rowheight & "/clock"]
   QueuedCover["mygrid"] = MyGrid
   QueuedCover["artist"] = artist
   QueuedCover["album"] = album
   QueuedCover["row"] = row
   QueuedCover["column"] = column
+  Debug "pushing " & fullpath
   CoverQueue.Push(fullpath)
   CoverQueue.Push(QueuedCover)
   CoversLookerTimer.delay = 1
@@ -1088,20 +1086,19 @@ Public Sub FileNotFoundAdd(path As String)
 End
 
 
-Public Function SavePic(fullpath As String, artist As String, album As String, rowheight As Integer, Optional forcethumbs As Boolean = False)
+Public Function SavePic(fullpath As String, artist As String, album As String, rowheight As Integer, Optional forcethumbs As Boolean = False, mygrid As Gridview, row As Integer, column As Integer) As Boolean
   Dim coverfilename As String
   coverfilename = coverfile(artist, album, fullpath)
   'controlla se esiste il coverfile su disco
   'se non esiste, prova a crearlo prima dalla folder.jpg, poi dalle immagini embedded
-  
-  If (Not Exist(coverfilename, True)) Then FolderPictureToCoverCache(file.Dir(fullpath), coverfilename)
-  If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename)
+  If (Not Exist(coverfilename, True)) Then FolderPictureToCoverCache(file.Dir(fullpath), coverfilename, mygrid, row, column)
+  If (Not Exist(coverfilename, True)) Then EmbeddedToCoverCache(artist, album, fullpath, coverfilename, mygrid, row, column)
   If Not global.isvideofile(fullpath) Then
     If (Not Exist(coverfilename, True)) Then MarkUncovered(fullpath) 'non esiste folder.jpg e nemmeno è embedded...
   Endif
 End
 
-Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As String)
+Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As String, mygrid As Gridview, row As Integer, column As Integer)
   Dim Files As New String[]
   Files = Dir(Directory, "*front*.jpg")
   If Files.count > 0 Then Goto FILEFOUND  
@@ -1129,30 +1126,45 @@ Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As Strin
   FILEFOUND:
   If Files.count > 0 Then 
     Copy Directory & "/" & Files[0] To coverfilename
+    Try mygrid[row, column].text = ""
+    Try mygrid[row, column].clear
   Endif
-
 End
 
 
-Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String)
+Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String, mygrid As Gridview, row As Integer, column As Integer)
   Select Case Lower(file.Ext(fullpath))
     Case "mp3"
       LookForJpg(fullpath, coverfilename)
+      Try mygrid[row, column].text = ""
+      Try mygrid[row, column].clear
       Return
     Case "ogg"
       LookForJpgb64(fullpath, coverfilename)
+      Try mygrid[row, column].text = ""
+      Try mygrid[row, column].clea
       Return
     Case "flac"
       LookForJpg(fullpath, coverfilename)
+      Try mygrid[row, column].text = ""
+      Try mygrid[row, column].clear
       Return
     Case "mp4"
-      If LookForJpgHeuristic(fullpath, coverfilename) Then Return 'return only when we found an embedded cover into mp4
+      If LookForJpgHeuristic(fullpath, coverfilename) Then 
+        Try mygrid[row, column].text = ""
+        Try mygrid[row, column].clear
+        Return 'return only when we found an embedded cover into mp4
+      Endif
     Case "mkv"
-      If LookForJpgHeuristic(fullpath, coverfilename) Then Return 'return only when we found an embedded cover into mp4
+      If LookForJpgHeuristic(fullpath, coverfilename) Then 
+        Try mygrid[row, column].text = ""
+        Try mygrid[row, column].clear
+        Return 'return only when we found an embedded cover into mp4
+      Endif
   End Select
   
   If global.IsVideoFile(fullpath) Then
-    If generaloptions.ShowThumbsCHK.value Then makevideothumb(fullpath, coverfilename)
+    If generaloptions.ShowThumbsCHK.value Then makevideothumb(fullpath, coverfilename, mygrid, row, column)
   Endif
 End
 
@@ -1162,24 +1174,31 @@ Private thumbstimer As New Timer As "thumbstimer"
 Private runningthumblers As Integer = 0
 Private mplayerthumb As Mplayerclass
 
-Public Sub makevideothumb(fullpath As String, coverfilepath As String)
+
+Private lastthumbpath As String = ""
+Public Sub makevideothumb(fullpath As String, coverfilepath As String, mygrid As Gridview, row As Integer, column As Integer)
+  If fullpath = lastthumbpath Then Return
+  lastthumbpath = fullpath
+
   While runningthumblers >= 3
-    'Debug runningthumblers
+    Debug runningthumblers
     Wait 0.05
   Wend
   If FMain.closing Then Return
   If Exist(coverfilepath) Then Return
   mplayerthumb = New Mplayerclass As "thumbnailer"
   runningthumblers += 1
-  mplayerthumb.savethumb(fullpath, coverfilepath)
+  mplayerthumb.savethumb(fullpath, coverfilepath,,, mygrid, row, column)
 End
 
-Public Sub thumbnailer_ThumbAvailableFor(fullpath As String)
-  FMain.NewThumbReadyFor(fullpath)
+Public Sub thumbnailer_ThumbAvailableFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
+  Try g[r, c].text = ""
+  Try g[r, c].clear
+  'FMain.NewThumbReadyFor(fullpath)
   runningthumblers -= 1
 End
 
-Public Sub thumbnailer_ThumbErrorFor(fullpath As String)
+Public Sub thumbnailer_ThumbErrorFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
   MarkUncovered(fullpath)
   runningthumblers -= 1
 End

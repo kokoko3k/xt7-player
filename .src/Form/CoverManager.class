@@ -366,7 +366,7 @@ Dim newx, newy As Integer
 ' Try zzzfake.Move(0, 0)
 ' Try zzzfake.show
 
-
+'Wait '0.0001
 
   'neww = generaloptions.IconWidthCombobox.text + shadowoffsetpaint 
   neww = height + (height Div 8)

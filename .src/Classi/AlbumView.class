@@ -358,7 +358,6 @@ Public Sub zoompic(r As Integer, c As Integer)
   '   view[r, c].text = savetext
   '   Wait 
   ' Wend
-Debug
   nw = CInt(view[r, c].Picture.w * 1.1)
   nh = CInt(view[r, c].Picture.h * 1.1)
   Try savetext = view[r, c].text 

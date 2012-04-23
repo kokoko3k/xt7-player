@@ -348,11 +348,11 @@ Public Sub AllInit_Pre()
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
   'the following has to be called after loadearlysettings because 
   'is there where we load generaloptions form settings
-  If generaloptions.ShowCoversInListChk.value Then
-    covermanager.prebuffer()
-    Debug "the User likes cover, so we prebuffer cover list In background..."
-    Debug
-  Endif
+  ' ' If generaloptions.ShowCoversInListChk.value Then
+  ' '   covermanager.prebuffer()
+  ' '   Debug "the User likes cover, so we prebuffer cover list In background..."
+  ' '   Debug
+  ' ' Endif
   
   
   HideGrid(PlaylistGrid)

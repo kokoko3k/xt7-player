@@ -96,8 +96,9 @@ dell'header!)
 Try tmppic = picture.Load(tmpfile) a volte non da errore anche se la pic è corrotta,
 bisogna trovare un altro modo per identificare le jpg...
 
+non disabilitare i filtri video con vdpau, ma con i codec vdpau incompatibili.
 
-evitare che il generatore di thumbs venga lanciato due volte contemporaneamente sullo stesso file!
+
 ---------------------------------------------------------------------------
 
 ***********************************************

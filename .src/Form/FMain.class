@@ -8327,17 +8327,19 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Dim crow, fpcolumn, ccolumn As Integer
   Dim msx, msy As Integer
   If mouse.left Or mouse.right Or mouse.middle Then Return
-  msx = mouse.screenx
-  msy = mouse.ScreenY
-  Wait 0.01
-  If ((msx <> mouse.screenx) Or (msy <> mouse.ScreenY)) Then Return 'mouse is moving
 
-  'Try crow = mygrid.RowAt(mouse.screeny - mygrid.screeny)
+  Repeat 'wait until mouse finished moving
+    msx = mouse.screenx
+    msy = mouse.ScreenY
+    Wait 0.01
+  Until ((msx = mouse.screenx) And (msy = mouse.ScreenY)) 'wait until mouse is still
+
   Try crow = global.MyRowAt(mygrid, mouse.screeny - mygrid.screeny)
   If ( Error Or (crow = -1)) Then 
     Application.ShowTooltips = False
     Return
   Endif
+
   fpcolumn = myplaylist.ColumnIndex["Full Path"]
   If mygrid.name <> "AlbumGridView" Then
     Try currentpath = mygrid[crow, fpcolumn].text
@@ -8362,27 +8364,42 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
 End
 
 
-
+Private mmliblocked As Boolean = False
 Public Sub LibraryGrid_MouseMove()
+  If mmliblocked Then Return
+  mmliblocked = True
   If generaloptions.HighlightCHK.value Then
-    'Try hirow = librarygrid.RowAt(mouse.screeny - librarygrid.screeny)
     Try hirow = global.MyRowAt(librarygrid, mouse.screeny - librarygrid.screeny)
     Try librarygrid[hirow, 0].text = ""
     Try librarygrid[hirow, 0].clear
   Endif
    If Not (Buttonshowtooltips.value) Then Return
    ShowGridTooltipIn(librarygrid, mylibrary)
+   mmliblocked = False
 End
 
+Private mmplslocked As Boolean = False
 Public Sub PlaylistGrid_MouseMove()
+  If mmplslocked Then Return
+  mmplslocked = True
   If generaloptions.HighlightCHK.value Then
-    'Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
-    Try hirow = global.MyRowAt(playlistgrid, mouse.screeny - playlistgrid.screeny)
+    Try hirow = playlistgrid.RowAt(mouse.screeny - playlistgrid.screeny)
     Try playlistgrid[hirow, 0].text = ""
     Try playlistgrid[hirow, 0].clear
   Endif
   If Not (Buttonshowtooltips.value) Then Return
   ShowGridTooltipIn(playlistgrid, myplaylist)
+  mmplslocked = False
+End
+
+Private mmalblocked As Boolean = False
+Public Sub AlbumGridView_MouseMove()
+  MyAlbumsLib.highlighter(mouse.screenx, mouse.screeny)
+  If mmalblocked Then Return
+  mmalblocked = True
+  If Not (Buttonshowtooltips.value) Then Return
+  ShowGridTooltipIn(AlbumGridView, mylibrary)
+  mmalblocked = False
 End
 
 
@@ -8578,15 +8595,6 @@ Public Sub SearchFieldAlbums_Activate()
   ComboHistory.AddHistory(Searchfieldalbums, Searchfieldalbums.text)
 End
 
-
-' Private pr As Integer
-' Private pc As Integer
-
-Public Sub AlbumGridView_MouseMove()
-   MyAlbumsLib.highlighter(mouse.screenx, mouse.screeny)
-   If Not (Buttonshowtooltips.value) Then Return
-   ShowGridTooltipIn(AlbumGridView, mylibrary)
-End
 
 
 Public Sub AlbumGridView_Activate()

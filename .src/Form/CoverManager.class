@@ -984,6 +984,7 @@ Public Sub CoversLookerTimer_timer()
  Dim rowheight As Integer = 24 - global.rowpadding
 
 
+
 'will check for embedded covers or covers inside folders.
 
  If CoverQueue.count = 0 Then
@@ -1059,7 +1060,7 @@ End
 
 Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, album As String, row As Integer, Optional rowheight As Integer = 16, Optional column As Integer = 0)
   QueuedCover = New Collection
-  
+
   If global.IsVideoFile(fullpath) Then
     If Not (generaloptions.ShowThumbsCHK.value) Then
       mygrid.data.Picture = Stock[CStr(rowheight + ShadowOffset) & "/video"]

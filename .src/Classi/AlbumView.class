@@ -334,10 +334,8 @@ Public Sub highlighter(mousex As Integer, mousey As Integer)
     Try unzoompic(pr, pc)
     Try zoompic(r, c)
   Endif
-
   pr = r
   pc = c
-
 End
 
 
@@ -363,7 +361,7 @@ Public Sub zoompic(r As Integer, c As Integer)
   '   view[r, c].text = savetext
   '   Wait 
   ' Wend
-
+Debug
   nw = CInt(view[r, c].Picture.w * 1.1)
   nh = CInt(view[r, c].Picture.h * 1.1)
   Try savetext = view[r, c].text 

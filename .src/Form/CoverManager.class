@@ -987,8 +987,8 @@ Public Sub CoversLookerTimer_timer()
 
 
  If CoverQueue.count = 0 Then
-   Debug "stopping coverlookertimer"
-   Debug
+   ' Debug "stopping coverlookertimer"
+   ' Debug
    CoversLookerTimer.Stop
    Return
  Endif
@@ -1073,7 +1073,7 @@ Public Sub QueueThumb(MyGrid As Gridview, fullpath As String, artist As String, 
   QueuedCover["album"] = album
   QueuedCover["row"] = row
   QueuedCover["column"] = column
-  Debug "pushing " & fullpath
+  'Debug "pushing " & fullpath
   CoverQueue.Push(fullpath)
   CoverQueue.Push(QueuedCover)
   CoversLookerTimer.delay = 1
@@ -1181,7 +1181,7 @@ Public Sub makevideothumb(fullpath As String, coverfilepath As String, mygrid As
   lastthumbpath = fullpath
 
   While runningthumblers >= 3
-    Debug runningthumblers
+    'Debug runningthumblers
     Wait 0.05
   Wend
   If FMain.closing Then Return

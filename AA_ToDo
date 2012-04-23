@@ -99,6 +99,13 @@ bisogna trovare un altro modo per identificare le jpg...
 non disabilitare i filtri video con vdpau, ma con i codec vdpau incompatibili.
 
 
+molto lento:
+    Public Sub DeleteThumbsBy(album As String, artist As String, p As String)
+      Dim mycoverfile As String
+      mycoverfile = coverfile(artist, album, p)
+      Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
+    End
+
 ---------------------------------------------------------------------------
 
 ***********************************************

@@ -6100,7 +6100,8 @@ End
 Public Sub TrayIcon1_Enter()
   
   If mplayer.ProcessRunningOvr() Then
-    OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx - (TrayIcon1.w), Last.screeny - (OverlayTrayTip.h))
+    'OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx - (TrayIcon1.w), Last.screeny - (OverlayTrayTip.h))
+    OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx, Last.screeny - (OverlayTrayTip.h))
     OverlaytrayTip.show
   Endif
   
@@ -8372,6 +8373,7 @@ End
 
 Private mmliblocked As Boolean = False
 Public Sub LibraryGrid_MouseMove()
+
   If mmliblocked Then Return
   mmliblocked = True
   If generaloptions.HighlightCHK.value Then

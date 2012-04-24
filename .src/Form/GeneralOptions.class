@@ -731,13 +731,16 @@ Public Sub ResetButton_Click()
   If Upper(Last.name) = "RESETBUTTON4" Then
     ColorChooseBTN4.background = color.white
   Endif
+  If Upper(Last.name) = "RESETBUTTON1" Then
+    ColorChooseBTN1.background = color.Foreground
+  Endif
 End
 
 
 Public Sub BackResetButton_Click()
   If Upper(Last.name) = "BACKRESETBUTTON2" Then 'leftside lists
     ' [GB2:BCOL] Try Last.next.background = &EEEEFF&
-    Try Last.next.Background = &EEEEFF&
+    Try Last.next.Background = &F0F0F0&
       Else If Upper(Last.name) = "BACKRESETBUTTON3" Then  'trayicon
         ' [GB2:BCOL] Last.next.background = &HFFFF9B&
         Last.next.Background = &2A2D3C&

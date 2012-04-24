@@ -42,7 +42,7 @@
       }
     }
     { Tabstrip1 TabStrip
-      MoveScaled(22,1,62,65)
+      MoveScaled(23,1,62,65)
       Tag = "Audio CD"
       Expand = True
       Arrangement = Arrange.Vertical
@@ -50,7 +50,7 @@
       Index = 0
       Text = ("Video")
       { ScrollView1 ScrollView
-        MoveScaled(5,4,52,44)
+        MoveScaled(3,4,52,44)
         Tag = "video"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -182,15 +182,16 @@
       Index = 2
       Text = ("Library")
       { ScrollView6 ScrollView
-        MoveScaled(1,2,56,48)
+        MoveScaled(1,2,56,57)
         Tag = "library"
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
         Padding = 6
+        ScrollBar = Scroll.Horizontal
         { NoParse31 HBox
-          MoveScaled(1,1,51,4)
+          MoveScaled(1,0,51,4)
           ToolTip = ("Specify what additional file extensions are allowed in playlist and library.\nEx: mov,dts,h264")
           Spacing = True
           { Label7 Label
@@ -204,7 +205,7 @@
           }
         }
         { NOPARSEVBox2 VBox
-          MoveScaled(1,5,51,28)
+          MoveScaled(1,5,51,23)
           ToolTip = ("Directories specified here are recursively added to the playlist\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop.")
           Expand = True
           Spacing = True
@@ -216,13 +217,13 @@
             Alignment = Align.Center
           }
           { NoParseWatchedListbox ListBox
-            MoveScaled(2,4,38,18)
+            MoveScaled(2,4,38,12)
             Drop = True
             Expand = True
             Mode = Select.Multiple
           }
           { NoParseHbox2 HBox
-            MoveScaled(1,23,50,4)
+            MoveScaled(1,17,50,4)
             Spacing = True
             { AddBtn Button
               MoveScaled(1,0,12,4)
@@ -235,7 +236,7 @@
               Picture = Picture["icon:/16/remove"]
             }
             { Panel2 Panel
-              MoveScaled(28,0,4,5)
+              MoveScaled(28,-1,4,5)
               Expand = True
             }
             { AddBtn2 Button
@@ -246,7 +247,7 @@
           }
         }
         { NOPARSEVBox1 VBox
-          MoveScaled(1,34,51,28)
+          MoveScaled(1,29,51,26)
           ToolTip = ("Directories specified here will excluded\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop.")
           Expand = True
           Spacing = True
@@ -258,13 +259,13 @@
             Alignment = Align.Center
           }
           { NoParseExcludedListbox ListBox
-            MoveScaled(2,4,38,18)
+            MoveScaled(2,4,38,9)
             Drop = True
             Expand = True
             Mode = Select.Multiple
           }
           { NoParseHbox1 HBox
-            MoveScaled(1,23,50,4)
+            MoveScaled(0,15,50,4)
             Spacing = True
             { AddBtn3 Button
               MoveScaled(1,0,12,4)
@@ -277,15 +278,18 @@
               Picture = Picture["icon:/16/remove"]
             }
             { Panel1 Panel
-              MoveScaled(28,0,4,5)
+              MoveScaled(26,0,4,5)
               Expand = True
             }
             { AddBtn4 Button
-              MoveScaled(32,0,20,4)
+              MoveScaled(31,0,20,4)
               Text = ("Exclude Now")
               Picture = Picture["icon:/16/refresh"]
             }
           }
+        }
+        { VBox7 VBox
+          MoveScaled(2,51,50,1)
         }
       }
       Index = 3

@@ -300,7 +300,7 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
     i = i + 1
   Next
   MyLibrary.Load(LibraryGrid, global.confpath)
-  Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
+ ' Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
@@ -361,6 +361,7 @@ Public Sub AllInit_Pre()
   SetDvdTabVisibility(False)
   SetCDDATabVisibility(False)
   SetStyle_early()
+
 End
 
 Public Sub InitEarlyForms()
@@ -382,7 +383,6 @@ End
 Public Sub AllInit_Post()
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
   Dim savefileview1path As String
-
   Hsplit1ResizeDelayed = New Timer As "Hsplit1ResizeDelayed" 'used to delay the hsplit resize and better performance
   Hsplit1ResizeDelayed.delay = 300
   Hsplit1ResizeDelayed.Enabled = False
@@ -391,7 +391,6 @@ Public Sub AllInit_Post()
   FileView1.visible = True
   FileView1.dir = savefileview1path
   FileView1.Reload
- 
   Leftsidepanel.mouse = mouse.wait
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
@@ -399,7 +398,7 @@ Public Sub AllInit_Post()
   If TabSelectedAlbums() Then 
     Albums_Select()
   Endif  
-  
+
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
   librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
   playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
@@ -465,6 +464,7 @@ Public Sub AllInit_Post()
     ReallySaveAllSettings("default", False, True)
     global.currentprofile = "default"
    Endif
+
 End
 
 Private RecentFileEntry As Menu
@@ -978,6 +978,7 @@ Public Sub MainInit()
   LeftSideTabs_Click()
   Debug "Myinit ended at: " & Timer
   Debug
+  
 End
 
 
@@ -4388,15 +4389,11 @@ End
 
 '-----------------------------------
 Public Sub LibraryGrid_ColumnClick(Column As Integer)
-  
   ColumnClick(LibraryGrid, Mylibrary, column, Searchfield.text)
-  
 End
 
 Public Sub PlaylistGrid_ColumnClick(Column As Integer)
-  
   ColumnClick(PlayListGrid, MyPlaylist, column, SearchfieldPLS.text)
-  
 End
 
 Public Sub dvbtGrid_ColumnClick(Column As Integer)
@@ -4413,6 +4410,11 @@ Public Sub ColumnClick(Grid As GridView, pls As PlaylistClass, column As Integer
   pls.AutoSizeColumns(grid)
   grid.scrollX = PrevScrollX
   grid.mouse = mouse.Default
+  
+  If column = 0 Then Try Object.SetProperty(grid, "sorted", False) 
+  If ((column <> 0) And Not (Object.GetProperty(grid, "sorted"))) Then
+    Try Object.SetProperty(grid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
+  Endif
 End
 '-----------------------------------
 
@@ -8611,6 +8613,9 @@ Public Sub AlbumGridView_Activate()
   If (tracks.count > 50) Then 
     If MyQuestion.Ask(("Append more than 50 tracks?"), ("yes"), ("no")) = 2 Then Return
   Endif
+  
+  fmain.mouse = mouse.wait
+  
   selectedrow = playlistgrid.row
   If tracks.count > 0 Then 
     firstrow = playlistgrid.Rows.count 
@@ -8631,6 +8636,8 @@ Public Sub AlbumGridView_Activate()
       playlistgrid.Rows[selectedrow].selected = True
     Endif
   Endif
+  
+  fmain.mouse = mouse.normal
 End
 
 Public Sub AlbumGridView_Menu()

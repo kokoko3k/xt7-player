@@ -1237,7 +1237,7 @@ Public Sub AutoSizeColumns(MyGrid As GridView)
           Break
         Endif
       Next 'r
-      Mygrid.Columns[c].w = CInt(MaxW)
+      Mygrid.Columns[c].w = CInt(MaxW) + 100
     Next 'c
 
     FirstC = 0
@@ -1252,7 +1252,7 @@ Public Sub AutoSizeColumns(MyGrid As GridView)
       MaxW = CInt((Len(MyGrid.Columns[c].text) + 6) * CharW)
       ccaption = MyGrid.Columns[c].text
       For r = firstR To lastR Step rstep
-        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 6) * CharW
+        Textw = (Len(GetValue(Searchtable[r], ccaption)) + 10) * CharW
         If MaxW < TextW Then MaxW = textW
         If MaxW >= MaxGbW Then 
           MaxW = MaxGbw

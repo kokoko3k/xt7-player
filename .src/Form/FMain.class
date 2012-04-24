@@ -4716,6 +4716,8 @@ Private prevHigLibRow As Integer = -1
 
 Public Sub LibraryGrid_Select()
 
+
+
   TimerCalcTotalLengthLib = New Timer As "TimerCalcTotalLengthLib"
   TimerCalcTotalLengthLib.delay = 100
   TimerCalcTotalLengthLib.stop
@@ -8663,6 +8665,7 @@ Public Sub AlbumGridView_Leave()
 End
 
 Public Sub LibraryGrid_MouseDown()
+
   If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
     librarygrid.UnSelectAll
     librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True

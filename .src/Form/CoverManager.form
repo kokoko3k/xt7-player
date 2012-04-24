@@ -5,6 +5,7 @@
   Text = ("Cover fetcher")
   Icon = Picture["filetypeaudio.png"]
   Persistent = True
+  Stacking = Window.Above
   Arrangement = Arrange.Fill
   Padding = 4
   { VBox2 VBox

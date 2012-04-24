@@ -6068,6 +6068,7 @@ Public Sub TrayIcon1_MouseDown()
     If iconified Then 
       fmain.Minimized = False
       fmain.SkipTaskbar = False
+      fmain.show
         Else
       fmain.Minimized = True
       fmain.SkipTaskbar = True

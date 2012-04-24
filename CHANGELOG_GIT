@@ -5,6 +5,7 @@ Apr 24 2012
   CHANGE: Faster deletion of thumbnails
   CHANGE: Allow video filters when using vdpau, but still clears them when using a gpu accelerated codec
   CHANGE: Use Faenza-like icon for tray too
+  FIX:    Main form not restored on tray icon click
   
 Apr 23 2012
   FIX:    Don't generate tooltips as long as mouse is moving (improved)

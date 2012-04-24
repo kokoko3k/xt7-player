@@ -752,8 +752,13 @@ End
 Public Sub SetStyle_early()
   
   Dim TheObject As Object
- 
   Dim h1, h2, h3 As String
+ 
+  Dim backcolor As String = GeneralOptions.backcolorChooseBTN1.Background
+  Dim forecolor As String = GeneralOptions.ColorChooseBTN1.Background
+  Dim Userfont As Font = GeneralOptions.FontChooseBTN1.font
+ 
+ 
   
   cachebar.h = (fmain.font.textHeight("iJ") Div 2)
   If desktop.Height > 600 Then
@@ -796,38 +801,82 @@ Public Sub SetStyle_early()
   OverlayTrayTip.font = GeneralOptions.FontChooseBTN4.font
   OverlayTrayTip.foreground = GeneralOptions.ColorChooseBTN4.Background
   OverlayTrayTip.Panel2.background = GeneralOptions.backcolorChooseBTN3.Background
-  Librarygrid.font = GeneralOptions.FontChooseBTN1.font
-  Librarygrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  Librarygrid.Background = GeneralOptions.backcolorChooseBTN1.Background
+
+  Librarygrid.font = Userfont
+  Librarygrid.Foreground = forecolor
+  Librarygrid.Background = backcolor
+  Panel2.background = Librarygrid.Background
+
   Global.Alternatecolor = GeneralOptions.backcolorChooseBTN2.Background
-  Playlistgrid.font = GeneralOptions.FontChooseBTN1.font
-  dvbtgrid.font = GeneralOptions.FontChooseBTN1.font
-  PlaylistGrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  PlayListGrid.Background = GeneralOptions.backcolorChooseBTN1.Background
-  dvbtgrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  dvbtgrid.Background = GeneralOptions.backcolorChooseBTN1.Background
+
+  dvbtgrid.font = Userfont
+  dvbtgrid.Foreground = forecolor
+  dvbtgrid.Background = backcolor
+  panel3.Background = backcolor
   dvbtgrid.Rows.h = dvbtgrid.Font.TextHeight("^_") + global.rowpadding
-  CDDAGrid.font = GeneralOptions.FontChooseBTN1.font
-  CDDAGrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  CDDAGrid.Background = GeneralOptions.backcolorChooseBTN1.Background
-  treeview1.font = GeneralOptions.FontChooseBTN1.font
-  treeview1.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  treeview1.Background = GeneralOptions.backcolorChooseBTN1.Background
-  PropertiesGrid.font = GeneralOptions.FontChooseBTN1.font
-  PropertiesGrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  PropertiesGrid.Background = GeneralOptions.backcolorChooseBTN1.Background
-  FlashGrid.font = GeneralOptions.FontChooseBTN1.font
-  FlashGrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  FlashGrid.Background = GeneralOptions.backcolorChooseBTN1.Background
-  GenresTree.font = GeneralOptions.FontChooseBTN1.font
-  GenresTree.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  GenresTree.Background = GeneralOptions.backcolorChooseBTN1.Background
-  ShutResultGrid.font = GeneralOptions.FontChooseBTN1.font
-  ShutResultGrid.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  ShutResultGrid.Background = GeneralOptions.backcolorChooseBTN1.Background
-  PodcastTree.font = GeneralOptions.FontChooseBTN1.font
-  PodcastTree.Foreground = GeneralOptions.ColorChooseBTN1.Background
-  PodcastTree.Background = GeneralOptions.backcolorChooseBTN1.Background
+  
+  
+  Playlistgrid.font = Userfont
+  PlaylistGrid.Foreground = forecolor
+  PlayListGrid.Background = backcolor
+  Panel1.background = backcolor
+
+  
+  FlashGrid.font = Userfont
+  FlashGrid.Foreground = forecolor
+  FlashGrid.Background = backcolor
+  Panel5.background = backcolor
+
+
+  ProfilesListBox.font = Userfont
+  ProfilesListBox.foreground = forecolor
+  ProfilesListBox.background = backcolor
+
+  CDDAGrid.font = Userfont
+  CDDAGrid.Foreground = forecolor
+  CDDAGrid.Background = backcolor
+  panel4.Background = backcolor
+  
+  
+  treeview1.font = Userfont
+  treeview1.Foreground = forecolor
+  treeview1.Background = backcolor
+
+  FileView1.font = Userfont
+  FileView1.Foreground = forecolor
+  FileView1.Background = backcolor
+
+  AlbumGridView.font = Userfont
+  AlbumGridView.Foreground = forecolor
+  AlbumGridView.Background = backcolor
+  Panel8.background = backcolor
+  
+  PropertiesGrid.font = Userfont
+  PropertiesGrid.Foreground = forecolor
+  PropertiesGrid.Background = backcolor
+  Panel7.Background = backcolor
+  
+
+  
+  youtubetree.font = Userfont
+  youtubetree.Foreground = forecolor
+  youtubetree.Background = backcolor
+
+  GenresTree.font = Userfont
+  GenresTree.Foreground = forecolor
+  GenresTree.Background = backcolor
+
+  PodcastTree.font = Userfont
+  PodcastTree.Foreground = forecolor
+  PodcastTree.Background = backcolor
+
+
+  ShutResultGrid.font = Userfont
+  ShutResultGrid.Foreground = forecolor
+  ShutResultGrid.Background = backcolor
+  panel6.Background = backcolor
+ 
+
   SearchField.Font.size = zzzFake.Font.size
   SearchFieldPLS.Font.size = zzzFake.Font.size
   SearchFieldalbums.Font.size = zzzFake.Font.size
@@ -8373,7 +8422,6 @@ End
 
 Private mmliblocked As Boolean = False
 Public Sub LibraryGrid_MouseMove()
-
   If mmliblocked Then Return
   mmliblocked = True
   If generaloptions.HighlightCHK.value Then

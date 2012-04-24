@@ -11,6 +11,8 @@ Apr 24 2012
   FIX:    Leave more space when autosizing columns
   CHANGE: CoverManager window stacking set to "above"
   CHANGE: Changed Default colors
+  FIX:    Make sure tray icon tooltip is not off-screen
+  FIX:    Set colors/fonts user preference over some missing controls
   
 Apr 23 2012
   FIX:    Don't generate tooltips as long as mouse is moving (improved)

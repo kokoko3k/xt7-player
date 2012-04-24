@@ -9,13 +9,6 @@ Public MouseOnOverlayTraytip As Boolean = False
 
 Public Sub Redraw(tip As String, x As Integer, y As Integer)
   UpdateInfos()
-
-  '   If y + Me.h > desktop.h Then y = desktop.h - Me.h
-  '   If x + Me.w + 8 > desktop.w Then x = desktop.w - Me.w - 8
-  '     Else 'dual head + gambas bug + tray on the right screen -
-  '   x = mouse.screenx - Me.w
-
-  
   If y + Me.h > desktop.h Then y = desktop.h - Me.h
   x = x - (Me.w Div 2) + FMain.trayicon1.w
   If x < 0 Then x = 0

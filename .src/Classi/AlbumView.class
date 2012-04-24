@@ -258,6 +258,8 @@ Public Sub data(r As Integer, c As Integer)
     view.Data.Picture = CoverManager.coverpicture(coverfile, path, iconsize)
   Endif
   view.Data.text = artist & "\n" & album & MyYear
+  view.Data.Background = GeneralOptions.backcolorChooseBTN1.Background
+  view.Data.Foreground = GeneralOptions.ColorChooseBTN1.Background
 End
 
 Private previousrow As Integer = -1
@@ -333,6 +335,8 @@ Public Sub highlighter(mousex As Integer, mousey As Integer)
   Endif
   pr = r
   pc = c
+  view[r, c].Background = GeneralOptions.backcolorChooseBTN1.Background
+  view[r, c].Foreground = GeneralOptions.ColorChooseBTN1.Background
 End
 
 

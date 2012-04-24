@@ -800,8 +800,18 @@ End
 
 Public Sub DeleteThumbsBy(album As String, artist As String, p As String)
   Dim mycoverfile As String
+  Dim Files As String[]
+  Dim thumb As String
+  Dim coverdir As String
   mycoverfile = coverfile(artist, album, p)
-  Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
+  coverdir = file.Dir(mycoverfile)
+  mycoverfile = file.Name(mycoverfile)
+  ' Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
+  Files = Dir(coverdir, mycoverfile & "*")
+  If Files.count = 0 Then Return
+  For Each thumb In Files 
+    Try Kill coverdir & "/" & thumb
+  Next 'filename
 End
 
 

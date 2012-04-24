@@ -580,26 +580,28 @@ Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolea
   Dim tmpfullpath As String = ""
   Dim rowheight As Integer
   Dim i As Integer
+  Dim thumbstodelete As New String[]
+  Dim thumbtodelete As String
   
   Try ColToSelect = MyPlaylist.Column
   Try RowToSelect = MyPlaylist.row
   Try PrevScrollX = MyPlaylist.scrollx
   Try PrevScrollY = MyPlaylist.scrollY
 
+  Try myplaylist.Window.mouse = mouse.wait
+
   'Remove selected items from PTable in reverse order
   r = myplaylist.Rows.Count - 1
   While (r >= 0)
     If myplaylist.Rows[r].Selected Then
       tmpfullpath = Myplaylist[r, Columnindex["Full Path"]].text
-      If myplaylist.name = "LibraryGrid" Then 
-        DeleteThumbsOf(tmpfullpath)
-      Endif
       If ((Not ISURI(tmpfullpath)) Or DeleteURIes) Then
         'PTable.Remove(PTable.Find(Searchtable[r]))
         Searchtable.Remove(r)
         'find the ptable row to delete
         For i = 0 To ptable.Max
           If GetValue(ptable[i], "Full Path") = tmpfullpath Then
+            If myplaylist.name = "LibraryGrid" Then thumbstodelete.Add(ptable[i])
             ptable.Remove(i)
             Break
           Endif
@@ -614,8 +616,16 @@ Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolea
 '  MyPlaylist.Rows.h = rowheight
    ' [GB2:FNTH] MyPlaylist.Rows.h = MyPlaylist.Font.Textheight("^_") + global.rowpadding '<<--
    'MyPlaylist.Rows.h = MyPlaylist.Font.TextHeight("^_") + global.rowpadding '<<--
-   Try MyPlaylist.scrollx = PrevScrollX
-   Try MyPlaylist.scrollY = PrevScrollY
+  Try MyPlaylist.scrollx = PrevScrollX
+  Try MyPlaylist.scrollY = PrevScrollY
+  
+  If myplaylist.name = "LibraryGrid" Then
+    For Each thumbtodelete In thumbstodelete
+      DeleteThumbsOf(thumbtodelete)
+    Next
+  Endif
+  
+  Try myplaylist.Window.mouse = mouse.default
 End
 
 Public Sub EraseSelected(MyPlaylist As GridView)
@@ -636,10 +646,11 @@ Public Sub EraseSelected(MyPlaylist As GridView)
   fmain.mouse = mouse.Default
 End
 
-Public Sub DeleteThumbsOf(p As String)
-  Dim myrow, album, artist As String
+Public Sub DeleteThumbsOf(myrow As String)
+  Dim album, artist As String
   Dim mycoverfile As String
-  Try myrow = ptable[TableRowByPath(p, ptable)]
+  Dim p As String
+  Try p = GetValue(myrow, "Full Path")
   If Error Then
     Debug "couldn't delete thumbnails"
     Debug 

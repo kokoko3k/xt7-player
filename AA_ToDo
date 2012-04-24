@@ -99,28 +99,9 @@ bisogna trovare un altro modo per identificare le jpg...
 non disabilitare i filtri video con vdpau, ma con i codec vdpau incompatibili.
 
 
-molto lento:
-    Public Sub DeleteThumbsBy(album As String, artist As String, p As String)
-      Dim mycoverfile As String
-      mycoverfile = coverfile(artist, album, p)
-      Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
-    End
 
 
-
-Questo invece funzionicchia, ma possiamo fare in modo che se ci sia il tasto destro del mouse
-premuto e il puntatore capiti su una riga selezionata, allora non debba deselezionare tutto:
-Public Sub LibraryGrid_MouseDown()
-  If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
-    librarygrid.UnSelectAll
-    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
-  Endif
-End
-
-
-
-
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 ***********************************************
 Risolti:

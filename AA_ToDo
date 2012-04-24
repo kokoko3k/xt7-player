@@ -106,6 +106,20 @@ molto lento:
       Shell "rm " & Shell(mycoverfile) & "* &>/dev/null" 
     End
 
+
+
+Questo invece funzionicchia, ma possiamo fare in modo che se ci sia il tasto destro del mouse
+premuto e il puntatore capiti su una riga selezionata, allora non debba deselezionare tutto:
+Public Sub LibraryGrid_MouseDown()
+  If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
+    librarygrid.UnSelectAll
+    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
+  Endif
+End
+
+
+
+
 ---------------------------------------------------------------------------
 
 ***********************************************

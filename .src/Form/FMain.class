@@ -8653,3 +8653,35 @@ End
 Public Sub AlbumGridView_Leave()
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
 End
+
+Public Sub LibraryGrid_MouseDown()
+  If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
+    librarygrid.UnSelectAll
+    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
+  Endif
+
+  If Mouse.Right Then
+    If Not (librarygrid.rows[global.MyRowAt(librarygrid, mouse.y)].selected) Then
+      librarygrid.UnSelectAll
+      librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True  
+    Endif
+    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
+     LibraryGrid_Menu()
+  Endif
+End
+
+Public Sub PlaylistGrid_MouseDown()
+  If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
+    playlistgrid.UnSelectAll
+    playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True
+  Endif
+
+  If Mouse.Right Then
+    If Not (playlistgrid.rows[global.MyRowAt(playlistgrid, mouse.y)].selected) Then
+      playlistgrid.UnSelectAll
+      playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True  
+    Endif
+    playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True
+    Playlistgrid_Menu()
+  Endif
+End

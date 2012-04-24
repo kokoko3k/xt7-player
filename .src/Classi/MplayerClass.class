@@ -632,12 +632,24 @@ Public Function do_play(filename As String, options As String, Optional restart 
     
     
     
-    If (commandline Like "*-vo vdpau*") Or (commandline Like "*-vo *,vdpau*") Or (commandline Like "*-vo vaapi*") Or (commandline Like "*-vo *,vaapi*") Or (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
-      Debug ("found vdpau/vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
+    If (commandline Like "*-vo vaapi*") Or (commandline Like "*-vo *,vaapi*") Or (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
+      Debug ("found vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
       commandline = commandline & " -vf-clr "
       Debug
     Endif
     
+    If (commandline Like "*ffmpeg12vdpau*") Or (commandline Like "*ffwmv3vdpau*") Or (commandline Like "*ffvc1vdpau*") Or (commandline Like "*ffh264vdpau*") Or (commandline Like "*ffodivxvdpau*") Then
+      Debug ("found an ff*vdpau dorced codec on enabled video codec list, disabling all video filters by appending -vf-clr")
+      commandline = commandline & " -vf-clr "
+      Debug
+    Endif
+    
+    If (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
+      Debug ("found xvmc output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
+      commandline = commandline & " -vf-clr "
+      Debug
+    Endif
+
     If commandline Like "*-dumpfile *" Then
       Debug "-dumpfile option found in the command line, probably you will not be able to dump streams using the rec button"
       Debug

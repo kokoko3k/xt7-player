@@ -3,6 +3,7 @@ Git changes:
 Apr 24 2012
   FIX:    Changed right mouse behaviour to workaround gb3.0,gb3.1
   CHANGE: Faster deletion of thumbnails
+  CHANGE: Allow video filters when using vdpau, but still clears them when using a gpu accelerated codec
 
 Apr 23 2012
   FIX:    Don't generate tooltips as long as mouse is moving (improved)

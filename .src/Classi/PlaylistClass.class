@@ -1149,10 +1149,10 @@ Public Sub DoSort(Field As String, Optional table As String[] = ptable)
 
   If Ascendent Then
     ' [GB2:TEXT] ptable = ptable.Sort(gb.Ascent + gb.text)
-    table = table.Sort(gb.Ascent + gb.IgnoreCase)
+    table = table.Sort(gb.Ascent + gb.Natural + gb.IgnoreCase) 'gb.IgnoreCase)
       Else
     ' [GB2:TEXT] Ptable = ptable.Sort(gb.Descent + gb.text)
-    table = table.Sort(gb.Descent + gb.IgnoreCase)
+    table = table.Sort(gb.Descent + gb.Natural + gb.IgnoreCase) 'gb.IgnoreCase)
   Endif
   Ascendent = Not Ascendent
   '"public" the last sorted field

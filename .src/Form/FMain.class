@@ -4514,7 +4514,6 @@ Public Sub LibraryGrid_Menu()
   MenuSortLibraryPopup.visible = True
   MenuOpenContainingFolderPopUp.enabled = MyLibrary.OnlyOneSelected(librarygrid)
   Menupopuplibrary.Popup
-  
 End
 
 Public Sub MenuOpenContainingFolderPopUp_Click()
@@ -8715,34 +8714,47 @@ Public Sub AlbumGridView_Leave()
 End
 
 Public Sub LibraryGrid_MouseDown()
-
+  Dim MouseRow As Integer
+  Try mouserow = librarygrid.RowAt(mouse.y)
+  If Error Then Return
+ 
   If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
     librarygrid.UnSelectAll
-    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
+    librarygrid.Rows[mouserow].selected = True
+    librarygrid.row = mouserow
+    Return
   Endif
 
   If Mouse.Right Then
-    If Not (librarygrid.rows[global.MyRowAt(librarygrid, mouse.y)].selected) Then
+    If Not (librarygrid.rows[mouserow].selected) Then
       librarygrid.UnSelectAll
-      librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True  
+      ' librarygrid.Rows[mouserow].selected = True  
+      ' librarygrid.row = mouserow
     Endif
-    librarygrid.Rows[librarygrid.RowAt(mouse.y)].selected = True
-     LibraryGrid_Menu()
+    librarygrid.Rows[mouserow].selected = True
+    librarygrid.row = mouserow
+    LibraryGrid_Menu()
   Endif
 End
 
 Public Sub PlaylistGrid_MouseDown()
+  Dim MouseRow As Integer
+  Try mouserow = playlistgrid.RowAt(mouse.y)
   If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
     playlistgrid.UnSelectAll
-    playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True
+    playlistgrid.Rows[mouserow].selected = True
+    playlistgrid.row = mouserow
+    Return
   Endif
 
   If Mouse.Right Then
-    If Not (playlistgrid.rows[global.MyRowAt(playlistgrid, mouse.y)].selected) Then
+    If Not (playlistgrid.rows[MouseRow].selected) Then
       playlistgrid.UnSelectAll
-      playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True  
+      ' playlistgrid.Rows[MouseRow].selected = True  
+      ' playlistgrid.row = mouserow
     Endif
-    playlistgrid.Rows[playlistgrid.RowAt(mouse.y)].selected = True
+    playlistgrid.Rows[MouseRow].selected = True
+    playlistgrid.row = mouserow
     Playlistgrid_Menu()
   Endif
 End

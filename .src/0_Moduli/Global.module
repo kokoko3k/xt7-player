@@ -908,3 +908,25 @@ Public Function MyRowAt(g As Gridview, y As Integer) As Integer
   Endif
   Return g.RowAt(y - workaround)
 End
+
+Public Function DektopWTotal() As Integer
+  Dim S As Screen
+  Dim VeryLeft As Integer = 99999
+  Dim VeryRight As Integer = -1
+  For Each s In Screens
+    If s.AvailableX < VeryLeft Then VeryLeft = s.AvailableX
+    If s.AvailableX + s.AvailableWidth > VeryRight Then VeryRight = s.AvailableX + s.AvailableWidth
+  Next
+  Return VeryRight - Veryleft
+End
+
+Public Function DektopHTotal() As Integer
+  Dim S As Screen
+  Dim VeryTop As Integer = 99999
+  Dim VeryBottom As Integer = -1
+  For Each s In Screens
+    If s.AvailableY < VeryTop Then VeryTop = s.Availabley
+    If s.AvailableY + s.AvailableHeight > VeryBottom Then VeryBottom = s.AvailableY + s.AvailableHeight
+  Next
+  Return VeryBottom - verytop
+End

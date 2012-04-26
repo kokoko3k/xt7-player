@@ -6148,8 +6148,8 @@ End
 Public Sub TrayIcon1_Enter()
   
   If mplayer.ProcessRunningOvr() Then
-    'OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx - (TrayIcon1.w), Last.screeny - (OverlayTrayTip.h))
-    OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx, Last.screeny - (OverlayTrayTip.h))
+    OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx - (TrayIcon1.w), Last.screeny - (OverlayTrayTip.h))
+    'OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx, Last.screeny - (OverlayTrayTip.h))
     OverlaytrayTip.show
   Endif
   
@@ -7237,6 +7237,8 @@ Public Sub PodCastMenuAddPlaylist_Click()
 End
 
 Public Sub LibraryGrid_Enter()
+  Debug global.DektopWTotal()
+   Debug global.DektopHTotal()
   Application.ShowTooltips = Buttonshowtooltips.value
 End
 

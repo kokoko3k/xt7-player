@@ -5576,6 +5576,7 @@ Public Sub ExecuteRemote(command As String)
     If Not global.IsAudioFile(parameter) Then 'raise xt7 only on video files
       fmain.raise
       fmain.Minimized = False
+      fmain.Show
     Endif
       Play(parameter)
       If TabSelectedLibrary() Then

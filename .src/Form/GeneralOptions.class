@@ -742,8 +742,9 @@ Public Sub BackResetButton_Click()
     ' [GB2:BCOL] Try Last.next.background = &EEEEFF&
     Try Last.next.Background = &F0F0F0&
       Else If Upper(Last.name) = "BACKRESETBUTTON3" Then  'trayicon
-        ' [GB2:BCOL] Last.next.background = &HFFFF9B&
         Last.next.Background = &2A2D3C&
+          Else If Upper(Last.name) = "BACKRESETBUTTON1" Then  'trayicon
+            Last.next.Background = color.TextBackground
       Else
     ' [GB2:BCOL] Try Last.next.background = color.default
     Try Last.next.Background = color.default

@@ -714,14 +714,15 @@
           Alignment = Align.Center
           Border = Border.Raised
         }
-        { Panel2 Panel
+        { Panel2 Panel GridPanels
+          Name = "Panel2"
           MoveScaled(2,11,31,32)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { LibraryGrid GridView
-            MoveScaled(2,6,24,23)
+            MoveScaled(7,3,24,23)
             Tracking = True
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
@@ -730,6 +731,20 @@
             Grid = False
             Header = GridView.Horizontal
             Border = False
+          }
+          { shadeup PictureBox
+            MoveScaled(0,0,31,11)
+            Visible = False
+            Ignore = True
+            Picture = Picture["shadeup.png"]
+            Stretch = True
+          }
+          { shadelow PictureBox
+            MoveScaled(0,30,31,1.1429)
+            Visible = False
+            Ignore = True
+            Picture = Picture["shadelow.png"]
+            Stretch = True
           }
         }
         { LibrarySelInfo Label
@@ -752,7 +767,8 @@
           Tag = "albumview"
           Text = ("Label3")
         }
-        { Panel8 Panel
+        { Panel8 Panel GridPanels
+          Name = "Panel8"
           MoveScaled(0,2,35,54)
           Background = Color.TextBackground
           Expand = True
@@ -763,6 +779,7 @@
             Tracking = True
             Expand = True
             Grid = False
+            ScrollBar = Scroll.Vertical
             Border = False
           }
         }
@@ -775,7 +792,8 @@
           Tag = "playlist"
           Text = ("Label3")
         }
-        { Panel1 Panel
+        { Panel1 Panel GridPanels
+          Name = "Panel1"
           MoveScaled(2,3,35,27)
           Background = Color.TextBackground
           Expand = True

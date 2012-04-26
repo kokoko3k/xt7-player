@@ -758,7 +758,8 @@ Public Sub SetStyle_early()
   Dim forecolor As String = GeneralOptions.ColorChooseBTN1.Background
   Dim Userfont As Font = GeneralOptions.FontChooseBTN1.font
  
- 
+  shadeup.visible = False
+  shadelow.visible = False
   
   cachebar.h = (fmain.font.textHeight("iJ") Div 2)
   If desktop.Height > 600 Then
@@ -8063,9 +8064,46 @@ End
 Public Sub HSplit1_Resize()
   fakesplit.hide
   If Not fmain.fullscreen Then Hsplit1_MyRefresh
-  'ShadeList()
 End
 
+
+Public Sub ShadeList(brother As Gridview)
+  shadeup.x = brother.x 
+  shadelow.x = shadeup.X  
+  shadeup.y = brother.clienty + brother.Columns.Height
+  
+  If (brother.Scrollbar = Scroll.Both Or brother.Scrollbar = Scroll.Horizontal) Then
+    shadelow.y = brother.clienty + brother.clienth - shadelow.h + 2
+      Else
+    shadelow.y = brother.clienty + brother.h - shadelow.h + 2
+  Endif
+  shadeup.w = brother.clientw + 2
+  shadelow.w = brother.clientw + 2
+  
+  
+End
+
+Public Sub GridPanels_BeforeArrange()
+    shadeup.Reparent(Last)
+    shadelow.Reparent(Last)
+    
+    If fmain.fullyloaded Then
+      shadeup.visible = True
+      shadelow.visible = True
+    Endif
+End
+
+Public Sub GridPanels_Arrange()
+  Dim brother As Gridview
+  Dim newsize As Integer = 22
+  For Each brother In shadelow.Parent.Children 
+    If brother Is Gridview Then Break
+  Next
+  Try newsize = (brother.Rows[1].h Div 2) 
+  If newsize > 22 Then newsize = 22
+  Try shadeup.h = newsize
+  shadelist(brother)
+End
 
 Public Sub HSplit1_MouseMove()
   If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
@@ -8760,3 +8798,4 @@ Public Sub PlaylistGrid_MouseDown()
     Playlistgrid_Menu()
   Endif
 End
+

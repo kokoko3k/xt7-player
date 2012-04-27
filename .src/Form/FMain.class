@@ -208,19 +208,19 @@ Public Sub Form_Open()
     If Not (Exist(TranslationNeeded.Notranslatefile)) Then TranslationNeeded.show
   Endif
 
-  If Not (Exist(Global.NOsoftvolmessagefile)) Then
-    msg = ("To Ubuntu users:\n")
-    msg &= ("If the video stops when you change volume,") & "\n"
-    msg &= ("enable: ") & ("software volume Control") & "\n"
-    msg &= ("Under ") & ("General Options ") & "-> " & ("Audio") & "\n"
-    msg &= "\n"
-    msg &= ("Or disable any audio driver to use the default one") & "\n"
-    msg &= ("This is an issue with Ubuntu + mplayer + pulseaudio, sorry")
-    msg &= "\n"
-    If Message.Warning(msg, ("Don't show anymore"), ("Remind me later")) = 1 Then
-      file.Save(Global.NOsoftvolmessagefile, ".")
-    Endif
-  Endif
+  ' If Not (Exist(Global.NOsoftvolmessagefile)) Then
+  '   msg = ("To Ubuntu users:\n")
+  '   msg &= ("If the video stops when you change volume,") & "\n"
+  '   msg &= ("enable: ") & ("software volume Control") & "\n"
+  '   msg &= ("Under ") & ("General Options ") & "-> " & ("Audio") & "\n"
+  '   msg &= "\n"
+  '   msg &= ("Or disable any audio driver to use the default one") & "\n"
+  '   msg &= ("This is an issue with Ubuntu + mplayer + pulseaudio, sorry")
+  '   msg &= "\n"
+  '   If Message.Warning(msg, ("Don't show anymore"), ("Remind me later")) = 1 Then
+  '     file.Save(Global.NOsoftvolmessagefile, ".")
+  '   Endif
+  ' Endif
 End
 
 Public Sub SetFlexSpaceVisibility(Visibility As Boolean)

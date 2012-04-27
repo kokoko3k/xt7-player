@@ -143,13 +143,15 @@ Public Function FillMultitracks()
     NAME = " - " & FindTagValue("ID_SID_" & ID & "_NAME")
     LANGUAGE = " - " & FindTagValue("ID_SID_" & ID & "_LANG")
     '(add without duplicates)
-    If (subtitletracks.Find(ID & NAME & LANGUAGE) = -1) Then subtitletracks.Add(CStr(ID + 1) & NAME & LANGUAGE & " (embedded)")
+    'If (subtitletracks.Find(ID & NAME & LANGUAGE) = -1) Then subtitletracks.Add(CStr(ID + 1) & NAME & LANGUAGE & " (embedded)")
+    If (subtitletracks.Find(ID & NAME & LANGUAGE) = -1) Then subtitletracks.Add(CStr(ID) & NAME & LANGUAGE & " (embedded)")
   Next 'i
   For i = 0 To mediaheaders.count - 1
     If mediaheaders[i] Like "*ID_FILE_SUB_ID=*" Then
       sid = GetTagValue(mediaheaders[i], "ID_FILE_SUB_ID")
       NAME = file.Name(GetTagValue(mediaheaders[i + 1], "ID_FILE_SUB_FILENAME"))
-      subtitletracks.Add(CStr(SID + 1) & " - " & NAME & " (File)")
+      'subtitletracks.Add(CStr(SID + 1) & " - " & NAME & " (File)")
+      subtitletracks.Add(CStr(SID) & " - " & NAME & " (File)")
     Endif
   Next
 End
@@ -1111,16 +1113,21 @@ End
 Private AddedSubs As Integer = 0
 Public Sub SubtitleAdd(SubFilePath As String)
 
-  Dim TotalSubtitles As String = "0"
+  Dim TotalFileSubtitles As String = "0"
   Dim LastSubId As Integer = 0
+  Dim i As Integer
   'Warning: for this to work correctly, FindTagValue should scan mediaheaders
   'from end to beginning.
   'AddedSubs += 1
   'Try TotalSubtitles = CStr(CInt(FindTagValue("ID_FILE_SUB_ID")) + 1) + addedsubs
-  TotalSubtitles = subtitletracks.count
-  Debug "TotalSubtitles= " & TotalSubtitles
+  For i = 0 To subtitletracks.Max
+    If subtitletracks[i] Like "* (File)" Then TotalFileSubtitles += 1
+  Next
+  
+  'TotalFileSubtitles = subtitletracks.count
+  Debug "TotalSubtitles= " & TotalFileSubtitles
   Debug
-  LastSubId = CInt(TotalSubtitles) - 1
+  LastSubId = CInt(TotalFileSubtitles) - 1
   Send("sub_load '" & SubFilePath & "'") 'NOTE THE Triple quotes ( "'subfile'", mplayer bug)
   Debug "Send()" & "sub_load \"" & SubFilePath & "\""
   Debug
@@ -1128,7 +1135,7 @@ Public Sub SubtitleAdd(SubFilePath As String)
   ' Debug "selecting sub id " & (LastSubId + 1)
   'Send("sub_file '" & CStr(LastSubId + 1) & "'")
   subfile = SubFilePath
-  subtitletracks.Add(CStr(lastsubid + 2) & " - " & file.Name(subfilepath) & " (File)")
+  subtitletracks.Add(CStr(lastsubid + 1) & " - " & file.Name(subfilepath) & " (File)")
 
 
 

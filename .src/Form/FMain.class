@@ -2235,12 +2235,59 @@ Public Function Displaysub(MenuLine As String)
   ' Debug "emax=" & emax
 
 
-  Try ID = Split(MenuLine, " ")[0] - 1
+  Try ID = Split(MenuLine, " ")[0] '- 1
+  If Not Error Then 
+    If MenuLine Like "* (file)" Then 
+        mplayer.Send("SUB_FILE " & ID)
+        'ID = ID - emax
+      Else If MenuLine Like "* (embedded)" Then 
+        mplayer.Send("SUB_DEMUX " & ID)
+        ' ID = ID + fmax
+        ' If fmax = 0 Then ID = ID - 1
+    Endif
+    'mplayer.Send("sub_select " & ID)
+    lastsubid = ID
+  Endif
+End
+
+Public Function OLD_Displaysub(MenuLine As String)
+  Dim fmax, emax, rfid, reid, fid, eid As Integer
+  Dim sub As String
+  Dim ID As Integer
+  'when you insert an external sub file into a file that embeds other subtitles like mkv,
+  'all other subtitles gets shifted and the file is inserted before them
+  'so we mark every inserted subtitle as "* (file)" and every embedded as "* (embedded)"
+  'and than we can select the right subtitle
+  '
+  'said fmax the number of file subtitles
+  'said emax the number of embedded subtitles,
+  'said rfid the real id of a file subtitle
+  'said reid the real id of an embedded sub
+  'said fid the id to say to mplayer to select a file sub
+  'said eid the id to say to mplayer to select an embedded sub:
+  '
+  'eid= reid + fmax
+  'fid= rfid - emax
+  fmax = 0
+  emax = 0
+  For Each sub In mplayer.subtitletracks
+    If sub Like "* (file)" Then 
+        fmax += 1
+      Else If sub Like "* (embedded)" Then 
+        emax += 1
+    Endif
+  Next
+  ' Debug "fmax=" & fmax
+  ' Debug "emax=" & emax
+
+
+  Try ID = Split(MenuLine, " ")[0] '- 1
   If Not Error Then 
     If MenuLine Like "* (file)" Then 
         ID = ID - emax
       Else If MenuLine Like "* (embedded)" Then 
         ID = ID + fmax
+        If fmax = 0 Then ID = ID - 1
     Endif
     mplayer.Send("sub_select " & ID)
     lastsubid = ID

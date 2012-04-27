@@ -4313,8 +4313,6 @@ Public Sub RefreshVisibleRows(mygrid As Gridview, mylibrary As Playlistclass)
   FirstC = 0
   LastC = MyGrid.Columns.Count - 1
   
-  Debug "Doing from " & FirstR & " - to " & LastR
-  Debug
   For R = FirstR To LastR
     Gridviews_Data(mygrid, mylibrary, R, 0)
   Next 'R
@@ -5201,7 +5199,8 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
 
-
+ shadeup.visible = True
+ shadelow.visible = True
 
  If mygrid.name <> "DVBTGrid" Then
   rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
@@ -5351,7 +5350,6 @@ End
 
 
 Public Sub LibraryGrid_Data(Row As Integer, Column As Integer)
-  'Debug row, column
   Gridviews_Data(LibraryGrid, mylibrary, Row, Column)
 End
 
@@ -8078,30 +8076,27 @@ Public Sub ShadeList(brother As Gridview)
   Endif
   shadeup.w = brother.clientw + 2
   shadelow.w = brother.clientw + 2
-  
-  
 End
 
 Public Sub GridPanels_BeforeArrange()
     shadeup.Reparent(Last)
     shadelow.Reparent(Last)
-    
-    If fmain.fullyloaded Then
-      shadeup.visible = True
-      shadelow.visible = True
-    Endif
 End
 
 Public Sub GridPanels_Arrange()
   Dim brother As Gridview
-  Dim newsize As Integer = 22
+  Dim newsize As Integer = 18
+      
+'  If Not (fmain.fullyloaded) Then Return
+
   For Each brother In shadelow.Parent.Children 
     If brother Is Gridview Then Break
   Next
   Try newsize = CInt(brother.Rows[1].h / 2) 
-  If newsize > 22 Then newsize = 22
+  If newsize > 18 Then newsize = 18
   Try shadeup.h = newsize
   shadelist(brother)
+
 End
 
 Public Sub HSplit1_MouseMove()
@@ -8673,6 +8668,8 @@ End
 
 
 Public Sub AlbumGridView_Data(Row As Integer, Column As Integer)
+  shadeup.visible = True
+  shadelow.visible = True
   MyAlbumsLib.data(row, column)
 End
 
@@ -8817,8 +8814,4 @@ Public Sub PlaylistGrid_MouseDown()
 End
 
 
-Public Sub shadeup_MouseDown()
 
-  
-
-End

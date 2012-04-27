@@ -134,24 +134,24 @@ Public Sub Arrange(Optional rowsize As Integer = 96, Optional albumtext As Integ
   If rowsize < (th + (th Div 10)) Then rowsize = (th + (th Div 10)) 
   iconsize = rowsize
   columnwidth = rowsize + (view.Font.TextWidth("X") * albumtext)
-
+  
   maxcols = view.clientw Div columnwidth
   If maxcols > localtable.count Then maxcols = localtable.count
   
   If maxcols = 0 Then maxcols = 1
   maxrows = (localtable.count Div maxcols)
   If (localtable.count Mod maxcols) <> 0 Then Inc maxrows
-
+  
   view.Rows.count = 0
   view.columns.count = 0
-
+  
   view.Columns.count = maxcols
   view.Rows.Count = maxrows
   view.Columns.Width = view.clientw Div view.Columns.count 'columnwidth 
   view.Rows.Height = iconsize * paddingfactor
   
   selectcell(-1, -1) 'unselect previous
-  
+
 End
 
 Public Function AlbumToolTip(album As String) As String
@@ -235,7 +235,11 @@ Public Sub data(r As Integer, c As Integer)
   'album and artist are inverted because array is sorted by artist
   album = ("Unknown")
   Try album = Trim(localplaylist.GetValue(localtable[i], "Album")) 'GetArtist(albums[i]) 
-  If Error Then Return
+  If Error Then
+    view.data.Background = GeneralOptions.backcolorChooseBTN1.Background
+    view.data.Foreground = GeneralOptions.ColorChooseBTN1.Background
+    Return
+  Endif
   'If album <> "" Then
     artist = localplaylist.GetValue(localtable[i], "Artist") 'GetAlbum(albums[i])
     path = localplaylist.GetValue(localtable[i], "Full Path") 'GetPath(albums[i])
@@ -276,8 +280,8 @@ Public Sub selectcell(r As Integer, c As Integer)
   Dim tmpsat As Integer
   Try unzoompic(r, c)
   If (previousrow <> -1) And (previouscol <> -1) Then
-     Try view[previousrow, previouscol].Background = Color.default
-     Try view[previousrow, previouscol].Foreground = Color.default
+     Try view[previousrow, previouscol].Background = GeneralOptions.BackColorChooseBTN1.Background ' Color.default
+     Try view[previousrow, previouscol].Foreground = GeneralOptions.ColorChooseBTN1.Background 'Color.default
      Try view[previousrow, previouscol].text = ""
      Try view[previousrow, previouscol].clear
   Endif
@@ -287,7 +291,8 @@ Public Sub selectcell(r As Integer, c As Integer)
   savetext = view[r, c].text
   savepic = view[r, c].picture
 
-  imax = Max(savepic.Image.w, savepic.Image.h)
+  Try imax = Max(savepic.Image.w, savepic.Image.h)
+  If Error Then Return
   Try savepic = savepic.Image.Stretch(savepic.Image.w * reduce, savepic.Image.h * reduce).picture
   If Error Then Return
   'savepic = savepic.Image.PaintRect(0, 0, 400, 400, Color.SetAlpha(Color.blue, 220)).picture
@@ -312,6 +317,9 @@ Public Sub selectcell(r As Integer, c As Integer)
   view[r, c].text = savetext
   view[r, c].RichText = "<b>" & Replace(savetext, "\n", "<br>") 
   view[r, c].Font.bold = True
+  view[r, c].background = GeneralOptions.BackColorChooseBTN1.Background ' Color.default
+  view[r, c].Foreground = GeneralOptions.ColorChooseBTN1.Background 'Color.default
+  
   previousrow = r
   previouscol = c
 End
@@ -328,7 +336,7 @@ Public Sub highlighter(mousex As Integer, mousey As Integer)
   Try c = view.ColumnAt(mouse.screenx - view.screenx)
   If Error Then Return
   If c = -1 Then Return
-
+  
   If ((pr <> r) Or (pc <> c)) Then
     Try unzoompic(pr, pc)
     Try zoompic(r, c)

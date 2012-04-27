@@ -370,6 +370,7 @@ Public Sub Save(myplaylist As Gridview, ProfileName As String)
   Dim MyFile As File
   Dim i, r, c As Integer
   Dim layout As String = "Layout"
+  CheckAndFixBloat()
   Myfile = Open filename For Write Create
   'write ptable layout
     For i = 0 To myplaylist.Columns.Count - 1
@@ -1132,8 +1133,78 @@ End
 
 
 
+Public Sub CheckAndFixBloat()
+  Dim fields As New String[]
+  Dim field As String
+  
+  fields.add("Filename")
+  fields.add("Length")
+  fields.add("Artist")
+  fields.add("Album")
+  fields.add("Year")
+  fields.add("Track")
+  fields.add("Title")
+  fields.add("Genre")
+  fields.add("Comment")
+  fields.add("Type")
+  fields.add("Audio Codec")
+  fields.add("Audio Bitrate")
+  fields.add("Audio Rate")
+  fields.add("Channels")
+  fields.add("Video Codec")
+  fields.add("Video Bitrate")
+  fields.add("Fps")
+  fields.add("Width")
+  fields.add("Height")
+  fields.add("Full Path")
+  fields.add("File Size")
+  fields.add("Added on")
+
+  Debug "Checking for dupe fields into pTable..."
+  Debug ""
+  If pTable.Count > 0 Then
+    For Each field In fields
+      If occurrences(TableSeparator & field & TableSeparator, pTable[0]) > 1 Then
+        Debug PTable[0]
+        Debug "Dupe fields found, fixing pTable"
+        Debug
+        FixBloat(fields)
+        Break
+      Endif
+    Next
+  Endif
+
+End
 
 
+Public Function occurrences(what As String, where As String) As Integer
+  Dim c As Integer
+  Dim nomore As Boolean = False
+  Dim pos As Integer = 0
+  Repeat
+    pos = InStr(where, what, pos + 1)
+    If pos = 0 Then
+      nomore = True
+        Else
+      c += 1
+    Endif
+  Until nomore
+  Return c
+End
+
+Public Sub FixBloat(fields As String[])
+  'remove dupes field occurrences from table pTable
+  Dim i As Integer
+  Dim FixedRow, field As String
+  For i = 0 To pTable.max
+    For Each field In fields
+      FixedRow &= TableSeparator & field & TableSeparator & GetValue(pTable[i], field)
+    Next
+    pTable[i] = FixedRow
+    FixedRow = ""
+  Next
+
+End
 
 
 Public Sub DoSort(Field As String, Optional table As String[] = ptable)

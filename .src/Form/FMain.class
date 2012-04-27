@@ -1272,6 +1272,8 @@ Public Sub Form_Close()
   Try realtimeform.hide
   Debug "hidden all forms"
   Debug
+  
+
   If ChooseAspect.visible Then ChooseAspect.CancelBtn_Click
 
   'delete temporary covers on exit:
@@ -7237,8 +7239,6 @@ Public Sub PodCastMenuAddPlaylist_Click()
 End
 
 Public Sub LibraryGrid_Enter()
-  Debug global.DektopWTotal()
-   Debug global.DektopHTotal()
   Application.ShowTooltips = Buttonshowtooltips.value
 End
 

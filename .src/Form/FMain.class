@@ -8543,6 +8543,7 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
   Dim fullpath, sep, oldname As String
   Dim pRow As String
   Dim i As Integer
+  Dim imax As Integer
   Try fullpath = myplaylist.ColumnIndex["Full Path"]
   If Error Then Return
   
@@ -8551,9 +8552,16 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
   
 
   'find pRow to update ptable too (other than searchtable)
-  For i = 0 To myplaylist.PTable.count - 1
-    If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then Break
+  imax = myplaylist.PTable.count - 1
+  For i = 0 To imax
+    If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then
+      Break
+        Else
+      Debug "source", myplaylist.SearchTable[myrow] 
+      Debug "destin", myplaylist.PTable[i]
+    Endif
   Next
+  If i > imax Then i = imax
   If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then
     pRow = i
       Else
@@ -8570,17 +8578,31 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
 End
 
 
+Public Sub MenuLibraryRename_CLICK()
+  RenameGridItemWrapper(librarygrid, mylibrary)
+End
+
+Public Sub MenuPlaylistRename_click()
+  RenameGridItemWrapper(PLAYLISTGRID, MyPlaylist)
+End
+
+
+
 Public Sub MenuRename_Click()
+  RenameGridItemWrapper(dvbtgrid, MyDVBTList)
+End
+
+Public Sub RenameGridItemWrapper(g As Gridview, p As Playlistclass)
   Dim i As Integer
   Dim newname As String
-  dvbtgrid.enabled = False
-  For i = 0 To dvbtgrid.Rows.Count - 1 
-    If dvbtgrid.Rows[i].Selected Then
-      newname = MyAskName.Ask(("Rename to:"), dvbtgrid[i, 0].text, False)
-      RenameGridItem(dvbtgrid, i, MyDVBTList, newname)
+  g.enabled = False
+  For i = 0 To g.Rows.Count - 1 
+    If g.Rows[i].Selected Then
+      newname = MyAskName.Ask(("Rename to:"), g[i, 0].text, False)
+      RenameGridItem(g, i, p, newname)
     Endif
   Next
-  dvbtgrid.enabled = True
+  g.enabled = True
 End
 
 
@@ -8800,3 +8822,9 @@ Public Sub PlaylistGrid_MouseDown()
   Endif
 End
 
+
+Public Sub shadeup_MouseDown()
+
+  
+
+End

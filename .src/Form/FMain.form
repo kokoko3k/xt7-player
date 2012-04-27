@@ -129,6 +129,10 @@
       Text = ("Sync library")
       Picture = Picture["icon:/16/watch"]
     }
+    { MenuLibraryRename Menu
+      Text = ("Rename items")
+      Picture = Picture["icon:/16/edit"]
+    }
     { MenuItemsUpdate Menu
       Text = ("Update Selected")
       Picture = Picture["icon:/16/refresh"]
@@ -199,6 +203,10 @@
     { MenuItemsUpdatePls Menu
       Text = ("Update Selected")
       Picture = Picture["icon:/16/refresh"]
+    }
+    { MenuPlaylistRename Menu
+      Text = ("Rename items")
+      Picture = Picture["icon:/16/edit"]
     }
     { separator5384058 Menu
     }
@@ -733,7 +741,7 @@
             Border = False
           }
           { shadeup PictureBox
-            MoveScaled(0,0,31,11)
+            MoveScaled(0,10,31,11)
             Visible = False
             Ignore = True
             Picture = Picture["shadeup.png"]

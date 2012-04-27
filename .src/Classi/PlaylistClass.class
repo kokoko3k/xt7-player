@@ -376,7 +376,9 @@ Public Sub Save(myplaylist As Gridview, ProfileName As String)
       Layout = Layout & ";" & myplaylist.Columns[i].w
     Next 'i
     Print #Myfile, Layout
-  
+
+  Debug Tablesize(ptable)
+
   For r = 0 To PTable.Count - 1
   'FOR r = 1 TO PTable.Count - 1
     Print #Myfile, PTable[r]
@@ -1138,12 +1140,15 @@ Public Sub DoSort(Field As String, Optional table As String[] = ptable)
   Dim i As Integer
   Dim Startpos, MidPos, EndPos As Integer
   Dim MyValue As String
+
+
+
   For i = 0 To table.count - 1
     StartPos = InStr(table[i], TableSeparator & Field)
     MidPos = InStr(table[i], TableSeparator, StartPos + 1)
     EndPos = InStr(table[i], TableSeparator, Midpos + 1)
     MyValue = Mid(table[i], Startpos, Endpos - startpos)
-    Replace(table[i], MyValue, "")
+    table[i] = Replace(table[i], MyValue, "")
     table[i] = MyValue & table[i]
   Next 'i
 
@@ -1157,6 +1162,16 @@ Public Sub DoSort(Field As String, Optional table As String[] = ptable)
   Ascendent = Not Ascendent
   '"public" the last sorted field
   LastSortedField = field
+  Debug Tablesize(table)
+End
+
+Private Function Tablesize(p As String[]) As Long
+  Dim conto As Long
+  Dim i As Integer
+  For i = 0 To p.count - 1
+    conto += Len(p[i])
+  Next
+  Return conto
 End
 
 

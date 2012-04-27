@@ -3211,9 +3211,7 @@ Public Sub MenuOpen_Click()
 End
 
 Public Sub MenuQuit_Click()
-  
   FMain.Close
-  
 End
 
 Public Sub MenuAbout_Click()

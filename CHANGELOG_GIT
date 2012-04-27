@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+Apr 27 2012
+  FIX:    Changed required gambas version to 3.1.1
+  FIX:    Fixed a bad bug that could lead to *grid.txt to grow over time
+
 Apr 26 2012
   FIX:    Use "Natural" sorting on columns so that (eg) 2 comes before 10
   FIX:    Right click -> open containing folder was recently broken

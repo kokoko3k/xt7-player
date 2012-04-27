@@ -1148,7 +1148,7 @@ Public Sub DoSort(Field As String, Optional table As String[] = ptable)
     MidPos = InStr(table[i], TableSeparator, StartPos + 1)
     EndPos = InStr(table[i], TableSeparator, Midpos + 1)
     MyValue = Mid(table[i], Startpos, Endpos - startpos)
-    table[i] = Replace(table[i], MyValue, "")
+    table[i] = Replace(table[i], MyValue, "") '<-- fixed a bad bug that could lead to *grid.txt to grow over time!
     table[i] = MyValue & table[i]
   Next 'i
 
@@ -1162,7 +1162,7 @@ Public Sub DoSort(Field As String, Optional table As String[] = ptable)
   Ascendent = Not Ascendent
   '"public" the last sorted field
   LastSortedField = field
-  Debug Tablesize(table)
+  'Debug Tablesize(table)
 End
 
 Private Function Tablesize(p As String[]) As Long

@@ -346,13 +346,13 @@ Public Sub AllInit_Pre()
     ReallySaveAllSettings("Factory_Defaults", False, False) 'before loading user settings, make a profile with factory values.
   Endif
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
-  'the following has to be called after loadearlysettings because 
-  'is there where we load generaloptions form settings
-  ' ' If generaloptions.ShowCoversInListChk.value Then
-  ' '   covermanager.prebuffer()
-  ' '   Debug "the User likes cover, so we prebuffer cover list In background..."
-  ' '   Debug
-  ' ' Endif
+  'the following has To be called after loadearlysettings because 
+  'Is There where we load generaloptions form settings
+   If generaloptions.ShowCoversInListChk.value Then
+     covermanager.prebuffer()
+     Debug "the User likes cover, so we prebuffer cover list In background..."
+     Debug
+   Endif
   
   
   HideGrid(PlaylistGrid)
@@ -8098,7 +8098,7 @@ Public Sub GridPanels_Arrange()
   For Each brother In shadelow.Parent.Children 
     If brother Is Gridview Then Break
   Next
-  Try newsize = (brother.Rows[1].h Div 2) 
+  Try newsize = CInt(brother.Rows[1].h / 2) 
   If newsize > 22 Then newsize = 22
   Try shadeup.h = newsize
   shadelist(brother)
@@ -8552,27 +8552,23 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
   'find pRow to update ptable too (other than searchtable)
   imax = myplaylist.PTable.count - 1
   For i = 0 To imax
-    If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then
+    If myplaylist.AreEquivalentRows(myplaylist.PTable[i], myplaylist.SearchTable[myrow]) Then
       Break
         Else
-      Debug "source", myplaylist.SearchTable[myrow] 
-      Debug "destin", myplaylist.PTable[i]
+       Debug "source", myplaylist.SearchTable[myrow] 
+       Debug "destin", myplaylist.PTable[i]
     Endif
   Next
-  If i > imax Then i = imax
-  If myplaylist.PTable[i] = myplaylist.SearchTable[myrow] Then
-    pRow = i
-      Else
+  If i > imax Then 
     Debug "cannot rename, couldn't find searchtable element into ptable (!?)"
     Debug
     Return
+      Else
+    myplaylist.SearchTable[myrow] = Replace(myplaylist.SearchTable[myrow], sep & oldname & sep, sep & newname & sep)
+    myplaylist.ptable[i] = myplaylist.SearchTable[myrow]
+    mygrid[myrow, 0].text = ""
+    mygrid[myrow, 0].Clear
   Endif
-
-  myplaylist.SearchTable[myrow] = Replace(myplaylist.PTable[myrow], sep & oldname & sep, sep & newname & sep)
-  myplaylist.ptable[pRow] = myplaylist.SearchTable[myrow]
-
-  mygrid[myrow, 0].text = ""
-  mygrid[myrow, 0].Clear
 End
 
 

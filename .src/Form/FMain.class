@@ -468,6 +468,7 @@ Public Sub AllInit_Post()
    Endif
   shadeup.visible = True
   shadelow.visible = True
+  PlayListSelInfoBox.Visible = True
 End
 
 Private RecentFileEntry As Menu

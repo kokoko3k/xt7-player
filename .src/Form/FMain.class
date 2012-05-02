@@ -395,6 +395,8 @@ Public Sub AllInit_Post()
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
+
+  
   If TabSelectedAlbums() Then 
     Albums_Select()
   Endif  
@@ -464,7 +466,8 @@ Public Sub AllInit_Post()
     ReallySaveAllSettings("default", False, True)
     global.currentprofile = "default"
    Endif
-
+  shadeup.visible = True
+  shadelow.visible = True
 End
 
 Private RecentFileEntry As Menu
@@ -2497,7 +2500,10 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Endif
   OneSecTimer.start
   If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
-    
+  
+  ' Debug "TTTTTTT:"
+  ' Debug "TTTTTTT: Calling mplayer at: " & Timer
+  ' Debug "TTTTTTT:"
   If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts, dumpfile) Then
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
@@ -4221,6 +4227,9 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
 End
 
 Public Sub LibraryGrid_Keypress()
+  ' Debug "TTTTTTT:"
+  ' Debug "user clicked at " & Timer
+  ' Debug "TTTTTTT:"
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
     Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
     Return
@@ -5246,8 +5255,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  If Not fmain.FullyLoaded Then Return
  If Not fmain.visible Then Return
 
- shadeup.visible = True
- shadelow.visible = True
+
 
  If mygrid.name <> "DVBTGrid" Then
   rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
@@ -8859,6 +8867,7 @@ Public Sub PlaylistGrid_MouseDown()
     Playlistgrid_Menu()
   Endif
 End
+
 
 
 

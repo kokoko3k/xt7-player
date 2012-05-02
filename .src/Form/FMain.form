@@ -741,15 +741,13 @@
             Border = False
           }
           { shadeup PictureBox
-            MoveScaled(0,10,31,11)
-            Visible = False
+            MoveScaled(-1,18,31,2)
             Ignore = True
             Picture = Picture["shadeup.png"]
             Stretch = True
           }
           { shadelow PictureBox
-            MoveScaled(0,30,31,1.1429)
-            Visible = False
+            MoveScaled(0,26,31,1.1429)
             Ignore = True
             Picture = Picture["shadelow.png"]
             Stretch = True

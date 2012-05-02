@@ -1,7 +1,5 @@
 ' Gambas class file
 
-' Gambas class file
-
 Private timer1 As Timer
 Private barsdone As Boolean = False
 Public bars As New Object[]
@@ -139,3 +137,4 @@ Private Sub updatebars(ByRef samples As Integer[])
      'Print "w " & bars[c - 1].w
   Next
 End
+

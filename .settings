@@ -548,6 +548,39 @@ Geometry=[51,0,632,651]
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
+[DebugWindow/avgarray]
+Geometry=[2318,432,210,210]
+
+[DebugWindow/avgarrayinterpol]
+Geometry=[2100,432,210,210]
+
+[DebugWindow/avgarrayprev]
+Geometry=[1882,432,210,210]
+
+[DebugWindow/avgs]
+Geometry=[1280,0,210,210]
+
+[DebugWindow/avgs[0]]
+Geometry=[1396,312,210,210]
+
+[DebugWindow/avgs[1]]
+Geometry=[1614,312,210,210]
+
+[DebugWindow/avgs[2]]
+Geometry=[1832,312,210,210]
+
+[DebugWindow/avgs[3]]
+Geometry=[2050,312,210,210]
+
+[DebugWindow/avgs[4]]
+Geometry=[2268,312,210,210]
+
+[DebugWindow/avgs[avgs.count - 1]]
+Geometry=[1280,0,210,210]
+
+[DebugWindow/bars]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/blackbox]
 Geometry=[794,22,315,922]
 
@@ -617,6 +650,9 @@ Geometry=[1280,0,580,802]
 [DebugWindow/historyarray]
 Geometry=[52,0,758,210]
 
+[DebugWindow/iend]
+Geometry=[1498,160,210,210]
+
 [DebugWindow/image]
 Geometry=[51,0,301,301]
 
@@ -637,6 +673,9 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/integerfloat]
 Geometry=[0,0,344,344]
+
+[DebugWindow/istart]
+Geometry=[1280,160,210,210]
 
 [DebugWindow/items]
 Geometry=[0,0,2550,412]
@@ -956,11 +995,10 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:85.22"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:4315.0"
-Active=5
+File[4]=".src/Form/FMain.class:8469.8"
 File[5]="CHANGELOG_GIT:8.10"
 File[6]=".src/Form/CoverManager.class:883.17"
-File[7]=".src/Classi/MplayerClass.class:651.0"
+File[7]=".src/Classi/MplayerClass.class:295.37"
 File[8]=".src/Classi/PlaylistClass.class:1243.0"
 File[9]=".src/Form/GeneralOptions.form"
 File[10]=".src/Form/GeneralOptions.class:743.32"
@@ -991,10 +1029,13 @@ File[34]=".src/Form/DVBTuner.form"
 File[35]=".src/Form/AFiltersCfg.form"
 File[36]=".src/Form/OverlayTrayTip.class:158.0"
 File[37]=".src/Form/OverlayTrayTip.form"
-File[38]=".src/Form/SubAndOsd.class:152.95"
-File[39]=".src/Form/zzzFake.form"
-File[40]=".src/Form/zzzFake.class:30.24"
-Count=40
+File[38]=".src/Form/zzzFake.form"
+File[39]=".src/Form/zzzFake.class:30.24"
+File[40]=".src/Form/AudioForm.form"
+File[41]=".src/Classi/Meters.class:66.1"
+Active=42
+File[42]=".src/Classi/MetersNEW.class:149.24"
+Count=42
 
 [Watches]
 Count=1

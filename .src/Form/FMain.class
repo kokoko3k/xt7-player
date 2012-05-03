@@ -4011,7 +4011,9 @@ End
 Public Sub VideoAreaGroup_MouseDown()
   
   mouseleft = mouse.left
+
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
+
   IgnoreMouse = False
   
 End
@@ -4034,7 +4036,7 @@ Public Sub VideoAreaGroup_MouseUp()
     guidragging = False
     Return
   Endif
-  If Not IgnoreMouse Then
+  If Not IgnoreMouse And mplayer.ProcessRunningOvr() Then
     HotKey = HotKeyGrab.GetMouse(False)
     HotKeyToMplayer(HotKey)
   Endif
@@ -8511,6 +8513,8 @@ End
 
 Private mmliblocked As Boolean = False
 Public Sub LibraryGrid_MouseMove()
+  Return
+  
   If mmliblocked Then Return
   mmliblocked = True
   If generaloptions.HighlightCHK.value Then
@@ -8827,6 +8831,8 @@ Public Sub LibraryGrid_MouseDown()
   Dim MouseRow As Integer
   Try mouserow = librarygrid.RowAt(mouse.y)
   If Error Then Return
+ 
+ Debug
  
   If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
     librarygrid.UnSelectAll

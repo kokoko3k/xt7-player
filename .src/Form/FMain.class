@@ -8831,9 +8831,7 @@ Public Sub LibraryGrid_MouseDown()
   Dim MouseRow As Integer
   Try mouserow = librarygrid.RowAt(mouse.y)
   If Error Then Return
- 
- Debug
- 
+
   If mouse.left And Not (mouse.Control Or mouse.Shift) Then 
     librarygrid.UnSelectAll
     librarygrid.Rows[mouserow].selected = True

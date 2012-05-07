@@ -623,7 +623,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Endif
     
   commandline = commandline & " -input conf=/tmp/FakeInput.conf:file=" & inputpipe
-    If ((filename Like "*.pls") Or (filename Like "*.pls\\?*")) Then
+    If global.isplaylist(filename) Then
       commandline = commandline & " -playlist "
     ' Else If (filename Like "*.ogg") And (Not (commandline Like "* -demuxer *")) Then
     '   commandline = commandline & " -demuxer ogg "

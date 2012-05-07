@@ -214,6 +214,18 @@ Public Function IsMediaFile(filename As String) As Boolean
   Endif
 End
 
+Public Function IsPlaylist(filename As String) As Boolean
+  If ((filename Like "*.pls") Or (filename Like "*.pls\\?*")) Then Return True
+  If ((filename Like "*.m3u") Or (filename Like "*.m3u\\?*")) Then Return True
+  If ((filename Like "*.asx") Or (filename Like "*.asx\\?*")) Then Return True
+  If ((filename Like "*.wax") Or (filename Like "*.wax\\?*")) Then Return True
+  If ((filename Like "*.wvx") Or (filename Like "*.wvx\\?*")) Then Return True
+  If ((filename Like "*.ram") Or (filename Like "*.ram\\?*")) Then Return True
+  If ((filename Like "*.b4s") Or (filename Like "*.b4s\\?*")) Then Return True
+  Return False
+End
+
+
 Public Function IsAudioFile(filename As String) As Boolean
 'will return true if filename extension is in audio one
   Dim fileExt As String = "." & File.Ext(filename)

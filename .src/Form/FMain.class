@@ -4294,7 +4294,7 @@ Public Sub PlayListGrid_DblClick()
   Endif
   If MouseInsideGrid(PlayListGrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
-    If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Filename"]].text
+    If global.IsPlaylist(selectedpath) Then myradiolabel = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Filename"]].text
     Try Play(SelectedPath,, myradiolabel)
   Endif
   Last.mouse = mouse.Default
@@ -4313,7 +4313,7 @@ Public Sub LibraryGrid_DblClick()
   Endif
   If MouseInsideGrid(Librarygrid) Then
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
-    If (selectedpath Like "http://*.pls") Or (selectedpath Like "http://*.pls\\?*") Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
+    If global.IsPlaylist(selectedpath) Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
     Try Play(SelectedPath,, myradiolabel)
   Endif
   Last.mouse = mouse.Default

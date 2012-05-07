@@ -301,8 +301,7 @@ Public Sub playerprocess_read()
    
     silences = 0 'so that Stimer (as stucktimer) will be fine...
     'Line Input #playerprocess, Playeroutput
-    Try Read #playerprocess, playeroutput, -1024
-    'Debug playeroutput
+    Try Read #playerprocess, playeroutput, -2048
     
     
     'fill Requested Video window height AND width

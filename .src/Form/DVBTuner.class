@@ -333,12 +333,13 @@ End
 
 Public Sub Button2_Click()
   Dim i As Integer
-  channelsgrid.Rows.SelectAll
+  For i = 0 To channelsgrid.Rows.count - 1
+    channelsgrid.Rows[i].selected = True
+  Next
 End
 
 Public Sub Button3_Click()
-  Dim i As Integer
-  channelsgrid.Rows.Unselect
+  channelsgrid.rows.unselectall
 End
 
 Public Sub Button5_Click()
@@ -435,3 +436,4 @@ Public Sub Button7_Click()
   lastservice = ""
   ParseChannelFile()
 End
+

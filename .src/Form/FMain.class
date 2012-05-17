@@ -3472,18 +3472,21 @@ Public Sub FullScreenSwitch()
     Blackform.FullScreen = True
     Blackform.show
     Blackform.mouse = mouse.blank
+    Wait 0.1
 
   'Lock the form, it is useless to generate events (seems to lock children too, good!)
     Object.Lock(fmain)
 
   SwitchingFullScreen = True
 
-  'save form size for late restore    
-  Global.FormX = FMain.ScreenX
-  Global.FormY = FMain.ScreenY
-  Global.FormW = FMain.Width
-  Global.FormH = FMain.Height
-  Global.FormMaximized = fmain.Maximized
+  If Not (fmain.FullScreen) Then
+    'save form size for late restore    
+    Global.FormX = FMain.ScreenX
+    Global.FormY = FMain.ScreenY
+    Global.FormW = FMain.Width
+    Global.FormH = FMain.Height
+    Global.FormMaximized = fmain.Maximized
+  Endif
 
 
   'Execute shell commands
@@ -3519,11 +3522,13 @@ Public Sub FullScreenSwitch()
     Statusbar1.Width = 100 'why?
 
     FMain.fullscreen = False
+    Wait 0.1
+    
     RightSidePanel.SetFocus()
     OuterBox.Mouse = mouse.default
     VideoBox.Mouse = mouse.default
     AllmenuVisible(True)
-    'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+    Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
     fmain.Maximized = Global.FormMaximized
     fmain.Move(global.formx, global.formy, global.FormW, global.formh)
     If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout

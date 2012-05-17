@@ -3432,27 +3432,42 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
 End
 
 
+Public Function Screenbypos(x As Integer, y As Integer) As Screen
+  Dim s As Screen
+  For Each s In Screens
+    If (x >= s.x) And x <= (s.x + s.W) Then
+      If (y >= s.y) And y <= (s.y + s.h) Then
+        Return s
+      Endif
+    Endif
+  Next
+  
+End
+
+
 Public Sub FullScreenSwitch()
   
   Dim MenuBarItem As Object
   Dim MaxWait As Integer = 1000
   Dim Blackform As Form
   Dim blackpanel As Panel
-
+  Dim scr As Screen
+    scr = Screenbypos(fmain.screenx, fmain.screeny)
+  
   'use a black form with a black panel inside to hide gui glitches
     blackform = New Form
     blackpanel = New Panel(blackform)
-    blackpanel.Background = color.Black
+    blackpanel.Background = color.black
     Blackform.Background = color.black
     blackpanel.border = border.none  
     Blackform.visible = False
     Blackform.Arrangement = Arrange.fill
     Blackform.Border = border.None
     Blackform.SkipTaskbar = True
-    Blackform.w = desktop.w * 4
-    Blackform.h = desktop.H * 4
-    Blackform.x = 0
-    Blackform.y = 0
+    Blackform.w = scr.W
+    Blackform.h = scr.H 
+    Blackform.x = scr.x
+    Blackform.y = scr.y
     Blackform.Stacking = Window.above
     Blackform.FullScreen = True
     Blackform.show
@@ -3463,19 +3478,17 @@ Public Sub FullScreenSwitch()
 
   SwitchingFullScreen = True
 
+  'save form size for late restore    
+  Global.FormX = FMain.ScreenX
+  Global.FormY = FMain.ScreenY
+  Global.FormW = FMain.Width
+  Global.FormH = FMain.Height
+  Global.FormMaximized = fmain.Maximized
+
+
   'Execute shell commands
-    If FMain.fullscreen Then 
-      If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec(False, mplayer.Media_VideoFps)
-        Else
-      'save form size for late restore    
-      Global.FormX = FMain.ScreenX
-      Global.FormY = FMain.ScreenY
-      Global.FormW = FMain.Width
-      Global.FormH = FMain.Height
-      Global.FormMaximized = fmain.Maximized
-      LeftsideWasVisible = LeftsidePanel.Visible
-      If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec(True, mplayer.Media_VideoFps) 
-    Endif
+  If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec(FMain.fullscreen, mplayer.Media_VideoFps)
+
 
   OuterBox.Mouse = 0
   VideoBox.Mouse = 0
@@ -3499,8 +3512,7 @@ Public Sub FullScreenSwitch()
     tagpanel.Reparent(zzzfake)
     EditTagModeSwitch1.Checked = False
 
-    If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
-    LeftsidePanel.Visible = LeftsideWasVisible
+
 
     bottomvbox.Raise()
 
@@ -3511,11 +3523,14 @@ Public Sub FullScreenSwitch()
     OuterBox.Mouse = mouse.default
     VideoBox.Mouse = mouse.default
     AllmenuVisible(True)
-    Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+    'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
     fmain.Maximized = Global.FormMaximized
     fmain.Move(global.formx, global.formy, global.FormW, global.formh)
+    If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
+    LeftsidePanel.Visible = LeftsideWasVisible
     
   Else                                                                 '(fit fullscreen mode) **************************
+    LeftsideWasVisible = LeftsidePanel.Visible
     'Disable kde effects?
       If GeneralOptions.NoEffectsCheckbox.value Then
         Try KdeEffectsWereActive = DisableKDECompositing()
@@ -3551,9 +3566,9 @@ Public Sub FullScreenSwitch()
 
     'when fmain enters fullscreen it go over blackform,
     'seems the only workaround is to brutally make blackform sullscreen again:
-     Blackform.FullScreen = False
+    Blackform.FullScreen = False
      FMain.fullscreen = True
-     Blackform.FullScreen = True
+    Blackform.FullScreen = True
 
     'sit and wait until fmain has changed his size (is gone fullscreen)
     Repeat
@@ -3582,7 +3597,7 @@ Public Sub FullScreenSwitch()
  
  'wait a little bit before setting switchingfullscreen to false
   Wait 0.1
-  
+   
   blackform.fullscreen = False
   blackpanel.delete
   Blackform.Delete

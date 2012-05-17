@@ -1,5 +1,11 @@
 Git changes:
 --------------------------------------
+May 17 2012
+  FIX:    Sort Tracks when appending them to the playlist from album view
+
+May 11 2012
+  FIX:    Simple DVB tuner window: fix select/unselect all
+
 May 07 2012
   FIX:    Interpret m3u,asx,wax,wvx,ram,b4s files as playlists as well (was only *.pls)
   CHANGE: Try to read 2K of data from mplayer, may be more or less stable or change nothing, trying it...

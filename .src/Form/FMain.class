@@ -8772,7 +8772,7 @@ Public Sub AlbumGridView_Activate()
   Dim firstrow As Integer
   Dim answer As Integer
   Dim selectedrow As Integer
-  tracks = MyAlbumsLib.GetTracks(AlbumGridView.row, AlbumGridView.Column)
+  tracks = MyAlbumsLib.GetTracks(AlbumGridView.row, AlbumGridView.Column).Sort(gb.Natural)
   answer = MyQuestion.Ask(("What do you want to do with this album tracks?"), ("Append to playlist"), ("Append and play"))
   If answer = -1 Then Return
   If (tracks.count > 50) Then 

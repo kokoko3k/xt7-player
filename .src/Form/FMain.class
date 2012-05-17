@@ -3564,10 +3564,12 @@ Public Sub FullScreenSwitch()
     OuterBox.Background = Color.black
     VideoBox.visible = True
 
+
+
     'when fmain enters fullscreen it go over blackform,
     'seems the only workaround is to brutally make blackform sullscreen again:
     Blackform.FullScreen = False
-     FMain.fullscreen = True
+    FMain.fullscreen = True
     Blackform.FullScreen = True
 
     'sit and wait until fmain has changed his size (is gone fullscreen)

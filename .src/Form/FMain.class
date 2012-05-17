@@ -3493,7 +3493,7 @@ Public Sub FullScreenSwitch()
 
 
   'Execute shell commands
-  If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec(FMain.fullscreen, mplayer.Media_VideoFps)
+  If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec((Not FMain.fullscreen), mplayer.Media_VideoFps)
 
 
   OuterBox.Mouse = 0
@@ -3586,6 +3586,7 @@ Public Sub FullScreenSwitch()
       maxwait = maxwait - 1
     Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
   Endif
+  
   'here ends the statements fullscreen/window
 
   TimerFullScreen.enabled = FMain.FullScreen
@@ -8597,8 +8598,6 @@ End
 
 Private mmliblocked As Boolean = False
 Public Sub LibraryGrid_MouseMove()
-  Return
-  
   If mmliblocked Then Return
   mmliblocked = True
   If generaloptions.HighlightCHK.value Then

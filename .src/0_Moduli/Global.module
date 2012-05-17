@@ -47,6 +47,7 @@ Public FormW As Integer
 Public FormH As Integer 
 Public FormX As Integer 
 Public FormY As Integer 
+Public FormMaximized As Boolean = False
 Private SettingsFileName As String 
 Public DelayLoadStates As Timer 
 Public MaxHistory As Integer 'how many played files to remember

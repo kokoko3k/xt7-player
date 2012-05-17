@@ -740,13 +740,15 @@
             Header = GridView.Horizontal
             Border = False
           }
-          { shadeup PictureBox
-            MoveScaled(-1,18,31,2)
+          { shadeup PictureBox shadeuplow
+            Name = "shadeup"
+            MoveScaled(1,12,31,2)
             Ignore = True
             Picture = Picture["shadeup.png"]
             Stretch = True
           }
-          { shadelow PictureBox
+          { shadelow PictureBox shadeuplow
+            Name = "shadelow"
             MoveScaled(0,26,31,1.1429)
             Ignore = True
             Picture = Picture["shadelow.png"]

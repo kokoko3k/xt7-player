@@ -1499,6 +1499,9 @@ Public Sub Form_Resize()
   CostrainFormSizes()
   CorrectAreaAspect()
   
+  
+  Debug Me.ScreenX
+  Debug Me.screeny
 End
 
 Public Sub ButtonOpen_Click()
@@ -3452,7 +3455,7 @@ Public Sub FullScreenSwitch()
   Dim Blackform As Form
   Dim blackpanel As Panel
   Dim scr As Screen
-    scr = Screenbypos(fmain.screenx, fmain.screeny)
+    scr = Screenbypos(fmain.screenx + (fmain.w Div 2), fmain.screeny + (fmain.h Div 2))
   
   'use a black form with a black panel inside to hide gui glitches
     blackform = New Form

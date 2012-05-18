@@ -1482,16 +1482,6 @@ Public Sub LoadFormGeometry()
 
 End
 
-Private Sub CostrainFormSizes()
-  'Constrain form sizes
-  
-  SliderBox.left = ControlFrame.left + 16
-  SliderBox.width = ControlFrame.Width - 32
-  MainToolbar.width = FMain.clientw - 16
-  BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
-  ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
-  picturebox1.Move(0, 0, controlframe.w, controlframe.h)
-End
 
 Public Sub Form_Resize()
   
@@ -3447,7 +3437,170 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
   
 End
 
+Private Sub CostrainFormSizes()
+  'Constrain form sizes
+   SliderBox.left = ControlFrame.left + 16
+   SliderBox.width = ControlFrame.Width - 32
+   MainToolbar.width = FMain.clientw - 16
+   BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
+   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
+End
+
+
 Public Sub FullScreenSwitch()
+  SwitchingFullScreen = True
+  If fmain.fullscreen Then
+    SwitchToWindow()
+      Else
+    SwitchToFS()
+  Endif
+  Wait 0.1
+  SwitchingFullScreen = False
+End
+
+
+Public Sub InitAndShowBlackForm(blackform As Form) As Form
+  Dim blackpanel As Panel
+  Dim scr As Screen
+  scr = Screenbypos(fmain.screenx + (fmain.w Div 2), fmain.screeny + (fmain.h Div 2))
+  blackform = New Form
+  blackpanel = New Panel(blackform)
+  blackpanel.Background = color.black
+  Blackform.Background = color.black
+  blackpanel.border = border.none  
+  Blackform.visible = False
+  Blackform.Arrangement = Arrange.fill
+  blackform.maximized = True
+  Blackform.Border = border.None
+  Blackform.SkipTaskbar = True
+  Blackform.w = scr.W
+  Blackform.h = scr.H 
+  Blackform.x = scr.x
+  Blackform.y = scr.y
+  Blackform.Stacking = Window.above
+  Blackform.FullScreen = True
+  Blackform.show
+  Blackform.mouse = mouse.blank
+  Return blackform
+End
+
+
+Public Sub SwitchToFS()
+  Dim blackform As Form
+  'save the windowed information
+  Global.FormX = FMain.ScreenX
+  Global.FormY = FMain.ScreenY
+  Global.FormW = FMain.Width
+  Global.FormH = FMain.Height
+  LeftsideWasVisible = LeftsidePanel.Visible
+  Global.FormMaximized = FMain.maximized
+  If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
+  
+  OuterBox.Mouse = mouse.blank
+  VideoBox.Mouse = mouse.blank
+  
+  'Hide all the work
+  blackform = InitAndShowBlackForm(blackform)
+
+  'execute shell commands
+  If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
+  
+  'make the form fullscreen
+  fmain.fullscreen = True
+
+  blackform.fullscreen = False
+  blackform.fullscreen = True
+
+  'Hide the menu
+  AllmenuVisible(False)
+  Maintoolbar.visible = False
+  
+  'invert the HSplit with a vSplit
+  fmain.HSplit1.Reparent(zzzFake)
+  zzzFake.VSplit1.Reparent(Fmain)
+  
+  'populate the new vSplit1 with controls
+  Leftsidepanel.Reparent(zzzFake.vsplit1)
+  rightsidepanel.Reparent(zzzFake.VSplit1)
+
+  'hide the upper controls
+  Leftsidepanel.hide()
+
+  'let the bottom panel adapts to the new size:
+  Wait '<-this wait has to come before ConstrainFormSizes()
+  CostrainFormSizes()
+
+  'Hide the bottom controls
+  bottomvbox.Hide '<-this can be hidden only after it has adapted its size
+
+  'start the timer 
+  TimerFullScreen.start
+  
+  CorrectAreaAspect()
+  
+  RightSidePanel.SetFocus()
+  Wait
+  
+  'show all
+  blackform.delete
+End
+
+
+
+Public Sub SwitchToWindow()
+  Dim blackform As Form
+
+  'hide all the work
+  blackform = InitAndShowBlackForm(blackform)
+  'execute shell commands
+  FsCommandsExec(False, 60)
+
+  'make the form windowed
+  fmain.fullscreen = False
+
+  'invert the VSplit with a HSplit
+  zzzFake.VSplit1.Reparent(zzzFake)
+  Hsplit1.Reparent(Fmain)
+
+  'populate HSplit with controls
+  Leftsidepanel.Reparent(Hsplit1)
+  rightsidepanel.Reparent(HSplit1)
+  If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
+  Wait
+
+  'show the menu
+  AllmenuVisible(True)
+  Maintoolbar.visible = True
+  
+  'restore the form position
+  fmain.Move(Global.FormX, Global.FormY, Global.FormW, Global.FormH)
+  LeftsidePanel.Visible = LeftsideWasVisible
+  fmain.maximized = False '<-hack
+  FMain.maximized = Global.FormMaximized
+  
+  UpdateStatusBar()
+
+  'show the bottom controls
+  bottomvbox.Raise() '<-make sure it is on the bottom
+  bottomvbox.show
+
+  CostrainFormSizes()
+
+  TimerFullScreen.Stop()
+
+  blackform.delete 'show all
+
+  RightSidePanel.SetFocus()
+  
+  OuterBox.Mouse = mouse.Default
+  VideoBox.Mouse = mouse.Default
+
+End
+
+
+
+Public Sub FullScreenSwitch_OLD()
 
   Dim MenuBarItem As Object
   Dim MaxWait As Integer = 1000
@@ -3485,6 +3638,7 @@ Public Sub FullScreenSwitch()
     HSplit1.Reparent(Fmain)
     blackbox.raise
     hsplit1.visible = True
+    
     Leftsidepanel.Reparent(Hsplit1)
     Rightsidepanel.Reparent(hsplit1)
     fmain.refresh
@@ -8383,10 +8537,12 @@ Public Sub GridPanels_Arrange()
 End
 
 Public Sub HSplit1_MouseMove()
+  If SwitchingFullScreen Then Return
   If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
   Object.Attach(fakesplit, fmain, "fakesplit")
   fakesplit.Background = color.selectedbackground
-  fakesplit.x = hsplit1.Layout[0]
+  Try fakesplit.x = hsplit1.Layout[0]
+  If Error Then Return
   fakesplit.border = border.none
   fakesplit.x = hsplit1.Layout[0]
   fakesplit.Ignore = True
@@ -9112,3 +9268,4 @@ Public Sub shadeuplow_Leave()
   Next
   Try brother.proxy = brothersproxies[brother.name]
 End
+

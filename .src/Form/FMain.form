@@ -561,7 +561,7 @@
     }
   }
   { MainToolBar Panel
-    MoveScaled(0,0,92,4.5714)
+    MoveScaled(1,0,92,4.5714)
     Arrangement = Arrange.Horizontal
     { ShowVolBtn2 ToolButton DynaGuiToolbar
       Name = "ShowVolBtn2"
@@ -1671,7 +1671,7 @@
       }
       { OuterBox DrawingArea VideoAreaGroup
         Name = "OuterBox"
-        MoveScaled(0,11,26,35)
+        MoveScaled(0,9,26,35)
         Background = &H000000&
         Drop = True
         Expand = True
@@ -1683,7 +1683,7 @@
         }
       }
       { BottomVbox VBox
-        MoveScaled(0,46,71,15)
+        MoveScaled(0,47,71,15)
         Background = Color.Background
         { cachebar ProgressBar
           MoveScaled(1,0,54,1.5714)
@@ -1691,10 +1691,10 @@
           Label = False
         }
         { ControlFrame Frame
-          MoveScaled(0,1,70,10)
+          MoveScaled(-14,2,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
-            MoveScaled(-1,2,60,7)
+            MoveScaled(-2,2,60,7)
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True

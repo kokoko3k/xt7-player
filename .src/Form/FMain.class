@@ -3447,8 +3447,148 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
   
 End
 
-
 Public Sub FullScreenSwitch()
+
+  Dim MenuBarItem As Object
+  Dim MaxWait As Integer = 1000
+  Dim blackbox As New Panel(fmain)
+
+  SwitchingFullScreen = True
+  blackbox.border = border.none
+  blackbox.visible = False
+  blackbox.background = Color.black
+  blackbox.Background = Color.black
+  blackbox.raise
+  blackbox.ignore = True
+  blackbox.w = Desktop.w * 2
+  blackbox.h = Desktop.h * 2
+  blackbox.x = fmain.screenx - Desktop.w 'fmain.screenx - (blackbox.w DIV 4)
+  blackbox.y = fmain.screeny - Desktop.h ' (blackbox.w DIV 4)
+  blackbox.visible = True
+  
+  OuterBox.Mouse = 0
+  VideoBox.Mouse = 0
+  If FMain.fullscreen Then                                           'prepare to return in window mode
+    FsCommandsExec(False, mplayer.Media_VideoFps)
+    Wait
+
+    If GeneralOptions.NoEffectsCheckbox.value Then
+      If KdeEffectsWereActive Then EnableKDECompositing()
+    Endif
+    If (Not mplayer.AudioOnly) Then fmain.OuterBox.ignore = False
+    Audioform.AudioPanel.ignore = False
+    
+    'reorganize the controls to fit window mode
+    'cachebar.reparent(zzzFake)
+    zzzfake.VSplit1.Reparent(zzzfake)
+    Hsplit1.visible = False
+    HSplit1.Reparent(Fmain)
+    blackbox.raise
+    hsplit1.visible = True
+    Leftsidepanel.Reparent(Hsplit1)
+    Rightsidepanel.Reparent(hsplit1)
+    fmain.refresh
+    Wait 0.01
+    tagpanel.Reparent(zzzfake)
+    EditTagModeSwitch1.Checked = False
+    If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
+    LeftsidePanel.Visible = LeftsideWasVisible
+    BottomVbox.Reparent(zzzfake)
+    BottomVbox.visible = False
+    BottomVbox.ignore = False
+    BottomVbox.Reparent(fmain)
+    blackbox.raise()
+    BottomVbox.visible = True
+    Statusbar1.Width = 100
+    FMain.fullscreen = False
+    RightSidePanel.SetFocus()
+    OuterBox.Mouse = mouse.default
+    VideoBox.Mouse = mouse.default
+    AllmenuVisible(True)
+    Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+
+  Else                                                                 '(fit fullscreen mode) **************************
+    If GeneralOptions.NoEffectsCheckbox.value Then
+      Try KdeEffectsWereActive = DisableKDECompositing()
+      If Error Then
+        Debug "Unable to disable kde effects, are you sure use kwin window manager?"
+        KdeEffectsWereActive = False
+      Endif
+    Endif
+    AllmenuVisible(False)
+    'cachebar.hide
+    'cachebar.Reparent(fmain)
+    If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
+
+    'save form size for late restore    
+    Global.FormX = FMain.ScreenX
+    Global.FormY = FMain.ScreenY
+    Global.FormW = FMain.Width
+    Global.FormH = FMain.Height
+    LeftsideWasVisible = LeftsidePanel.Visible
+
+    'reorganize controls to fit fullscreen mode
+    HSplit1.Reparent(zzzfake)
+    Leftsidepanel.Reparent(zzzfake.vsplit1)
+    Rightsidepanel.Reparent(zzzfake.vsplit1)
+    zzzfake.VSplit1.visible = False
+    zzzfake.VSplit1.Reparent(fmain)
+    'blackbox.raise()
+    zzzfake.VSplit1.visible = True
+    tagpanel.Reparent(zzzfake)
+    EditTagModeSwitch1.Checked = False
+    BottomVbox.Reparent(zzzfake)
+
+    ' BottomVbox.visible = False
+    BottomVbox.Reparent(fmain)
+    'blackbox.raise()
+    BottomVbox.visible = True
+    LeftsidePanel.h = (Desktop.Height Div 2)
+    LeftsidePanel.visible = False
+    OuterBox.Background = Color.black
+    VideoBox.visible = True
+    
+    If mplayer.ProcessRunningOvr() Then 
+      If Not (mplayer.AudioOnly) Then 
+        FsCommandsExec(True, mplayer.Media_VideoFps)
+      Endif
+    Endif
+'blackbox.Resize(Screen.x * 4, Screen.y * 4)
+
+'videobox.visible = False
+    FMain.fullscreen = True
+    'sit and wait until fmain has changed his size (is gone fullscreen)
+    Repeat
+      Wait 0.001
+      maxwait = maxwait - 1
+    Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
+  Endif
+'videobox.visible = True
+
+  TimerFullScreen.enabled = FMain.FullScreen
+
+  If Fmain.Fullscreen Then
+    BottomVbox.visible = False
+    BottomVbox.h = 0
+  Else
+    SlideTimer.stop
+    BottomVbox.visible = True
+    BottomVbox.h = controlframe.h + Statusbar1.h
+  Endif
+
+  CostrainFormSizes()
+  fmain.VideoBox.setfocus
+  'wait a little bit before setting switchingfullscreen to false
+  Wait 0.1
+  SwitchingFullScreen = False
+  blackbox.visible = False
+  CorrectAreaAspect()
+End
+
+
+
+
+Public Sub NEW_FullScreenSwitch()
   
   Dim MenuBarItem As Object
   Dim MaxWait As Integer = 1000

@@ -1,5 +1,10 @@
 Git changes:
 --------------------------------------
+May 18 2012
+  FIX:    Restored Tooltip messages in librarygrid
+  REVERTED BACK All the glitch patches
+
+
 May 17 2012
   FIX:    Use control.proxy to allow events under shadeup/low pictureboxes
   FIX:    Sort Tracks when appending them to the playlist from album view
@@ -9,7 +14,7 @@ May 17 2012
   FIX:    Just manage the screen where xt7 is when entering fullscreen (multihead systems)
   FIX:    Still trying to unglitch fw/win/fs
   FIX:    Still trying to unglitch fw/win/fs (multihead)
-  Restored Tooltip messages in librarygrid
+
 
 May 11 2012
   FIX:    Simple DVB tuner window: fix select/unselect all

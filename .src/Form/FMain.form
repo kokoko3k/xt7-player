@@ -1469,7 +1469,7 @@
     { RightSidePanel Panel VideoAreaGroup
       Name = "RightSidePanel"
       MoveScaled(43,1,60,65)
-      Background = &H000000&
+      Background = Color.Background
       Arrangement = Arrange.Vertical
       { TagPanel ScrollView
         MoveScaled(27,3,30,45)
@@ -1683,15 +1683,14 @@
         }
       }
       { BottomVbox VBox
-        MoveScaled(0,47,71,15)
-        Background = Color.Background
+        MoveScaled(-4,48,71,15)
         { cachebar ProgressBar
           MoveScaled(1,0,54,1.5714)
           Font = Font["Bold,5"]
           Label = False
         }
         { ControlFrame Frame
-          MoveScaled(-14,2,70,10)
+          MoveScaled(-9,2,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
             MoveScaled(-2,2,60,7)
@@ -1763,7 +1762,7 @@
             }
           }
           { SliderBox HBox
-            MoveScaled(0,2,57,4)
+            MoveScaled(1,2,57,4)
             Font = Font["6"]
             { SeekBar Slider
               MoveScaled(3,0,25,4)

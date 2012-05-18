@@ -3439,12 +3439,12 @@ End
 
 Private Sub CostrainFormSizes()
   'Constrain form sizes
-   SliderBox.left = ControlFrame.left + 16
-   SliderBox.width = ControlFrame.Width - 32
-   MainToolbar.width = FMain.clientw - 16
-   BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
-   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
-   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
+    SliderBox.left = ControlFrame.left + 16
+    SliderBox.width = ControlFrame.Width - 32
+    MainToolbar.width = FMain.clientw - 16
+    BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
+    ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+    picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End
 
 
@@ -3525,13 +3525,13 @@ Public Sub SwitchToFS()
   rightsidepanel.Reparent(zzzFake.VSplit1)
 
 
-
   'hide the upper controls
   Leftsidepanel.hide()
 
   'let the bottom panel adapts to the new size:
   Wait '<-this wait has to come before ConstrainFormSizes()
   CostrainFormSizes()
+  Wait '<-this wait has to come just after ConstrainFormSizes()
 
   'Hide the bottom controls
   bottomvbox.Hide '<-this can be hidden only after it has adapted its size
@@ -3598,6 +3598,7 @@ Public Sub SwitchToWindow()
   OuterBox.Mouse = mouse.Default
   VideoBox.Mouse = mouse.Default
 
+  Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
 End
 
 

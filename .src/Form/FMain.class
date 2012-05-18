@@ -3520,9 +3520,11 @@ Public Sub SwitchToFS()
   fmain.HSplit1.Reparent(zzzFake)
   zzzFake.VSplit1.Reparent(Fmain)
   
-  'populate the new vSplit1 with controls
+  'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
+
+
 
   'hide the upper controls
   Leftsidepanel.hide()
@@ -3968,8 +3970,7 @@ Public Sub TimerFullScreen_Timer()
   If MouseOnFmain Then MouseHide()
   '     
   If AttachZone1 And MouseOnFmain Then
-    
-    BottomVbox.ignore = True
+   ' BottomVbox.ignore = True
     Audioform.AudioPanel.ignore = True
     BottomVbox.visible = True
   Endif
@@ -3980,7 +3981,7 @@ Public Sub TimerFullScreen_Timer()
   Endif
   
   If ReleaseZone1 Then
-    BottomVbox.ignore = False
+    'BottomVbox.ignore = False
     BottomVbox.visible = False
     Audioform.AudioPanel.ignore = False
   Endif

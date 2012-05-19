@@ -1684,6 +1684,7 @@
       }
       { BottomVbox VBox
         MoveScaled(-4,48,71,15)
+        Background = Color.Background
         { cachebar ProgressBar
           MoveScaled(1,0,54,1.5714)
           Font = Font["Bold,5"]

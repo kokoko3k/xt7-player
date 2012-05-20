@@ -3555,6 +3555,10 @@ Public Sub SwitchToWindow()
 
   'hide all the work
   blackform = InitAndShowBlackForm(blackform)
+  
+  bottomvbox.y = rightsidepanel.h - bottomvbox.h
+  BottomVbox.ignore = False
+  
   'execute shell commands
   FsCommandsExec(False, 60)
 
@@ -3971,7 +3975,8 @@ Public Sub TimerFullScreen_Timer()
   If MouseOnFmain Then MouseHide()
   '     
   If AttachZone1 And MouseOnFmain Then
-   ' BottomVbox.ignore = True
+    BottomVbox.ignore = True
+    bottomvbox.y = rightsidepanel.h - bottomvbox.h
     Audioform.AudioPanel.ignore = True
     BottomVbox.visible = True
   Endif
@@ -3982,7 +3987,7 @@ Public Sub TimerFullScreen_Timer()
   Endif
   
   If ReleaseZone1 Then
-    'BottomVbox.ignore = False
+    BottomVbox.ignore = False
     BottomVbox.visible = False
     Audioform.AudioPanel.ignore = False
   Endif

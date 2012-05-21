@@ -3506,6 +3506,8 @@ Public Sub SwitchToFS()
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
   
+  Object.Lock(hsplit1)
+  
   'make the form fullscreen
   fmain.fullscreen = True
 
@@ -3546,8 +3548,8 @@ Public Sub SwitchToFS()
   
   'show all
   blackform.delete
+  Object.unLock(hsplit1)
 End
-
 
 
 Public Sub SwitchToWindow()
@@ -8526,9 +8528,8 @@ End
 
 Public Sub HSplit1_Resize()
   fakesplit.hide
-  If Not fmain.fullscreen Then Hsplit1_MyRefresh
+  Hsplit1_MyRefresh
 End
-
 
 Public Sub ShadeList(brother As Gridview)
   shadeup.x = brother.x 

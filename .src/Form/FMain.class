@@ -9327,7 +9327,7 @@ Public Sub ButtonSavePls_Click()
   Endif
   Try myplaylist.SaveAs(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl")
   If Error Then 
-    Message.Error(("There Was an error saving the playlist:\n") & PlaylistsCombo.text, ("Ok"))
+    Message.Error(("There was an error saving the playlist:\n") & PlaylistsCombo.text, ("Ok"))
       Else
     Message.Info(("Playlist saved:\n") & PlaylistsCombo.text, ("Ok"))
     If PlaylistsCombo.Find(PlaylistsCombo.text) = -1 Then PlaylistsCombo.Add(PlaylistsCombo.text)

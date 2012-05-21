@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 May, 21 2012
+  NEW:    Integrated multiple playlists support (use the playlist combobox in playlist tab)
   CHANGE: Faster DVB "Zapping" by re-using the playing mplayer instance and dvb_set_channel
   FIX:    Understand when the window is set to fullscreen by 'outside'
   FIX:    Added new tooltip messages

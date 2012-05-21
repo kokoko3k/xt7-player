@@ -68,11 +68,18 @@
       Picture = Picture["icon:/16/cancel"]
     }
   }
-  { channelsgrid GridView
-    MoveScaled(1,13,82,8)
+  { Panel1 Panel
+    MoveScaled(2,13,78,8)
+    Background = Color.TextBackground
     Expand = True
-    Mode = Select.Multiple
-    Grid = False
+    Arrangement = Arrange.Fill
+    Border = Border.Plain
+    { channelsgrid GridView
+      MoveScaled(9,1,42,5)
+      Expand = True
+      Mode = Select.Multiple
+      Grid = False
+    }
   }
   { SelectBox HBox
     MoveScaled(0,22,82,4)
@@ -136,7 +143,7 @@
     Text = ("Verbose Log")
     Hidden = True
     { TextArea1 TextArea
-      MoveScaled(2,2,57,18)
+      MoveScaled(10,14,57,18)
       Font = Font["Monospace"]
       Expand = True
     }

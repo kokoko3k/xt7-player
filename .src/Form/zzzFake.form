@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,53,47)
+  MoveScaled(0,0,102,71)
   Visible = False
   Icon = Picture["xt7-player.png"]
   Picture = Picture["FakeMask.png"]
@@ -18,9 +18,147 @@
     MoveScaled(1,3,9,9)
     Border = False
   }
-  { Expander1 SidePanel
-    MoveScaled(9,19,24,18)
-    Arrangement = Arrange.Fill
-    Hidden = True
+  { PanelNowNext Panel
+    MoveScaled(0,34,106,24)
+    Background = &H81B0D6&
+    Arrangement = Arrange.Vertical
+    Margin = True
+    Border = Border.Plain
+    { HBox1 Panel
+      MoveScaled(1,1,104,7)
+      Background = &H21175C&
+      Foreground = &HFFFFFF&
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      Border = Border.Raised
+      { LabelChannelName TextLabel
+        MoveScaled(1,1,32,5)
+        Font = Font["Bold,+2"]
+        AutoResize = True
+        Text = ("Italia 1")
+        Alignment = Align.Left
+      }
+      { VBox1 VBox
+        MoveScaled(36,1,13,4)
+        Expand = True
+      }
+      { ClockLabel TextLabel
+        MoveScaled(59,0,28,7)
+        Font = Font["Bold,+2"]
+        Foreground = &HFFFFFF&
+        AutoResize = True
+        Text = ("00/00/0000 00:00:00")
+        Alignment = Align.Right
+      }
+    }
+    { Separator1 Separator
+      MoveScaled(15,8,65,1)
+    }
+    { HBox2 Panel NowPanel
+      Name = "HBox2"
+      MoveScaled(1,11,104,6)
+      Background = &H000670&
+      Foreground = &HFFFFFF&
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      Border = Border.Raised
+      { ButtonInfoNow PictureBox NowPanel
+        Name = "ButtonInfoNow"
+        MoveScaled(3,1,4,4)
+        Mouse = Mouse.Pointing
+        Drop = True
+        Picture = Picture["icon:/22/info"]
+        Alignment = Align.Center
+      }
+      { Label1 TextLabel NowPanel
+        Name = "Label1"
+        MoveScaled(10,1,13,5)
+        Font = Font["Bold,+2"]
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = ("NOW")
+        Alignment = Align.Left
+      }
+      { VBox2 VBox NowPanel
+        Name = "VBox2"
+        MoveScaled(24,1,7,4)
+        Mouse = Mouse.Pointing
+      }
+      { Label2 TextLabel NowPanel
+        Name = "Label2"
+        MoveScaled(41,1,20,5)
+        Font = Font["Bold,+2"]
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = ("TGCom")
+        Alignment = Align.Left
+      }
+      { VBox4 VBox
+        MoveScaled(78,1,13,4)
+        Expand = True
+      }
+      { Button1 Button
+        MoveScaled(90,1,13,4)
+        Font = Font["Bold,+2"]
+        Foreground = &HFFFFFF&
+        AutoResize = True
+        Text = ("EPG")
+        Picture = Picture["icon:/22/calendar"]
+        Border = False
+      }
+    }
+    { HBox3 Panel NextPanel
+      Name = "HBox3"
+      MoveScaled(1,17,104,6)
+      Background = &H000660&
+      Foreground = &HFFFFFF&
+      Arrangement = Arrange.Horizontal
+      Margin = True
+      Border = Border.Raised
+      { ButtonInfoNext PictureBox NextPanel
+        Name = "ButtonInfoNext"
+        MoveScaled(3,1,4,4)
+        Mouse = Mouse.Pointing
+        Picture = Picture["icon:/22/info"]
+        Alignment = Align.Center
+      }
+      { Label3 TextLabel NextPanel
+        Name = "Label3"
+        MoveScaled(10,1,13,5)
+        Font = Font["Bold,Italic,+2"]
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = ("NEXT")
+        Alignment = Align.Left
+      }
+      { VBox3 VBox NextPanel
+        Name = "VBox3"
+        MoveScaled(24,1,7,4)
+        Mouse = Mouse.Pointing
+      }
+      { Label5 TextLabel NextPanel
+        Name = "Label5"
+        MoveScaled(42,1,12,5)
+        Font = Font["Bold,Italic,+2"]
+        Mouse = Mouse.Pointing
+        Text = ("13:50")
+        Alignment = Align.Left
+      }
+      { Label4 TextLabel NextPanel
+        Name = "Label4"
+        MoveScaled(70,0,20,5)
+        Font = Font["Bold,Italic,+2"]
+        Mouse = Mouse.Pointing
+        AutoResize = True
+        Text = ("Le Iene")
+        Alignment = Align.Left
+      }
+    }
+    { ShadePictureNowNext PictureBox
+      MoveScaled(53,0,13,24)
+      Ignore = True
+      Picture = Picture["backpanel.png"]
+      Stretch = True
+    }
   }
 }

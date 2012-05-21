@@ -837,7 +837,7 @@
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { PlaylistGrid GridView
-            MoveScaled(1,3,29,18)
+            MoveScaled(2,3,29,18)
             Tracking = True
             ToolTip = ("Drag'n drop files or media links to add them,")
             Drop = True
@@ -969,9 +969,16 @@
             Text = ("Filter")
           }
           { SearchFieldDVB ComboBox
-            MoveScaled(7,0,22,3)
+            MoveScaled(4,0,19,3)
             ToolTip = ("Enter some search terms.\nSpecial character \"|\" means \"OR\",\nso you can type: Bach|Mozart ")
             Expand = True
+          }
+          { ButtonEPG Button
+            MoveScaled(25,0,9,4)
+            ToolTip = ("Open the Electronic Program Guide window")
+            AutoResize = True
+            Text = ("EPG")
+            Picture = Picture["icon:/16/calendar"]
           }
         }
         { Panel3 Panel
@@ -993,7 +1000,7 @@
           }
         }
         { ScanBtn Button
-          MoveScaled(1,50,35,4)
+          MoveScaled(-1,52,35,4)
           ToolTip = ("Start simple dvb tuner")
           Text = ("Scan for channels")
           Picture = Picture["icon:/16/find"]

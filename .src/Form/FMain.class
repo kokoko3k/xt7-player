@@ -1462,7 +1462,6 @@ Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
   myfile = Open myfilename For Write Create
   Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & fmain.Maximized
   Close #myfile
-  
 End
 
 Public Sub LoadFormGeometry()
@@ -9371,5 +9370,12 @@ Public Sub PlaylistsCombo_Click()
   If answer = 3 Then Return
   MyPlaylist.LoadFile(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl", PlayListGrid, (answer = 2))
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
+
+End
+
+Public Sub ButtonEPG_Click()
+  Message.Warning("Epg integration is still\nIn early development stage", "Ok")
+  global.Center(Me, epgform)
+  EpgForm.Show()
 
 End

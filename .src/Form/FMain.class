@@ -4478,6 +4478,10 @@ Public Sub ButtonNext_Click()
     MyLibrary.SelectNext(LibraryGrid, ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
+   Else If TabSelectedDVB() Then
+    MyDVBTList.SelectNext(dvbtGrid, False)
+    Wait 0.025
+    If mplayerwasrunning Then playselecteddvb()
   Else If TabSelectedBrowse() Then
     BrowseSelectNext()
     Wait 0.025
@@ -4572,6 +4576,10 @@ Public Sub ButtonPrev_Click()
     MyLibrary.SelectPrev(LibraryGrid) ', ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
+   Else If TabSelectedDVB() Then
+    MyDVBTList.SelectPrev(dvbtGrid)
+    Wait 0.025
+    If mplayerwasrunning Then playselecteddvb()
   Else If TabSelectedCDDA() Then
     CDDAPrev()
     Wait 0.025

@@ -842,6 +842,7 @@
           { PlayListSelInfo Label
             MoveScaled(10,0,19,4)
             Background = &HFFFF9B&
+            ToolTip = ("Selection play time")
             Expand = True
             AutoResize = True
             Alignment = Align.Center
@@ -880,6 +881,7 @@
           }
           { UrlBox ComboBox
             MoveScaled(11,0,7,4)
+            ToolTip = ("Enter a path to browse it")
             Expand = True
             Text = ("/")
           }
@@ -903,7 +905,7 @@
           }
         }
         { FileView1 FileView
-          MoveScaled(1,11,35,32)
+          MoveScaled(1,13,35,32)
           Expand = True
           Mode = Select.Single
           Dir = "/"
@@ -944,13 +946,15 @@
           }
         }
         { Panel3 Panel
-          MoveScaled(4,19,26,23)
+          MoveScaled(2,16,26,23)
           Background = Color.TextBackground
+          ToolTip = (" ")
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { DVBTGrid GridView
-            MoveScaled(0,0,25,22)
+            MoveScaled(0,-1,25,22)
+            ToolTip = ("Double click on an item to start playing")
             Drop = True
             Expand = True
             Mode = Select.Multiple
@@ -961,6 +965,7 @@
         }
         { ScanBtn Button
           MoveScaled(1,50,35,4)
+          ToolTip = ("Start simple dvb tuner")
           Text = ("Scan for channels")
           Picture = Picture["icon:/16/find"]
         }
@@ -980,7 +985,8 @@
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { CDDAGrid GridView
-            MoveScaled(-1,0,29,36)
+            MoveScaled(0,0,29,36)
+            ToolTip = ("Double click on an item to start playing")
             Expand = True
             Mode = Select.Single
             Grid = False
@@ -998,6 +1004,7 @@
         }
         { Button3 Button
           MoveScaled(2,9,35,4)
+          ToolTip = ("Switch to navigation mode.\n(mplayer needs to be compiled with dvdnav support)")
           Text = ("DVD menu navigation mode")
           Picture = Picture["icon:/16/wizard"]
         }
@@ -1025,8 +1032,8 @@
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { FlashGrid GridView
-            MoveScaled(0,0,22,13)
-            ToolTip = ("Drag'n drop files or media links to add them,")
+            MoveScaled(4,0,22,13)
+            ToolTip = ("This list will be populated by temporary flash files\nwhen you play them into a web browser.")
             Drop = True
             Expand = True
             Mode = Select.Single
@@ -1112,6 +1119,7 @@
           }
           { SpinBoxmaxresults SpinBox
             MoveScaled(28,0,7,4)
+            ToolTip = ("How many results to get.")
             MinValue = 1
             MaxValue = 49
             Value = 10
@@ -1228,6 +1236,7 @@
           }
           { ButtonGetGenres Button
             MoveScaled(0,9,36,4)
+            ToolTip = ("Get an updated genres list from shoutcast server")
             Text = ("Refresh Genres list")
             Picture = Picture["icon:/16/refresh"]
           }
@@ -1235,6 +1244,7 @@
         { NOSAVEVBox2 VBox
           MoveScaled(1,22,35,25)
           Visible = False
+          ToolTip = ("Double click on an item to start playing")
           Expand = True
           Spacing = True
           { HBox12 Panel
@@ -1268,6 +1278,7 @@
             }
             { FilterTextBox TextBox
               MoveScaled(12,0,23,4)
+              ToolTip = ("Highlight the results")
               Expand = True
             }
           }
@@ -1291,6 +1302,7 @@
           Spacing = True
           { TextBox1 ButtonBox
             MoveScaled(7,0,19,4)
+            ToolTip = ("Free serch by content")
             Expand = True
             Picture = Picture["icon:/16/find"]
           }
@@ -1312,11 +1324,13 @@
         }
         { Button4 Button
           MoveScaled(1,20,36,4)
+          ToolTip = ("Refresh podcasts info")
           Text = ("Refresh All")
           Picture = Picture["icon:/16/refresh"]
         }
         { Button1 Button
           MoveScaled(1,25,36,4)
+          ToolTip = ("Manually enter a new podcast URL")
           Text = ("New feed")
           Picture = Picture["icon:/16/new"]
         }
@@ -1337,6 +1351,7 @@
           Border = Border.Plain
           { PropertiesGrid GridView
             MoveScaled(0,0,33,30)
+            ToolTip = ("Info on playing media\nor on the last played one")
             Expand = True
             Border = False
           }
@@ -1357,6 +1372,7 @@
         }
         { ProfilesListBox ListBox
           MoveScaled(1,13,35,9)
+          ToolTip = ("Choose a profile from the list")
           Expand = True
           Sorted = True
         }

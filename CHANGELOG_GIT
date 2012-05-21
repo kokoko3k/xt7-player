@@ -3,6 +3,7 @@ Git changes:
 May, 21 2012
   CHANGE:  Faster DVB "Zapping" by re-using the playing mplayer instance and dvb_set_channel
   FIX:     Understand when the window is set to fullscreen by 'outside'
+  FIX:     Added new tooltip messages
 
 May, 20 2012
   FIX:    (regression) Wrong behaviour when cropping black bars in fullscreen

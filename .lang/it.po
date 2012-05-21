@@ -79,28 +79,28 @@ msgstr "Es.: resample=44100:1:2,hrtf=s"
 msgid "Audio Filters configuration"
 msgstr "Configurazione dei filtri Audio"
 
-#: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:74 FMain.form:804
-#: GeneralOptions.form:282 HotKeys.form:34 SubAndOsd.form:99
+#: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:74 FMain.form:818
+#: GeneralOptions.form:291 HotKeys.form:34 SubAndOsd.form:99
 #: VFiltersCfg.form:32 VideoEqualizer.form:49 XConfigureAudioDriver.form:82
 #: XConfigureVideoDriver.form:189
 msgid "Profile"
 msgstr "Profilo"
 
-#: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:77 FMain.form:807
-#: GeneralOptions.form:285 HotKeys.form:37 SubAndOsd.form:102
+#: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:77 FMain.form:821
+#: GeneralOptions.form:294 HotKeys.form:37 SubAndOsd.form:102
 #: VFiltersCfg.form:35 VideoEqualizer.form:52 XConfigureAudioDriver.form:85
 #: XConfigureVideoDriver.form:192
 msgid "Reload current profile"
 msgstr "Ricarica il profilo corrente"
 
 #: AFiltersCfg.form:80 AudioVideoCodecs.form:50 Chains.form:82
-#: GeneralOptions.form:290 HotKeys.form:42 SubAndOsd.form:107
+#: GeneralOptions.form:299 HotKeys.form:42 SubAndOsd.form:107
 #: VFiltersCfg.form:40 VideoEqualizer.form:57 XConfigureAudioDriver.form:90
 #: XConfigureVideoDriver.form:197
 msgid "Save to current profile"
 msgstr "Salva le impostazioni al profilo corrente"
 
-#: AFiltersCfg.form:85 AudioVideoCodecs.form:55 GeneralOptions.form:295
+#: AFiltersCfg.form:85 AudioVideoCodecs.form:55 GeneralOptions.form:304
 #: HotKeys.form:47 SubAndOsd.form:112 VFiltersCfg.form:45
 #: VideoEqualizer.form:62 XConfigureAudioDriver.form:95
 #: XConfigureVideoDriver.form:202
@@ -252,39 +252,39 @@ msgstr "-"
 msgid "Presets"
 msgstr "Preimpostazioni"
 
-#: AFiltersCfg.form:388 AudioVideoCodecs.form:233 Chains.form:522
-#: GeneralOptions.form:1932 HotKeys.form:107 VFiltersCfg.form:106
+#: AFiltersCfg.form:388 AudioVideoCodecs.form:233 Chains.form:526
+#: GeneralOptions.form:1994 HotKeys.form:107 VFiltersCfg.form:106
 #: XConfigureAudioDriver.form:473 XConfigureVideoDriver.form:1200
 msgid "Save and use new settings"
 msgstr "Salva ed usa le nuove impostazioni"
 
-#: AFiltersCfg.form:389 AudioVideoCodecs.form:234 Chains.form:523
-#: FMain.form:1972 GeneralOptions.form:1933 HotKeys.form:108
+#: AFiltersCfg.form:389 AudioVideoCodecs.form:234 Chains.form:527
+#: FMain.form:2023 GeneralOptions.form:1995 HotKeys.form:108
 #: VFiltersCfg.form:107 XConfigureAudioDriver.form:474
 #: XConfigureVideoDriver.form:1201
 msgid "Save"
 msgstr "Salva"
 
-#: AFiltersCfg.form:395 AudioVideoCodecs.form:226 GeneralOptions.form:1939
+#: AFiltersCfg.form:395 AudioVideoCodecs.form:226 GeneralOptions.form:2001
 #: VFiltersCfg.form:113 XConfigureAudioDriver.form:480
 #: XConfigureVideoDriver.form:1207
 msgid "Use new settings without save"
 msgstr "Usa le nuove impostazioni senza salvare"
 
-#: AFiltersCfg.form:396 AudioVideoCodecs.form:227 Chains.form:530
-#: GeneralOptions.form:1940 SubAndOsd.form:637 VFiltersCfg.form:114
+#: AFiltersCfg.form:396 AudioVideoCodecs.form:227 Chains.form:534
+#: GeneralOptions.form:2002 SubAndOsd.form:637 VFiltersCfg.form:114
 #: XConfigureAudioDriver.form:481 XConfigureVideoDriver.form:1208
 msgid "Use "
 msgstr "Usa"
 
-#: AFiltersCfg.form:402 AudioVideoCodecs.form:219 GeneralOptions.form:1946
+#: AFiltersCfg.form:402 AudioVideoCodecs.form:219 GeneralOptions.form:2008
 #: SubAndOsd.form:643 VFiltersCfg.form:120 XConfigureAudioDriver.form:487
 #: XConfigureVideoDriver.form:1214
 msgid "Close the window"
 msgstr "Chiudi la finestra"
 
 #: AFiltersCfg.form:403 AddUriForm.form:156 AudioVideoCodecs.form:220
-#: Chains.form:537 CoverManager.form:179 GeneralOptions.form:1947
+#: Chains.form:541 CoverManager.form:180 GeneralOptions.form:2009
 #: LogWindow.form:138 SubAndOsd.form:644 VFiltersCfg.form:121
 #: XConfigureAudioDriver.form:488 XConfigureVideoDriver.form:1215
 msgid "Close"
@@ -302,11 +302,11 @@ msgstr "[Opzionale] Mostra i protocolli"
 msgid "Click for a list of URI prefixes"
 msgstr "Mostra la lista dei prefissi per le URI"
 
-#: AddUriForm.form:51 FMain.class:7050
+#: AddUriForm.form:51 FMain.class:7496
 msgid "cdda://"
 msgstr "-"
 
-#: AddUriForm.form:51 FMain.class:7046
+#: AddUriForm.form:51 FMain.class:7492
 msgid "cddb://"
 msgstr "-"
 
@@ -402,7 +402,7 @@ msgstr "-"
 msgid "Enter a valid URI:"
 msgstr "Inserisci un' URI valida:"
 
-#: AddUriForm.form:75 FMain.form:1060
+#: AddUriForm.form:75 FMain.form:1074
 msgid "Open a file"
 msgstr "Apri un file"
 
@@ -448,19 +448,19 @@ msgstr "-"
 msgid "Add the selected URI to Collection and/or Playlist"
 msgstr "Aggiungi l'URI selezionata alla collezione/playlist"
 
-#: AddUriForm.form:150 GeneralOptions.form:535
+#: AddUriForm.form:150 GeneralOptions.form:545
 msgid "Add"
 msgstr "Aggiungi"
 
-#: AlbumView.class:92 FMain.class:8333
+#: AlbumView.class:94 FMain.class:8823
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: AlbumView.class:182
+#: AlbumView.class:186
 msgid "more than 50 tracks!"
 msgstr "più di 50 tracce!"
 
-#: AlbumView.class:237
+#: AlbumView.class:247
 msgid "Unknown Year"
 msgstr "Anno sconosciuto"
 
@@ -468,39 +468,39 @@ msgstr "Anno sconosciuto"
 msgid "ToolBox"
 msgstr "ToolBox"
 
-#: AllOptions.form:27 FMain.form:675 GeneralOptions.form:310
+#: AllOptions.form:28 FMain.form:689 GeneralOptions.form:319
 msgid "General Options"
 msgstr "Opzioni generali"
 
-#: AllOptions.form:34
+#: AllOptions.form:35
 msgid "Chains"
 msgstr "Catena"
 
-#: AllOptions.form:41
+#: AllOptions.form:42
 msgid "Video Filters"
 msgstr "Filtri Video"
 
-#: AllOptions.form:48
+#: AllOptions.form:49
 msgid "Video Drivers"
 msgstr "Driver Video"
 
-#: AllOptions.form:55
+#: AllOptions.form:56
 msgid "Audio Filters"
 msgstr "Filtri Audio"
 
-#: AllOptions.form:62
+#: AllOptions.form:63
 msgid "Audio Drivers"
 msgstr "Driver Audio"
 
-#: AllOptions.form:69
+#: AllOptions.form:70
 msgid "Codecs && demuxers"
 msgstr "Codec && demuxer"
 
-#: AllOptions.form:76 FMain.form:432
+#: AllOptions.form:77 FMain.form:436
 msgid "Subtitles"
 msgstr "Sottotitoli"
 
-#: AllOptions.form:83 FMain.form:680
+#: AllOptions.form:84 FMain.form:694
 msgid "HotKeys"
 msgstr "Hotkey"
 
@@ -516,12 +516,12 @@ msgstr "Nome del profilo:"
 msgid "NewProfile"
 msgstr "Nuovo profilo"
 
-#: AskName.form:24 ChooseAspect.form:28 FMain.class:6603 MyAskName.form:19
+#: AskName.form:24 ChooseAspect.form:28 FMain.class:7049 MyAskName.form:19
 #: TextDialog.form:19
 msgid "Cancel"
 msgstr "Annulla"
 
-#: AskName.form:30 ChooseAspect.form:22 CoverManager.class:78 FMain.class:5908
+#: AskName.form:30 ChooseAspect.form:22 CoverManager.class:79 FMain.class:6350
 #: MyAskName.form:25 TextDialog.form:25 TranslationNeeded.form:66
 msgid "Ok"
 msgstr "-"
@@ -530,23 +530,23 @@ msgstr "-"
 msgid "Media Info "
 msgstr "Media Info"
 
-#: AudioForm.form:174 FMain.form:507 Searchfields.form:58
+#: AudioForm.form:174 FMain.form:511 Searchfields.form:58
 msgid "Artist"
 msgstr "Artista"
 
-#: AudioForm.form:184 FMain.form:503 Searchfields.form:66
+#: AudioForm.form:184 FMain.form:507 Searchfields.form:66
 msgid "Album"
 msgstr "Album"
 
-#: AudioForm.form:194 FMain.form:2197 Searchfields.form:90
+#: AudioForm.form:194 FMain.form:2248 Searchfields.form:90
 msgid "Year"
 msgstr "Anno"
 
-#: AudioForm.form:204 FMain.form:2174 Searchfields.form:74
+#: AudioForm.form:204 FMain.form:2225 Searchfields.form:74
 msgid "Title"
 msgstr "Titolo"
 
-#: AudioForm.form:214 FMain.form:2265 Searchfields.form:118
+#: AudioForm.form:214 FMain.form:2316 Searchfields.form:118
 msgid "Comment"
 msgstr "Commento"
 
@@ -554,12 +554,12 @@ msgstr "Commento"
 msgid "Radio"
 msgstr "Radio"
 
-#: AudioForm.form:316 FMain.class:7038 ShoutCastClass.class:157
+#: AudioForm.form:316 FMain.class:7484 ShoutCastClass.class:157
 #: XConfigureAudioDriver.form:252
 msgid "Name"
 msgstr "Nome"
 
-#: AudioForm.form:325 FMain.class:7039 Searchfields.form:104
+#: AudioForm.form:325 FMain.class:7485 Searchfields.form:104
 msgid "Length"
 msgstr "Durata"
 
@@ -694,95 +694,95 @@ msgstr ""
 msgid "Video Filters Toolbox"
 msgstr "Pannello dei filtri Video"
 
-#: Chains.form:130
+#: Chains.form:131
 msgid "Yadif"
 msgstr "-"
 
-#: Chains.form:139
+#: Chains.form:140
 msgid "Unsharp"
 msgstr "-"
 
-#: Chains.form:148
+#: Chains.form:149
 msgid "ppHADeblock"
 msgstr "-"
 
-#: Chains.form:157
+#: Chains.form:158
 msgid "ppVDeblock"
 msgstr "-"
 
-#: Chains.form:166
+#: Chains.form:167
 msgid "ppHDeblock"
 msgstr "-"
 
-#: Chains.form:175
+#: Chains.form:176
 msgid "ppVADeblock"
 msgstr "-"
 
-#: Chains.form:184
+#: Chains.form:185
 msgid "ppDering"
 msgstr "-"
 
-#: Chains.form:193
+#: Chains.form:194
 msgid "ppAutoLevels"
 msgstr "-"
 
-#: Chains.form:202
+#: Chains.form:203
 msgid "ppDeinterlace"
 msgstr "-"
 
-#: Chains.form:211
+#: Chains.form:212
 msgid "FSpp Denoiser"
 msgstr "-"
 
-#: Chains.form:221
+#: Chains.form:222
 msgid "USpp Denoiser"
 msgstr "-"
 
-#: Chains.form:230
+#: Chains.form:231
 msgid "Spp Denoiser"
 msgstr "-"
 
-#: Chains.form:239
+#: Chains.form:240
 msgid "Denoise3D"
 msgstr "-"
 
-#: Chains.form:248
+#: Chains.form:249
 msgid "HQDenoise3D"
 msgstr "-"
 
-#: Chains.form:257
+#: Chains.form:258
 msgid "GradFun"
 msgstr "-"
 
-#: Chains.form:266
+#: Chains.form:267
 msgid "Scale"
 msgstr "-"
 
-#: Chains.form:275
+#: Chains.form:276
 msgid "Expand"
 msgstr "-"
 
-#: Chains.form:284
+#: Chains.form:285
 msgid "DeLogo"
 msgstr "-"
 
-#: Chains.form:293
+#: Chains.form:294
 msgid "Eq2"
 msgstr "-"
 
-#: Chains.form:302 VFiltersCfg.class:414 VideoEqualizer.form:183
+#: Chains.form:303 VFiltersCfg.class:414 VideoEqualizer.form:183
 msgid "Hue"
 msgstr "-"
 
-#: Chains.form:311
+#: Chains.form:312
 msgid "Custom 1"
 msgstr "-"
 
-#: Chains.form:320
+#: Chains.form:321
 msgid "Custom 2"
 msgstr "-"
 
-#: Chains.form:329
+#: Chains.form:330
 msgid ""
 "Filters are processed from up to down\n"
 "till the Audio/Video driver."
@@ -790,27 +790,27 @@ msgstr ""
 "I filtri sono applicati dall' alto in basso\n"
 "fino al driver Audio/Video"
 
-#: Chains.form:344
+#: Chains.form:345
 msgid "VideoChain"
 msgstr "Catena Video"
 
-#: Chains.form:361
+#: Chains.form:363
 msgid "No driver Defined"
 msgstr "Nessun driver definito"
 
-#: Chains.form:362
+#: Chains.form:364
 msgid "VideoDriver"
 msgstr "Driver Video"
 
-#: Chains.form:375
+#: Chains.form:377
 msgid "AudioChain"
 msgstr "Catena Audio"
 
-#: Chains.form:393
+#: Chains.form:396
 msgid "AudioDriver"
 msgstr "Driver audio"
 
-#: Chains.form:406
+#: Chains.form:409
 msgid ""
 "Available audio filters.\n"
 "Drag them into the audio chain to use them.\n"
@@ -820,35 +820,35 @@ msgstr ""
 "Trascinali nella catena audio per usarli.\n"
 "Clicca su un filtro per configurarlo."
 
-#: Chains.form:411
+#: Chains.form:414
 msgid "Audio Filters Toolbox"
 msgstr "Pannello dei filtri Audio"
 
-#: Chains.form:429
+#: Chains.form:433
 msgid "VolNorm"
 msgstr "-"
 
-#: Chains.form:438
+#: Chains.form:442
 msgid "Extra Stereo"
 msgstr "-"
 
-#: Chains.form:447
+#: Chains.form:451
 msgid "Delay"
 msgstr "-"
 
-#: Chains.form:456
+#: Chains.form:460
 msgid "Karaoke"
 msgstr "-"
 
-#: Chains.form:465
+#: Chains.form:469
 msgid "Equalizer "
 msgstr "-"
 
-#: Chains.form:474
+#: Chains.form:478
 msgid "Volume "
 msgstr "-"
 
-#: Chains.form:483
+#: Chains.form:487
 msgid "ScaleTempo"
 msgstr "-"
 
@@ -892,35 +892,35 @@ msgstr "secondi..."
 msgid "10"
 msgstr "-"
 
-#: CoverManager.class:78
+#: CoverManager.class:79
 msgid "Amazon search: Network error"
 msgstr "Ricerca su Amazon: Errore di rete"
 
-#: CoverManager.class:207
+#: CoverManager.class:210
 msgid "Network error"
 msgstr "Errore di rete"
 
-#: CoverManager.class:214
+#: CoverManager.class:217
 msgid "Ambiguous results"
 msgstr "Risultati ambigui"
 
-#: CoverManager.class:300
+#: CoverManager.class:302
 msgid "No covers found for:"
 msgstr "Nessuna copartina trovata per:"
 
-#: CoverManager.class:300
+#: CoverManager.class:302
 msgid "Try to use less strict terms, remove symbols and so on..."
 msgstr "Prova ad usare termini meno stretti, rimuovi i simboli e così via..."
 
-#: CoverManager.class:956
+#: CoverManager.class:899
 msgid "Load a Jpg cover image"
 msgstr "Carica una copertina in formato jpg"
 
-#: CoverManager.class:972
+#: CoverManager.class:915
 msgid "Error while loading the picture"
 msgstr "Errore durante il caricamento dell' immagine"
 
-#: CoverManager.class:1004 FMain.class:5978
+#: CoverManager.class:947 FMain.class:6420
 msgid ""
 "\n"
 "so you are going to set a cover for this particular file/stream"
@@ -928,7 +928,7 @@ msgstr ""
 "\n"
 "Quindi la copertina che imposterai sarà solo per questo file o stream"
 
-#: CoverManager.class:1005 FMain.class:5979
+#: CoverManager.class:948 FMain.class:6421
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr "Le tag artista o album sono necessarie per impostare una copertina"
 
@@ -936,51 +936,51 @@ msgstr "Le tag artista o album sono necessarie per impostare una copertina"
 msgid "Cover fetcher"
 msgstr "Gestore delle copertine"
 
-#: CoverManager.form:56
+#: CoverManager.form:57
 msgid "Artist/Author:"
 msgstr "Artista/Autore:"
 
-#: CoverManager.form:72
+#: CoverManager.form:73
 msgid "Album:"
 msgstr "Album:"
 
-#: CoverManager.form:97
+#: CoverManager.form:98
 msgid "Amazon"
 msgstr "-"
 
-#: CoverManager.form:104
+#: CoverManager.form:105
 msgid "Google"
 msgstr "-"
 
-#: CoverManager.form:156
+#: CoverManager.form:157
 msgid "Unset Cover"
 msgstr "Disimposta"
 
-#: CoverManager.form:162
+#: CoverManager.form:163
 msgid "Load cover"
 msgstr "Carica da disco"
 
-#: CoverManager.form:173
+#: CoverManager.form:174
 msgid "Set Cover"
 msgstr "Imposta"
 
-#: DVBTuner.class:53 FMain.form:1430 GeneralOptions.form:1073
+#: DVBTuner.class:53 FMain.form:1467 GeneralOptions.form:1087
 msgid "DVB-T"
 msgstr "-"
 
-#: DVBTuner.class:422
+#: DVBTuner.class:426
 msgid "Choose a standard channels.conf file to import"
 msgstr "Scegli un file channels.conf standard da importare"
 
-#: DVBTuner.class:426
+#: DVBTuner.class:430
 msgid "Could not read file"
 msgstr "Non posso leggere il file"
 
-#: DVBTuner.class:426
+#: DVBTuner.class:430
 msgid "Too bad..."
 msgstr "Peccato..."
 
-#: DVBTuner.form:33 FMain.form:695
+#: DVBTuner.form:33 FMain.form:709
 msgid "Simple Dvb-T Tuner"
 msgstr "Semplice tuner DVB-T"
 
@@ -1012,11 +1012,11 @@ msgstr "Importa"
 msgid "Start"
 msgstr "Avvia"
 
-#: DVBTuner.form:89 GeneralOptions.form:1249
+#: DVBTuner.form:89 GeneralOptions.form:1263
 msgid "Card #"
 msgstr "Scheda #"
 
-#: DVBTuner.form:107 FMain.form:2407
+#: DVBTuner.form:107 FMain.form:2458
 msgid "Stop"
 msgstr "Stop"
 
@@ -1048,199 +1048,159 @@ msgstr "-"
 msgid "Verbose Log"
 msgstr "Log esteso"
 
-#: FMain.class:212
-msgid "To Ubuntu users:\n"
-msgstr "Agli utenti Ubuntu:\n"
-
-#: FMain.class:213
-msgid "If the video stops when you change volume,"
-msgstr "Se il video si ferma quando cambiate volume,"
-
-#: FMain.class:214
-msgid "enable: "
-msgstr "abilitate: "
-
-#: FMain.class:214
-msgid "software volume Control"
-msgstr "-"
-
-#: FMain.class:215
-msgid "General Options "
-msgstr "Opzioni Generali"
-
-#: FMain.class:215
-msgid "Under "
-msgstr "Sotto"
-
-#: FMain.class:217
-msgid "Or disable any audio driver to use the default one"
-msgstr "Oppure disabilitate ogni driver per usare quello di default"
-
-#: FMain.class:218
-msgid "This is an issue with Ubuntu + mplayer + pulseaudio, sorry"
-msgstr "Questo è un bug presente in Ubuntu + mplayer + pulseaudio, spiacenti"
-
-#: FMain.class:220
-msgid "Don't show anymore"
-msgstr "Non mostrare più"
-
-#: FMain.class:220
-msgid "Remind me later"
-msgstr "Ricordamelo"
-
-#: FMain.class:540
+#: FMain.class:536
 msgid "Couldn't clear the history!"
 msgstr "Impossibile cancellare la cronologia!"
 
-#: FMain.class:1079
+#: FMain.class:1133
 msgid "(Audio CD)"
 msgstr "(Audio CD)"
 
-#: FMain.class:1140
+#: FMain.class:1194
 msgid " channels"
 msgstr "canali"
 
-#: FMain.class:1754
+#: FMain.class:1762
 msgid "Don't display subtitles"
 msgstr "Non visualizzare i sottotitoli"
 
-#: FMain.class:1765
+#: FMain.class:1773
 msgid "Load from disk..."
 msgstr "Carica da disco..."
 
-#: FMain.class:1770
+#: FMain.class:1778
 msgid "Ask Opensubtitles.org"
 msgstr "Chiedi a Opensubtitles.org"
 
-#: FMain.class:1773
+#: FMain.class:1781
 msgid "Configure preferred languages"
 msgstr "Configura le lingue preferite"
 
-#: FMain.class:1777
+#: FMain.class:1785
 msgid "Manual search"
 msgstr "Ricerca manuale"
 
-#: FMain.class:1786
+#: FMain.class:1794
 msgid "I feel lucky"
 msgstr "Mi sento fortunato"
 
-#: FMain.class:1790
+#: FMain.class:1798
 msgid "Please Wait..."
 msgstr "Attendi..."
 
-#: FMain.class:1798 GeneralOptions.form:1308
+#: FMain.class:1806 GeneralOptions.form:1322
 msgid "Language"
 msgstr "Linguaggio"
 
-#: FMain.class:1847
+#: FMain.class:1855
 msgid "Chapters:"
 msgstr "Capitoli:"
 
-#: FMain.class:1856
+#: FMain.class:1864
 msgid "at"
 msgstr "a"
 
-#: FMain.class:1875
+#: FMain.class:1883
 msgid "Chapters"
 msgstr "Capitoli"
 
-#: FMain.class:1878
+#: FMain.class:1886
 msgid "Chapter"
 msgstr "Capitolo"
 
-#: FMain.class:1884
+#: FMain.class:1892
 msgid "Angles"
 msgstr "Angoli"
 
-#: FMain.class:1887
+#: FMain.class:1895
 msgid "Angle"
 msgstr "Angolo"
 
-#: FMain.class:1960 OpenSubtitesForm.class:53
+#: FMain.class:1967 OpenSubtitesForm.class:53
 msgid "Token error"
 msgstr "Errore token"
 
-#: FMain.class:1969
+#: FMain.class:1977
 msgid "Hash error"
 msgstr "Errore Hash"
 
-#: FMain.class:1988
+#: FMain.class:1997
 msgid "File error"
 msgstr "Errore sul file"
 
-#: FMain.class:1998
+#: FMain.class:2008
 msgid "No results"
 msgstr "Nessun risultato"
 
-#: FMain.class:2031 OpenSubtitesForm.class:135
+#: FMain.class:2041 OpenSubtitesForm.class:136
 msgid "Save the selected subtitle"
 msgstr "Salva il sottotitolo selezionato"
 
-#: FMain.class:2033
+#: FMain.class:2043
 msgid "Do you want to save"
 msgstr "Vuoi salvare"
 
-#: FMain.class:2036 OpenSubtitesForm.class:139
+#: FMain.class:2046 OpenSubtitesForm.class:140
 msgid "Sorry, couldn't save the file"
 msgstr "Spiacente, non ho potuto salvare il file."
 
-#: FMain.class:2393
+#: FMain.class:2453
 msgid "Unable to get the real stream url"
 msgstr "Non posso recuperare l'url reale del flusso"
 
-#: FMain.class:2911
+#: FMain.class:2940
 msgid " of: "
 msgstr " di: "
 
-#: FMain.class:3014
+#: FMain.class:3044
 msgid "dvb://*"
 msgstr "-"
 
-#: FMain.class:3015
+#: FMain.class:3045
 msgid "http://*shoutcast*"
 msgstr "-"
 
-#: FMain.class:3032
+#: FMain.class:3062
 msgid "* Youtube subtitles available *"
 msgstr "* Sono disponibili sottotitoli *"
 
-#: FMain.class:3107
+#: FMain.class:3140
 msgid " Stopped"
 msgstr " Fermato"
 
-#: FMain.class:3257
+#: FMain.class:3267
 msgid "GotIt!"
 msgstr "Capito!"
 
-#: FMain.class:3356
+#: FMain.class:3387
 msgid "Hint: create (and make executable) a script named"
 msgstr "Suggerimento: Crea (e rendi eseguibile) uno script chiamato"
 
-#: FMain.class:3357
+#: FMain.class:3388
 msgid "xt7 will execute it with and pass fps argument when switching to fullscreen"
 msgstr "xt7 lo eseguirà passandogli il parametro fps al passaggio a schermo intero"
 
-#: FMain.class:3358
+#: FMain.class:3389
 msgid "Eg: xrandr --rate \"$1\" "
 msgstr "Es: xrandr --rate \"$1\""
 
-#: FMain.class:3370
+#: FMain.class:3412
 msgid "Hint: create (and make executable) a script named "
 msgstr "Suggerimento: Crea (e rendi eseguibile) uno script chiamato"
 
-#: FMain.class:3371
+#: FMain.class:3413
 msgid "xt7 will execute it when switching from fullscreen to window mode"
 msgstr "xt7 lo eseguirà al passaggio da schermo intero a finestra"
 
-#: FMain.class:3755
+#: FMain.class:4174
 msgid "Don't save"
 msgstr "Non salvare"
 
-#: FMain.class:3755
+#: FMain.class:4174
 msgid "Switch to ''default'' profile and save"
 msgstr "Passa al profilo default e salva"
 
-#: FMain.class:3755
+#: FMain.class:4174
 msgid ""
 "You can't modify the current profile\n"
 "because it is the Factory defaults one"
@@ -1248,115 +1208,115 @@ msgstr ""
 "Non puoi modificare il profilo corrente\n"
 "perchè è quello di fabbrica."
 
-#: FMain.class:3764
+#: FMain.class:4183
 msgid "Error while saving default settings"
 msgstr "Errore durante il salvataggio delle impostazioni di default"
 
-#: FMain.class:3806
+#: FMain.class:4225
 msgid ""
 "Are you sure you want to reset the default profile\n"
 "to factory values?"
 msgstr "Vuoi davvero ripristinare le impostazioni ai valori predefiniti?"
 
-#: FMain.class:3806
+#: FMain.class:4225
 msgid "Don't Reset"
 msgstr "Non eseguire il reset"
 
-#: FMain.class:3806
+#: FMain.class:4225
 msgid "Reset"
 msgstr "Reset"
 
-#: FMain.class:3809
+#: FMain.class:4228
 msgid "There was a problem while deleting"
 msgstr "C'è stato un problema durante la cancellazione "
 
-#: FMain.class:3811
+#: FMain.class:4230
 msgid ""
 "Default profile has been set to factory values.\n"
 "Restart is needed."
 msgstr "Il profilo di default è stato reimpostato ai valori predefiniti.E' necessario il riavvio."
 
-#: FMain.class:3937
+#: FMain.class:4357
 msgid "Video snaps to borders"
 msgstr "Il video tocca il bordo"
 
-#: FMain.class:4673
+#: FMain.class:5087
 msgid "Do you also want to remove non existent files from library?"
 msgstr "Vuoi anche cancellare i file non trovati dalla libreria?"
 
-#: FMain.class:4673
+#: FMain.class:5087
 msgid "Don't remove"
 msgstr "Non rimuovere"
 
-#: FMain.class:4673
+#: FMain.class:5087
 msgid "Remove"
 msgstr "Rimuovi"
 
-#: FMain.class:4810
+#: FMain.class:5225
 msgid "Selected: "
 msgstr "Selezionati:"
 
-#: FMain.class:5130
+#: FMain.class:5570
 msgid "Are you sure you want to clear your library?"
 msgstr "Vuoi davvero azzerare la libreria?"
 
-#: FMain.class:5130
+#: FMain.class:5570
 msgid "Clear my library"
 msgstr "Azzera la mia libreria"
 
-#: FMain.class:5130
+#: FMain.class:5570
 msgid "Don't clear my library"
 msgstr "Non azzerare la libreria"
 
-#: FMain.class:5139
+#: FMain.class:5579
 msgid "Are you sure you want to clear the Playlist?"
 msgstr "Vuoi davvero azzerare la playlist?"
 
-#: FMain.class:5139
+#: FMain.class:5579
 msgid "Clear the playlist"
 msgstr "Azzera la playlist"
 
-#: FMain.class:5139
+#: FMain.class:5579
 msgid "Don't clear the playlist"
 msgstr "Non azzerare la playlist"
 
-#: FMain.class:5537
+#: FMain.class:5977
 msgid "Are you sure you want to delete selected item(s) from disk?"
 msgstr "Vuoi davvero cancellare la selezione dal disco?"
 
-#: FMain.class:5537
+#: FMain.class:5977
 msgid "Don't Delete"
 msgstr "Non cancellare"
 
-#: FMain.class:5537 GeneralOptions.class:489 ProfileManager.class:38
+#: FMain.class:5977 GeneralOptions.class:489 ProfileManager.class:38
 msgid "Yes, Delete"
 msgstr "Sì, Cancella"
 
-#: FMain.class:5737
+#: FMain.class:6179
 msgid "All files"
 msgstr "Tutti i file"
 
-#: FMain.class:5737
+#: FMain.class:6179
 msgid "iso files"
 msgstr "file iso"
 
-#: FMain.class:5908
+#: FMain.class:6350
 msgid "There was an error while saving the playlist"
 msgstr "Si è verificato un errore durante il salvataggio della playlist"
 
-#: FMain.class:5983
+#: FMain.class:6425
 msgid "Another cover search is in progress, please wait for it to finish!"
 msgstr "E' già in atto una ricerca, aspetta che finisca!"
 
-#: FMain.class:6055
+#: FMain.class:6497
 msgid "Please, disable random playing first!"
 msgstr "Disabilita la riproduzione casuale, prima!"
 
-#: FMain.class:6251
+#: FMain.class:6696
 msgid "Choose a destination file"
 msgstr "Scegli un file di destinazione"
 
-#: FMain.class:6280
+#: FMain.class:6725
 msgid ""
 "\n"
 "  Would you like to play it now in Xt7-Player?"
@@ -1364,52 +1324,52 @@ msgstr ""
 "\n"
 " Vuoi riprodurlo ora in Xt7-Player?"
 
-#: FMain.class:6280
+#: FMain.class:6725
 msgid "New Flash(tm) video detected: \n"
 msgstr "Rilevato un nuovo video Flash:\n"
 
-#: FMain.class:6284
+#: FMain.class:6729
 msgid "Don't Play"
 msgstr "Non riprodurre"
 
-#: FMain.class:6284
+#: FMain.class:6729
 msgid "Play now"
 msgstr "Riproduci"
 
-#: FMain.class:6315
+#: FMain.class:6760
 msgid "Use vertical tabs"
 msgstr "Usa tab verticali"
 
-#: FMain.class:6331
+#: FMain.class:6776
 msgid "Show"
 msgstr "Mostra"
 
-#: FMain.class:6477
+#: FMain.class:6922
 msgid "You can't delete the current profile!"
 msgstr "Non puoi cancellare il profilo corrente."
 
-#: FMain.class:6480 ProfileManager.class:38
+#: FMain.class:6925 ProfileManager.class:38
 msgid "Are you sure you want to delete "
 msgstr "Vuoi davvero cancellare "
 
-#: FMain.class:6480 FlashClass.class:20 GeneralOptions.class:489
+#: FMain.class:6925 FlashClass.class:20 GeneralOptions.class:489
 #: ProfileManager.class:38
 msgid "Don't delete"
 msgstr "Non cancellare"
 
-#: FMain.class:6486
+#: FMain.class:6931
 msgid "This is a read-only profile"
 msgstr "Questo profilo è di sola lettura."
 
-#: FMain.class:6584
+#: FMain.class:7030
 msgid "Enter the new profile name"
 msgstr "Inserisci il nome del nuovo profilo"
 
-#: FMain.class:6603
+#: FMain.class:7049
 msgid "I know, proceed"
 msgstr "Lo so, procedi"
 
-#: FMain.class:6603
+#: FMain.class:7049
 msgid ""
 "You are going to overwrite the selected profile\n"
 "with the current settings."
@@ -1417,11 +1377,11 @@ msgstr ""
 "Stai per sovrascrivere il profilo selezionato\n"
 "con le impostazioni correnti."
 
-#: FMain.class:6640
+#: FMain.class:7086
 msgid "Enter a name for the new profile:"
 msgstr "Inserisci un nome per il nuovo profilo:"
 
-#: FMain.class:6686
+#: FMain.class:7132
 msgid ""
 "No hotkeys defined for dvd navigation mode\n"
 "Please configure dvdnav hotkeys first."
@@ -1429,75 +1389,75 @@ msgstr ""
 "Nessuna scorciatoia definita per la navigazione dvd \n"
 " Si prega di configurare le scorciatoie (hotkey) prima."
 
-#: FMain.class:6756
+#: FMain.class:7202
 msgid "Error reading from shoutcast server"
 msgstr "Errore durante la lettura dal server shoutcast"
 
-#: FMain.class:6803
+#: FMain.class:7249
 msgid "Add quickly"
 msgstr "Aggiungi velocemente"
 
-#: FMain.class:6803
+#: FMain.class:7249
 msgid "Get Stream info"
 msgstr "Con informazioni sul flusso"
 
-#: FMain.class:6803
+#: FMain.class:7249
 msgid "How do you want to add?"
 msgstr "Come vuoi aggiungere?"
 
-#: FMain.class:6811
+#: FMain.class:7257
 msgid "Damn!"
 msgstr "Dannazione!"
 
-#: FMain.class:6811
+#: FMain.class:7257
 msgid "Error while adding one or more items"
 msgstr "Errore durante l'aggiunta di uno o più elementi"
 
-#: FMain.class:6993
+#: FMain.class:7439
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr "Impossibile accedere al lettore specificato o al cd audio"
 
-#: FMain.class:7022
+#: FMain.class:7468
 msgid "Please, wait while getting disc information"
 msgstr "Prego, attendere mentre recupero le informazioni dal disco"
 
-#: FMain.class:7037 Searchfields.form:97
+#: FMain.class:7483 Searchfields.form:97
 msgid "Track"
 msgstr "Traccia"
 
-#: FMain.class:7048 MplayerClass.class:209
+#: FMain.class:7494 MplayerClass.class:223 MplayerClassNEW.class:223
 msgid "Unknown entry (connection problem?)"
 msgstr "Oggetto sconosciuto (problemi di connessione?)"
 
-#: FMain.class:7058
+#: FMain.class:7504
 msgid "Error, failed to get disc information"
 msgstr "Errore, non posso ottenere informazioni dal disco"
 
-#: FMain.class:7117
+#: FMain.class:7563
 msgid "Error refreshing the feed"
 msgstr "Errore durante l'aggiornamento del feed"
 
-#: FMain.class:7162
+#: FMain.class:7608
 msgid "Enter a new podcast url"
 msgstr "Inserisci la url di un podcast"
 
-#: FMain.class:7166
+#: FMain.class:7612
 msgid "Error adding new feed"
 msgstr "Errore durante l'aggiunta del feed"
 
-#: FMain.class:7196
+#: FMain.class:7642
 msgid "Cannot delete child items!"
 msgstr "Non si può cancellare l'elemento figlio!"
 
-#: FMain.class:7221
+#: FMain.class:7667
 msgid "Error: Cannot get current item"
 msgstr "Errore: Non posso recuperare l'oggetto corrente"
 
-#: FMain.class:7310
+#: FMain.class:7758
 msgid "Please, disable playlist shutdown option first!"
 msgstr "Disabilita l'opzione di spegnimento, prima!"
 
-#: FMain.class:7357
+#: FMain.class:7805
 msgid ""
 "Xt7 will try to find and update embedded covers,\n"
 "Beware that covers explicitely set without album/artist information will be lost."
@@ -1506,7 +1466,7 @@ msgstr ""
 "Nota che le cover impostate esplicitamente per i file senza informazioni su artista/album\n"
 " saranno perse."
 
-#: FMain.class:7526
+#: FMain.class:7975
 msgid ""
 "Are you sure you want to\n"
 "recursively add this directory?"
@@ -1514,23 +1474,23 @@ msgstr ""
 "Sicuro di voler aggiungere\n"
 "ricorsivamente questa cartella?"
 
-#: FMain.class:7615
+#: FMain.class:8067
 msgid "There was an error while trying to delete the item"
 msgstr "Errore durante la rimozione dell'elemento"
 
-#: FMain.class:7780
+#: FMain.class:8232
 msgid "No, thanks"
 msgstr "No, grazie"
 
-#: FMain.class:7780
+#: FMain.class:8232
 msgid "Would you like to go to the video homepage?"
 msgstr "Vuoi aprire la pagina web del video?"
 
-#: FMain.class:7780
+#: FMain.class:8232
 msgid "Yes, Go to Youtube"
 msgstr "Sì, vai su Youtube"
 
-#: FMain.class:8175
+#: FMain.class:8664
 msgid ""
 "Roll Your mouse wheel over the button\n"
 "to change panscan or Setup some hotkeys."
@@ -1538,83 +1498,83 @@ msgstr ""
 "Scorri la rotellina del mouse sul bottone \n"
 "per cambiare il panscan o configura le hotkey."
 
-#: FMain.class:8176
+#: FMain.class:8665
 msgid "Right click over the button will cycle through zoom modes"
 msgstr "Click destro sul bottone per ciclare tra le varie modalità di zoom."
 
-#: FMain.class:8210
+#: FMain.class:8699
 msgid "SubTitle files"
 msgstr "File di sottotitoli"
 
-#: FMain.class:8240
+#: FMain.class:8729
 msgid "Zoom mode: cut half bars"
 msgstr "Modo Zoom: Taglia metà delle barre nere."
 
-#: FMain.class:8243
+#: FMain.class:8732
 msgid "Zoom mode: cut bars"
 msgstr "Modo Zoom: Taglia le barre nere"
 
-#: FMain.class:8247
+#: FMain.class:8736
 msgid "Zoom mode: 1:1"
 msgstr "Modo Zoom: 1:1"
 
-#: FMain.class:8329
+#: FMain.class:8819
 msgid "Filename: "
 msgstr "Nome File:"
 
-#: FMain.class:8330
+#: FMain.class:8820
 msgid "In: "
 msgstr "In:"
 
-#: FMain.class:8336
+#: FMain.class:8826
 msgid "Album: "
 msgstr "Album:"
 
-#: FMain.class:8336
+#: FMain.class:8826
 msgid "Genre: "
 msgstr "Genere:"
 
-#: FMain.class:8336
+#: FMain.class:8826
 msgid "Year: "
 msgstr "Anno:"
 
-#: FMain.class:8339
+#: FMain.class:8829
 msgid "Artist: "
 msgstr "Artista:"
 
-#: FMain.class:8343
+#: FMain.class:8833
 msgid ", Track No.: "
 msgstr ", Traccia numero:"
 
-#: FMain.class:8343
+#: FMain.class:8833
 msgid "Title: "
 msgstr "Titolo:"
 
-#: FMain.class:8345
+#: FMain.class:8835
 msgid "Length: "
 msgstr "Lunghezza;"
 
-#: FMain.class:8353
+#: FMain.class:8843
 msgid "Video: "
 msgstr "Video:"
 
-#: FMain.class:8360
+#: FMain.class:8850
 msgid "Audio: "
 msgstr "Audio:"
 
-#: FMain.class:8360
+#: FMain.class:8850
 msgid "channels"
 msgstr "canali"
 
-#: FMain.class:8362
+#: FMain.class:8852
 msgid "Comment: "
 msgstr "Commento:"
 
-#: FMain.class:8532
+#: FMain.class:9059
 msgid "Rename to:"
 msgstr "Rinomina come:"
 
-#: FMain.class:8569
+#: FMain.class:9097
 msgid ""
 "Moving $(dumpfile) \n"
 "To: \n"
@@ -1624,7 +1584,7 @@ msgstr ""
 "su: \n"
 "$(destfile)"
 
-#: FMain.class:8572
+#: FMain.class:9100
 msgid ""
 "\n"
 "\n"
@@ -1634,459 +1594,463 @@ msgstr ""
 "\n"
 "Puoi configurare i percorsi in Opzioni Generali -> dvb-t"
 
-#: FMain.class:8658
+#: FMain.class:9185
 msgid "Append and play"
 msgstr "Accoda e riproduci"
 
-#: FMain.class:8658
+#: FMain.class:9185
 msgid "Append to playlist"
 msgstr "Accoda alla playlist"
 
-#: FMain.class:8658
+#: FMain.class:9185
 msgid "What do you want to do with this album tracks?"
 msgstr "Cosa vuoi fare con le tracce di quest'album?"
 
-#: FMain.class:8661
+#: FMain.class:9188
 msgid "Append more than 50 tracks?"
 msgstr "Accodare più di 50 tracce?"
 
-#: FMain.class:8661
+#: FMain.class:9188
 msgid "no"
 msgstr "no"
 
-#: FMain.class:8661
+#: FMain.class:9188
 msgid "yes"
 msgstr "sì"
 
-#: FMain.form:360
+#: FMain.form:364
 msgid "Xt7-Player"
 msgstr "Xt7-Player"
 
-#: FMain.form:367 OpenSubtitesForm.form:20 XConfigureAudioDriver.form:316
+#: FMain.form:371 OpenSubtitesForm.form:20 XConfigureAudioDriver.form:316
 msgid "File"
 msgstr "-"
 
-#: FMain.form:371
+#: FMain.form:375
 msgid "Open local file"
 msgstr "Apri un file locale"
 
-#: FMain.form:376
+#: FMain.form:380
 msgid "Open recent file"
 msgstr "Apri un file recente"
 
-#: FMain.form:381
+#: FMain.form:385
 msgid "Play Audio Cd"
 msgstr "Riproduci Cd audio"
 
-#: FMain.form:386
+#: FMain.form:390
 msgid "Play DVD"
 msgstr "Riproduci DVD"
 
-#: FMain.form:390
+#: FMain.form:394
 msgid "From DVD drive"
 msgstr "Da un drive DVD"
 
-#: FMain.form:395
+#: FMain.form:399
 msgid "From an ISO"
 msgstr "Da una ISO"
 
-#: FMain.form:400
+#: FMain.form:404
 msgid "From a folder"
 msgstr "Da una cartella"
 
-#: FMain.form:406
+#: FMain.form:410
 msgid "Open an Uri/Network stream"
 msgstr "Apri una URI/Stream di rete"
 
-#: FMain.form:411
+#: FMain.form:415
 msgid "Media Explorer"
 msgstr "Media Explorer"
 
-#: FMain.form:416
+#: FMain.form:420
 msgid "Titles"
 msgstr "Titoli"
 
-#: FMain.form:421
+#: FMain.form:425
 msgid "Streams"
 msgstr "Flussi"
 
-#: FMain.form:426 GeneralOptions.form:366
+#: FMain.form:430 GeneralOptions.form:375
 msgid "Audio"
 msgstr "Audio"
 
-#: FMain.form:436
+#: FMain.form:440
 msgid "OpenSubtitles.org"
 msgstr "-"
 
-#: FMain.form:447
+#: FMain.form:451
 msgid "Quit"
 msgstr "Esci"
 
-#: FMain.form:454 GeneralOptions.form:480
+#: FMain.form:458 GeneralOptions.form:489
 msgid "Library"
 msgstr "Libreria"
 
-#: FMain.form:457
+#: FMain.form:461
 msgid "Sync library"
 msgstr "Sincronizza la libreria"
 
-#: FMain.form:462
+#: FMain.form:466
 msgid "Configure directories"
 msgstr "Configurazione cartelle"
 
-#: FMain.form:467
+#: FMain.form:471
 msgid "Search options"
 msgstr "Opzioni di ricerca"
 
-#: FMain.form:475
+#: FMain.form:479
 msgid "Add a generic URI..."
 msgstr "Aggiungi una URI generica"
 
-#: FMain.form:481
+#: FMain.form:485
 msgid "Add selected items to playlist"
 msgstr "Aggiungi alla playlist"
 
-#: FMain.form:490
+#: FMain.form:494
 msgid "MenuPopUpLibrary"
 msgstr "-"
 
-#: FMain.form:494
+#: FMain.form:498
 msgid "Open containing folder"
 msgstr "Apri cartella"
 
-#: FMain.form:499
+#: FMain.form:503
 msgid "Sort by"
 msgstr "Ordina per"
 
-#: FMain.form:511
+#: FMain.form:515
 msgid "Path"
 msgstr "Percorso"
 
-#: FMain.form:521
+#: FMain.form:525
+msgid "Rename items"
+msgstr ""
+
+#: FMain.form:530
 msgid "Update Selected"
 msgstr "Aggiorna la selezione"
 
-#: FMain.form:529
+#: FMain.form:538
 msgid "Set a cover"
 msgstr "Imposta una copertina"
 
-#: FMain.form:534
+#: FMain.form:543
 msgid "Search for embedded covers"
 msgstr "Cerca copertine incorporate"
 
-#: FMain.form:542
+#: FMain.form:551
 msgid "Copy selected to Clipboard"
 msgstr "Copia i selezionati nella clipboard"
 
-#: FMain.form:556
+#: FMain.form:565
 msgid "Clear selected"
 msgstr "Azzera la selezione"
 
-#: FMain.form:561
+#: FMain.form:570
 msgid "Clear All"
 msgstr "Azzera tutto"
 
-#: FMain.form:566
+#: FMain.form:575
 msgid "Delete selected from disk"
 msgstr "Cancella la selezione dal disco"
 
-#: FMain.form:573
+#: FMain.form:582
 msgid "Playlist"
 msgstr "Playlist"
 
-#: FMain.form:583
+#: FMain.form:592
 msgid "Load/Save"
 msgstr "Carica/Salva"
 
-#: FMain.form:587
+#: FMain.form:596
 msgid "Import a playlist"
 msgstr "Importa una playlist"
 
-#: FMain.form:592
+#: FMain.form:601
 msgid "Append a playlist"
 msgstr "Accoda una playlist"
 
-#: FMain.form:597
+#: FMain.form:606
 msgid "Export the playlist"
 msgstr "Esporta la playlst"
 
-#: FMain.form:632
+#: FMain.form:646
 msgid "Cut selected"
 msgstr "Taglia i selezionati"
 
-#: FMain.form:637
+#: FMain.form:651
 msgid "Copy selected"
 msgstr "Copia i selezionati"
 
-#: FMain.form:642
+#: FMain.form:656
 msgid "Paste after selected"
 msgstr "Incolla dopo il selezionato"
 
-#: FMain.form:650
+#: FMain.form:664
 msgid "Remove..."
 msgstr "Rimuovi..."
 
-#: FMain.form:672
+#: FMain.form:686
 msgid "Windows"
 msgstr "Finestre"
 
-#: FMain.form:685
+#: FMain.form:699
 msgid "SubTitles and Osd..."
 msgstr "Sottotitoli ed OSD..."
 
-#: FMain.form:690
+#: FMain.form:704
 msgid "Codecs and demuxers"
 msgstr "Codec e demuxer"
 
-#: FMain.form:704
+#: FMain.form:718
 msgid "Video/Audio Chains"
 msgstr "Catena Audio/Video"
 
-#: FMain.form:709 GeneralOptions.form:327
+#: FMain.form:723 GeneralOptions.form:336
 msgid "Video"
 msgstr "Video"
 
-#: FMain.form:713
+#: FMain.form:727
 msgid "General Options..."
 msgstr "Opzioni generali..."
 
-#: FMain.form:718
+#: FMain.form:732
 msgid "Filters..."
 msgstr "Filtri..."
 
-#: FMain.form:724
+#: FMain.form:738
 msgid "Driver..."
 msgstr "Driver..."
 
-#: FMain.form:754
+#: FMain.form:768
 msgid "Tabs visibility"
 msgstr "Visibilità delle tab"
 
-#: FMain.form:758
+#: FMain.form:772
 msgid "Show Tag editor"
 msgstr "Mostra L'editor delle tag"
 
-#: FMain.form:763
+#: FMain.form:777
 msgid "Lock Toolbar"
 msgstr "Blocca la toolbar"
 
-#: FMain.form:772
+#: FMain.form:786
 msgid "Video Aspect"
 msgstr "Aspetto"
 
-#: FMain.form:778
+#: FMain.form:792
 msgid "2.35:1"
 msgstr "-"
 
-#: FMain.form:782
+#: FMain.form:796
 msgid "16:9"
 msgstr "-"
 
-#: FMain.form:786
+#: FMain.form:800
 msgid "16:10"
 msgstr "-"
 
-#: FMain.form:790
+#: FMain.form:804
 msgid "4:3"
 msgstr "-"
 
-#: FMain.form:794
+#: FMain.form:808
 msgid "1:1"
 msgstr "-"
 
-#: FMain.form:798
+#: FMain.form:812
 msgid "Other..."
 msgstr "Altro..."
 
-#: FMain.form:812
+#: FMain.form:826
 msgid "Save all to current profile"
 msgstr "Salva tutte le impostazioni al profilo corrente"
 
-#: FMain.form:817 ProfileManager.form:22
+#: FMain.form:831 ProfileManager.form:22
 msgid "Profile Manager"
 msgstr "Gestore dei profili"
 
-#: FMain.form:826 VideoEqualizer.form:68
+#: FMain.form:840 VideoEqualizer.form:68
 msgid "?"
 msgstr "-"
 
-#: FMain.form:829
+#: FMain.form:843
 msgid "Show logs"
 msgstr "Mostra il log"
 
-#: FMain.form:837
+#: FMain.form:851
 msgid "Report a bug"
 msgstr "Segnala un bug"
 
-#: FMain.form:842
+#: FMain.form:856
 msgid "Home page"
 msgstr "Home page"
 
-#: FMain.form:848
+#: FMain.form:862
 msgid "About"
 msgstr "Informazioni"
 
-#: FMain.form:854
+#: FMain.form:868
 msgid "Shutdown menu"
 msgstr "Menu di spegnimento"
 
-#: FMain.form:859
+#: FMain.form:873
 msgid "Disable shutdown"
 msgstr "Disabilita lo spegnimento"
 
-#: FMain.form:863
+#: FMain.form:877
 msgid "Shutdown at the end of media"
 msgstr "Spegni alla fine del media"
 
-#: FMain.form:867
+#: FMain.form:881
 msgid "ShutDown at the end of playlist"
 msgstr "Spegni al termine della playlist"
 
-#: FMain.form:871
+#: FMain.form:885
 msgid "Configure shutdown command"
 msgstr "Configura il comando di spegnimento"
 
-#: FMain.form:878
+#: FMain.form:892
 msgid "FlashMenu"
 msgstr "-"
 
-#: FMain.form:883
+#: FMain.form:897
 msgid "Record As..."
 msgstr "Registra come..."
 
-#: FMain.form:888
+#: FMain.form:902
 msgid "Stop Recording"
 msgstr "Interrompi la registrazione"
 
-#: FMain.form:894
+#: FMain.form:908
 msgid "Delete from disk"
 msgstr "Cancella dal disco"
 
-#: FMain.form:901
+#: FMain.form:915
 msgid "PodCastMenu"
 msgstr "-"
 
-#: FMain.form:905
+#: FMain.form:919
 msgid "New feed"
 msgstr "Nuovo feed"
 
-#: FMain.form:910 LogWindow.form:132
+#: FMain.form:924 LogWindow.form:132
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: FMain.form:915
+#: FMain.form:929
 msgid "Download"
 msgstr "Scarica"
 
-#: FMain.form:920
+#: FMain.form:934
 msgid "Add selected items to library"
 msgstr "Aggiungi alla libreria"
 
-#: FMain.form:930
+#: FMain.form:944
 msgid "Delete selected"
 msgstr "Cancella la selezione"
 
-#: FMain.form:936
+#: FMain.form:950
 msgid "ShoutCastGridPopUp"
 msgstr "-"
 
-#: FMain.form:951
+#: FMain.form:965
 msgid "ShoutCastTreePopup"
 msgstr "-"
 
-#: FMain.form:966
+#: FMain.form:980
 msgid "YoutubeTreePopup"
 msgstr "-"
 
-#: FMain.form:970
+#: FMain.form:984
 msgid "See more results"
 msgstr "Più risultati"
 
-#: FMain.form:977
+#: FMain.form:991
 msgid "Get related videos"
 msgstr "Recupera i video correlati"
 
-#: FMain.form:1003
+#: FMain.form:1017
 msgid "MenuBrowse"
 msgstr "-"
 
-#: FMain.form:1012
+#: FMain.form:1026
 msgid "Add this folder to history"
 msgstr "Aggiungi alle cartelle recenti"
 
-#: FMain.form:1033
+#: FMain.form:1047
 msgid "MenuDvbt"
 msgstr "-"
 
-#: FMain.form:1037
+#: FMain.form:1051
 msgid "Rename channel(s)"
 msgstr "Rinomina canale/i"
 
-#: FMain.form:1043
+#: FMain.form:1057
 msgid "MenuPopupAlbumView"
 msgstr "-"
 
-#: FMain.form:1069
+#: FMain.form:1083
 msgid "Open an URI/Network stream"
 msgstr "Apri una URI/Stream di rete"
 
-#: FMain.form:1078
+#: FMain.form:1092
 msgid "Show/hide chains window"
 msgstr "Mostra/Nascondi la finestre catene."
 
-#: FMain.form:1087
+#: FMain.form:1101
 msgid "Configuration toolbox"
 msgstr "Accesso veloce alla configurazione"
 
-#: FMain.form:1097
+#: FMain.form:1111
 msgid "Show/Hide AudioTag editor"
 msgstr "Mostra/Nascondi l'editor delle tag audio."
 
-#: FMain.form:1112 VideoEqualizer.form:39
+#: FMain.form:1126 VideoEqualizer.form:39
 msgid "Video Equalizer"
 msgstr "Equalizzatore Video"
 
-#: FMain.form:1130
+#: FMain.form:1144
 msgid "Switch subtitle track"
 msgstr "Cambia traccia sottotitolo"
 
-#: FMain.form:1139
+#: FMain.form:1153
 msgid "Switch audio track"
 msgstr "Cambia traccia audio"
 
-#: FMain.form:1148
+#: FMain.form:1162
 msgid "Other realtime commands"
 msgstr "Altri controlli in real time"
 
-#: FMain.form:1162
+#: FMain.form:1176
 msgid "Hide/show left panel"
 msgstr "Mostra/Nascondi il pannello di sinistra"
 
-#: FMain.form:1171
+#: FMain.form:1185
 msgid "Fullscreen Switch"
 msgstr "Switch Schermo intero"
 
-#: FMain.form:1206
+#: FMain.form:1220
 msgid "Right click to select which tabs to show."
 msgstr "Click destro per selezionare quali tab mostrare"
 
-#: FMain.form:1222
+#: FMain.form:1237
 msgid "Label3"
 msgstr "-"
 
-#: FMain.form:1244
+#: FMain.form:1260
 msgid "Drag'n drop files, folders or media links to add them,"
 msgstr "Trascina file, cartelle o media generici per aggiungerli."
 
-#: FMain.form:1267
+#: FMain.form:1299
 msgid "Albums"
 msgstr "Album"
 
-#: FMain.form:1313
+#: FMain.form:1348
 msgid "Drag'n drop files or media links to add them,"
 msgstr "Trascina file o media generici per aggiungerli."
 
-#: FMain.form:1337
+#: FMain.form:1372
 msgid ""
 "Move selected items up in the list.\n"
 "You can use the mouse wheel too."
@@ -2094,7 +2058,7 @@ msgstr ""
 "Sposta la selezione nella lista.\n"
 "Puoi usare anche la rotellina del mouse."
 
-#: FMain.form:1343
+#: FMain.form:1378
 msgid ""
 "Move selected playlist items down.\n"
 "You can use the mouse wheel too."
@@ -2102,416 +2066,481 @@ msgstr ""
 "Sposta la selezione nella lista.\n"
 "Puoi usare anche la rotellina del mouse."
 
-#: FMain.form:1357
+#: FMain.form:1385
+msgid "Selection play time"
+msgstr ""
+
+#: FMain.form:1393
 msgid "Browse"
 msgstr "Esplora"
 
-#: FMain.form:1376
+#: FMain.form:1412
 msgid "Parent"
 msgstr "Su"
 
-#: FMain.form:1388
+#: FMain.form:1424
 msgid "Home Folder"
 msgstr "Cartella Home"
 
-#: FMain.form:1395
+#: FMain.form:1430
+msgid "Enter a path to browse it"
+msgstr ""
+
+#: FMain.form:1432
 msgid "/"
 msgstr "-"
 
-#: FMain.form:1404
+#: FMain.form:1441
 msgid "Show detailed list"
 msgstr "Mostra i dettagli nella lista"
 
-#: FMain.form:1410
+#: FMain.form:1447
 msgid "Show icons"
 msgstr "Mostra le icone"
 
-#: FMain.form:1416
+#: FMain.form:1453
 msgid "Show/Hide hidden files"
 msgstr "Mostra/nascondi i file nascosti"
 
-#: FMain.form:1456
+#: FMain.form:1493
 msgid "Double Click for Search Options."
 msgstr "Doppio click per le opzioni di ricerca."
 
-#: FMain.form:1458
+#: FMain.form:1495
 msgid "Filter"
 msgstr "Filtro"
 
-#: FMain.form:1463
+#: FMain.form:1500
 msgid ""
 "Enter some search terms.\n"
 "Special character \"|\" means \"OR\",\n"
 "so you can type: Bach|Mozart "
 msgstr "Inserisci qualche termine di ricerca, il carattere speciale \"|\" significa \"Oppure\",quindi tu puoi scrivere: Bach|Mozart"
 
-#: FMain.form:1488
+#: FMain.form:1515
+msgid "Double click on an item to start playing"
+msgstr ""
+
+#: FMain.form:1527
+msgid "Start simple dvb tuner"
+msgstr ""
+
+#: FMain.form:1528
 msgid "Scan for channels"
 msgstr "Sintonizza i canali"
 
-#: FMain.form:1492 GeneralOptions.form:721
+#: FMain.form:1532 GeneralOptions.form:735
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: FMain.form:1518 GeneralOptions.form:798
+#: FMain.form:1559 GeneralOptions.form:812
 msgid "DVD"
 msgstr "DVD"
 
-#: FMain.form:1530
+#: FMain.form:1571
+msgid ""
+"Switch to navigation mode.\n"
+"(mplayer needs to be compiled with dvdnav support)"
+msgstr ""
+
+#: FMain.form:1572
 msgid "DVD menu navigation mode"
 msgstr "Modalità navigazione DVD"
 
-#: FMain.form:1539
+#: FMain.form:1581
 msgid "Flash"
 msgstr "Flash"
 
-#: FMain.form:1574
+#: FMain.form:1604
+msgid ""
+"This list will be populated by temporary flash files\n"
+"when you play them into a web browser."
+msgstr ""
+
+#: FMain.form:1616
 msgid "Show flash videos in /tmp folder in the upper list, allowing you to play them."
 msgstr "Mostra nella lista sopra i video flash (dalla catella /tmp ) permettendone la riproduzione"
 
-#: FMain.form:1575
+#: FMain.form:1617
 msgid "Catch Flash videos in /tmp folder"
 msgstr "Intercetta video flash nella cartella /tmp"
 
-#: FMain.form:1580
+#: FMain.form:1622
 msgid ""
 "When a new flash video is detected, shows a PopUp window.\n"
 "It may be necessary to disable focus stealing prevention in your window manager."
-msgstr "Quando un unovo video flash è rilevato, mostra una finestra PopUp.NB: Può essere necessario disabilitare il livello di prevenzione del focusdal tuo window manager."
+msgstr ""
+"Quando un unovo video flash è rilevato, mostra una finestra PopUp.\n"
+"NB: Può essere necessario disabilitare il livello di prevenzione del focus\n"
+"dal tuo window manager."
 
-#: FMain.form:1581
+#: FMain.form:1623
 msgid "PopUp window to play new catched videos"
 msgstr "Mostra un PopUp per riprodurre i video intercettati"
 
-#: FMain.form:1584
+#: FMain.form:1626
 msgid "YouTube"
 msgstr "-"
 
-#: FMain.form:1608
+#: FMain.form:1650
 msgid "Click to open video page"
 msgstr "Clicca per aprire la pagina del video"
 
-#: FMain.form:1629
+#: FMain.form:1671
 msgid "Show advanced search options"
 msgstr "Mostra le opzioni di ricerca avanzate"
 
-#: FMain.form:1639
+#: FMain.form:1681
 msgid "Show youtube video information"
 msgstr "Mostra informazioni sul video youtube"
 
-#: FMain.form:1646
+#: FMain.form:1688
 msgid "Search"
 msgstr "Cerca"
 
-#: FMain.form:1658
+#: FMain.form:1700
 msgid "Results"
 msgstr "Risultati"
 
-#: FMain.form:1670
+#: FMain.form:1705
+msgid "How many results to get."
+msgstr ""
+
+#: FMain.form:1713
 msgid "Search now"
 msgstr "Cerca ora"
 
-#: FMain.form:1671
+#: FMain.form:1714
 msgid ">>"
 msgstr "-"
 
-#: FMain.form:1687
+#: FMain.form:1730
 msgid "only valid for searches"
 msgstr "Valido solo per le ricerche"
 
-#: FMain.form:1693
+#: FMain.form:1736
 msgid "Order by"
 msgstr "Ordina per"
 
-#: FMain.form:1699
+#: FMain.form:1742
 msgid "published"
 msgstr "-"
 
-#: FMain.form:1699
+#: FMain.form:1742
 msgid "rating"
 msgstr "-"
 
-#: FMain.form:1699
+#: FMain.form:1742
 msgid "relevance"
 msgstr "-"
 
-#: FMain.form:1699
+#: FMain.form:1742
 msgid "viewCount"
 msgstr "-"
 
-#: FMain.form:1711
+#: FMain.form:1754
 msgid "Only valid for standard feeds"
 msgstr "Valido soltanto per i flussi standard"
 
-#: FMain.form:1717
+#: FMain.form:1760
 msgid "Region"
 msgstr "Luogo"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Any: "
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Argentina:AR"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Australia:AU"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Brazil:BR"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Canada:CA"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Czec Republic:CZ"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "France:FR"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Germany:DE"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Great Britain:BG"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Hong Kong:HK"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "India:IN"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Ireland:IE"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Israel:IL"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Italy:IT"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Japan:JP"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Mexico:MX"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Netherlands:NL"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "New Zeland:NZ"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Poland:PL"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Russia:RU"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "South Africa:ZA"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "South Korea:KR"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Spain:ES"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Sweden:SE"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "Taiwan:TW"
 msgstr "-"
 
-#: FMain.form:1723
+#: FMain.form:1766
 msgid "United States:US"
 msgstr "-"
 
-#: FMain.form:1724
+#: FMain.form:1767
 msgid "Any:"
 msgstr "-"
 
-#: FMain.form:1741
+#: FMain.form:1784
 msgid "Time"
 msgstr "Tempo"
 
-#: FMain.form:1748
+#: FMain.form:1791
 msgid "all_time"
 msgstr "-"
 
-#: FMain.form:1748
+#: FMain.form:1791
 msgid "this_month"
 msgstr "-"
 
-#: FMain.form:1748
+#: FMain.form:1791
 msgid "this_week"
 msgstr "-"
 
-#: FMain.form:1748
+#: FMain.form:1791
 msgid "today"
 msgstr "-"
 
-#: FMain.form:1766
+#: FMain.form:1809
 msgid "Uploader"
 msgstr "Uploader"
 
-#: FMain.form:1780
+#: FMain.form:1823
 msgid "ShoutCast"
 msgstr "-"
 
-#: FMain.form:1801
+#: FMain.form:1844
+msgid "Get an updated genres list from shoutcast server"
+msgstr ""
+
+#: FMain.form:1845
 msgid "Refresh Genres list"
 msgstr "Aggiorna la lista dei generi"
 
-#: FMain.form:1822
+#: FMain.form:1867
 msgid "ShoutCast Radio search results:"
 msgstr "Risultati della ricerca radio Shoutcast:"
 
-#: FMain.form:1844
+#: FMain.form:1889
 msgid "HighLight"
 msgstr "Evidenzia"
 
-#: FMain.form:1881
+#: FMain.form:1894
+msgid "Highlight the results"
+msgstr ""
+
+#: FMain.form:1922
+msgid "Free serch by content"
+msgstr ""
+
+#: FMain.form:1928
 msgid "Podcasts"
 msgstr "Podcast"
 
-#: FMain.form:1900
+#: FMain.form:1947
+msgid "Refresh podcasts info"
+msgstr ""
+
+#: FMain.form:1948
 msgid "Refresh All"
 msgstr "Aggiorna tutto"
 
-#: FMain.form:1910
+#: FMain.form:1954
+msgid "Manually enter a new podcast URL"
+msgstr ""
+
+#: FMain.form:1959
 msgid "Media Info"
 msgstr "Media Info"
 
-#: FMain.form:1934
+#: FMain.form:1978
+msgid ""
+"Info on playing media\n"
+"or on the last played one"
+msgstr ""
+
+#: FMain.form:1984
 msgid "Profiles"
 msgstr "Profili"
 
-#: FMain.form:1947 ProfileManager.class:69
+#: FMain.form:1997 ProfileManager.class:69
 msgid "Current profile: "
 msgstr "Profilo corrente:"
 
-#: FMain.form:1962
+#: FMain.form:2002
+msgid "Choose a profile from the list"
+msgstr ""
+
+#: FMain.form:2013
 msgid "Load the selected profile"
 msgstr "Carica il profilo selezionato"
 
-#: FMain.form:1964
+#: FMain.form:2015
 msgid "Load"
 msgstr "Carica"
 
-#: FMain.form:1970
+#: FMain.form:2021
 msgid "Save the settings to the selected profile"
 msgstr "Salva le impostazioni correnti nel profilo selezionato"
 
-#: FMain.form:1983
+#: FMain.form:2034
 msgid "Rename the selected profile"
 msgstr "Rinomina il profilo selezionato"
 
-#: FMain.form:1985
+#: FMain.form:2036
 msgid "Rename"
 msgstr "Rinomina"
 
-#: FMain.form:1991
+#: FMain.form:2042
 msgid "Save the current settings to a new profile"
 msgstr "Salva le impostazioni correnti in un nuovo profilo"
 
-#: FMain.form:1993
+#: FMain.form:2044
 msgid "Save As"
 msgstr "Salva come"
 
-#: FMain.form:2004
+#: FMain.form:2055
 msgid "Delete the selected profile"
 msgstr "Cancella il profilo selezionato"
 
-#: FMain.form:2006 FlashClass.class:20
+#: FMain.form:2057 FlashClass.class:20
 msgid "Delete"
 msgstr "Cancella"
 
-#: FMain.form:2012
+#: FMain.form:2063
 msgid "Make a new blank profile"
 msgstr "Crea un nuovo profilo vergine"
 
-#: FMain.form:2014
+#: FMain.form:2065
 msgid "Make new"
 msgstr "Crea nuovo"
 
-#: FMain.form:2031
+#: FMain.form:2082
 msgid "Show and select the possible search fields"
 msgstr "Mostra e seleziona i campi di ricerca possibili"
 
-#: FMain.form:2033
+#: FMain.form:2084
 msgid "Fields"
 msgstr "Campi"
 
-#: FMain.form:2058
+#: FMain.form:2109
 msgid "Play random media when the previous reaches the end."
 msgstr "Seleziona il prossimo brano casualmente"
 
-#: FMain.form:2065
+#: FMain.form:2116
 msgid "Show media info when hovering a list item."
 msgstr "Mostra le informazioni sul media al passaggio del mouse"
 
-#: FMain.form:2074
+#: FMain.form:2125
 msgid "Play next media as the previous reaches the end."
 msgstr "Avanza automaticamente"
 
-#: FMain.form:2107
+#: FMain.form:2158
 msgid "Tag Editor"
 msgstr "Editor delle Tag"
 
-#: FMain.form:2220 Searchfields.form:82
+#: FMain.form:2271 Searchfields.form:82
 msgid "Genre"
 msgstr "Genere"
 
-#: FMain.form:2242
+#: FMain.form:2293
 msgid "Track No."
 msgstr "Traccia No."
 
-#: FMain.form:2298
+#: FMain.form:2349
 msgid "Select next"
 msgstr "Seleziona il prossimo"
 
-#: FMain.form:2314
+#: FMain.form:2365
 msgid "Commit"
 msgstr "Applica"
 
-#: FMain.form:2369
+#: FMain.form:2420
 msgid "Open a file..."
 msgstr "Apri un file..."
 
-#: FMain.form:2376
+#: FMain.form:2427
 msgid "Previous media"
 msgstr "Media precedente"
 
-#: FMain.form:2383
+#: FMain.form:2434
 msgid "Slowdown"
 msgstr "Rallenta"
 
-#: FMain.form:2391
+#: FMain.form:2442
 msgid ""
 "Capture the playing stream.\n"
 "It will work only you are playing mpeg files."
@@ -2519,19 +2548,19 @@ msgstr ""
 "Cattura il flusso in riproduzione.\n"
 "Funzionerà solo con file mpeg."
 
-#: FMain.form:2399
+#: FMain.form:2450
 msgid "Play/pause"
 msgstr "Play/Pausa"
 
-#: FMain.form:2414
+#: FMain.form:2465
 msgid "Speedup"
 msgstr "Velocizza"
 
-#: FMain.form:2421
+#: FMain.form:2472
 msgid "Next media"
 msgstr "Prossimo media"
 
-#: FMain.form:2428
+#: FMain.form:2479
 msgid ""
 "Hover the mouse over this button then\n"
 "* Zoom the video with mouse wheel.\n"
@@ -3003,21 +3032,21 @@ msgstr ""
 msgid "Are you sure you want to delete selected items?"
 msgstr "Sei sicuro di voler cancellare gli oggetti selezionati?"
 
-#: GeneralOptions.form:273
+#: GeneralOptions.form:282
 msgid "General options"
 msgstr "Opzioni generali"
 
-#: GeneralOptions.form:340
+#: GeneralOptions.form:349
 msgid ""
 "If you zoomed-in a video, this will allow you to pan it with mouse-drag operation.\n"
 "Works in full-screen mode only."
 msgstr "Se hai ingrandito un video, questo te ne permette il pan tramite il trascinamento."
 
-#: GeneralOptions.form:347
+#: GeneralOptions.form:356
 msgid "Allow video panning via mouse-drag"
 msgstr "Consenti il panning del video tramite mouse"
 
-#: GeneralOptions.form:353
+#: GeneralOptions.form:362
 msgid ""
 "If your video card doesn't support brightness, gamma, contrast or hue settings,\n"
 "you may want to try this (slower method) for video equalizer to work properly.\n"
@@ -3029,43 +3058,43 @@ msgstr ""
 "NB:questa impostazione NON va in conflitto con eventuali configurazioni dei filtri hue ed eq2 \n"
 " impostate esplicitamente nella catena dei filtri video."
 
-#: GeneralOptions.form:360
+#: GeneralOptions.form:369
 msgid "Auto add eq2 and hue filters to video chain"
 msgstr "Aggiungi automaticamente i filtri eq2 ed hue alla catena video"
 
-#: GeneralOptions.form:393
+#: GeneralOptions.form:402
 msgid "Show Vmeters"
 msgstr "Mostra i Vmeter"
 
-#: GeneralOptions.form:399
+#: GeneralOptions.form:408
 msgid "If not maximized, the gui size will be at most the value you specify here."
 msgstr "Se non massimizzata, l'interfaccia sarà al più grande quanto qui specificato."
 
-#: GeneralOptions.form:406
+#: GeneralOptions.form:415
 msgid "Audio Latency"
 msgstr "Latenza audio"
 
-#: GeneralOptions.form:419
+#: GeneralOptions.form:428
 msgid "ms"
 msgstr "-"
 
-#: GeneralOptions.form:432
+#: GeneralOptions.form:441
 msgid "Update Vmeters at"
 msgstr "Aggiorna i Vmeter a "
 
-#: GeneralOptions.form:446
+#: GeneralOptions.form:455
 msgid "fps"
 msgstr "-"
 
-#: GeneralOptions.form:459
+#: GeneralOptions.form:468
 msgid "Rms window size"
 msgstr "Ampiezza della finestre Rms"
 
-#: GeneralOptions.form:474
+#: GeneralOptions.form:483
 msgid "samples"
 msgstr "Campioni"
 
-#: GeneralOptions.form:493
+#: GeneralOptions.form:503
 msgid ""
 "Specify what additional file extensions are allowed in playlist and library.\n"
 "Ex: mov,dts,h264"
@@ -3073,11 +3102,11 @@ msgstr ""
 "Specifica estensioni addizionali riconosciute per playlist e libreria.\n"
 "Es: \"mov,dts,h264\""
 
-#: GeneralOptions.form:499
+#: GeneralOptions.form:509
 msgid "Other known extensions"
 msgstr "Altre estensioni conosciute"
 
-#: GeneralOptions.form:510
+#: GeneralOptions.form:520
 msgid ""
 "Directories specified here are recursively added to the playlist\n"
 "when you commit a playlist update.\n"
@@ -3087,19 +3116,19 @@ msgstr ""
 " quando impartisci una sincronizzazione.\n"
 "Usa i pulsanti o il drag'n drop."
 
-#: GeneralOptions.form:518
+#: GeneralOptions.form:528
 msgid "Watched Directories"
 msgstr "Directory controllate"
 
-#: GeneralOptions.form:541
+#: GeneralOptions.form:551
 msgid "Del"
 msgstr "Rimuovi"
 
-#: GeneralOptions.form:552
+#: GeneralOptions.form:562
 msgid "Sync Now"
 msgstr "Sincronizza ora"
 
-#: GeneralOptions.form:560
+#: GeneralOptions.form:570
 msgid ""
 "Directories specified here will excluded\n"
 "when you commit a playlist update.\n"
@@ -3109,19 +3138,19 @@ msgstr ""
 " quando impartisci una sincronizzazione.\n"
 "Usa i pulsanti o il drag'n drop."
 
-#: GeneralOptions.form:568
+#: GeneralOptions.form:578
 msgid "Excluded Directories"
 msgstr "Directory escluse"
 
-#: GeneralOptions.form:602
+#: GeneralOptions.form:612
 msgid "Exclude Now"
 msgstr "Escludi ora"
 
-#: GeneralOptions.form:609
+#: GeneralOptions.form:623
 msgid "Tweaks"
 msgstr "Trucchi"
 
-#: GeneralOptions.form:622
+#: GeneralOptions.form:636
 msgid ""
 "Player nice level.\n"
 "The lower the value, the higher the priority\n"
@@ -3131,19 +3160,19 @@ msgstr ""
 " Più basso è, maggiore sarà la priorità\n"
 "che avrà nei confronti degli altri processi."
 
-#: GeneralOptions.form:628
+#: GeneralOptions.form:642
 msgid "Xt7 Player nice level"
 msgstr "Livello nice di Xt7Player"
 
-#: GeneralOptions.form:641
+#: GeneralOptions.form:655
 msgid "(The lower, the 'faster')"
 msgstr "(Più è basso, più è 'veloce')"
 
-#: GeneralOptions.form:659
+#: GeneralOptions.form:673
 msgid "Local file cache size (KB)"
 msgstr "Cache per i file locali (KB)"
 
-#: GeneralOptions.form:672
+#: GeneralOptions.form:686
 msgid ""
 "The playback will start as soon as the cache has been filled enough.\n"
 "Mplayer option: -cache-min"
@@ -3151,15 +3180,15 @@ msgstr ""
 "La riproduzione partità appena la cache sarà riempita abbastanza.\n"
 "Opzione mplayer: -cache-min"
 
-#: GeneralOptions.form:684
+#: GeneralOptions.form:698
 msgid "Start playback after filling"
 msgstr "Comincia la riproduzione dopo il riempimento di"
 
-#: GeneralOptions.form:698
+#: GeneralOptions.form:712
 msgid "% of total cache size"
 msgstr "% della cache totale"
 
-#: GeneralOptions.form:714
+#: GeneralOptions.form:728
 msgid ""
 "Use dbus (need dbus-send command) to disable kwin effects\n"
 "and avoid glitches in fullscreen mode."
@@ -3167,27 +3196,27 @@ msgstr ""
 "Usa dbus (necessita del comando dbus-send) per sospendere gli effetti di kwin.\n"
 "Scongiurando artefatti in modo schermo intero"
 
-#: GeneralOptions.form:716
+#: GeneralOptions.form:730
 msgid "Disable Kde Effects in fullscreen mode"
 msgstr "Disattiva gli effetti kde in modalità schermo intero"
 
-#: GeneralOptions.form:734
+#: GeneralOptions.form:748
 msgid "Select your CD device (es /dev/dvd, /dev/cdrom, /dev/sr2...)."
 msgstr "Seleziona il tuo dispositivo CD (ed /dev/dvd,/dev/cdrom,/dev/sr2...)."
 
-#: GeneralOptions.form:740
+#: GeneralOptions.form:754
 msgid "Audio CD Device"
 msgstr "Dispositivo Audio CD"
 
-#: GeneralOptions.form:746
+#: GeneralOptions.form:760
 msgid "Please, choose"
 msgstr "Prego, scegli"
 
-#: GeneralOptions.form:768
+#: GeneralOptions.form:782
 msgid "CD Cache size (KB)"
 msgstr "Cache per i CD (KB)"
 
-#: GeneralOptions.form:781
+#: GeneralOptions.form:795
 msgid ""
 "Fetch CD Audio information from internet through cddb protocol.\n"
 "Note that this may slow down or even hangs the play the very first time."
@@ -3195,27 +3224,27 @@ msgstr ""
 "Recupera le informazione sul CD Audio da internet tramite il protocollo CDDB.\n"
 "Ciò potrebbe rallentare o bloccare la riproduzione, ma solo la prima volta."
 
-#: GeneralOptions.form:793
+#: GeneralOptions.form:807
 msgid "Use CDDB"
 msgstr "Usa CDDB"
 
-#: GeneralOptions.form:811
+#: GeneralOptions.form:825
 msgid "Select your Dvd device (es /dev/dvd, /dev/cdrom, /dev/sr2...)."
 msgstr "Seleziona il tuo dispositivo dvd (exempio /dev/dvd, /dev/cdrom, /dev/sr2...)"
 
-#: GeneralOptions.form:817
+#: GeneralOptions.form:831
 msgid "DVD Device"
 msgstr "Dispositivo DVD"
 
-#: GeneralOptions.form:846
+#: GeneralOptions.form:860
 msgid "Dvd Cache size (KB)"
 msgstr "Dimensione cache DVD (KB)"
 
-#: GeneralOptions.form:890
+#: GeneralOptions.form:904
 msgid "Network"
 msgstr "Rete"
 
-#: GeneralOptions.form:903
+#: GeneralOptions.form:917
 msgid ""
 "Maximum cache size.\n"
 "Mplayer option: -cache "
@@ -3223,11 +3252,11 @@ msgstr ""
 "Cache massima.\n"
 "Opzione mplayer: -cache"
 
-#: GeneralOptions.form:915
+#: GeneralOptions.form:929
 msgid "Net Cache size (KB)"
 msgstr "Cache per la rete (KB)"
 
-#: GeneralOptions.form:960
+#: GeneralOptions.form:974
 msgid ""
 "HINT: For youtube, enable this option and set 0.\n"
 "--\n"
@@ -3241,15 +3270,15 @@ msgstr ""
 "MPlayer  attenderà  il  riempimento  della  cache  stessa  fino  a  quella\n"
 "posizione invece di effettuare la ricerca sul flusso (default: 50)."
 
-#: GeneralOptions.form:973
+#: GeneralOptions.form:987
 msgid "Minimum seek cache size"
 msgstr "Dimensione minima della cache per i seek"
 
-#: GeneralOptions.form:985
+#: GeneralOptions.form:999
 msgid "% of total cache size "
 msgstr "% della cache totale"
 
-#: GeneralOptions.form:995
+#: GeneralOptions.form:1009
 msgid ""
 "Skip parsing media tags on network streams: \n"
 "use it to add network media to library/playlist faster.\n"
@@ -3263,11 +3292,11 @@ msgstr ""
 "mms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\n"
 "ftp:// ; udp:// ; smb:// ; mpst:// ; unsv://"
 
-#: GeneralOptions.form:1001
+#: GeneralOptions.form:1015
 msgid "Skip tags on network streams."
 msgstr "Non leggere le tag dalla rete."
 
-#: GeneralOptions.form:1008
+#: GeneralOptions.form:1022
 msgid ""
 "Use a proxy for http connections.\n"
 "Eg: http://myproxy.mynetwork:myport\n"
@@ -3277,11 +3306,11 @@ msgstr ""
 "Per esempio: http://mioproxy.miarete:miaporta \n"
 "L'autenticazione con il proxy non è (ancora?) supportata da mplayer."
 
-#: GeneralOptions.form:1014
+#: GeneralOptions.form:1028
 msgid "Http proxy"
 msgstr "-"
 
-#: GeneralOptions.form:1030
+#: GeneralOptions.form:1044
 msgid ""
 "When playing youtube videos, \n"
 "prefer this format if available."
@@ -3289,27 +3318,27 @@ msgstr ""
 "Preferisci (se disponibile) questo formato\n"
 "per i flussi youtube."
 
-#: GeneralOptions.form:1037
+#: GeneralOptions.form:1051
 msgid "Preferred youtube resolution"
 msgstr "Risoluzione preferita per Youtube"
 
-#: GeneralOptions.form:1043
+#: GeneralOptions.form:1057
 msgid "1080p"
 msgstr "-"
 
-#: GeneralOptions.form:1043
+#: GeneralOptions.form:1057
 msgid "360p"
 msgstr "-"
 
-#: GeneralOptions.form:1043
+#: GeneralOptions.form:1057
 msgid "480p"
 msgstr "-"
 
-#: GeneralOptions.form:1043
+#: GeneralOptions.form:1057
 msgid "720p"
 msgstr "-"
 
-#: GeneralOptions.form:1050
+#: GeneralOptions.form:1064
 msgid ""
 "Choose how to download network streams\n"
 "such as youtube video and podcasts.\n"
@@ -3324,31 +3353,31 @@ msgid ""
 "Note then kioclient and kfmclient do not work with youtubeì streams."
 msgstr "Scegli come scaricare i flussi di rete come i video youtube o i podcast.kde4 - scegli kioclient;kde3 - scegli kfmclientSe vuoi specificare un download personalizzato,ricorda che %url è il flusso da scaricare%destdir è la directory di destinazione%destfile è il nome del file destinazione senza il percorso.Nota che kioclient e kfmclient non funzionano per youtube."
 
-#: GeneralOptions.form:1057
+#: GeneralOptions.form:1071
 msgid "Download with"
 msgstr "Scarica con"
 
-#: GeneralOptions.form:1063
+#: GeneralOptions.form:1077
 msgid "Write your own: %url=source %destdir=destination dir %destfile=destination file"
 msgstr "Scrivi il tuo: %url=sorgente %destdir=cartella destinazione %destfile=file di destinazione"
 
-#: GeneralOptions.form:1063
+#: GeneralOptions.form:1077
 msgid "kfmclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: GeneralOptions.form:1063
+#: GeneralOptions.form:1077
 msgid "kioclient copy %url %destdir/%destfile"
 msgstr "-"
 
-#: GeneralOptions.form:1063
+#: GeneralOptions.form:1077
 msgid "xterm -e aria2c -c -x 3 -k 10M -s 3 %url -d %destdir -o %destfile"
 msgstr "-"
 
-#: GeneralOptions.form:1063
+#: GeneralOptions.form:1077
 msgid "xterm -e wget %url -O %destdir/%destfile"
 msgstr "-"
 
-#: GeneralOptions.form:1078
+#: GeneralOptions.form:1092
 msgid ""
 "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\n"
 "stream you want MPlayer to search for the desired audio and video IDs.\n"
@@ -3358,7 +3387,7 @@ msgstr ""
 "in cerca di sottoflussi audio/video.\n"
 "Opzione mplayer: -tsprobe <byte position>"
 
-#: GeneralOptions.form:1087
+#: GeneralOptions.form:1101
 msgid ""
 "Select your audiotag executable.\n"
 "Just write 'audiotag' for default."
@@ -3366,11 +3395,11 @@ msgstr ""
 "Selezione l'eseguibile audiotag.\n"
 "Scrivi semplicemente 'audiotag' per il predefinito."
 
-#: GeneralOptions.form:1093
+#: GeneralOptions.form:1107
 msgid "scan executable"
 msgstr "exeguibile scan"
 
-#: GeneralOptions.form:1098
+#: GeneralOptions.form:1112
 msgid ""
 "Select your 'scan' executable.\n"
 "Just write 'scan' for default."
@@ -3378,15 +3407,15 @@ msgstr ""
 "Localizza l'eseguibile 'scan'.\n"
 "O scrivi semplicemente 'scan'."
 
-#: GeneralOptions.form:1100
+#: GeneralOptions.form:1114
 msgid "scan"
 msgstr "-"
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "femon executable"
 msgstr "Eseguibile femon"
 
-#: GeneralOptions.form:1122
+#: GeneralOptions.form:1136
 msgid ""
 "Select your femon executable.\n"
 "Just write 'femon' for default."
@@ -3394,27 +3423,27 @@ msgstr ""
 "Localizza l'eseguibile 'femon'.\n"
 "O scrivi semplicemente 'femon'."
 
-#: GeneralOptions.form:1124
+#: GeneralOptions.form:1138
 msgid "femon"
 msgstr "-"
 
-#: GeneralOptions.form:1135
+#: GeneralOptions.form:1149
 msgid "Temporary recording folder"
 msgstr "Directory temporanea per le registrazioni"
 
-#: GeneralOptions.form:1148
+#: GeneralOptions.form:1162
 msgid "/tmp/"
 msgstr "-"
 
-#: GeneralOptions.form:1165
+#: GeneralOptions.form:1179
 msgid "Final recording folder"
 msgstr "Directory finale per le registrazioni"
 
-#: GeneralOptions.form:1198
+#: GeneralOptions.form:1212
 msgid "DVB-T Cache size (KB)"
 msgstr "Dimensione della cache per DVB-T (KB)"
 
-#: GeneralOptions.form:1243
+#: GeneralOptions.form:1257
 msgid ""
 "It you have more than a dvb card,\n"
 "you can specify one here.\n"
@@ -3424,7 +3453,7 @@ msgstr ""
 "puoi specificarne una qui.\n"
 "Opzione mplayer: -dvbin card=#"
 
-#: GeneralOptions.form:1261
+#: GeneralOptions.form:1275
 msgid ""
 "How much seconds to wait for the channel to be tuned.\n"
 "mplayer option: -dvbin timeout=#\n"
@@ -3432,11 +3461,11 @@ msgstr ""
 "Quanti secondi attendere per per la sintonizzazione del canale.\n"
 "Opzione mplayer: -dvbin timeout=#\n"
 
-#: GeneralOptions.form:1267
+#: GeneralOptions.form:1281
 msgid "Tuner Timeout"
 msgstr "Timeout di sintonizzazione"
 
-#: GeneralOptions.form:1280
+#: GeneralOptions.form:1294
 msgid ""
 "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\n"
 "stream you want MPlayer to search for the desired audio and video IDs.\n"
@@ -3447,51 +3476,51 @@ msgstr ""
 "in cerca di sottoflussi audio/video.\n"
 "Opzione mplayer: -tsprobe <byte position>\n"
 
-#: GeneralOptions.form:1286
+#: GeneralOptions.form:1300
 msgid "tsprobe"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "1024000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "128000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "2048000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "256000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "4096000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "512000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "64000"
 msgstr "-"
 
-#: GeneralOptions.form:1292
+#: GeneralOptions.form:1306
 msgid "8192000"
 msgstr "-"
 
-#: GeneralOptions.form:1303
+#: GeneralOptions.form:1317
 msgid "Rescan Channels with simple DVB-T Tuner"
 msgstr "Risintonizza i canali con DVB-T Tuner"
 
-#: GeneralOptions.form:1321
+#: GeneralOptions.form:1335
 msgid "Preferred Audio languages:"
 msgstr "Lingue audio preferite:"
 
-#: GeneralOptions.form:1326
+#: GeneralOptions.form:1340
 msgid ""
 "Add the selected language to the list of preferred languages.\n"
 "Mplayer Option:\n"
@@ -3501,251 +3530,251 @@ msgstr ""
 " Opzione mplayer: \n"
 " -alang \"Lista lingue\""
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "alb,sq,(Albanian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ara,ar,(Arabic)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "arm,hy,(Armenian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "baq,eu,(Basque)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ben,bn,(Bengali)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "bos,bs,(Bosnian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "bre,br,(Breton)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "bul,bg,(Bulgarian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "cat,ca,(Catalan)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "cze,cs,(Czech)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "dan,da,(Danish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "de,ger,deu (german)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ell,el,(Greek)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "en,eng (english)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "epo,eo,(Esperanto)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "es,spa (spanish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "est,et,(Estonian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "fi,fin (finnish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "fr,fre (french)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "geo,ka,(Georgian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "glg,gl,(Galician)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "heb,he,(Hebrew)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "hin,hi,(Hindi)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "hrv,hr,(Croatian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "hun,hu,(Hungarian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ice,is,(Icelandic)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ind,id,(Indonesian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "it,ita (italian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "ja,jpn (japanese)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "kaz,kk,(Kazakh)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "kor,ko,(Korean)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "lav,lv,(Latvian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "lit,lt,(Lithuanian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ltz,lb,(Luxembourgish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "mac,mk,(Macedonian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "may,ms,(Malay)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "nl,dut,nld (dutch,flemish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "no,nor (norwegian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "oci,oc,(Occitan)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "per,fa,(Farsi)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "pob,pb,(Portuguese-BR)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "pol,pl,(Polish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "pt,por (portuguese)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "ru,rus (russian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "rum,ro,(Romanian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "scc,sr,(Serbian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "sin,si,(Sinhalese)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "slo,sk,(Slovak)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "slv,sl,(Slovenian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "sv,swe (swedish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "syr,sy,(Syriac)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "tgl,tl,(Tagalog)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "tha,th,(Thai)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "tur,tr,(Turkish)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "ukr,uk,(Ukrainian)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "urd,ur,(Urdu)"
 msgstr "-"
 
-#: GeneralOptions.form:1334 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1348 OpenSubtitesForm.form:52
 msgid "vie,vi,(Vietnamese)"
 msgstr "-"
 
-#: GeneralOptions.form:1334
+#: GeneralOptions.form:1348
 msgid "zh,chi,zho (chinese)"
 msgstr "-"
 
-#: GeneralOptions.form:1335 SubAndOsd.form:413
+#: GeneralOptions.form:1349 SubAndOsd.form:413
 msgid "iso-8859-1"
 msgstr "-"
 
-#: GeneralOptions.form:1353
+#: GeneralOptions.form:1367
 msgid "en,eng"
 msgstr "-"
 
-#: GeneralOptions.form:1359
+#: GeneralOptions.form:1373
 msgid "Preferred Subtitle languages:"
 msgstr "Lingue dei sottotitoli preferite:"
 
-#: GeneralOptions.form:1364
+#: GeneralOptions.form:1378
 msgid ""
 "Add the selected language to the list of preferred languages.\n"
 "Mplayer Option:\n"
@@ -3759,63 +3788,63 @@ msgstr ""
 "\n"
 "Questa opzione ti permette anche di cercare sottotitoli in rete su Opensubtitles.org"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "chi,zh,zho (chinese)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "dut,nld,nl (dutch,flemish)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "eng,en (english)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "fin,fi (finnish)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "fre,fr (french)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "ger,deu,de (german)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "ita,it (italian)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "jpn,ja (japanese)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "nor,no (norwegian)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "por,pt (portuguese)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "rus,ru (russian)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "spa,esp (spanish)"
 msgstr "-"
 
-#: GeneralOptions.form:1372 OpenSubtitesForm.form:52
+#: GeneralOptions.form:1386 OpenSubtitesForm.form:52
 msgid "swe,sv (swedish)"
 msgstr "-"
 
-#: GeneralOptions.form:1396
+#: GeneralOptions.form:1410
 msgid "Misc"
 msgstr "Varie"
 
-#: GeneralOptions.form:1409
+#: GeneralOptions.form:1423
 msgid ""
 "Select your mplayer executable.\n"
 "Just write 'mplayer' for default."
@@ -3823,23 +3852,33 @@ msgstr ""
 "Seleziona l'eseguibile mplayer.\n"
 " Scrivi semplicemente 'mplayer' per il predefinito"
 
-#: GeneralOptions.form:1415
+#: GeneralOptions.form:1429
+msgid "Environment Variables"
+msgstr ""
+
+#: GeneralOptions.form:1434
+msgid ""
+"You can override some environment variables here, write them in thre form:\n"
+"VARIABLE1=VALUE VARIABLE2=VALUE"
+msgstr ""
+
+#: GeneralOptions.form:1447
 msgid "mplayer executable"
 msgstr "Eseguibile mplayer"
 
-#: GeneralOptions.form:1421 XConfigureAudioDriver.form:257
+#: GeneralOptions.form:1453 XConfigureAudioDriver.form:257
 msgid "mplayer"
 msgstr "-"
 
-#: GeneralOptions.form:1432
+#: GeneralOptions.form:1464
 msgid "Here you can specify additional mplayer options."
 msgstr "Qui puoi passare opzioni addizionali ad mplayer"
 
-#: GeneralOptions.form:1438 XConfigureVideoDriver.form:739
+#: GeneralOptions.form:1470 XConfigureVideoDriver.form:739
 msgid "Additional options"
 msgstr "Opzioni addizionali"
 
-#: GeneralOptions.form:1450
+#: GeneralOptions.form:1482
 msgid ""
 "Command or commands (semicolon separated) which\n"
 "will be executed before a file is played.\n"
@@ -3850,11 +3889,11 @@ msgstr ""
 "che saranno eseguiti prima della riproduzione,\n"
 "Suggerimento: Puoi eseguire più comandi separandoli con \";\".Suggerimento: Se non vuoi che Xt7-Player aspetti il termine del comando, Postponi \"&\" alla fine."
 
-#: GeneralOptions.form:1456
+#: GeneralOptions.form:1488
 msgid "Pre Command"
 msgstr "Pre-Comando"
 
-#: GeneralOptions.form:1467
+#: GeneralOptions.form:1499
 msgid ""
 "Command or commands (semicolon separated) which\n"
 "will be executed after a file has been played.\n"
@@ -3865,41 +3904,41 @@ msgstr ""
 "che saranno eseguiti al termine della riproduzione,\n"
 "Suggerimento: Puoi eseguire più comandi separandoli con \";\".Suggerimento: Se non vuoi che Xt7-Player aspetti il termine del comando, Postponi \"&\" alla fine."
 
-#: GeneralOptions.form:1473
+#: GeneralOptions.form:1505
 msgid "Post Command"
 msgstr "Post-Comando"
 
-#: GeneralOptions.form:1484
+#: GeneralOptions.form:1516
 msgid "Enter the shutdown command \\n (make sure your  have rights to do it)"
 msgstr "Inserisci il comando di spegnimento,(assicurati anche che il tuo utente abbia i diritti per farlo!)"
 
-#: GeneralOptions.form:1490
+#: GeneralOptions.form:1522
 msgid "Shutdown Command"
 msgstr "Comando di spegnimento"
 
-#: GeneralOptions.form:1495
+#: GeneralOptions.form:1527
 msgid ""
 "Enter the shutdown command\n"
 "(also make sure your user has rights to do it)"
 msgstr "Inserisci il comando di spegnimento,(assicurati anche che il tuo utente abbia i diritti per farlo!)"
 
-#: GeneralOptions.form:1497
+#: GeneralOptions.form:1529
 msgid "poweroff"
 msgstr "spegni"
 
-#: GeneralOptions.form:1507
+#: GeneralOptions.form:1539
 msgid "Enable/Disbale Tooltips"
 msgstr "Abilita/Disabilita tooltips"
 
-#: GeneralOptions.form:1513
+#: GeneralOptions.form:1545
 msgid "Enable ToolTips"
 msgstr "Abilita i tooltip"
 
-#: GeneralOptions.form:1520
+#: GeneralOptions.form:1552
 msgid "Enable this if you want xt7 to be controlled through an mpris2 compliant client.\n"
 msgstr "Abilitalo se vuoi controllare xt7 tramite un client compatibile MPRIS.\n"
 
-#: GeneralOptions.form:1525
+#: GeneralOptions.form:1557
 msgid ""
 "Makes xt7 register itself into dbus.\n"
 "This will export media properties and gives basic options to control the player."
@@ -3908,15 +3947,15 @@ msgstr ""
 "esportanto le proprietà del file\n"
 " e permettendo un controllo basilare della riproduzione."
 
-#: GeneralOptions.form:1527
+#: GeneralOptions.form:1559
 msgid "Dbus support"
 msgstr "supporto Dbus"
 
-#: GeneralOptions.form:1534
+#: GeneralOptions.form:1566
 msgid "   (MPRIS 2.1 - Incomplete)"
 msgstr "  (MPRIS 2.1 - Incompleto)"
 
-#: GeneralOptions.form:1546
+#: GeneralOptions.form:1578
 msgid ""
 "If you close xt7-player while playing a local file,\n"
 "xt7 will start just were you left the next time."
@@ -3924,11 +3963,11 @@ msgstr ""
 "Se chiudi xt7-player durante la riproduzione di un file locale,\n"
 "alla riapertura di xt7, esso riprenderà dove l'hai lasciato."
 
-#: GeneralOptions.form:1548
+#: GeneralOptions.form:1580
 msgid "Start were you left"
 msgstr "Riprendi dove ho lasciato"
 
-#: GeneralOptions.form:1554
+#: GeneralOptions.form:1586
 msgid ""
 "When an audio file is played, the right panel will show\n"
 "informations on the file played, allowing to set covers\n"
@@ -3939,31 +3978,31 @@ msgstr ""
 " permettendo di impostare copertine\n"
 "per gli oggetti della libreria."
 
-#: GeneralOptions.form:1561
+#: GeneralOptions.form:1593
 msgid "Use cover manager."
 msgstr "Usa il gestore di copertine"
 
-#: GeneralOptions.form:1568
+#: GeneralOptions.form:1600
 msgid "Enable/Disbale the tray icon"
 msgstr "Abilita/disabilita l'icona nel tray"
 
-#: GeneralOptions.form:1575
+#: GeneralOptions.form:1607
 msgid "Use Tray icon (xt7-player restart needed)"
 msgstr "Usa l'icona nel tray (è necessario il riavvio di xt7)"
 
-#: GeneralOptions.form:1589
+#: GeneralOptions.form:1621
 msgid "Save all settings to profile on program exit"
 msgstr "Salva tutte le impostazioni all' uscita."
 
-#: GeneralOptions.form:1596
+#: GeneralOptions.form:1628
 msgid "Save xt7 position and size on program exit."
 msgstr "Salva la posizione e le dimensioni di xt7 all'uscita."
 
-#: GeneralOptions.form:1601
+#: GeneralOptions.form:1633
 msgid "Also save xt7 geometry on exit"
 msgstr "Salva anche la posizione di xt7 all' uscita."
 
-#: GeneralOptions.form:1608
+#: GeneralOptions.form:1640
 msgid ""
 "If your window manager is not kwin\n"
 "and you find that form position is not correctly restored,\n"
@@ -3973,117 +4012,129 @@ msgstr ""
 "e ti accorgi che la posizione di xt7 non è correttamente ripristinata\n"
 "prova a spuntarlo."
 
-#: GeneralOptions.form:1613
+#: GeneralOptions.form:1645
 msgid "Alternative saving method (compiz/emerald)"
 msgstr "Usa un metodo di salvataggio alternativo (compiz/emerald)"
 
-#: GeneralOptions.form:1619
+#: GeneralOptions.form:1651
 msgid "Style"
 msgstr "Stile"
 
-#: GeneralOptions.form:1638
+#: GeneralOptions.form:1670
 msgid "* Some Options may require application restart."
 msgstr "* Alcune opzioni potrebbero richiedere il riavvio dell' applicazione."
 
-#: GeneralOptions.form:1652
+#: GeneralOptions.form:1684
 msgid "Display cover thumbnails in side lists"
 msgstr "Mostra l'anteprima delle copertine nella lista laterale"
 
-#: GeneralOptions.form:1654
+#: GeneralOptions.form:1686
 msgid "Show covers in listviews"
 msgstr "Mostra le cover nel pannello laterale"
 
-#: GeneralOptions.form:1664
+#: GeneralOptions.form:1696
 msgid "Generate and show video thumbnails to for the side lists, this is made runtime in background and thumbnails will be  cached on disk."
 msgstr ""
 "Genera e mostra miniature per i video nella lista laterale\n"
 "ciò verrà fatto in tempo reale e le miniature saranno mantenute in una cache su disco."
 
-#: GeneralOptions.form:1666
+#: GeneralOptions.form:1698
 msgid "Show thumbnails for video files"
 msgstr "Mostra miniature per i file video"
 
-#: GeneralOptions.form:1677
+#: GeneralOptions.form:1709
 msgid "Default icon size"
 msgstr "Dimensione predefinita delle icone"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "128"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "16"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "160"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "24"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "32"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "48"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "64"
 msgstr "-"
 
-#: GeneralOptions.form:1688
+#: GeneralOptions.form:1720
 msgid "96"
 msgstr "-"
 
-#: GeneralOptions.form:1704
+#: GeneralOptions.form:1737
+msgid "Albums view icon size"
+msgstr ""
+
+#: GeneralOptions.form:1748
+msgid "224"
+msgstr ""
+
+#: GeneralOptions.form:1748
+msgid "256"
+msgstr ""
+
+#: GeneralOptions.form:1764
 msgid "Highlight the sideview item which is under the mouse"
 msgstr "Evidenzia l'elemento della lista laterale al passaggio del mouse"
 
-#: GeneralOptions.form:1706
+#: GeneralOptions.form:1766
 msgid "Highlight listview items on mouse over"
 msgstr "Evidenzia gli oggetti della lista al passaggio del mouse"
 
-#: GeneralOptions.form:1721
+#: GeneralOptions.form:1781
 msgid "Left-side list font and font color:"
 msgstr "Carattere del font delle liste di sinistra:"
 
-#: GeneralOptions.form:1733
+#: GeneralOptions.form:1793
 msgid "Default"
 msgstr "Prefefinito"
 
-#: GeneralOptions.form:1756
+#: GeneralOptions.form:1817
 msgid "Left-side list background color:"
 msgstr "Colore di sfondo delle liste di sinistra:"
 
-#: GeneralOptions.form:1785
+#: GeneralOptions.form:1846
 msgid "Left-side list alternate background color:"
 msgstr "Colore di sfondo alternato  per le liste di sinistra:"
 
-#: GeneralOptions.form:1818
+#: GeneralOptions.form:1879
 msgid "Trayicon panel font and font color:"
 msgstr "Carattere del pannello Trayicon"
 
-#: GeneralOptions.form:1853
+#: GeneralOptions.form:1915
 msgid "TrayIcon panel background color:"
 msgstr "Colore di sfondo del pannello della icona nel Tray"
 
-#: GeneralOptions.form:1886
+#: GeneralOptions.form:1948
 msgid "Audio panel font and font color:"
 msgstr "Carattere del pannello audio:"
 
-#: Global.module:59
+#: Global.module:60
 msgid "Common Video Files"
 msgstr "Tipi di file video comuni"
 
-#: Global.module:62
+#: Global.module:63
 msgid "Common Audio Files"
 msgstr "Tipi di file audio comuni"
 
-#: Global.module:69
+#: Global.module:70
 msgid ""
 " by Antonio Orefice.\n"
 "xt7player@gmail.com\n"
@@ -4095,15 +4146,15 @@ msgstr ""
 "\n"
 "Grazie a Benoît Minisini per Gambas."
 
-#: Global.module:69
+#: Global.module:70
 msgid "Xt7-Player version "
 msgstr "Xt7-Player versione "
 
-#: Global.module:73
+#: Global.module:74
 msgid "Syncing Library, please wait..."
 msgstr "Sincronizzazione della libreria, attendere prego..."
 
-#: Global.module:88
+#: Global.module:89
 msgid "Translate me first"
 msgstr "Traducimi per prima"
 
@@ -4119,31 +4170,31 @@ msgstr ""
 msgid "Waiting for an HotKey..."
 msgstr "Aspetto una HotKey..."
 
-#: HotKeys.class:298
+#: HotKeys.class:299
 msgid "Assign nevertheless"
 msgstr "Assegna comunque"
 
-#: HotKeys.class:298
+#: HotKeys.class:299
 msgid "Delete new "
 msgstr "Cancella il nuovo"
 
-#: HotKeys.class:298
+#: HotKeys.class:299
 msgid "Delete old "
 msgstr "Cancella il vecchio"
 
-#: HotKeys.class:298
+#: HotKeys.class:299
 msgid "The hotkey you entered is already defined for "
 msgstr "L'hotkey è già definita per "
 
-#: HotKeys.class:524
+#: HotKeys.class:525
 msgid "Don't"
 msgstr "Non farlo"
 
-#: HotKeys.class:524 SubAndOsd.class:346
+#: HotKeys.class:525 SubAndOsd.class:346
 msgid "Proceed"
 msgstr "Procedi"
 
-#: HotKeys.class:524 SubAndOsd.class:346
+#: HotKeys.class:525 SubAndOsd.class:346
 msgid ""
 "This will save this window settings\n"
 " to all profiles found but the 'Factory_defaults' one"
@@ -4207,15 +4258,23 @@ msgstr "Errori"
 msgid "(\"'R' means that the last line is repeating a lot of times\")"
 msgstr "(\"'R' indica che l'ultima linea si sta ripetendo molte volte\")"
 
-#: MplayerClass.class:615
-msgid "found vdpau/vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr"
-msgstr "Trovato vdpau o vaapi nei driver video opssibili, disabilito tutto i filtri video aggiungendo -vf-clr"
+#: MplayerClass.class:637 MplayerClassNEW.class:657
+msgid "found vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr"
+msgstr ""
 
-#: MplayerClass.class:631
+#: MplayerClass.class:643 MplayerClassNEW.class:663
+msgid "found an ff*vdpau dorced codec on enabled video codec list, disabling all video filters by appending -vf-clr"
+msgstr ""
+
+#: MplayerClass.class:649 MplayerClassNEW.class:669
+msgid "found xvmc output driver on enabled video driver list, disabling all video filters by appending -vf-clr"
+msgstr ""
+
+#: MplayerClass.class:663 MplayerClassNEW.class:677
 msgid "found one of (-ac,af) hwac3,hwdts or hwmpa audio passthrough options in the commandline"
 msgstr "Trovata una opzione per l'audio passante: ([-ac,af] hwac3,hwdts o hwmpa) nella linea di comando"
 
-#: MplayerClass.class:632
+#: MplayerClass.class:664 MplayerClassNEW.class:678
 msgid "Disabling any audio filters in chain by appending -af-clr"
 msgstr "Disabilito tutto i filtri audio aggiungendo -af-clr alla fine."
 
@@ -4235,15 +4294,15 @@ msgstr "-"
 msgid "Button2"
 msgstr "-"
 
-#: OpenSubtitesForm.class:63
+#: OpenSubtitesForm.class:64
 msgid "No results, try with a less restrictive search"
 msgstr "Nessun risultato, prova una ricerca meno restrittiva"
 
-#: OpenSubtitesForm.class:64
+#: OpenSubtitesForm.class:65
 msgid "try also to remove file tags."
 msgstr "Prova anche a rimuovere le tag del file."
 
-#: OpenSubtitesForm.class:103
+#: OpenSubtitesForm.class:104
 msgid ""
 "Couldn't load the subtitle because\n"
 "No video is playing"
@@ -6867,10 +6926,10 @@ msgstr "Risultati della ricerca personalizzata"
 msgid "*Related Videos"
 msgstr "*Video correlati"
 
-#: YoutubeClass.class:109
+#: YoutubeClass.class:110
 msgid "Related to: "
 msgstr "Correlato a:"
 
-#: YoutubeClass.class:314
+#: YoutubeClass.class:315
 msgid "More Results..."
 msgstr "Più risultati..."

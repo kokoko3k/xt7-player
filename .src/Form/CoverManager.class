@@ -893,20 +893,20 @@ Public Sub ButtonLoad_Click()
   Dim currentfilename As String
   Coverlist.clear
   With Global
-    Dialog.Path = .StartFolder
-    PrevFilter = Dialog.filter
-    Prevtitle = Dialog.title
-    Dialog.Title = ("Load a Jpg cover image")
-    Dialog.filter = ["*.jpg", "jpg files"]
+    myDialog.Path = .StartFolder
+    PrevFilter = myDialog.filter
+    Prevtitle = myDialog.title
+    myDialog.Title = ("Load a Jpg cover image")
+    myDialog.filter = ["*.jpg", "jpg files"]
   End With
-  If Dialog.OpenFile() Then Return
-  Dialog.filter = PrevFilter
-  Dialog.title = PrevTitle
+  If myDialog.OpenFile() Then Return
+  myDialog.filter = PrevFilter
+  myDialog.title = PrevTitle
   
   Try Shell "mkdir -p " & global.confpath & "/covers/ >/dev/null 2>&1" Wait
   'newfilename = SConv(global.confpath& "/covers/" & Upper(ArtistText.text) & "^^^" & Upper(AlbumText.text) & ".jpg")
   newfilename = (Coverfile(ArtistText.text, AlbumText.text))
-  currentfilename = (Dialog.Path)
+  currentfilename = (myDialog.Path)
   Try Kill newfilename
   Try Copy currentfilename To newfilename
   'TRY SHELL "cp " & currentfilename & " " & global.fixfilename(newfilename) & " >/dev/null" WAIT

@@ -100,9 +100,9 @@ End
 Public Sub SelectFile_Click()
   If Not fmain.fullyloaded Then Return
   With Global
-    Dialog.Path = .StartFolder
-    Dialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
+    myDialog.Path = .StartFolder
+    myDialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
   End With
-  If Dialog.OpenFile() Then Return
-  UriInsComboBox.text = Dialog.Path
+  If myDialog.OpenFile() Then Return
+  UriInsComboBox.text = myDialog.Path
 End

@@ -296,9 +296,9 @@ End
 
 Public Sub FontChooseBTN_Click()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
-  Dialog.Font = FontString.font
-  If Not (Dialog.SelectFont()) Then
-    FontString.font = Dialog.font
+  myDialog.Font = FontString.font
+  If Not (myDialog.SelectFont()) Then
+    FontString.font = myDialog.font
     FontString.text = FontString.Font.name
     TestBTN.background = Color.Yellow
     TESTBTN_Click()
@@ -316,8 +316,8 @@ Public Sub SubTitleControls_Click()
 End
 
 Public Sub Form_Show()
-    Dialog.Font = FontString.font
-    FontString.font = Dialog.font
+    myDialog.Font = FontString.font
+    FontString.font = myDialog.font
     FontString.text = FontString.Font.name
     TestBTN_Click()
 End
@@ -376,9 +376,9 @@ End
 
 Public Sub OSDFontChooseBTN_Click()
   If (alreadyloaded And Me.visible) Then global.NotifyApplyNeeds()
-  Dialog.Font = OSDFontString.font
-  If Not (Dialog.SelectFont()) Then
-    OSDFontString.font = Dialog.font
+  myDialog.Font = OSDFontString.font
+  If Not (myDialog.SelectFont()) Then
+    OSDFontString.font = myDialog.font
     OSDFontString.Font.Size = FMain.Font.size + 2
     OSDFontString.text = OSDFontString.Font.name
     TestBTN.background = Color.Yellow

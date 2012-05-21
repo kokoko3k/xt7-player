@@ -54,6 +54,8 @@ Public MaxHistory As Integer 'how many played files to remember
 
 Public NOsoftvolmessagefile As String
 
+Public UserPlaylistsDir As String
+
 Public Sub init()
   UncommonVideoFilters = "Flash*;*.ts;*.m2v;*.m4v;*.mpeg;*.flv;*.gvi;*.iso;*.fli;*.flv;*.mpg;*.mpv;*.vob;*.viv;*.swf;*.rm;*.rmvb;*.dv;*.3gp;*.qt;*.divx;*.asx;*.ogm;*.ogv;*.oga;*.m4v;*.speex;*.spx;*.wavpack;*.wv;*.trueaudio;*.tta"
   Videofilter = "*.avi;*.mpg;*.mp4;*.mov;*.mkv;*.asf;*.ogm;*.ogv;*.wmv;"
@@ -64,6 +66,7 @@ Public Sub init()
   Slowmedia = "cddb:// cdda:// mms:// http:// http_proxy:// rtp:// rtsp:// ftp:// udp:// smb:// "  'we'll get tag information on user prefs
   NonTaggableMedia = "tv:// radio:// cdda:// cddb:// mf:// pvr:// dvb:// unsv:// sdp:// mpst:// tivo://"
   NetworkURI = " mms:// http:// http_proxy:// rtp:// rtsp:// ftp:// udp:// "
+  UserPlaylistsDir = ".playlists"
   'Please terminate ALLFILTERS with ";"!
   'ALLFilters  '= Videofilter & ";" & AudioFilter & ";" & UncommonVideoFilters & ";" & UncommonAudiofilters
   quotes = "\""       'double quotes in strings

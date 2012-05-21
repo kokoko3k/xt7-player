@@ -195,21 +195,21 @@ End
 
 Public Sub FragFileOpen_Click()
   Dim tmp As String[]
-  tmp = Dialog.filter
-  Dialog.filter = ["*.fp", "fragment Program Files"]
-  If Dialog.OpenFile() Then
+  tmp = myDialog.filter
+  myDialog.filter = ["*.fp", "fragment Program Files"]
+  If myDialog.OpenFile() Then
     Return
-    textbox3.text = "\"" & Dialog.Path & "\""
+    textbox3.text = "\"" & myDialog.Path & "\""
   Endif
-  Dialog.filter = tmp
+  myDialog.filter = tmp
 End
 
 Public Sub FragFileOpen2_Click()
   Dim tmp As String[]
-  tmp = Dialog.filter
-  Dialog.filter = ["*;*.*", "All Files"]
-  If Dialog.OpenFile() Then Return
-  textbox4.text = "\"" & Dialog.Path & "\""
+  tmp = myDialog.filter
+  myDialog.filter = ["*;*.*", "All Files"]
+  If myDialog.OpenFile() Then Return
+  textbox4.text = "\"" & myDialog.Path & "\""
 
 End
 

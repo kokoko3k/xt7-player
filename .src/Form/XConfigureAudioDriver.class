@@ -144,8 +144,8 @@ Public Sub OkBTN_Click()
 End
 
 Public Sub PcmFileOpen_Click()
-    If Dialog.SaveFile() Then Return
-    textbox8.text = "\"" & Dialog.Path & "\""
+    If myDialog.SaveFile() Then Return
+    textbox8.text = "\"" & myDialog.Path & "\""
 End
 
 Public Function ParsedAudioDriver() As String

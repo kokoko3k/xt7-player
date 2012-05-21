@@ -1,4 +1,5 @@
 ' Gambas class file
+
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 
@@ -36,13 +37,13 @@ End
 
 
 Public Sub OpenButton_click()
-  Dialog.path = MyInputBox.text
+  myDialog.path = MyInputBox.text
   If FileMode Then
-    If Dialog.OpenFile() Then Return
+    If myDialog.OpenFile() Then Return
       Else
-    If Dialog.SelectDirectory() Then Return
+    If myDialog.SelectDirectory() Then Return
   Endif
-  MyInputBox.text = DConv(Dialog.path)
+  MyInputBox.text = DConv(myDialog.path)
 End
 
 Property Value As String

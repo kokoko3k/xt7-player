@@ -7,6 +7,7 @@ Private exportfilespath As String
 Public cachedopts As String = ""
 Public albumviewtexlen As Integer = 30
 
+
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
   
   Dim found As Boolean = False
@@ -1498,11 +1499,11 @@ Public Sub ButtonOpen_Click()
   
   If Not fullyloaded Then Return
   With Global
-    Dialog.Path = .StartFolder
-    Dialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
+    myDialog.Path = .StartFolder
+    myDialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
   End With
-  If Dialog.OpenFile() Then Return
-  mplayer.Media_FullPath = DConv(Dialog.Path)
+  If myDialog.OpenFile() Then Return
+  mplayer.Media_FullPath = DConv(myDialog.Path)
   TogglePls.value = False
   Play(mplayer.Media_FullPath)
   
@@ -2038,11 +2039,11 @@ Public Sub menuitemopensubtitle_Click()
   If OpenSubs.savesub(suburl, subfile) Then
     mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
     Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
-    Dialog.Title = ("Save the selected subtitle")
-    Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
+    myDialog.Title = ("Save the selected subtitle")
+    myDialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
     If MyQuestion.Ask(("Do you want to save") & " " & subname & "?", "Save", "Don't Save") = 1 Then
-      Dialog.SaveFile()
-      fileout = Dialog.path 
+      myDialog.SaveFile()
+      fileout = myDialog.path 
       If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
     Endif
   Endif
@@ -6176,17 +6177,17 @@ End
 
 Public Sub MenuDvdFolder_Click()
   
-  If Dialog.SelectDirectory() Then Return
-  dvd_device = DConv(Dialog.Path)
+  If myDialog.SelectDirectory() Then Return
+  dvd_device = DConv(myDialog.Path)
   Play("dvd://")
   
 End
 
 Public Sub MenuDvdFile_Click()
   
-  Dialog.filter = ["*.iso;*.ISO;*.Iso", ("iso files"), "*", ("All files")]
-  If Dialog.OpenFile() Then Return
-  dvd_device = DConv(Dialog.Path)
+  myDialog.filter = ["*.iso;*.ISO;*.Iso", ("iso files"), "*", ("All files")]
+  If myDialog.OpenFile() Then Return
+  dvd_device = DConv(myDialog.Path)
   Play("dvd://")
   
 End
@@ -6343,20 +6344,20 @@ Public Sub MenuSavePls_Click()
   
   Dim PrevTitle As String
   Dim PrevFilter As String[]
+  Dim dialogout As Boolean
   
   With Global
-    Dialog.Path = .StartFolder & "/"
-    PrevFilter = Dialog.filter
-    Prevtitle = Dialog.title
-    Dialog.Title = "Export a playlist"
-    Dialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
+    MyDialog.Path = .StartFolder & "/"
+    PrevFilter = MyDialog.filter
+    Prevtitle = MyDialog.title
+    MyDialog.Title = "Export a playlist"
+    MyDialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
   End With
-  If Dialog.SaveFile() Then Return
-  Dialog.filter = PrevFilter
-  Dialog.title = PrevTitle
-  Try MyPlaylist.SaveAs(Dialog.Path)
+  If MyDialog.SaveFile() Then Return
+  MyDialog.filter = PrevFilter
+  MyDialog.title = PrevTitle
+  Try MyPlaylist.SaveAs(MyDialog.Path)
   If Error Then Message.error(("There was an error while saving the playlist"), ("Ok"))
-  
 End
 
 Public Sub MenuLoadPls_Click()
@@ -6365,16 +6366,16 @@ Public Sub MenuLoadPls_Click()
   Dim PrevFilter As String[]
   
   With Global
-    Dialog.Path = .StartFolder
-    PrevFilter = Dialog.filter
-    Prevtitle = Dialog.title
-    Dialog.Title = "Load a playlist"
-    Dialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
+    myDialog.Path = .StartFolder
+    PrevFilter = myDialog.filter
+    Prevtitle = myDialog.title
+    myDialog.Title = "Load a playlist"
+    myDialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
   End With
-  If Dialog.OpenFile() Then Return
-  Dialog.filter = PrevFilter
-  Dialog.title = PrevTitle
-  MyPlaylist.LoadFile(Dialog.path, PlayListGrid)
+  If myDialog.OpenFile() Then Return
+  myDialog.filter = PrevFilter
+  myDialog.title = PrevTitle
+  MyPlaylist.LoadFile(myDialog.path, PlayListGrid)
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
   
 End
@@ -6385,16 +6386,16 @@ Public Sub MenuAppendPls_Click()
   Dim PrevFilter As String[]
   
   With Global
-    Dialog.Path = .StartFolder
-    PrevFilter = Dialog.filter
-    Prevtitle = Dialog.title
-    Dialog.Title = "Load a playlist"
-    Dialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
+    myDialog.Path = .StartFolder
+    PrevFilter = myDialog.filter
+    Prevtitle = myDialog.title
+    myDialog.Title = "Load a playlist"
+    myDialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
   End With
-  If Dialog.OpenFile() Then Return
-  Dialog.filter = PrevFilter
-  Dialog.title = PrevTitle
-  MyPlaylist.LoadFile(Dialog.path, PlayListGrid, True)
+  If myDialog.OpenFile() Then Return
+  myDialog.filter = PrevFilter
+  myDialog.title = PrevTitle
+  MyPlaylist.LoadFile(myDialog.path, PlayListGrid, True)
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
   
 End
@@ -6701,9 +6702,9 @@ End
 
 Public Sub FlashMenuRecordAs_Click()
   
-  Dialog.Title = ("Choose a destination file")
-  If Dialog.SaveFile() Then Return ' User pressed Cancel -
-  MyFlash.Record(Flashgrid[Flashgrid.row, 1].text, Dialog.path)
+  myDialog.Title = ("Choose a destination file")
+  If myDialog.SaveFile() Then Return ' User pressed Cancel -
+  MyFlash.Record(Flashgrid[Flashgrid.row, 1].text, myDialog.path)
   
 End
 
@@ -8387,12 +8388,12 @@ Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   suggestname = Replace(suggestname, "/", "_")
   suggestname = Replace(suggestname, "\"", " ")
   suggestname = Replace(suggestname, "'", " ")
-  Dialog.Path = StreamDownloadDir & "/" & suggestname
-  If Dialog.SaveFile() Then Return
-  StreamDownloadDir = file.dir(Dialog.Path)
+  myDialog.Path = StreamDownloadDir & "/" & suggestname
+  If myDialog.SaveFile() Then Return
+  StreamDownloadDir = file.dir(myDialog.Path)
   If Trim(GeneralOptions.DownloaderCombobox.text) = "" Then GeneralOptions.DownloaderCombobox.text = "xterm -e wget %url -O %dest"
-  destdir = Requote(file.Dir(Dialog.path))
-  destfile = Requote(file.name(Dialog.path))
+  destdir = Requote(file.Dir(myDialog.path))
+  destfile = Requote(file.name(myDialog.path))
   dest = Requote(dest)
   url = Requote(url)
   
@@ -8701,18 +8702,18 @@ End
 
 Public Sub MenuLoadSubtitle_Click()
   Dim tmp As String[]
-  Dim tmp2 As String = Dialog.path
-  tmp = Dialog.filter
-  Try Dialog.path = file.Dir(mplayer.Media_FullPath)
-  Dialog.filter = ["*.srt;*.sub;*.ass;*.ssa;*.txt", ("SubTitle files")]
-  If Not (Dialog.OpenFile()) Then
-    If mplayer.IsSubFile(DConv(Dialog.Path)) Then 
-      mplayer.SubtitleAdd(DConv(Dialog.Path)) 'add the subtitle and append it to mplayer.subtitletracks
+  Dim tmp2 As String = myDialog.path
+  tmp = myDialog.filter
+  Try myDialog.path = file.Dir(mplayer.Media_FullPath)
+  myDialog.filter = ["*.srt;*.sub;*.ass;*.ssa;*.txt", ("SubTitle files")]
+  If Not (myDialog.OpenFile()) Then
+    If mplayer.IsSubFile(DConv(myDialog.Path)) Then 
+      mplayer.SubtitleAdd(DConv(myDialog.Path)) 'add the subtitle and append it to mplayer.subtitletracks
       Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
     Endif
   Endif
-  Dialog.filter = tmp
-  Dialog.path = tmp2
+  myDialog.filter = tmp
+  myDialog.path = tmp2
 End
 
 
@@ -9307,3 +9308,62 @@ Public Sub shadeuplow_Leave()
   Try brother.proxy = brothersproxies[brother.name]
 End
 
+
+Public Sub ButtonSavePls_Click()
+  Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
+  If Trim(PlaylistsCombo.text) = "" Then 
+    Message.Error(("Please, first enter a playlist name to save"), "Ok")
+    Return
+  Endif
+  If Not Exist(playlistsfullpath) Then
+    Try Mkdir playlistsfullpath
+    If Error Then 
+      Message.Error(("Couldn't make the user playlist directory\n") & playlistsfullpath, ("Ok"))
+      Return
+    Endif
+  Endif
+  If Exist(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl") Then
+    If MyQuestion.Ask(PlaylistsCombo.text & " " & ("exists."), ("Overwrite"), ("Never mind")) = 2 Then Return
+  Endif
+  Try myplaylist.SaveAs(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl")
+  If Error Then 
+    Message.Error(("There Was an error saving the playlist:\n") & PlaylistsCombo.text, ("Ok"))
+      Else
+    Message.Info(("Playlist saved:\n") & PlaylistsCombo.text, ("Ok"))
+    If PlaylistsCombo.Find(PlaylistsCombo.text) = -1 Then PlaylistsCombo.Add(PlaylistsCombo.text)
+  Endif
+End
+
+Public Sub PlaylistsCombo_enter()
+  Try fillplaylistcombo()
+End
+Public Sub fillplaylistcombo()
+  Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
+  Dim aplaylist As String
+  For Each aplaylist In Dir(playlistsfullpath, "*.xpl")
+    aplaylist = Replace(aplaylist, ".xpl", "")
+    If PlaylistsCombo.Find(aplaylist) = -1 Then PlaylistsCombo.Add(aplaylist)
+  Next
+End
+
+Public Sub ButtonDeletePls_Click()
+  Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
+  If Trim(PlaylistsCombo.text) = "" Then Return
+  If MyQuestion.Ask(("Playlist:") & " " & PlaylistsCombo.text, ("Delete"), ("Never mind")) = 2 Then Return
+  Try Kill playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl"
+  If Error Then Message.Error(("Couldn't delete") & " " & playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl", ("Ok"))
+  Try PlaylistsCombo.Remove(PlaylistsCombo.Find(PlaylistsCombo.text)) 
+  PlaylistsCombo.text = ""
+
+End
+
+Public Sub PlaylistsCombo_Click()
+  Dim answer As Integer
+  Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
+  
+  answer = Message.question(PlaylistsCombo.current.text, ("Load/Replace"), ("Append"), ("Never mind"))
+  If answer = 3 Then Return
+  MyPlaylist.LoadFile(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl", PlayListGrid, (answer = 2))
+  UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
+
+End

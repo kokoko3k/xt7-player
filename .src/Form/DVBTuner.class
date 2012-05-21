@@ -411,9 +411,9 @@ Public Sub ComboBox1_Click()
 End
 
 Public Sub selecttuning()
-  If Exist("/usr/share/dvb/dvb-t") Then Dialog.Path = "/usr/share/dvb/dvb-t/"
-  Dialog.OpenFile(False)
-  ftablefilesource = Dialog.Path
+  If Exist("/usr/share/dvb/dvb-t") Then myDialog.Path = "/usr/share/dvb/dvb-t/"
+  myDialog.OpenFile(False)
+  ftablefilesource = myDialog.Path
   Me.Caption = "Tuning Data file: " & File.Name(ftablefilesource)
 End
 
@@ -423,9 +423,9 @@ End
 
 Public Sub Button7_Click()
   channelfiledata = ""
-  Dialog.Title = ("Choose a standard channels.conf file to import")
-  If Not (Dialog.OpenFile()) Then
-    Try channelfiledata = File.Load(Dialog.Path)
+  myDialog.Title = ("Choose a standard channels.conf file to import")
+  If Not (myDialog.OpenFile()) Then
+    Try channelfiledata = File.Load(myDialog.Path)
     If Error Then
       MyQuestion.Ask(("Could not read file"), ("Too bad..."))
       Return

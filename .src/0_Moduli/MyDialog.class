@@ -1,0 +1,67 @@
+' Gambas class file
+
+Export
+Create Static
+
+Public color As Integer = Dialog.color
+Public filter As String[] = Dialog.filter
+Public font As Font = Dialog.font
+Public path As String = Dialog.path
+Public paths As String[] = Dialog.paths
+Public showhidden As Boolean = Dialog.showhidden
+Public title As String = Dialog.title
+Public autoext As Boolean = Dialog.autoext
+Public mydate As Date = Dialog.date
+
+Private Sub sync()
+  color = Dialog.color
+  filter = Dialog.filter
+  font = Dialog.font
+  path = Dialog.path
+  paths = Dialog.paths
+  showhidden = Dialog.showhidden
+  title = Dialog.title
+  autoext = Dialog.autoext
+  myDate = Dialog.date
+End
+
+
+
+Public Function SelectColor() As Boolean
+  Try Dialog.SelectColor()
+  If Error Then Try Dialog.SelectColor()
+  If Error Then Try Dialog.SelectColor()
+  sync()
+End
+Public Function SelectFont() As Boolean
+  Try Dialog.SelectFont()
+  If Error Then Try Dialog.SelectFont()
+  If Error Then Try Dialog.SelectFont()
+  sync()
+End
+Public Function OpenFile() As Boolean
+  Try Dialog.OpenFile()
+  If Error Then Try Dialog.OpenFile()
+  If Error Then Try Dialog.OpenFile()
+  sync()
+  Message.Info(myDialog.path)
+End
+Public Function SaveFile() As Boolean
+  Try Dialog.SaveFile()
+  If Error Then Try Dialog.SaveFile()
+  If Error Then Try Dialog.SaveFile()
+  sync()
+End
+Public Function SelectDate() As Boolean
+  Try Dialog.SelectDate()
+  If Error Then Try Dialog.SelectDate()
+  If Error Then Try Dialog.SelectDate()
+  sync()
+End
+Public Function SelectDirectory() As Boolean
+  Try Dialog.SelectDirectory()
+  If Error Then Try Dialog.SelectDirectory()
+  If Error Then Try Dialog.SelectDirectory()
+  sync()
+End
+

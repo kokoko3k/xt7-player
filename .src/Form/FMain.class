@@ -183,6 +183,12 @@ Public trayicon1 As Trayicon
 
 Public Sub InitTrayIcon()
   'Dim trayicon1 As New TrayIcon
+  Dim SystemTray As Boolean = True
+  Try SystemTray = desktop.HasSystemTray
+  If Error Then
+    Debug "Couldn't check if your desktop has a system tray, assuming it has"
+  Endif
+  If Not SystemTray Then Return
   Try trayicon1 = New Trayicon
   If Error Then Debug "Cannot Init Trayicon"
   trayicon1.Picture = picture.Load("trayicon.png")

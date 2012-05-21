@@ -7,6 +7,7 @@ May, 21 2012
   FIX:    Added new tooltip messages
   FIX:    Updated Italian translation
   CHANGE: Allow to change dvb channels by using Next/Previous buttons
+  NEW:    Check if a systemtray is available before init the trayicon (will work with the upcoming gambas version)
   
 May, 20 2012
   FIX:    (regression) Wrong behaviour when cropping black bars in fullscreen

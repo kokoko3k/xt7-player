@@ -9,7 +9,14 @@ Private StartDate As Date
 Private DateAndHandle As String[]
 
 
+Public InitDone As Boolean = False
+
 Public Sub Form_Open()
+  If Not initdone Then Init()
+End
+
+
+Public Sub Init()
   StartDate = DateAdd(Now(), gb.hour, -2) 'start from 2 hours before now
 '  StartDate = Date(2012, 5, 14, 9, 1, 1) 'ufficio
   StartDate = Date(Year(StartDate), Month(StartDate), Day(StartDate), Hour(StartDate)) 'round to hour.
@@ -21,7 +28,9 @@ Public Sub Form_Open()
   dvbsnoop.Init("dvbsnoop", ChannelsFile)
   dvbsnoop.Startit()
   FillGrid()
+  InitDone = True
 End
+
 
 
 Public Sub FillGrid()
@@ -343,6 +352,7 @@ End
 
 Public Function updateNowSeparator()
   Dim moffset, goffset As Integer
+  If Not InitDone Then Return
   moffset = DateDiff(StartDate, Now(), gb.Minute)
   gOffset = mOffset * (timelabelw Div 60)
   NowSeparator.y = epgview.scrolly
@@ -552,6 +562,7 @@ Public Sub OldScrollToEvent(e As String, Optional SecondSearch As Boolean = Fals
 End
 
 Private WantStop As Boolean = False
+Private tunerprocess As Process
 
 Public Sub ButtonRefreshAll_Click()
   Dim channels As String[]
@@ -564,13 +575,19 @@ Public Sub ButtonRefreshAll_Click()
   Dim NoEventsTimeout As Integer = 0
   Dim i As Integer = 1
   Dim prevcount, t, t1 As Integer
-  Dim tunerprocess As Process
   Dim tunercmd As String
   
-  
+  wantstop = False
   Last.hide()
   ButtonStop.show
-  
+  If FMain.mplayer.ProcessRunningOvr() Then
+    If Lower(FMain.mplayer.Media_FullPath_Playing) Like "dvb://*" Then
+      If MyQuestion.Ask(("It seems an mplayer instance is playing a dvb channel") & "\n" & ("Scanning may not work"), ("Stop mplayer and scan"), ("Try to scan")) = 1 Then
+        FMain.ButtonStop_Click()
+        Wait 0.01
+      Endif
+    Endif
+  Endif
 
   
   Debug "Scan start at" & Now()
@@ -622,7 +639,7 @@ Public Sub ButtonRefreshAll_Click()
       Endif
     Next 'second wait
     i += 1
-    epgscanprocess.value = i / uChannels.count
+    Try epgscanprocess.value = i / uChannels.count
   Next 'channel
 
   Debug "Scan finish  at" & Now()
@@ -631,16 +648,23 @@ Public Sub ButtonRefreshAll_Click()
   
   Return
   ButtonStopPressed:
-    dvbsnoop.Stopit()
-    ButtonRefreshAll.Show()
-    ButtonStop.Hide()
-    epgscanprocess.Hide()
-    wantstop = False
-    Return
+  StopScan()
 End
 
-Public Sub Form_Close()
+Public Sub StopScan()
+  If Not InitDone Then Return
+  wantstop = True
+  Wait
+  Try tunerprocess.kill
   Try dvbsnoop.Stopit()
+  Try ButtonRefreshAll.Show()
+  Try ButtonStop.Hide()
+  Try epgscanprocess.Hide()
+End
+
+
+Public Sub Form_Close()
+  'Try dvbsnoop.Stopit()
 End
 
 Public Sub EpgView_Arrange()

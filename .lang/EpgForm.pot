@@ -14,55 +14,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: EpgForm.form:74
+#: EpgForm.form:75
 msgid "EPG GUIDE"
 msgstr ""
 
-#: EpgForm.form:106
+#: EpgForm.form:107
 msgid "00/00/0000 00:00:00"
 msgstr ""
 
-#: EpgForm.form:224
+#: EpgForm.form:225
 msgid "Cuochi e fiamme\n"
 msgstr ""
 
-#: EpgForm.form:270
+#: EpgForm.form:271
 msgid "Search for Event"
 msgstr ""
 
-#: EpgForm.form:295
+#: EpgForm.form:296
 msgid "0 Events"
 msgstr ""
 
-#: EpgForm.form:320
+#: EpgForm.form:321
 msgid "Stop"
 msgstr ""
 
-#: EpgForm.form:329
+#: EpgForm.form:330
 msgid "Scan All"
 msgstr ""
 
-#: EpgForm.class:201
+#: EpgForm.class:210
 msgid "Events"
 msgstr ""
 
-#: EpgForm.class:235
+#: EpgForm.class:244
 msgid "Start at: "
 msgstr ""
 
-#: EpgForm.class:236
+#: EpgForm.class:245
 msgid "Duration: "
 msgstr ""
 
-#: EpgForm.class:237
+#: EpgForm.class:246
 msgid "Category: "
 msgstr ""
 
-#: EpgForm.class:239
+#: EpgForm.class:248
 msgid "Freeview"
 msgstr ""
 
-#: EpgForm.class:241
+#: EpgForm.class:250
 msgid "Crypted"
+msgstr ""
+
+#: EpgForm.class:585
+msgid "It seems an mplayer instance is playing a dvb channel"
+msgstr ""
+
+#: EpgForm.class:585
+msgid "Scanning may not work"
+msgstr ""
+
+#: EpgForm.class:585
+msgid "Stop mplayer and scan"
+msgstr ""
+
+#: EpgForm.class:585
+msgid "Try to scan"
 msgstr ""
 

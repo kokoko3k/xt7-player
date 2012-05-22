@@ -1,5 +1,9 @@
 Git changes:
 --------------------------------------
+May, 22 2012
+  FIX:    Several epg related fixes (if you wanna try, please install dvbsnoop)
+
+
 May, 21 2012
   NEW:    Integrated multiple playlists support (use the playlist combobox in playlist tab)
   CHANGE: Faster DVB "Zapping" by re-using the playing mplayer instance and dvb_set_channel

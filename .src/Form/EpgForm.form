@@ -4,9 +4,10 @@
   MoveScaled(0,0,142.8571,78.5714)
   Background = &H0B3A72&
   Foreground = &HFFFFFF&
+  Persistent = True
   Arrangement = Arrange.Vertical
   { VBox1 VBox
-    MoveScaled(-15,-15,142,88)
+    MoveScaled(1,-11,142,88)
     Expand = True
     Margin = True
     { Separator3 Separator
@@ -97,7 +98,7 @@
         }
       }
       { InfoPanelShadow PictureBox
-        MoveScaled(24,4,38,35)
+        MoveScaled(24,7,38,35)
         Visible = False
         Ignore = True
         Picture = Picture["shadowframe.png"]

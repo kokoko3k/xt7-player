@@ -7,6 +7,18 @@ Private exportfilespath As String
 Public cachedopts As String = ""
 Public albumviewtexlen As Integer = 30
 
+Public Struct EventInfo
+  Start_time_date As Date
+  ServiceID As String
+  EventID As String
+  ChannelName As String
+  Duration_date As Date
+  Free_Ca_mode As String
+  event_name As String
+  text_char As String
+  category As String
+  icon As String
+End Struct
 
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
   
@@ -1281,6 +1293,7 @@ Public Sub Form_Close()
   Try Xt7Egg.hide
   Try zzzFake.hide
   Try realtimeform.hide
+  Try EpgForm.hide
   Debug "hidden all forms"
   Debug
   
@@ -1329,7 +1342,8 @@ Public Sub Form_Close()
     Debug
   Endif
 
-
+  'stop any epg scanning instance
+  epgform.StopScan()
 
   'kill all recordings processes
   Try MyFlash.StopAllRecordings()
@@ -1373,9 +1387,10 @@ Public Sub Form_Close()
   Try Xt7Egg.close
   Try realtimeform.close
   Try DBus.Session.Unregister(mpris)
-  
+  Try epgform.close
+  Wait 0.01
   Print "Bye"
-  
+
 End
 
 Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty
@@ -1611,6 +1626,7 @@ Public Sub ButtonStop_Click()
   aspectmenu.visible = False
   videobox.clear
   Try ClearStreamsMenu()
+  Try epgform.dvbsnoop.Stopit()
 End
 
 Public Sub Buttonfwd_Click()
@@ -3019,6 +3035,18 @@ Public Function CacheChanged() As Boolean
 End
 
 
+Public Sub TimerNowNext_Timer()
+  Dim eiNow, eiNext As EventInfo
+  Dim pChannel As String
+  If Not mplayer.ProcessRunningOvr() Then Return
+  pChannel = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
+  eiNow = epgform.dvbsnoop.WhatsNow(pChannel)
+  eiNext = epgform.dvbsnoop.WhatsNext(pChannel)
+  mplayer.ShowText("Now: " & eiNow.event_name & " Next: " & eiNext.event_name, 1000)
+  TimerNowNext.Stop()
+End
+
+
 
 Public Sub OneSecTimer_Timer()
   
@@ -3029,8 +3057,7 @@ Public Sub OneSecTimer_Timer()
   Dim VideoH As Integer
 
   If mplayer.ProcessRunningOvr() Then
-    'If (Not fmain.FullScreen) Then cachebar.visible = True
-    
+TimerNowNext_Timer()
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
       If Not alreadypaused Then
@@ -4716,6 +4743,15 @@ Public Sub playselecteddvb()
   Dim myradiolabel As String
   Dim channelN As String
   
+  'start epg in background
+  If Not epgform.initdone Then 
+    epgform.Init()
+      Else
+    epgform.StopScan()
+  Endif
+  epgform.dvbsnoop.Stopit()
+  epgform.dvbsnoop.Startit()
+  
   Last.mouse = mouse.wait
   Try SelectedPath = dvbtGrid[dvbtGrid.row, MyDVBTList.Columnindex["Full Path"]].text
   
@@ -4727,13 +4763,22 @@ Public Sub playselecteddvb()
       mplayer.Send("dvb_set_channel " & ChannelN & " " & CStr(CInt(generaloptions.spinboxcard.Text) - 1))
       Wait 0.01
       mplayer.Send("dvb_set_channel " & ChannelN & " " & CStr(CInt(generaloptions.spinboxcard.Text) - 1))
+      
+      mplayer.Media_FullPath_Playing = SelectedPath
+      mplayer.Media_FullPath = SelectedPath
       Last.mouse = mouse.Default
-      Return
+      Goto ReturnLabel
     Endif
   Endif
   
   Try Play(SelectedPath)
   Last.mouse = mouse.Default
+  Goto ReturnLabel
+
+  Return
+  ReturnLabel:
+  If Not OneSecTimer.Enabled Then OneSecTimer.Start()
+  'TimerNowNext.Start()
   
 End
 
@@ -9379,3 +9424,5 @@ Public Sub ButtonEPG_Click()
   EpgForm.Show()
 
 End
+
+

@@ -65,12 +65,19 @@ End
 Public Sub Startit()
   Dim options As String = " -s sec -nohexdumpbuffer 0x12 |grep 'Service_ID^|Table_ID^|===^|Event_ID^|Start_time^|Duration^|Free_CA_mode^|Content_nibble_level_^|event_name^|text_char'"
   Dim options2 As String = " -s sec -nohexdumpbuffer 0x11|grep -i 'service_id:^|service_name:'"
-  
+  Dim state As Integer = 999
 '  StartitUfficio()
 '  Return
   
   
   'Dim options As String = " -s sec -nohexdumpbuffer 0x12"
+  Try state = dvbsnoop.State
+  If Not Error Then 
+    If State = Process.running Then 
+      Stopit()
+      Wait 0.01
+    Endif
+  Endif
   options = Replace(options, "^", Chr(92))
   options2 = Replace(options2, "^", Chr(92))
   'dvbsnoop = Shell dvbsnoopexe For Input As "dvbsnoop"
@@ -104,9 +111,21 @@ End
 
 
 Public Sub Stopit()
-  InitSidChanTable
+  Dim pid1 As Integer = -1
+  Dim pid2 As Integer = -1
+  
+  Try pid1 = dvbsnoop.handle
+  Try pid2 = dvbsnoopcMap.handle
+
   Try dvbsnoop.kill
   Try dvbsnoopcMap.kill
+
+  Wait 0.01
+
+  If pid1 > 0 Then Shell "kill -9 " & pid1
+  If pid2 > 0 Then Shell "kill -9 " & pid2
+
+   InitSidChanTable()
   
 End
 

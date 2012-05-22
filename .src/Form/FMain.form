@@ -678,12 +678,8 @@
       Picture = Picture["icon:/22/quit"]
     }
   }
-  { TimerQuit #Timer
-    #MoveScaled(44,7)
-    Delay = 100
-  }
   { HSplit1 HSplit
-    MoveScaled(1,7,103,68)
+    MoveScaled(0,6,103,68)
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
@@ -1520,7 +1516,7 @@
     }
     { RightSidePanel Panel VideoAreaGroup
       Name = "RightSidePanel"
-      MoveScaled(43,1,60,65)
+      MoveScaled(42,5,60,65)
       Background = Color.Background
       Arrangement = Arrange.Vertical
       { TagPanel ScrollView
@@ -1723,7 +1719,7 @@
       }
       { OuterBox DrawingArea VideoAreaGroup
         Name = "OuterBox"
-        MoveScaled(0,9,26,35)
+        MoveScaled(1,8,26,35)
         Background = &H000000&
         Drop = True
         Expand = True
@@ -1852,8 +1848,16 @@
         }
       }
     }
+    { TimerNowNext #Timer
+      #MoveScaled(44,0)
+      Delay = 5000
+    }
+    { TimerQuit #Timer
+      #MoveScaled(51,0)
+      Delay = 100
+    }
     { DelayTimer #Timer
-      #MoveScaled(58,0)
+      #MoveScaled(58,-1)
     }
     { OneSecTimer #Timer
       #MoveScaled(65,0)
@@ -1874,10 +1878,6 @@
       #MoveScaled(93,0)
       Port = 4856
     }
-  }
-  { TimerNowNext #Timer
-    #MoveScaled(48,7)
-    Delay = 5000
   }
 }
 

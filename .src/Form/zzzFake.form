@@ -19,15 +19,14 @@
     Border = False
   }
   { PanelNowNext Panel
-    MoveScaled(0,34,106,12)
+    MoveScaled(7,23,106,11)
+    Visible = False
     Background = &H81B0D6&
     Arrangement = Arrange.Vertical
-    AutoResize = True
     Margin = True
     Padding = 2
-    Border = Border.Plain
     { ShadePictureNowNext PictureBox
-      MoveScaled(58,-4,29,24)
+      MoveScaled(54,-3,29,24)
       Visible = False
       Picture = Picture["backpanel.png"]
       Stretch = True
@@ -37,18 +36,25 @@
       Background = &H21175C&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
-      AutoResize = True
       Margin = True
       Border = Border.Raised
+      { ButtonInfoNow2 PictureBox NowPanel
+        Name = "ButtonInfoNow2"
+        MoveScaled(0,0,5,3)
+        Mouse = Mouse.Pointing
+        Drop = True
+        Picture = Picture["icon:/22/screen"]
+        Alignment = Align.Center
+      }
       { LabelChannelName TextLabel
-        MoveScaled(1,1,32,2)
+        MoveScaled(11,1,32,2)
         Font = Font["Bold,+1"]
         AutoResize = True
         Text = ("Italia 1")
         Alignment = Align.Left
       }
       { VBox1 VBox
-        MoveScaled(36,1,13,1)
+        MoveScaled(48,1,13,1)
         Expand = True
       }
       { ClockLabel TextLabel
@@ -61,7 +67,7 @@
       }
     }
     { Separator1 Separator
-      MoveScaled(17,4,65,1)
+      MoveScaled(18,4,65,1)
     }
     { HBox2 Panel NowPanel
       Name = "HBox2"
@@ -69,7 +75,6 @@
       Background = &H000670&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
-      AutoResize = True
       Margin = True
       Border = Border.Raised
       { ButtonInfoNow PictureBox NowPanel
@@ -119,11 +124,10 @@
     }
     { HBox3 Panel NextPanel
       Name = "HBox3"
-      MoveScaled(1,8,104,4)
+      MoveScaled(1,8,104,3)
       Background = &H000660&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
-      AutoResize = True
       Margin = True
       Border = Border.Raised
       { ButtonInfoNext PictureBox NextPanel
@@ -169,5 +173,9 @@
         Expand = True
       }
     }
+  }
+  { PanelMini Panel
+    MoveScaled(19,35,15,16)
+    Arrangement = Arrange.Fill
   }
 }

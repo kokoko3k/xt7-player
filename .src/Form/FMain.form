@@ -982,14 +982,14 @@
           }
         }
         { Panel3 Panel
-          MoveScaled(2,16,26,23)
+          MoveScaled(6,19,26,23)
           Background = Color.TextBackground
           ToolTip = (" ")
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { DVBTGrid GridView
-            MoveScaled(0,-1,25,22)
+            MoveScaled(1,1,23,20)
             ToolTip = ("Double click on an item to start playing")
             Drop = True
             Expand = True

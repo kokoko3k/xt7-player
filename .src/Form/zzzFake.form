@@ -19,32 +19,41 @@
     Border = False
   }
   { PanelNowNext Panel
-    MoveScaled(0,34,106,24)
+    MoveScaled(0,34,106,12)
     Background = &H81B0D6&
     Arrangement = Arrange.Vertical
+    AutoResize = True
     Margin = True
+    Padding = 2
     Border = Border.Plain
+    { ShadePictureNowNext PictureBox
+      MoveScaled(58,-4,29,24)
+      Visible = False
+      Picture = Picture["backpanel.png"]
+      Stretch = True
+    }
     { HBox1 Panel
-      MoveScaled(1,1,104,7)
+      MoveScaled(1,0,104,4)
       Background = &H21175C&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
+      AutoResize = True
       Margin = True
       Border = Border.Raised
       { LabelChannelName TextLabel
-        MoveScaled(1,1,32,5)
-        Font = Font["Bold,+2"]
+        MoveScaled(1,1,32,2)
+        Font = Font["Bold,+1"]
         AutoResize = True
         Text = ("Italia 1")
         Alignment = Align.Left
       }
       { VBox1 VBox
-        MoveScaled(36,1,13,4)
+        MoveScaled(36,1,13,1)
         Expand = True
       }
       { ClockLabel TextLabel
-        MoveScaled(59,0,28,7)
-        Font = Font["Bold,+2"]
+        MoveScaled(59,1,28,2)
+        Font = Font["Bold,+1"]
         Foreground = &HFFFFFF&
         AutoResize = True
         Text = ("00/00/0000 00:00:00")
@@ -52,19 +61,20 @@
       }
     }
     { Separator1 Separator
-      MoveScaled(15,8,65,1)
+      MoveScaled(17,4,65,1)
     }
     { HBox2 Panel NowPanel
       Name = "HBox2"
-      MoveScaled(1,11,104,6)
+      MoveScaled(1,5,104,4)
       Background = &H000670&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
+      AutoResize = True
       Margin = True
       Border = Border.Raised
       { ButtonInfoNow PictureBox NowPanel
         Name = "ButtonInfoNow"
-        MoveScaled(3,1,4,4)
+        MoveScaled(0,0,5,3)
         Mouse = Mouse.Pointing
         Drop = True
         Picture = Picture["icon:/22/info"]
@@ -72,8 +82,8 @@
       }
       { Label1 TextLabel NowPanel
         Name = "Label1"
-        MoveScaled(10,1,13,5)
-        Font = Font["Bold,+2"]
+        MoveScaled(10,0,13,2)
+        Font = Font["Bold,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
         Text = ("NOW")
@@ -81,25 +91,25 @@
       }
       { VBox2 VBox NowPanel
         Name = "VBox2"
-        MoveScaled(24,1,7,4)
+        MoveScaled(24,1,7,1)
         Mouse = Mouse.Pointing
       }
       { Label2 TextLabel NowPanel
         Name = "Label2"
-        MoveScaled(41,1,20,5)
-        Font = Font["Bold,+2"]
+        MoveScaled(33,1,20,2)
+        Font = Font["Bold,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
         Text = ("TGCom")
         Alignment = Align.Left
       }
       { VBox4 VBox
-        MoveScaled(78,1,13,4)
+        MoveScaled(78,1,13,1)
         Expand = True
       }
       { Button1 Button
-        MoveScaled(90,1,13,4)
-        Font = Font["Bold,+2"]
+        MoveScaled(90,1,13,3)
+        Font = Font["Bold,+1"]
         Foreground = &HFFFFFF&
         AutoResize = True
         Text = ("EPG")
@@ -109,23 +119,24 @@
     }
     { HBox3 Panel NextPanel
       Name = "HBox3"
-      MoveScaled(1,17,104,6)
+      MoveScaled(1,8,104,4)
       Background = &H000660&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
+      AutoResize = True
       Margin = True
       Border = Border.Raised
       { ButtonInfoNext PictureBox NextPanel
         Name = "ButtonInfoNext"
-        MoveScaled(3,1,4,4)
+        MoveScaled(0,0,5,3)
         Mouse = Mouse.Pointing
         Picture = Picture["icon:/22/info"]
         Alignment = Align.Center
       }
       { Label3 TextLabel NextPanel
         Name = "Label3"
-        MoveScaled(10,1,13,5)
-        Font = Font["Bold,Italic,+2"]
+        MoveScaled(10,0,13,2)
+        Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
         Text = ("NEXT")
@@ -133,32 +144,30 @@
       }
       { VBox3 VBox NextPanel
         Name = "VBox3"
-        MoveScaled(24,1,7,4)
+        MoveScaled(24,1,7,1)
         Mouse = Mouse.Pointing
       }
       { Label5 TextLabel NextPanel
         Name = "Label5"
-        MoveScaled(42,1,12,5)
-        Font = Font["Bold,Italic,+2"]
+        MoveScaled(33,0,12,2)
+        Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
         Text = ("13:50")
         Alignment = Align.Left
       }
       { Label4 TextLabel NextPanel
         Name = "Label4"
-        MoveScaled(70,0,20,5)
-        Font = Font["Bold,Italic,+2"]
+        MoveScaled(70,0,20,2)
+        Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
         Text = ("Le Iene")
         Alignment = Align.Left
       }
-    }
-    { ShadePictureNowNext PictureBox
-      MoveScaled(53,0,13,24)
-      Ignore = True
-      Picture = Picture["backpanel.png"]
-      Stretch = True
+      { VBox5 VBox
+        MoveScaled(87,1,13,1)
+        Expand = True
+      }
     }
   }
 }

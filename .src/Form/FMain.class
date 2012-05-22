@@ -3057,7 +3057,7 @@ Public Sub OneSecTimer_Timer()
   Dim VideoH As Integer
 
   If mplayer.ProcessRunningOvr() Then
-TimerNowNext_Timer()
+
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
       If Not alreadypaused Then
@@ -3471,13 +3471,12 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
 End
 
 Private Sub CostrainFormSizes()
-  'Constrain form sizes
-    SliderBox.left = ControlFrame.left + 16
-    SliderBox.width = ControlFrame.Width - 32
-    MainToolbar.width = FMain.clientw - 16
-    BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
-    ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
-    picturebox1.Move(0, 0, controlframe.w, controlframe.h)
+  SliderBox.left = ControlFrame.left + 16
+  SliderBox.width = ControlFrame.Width - 32
+  MainToolbar.width = FMain.clientw - 16
+  BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
+  ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+  picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End
 
 
@@ -4430,13 +4429,19 @@ Public Function SnapToBorders(adding As Float) As Float
 End
 
 Public Sub VideoAreaGroup_MouseDown()
-  
   mouseleft = mouse.left
-
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
-
   IgnoreMouse = False
-  
+
+ ' zzzfake.PanelNowNext.Reparent(outerbox)
+ ' PanelNowNextArrange()
+End
+
+Public Sub PanelNowNextArrange()
+  'use separator1 to enlarge the form (it is an object with autoresize property = off)
+  zzzfake.Separator1.width = CInt(outerbox.w * 0.8)
+  zzzfake.PanelNowNext.x = (outerbox.w / 2) - (zzzfake.PanelNowNext.w / 2)
+  zzzfake.PanelNowNext.y = outerbox.h - zzzfake.PanelNowNext.h
 End
 
 Public Sub VideoAreaGroup_KeyPress()
@@ -9419,10 +9424,6 @@ Public Sub PlaylistsCombo_Click()
 End
 
 Public Sub ButtonEPG_Click()
-  Message.Warning("Epg integration is still\nIn early development stage", "Ok")
   global.Center(Me, epgform)
   EpgForm.Show()
-
 End
-
-

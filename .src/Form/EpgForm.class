@@ -12,6 +12,7 @@ Private DateAndHandle As String[]
 Public InitDone As Boolean = False
 
 Public Sub Form_Open()
+  Message.Warning("Epg integration is still\nIn early development stage", "Ok")
   If Not initdone Then Init()
 End
 

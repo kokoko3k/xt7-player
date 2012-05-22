@@ -426,10 +426,26 @@ End
 
 Public Cookiesfile As String = ""
 
+Public Function YoutubeDlInstalled() As Boolean
+  Dim ytdlinstalled As String = ""
+  If Not GeneralOptions.InitDone Then GeneralOptions.Init()
+  Shell "which youtube-dl" To ytdlinstalled
+  'Shell "which " & GeneralOptions.youtubedlexe.text To ytdlinstalled
+   If Trim(ytdlinstalled) = "" Then 
+    Message.error(("youtube-dl seems to be missing. \nInstall it to watch youtube videos."), "Ok")
+    Return False
+  Endif
+  Return True
+End
+
+
+
 Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim stream As String
   Dim videoid As String
   Dim maxfmt As String
+  
+  If Not YoutubeDlInstalled() Then Return
   
     '37: mp4  [1080 x1920]
     '22: mp4  [720 x1280]

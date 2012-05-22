@@ -99,13 +99,13 @@
         MoveScaled(24,1,7,1)
         Mouse = Mouse.Pointing
       }
-      { Label2 TextLabel NowPanel
-        Name = "Label2"
+      { LabelNowName TextLabel NowPanel
+        Name = "LabelNowName"
         MoveScaled(33,1,20,2)
         Font = Font["Bold,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
-        Text = ("TGCom")
+        Text = ("Not available")
         Alignment = Align.Left
       }
       { VBox4 VBox
@@ -151,21 +151,22 @@
         MoveScaled(24,1,7,1)
         Mouse = Mouse.Pointing
       }
-      { Label5 TextLabel NextPanel
-        Name = "Label5"
+      { LabelNextStart TextLabel NextPanel
+        Name = "LabelNextStart"
         MoveScaled(33,0,12,2)
+        Visible = False
         Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
         Text = ("13:50")
         Alignment = Align.Left
       }
-      { Label4 TextLabel NextPanel
+      { Label4 TextLabel LabelNextName
         Name = "Label4"
         MoveScaled(70,0,20,2)
         Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
         AutoResize = True
-        Text = ("Le Iene")
+        Text = ("Not Available")
         Alignment = Align.Left
       }
       { VBox5 VBox

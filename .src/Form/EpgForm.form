@@ -7,7 +7,7 @@
   Persistent = True
   Arrangement = Arrange.Vertical
   { VBox1 VBox
-    MoveScaled(1,-11,122,88)
+    MoveScaled(8,-10,122,88)
     Expand = True
     Margin = True
     { Separator3 Separator
@@ -134,7 +134,7 @@
       }
       { InfoPanel Panel MyInfoPanel
         Name = "InfoPanel"
-        MoveScaled(9,10,49,46)
+        MoveScaled(17,5,49,46)
         Visible = False
         Font = Font["Bold"]
         Foreground = &HFFFFFF&

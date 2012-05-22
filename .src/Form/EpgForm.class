@@ -12,7 +12,13 @@ Private DateAndHandle As String[]
 Public InitDone As Boolean = False
 
 Public Sub Form_Open()
+  Dim dvbsnoopinstalled As String = ""
   Message.Warning("Epg integration is still\nIn early development stage", "Ok")
+  If Not GeneralOptions.InitDone Then GeneralOptions.Init()
+  Shell "which dvbsnoopExeText" To dvbsnoopinstalled
+  If Trim(dvbsnoopinstalled) = "" Then 
+    Message.error(("dvbsnoop seems to be missing. \nInstall it to get EPG data"), "Ok")
+  Endif
   If Not initdone Then Init()
 End
 
@@ -583,7 +589,7 @@ Public Sub ButtonRefreshAll_Click()
   ButtonStop.show
   If FMain.mplayer.ProcessRunningOvr() Then
     If Lower(FMain.mplayer.Media_FullPath_Playing) Like "dvb://*" Then
-      If MyQuestion.Ask(("It seems an mplayer instance is playing a dvb channel") & "\n" & ("Scanning may not work"), ("Stop mplayer and scan"), ("Try to scan")) = 1 Then
+      If MyQuestion.Ask(("It seems an mplayer instance is playing a dvb channel.") & "\n" & ("When other applications are using the dvbt card,") & "\n" & ("scanning may fail."), ("Stop mplayer and scan"), ("Try to scan")) = 1 Then
         FMain.ButtonStop_Click()
         Wait 0.01
       Endif

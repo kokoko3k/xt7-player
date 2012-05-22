@@ -42,43 +42,51 @@ msgstr ""
 msgid "Scan All"
 msgstr ""
 
-#: EpgForm.class:211
+#: EpgForm.class:20
+msgid "dvbsnoop seems to be missing. \nInstall it to get EPG data"
+msgstr ""
+
+#: EpgForm.class:217
 msgid "Events"
 msgstr ""
 
-#: EpgForm.class:245
+#: EpgForm.class:251
 msgid "Start at: "
 msgstr ""
 
-#: EpgForm.class:246
+#: EpgForm.class:252
 msgid "Duration: "
 msgstr ""
 
-#: EpgForm.class:247
+#: EpgForm.class:253
 msgid "Category: "
 msgstr ""
 
-#: EpgForm.class:249
+#: EpgForm.class:255
 msgid "Freeview"
 msgstr ""
 
-#: EpgForm.class:251
+#: EpgForm.class:257
 msgid "Crypted"
 msgstr ""
 
-#: EpgForm.class:586
-msgid "It seems an mplayer instance is playing a dvb channel"
+#: EpgForm.class:592
+msgid "It seems an mplayer instance is playing a dvb channel."
 msgstr ""
 
-#: EpgForm.class:586
-msgid "Scanning may not work"
+#: EpgForm.class:592
+msgid "When other applications are using the dvbt card,"
 msgstr ""
 
-#: EpgForm.class:586
+#: EpgForm.class:592
+msgid "scanning may fail."
+msgstr ""
+
+#: EpgForm.class:592
 msgid "Stop mplayer and scan"
 msgstr ""
 
-#: EpgForm.class:586
+#: EpgForm.class:592
 msgid "Try to scan"
 msgstr ""
 

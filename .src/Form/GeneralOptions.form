@@ -687,7 +687,7 @@
       Index = 7
       Text = ("DVB-T")
       { ScrollView11 ScrollView
-        MoveScaled(1,5,56,50)
+        MoveScaled(1,1,56,58)
         Tag = "dvb-t"
         ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer Option: -tsprobe <byte position>")
         Expand = True
@@ -697,7 +697,7 @@
         Padding = 6
         { NoParse36 HBox
           MoveScaled(0,0,50,4)
-          ToolTip = ("Select your audiotag executable.\nJust write 'audiotag' for default.")
+          ToolTip = ("Select your 'scan' executable.\nJust write 'scan' for default.\nscan is needed to scan for new channels")
           Spacing = True
           { NoParseLabel14 Label
             MoveScaled(1,1,14,3)
@@ -706,7 +706,6 @@
           }
           { ScanExeText TextBox
             MoveScaled(17,1,19,3)
-            ToolTip = ("Select your 'scan' executable.\nJust write 'scan' for default.")
             Expand = True
             Text = ("scan")
           }
@@ -717,7 +716,7 @@
         }
         { NoParse37 HBox
           MoveScaled(0,4,50,4)
-          ToolTip = ("Select your audiotag executable.\nJust write 'audiotag' for default.")
+          ToolTip = ("Select your femon executable.\nJust write 'femon' for default.\nfemon is needed to monitor signal strength.")
           Spacing = True
           { NoParseLabel15 Label
             MoveScaled(1,1,14,3)
@@ -726,7 +725,6 @@
           }
           { FemonExeText TextBox
             MoveScaled(17,1,19,3)
-            ToolTip = ("Select your femon executable.\nJust write 'femon' for default.")
             Expand = True
             Text = ("femon")
           }
@@ -735,8 +733,27 @@
             Picture = Picture["icon:/small/open"]
           }
         }
-        { NoParse1 HBox
+        { NoParse50 HBox
           MoveScaled(0,9,50,4)
+          ToolTip = ("Select your dvbsnoop executable.\nJust write 'dvbsnoop' for default.\ndvbsnoop is needed to get EPG data.")
+          Spacing = True
+          { NoParseLabel22 Label
+            MoveScaled(1,1,14,3)
+            AutoResize = True
+            Text = ("dvbsnoop executable")
+          }
+          { dvbsnoopExeText TextBox
+            MoveScaled(17,1,19,3)
+            Expand = True
+            Text = ("dvbsnoop")
+          }
+          { FemonExeOpen2 ToolButton
+            MoveScaled(38,0,4,4)
+            Picture = Picture["icon:/small/open"]
+          }
+        }
+        { NoParse1 HBox
+          MoveScaled(0,14,50,4)
           ToolTip = ("Temporary recording folder")
           Spacing = True
           { NoParseLabel2 Label
@@ -756,11 +773,11 @@
           }
         }
         { NoParse48 HBox
-          MoveScaled(0,13,50,4)
+          MoveScaled(0,19,50,5)
           ToolTip = ("Temporary recording folder")
           Spacing = True
           { NoParseLabel3 Label
-            MoveScaled(1,1,22,3)
+            MoveScaled(0,1,22,3)
             AutoResize = True
             Text = ("Final recording folder")
           }
@@ -775,10 +792,10 @@
           }
         }
         { NOPARSESEP3 Separator
-          MoveScaled(4,17,48,1)
+          MoveScaled(3,24,48,1)
         }
         { NoParse38 HBox
-          MoveScaled(1,18,50,4)
+          MoveScaled(0,26,50,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
           { dvbtCacheCheckbox CheckBox notifyobj
@@ -799,7 +816,7 @@
           }
         }
         { NoParse39 HBox
-          MoveScaled(1,23,50,4)
+          MoveScaled(0,31,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
           { dvbtminCacheCheckbox CheckBox notifyobj
@@ -826,7 +843,7 @@
           }
         }
         { NOPARSEHbox3 HBox
-          MoveScaled(0,28,54,4)
+          MoveScaled(1,36,48,4)
           ToolTip = ("It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#")
           Spacing = True
           { LabelCard Label
@@ -841,7 +858,7 @@
           }
         }
         { NOPARSEHbox4 HBox
-          MoveScaled(0,33,54,4)
+          MoveScaled(1,41,49,4)
           ToolTip = ("How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n")
           Spacing = True
           { LabelCard2 Label
@@ -857,7 +874,7 @@
           }
         }
         { NOPARSEHbox5 HBox
-          MoveScaled(0,37,54,4)
+          MoveScaled(1,46,50,4)
           ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n")
           Spacing = True
           { tsprobechk CheckBox notifyobj
@@ -873,10 +890,10 @@
           }
         }
         { NOPARSESEP4 Separator
-          MoveScaled(3,42,50,1)
+          MoveScaled(3,50,50,1)
         }
         { NOPARSESCANBTN Button
-          MoveScaled(1,43,52,5)
+          MoveScaled(1,51,52,5)
           Text = ("Rescan Channels with simple DVB-T Tuner")
           Picture = Picture["video-television.png"]
         }

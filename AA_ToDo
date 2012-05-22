@@ -92,13 +92,12 @@ e non, cambiare solo che si vedano le cover.
 Try tmppic = picture.Load(tmpfile) a volte non da errore anche se la pic è corrotta,
 bisogna trovare un altro modo per identificare le jpg...
 
+
 * usando dvb_set_channel il volume viene resettato a quello iniziale ogni volta che si cambia canale
 
 * epgform: permettere di impostare un sintonizzatore diverso dal primo
-* epgform: prima della scansione, chiedere di chiudere eventuali applicazioni che accedono al dvb
-* epgform: dovrebbe acquisire le info sui canali mentre si guardano canali dvb
 * epgform: cliccando su un pulsante della lista canali, xt7 dovrebbe sintonizzarvisi
-* Dove aggiungere il pannello now/next?
+* Fare il check se esiste dvbsnoop
 
 *lancia un medium quando sei già a schermo intero e tutto ciò che vedi è un grigio.
 --------------------------------------------------------------------------

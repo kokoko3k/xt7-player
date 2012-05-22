@@ -3046,6 +3046,8 @@ Public Sub TimerNowNext_Timer()
 End
 
 
+Private eiNow As EventInfo
+Private eiNext As EventInfo
 
 Public Sub OneSecTimer_Timer()
   
@@ -3055,18 +3057,23 @@ Public Sub OneSecTimer_Timer()
   Dim VideoW As Integer
   Dim VideoH As Integer
 
- 'zzzfake.vsplit1.background = color.red
- 'fmain.background = color.red
- 'rightsidepanel.background = color.red
- ' Dim o As Object
- ' ' For Each o In rightsidepanel.Children
- ' '   Debug o.name
- ' ' Next
- '  outerbox.ignore = True
- '  outerbox.raise
-
   If mplayer.ProcessRunningOvr() Then
-
+    ' 'update now/next info:
+     If zzzFake.PanelNowNext.visible Then
+       zzzfake.clocklabel.text = Split(Now(), ".", "", "", "")[0]
+       Try eiNow = epgform.dvbsnoop.WhatsNow()
+       If Not Error Then
+         zzzfake.LabelChannelName.text = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
+         einext = epgform.dvbsnoop.WhatsNext()
+         If eiNow.event_name = "" Then eiNow.event_name = ("Not available")
+         If eiNext.event_name = "" Then eiNext.event_name = ("Not available")
+         zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
+         If zzzfake.LabelNextStart.visible Then zzzfake.LabelNextStart.text = eiNext.Start_time_date
+         zzzfake.LabelNowName.text = eiNow.event_name
+         zzzfake.LabelNextName.text = eiNext.event_name
+       Endif
+     Endif
+    
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
       If Not alreadypaused Then
@@ -4451,7 +4458,7 @@ Public Sub VideoAreaGroup_MouseDown()
   mouseleft = mouse.left
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False
-  'PanelNowNextShow()
+  PanelNowNextShow()
 End
 
 Public Sub PanelNowNextShow()

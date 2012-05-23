@@ -11,8 +11,11 @@ Private DateAndHandle As String[]
 
 Public InitDone As Boolean = False
 
+
 Public Sub Form_Open()
   Dim dvbsnoopinstalled As String = ""
+
+  
   Message.Warning("Epg integration is still\nIn early development stage", "Ok")
   If Not GeneralOptions.InitDone Then GeneralOptions.Init()
   Shell "which " & GeneralOptions.dvbsnoopExeText.text To dvbsnoopinstalled
@@ -20,7 +23,9 @@ Public Sub Form_Open()
     Message.error(("dvbsnoop seems to be missing. \nInstall it to get EPG data"), "Ok")
   Endif
   If Not initdone Then Init()
+
 End
+
 
 
 Public Sub Init()
@@ -69,7 +74,7 @@ Public Sub FillGrid()
     Try channel = Split(channels[i], ":", "", True, False)[0]
     If Not Error Then 
       'mybuttonchannel = New Button(ScrollviewChannels)
-      mybuttonchannel = New Label(ScrollviewChannels)
+      mybuttonchannel = New Label(ScrollviewChannels) As "mybuttonchannel"
       mybuttonchannel.tag = channel
       mybuttonchannel.text = "  " & channel
       mybuttonchannel.h = mybuttonchannel.Font.TextHeight("|") * 2
@@ -117,6 +122,39 @@ Public Sub FillGrid()
   Next
   TodayLabel.w = ScrollViewChannels.w
   TextBoxSearchEvent.w = ScrollViewChannels.w - Style.FrameWidth
+End
+
+Public Sub mybuttonchannel_DblClick()
+  Dim lastcolor As Integer = "-1"
+
+  lastcolor = Last.Foreground
+    Last.Foreground = Color.Yellow
+
+    FMain.playselecteddvb(Trim(Last.text))
+    
+
+    
+    Last.Foreground = Color.black
+    Wait 0.05
+    Last.Foreground = Color.Yellow
+    Wait 0.05
+    Last.Foreground = Color.black
+    
+
+  Last.Foreground = lastcolor
+End
+
+Public Sub mybuttonchannel_MouseDown()
+   Dim lastcolor As Integer = "-1"
+   Try lastcolor = Last.Foreground
+  If Not Error Then 
+    Last.Foreground = Color.Yellow
+    Wait 0.05
+    Last.Foreground = Color.black
+    Wait 0.05
+  Endif
+   Last.Foreground = lastcolor 
+  
 End
 
 
@@ -372,6 +410,7 @@ End
 Public Sub Timer1_Timer()
   ClockLabel.text = Split(Now(), ".", "", "", "")[0]
   ClockLabel2.text = ClockLabel.text
+  ClockLabel2.x = ClockLabel.x - 1
   Last.delay = 1000
   updateNowSeparator()
 End
@@ -727,4 +766,5 @@ Public Sub Button1_Click()
   Debug "Next: ", dvbsnoop.WhatsNext("italia1").event_name
   Sleep 3
 End
+
 

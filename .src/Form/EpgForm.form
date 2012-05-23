@@ -2,29 +2,31 @@
 
 { Form Form
   MoveScaled(0,0,129,79)
-  Background = &H0B3A72&
   Foreground = &HFFFFFF&
   Persistent = True
   Arrangement = Arrange.Vertical
+  { Separator3 Separator
+    MoveScaled(17,1,53,2)
+    Background = &H0B3A72&
+  }
   { VBox1 VBox
-    MoveScaled(8,-10,122,88)
+    MoveScaled(-23,7,122,70)
+    Background = &H0B3A72&
     Expand = True
     Margin = True
-    { Separator3 Separator
-      MoveScaled(13,0,53,2)
-    }
     { HBox1 HBox
-      MoveScaled(2,1,87,7)
+      MoveScaled(27,3,87,9)
+      Background = &H0B3A72&
       AutoResize = True
       { Panel1 Panel
-        MoveScaled(0,0,23,7)
+        MoveScaled(0,1,23,7)
         AutoResize = True
         { TextLabel2 TextLabel
           MoveScaled(0.7143,0.2857,22,7)
           Font = Font["Bold,18"]
           Foreground = &H000000&
           Text = ("EPG GUIDE")
-          Alignment = Align.Left
+          Alignment = Align.TopLeft
           Transparent = True
         }
         { TextLabel1 TextLabel
@@ -32,42 +34,45 @@
           Font = Font["Bold,18"]
           Foreground = &HFFFFFF&
           Text = ("EPG GUIDE")
-          Alignment = Align.Left
+          Alignment = Align.TopLeft
           Transparent = True
         }
       }
       { VBox2 VBox
-        MoveScaled(24,0,3,6)
+        MoveScaled(24,2,3,6)
         Expand = True
       }
       { Timer1 #Timer
-        #MoveScaled(25,0)
+        #MoveScaled(30,2)
         Enabled = True
         Delay = 1
       }
       { Panel2 Panel
-        MoveScaled(33,0,47,7)
+        MoveScaled(38,1,48,7)
+        AutoResize = True
         { ClockLabel2 TextLabel
-          MoveScaled(4.7143,0.2857,41,7)
-          Font = Font["Bold,16"]
+          MoveScaled(-2.2857,0.2857,48,7)
+          Font = Font["Bold,18"]
           Foreground = &H000000&
-          Text = ("00/00/0000 00:00:00")
-          Alignment = Align.Right
+          Text = ("EPG GUIDE")
+          Alignment = Align.TopRight
+          Transparent = True
         }
         { ClockLabel TextLabel
-          MoveScaled(5,0,41,7)
-          Font = Font["Bold,16"]
+          MoveScaled(-1,0,48,7)
+          Font = Font["Bold,18"]
           Foreground = &HFFFFFF&
-          Text = ("00/00/0000 00:00:00")
-          Alignment = Align.Right
+          Text = ("EPG GUIDE")
+          Alignment = Align.TopRight
+          Transparent = True
         }
       }
     }
     { Separator2 Separator
-      MoveScaled(15,10,53,2)
+      MoveScaled(36,12,53,1)
     }
     { ScrollViewTime ScrollView
-      MoveScaled(15,13,66,4)
+      MoveScaled(27,13,66,3)
       Font = Font["Bold,Italic"]
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
@@ -75,7 +80,7 @@
       ScrollBar = Scroll.None
     }
     { HBox2 HBox
-      MoveScaled(2,17,79,61)
+      MoveScaled(26,16,79,46)
       Background = &H0B3A72&
       Foreground = &HFFFFFF&
       Expand = True
@@ -87,7 +92,7 @@
         ScrollBar = Scroll.None
       }
       { EpgView ScrollView
-        MoveScaled(22,1,54,59)
+        MoveScaled(22,1,54,43)
         Font = Font["Bold"]
         Background = &H81B0D6&
         Expand = True
@@ -106,21 +111,21 @@
       }
       { pictureshadelow PictureBox Pictureshade
         Name = "pictureshadelow"
-        MoveScaled(22,51,54,9)
+        MoveScaled(22,35,54,9)
         Ignore = True
         Picture = Picture["shadelowEPG.png"]
         Stretch = True
       }
       { pictureshadeleft PictureBox Pictureshade
         Name = "pictureshadeleft"
-        MoveScaled(22,1,7,59)
+        MoveScaled(22,-4,7,48)
         Ignore = True
         Picture = Picture["shadeleft.png"]
         Stretch = True
       }
       { pictureshaderight PictureBox Pictureshade
         Name = "pictureshaderight"
-        MoveScaled(69,1,7,59)
+        MoveScaled(69,-4,7,48)
         Ignore = True
         Picture = Picture["shaderight.png"]
         Stretch = True
@@ -134,7 +139,7 @@
       }
       { InfoPanel Panel MyInfoPanel
         Name = "InfoPanel"
-        MoveScaled(17,5,49,46)
+        MoveScaled(16,1,49,41)
         Visible = False
         Font = Font["Bold"]
         Foreground = &HFFFFFF&
@@ -150,7 +155,7 @@
         }
         { Textinfo2shadow TextLabel MyInfoPanel
           Name = "Textinfo2shadow"
-          MoveScaled(1,13,46,33)
+          MoveScaled(2,13,46,33)
           Font = Font["+1"]
           Foreground = &H000000&
           Text = ("Cuochi e fiamme\n")
@@ -186,10 +191,10 @@
       }
     }
     { HBox4 HBox
-      MoveScaled(2,79,79,1)
+      MoveScaled(2,63,79,1)
     }
     { HBox3 HBox
-      MoveScaled(2,83,119,4)
+      MoveScaled(1,65,119,4)
       { TextBoxSearchEvent TextBox
         MoveScaled(0,0,25,4)
         Background = &HCDE9FF&

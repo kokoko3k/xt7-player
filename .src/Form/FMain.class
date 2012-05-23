@@ -3164,7 +3164,7 @@ Public Sub OneSecTimer_Timer()
       'delete export file
       Try Kill mplayer.exportfile
 
-      If TogglePls.value And (Not UserStopped) And (Not FirstPlay) Then
+      If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
         ButtonNext_Click()
@@ -4784,7 +4784,7 @@ Public Sub LibraryGrid_DblClick()
   
 End
 
-Public Sub playselecteddvb()
+Public Sub playselecteddvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
   Dim myradiolabel As String
@@ -4800,7 +4800,11 @@ Public Sub playselecteddvb()
   epgform.dvbsnoop.Startit()
   
   Last.mouse = mouse.wait
-  Try SelectedPath = dvbtGrid[dvbtGrid.row, MyDVBTList.Columnindex["Full Path"]].text
+  If channel = ":::" Then 
+    Try SelectedPath = dvbtGrid[dvbtGrid.row, MyDVBTList.Columnindex["Full Path"]].text
+      Else
+    selectedpath = "dvb://" & channel
+  Endif
   
   If mplayer.ProcessRunningOvr() Then
     If Lower(mplayer.Media_FullPath_Playing) Like "dvb://*" Then

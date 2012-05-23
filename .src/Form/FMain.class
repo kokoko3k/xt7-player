@@ -4458,7 +4458,7 @@ Public Sub VideoAreaGroup_MouseDown()
   mouseleft = mouse.left
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False
-  PanelNowNextShow()
+  'PanelNowNextShow()
 End
 
 Public Sub PanelNowNextShow()

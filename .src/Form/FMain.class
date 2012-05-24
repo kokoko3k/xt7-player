@@ -226,20 +226,6 @@ Public Sub Form_Open()
   If global.TranslationNeeded Then
     If Not (Exist(TranslationNeeded.Notranslatefile)) Then TranslationNeeded.show
   Endif
-
-  ' If Not (Exist(Global.NOsoftvolmessagefile)) Then
-  '   msg = ("To Ubuntu users:\n")
-  '   msg &= ("If the video stops when you change volume,") & "\n"
-  '   msg &= ("enable: ") & ("software volume Control") & "\n"
-  '   msg &= ("Under ") & ("General Options ") & "-> " & ("Audio") & "\n"
-  '   msg &= "\n"
-  '   msg &= ("Or disable any audio driver to use the default one") & "\n"
-  '   msg &= ("This is an issue with Ubuntu + mplayer + pulseaudio, sorry")
-  '   msg &= "\n"
-  '   If Message.Warning(msg, ("Don't show anymore"), ("Remind me later")) = 1 Then
-  '     file.Save(Global.NOsoftvolmessagefile, ".")
-  '   Endif
-  ' Endif
 End
 
 Public Sub SetFlexSpaceVisibility(Visibility As Boolean)
@@ -3033,21 +3019,46 @@ Public Function CacheChanged() As Boolean
   Return False
 End
 
+Private eiNow As Eventinfo
+Private eiNext As EventInfo
 
-Public Sub TimerNowNext_Timer()
-  Dim eiNow, eiNext As EventInfo
-  Dim pChannel As String
-  If Not mplayer.ProcessRunningOvr() Then Return
-  pChannel = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
-  eiNow = epgform.dvbsnoop.WhatsNow(pChannel)
-  eiNext = epgform.dvbsnoop.WhatsNext(pChannel)
-  mplayer.ShowText("Now: " & eiNow.event_name & " Next: " & eiNext.event_name, 1000)
-  TimerNowNext.Stop()
+Public Sub UpdateNowNextInfo()
+  zzzfake.clocklabel.text = Split(Now(), ".", "", "", "")[0]
+  Try eiNow = epgform.dvbsnoop.WhatsNow()
+  If Not Error Then
+    zzzfake.LabelChannelName.text = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
+    einext = epgform.dvbsnoop.WhatsNext()
+    If eiNow.event_name = "" Then eiNow.event_name = ("Not available")
+    If eiNext.event_name = "" Then eiNext.event_name = ("Not available")
+    zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
+    If zzzfake.LabelNextStart.visible Then zzzfake.LabelNextStart.text = eiNext.Start_time_date
+    zzzfake.LabelNowName.text = eiNow.event_name
+    zzzfake.LabelNextName.text = eiNext.event_name
+  Endif
 End
 
 
-Private eiNow As EventInfo
-Private eiNext As EventInfo
+Private HideNowNext As Boolean = False
+Public Sub TimerNowNext_Timer()
+  Dim eiNow, eiNext As EventInfo
+  Dim pChannel As String
+  
+  'the second time this timer goes, it will hide the panel
+  If HideNowNext Then
+    hidenownext = False
+    zzzfake.PanelNowNext.hide()
+    TimerNowNext.stop
+    Return
+      Else
+    HideNowNext = True
+    If Not mplayer.ProcessRunningOvr() Then Return
+    If Not (Lower(mplayer.Media_FullPath_playing) Like "dvb://*") Then Return
+    UpdateNowNextInfo()
+    PanelNowNextShow()
+  Endif
+  
+End
+
 
 Public Sub OneSecTimer_Timer()
   
@@ -3058,21 +3069,6 @@ Public Sub OneSecTimer_Timer()
   Dim VideoH As Integer
 
   If mplayer.ProcessRunningOvr() Then
-    ' 'update now/next info:
-     If zzzFake.PanelNowNext.visible Then
-       zzzfake.clocklabel.text = Split(Now(), ".", "", "", "")[0]
-       Try eiNow = epgform.dvbsnoop.WhatsNow()
-       If Not Error Then
-         zzzfake.LabelChannelName.text = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
-         einext = epgform.dvbsnoop.WhatsNext()
-         If eiNow.event_name = "" Then eiNow.event_name = ("Not available")
-         If eiNext.event_name = "" Then eiNext.event_name = ("Not available")
-         zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
-         If zzzfake.LabelNextStart.visible Then zzzfake.LabelNextStart.text = eiNext.Start_time_date
-         zzzfake.LabelNowName.text = eiNow.event_name
-         zzzfake.LabelNextName.text = eiNext.event_name
-       Endif
-     Endif
     
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
@@ -4482,7 +4478,6 @@ Public Sub PanelNowNextArrange()
     .PanelNowNext.w = CInt(outerbox.w * 0.8)
     .PanelNowNext.x = (outerbox.w / 2) - (.PanelNowNext.w / 2)
     .PanelNowNext.y = - .PanelNowNext.padding
-    .PanelNowNext.Show()
   End With
 End
 
@@ -4829,7 +4824,9 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
   Return
   ReturnLabel:
   If Not OneSecTimer.Enabled Then OneSecTimer.Start()
-  'TimerNowNext.Start()
+  
+  HideNowNext = False
+  TimerNowNext.Start()
   
 End
 

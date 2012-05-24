@@ -18,7 +18,8 @@
     MoveScaled(1,3,9,9)
     Border = False
   }
-  { PanelNowNext Panel
+  { PanelNowNext Panel LabelPanel
+    Name = "PanelNowNext"
     MoveScaled(7,23,106,11)
     Visible = False
     Background = &H81B0D6&
@@ -31,14 +32,15 @@
       Picture = Picture["backpanel.png"]
       Stretch = True
     }
-    { HBox1 Panel
+    { HBox1 Panel LabelPanel
+      Name = "HBox1"
       MoveScaled(1,0,104,4)
       Background = &H21175C&
       Foreground = &HFFFFFF&
       Arrangement = Arrange.Horizontal
       Margin = True
       Border = Border.Raised
-      { ButtonInfoNow2 PictureBox NowPanel
+      { ButtonInfoNow2 PictureBox LabelPanel
         Name = "ButtonInfoNow2"
         MoveScaled(0,0,5,3)
         Mouse = Mouse.Pointing
@@ -46,18 +48,21 @@
         Picture = Picture["icon:/22/screen"]
         Alignment = Align.Center
       }
-      { LabelChannelName TextLabel
+      { LabelChannelName TextLabel LabelPanel
+        Name = "LabelChannelName"
         MoveScaled(11,1,32,2)
         Font = Font["Bold,+1"]
         AutoResize = True
         Text = ("Italia 1")
         Alignment = Align.Left
       }
-      { VBox1 VBox
+      { VBox1 VBox LabelPanel
+        Name = "VBox1"
         MoveScaled(48,1,13,1)
         Expand = True
       }
-      { ClockLabel TextLabel
+      { ClockLabel TextLabel LabelPanel
+        Name = "ClockLabel"
         MoveScaled(59,1,28,2)
         Font = Font["Bold,+1"]
         Foreground = &HFFFFFF&

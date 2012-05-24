@@ -768,3 +768,16 @@ Public Sub Button1_Click()
 End
 
 
+
+Public Sub TextBoxSearchEvent_GotFocus()
+  If TextBoxSearchEvent.tag = "" Then 
+    TextBoxSearchEvent.Text = ""
+    TextBoxSearchEvent.tag = "1"
+  Endif
+End
+
+Public Sub VBox1_GotFocus()
+
+  
+
+End

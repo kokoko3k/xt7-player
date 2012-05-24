@@ -9464,7 +9464,7 @@ Public Sub PlaylistsCombo_Click()
   Dim answer As Integer
   Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
   
-  answer = Message.question(PlaylistsCombo.current.text, ("Load/Replace"), ("Append"), ("Never mind"))
+  answer = Message.question("Loading the playlist:" & "\n" & PlaylistsCombo.current.text, ("Load/Replace"), ("Append"), ("Never mind"))
   If answer = 3 Then Return
   MyPlaylist.LoadFile(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl", PlayListGrid, (answer = 2))
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)

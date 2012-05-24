@@ -1,11 +1,15 @@
 Git changes:
+--------------------------------------
+
+May, 24 2012 
+  CHANGE:   clear the epg search box the first time it got focus
+
+
 May, 23 2012
   FIX:      Panel Now/next is still under work, don't show on every mousedown event
   CHANGE:   gambas component image.effect is NOT needed anymore, sorry.
   CHANGE:   Tune to a channel when dblclick on the channel name from the epg window.
 
-
---------------------------------------
 May, 22 2012
   FIX:    Working on epg broke non dvbt play, fixed
   FIX:    Several epg related fixes (if you wanna try, please install dvbsnoop)

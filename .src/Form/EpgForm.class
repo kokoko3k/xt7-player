@@ -16,7 +16,7 @@ Public Sub Form_Open()
   Dim dvbsnoopinstalled As String = ""
 
   
-  Message.Warning("Epg integration is still\nIn early development stage", "Ok")
+  'Message.Warning("Epg integration is still\nIn early development stage", "Ok")
   If Not GeneralOptions.InitDone Then GeneralOptions.Init()
   Shell "which " & GeneralOptions.dvbsnoopExeText.text To dvbsnoopinstalled
   If Trim(dvbsnoopinstalled) = "" Then 

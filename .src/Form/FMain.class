@@ -727,31 +727,32 @@ Private Sub InitGenresTag()
   tagbox5.add("Vocal")
 End
 
-Public Sub ArrangeCpl(NumButtonsCPL As Integer)
+Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
  Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
-  Dim TheObject As Object
-  'fix bottom panel for high sized fonts
-  '---------------------------------------------------------------------------
-   ButtonWovr = 36 '36
-   ButtonHovr = 36 '36
-   PaddingOvr = 5 '5
-   
-   theobject = buttonopen
-   theobject.x = 0
-   Repeat
-     Try theobject.w = ButtonWovr
-     Try theobject.h = ButtonHovr
-     Try theobject.next.x = theobject.x + theobject.w + PaddingOvr
-     Try theobject = theobject.next
-   Until Error
-   
-   
-   ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
-   ControlPanel.h = ButtonHovr
-   SliderBox.h = CInt(ButtonHovr / 1.33)
-   ControlPanel.y = SliderBox.y + SliderBox.h
-   controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
-   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
+ Dim TheObject As Object
+ Dim nextisvisible As Boolean = False
+ Dim cX As Integer = 0
+ NumButtonsCPL = 0
+ 'fix bottom panel for high sized fonts
+ '---------------------------------------------------------------------------
+  ButtonWovr = 36 '36
+  ButtonHovr = 36 '36
+  PaddingOvr = 5 '5
+  
+  For Each theobject In ControlPanel.Children
+    If theobject.visible Then
+      theobject.x = cX 
+      cX = theobject.x + theobject.w + PaddingOvr
+      NumButtonsCPL += 1
+    Endif
+  Next
+  NumButtonsCPL -= 1
+  ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
+  ControlPanel.h = ButtonHovr
+  SliderBox.h = CInt(ButtonHovr / 1.33)
+  ControlPanel.y = SliderBox.y + SliderBox.h
+  controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
+  Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
    
   '---------------------------------------------------------------------------
 End
@@ -1599,6 +1600,8 @@ Public Sub ButtonStop_Click()
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
+  buttoncapture.visible = buttoncapture.enabled
+  ArrangeCpl()
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
   UserStopped = True
@@ -2585,8 +2588,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   buttoncapture.enabled = (Lower(mplayer.Media_Type) Like "*mpeg*")  'all mpeg demuxed files (ts,ps..)
   buttoncapture.enabled = buttoncapture.enabled Or (Lower(mplayer.Media_FullPath_Playing) Like "*dvb*://*") 'all dvb channels
   buttoncapture.enabled = buttoncapture.enabled Or (mplayer.AudioOnly And ismp3) 'all audio only mp3s
-  
-  
+  buttoncapture.visible = buttoncapture.enabled
+  ArrangeCpl()
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
   cachingbox.delete
   global.ResetApplyBtnColor()
@@ -3159,6 +3162,8 @@ Public Sub OneSecTimer_Timer()
       EndOfMediaReached = True
       If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
       buttoncapture.enabled = False
+      buttoncapture.visible = buttoncapture.enabled
+      ArrangeCpl()
       VEqHasBeenSet = False
       IsDvd = False
       customtitle = ""
@@ -9248,6 +9253,8 @@ Private Sub StopDumping(destfile As String)
   mymsg &= ("\n\nYou can configure the paths in Generaloptions -> dvb-t")
   Message.Info(mymsg)
   buttoncapture.value = 0
+  buttoncapture.visible = buttoncapture.enabled
+  ArrangeCpl()
   Try myplaylist.AddFile(playlistgrid, destfile, False)
 End
 

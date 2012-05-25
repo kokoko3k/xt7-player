@@ -1745,17 +1745,17 @@
           MoveScaled(-9,2,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
-            MoveScaled(0,1,60,7)
+            MoveScaled(9,1,60,7)
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True
           }
           { ControlPanel Panel
-            MoveScaled(8,6,43,4)
+            MoveScaled(20,6,43,4)
             Font = Font["6"]
             AutoResize = True
             { ButtonOpen ToolButton
-              MoveScaled(1,0,4.4286,4)
+              MoveScaled(2,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Open a file...")
               Picture = Picture["icon:/22/open"]
@@ -1774,6 +1774,7 @@
             }
             { ButtonCapture ToggleButton
               MoveScaled(14,0,5,4)
+              Visible = False
               Enabled = False
               Font = Font["6"]
               ToolTip = ("Capture the playing stream.\nIt will work only you are playing mpeg files.")
@@ -1781,32 +1782,32 @@
               Border = False
             }
             { ButtonPlay ToolButton
-              MoveScaled(19,0,5,4)
+              MoveScaled(20,0,5,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"
               Picture = Picture["media-playback-start.png"]
             }
             { ButtonStop ToolButton
-              MoveScaled(24,0,4.4286,4)
+              MoveScaled(26,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
             { Buttonfwd ToolButton
-              MoveScaled(29,0,4.4286,4)
+              MoveScaled(32,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
             { ButtonNext ToolButton
-              MoveScaled(34,0,4,4)
+              MoveScaled(36,0,4,4)
               Font = Font["6"]
               ToolTip = ("Next media")
               Picture = Picture["media-skip-forward.png"]
             }
             { PanScan Button
-              MoveScaled(38,0,5,4)
+              MoveScaled(39,0,5,4)
               Font = Font["6"]
               ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
               Picture = Picture["icon:/medium/zoom-in"]
@@ -1814,7 +1815,7 @@
             }
           }
           { SliderBox HBox
-            MoveScaled(1,2,57,4)
+            MoveScaled(12,2,57,4)
             Font = Font["6"]
             { SeekBar Slider
               MoveScaled(3,0,25,4)
@@ -1846,7 +1847,7 @@
           }
         }
         { statusbar1 Label
-          MoveScaled(1,12,41,2)
+          MoveScaled(12,12,41,2)
           Font = Font["Bold,-1"]
           Background = &H000000&
           Foreground = &HFFFFFF&

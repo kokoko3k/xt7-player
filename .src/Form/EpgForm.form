@@ -51,7 +51,7 @@
         MoveScaled(38,1,48,7)
         AutoResize = True
         { ClockLabel2 TextLabel
-          MoveScaled(-2.2857,0.2857,48,7)
+          MoveScaled(-3.2857,0.2857,48,7)
           Font = Font["Bold,18"]
           Foreground = &H000000&
           Text = ("EPG GUIDE")
@@ -139,7 +139,7 @@
       }
       { InfoPanel Panel MyInfoPanel
         Name = "InfoPanel"
-        MoveScaled(16,1,49,41)
+        MoveScaled(16,1,49,43)
         Visible = False
         Font = Font["Bold"]
         Foreground = &HFFFFFF&
@@ -155,7 +155,7 @@
         }
         { Textinfo2shadow TextLabel MyInfoPanel
           Name = "Textinfo2shadow"
-          MoveScaled(2,13,46,33)
+          MoveScaled(2,11,46,33)
           Font = Font["+1"]
           Foreground = &H000000&
           Text = ("Cuochi e fiamme\n")
@@ -164,7 +164,7 @@
         }
         { TextInfo2 TextLabel MyInfoPanel
           Name = "TextInfo2"
-          MoveScaled(2,13,45,33)
+          MoveScaled(2,11,45,33)
           Font = Font["+1"]
           Foreground = &HFFFFFF&
           Text = ("Cuochi e fiamme\n")

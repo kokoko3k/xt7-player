@@ -53,7 +53,7 @@
         MoveScaled(11,1,32,2)
         Font = Font["Bold,+1"]
         AutoResize = True
-        Text = ("Italia 1")
+        Text = ("No channel")
         Alignment = Align.Left
       }
       { VBox1 VBox LabelPanel
@@ -94,9 +94,9 @@
         MoveScaled(10,0,13,2)
         Font = Font["Bold,+1"]
         Mouse = Mouse.Pointing
-        AutoResize = True
         Text = ("NOW")
         Alignment = Align.Left
+        Wrap = False
       }
       { VBox2 VBox NowPanel
         Name = "VBox2"
@@ -105,13 +105,13 @@
       }
       { LabelNowName TextLabel NowPanel
         Name = "LabelNowName"
-        MoveScaled(33,1,20,2)
+        MoveScaled(33,1,18,2)
         Font = Font["Bold,+1"]
         Mouse = Mouse.Pointing
         Expand = True
-        AutoResize = True
         Text = ("Not available")
         Alignment = Align.Left
+        Wrap = False
       }
       { PictureBox1 PictureBox buttonepg
         Name = "PictureBox1"
@@ -145,24 +145,29 @@
       }
       { Label3 TextLabel NextPanel
         Name = "Label3"
-        MoveScaled(10,0,13,2)
+        MoveScaled(9,0,13,2)
         Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
-        AutoResize = True
         Text = ("NEXT")
         Alignment = Align.Left
+        Wrap = False
       }
       { VBox3 VBox
         MoveScaled(24,1,7,1)
       }
       { LabelNextStart TextLabel NextPanel
         Name = "LabelNextStart"
-        MoveScaled(33,0,12,2)
+        MoveScaled(33,0,14,2)
         Visible = False
         Font = Font["Bold,Italic,+1"]
         Mouse = Mouse.Pointing
+        AutoResize = True
         Text = ("13:50")
         Alignment = Align.Left
+        Wrap = False
+      }
+      { VBox4 VBox
+        MoveScaled(50,1,4,1)
       }
       { LabelNextName TextLabel NextPanel
         Name = "LabelNextName"
@@ -172,6 +177,7 @@
         Expand = True
         Text = ("Not Available")
         Alignment = Align.Left
+        Wrap = False
       }
     }
   }

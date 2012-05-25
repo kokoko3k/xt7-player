@@ -678,6 +678,9 @@
       Picture = Picture["icon:/22/quit"]
     }
   }
+  { TimerUpdateNowNext #Timer
+    #MoveScaled(43,6)
+  }
   { HSplit1 HSplit
     MoveScaled(0,6,103,68)
     Tracking = True
@@ -1836,6 +1839,10 @@
               PageStep = 5
               Value = 12
             }
+            { NuttonNowNext Button
+              MoveScaled(50,0,5,4)
+              Visible = False
+            }
           }
         }
         { statusbar1 Label
@@ -1847,10 +1854,6 @@
           Alignment = Align.Left
         }
       }
-    }
-    { TimerNowNext #Timer
-      #MoveScaled(44,0)
-      Delay = 5000
     }
     { TimerQuit #Timer
       #MoveScaled(51,0)

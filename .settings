@@ -395,8 +395,14 @@ Geometry=[48,-4,210,210]
 [DebugWindow/Split(Drag.Paste("text|uri-list"), "\n\r", "", True)]
 Geometry=[48,-4,210,210]
 
+[DebugWindow/Split(chans[i], ":")]
+Geometry=[0,0,210,210]
+
 [DebugWindow/Split(dragdata, "\n\r", "", True)]
 Geometry=[1276,-3,210,210]
+
+[DebugWindow/Split(file.Load(chanfile), "\n")]
+Geometry=[962,20,210,899]
 
 [DebugWindow/Split(file.Load(filename), "\n", "", TRUE)]
 Geometry=[1482,250,344,344]
@@ -614,6 +620,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/channelsgrid.Rows]
 Geometry=[0,0,344,344]
 
+[DebugWindow/chans]
+Geometry=[0,0,210,837]
+
 [DebugWindow/control]
 Geometry=[0,0,301,301]
 
@@ -637,6 +646,12 @@ Geometry=[1280,0,210,210]
 
 [DebugWindow/droppedfiles]
 Geometry=[0,212,588,458]
+
+[DebugWindow/eiNow]
+Geometry=[1131,437,410,436]
+
+[DebugWindow/einow]
+Geometry=[0,0,227,584]
 
 [DebugWindow/epgscanprocess]
 Geometry=[0,0,210,210]
@@ -736,6 +751,9 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/mplayer.cddbtracks]
 Geometry=[48,-4,410,672]
+
+[DebugWindow/myEvent]
+Geometry=[0,0,588,377]
 
 [DebugWindow/mycombobox]
 Geometry=[0,0,344,344]
@@ -1016,20 +1034,21 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:38.22"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:4781.2"
-File[5]="CHANGELOG_GIT:9.8"
+File[4]=".src/Form/FMain.class:4824.0"
+File[5]="CHANGELOG_GIT:20.0"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:295.16"
 File[8]=".src/Classi/PlaylistClass.class:118.24"
 File[9]=".src/Form/GeneralOptions.form"
 File[10]=".src/Form/GeneralOptions.class:772.23"
-File[11]="AA_ToDo:96.0"
+File[11]="AA_ToDo:98.0"
 File[12]=".src/Classi/AlbumView.class:239.14"
+Active=13
 File[13]=".src/Form/FMain.form"
 File[14]="selectionbox.png"
 File[15]="MoreResults.png"
 File[16]="shadow.png"
-File[17]=".src/0_Moduli/Global.module:67.33"
+File[17]=".src/0_Moduli/Global.module:491.84"
 File[18]=".src/Form/Chains.form"
 File[19]=".src/Form/Chains.class:370.2"
 File[20]=".src/Classi/DynaGuiClass.class:267.34"
@@ -1051,7 +1070,7 @@ File[35]=".src/Form/AFiltersCfg.form"
 File[36]=".src/Form/OverlayTrayTip.class:158.0"
 File[37]=".src/Form/OverlayTrayTip.form"
 File[38]=".src/Form/zzzFake.form"
-File[39]=".src/Form/zzzFake.class:30.24"
+File[39]=".src/Form/zzzFake.class:77.0"
 File[40]=".src/Form/AudioForm.form"
 File[41]=".src/Classi/Meters.class:66.1"
 File[42]="configure.png"
@@ -1061,15 +1080,15 @@ File[45]=".src/Form/VideoEqualizer.class:68.15"
 File[46]=".src/Form/ChooseAspect.form"
 File[47]="dvd16.png"
 File[48]=".src/0_Moduli/MyDialog.class:46.24"
-File[49]=".src/Classi/dvbsnoop_class.class:133.0"
-Active=50
+File[49]=".src/Classi/dvbsnoop_class.class:482.18"
 File[50]=".src/Form/EpgForm.form"
 File[51]=".src/Form/HotKeyGrab.form"
 File[52]=".src/Form/AskName.form"
 File[53]=".src/Form/AskName.class:0.0"
 File[54]=".src/Classi/AudiotagClass.class:0.0"
-File[55]=".src/Form/EpgForm.class:686.0"
-Count=55
+File[55]=".src/Form/EpgForm.class:185.0"
+File[56]=".src/Form/Xt7Egg.form"
+Count=56
 
 [Watches]
 Count=1

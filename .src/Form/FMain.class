@@ -1596,8 +1596,8 @@ End
 
 
 Public Sub ButtonStop_Click()
+  zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
-
   buttoncapture.enabled = False
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
@@ -3022,42 +3022,54 @@ End
 Private eiNow As Eventinfo
 Private eiNext As EventInfo
 
-Public Sub UpdateNowNextInfo()
-  zzzfake.clocklabel.text = Split(Now(), ".", "", "", "")[0]
-  Try eiNow = epgform.dvbsnoop.WhatsNow()
-  If Not Error Then
-    zzzfake.LabelChannelName.text = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
-    einext = epgform.dvbsnoop.WhatsNext()
-    If eiNow.event_name = "" Then eiNow.event_name = ("Not available")
-    If eiNext.event_name = "" Then eiNext.event_name = ("Not available")
-    zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
-    If zzzfake.LabelNextStart.visible Then zzzfake.LabelNextStart.text = eiNext.Start_time_date
-    zzzfake.LabelNowName.text = eiNow.event_name
-    zzzfake.LabelNextName.text = eiNext.event_name
-  Endif
-End
+Public Function UpdateNowNextInfo()
+  Dim channel As String = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
 
+  zzzfake.VBox4.visible = False
+  zzzfake.clocklabel.text = Make2(Hour(Now())) & ":" & Make2(Minute(Now())) & " - " & Date()
+  zzzfake.LabelChannelName.text = Upper(channel)
 
-Private HideNowNext As Boolean = False
-Public Sub TimerNowNext_Timer()
-  Dim eiNow, eiNext As EventInfo
-  Dim pChannel As String
-  
-  'the second time this timer goes, it will hide the panel
-  If HideNowNext Then
-    hidenownext = False
-    zzzfake.PanelNowNext.hide()
-    TimerNowNext.stop
-    Return
+  Try eiNow = epgform.dvbsnoop.WhatsNow(channel)
+  If einow = Null Then Return
+  If eiNow.event_name = "" Then 
+    eiNow.event_name = ("Not available")
       Else
-    HideNowNext = True
-    If Not mplayer.ProcessRunningOvr() Then Return
-    If Not (Lower(mplayer.Media_FullPath_playing) Like "dvb://*") Then Return
-    UpdateNowNextInfo()
-    PanelNowNextShow()
+    zzzfake.LabelNowName.text = eiNow.event_name
   Endif
-  
+
+  Try einext = epgform.dvbsnoop.WhatsNext(channel)
+
+  Try zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
+  zzzfake.VBox4.visible = zzzfake.LabelNextStart.visible
+
+  If einext <> Null Then
+    If eiNext.event_name = "" Then
+      eiNext.event_name = ("Not available")
+        Else
+      zzzfake.LabelNextName.text = eiNext.event_name
+      zzzfake.LabelNextStart.text = Make2(Hour(eiNext.Start_time_date)) & ":" & Make2(Minute(einext.Start_time_date))  
+    Endif
+  Endif
+
 End
+
+Public Sub TimerUpdateNowNext_Timer()
+  UpdateNowNextInfo()
+End
+
+Public Function Make2(n As String) As String
+  Dim t, neg As String
+  If n Like "-*" Then neg = "-"
+  t = Abs(CInt(n))
+  While Len(t) < 2
+    t = "0" & t
+  Wend
+  Return neg & t
+End
+
+
+
+
 
 
 Public Sub OneSecTimer_Timer()
@@ -4779,11 +4791,29 @@ Public Sub LibraryGrid_DblClick()
   
 End
 
+Public Sub NuttonNowNext_Click()
+  If zzzfake.PanelNowNext.visible Then 
+    zzzfake.PanelNowNext.hide
+    TimerUpdateNowNext.Stop
+      Else
+    UpdateNowNextInfo()
+    PanelNowNextShow()
+    TimerUpdateNowNext.Start
+  Endif
+End
+
 Public Sub playselecteddvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
   Dim myradiolabel As String
   Dim channelN As String
+  
+    'start from a blank panel
+    zzzfake.LabelNowName.text = ("Not available")
+    zzzfake.LabelNextName.text = ("Not available")
+    zzzfake.LabelNextStart.text = ""
+    zzzfake.LabelNextStart.visible = False
+    zzzfake.VBox4.visible = False
   
   'start epg in background
   If Not epgform.initdone Then 
@@ -4793,6 +4823,8 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
   Endif
   epgform.dvbsnoop.Stopit()
   epgform.dvbsnoop.Startit()
+  
+
   
   Last.mouse = mouse.wait
   If channel = ":::" Then 
@@ -4813,6 +4845,11 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
       mplayer.Media_FullPath_Playing = SelectedPath
       mplayer.Media_FullPath = SelectedPath
       Last.mouse = mouse.Default
+      
+      'here we may need to send the last volume (variable=lastvolume) to the running mplayer
+      'because it seems it resets the volume after each channel change
+      'the problem is that maybe we need to send it delayed..eg: after the channel as been tuned?
+      
       Goto ReturnLabel
     Endif
   Endif
@@ -4824,24 +4861,26 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
   Return
   ReturnLabel:
   If Not OneSecTimer.Enabled Then OneSecTimer.Start()
-  
-  HideNowNext = False
-  TimerNowNext.Start()
-  
+
 End
 
 
 Public Function channelToNumber(C As String) As Integer
   Dim i As Integer
   Dim chans As String[]
+  Dim chansfix As New String[]
   Dim chanfile As String = User.home & "/.mplayer/channels.conf.ter"
   If Not (Exist(chanfile)) Then Return 0
   
   chans = Split(file.Load(chanfile), "\n")
-  For i = 0 To chans.Max
-    If Trim(chans[i]) <> "" Then
-      If "dvb://" & Lower(Split(chans[i], ":")[0]) = Lower(C) Then 
-        Return i - 1
+  For i = 0 To chans.Max 'we have to discard any non valid channel line, because so does mplayer
+    If Split(chans[i], ":").count = 13 Then chansfix.Add(chans[i])
+  Next
+  
+  For i = 0 To chansfix.Max
+    If Trim(chansfix[i]) <> "" Then
+      If "dvb://" & Lower(Split(chansfix[i], ":")[0]) = Lower(C) Then 
+        Return i
       Endif
     Endif
   Next
@@ -9478,3 +9517,5 @@ Public Sub PlayListSelInfo_MouseDown()
   SwitchToFS()
 
 End
+
+

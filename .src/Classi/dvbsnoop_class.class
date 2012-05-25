@@ -454,7 +454,7 @@ Public Function WhatsNow(channel As String) As EventInfo
       Endif
     Endif
   Next
-  Return myEvent
+  Return Null
 End
 
 
@@ -471,7 +471,7 @@ Public Function WhatsNext(channel As String) As EventInfo
   Dim NextEvent As New EventInfo
   Dim myNow As Date = Now()
   Dim myLast As Date = DateAdd(Now, gb.year, 10) 'nobody wanna now what's next ten years from now
-
+  
   For Each myEvent In EventDB
     If Lower(myEvent.ChannelName) = channel Then
       If (myEvent.Start_time_date > myNow) And (myEvent.Start_time_date < myLast) Then
@@ -480,5 +480,5 @@ Public Function WhatsNext(channel As String) As EventInfo
       Endif
     Endif
   Next
-  Return NextEvent
+  Return nextevent
 End

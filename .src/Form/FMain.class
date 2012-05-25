@@ -2402,7 +2402,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
-  ButtonNowNext.visible = Lower(fullpath) Like "*.avi" '"dvb://*"
+  ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
   generaloptions.Init()
   generaloptions.FirstLoadIfNeeded() 'we need the temporary directory to store captured streams

@@ -611,6 +611,9 @@ Geometry=[1280,0,488,244]
 [DebugWindow/button]
 Geometry=[-4,-3,210,210]
 
+[DebugWindow/buttonopen]
+Geometry=[1280,0,248,458]
+
 [DebugWindow/channels]
 Geometry=[0,0,854,756]
 
@@ -948,7 +951,7 @@ Geometry=[-4,-3,210,210]
 Geometry=[-4,-3,210,655]
 
 [DebugWindow/theobject]
-Geometry=[883,273,344,581]
+Geometry=[908,33,344,581]
 
 [DebugWindow/thesettings]
 Geometry=[0,0,301,301]
@@ -1034,8 +1037,9 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:38.22"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:4824.0"
-File[5]="CHANGELOG_GIT:20.0"
+Active=4
+File[4]=".src/Form/FMain.class:2401.38"
+File[5]="CHANGELOG_GIT:7.12"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:295.16"
 File[8]=".src/Classi/PlaylistClass.class:118.24"
@@ -1043,7 +1047,6 @@ File[9]=".src/Form/GeneralOptions.form"
 File[10]=".src/Form/GeneralOptions.class:772.23"
 File[11]="AA_ToDo:98.0"
 File[12]=".src/Classi/AlbumView.class:239.14"
-Active=13
 File[13]=".src/Form/FMain.form"
 File[14]="selectionbox.png"
 File[15]="MoreResults.png"

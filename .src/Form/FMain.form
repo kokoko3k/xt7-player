@@ -1782,29 +1782,36 @@
               Border = False
             }
             { ButtonPlay ToolButton
-              MoveScaled(20,0,5,4)
+              MoveScaled(19,0,5,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"
               Picture = Picture["media-playback-start.png"]
             }
             { ButtonStop ToolButton
-              MoveScaled(26,0,4.4286,4)
+              MoveScaled(23,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
             { Buttonfwd ToolButton
-              MoveScaled(32,0,4.4286,4)
+              MoveScaled(27,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
             { ButtonNext ToolButton
-              MoveScaled(36,0,4,4)
+              MoveScaled(31,0,4,4)
               Font = Font["6"]
               ToolTip = ("Next media")
               Picture = Picture["media-skip-forward.png"]
+            }
+            { ButtonNowNext ToolButton
+              MoveScaled(36,0,4,4)
+              Visible = False
+              Font = Font["6"]
+              ToolTip = ("Next media")
+              Picture = Picture["icon:/medium/info"]
             }
             { PanScan Button
               MoveScaled(39,0,5,4)
@@ -1839,10 +1846,6 @@
               MaxValue = 25
               PageStep = 5
               Value = 12
-            }
-            { NuttonNowNext Button
-              MoveScaled(50,0,5,4)
-              Visible = False
             }
           }
         }

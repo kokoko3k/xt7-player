@@ -52,18 +52,14 @@
         Name = "LabelChannelName"
         MoveScaled(11,1,32,2)
         Font = Font["Bold,+1"]
-        AutoResize = True
+        Expand = True
         Text = ("No channel")
         Alignment = Align.Left
-      }
-      { VBox1 VBox LabelPanel
-        Name = "VBox1"
-        MoveScaled(48,1,13,1)
-        Expand = True
+        Wrap = False
       }
       { ClockLabel TextLabel LabelPanel
         Name = "ClockLabel"
-        MoveScaled(59,1,28,2)
+        MoveScaled(68,1,19,2)
         Font = Font["Bold,+1"]
         Foreground = &HFFFFFF&
         AutoResize = True

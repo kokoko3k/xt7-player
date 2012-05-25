@@ -741,12 +741,14 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   
   For Each theobject In ControlPanel.Children
     If theobject.visible Then
+      theobject.w = ButtonWovr
+      theobject.h = ButtonHovr
       theobject.x = cX 
       cX = theobject.x + theobject.w + PaddingOvr
       NumButtonsCPL += 1
     Endif
   Next
-  NumButtonsCPL -= 1
+  'NumButtonsCPL -= 1
   ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
   ControlPanel.h = ButtonHovr
   SliderBox.h = CInt(ButtonHovr / 1.33)
@@ -1616,6 +1618,8 @@ Public Sub ButtonStop_Click()
   videobox.clear
   Try ClearStreamsMenu()
   Try epgform.dvbsnoop.Stopit()
+  ButtonNowNext.Hide()
+  ArrangeCpl()
 End
 
 Public Sub Buttonfwd_Click()
@@ -2398,6 +2402,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
+  ButtonNowNext.visible = Lower(fullpath) Like "*.avi" '"dvb://*"
+  ArrangeCpl()
   generaloptions.Init()
   generaloptions.FirstLoadIfNeeded() 'we need the temporary directory to store captured streams
   dumpfile = generaloptions.dvbtmpdir.text & "/" & "xt7.dumpfile.ts"
@@ -4796,7 +4802,7 @@ Public Sub LibraryGrid_DblClick()
   
 End
 
-Public Sub NuttonNowNext_Click()
+Public Sub ButtonNowNext_Click()
   If zzzfake.PanelNowNext.visible Then 
     zzzfake.PanelNowNext.hide
     TimerUpdateNowNext.Stop
@@ -9524,5 +9530,4 @@ Public Sub PlayListSelInfo_MouseDown()
   SwitchToFS()
 
 End
-
 

@@ -38,13 +38,41 @@ End
 
 
 Public Sub Form_Show()
-
+  ArrangeButtons()
   picturebox1.w = panel1.w
   UpdateScreenshot()
   Global.CenterObj(panel1, picturebox1)
   picturebox1.x = 0
   UpdateInfos()
   timer1.start
+End
+
+Private Sub ArrangeButtons()
+ Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
+ Dim TheObject As Object
+ Dim nextisvisible As Boolean = False
+ Dim cX As Integer = 4
+ Dim NumButtonsCPL As Integer = 0
+ 'fix bottom panel for high sized fonts
+ '---------------------------------------------------------------------------
+  ButtonWovr = 16
+  ButtonHovr = 16 
+  PaddingOvr = 2
+  
+  For Each theobject In hbox1.Children
+    If theobject.visible Then
+      theobject.w = ButtonWovr
+      theobject.h = ButtonHovr
+      theobject.x = cX 
+      theobject.y = 0
+      cX = theobject.x + theobject.w + PaddingOvr
+      NumButtonsCPL += 1
+    Endif
+  Next
+  'NumButtonsCPL -= 1
+  hbox1.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL + 4
+  'hbox1.h = ButtonHovr 
+  '---------------------------------------------------------------------------
 End
 
 
@@ -59,9 +87,11 @@ End
 
 Public Sub UpdateInfos()
     If Not (FMain.mplayer.Paused) Then
-      If Not (btnplaypause.picture = Picture["icon:/16/pause"]) Then btnplaypause.picture = Picture["icon:/16/pause"]
+      'If Not (btnplaypause.picture = Picture["icon:/16/pause"]) Then btnplaypause.picture = Picture["icon:/16/pause"]
+      If Not (btnplaypause.picture = Picture["media-playback-pause.png"]) Then btnplaypause.picture = Picture["media-playback-start.png"]
         Else
-      If Not (btnplaypause.picture = Picture["icon:/16/play"]) Then btnplaypause.picture = Picture["icon:/16/play"]
+      'If Not (btnplaypause.picture = Picture["icon:/16/play"]) Then btnplaypause.picture = Picture["icon:/16/play"]
+      If Not (btnplaypause.picture = Picture["media-playback-start.png"]) Then btnplaypause.picture = Picture["media-playback-pause.png"]
     Endif
     
     If FMain.mplayer.Media_AudioOnly() Then
@@ -85,9 +115,20 @@ Public Sub UpdateInfos()
       If Not FMain.mplayer.paused Then TimeStr = FMain.mplayer.FormatTime(FMain.mplayer.CurrentTime()) & " / " & FMain.mplayer.FormatTime(FMain.mplayer.Media_Length)
       If Trim(filename) = "" Then filename = "No file is playing"
       label1.text = filename & "\n" & timestr
-
     Endif
+    
+    
+    labelshadow.text = label1.text
+    labelshadow.w = label1.w
+    labelshadow.h = label1.h
+    labelshadow.x = label1.x - 1
+    labelshadow.y = label1.y + 1
+    labelshadow.Raise
+    label1.raise
+    pinbutton.raise
 End
+
+
 
 Public Sub Form_Leave()
   If pinbutton.value = False Then

@@ -3,10 +3,14 @@
 { Form Form
   Move(0,0,266,98)
   #Scaled = False
+  Font = Font["Bold,-1"]
   Background = &H000000&
   Foreground = &HFFFFFF&
   Ignore = True
   Text = ("Xt7TrayPanel")
+  Picture = Picture["roundmask.png"]
+  Mask = True
+  Resizable = False
   Border = False
   Stacking = Window.Above
   Sticky = True

@@ -69,8 +69,8 @@ Public Sub Button1_Click()
   channelsgrid.Rows.count = 0
   channelsgrid.columns.count = 1
   channelfiledata = ""
-  'scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 1>&2" For Read As "scanprocess"
-  scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 2>&1" For Read As "scanprocess"
+  'scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 2>&1" For Read As "scanprocess"
+  scanprocess = Shell "cat /root/Desktop2_kde4/out.scan" For Read As "scanprocess"
   Debug scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 1>&2" 
   Debug
   monprocess = Shell femonexe & " -a " & cardn & " -H" For Read As "monprocess"
@@ -157,8 +157,9 @@ Public channelfiledata As String
 Private HeadersDone As Boolean = False
 Private pmts As New Collection
 Private AC3s As New Collection
+Private Audios As New Collection
 Private LastService As String = ""
-
+Private LastFreq As String = ""
 'PUBLIC SUB scanprocess_error(stderr AS String)
 Public Sub ProcessScanHeaders(stderr As String)
   'here we get progress information
@@ -168,7 +169,7 @@ Public Sub ProcessScanHeaders(stderr As String)
   Dim channels, stderrlines As String[]
   Dim channelline, channel, stderrline As String = ""
   Dim textstart As Integer
-  Dim service, pmt, ac3id As String
+  Dim service, pmt, ac3id, audioid As String
   
   Debug stderr
   Debug
@@ -177,6 +178,7 @@ Public Sub ProcessScanHeaders(stderr As String)
   For Each stderrline In stderrlines
     If stderrline Like "*tune to: *" Then  'step progressbar
       curfreq = Trim(Split(stderrline, ":", "", "")[1])
+      LastFreq = curfreq
       Try curfreqint = CInt(curfreq)
       If Not Error Then
         i = ProgressBar1.value * freqstoscan
@@ -226,8 +228,18 @@ Public Sub ProcessScanHeaders(stderr As String)
       ac3id = Mid(stderrline, InStr(stderrline, "PID") + 4, 6)
       ac3id = Val("&H" & Right(ac3id, 4)) 'hex to integer to string
       AC3s[lastservice] = ac3id
-
     Endif
+    
+     If stderrline Like "*AUDIO*PID*" Then 'store Audio id somewhere
+      audioid = Mid(stderrline, InStr(stderrline, "PID") + 4, 6)
+      audioid = Val("&H" & Right(audioid, 3)) 'hex to integer to string
+      If audios.Exist(lastfreq & ":" & lastservice) Then 
+        audios[lastfreq & ":" & lastservice] = audios[lastfreq & ":" & lastservice] & "+" & audioid
+          Else
+        audios[lastfreq & ":" & lastservice] = audioid
+      Endif
+    Endif
+    
   Next ' stderrline
 End
 
@@ -266,7 +278,6 @@ Public Function addoffset(chline As String) As String
   'aggiungilo al penultimo ed al terzultimo campo
     If Not Error Then
       'Also inject ac3 pid if one of the fields is "0"
-      
       ac3id = AC3s[serviceid]
       If ac3id = Null Then ac3id = "0"
       If Not Error Then
@@ -277,7 +288,6 @@ Public Function addoffset(chline As String) As String
           fields[lastfield - 2] = ac3id
         Endif
       Endif
-
       fields[lastfield - 1] = pmt & "+" & fields[lastfield - 1]
       fields[lastfield - 2] = pmt & "+" & fields[lastfield - 2]
     Endif
@@ -294,6 +304,8 @@ Public Sub ParseChannelFile()
   Dim channel, name, data As String
   Dim channels As String[]
   Dim i, j, maxprogress As Integer
+  Dim serviceid, freq, singleaudio, dualaudio As String
+  
   channelsgrid.Clear
   channelsgrid.Columns.count = 2
   channelsgrid.Rows.count = 0
@@ -304,7 +316,26 @@ Public Sub ParseChannelFile()
   i = 0
   For Each channel In channels
     If channel Like "*:*:*:*:*:*" Then
+      
+      'add double audios
+      freq = Split(channel, ":", "", True)[1]
+      Try serviceid = Split(channel, ":", "", True)[12]
+      If Not Error Then
+        Try dualaudio = audios[freq & ":" & serviceid]
+        If Not Error Then
+          If dualaudio Like "*+*" Then
+            Try singleaudio = Split(channel, ":", "", True)[11]
+            If Not Error Then
+              Debug channel
+              channel = Replace(channel, ":" & singleaudio & ":", ":" & dualaudio & ":")
+              Debug channel
+            Endif
+          Endif
+        Endif
+      Endif
+
       Try channel = addoffset(channel)
+      Debug channel
       name = Split(channel, ":", "", True)[0]
       data = Replace(channel, name & ":", "")
       channelsgrid.Rows.count = channelsgrid.Rows.count + 1
@@ -314,6 +345,8 @@ Public Sub ParseChannelFile()
       i = i + 1
     Endif
   Next 'channel
+
+
 
   'manage dupes in the grid and replace characters which mplayer doesn't like:
   For i = 0 To channelsgrid.Rows.count - 1

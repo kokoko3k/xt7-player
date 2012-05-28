@@ -1219,90 +1219,98 @@ msgid "Disable drawing video by 16-pixel height slices/bands,\ninstead draws the
 msgstr ""
 
 #: GeneralOptions.class:219
-msgid "Scaler type (-sws)"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "0 - fast bilinear"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "1 - bilinear"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "2 - bicubic (good quality) (default)"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "3 - experimental"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "4 - nearest neighbor (bad quality)"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "5 - area"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "6 - luma bicubic/chroma bilinear"
-msgstr ""
-
-#: GeneralOptions.class:219
-msgid "10 - natural bicubic spline"
+msgid "Allow software scaling"
 msgstr ""
 
 #: GeneralOptions.class:220
-msgid "Specify the software scaler algorithm to be used, Some -sws options are tunable.\nThe description of the scale video filter has further information."
+msgid "Allow  software scaling, where hardware scaling is unavailable. \nThis will allow scaling with output drivers (like x11, fb-dev)\n that do not support hardware scaling where MPlayer disables\n scaling by default for performance reasons.\n Mplayer Option: -zoom"
 msgstr ""
 
 #: GeneralOptions.class:224
-msgid "Skip displaying some frames to maintain A/V sync"
+msgid "Scaler type (-sws)"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "0 - fast bilinear"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "1 - bilinear"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "2 - bicubic (good quality) (default)"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "3 - experimental"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "4 - nearest neighbor (bad quality)"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "5 - area"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "6 - luma bicubic/chroma bilinear"
+msgstr ""
+
+#: GeneralOptions.class:224
+msgid "10 - natural bicubic spline"
 msgstr ""
 
 #: GeneralOptions.class:225
-msgid "Skip displaying some frames to maintain A/V sync on slow systems.\nVideo filters are not applied to such frames.\nFor B-frames even decoding is skipped completely.\n Mplayer Option: -framedrop"
+msgid "Specify the software scaler algorithm to be used, Some -sws options are tunable.\nThe description of the scale video filter has further information."
 msgstr ""
 
 #: GeneralOptions.class:229
-msgid "Field dominance"
-msgstr ""
-
-#: GeneralOptions.class:229
-msgid "-1=auto (default)"
+msgid "Skip displaying some frames to maintain A/V sync"
 msgstr ""
 
 #: GeneralOptions.class:230
-msgid "Set first field for interlaced content\n Mplayer Option: -field-dominance"
+msgid "Skip displaying some frames to maintain A/V sync on slow systems.\nVideo filters are not applied to such frames.\nFor B-frames even decoding is skipped completely.\n Mplayer Option: -framedrop"
 msgstr ""
 
 #: GeneralOptions.class:234
-msgid "Limit Drive Speed to"
+msgid "Field dominance"
 msgstr ""
 
 #: GeneralOptions.class:234
-msgid "X"
+msgid "-1=auto (default)"
 msgstr ""
 
 #: GeneralOptions.class:235
-msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
+msgid "Set first field for interlaced content\n Mplayer Option: -field-dominance"
+msgstr ""
+
+#: GeneralOptions.class:239
+msgid "Limit Drive Speed to"
+msgstr ""
+
+#: GeneralOptions.class:239
+msgid "X"
 msgstr ""
 
 #: GeneralOptions.class:240
+msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
+msgstr ""
+
+#: GeneralOptions.class:245
 msgid "Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"
 msgstr ""
 
-#: GeneralOptions.class:489
+#: GeneralOptions.class:494
 msgid "Are you sure you want to delete selected items?"
 msgstr ""
 
-#: GeneralOptions.class:489
+#: GeneralOptions.class:494
 msgid "Yes, Delete"
 msgstr ""
 
-#: GeneralOptions.class:489
+#: GeneralOptions.class:494
 msgid "Don't delete"
 msgstr ""
 

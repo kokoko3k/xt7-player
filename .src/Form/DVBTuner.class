@@ -412,7 +412,7 @@ End
 
 Public Sub selecttuning()
   If Exist("/usr/share/dvb/dvb-t") Then myDialog.Path = "/usr/share/dvb/dvb-t/"
-  myDialog.OpenFile(False)
+  myDialog.OpenFile()
   ftablefilesource = myDialog.Path
   Me.Caption = "Tuning Data file: " & File.Name(ftablefilesource)
 End

@@ -69,8 +69,8 @@ Public Sub Button1_Click()
   channelsgrid.Rows.count = 0
   channelsgrid.columns.count = 1
   channelfiledata = ""
-  'scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 2>&1" For Read As "scanprocess"
-  scanprocess = Shell "cat /root/Desktop2_kde4/out.scan" For Read As "scanprocess"
+  scanprocess = Shell scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 2>&1" For Read As "scanprocess"
+  'scanprocess = Shell "cat /root/Desktop2_kde4/out.scan" For Read As "scanprocess"
   Debug scanexe & " -t 3 -A 1 -vv " & " -a " & cardn & " " & ftablefilesorted & " 1>&2" 
   Debug
   monprocess = Shell femonexe & " -a " & cardn & " -H" For Read As "monprocess"

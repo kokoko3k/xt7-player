@@ -3030,10 +3030,11 @@ End
 
 Private eiNow As Eventinfo
 Private eiNext As EventInfo
+Private PrevEiNow As EventInfo
 
 Public Function UpdateNowNextInfo()
   Dim channel As String = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
-
+  PrevEiNow = einow
   zzzfake.VBox4.visible = False
   zzzfake.clocklabel.text = Make2(Hour(Now())) & ":" & Make2(Minute(Now())) & " - " & Date()
   zzzfake.LabelChannelName.text = Upper(channel)
@@ -3060,7 +3061,17 @@ Public Function UpdateNowNextInfo()
     Endif
   Endif
 
+
+  If PrevEiNow <> einow Then 
+    zzzfake.LabelNowInfo.text = ""
+    zzzfake.LabelNextInfo.text = ""
+    Try zzzfake.LabelNowInfo.text = einow.text_char
+    Try zzzfake.LabelNextInfo.text = einext.text_char
+    PanelNowNextArrange(zzzfake.LabelNowInfo.visible)
+  Endif
 End
+
+
 
 Public Sub TimerUpdateNowNext_Timer()
   UpdateNowNextInfo()
@@ -4486,7 +4497,7 @@ Public Sub PanelNowNextShow()
 End
 
 
-Public Sub PanelNowNextArrange()
+Public Sub PanelNowNextArrange(Optional Exdended As Boolean = False)
   With zzzfake
     .PanelNowNext.Reparent(outerbox)
     .PanelNowNext.ignore = True
@@ -4498,6 +4509,7 @@ Public Sub PanelNowNextArrange()
     .HBox2.y = .Separator1.y + .Separator1.h
     .HBox3.y = .HBox1.y + .HBox1.h
     .PanelNowNext.h = .hbox1.h + .hbox2.h + .hbox3.h + .Separator1.h + (.PanelNowNext.padding * 2)
+     If .LabelNowInfo.visible Then .PanelNowNext.h += .LabelNowInfo.h + .LabelNextInfo.h
     .PanelNowNext.w = CInt(outerbox.w * 0.8)
     .PanelNowNext.x = (outerbox.w / 2) - (.PanelNowNext.w / 2)
     .PanelNowNext.y = - .PanelNowNext.padding
@@ -5103,9 +5115,7 @@ End
 Public Sub Hsplit1_MyRefresh()
   
   Dim RightPanel As Integer = 0
-  
-  If zzzFake.PanelNowNext.visible Then PanelNowNextArrange()
-  
+
   If (Not mplayer.audioonly) Then CorrectAreaAspect()
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
@@ -5129,7 +5139,12 @@ Public Sub Hsplit1_MyRefresh()
     audioform.AudioPanel.visible = True
   Endif
   YouVideoInfo.w = scrollviewyt.w - 64
-    Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
+  Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
+  
+  If zzzFake.PanelNowNext.visible Then 
+    Wait
+    PanelNowNextArrange()
+  Endif
 End
 
 

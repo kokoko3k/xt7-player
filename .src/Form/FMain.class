@@ -2168,6 +2168,11 @@ Public Sub MenuswitchChapter_click()
   
 End
 
+'we have to know if the audio has been switched because this crashes mplayer:
+'play rai1, switch audio to eng, play rai2 via dvb_set_channel and you get no audio at all, try to choose the audio -> mplayer crash.
+'i suspect that when you play rai2 mplayer tries to find the previous audio_id into the new channel.
+'anyway, when audioswitched is true, dvb_set_channel will not be used, instead a stop and a play is issued to change channel, sorry.
+Private AudioSwitched As Boolean = False
 Public Sub Menuswitchaudio_click()
   
   Dim brother As Menu
@@ -2179,7 +2184,7 @@ Public Sub Menuswitchaudio_click()
   Last.checked = True
   Try ID = Split(Last.caption, " ")[0] 
   mplayer.Send("switch_audio " & ID)
-  
+  AudioSwitched = True
 End
 
 Public Sub PowerffBTN_click()
@@ -4855,25 +4860,24 @@ Public Sub PlaySelectedDvb(Optional channel As String = ":::")
     selectedpath = "dvb://" & channel
   Endif
   
-  If mplayer.ProcessRunningOvr() Then
-    If Lower(mplayer.Media_FullPath_Playing) Like "dvb://*" Then
-      mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
-      
-      
-      FillStreamsMenu()
-      CorrectAreaAspect()
-      FillPropertiesGrid()
-      LogWindow.ShowLogs()
-      
-      
-      
-      
-      Last.mouse = mouse.Default
-      Goto ReturnLabel
+  If Not AudioSwitched Then
+    If mplayer.ProcessRunningOvr() Then
+      If Lower(mplayer.Media_FullPath_Playing) Like "dvb://*" Then
+        mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
+        'simulate a dry run:
+          FillStreamsMenu()
+          CorrectAreaAspect()
+          FillPropertiesGrid()
+          LogWindow.ShowLogs()
+        Last.mouse = mouse.Default
+        Goto ReturnLabel
+      Endif
     Endif
   Endif
   
   Try Play(SelectedPath)
+  AudioSwitched = False
+  
   Last.mouse = mouse.Default
   Goto ReturnLabel
 

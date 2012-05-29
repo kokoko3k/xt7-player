@@ -801,6 +801,7 @@
           { dvbtCacheCheckbox CheckBox notifyobj
             Name = "dvbtCacheCheckbox"
             MoveScaled(1,0,3,4)
+            Value = CheckBox.True
           }
           { Label14 Label labelcheck
             Name = "Label14"
@@ -812,7 +813,7 @@
             Name = "dvbtCacheSpinBox"
             MoveScaled(23,1,11,4)
             MaxValue = 1048576
-            Value = 1024
+            Value = 10240
           }
         }
         { NoParse39 HBox
@@ -822,6 +823,7 @@
           { dvbtminCacheCheckbox CheckBox notifyobj
             Name = "dvbtminCacheCheckbox"
             MoveScaled(1,0,3,4)
+            Value = CheckBox.True
           }
           { Label15 Label labelcheck
             Name = "Label15"
@@ -833,7 +835,6 @@
             Name = "dvbtcacheminspinbox"
             MoveScaled(24,1,8,4)
             MaxValue = 99
-            Value = 1
           }
           { Label16 Label labelcheck
             Name = "Label16"

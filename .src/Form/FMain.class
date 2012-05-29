@@ -4825,11 +4825,10 @@ Public Sub ButtonNowNext_Click()
   Endif
 End
 
-Public Sub playselecteddvb(Optional channel As String = ":::")
+Public Sub PlaySelectedDvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
   Dim myradiolabel As String
-  Dim channelN As String
   
     'start from a blank panel
     zzzfake.LabelNowName.text = ("Not available")
@@ -4858,21 +4857,18 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
   
   If mplayer.ProcessRunningOvr() Then
     If Lower(mplayer.Media_FullPath_Playing) Like "dvb://*" Then
-      ChannelN = channelToNumber(SelectedPath)
-      mplayer.Send("dvb_set_channel " & ChannelN & " " & CStr(CInt(generaloptions.spinboxcard.Text) - 1))
-      Wait 0.01
-      mplayer.Send("dvb_set_channel " & ChannelN & " " & CStr(CInt(generaloptions.spinboxcard.Text) - 1))
-      Wait 0.01
-      mplayer.Send("dvb_set_channel " & ChannelN & " " & CStr(CInt(generaloptions.spinboxcard.Text) - 1))
+      mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
       
-      mplayer.Media_FullPath_Playing = SelectedPath
-      mplayer.Media_FullPath = SelectedPath
+      
+      FillStreamsMenu()
+      CorrectAreaAspect()
+      FillPropertiesGrid()
+      LogWindow.ShowLogs()
+      
+      
+      
+      
       Last.mouse = mouse.Default
-      
-      'here we may need to send the last volume (variable=lastvolume) to the running mplayer
-      'because it seems it resets the volume after each channel change
-      'the problem is that maybe we need to send it delayed..eg: after the channel as been tuned?
-      
       Goto ReturnLabel
     Endif
   Endif
@@ -4885,29 +4881,6 @@ Public Sub playselecteddvb(Optional channel As String = ":::")
   ReturnLabel:
   If Not OneSecTimer.Enabled Then OneSecTimer.Start()
 
-End
-
-
-Public Function channelToNumber(C As String) As Integer
-  Dim i As Integer
-  Dim chans As String[]
-  Dim chansfix As New String[]
-  Dim chanfile As String = User.home & "/.mplayer/channels.conf.ter"
-  If Not (Exist(chanfile)) Then Return 0
-  
-  chans = Split(file.Load(chanfile), "\n")
-  For i = 0 To chans.Max 'we have to discard any non valid channel line, because so does mplayer
-    If Split(chans[i], ":").count = 13 Then chansfix.Add(chans[i])
-  Next
-  
-  For i = 0 To chansfix.Max
-    If Trim(chansfix[i]) <> "" Then
-      If "dvb://" & Lower(Split(chansfix[i], ":")[0]) = Lower(C) Then 
-        Return i
-      Endif
-    Endif
-  Next
-  Return 0
 End
 
 

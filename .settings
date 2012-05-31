@@ -1,5 +1,5 @@
 [Breakpoints]
-Breakpoint[1]="GeneralOptions.468"
+Breakpoint[1]="GeneralOptions.473"
 Count=1
 
 [DebugWindow]
@@ -43,6 +43,9 @@ Geometry=[0,40,301,301]
 
 [DebugWindow/AudioChainBox.Children]
 Geometry=[52,0,210,210]
+
+[DebugWindow/Audios]
+Geometry=[899,0,373,997]
 
 [DebugWindow/Audiotag]
 Geometry=[0,0,520,375]
@@ -563,6 +566,9 @@ Geometry=[51,0,632,651]
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
+[DebugWindow/audios]
+Geometry=[1525,157,777,754]
+
 [DebugWindow/avgarray]
 Geometry=[2318,432,210,210]
 
@@ -1039,12 +1045,12 @@ File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
 File[4]=".src/Form/FMain.class:3062.0"
 Active=5
-File[5]="CHANGELOG_GIT:3.12"
+File[5]="CHANGELOG_GIT:18.45"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:295.16"
 File[8]=".src/Classi/PlaylistClass.class:118.24"
 File[9]=".src/Form/GeneralOptions.form"
-File[10]=".src/Form/GeneralOptions.class:772.23"
+File[10]=".src/Form/GeneralOptions.class:219.329"
 File[11]="AA_ToDo:98.0"
 File[12]=".src/Classi/AlbumView.class:239.14"
 File[13]=".src/Form/FMain.form"
@@ -1063,7 +1069,7 @@ File[25]=".src/Form/XConfigureVideoDriver.form"
 File[26]="cdaudio16.png"
 File[27]=".src/Form/CoverManager.form"
 File[28]=".src/Form/ProfileManager.class:28.94"
-File[29]=".src/Form/DVBTuner.class:341.2"
+File[29]=".src/Form/DVBTuner.class:71.2"
 File[30]=".src/Classi/YoutubeClass.class:571.22"
 File[31]=".src/Classi/ShoutCastClass.class:279.34"
 File[32]=".src/Classi/FlashClass.class:129.11"

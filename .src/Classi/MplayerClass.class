@@ -498,7 +498,7 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
   Dim NewOptions As String
   Dim CurrentSeconds As Integer
   Dim timeout As Integer = 1000
-  Debug 
+  AudioSwitched = False
   fmain.subnotset = True
   CurrentCache = "0"
   If Paused Then do_leave_pause()
@@ -622,7 +622,7 @@ Public Function DvbChannelToNumber(C As String) As Integer
 End
 
 Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg") As Boolean
-
+  AudioSwitched = False
   CurrentCache = "0"
   mplayeroptions = options
   IsNetworkURI = Global.IsNetworkURI(filename) ' on network streams we'll try to guess "ICY:" information (webradios tag)
@@ -877,8 +877,9 @@ Public Function DoDeinterlace()
 End
 
 
-Public Function Send(command As String) As Boolean
+Public AudioSwitched As Boolean = False
 
+Public Function Send(command As String) As Boolean
   Dim mystream As File
   If (command) = "Pause" Then
     If paused Then
@@ -895,8 +896,10 @@ Public Function Send(command As String) As Boolean
       If inputpipe <> "" Then Print #mystream, command
     Endif
   Endif
-
+  If Lower(command) Like "switch_audio*" Then AudioSwitched = True
 End
+
+
 
 'old_send can workaround an ubuntu problem by using echo instead of print?
 Public Function Old_Send(command As String) As Boolean
@@ -987,7 +990,7 @@ End
 Public Function do_stop() As Boolean
 
   Dim timeout As Integer = 11
-
+  AudioSwitched = False
   Try STimer.stop
   stopping = True
   ICY = ""

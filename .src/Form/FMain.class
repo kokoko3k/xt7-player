@@ -2171,7 +2171,7 @@ End
 'we have to know if the audio has been switched because this crashes mplayer:
 'play rai1, switch audio to eng, play rai2 via dvb_set_channel and you get no audio at all, try to choose the audio -> mplayer crash.
 'i suspect that when you play rai2 mplayer tries to find the previous audio_id into the new channel.
-'anyway, when audioswitched is true, dvb_set_channel will not be used, instead a stop and a play is issued to change channel, sorry.
+'anyway, when audioswitched is true, dvb_set_channel may not be used, instead a stop and a play shoild be issued to change channel, sorry.
 Public Sub Menuswitchaudio_click()
   
   Dim brother As Menu
@@ -4828,6 +4828,25 @@ Public Sub ButtonNowNext_Click()
   Endif
 End
 
+Private Function UseDvbSetChannel() As Boolean
+  Dim Userpreference As String = ""
+  Try Userpreference = generaloptions.ComboboxFastZapping.Text
+  If Error Then Return False
+  If Not mplayer.ProcessRunningOvr() Then Return False
+  If Not (Lower(mplayer.Media_FullPath_Playing) Like "dvb://*") Then Return False
+
+
+  If Userpreference Like "*0*" Then Return False 'never use
+  If Userpreference Like "*2*" Then Return True 'always use
+
+  If Userpreference Like "*1*" Then 'let xt7 choose
+    Return Not (mplayer.AudioSwitched)
+  Endif
+
+End
+
+
+
 Public Sub PlaySelectedDvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
@@ -4858,21 +4877,19 @@ Public Sub PlaySelectedDvb(Optional channel As String = ":::")
     selectedpath = "dvb://" & channel
   Endif
   
-  If Not mplayer.AudioSwitched Then
-    If mplayer.ProcessRunningOvr() Then
-      If Lower(mplayer.Media_FullPath_Playing) Like "dvb://*" Then
-        mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
-        'simulate a dry run:
-          FillStreamsMenu()
-          CorrectAreaAspect()
-          FillPropertiesGrid()
-          LogWindow.ShowLogs()
-        Last.mouse = mouse.Default
-        Goto ReturnLabel
-      Endif
-    Endif
+  'Here we will reuse the same mplayer instance if at least one of this conditions are met:
+  '1) User has never switched audio
+  '2) User explicitely want to try fast zapping
+  If UseDvbSetChannel() Then
+    mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
+    'simulate a dry run:
+      FillStreamsMenu()
+      CorrectAreaAspect()
+      FillPropertiesGrid()
+      LogWindow.ShowLogs()
+    Last.mouse = mouse.Default
+    Goto ReturnLabel
   Endif
-
   Try Play(SelectedPath)
 
   

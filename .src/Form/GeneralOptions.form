@@ -687,7 +687,7 @@
       Index = 7
       Text = ("DVB-T")
       { ScrollView11 ScrollView
-        MoveScaled(1,1,56,58)
+        MoveScaled(2,1,56,58)
         Tag = "dvb-t"
         ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer Option: -tsprobe <byte position>")
         Expand = True
@@ -734,7 +734,7 @@
           }
         }
         { NoParse50 HBox
-          MoveScaled(0,9,50,4)
+          MoveScaled(0,8,50,4)
           ToolTip = ("Select your dvbsnoop executable.\nJust write 'dvbsnoop' for default.\ndvbsnoop is needed to get EPG data.")
           Spacing = True
           { NoParseLabel22 Label
@@ -753,7 +753,7 @@
           }
         }
         { NoParse1 HBox
-          MoveScaled(0,14,50,4)
+          MoveScaled(0,12,50,4)
           ToolTip = ("Temporary recording folder")
           Spacing = True
           { NoParseLabel2 Label
@@ -773,7 +773,7 @@
           }
         }
         { NoParse48 HBox
-          MoveScaled(0,19,50,5)
+          MoveScaled(0,16,50,4)
           ToolTip = ("Temporary recording folder")
           Spacing = True
           { NoParseLabel3 Label
@@ -792,10 +792,10 @@
           }
         }
         { NOPARSESEP3 Separator
-          MoveScaled(3,24,48,1)
+          MoveScaled(2,20,48,1)
         }
         { NoParse38 HBox
-          MoveScaled(0,26,50,4)
+          MoveScaled(0,21,50,4)
           ToolTip = ("Maximum cache size.\nMplayer option: -cache ")
           Spacing = True
           { dvbtCacheCheckbox CheckBox notifyobj
@@ -817,7 +817,7 @@
           }
         }
         { NoParse39 HBox
-          MoveScaled(0,31,50,4)
+          MoveScaled(0,25,50,4)
           ToolTip = ("The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min")
           Spacing = True
           { dvbtminCacheCheckbox CheckBox notifyobj
@@ -844,7 +844,7 @@
           }
         }
         { NOPARSEHbox3 HBox
-          MoveScaled(1,36,48,4)
+          MoveScaled(1,29,48,4)
           ToolTip = ("It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#")
           Spacing = True
           { LabelCard Label
@@ -859,7 +859,7 @@
           }
         }
         { NOPARSEHbox4 HBox
-          MoveScaled(1,41,49,4)
+          MoveScaled(1,33,49,4)
           ToolTip = ("How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n")
           Spacing = True
           { LabelCard2 Label
@@ -875,19 +875,37 @@
           }
         }
         { NOPARSEHbox5 HBox
-          MoveScaled(1,46,50,4)
-          ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n")
+          MoveScaled(1,37,50,4)
+          ToolTip = ("When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n\nThis can speed-up tuning/zapping.")
           Spacing = True
           { tsprobechk CheckBox notifyobj
             Name = "tsprobechk"
-            MoveScaled(0,0,15,4)
+            MoveScaled(1,0,15,4)
+            AutoResize = True
             Text = ("tsprobe")
           }
           { comboboxtsprobe ComboBox notifyobj
             Name = "comboboxtsprobe"
-            MoveScaled(14,0,22,3)
+            MoveScaled(18,0,22,3)
             List = [("64000"), ("128000"), ("256000"), ("512000"), ("1024000"), ("2048000"), ("4096000"), ("8192000")]
             Text = ("1024000")
+          }
+        }
+        { NoParse51 HBox
+          MoveScaled(0,42,54,4)
+          ToolTip = ("Use mplayer command: dvb_set_channel.\nIt will cut down time needed to tune channels, \nbut you could have troubles with missing or wrong audio,\nIt is an mplayer bug you may want to check here:\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=2070\n--\n0 - The safer choice.\n1 - Let xt7 decide if it is safe or not.\n2 - Could even crash mplayer, depends on its version.")
+          Spacing = True
+          { Label24 Label labelcheck
+            Name = "Label24"
+            MoveScaled(2,0,22,3)
+            AutoResize = True
+            Text = ("Faster channel zapping")
+          }
+          { ComboboxFastZapping ComboBox
+            MoveScaled(20,0,33,3)
+            ReadOnly = True
+            List = [("0 - Never"), ("1 - When audio is not switched"), ("2 - Always")]
+            Text = ("0 - Never")
           }
         }
         { NOPARSESEP4 Separator

@@ -38,6 +38,7 @@ End
 
 
 Public Sub Form_Show()
+  Me.mask = True
   ArrangeButtons()
   picturebox1.w = panel1.w
   UpdateScreenshot()

@@ -459,6 +459,7 @@ Private Function WaitForHeaders() As Boolean
   If Media_FullPath Like "*://*" Then MaxWait = 800 'increase timeout on uries. (800 = about 8secs)
   If Media_FullPath Like "dvd://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
   If Media_FullPath Like "dvdnav://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
+  If Media_FullPath Like "dvb://*" Then MaxWait = 3000 ' for dvb, we'll wait 30 secs.
   If Global.IsCdaudio(Media_FullPath) Then MaxWait = 3000 ' for cd, we'll wait 30 secs.
   If Not Quick And Trim(Media_FullPath) <> "" Then
     While (MediaHeaders.count < maxheaders) And ProcessRunningOvr() And (Not GotHeaders) And (MaxWait > 0)

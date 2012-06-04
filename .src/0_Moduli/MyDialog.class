@@ -44,7 +44,6 @@ Public Function OpenFile() As Boolean
   If Error Then Try Dialog.OpenFile()
   If Error Then Try Dialog.OpenFile()
   sync()
-  Message.Info(myDialog.path)
 End
 Public Function SaveFile() As Boolean
   Try Dialog.SaveFile()

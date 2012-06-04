@@ -186,16 +186,12 @@ End
 
 
 Public Sub Form_Resize()
-  TabStrip1.Y = 8
-  TabStrip1.X = FilterList.x + FilterList.Width + 16
-  TabStrip1.width = Frame1.Width - FilterList.Width - 24
-  TabStrip1.height = (Frame1.Height * 60) Div 100
-  DescriptionArea.Y = TabStrip1.Y + TabStrip1.Height + 8
-  DescriptionArea.Height = ((Frame1.Height * 40) Div 100) - 28
-  DescriptionArea.X = TabStrip1.X
-  DescriptionArea.width = TabStrip1.width
-  VBox1.y = TabStrip1.Y
-  VBox1.Height = Frame1.Height - 20
+  vsplit1.y = 8
+  VBox1.y = vsplit1.y
+  VBox1.Height = Frame1.Height - VBox1.y - 8
+  vsplit1.w = Frame1.Width - FilterList.Width - 24
+  vsplit1.x = FilterList.x + FilterList.Width + 16
+  vsplit1.h = VBox1.Height 
 End
 
 

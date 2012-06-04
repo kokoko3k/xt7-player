@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,89,70)
+  MoveScaled(0,0,90,70)
   Background = Color.Background
   Text = ("Video Filters configuration")
   Icon = Picture["video-television.png"]
@@ -28,17 +28,12 @@
   { Frame1 Frame
     MoveScaled(4,1,86,61)
     Expand = True
-    { DescriptionArea TextArea
-      MoveScaled(21,38,62,22)
-      Expand = True
-      Text = ("TextArea1")
-      ReadOnly = True
-    }
     { VBox1 VBox
       MoveScaled(1,1,19,58)
       Spacing = True
       { Label1 Label
         MoveScaled(2,2,11,4)
+        AutoResize = True
         Text = ("Video Filters list")
         Alignment = Align.Justify
       }
@@ -47,21 +42,31 @@
         Expand = True
       }
     }
-    { TabStrip1 TabStrip
-      MoveScaled(21,2,61,35)
-      Arrangement = Arrange.Vertical
-      Count = 5
-      Index = 0
-      Text = ("UnSharp")
-      Index = 1
-      Text = ("Tab 1")
-      Index = 2
-      Text = ("Tab 2")
-      Index = 3
-      Text = ("Tab 3")
-      Index = 4
-      Text = ("Tab 4")
-      Index = 0
+    { VSplit1 VSplit
+      MoveScaled(21,1,63,57)
+      Expand = True
+      { TabStrip1 TabStrip
+        MoveScaled(-2,0,63,35)
+        Arrangement = Arrange.Vertical
+        Count = 5
+        Index = 0
+        Text = ("UnSharp")
+        Index = 1
+        Text = ("Tab 1")
+        Index = 2
+        Text = ("Tab 2")
+        Index = 3
+        Text = ("Tab 3")
+        Index = 4
+        Text = ("Tab 4")
+        Index = 0
+      }
+      { DescriptionArea TextArea
+        MoveScaled(0,35,61,22)
+        Expand = True
+        Text = ("TextArea1")
+        ReadOnly = True
+      }
     }
   }
   { HBox1 HBox

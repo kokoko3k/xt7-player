@@ -5552,9 +5552,7 @@ Public Sub LeftSideTabs_Click()
 End
 
 Public Sub LeftSideTabs_KeyRelease()
-  
   UpdateTabs()
-  
 End
 
 Public Sub MenuAddUri_Click()

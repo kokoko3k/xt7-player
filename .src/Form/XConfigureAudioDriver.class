@@ -81,11 +81,11 @@ Public Sub AudioDriverList_MouseDrag()
 End
 
 Public Sub Form_Resize()
-
-  DriverDescription.Width = DriverFrame.Width - DriverDescription.left - 8
-  DriverDescription.Height = DriverFrame.Height - DriverDescription.top - 8
-  ConfigureTabs.width = DriverFrame.width - ConfigureTabs.left - 8
-  DriversPanel.Height = DriverFrame.Height - DriversPanel.top - 8
+  VSplit1.y = (Style.FrameWidth * 2) + 8
+  VSplit1.h = DriverFrame.h - VSplit1.y - (Style.FrameWidth * 2)
+  vbox1.h = VSplit1.h
+  VSplit1.x = vbox1.x + vbox1.w + 8
+  VSplit1.w = DriverFrame.w - VSplit1.x - (Style.FrameWidth * 2)
 End
 
 Public Sub CancelBTN_Click()

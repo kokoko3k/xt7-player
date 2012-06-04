@@ -28,812 +28,826 @@
   { DriverFrame Frame
     MoveScaled(1,0,77,58)
     Expand = True
-    { DriverDescription TextArea
-      MoveScaled(17,41,59,16)
-      Expand = True
-      Text = ("Driver Description")
-      ReadOnly = True
-      Wrap = True
-    }
-    { Label2 Label
-      MoveScaled(1,1,14,4)
-      AutoResize = True
-      Text = ("Driver Priority")
-    }
-    { ConfigureTabs TabStrip
-      MoveScaled(17,1,59,39)
-      Expand = True
-      Arrangement = Arrange.Vertical
-      Count = 8
-      Index = 0
-      Text = ("Xv")
-      { XvParseMeHbox1 HBox
-        MoveScaled(2,1,45,6)
-        Padding = 6
-        { XVPortChk CheckBox
-          MoveScaled(1,1,15,4)
-          Tag = "port="
-          Text = ("Port")
-        }
-        { SpinBox1 SpinBox
-          MoveScaled(18,1,9,4)
-          MaxValue = 999
-        }
-      }
-      { XvParseMeHbox4 HBox
-        MoveScaled(2,7,45,6)
-        Padding = 6
-        { XVPortChk2 CheckBox
-          MoveScaled(1,1,15,4)
-          Tag = "adaptor="
-          Text = ("Adaptor")
-        }
-        { SpinBox10 SpinBox notifyobj
-          Name = "SpinBox10"
-          MoveScaled(18,1,9,4)
-          MaxValue = 999
-        }
-      }
-      { XvParseMeHbox2 HBox
-        MoveScaled(2,13,45,6)
-        Padding = 6
-        { XVckChk CheckBox
-          MoveScaled(1,1,15,4)
-          Tag = "ck="
-          Text = ("Ck")
-        }
-        { ComboBox1 ComboBox notifyobj
-          Name = "ComboBox1"
-          MoveScaled(18,1,17,4)
-          ReadOnly = True
-          List = [("cur"), ("use"), ("set")]
-          Text = ("ComboBox1")
-        }
-      }
-      { XvParseMeHbox3 HBox
-        MoveScaled(2,19,45,6)
-        Padding = 6
-        { XVckmethodChk CheckBox
-          MoveScaled(1,1,15,4)
-          Tag = "ck-method="
-          Text = ("Ck-Method")
-        }
-        { ComboBox2 ComboBox notifyobj
-          Name = "ComboBox2"
-          MoveScaled(18,1,17,4)
-          ReadOnly = True
-          List = [("man"), ("bg"), ("auto")]
-          Text = ("ComboBox1")
-        }
-      }
-      { XvHbox4 HBox notifyobj
-        Name = "XvHbox4"
-        MoveScaled(2,25,45,6)
-        Spacing = True
-        Margin = True
-        Padding = 6
-        { ColorButton1 ColorButton
-          MoveScaled(1,0,4,4)
-        }
-        { Label1 Label
-          MoveScaled(7,0,10,4)
-          Text = ("ColorKey")
-        }
-        { ColorKeyBox TextBox
-          MoveScaled(18,0,16,4)
-          Text = ("0xFF00FF")
-        }
-      }
-      Index = 1
-      Text = ("GL")
-      { GLScrollView ScrollView
-        MoveScaled(1,1,57,34)
+    { VSplit1 VSplit
+      MoveScaled(17,1,59,56)
+      { ConfigureTabs TabStrip
+        MoveScaled(1,1,56,38)
         Expand = True
         Arrangement = Arrange.Vertical
-        Spacing = True
-        Padding = 4
-        Border = False
-        { GLParseMeHPanel HPanel
-          MoveScaled(1,1,45,20)
-          AutoResize = True
+        Count = 8
+        Index = 0
+        Text = ("Xv")
+        { xvScrollview ScrollView
+          MoveScaled(1,1,51,33)
+          Expand = True
+          Border = False
+          { XvHbox4 HBox notifyobj
+            Name = "XvHbox4"
+            MoveScaled(0,24,42,6)
+            Spacing = True
+            Margin = True
+            Padding = 6
+            { ColorButton1 ColorButton
+              MoveScaled(1,0,4,4)
+            }
+            { Label1 Label
+              MoveScaled(7,0,10,4)
+              Text = ("ColorKey")
+            }
+            { ColorKeyBox TextBox
+              MoveScaled(18,0,16,4)
+              Text = ("0xFF00FF")
+            }
+          }
+          { XvParseMeHbox3 HBox
+            MoveScaled(0,18,45,6)
+            Padding = 6
+            { XVckmethodChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "ck-method="
+              Text = ("Ck-Method")
+            }
+            { ComboBox2 ComboBox notifyobj
+              Name = "ComboBox2"
+              MoveScaled(18,1,17,4)
+              ReadOnly = True
+              List = [("man"), ("bg"), ("auto")]
+              Text = ("ComboBox1")
+            }
+          }
+          { XvParseMeHbox2 HBox
+            MoveScaled(0,12,45,6)
+            Padding = 6
+            { XVckChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "ck="
+              Text = ("Ck")
+            }
+            { ComboBox1 ComboBox notifyobj
+              Name = "ComboBox1"
+              MoveScaled(18,1,17,4)
+              ReadOnly = True
+              List = [("cur"), ("use"), ("set")]
+              Text = ("ComboBox1")
+            }
+          }
+          { XvParseMeHbox4 HBox
+            MoveScaled(0,6,45,6)
+            Padding = 6
+            { XVPortChk2 CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "adaptor="
+              Text = ("Adaptor")
+            }
+            { SpinBox10 SpinBox notifyobj
+              Name = "SpinBox10"
+              MoveScaled(18,1,9,4)
+              MaxValue = 999
+            }
+          }
+          { XvParseMeHbox1 HBox
+            MoveScaled(0,0,45,6)
+            Padding = 6
+            { XVPortChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "port="
+              Text = ("Port")
+            }
+            { SpinBox1 SpinBox
+              MoveScaled(18,1,9,4)
+              MaxValue = 999
+            }
+          }
+        }
+        Index = 1
+        Text = ("GL")
+        { GLScrollView ScrollView
+          MoveScaled(1,1,57,34)
+          Expand = True
+          Arrangement = Arrange.Vertical
           Spacing = True
-          Margin = True
           Padding = 4
-          { CheckBox3 CheckBox
-            MoveScaled(1,2,20,4)
-            Tag = "scaled-osd"
-            Text = ("Scaled-Osd")
+          Border = False
+          { GLParseMeHPanel HPanel
+            MoveScaled(1,1,45,20)
+            AutoResize = True
+            Spacing = True
+            Margin = True
+            Padding = 4
+            { CheckBox3 CheckBox
+              MoveScaled(1,2,20,4)
+              Tag = "scaled-osd"
+              Text = ("Scaled-Osd")
+            }
+            { CheckBox7 CheckBox
+              MoveScaled(23,2,18,4)
+              Tag = "glfinish"
+              Text = ("GlFinish")
+            }
+            { CheckBox4 CheckBox
+              MoveScaled(1,6,20,4)
+              Tag = "nocustomlin"
+              Text = ("NoCustomLin")
+            }
+            { CheckBox8 CheckBox
+              MoveScaled(23,6,18,4)
+              Tag = "nomanyfmts"
+              Text = ("NoManyFmts")
+            }
+            { CheckBox5 CheckBox
+              MoveScaled(1,10,20,4)
+              Tag = "customrect"
+              Text = ("CustomRect")
+            }
+            { CheckBox9 CheckBox
+              MoveScaled(23,10,18,4)
+              Tag = "noosd"
+              Text = ("NoOsd")
+            }
+            { CheckBox10 CheckBox
+              MoveScaled(1,14,18,4)
+              Tag = "noaspect"
+              Text = ("NoAspect")
+            }
           }
-          { CheckBox7 CheckBox
-            MoveScaled(23,2,18,4)
-            Tag = "glfinish"
-            Text = ("GlFinish")
+          { GLParseMePanel2 Panel
+            MoveScaled(0,23,45,13)
+            Border = Border.Raised
+            { CheckBox11 CheckBox
+              MoveScaled(0.5714,1,14,4)
+              Tag = "osdcolor="
+              Text = ("OsdColor")
+            }
+            { TextBox2 TextBox
+              MoveScaled(18,1,13,4)
+              Text = ("0x00ffffff")
+              ReadOnly = True
+            }
+            { SpinBox3 SpinBox
+              MoveScaled(18,7,11,4)
+              MaxValue = 255
+            }
+            { GLColorButton1 ColorButton
+              MoveScaled(32,1,4,4)
+            }
+            { Label4 Label
+              MoveScaled(0.5714,7,15,4)
+              Text = ("Transparency")
+              Alignment = Align.Right
+            }
           }
-          { CheckBox4 CheckBox
-            MoveScaled(1,6,20,4)
-            Tag = "nocustomlin"
-            Text = ("NoCustomLin")
+          { GLParseMeHBox2 HBox
+            MoveScaled(1,36,45,6)
+            Padding = 8
+            { CheckBox6 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "rectangle="
+              Text = ("Rectangle")
+            }
+            { ComboBox5 ComboBox
+              MoveScaled(18,1,10,4)
+              ReadOnly = True
+              List = [("1"), ("2"), ("3")]
+              Text = ("ComboBox5")
+            }
           }
-          { CheckBox8 CheckBox
-            MoveScaled(23,6,18,4)
-            Tag = "nomanyfmts"
-            Text = ("NoManyFmts")
+          { GLParseMeHBox1 HBox
+            MoveScaled(1,42,45,6)
+            Padding = 8
+            { CheckBox12 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "swapinterval="
+              Text = ("SwapInterval")
+            }
+            { SpinBox4 SpinBox
+              MoveScaled(18,1,11,4)
+              MaxValue = 255
+            }
           }
-          { CheckBox5 CheckBox
-            MoveScaled(1,10,20,4)
-            Tag = "customrect"
-            Text = ("CustomRect")
+          { GLParseMeHBox3 HBox
+            MoveScaled(1,48,45,6)
+            Padding = 8
+            { CheckBox13 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "yuv="
+              Text = ("Yuv")
+            }
+            { SpinBox5 SpinBox
+              MoveScaled(18,1,11,4)
+              MaxValue = 6
+            }
           }
-          { CheckBox9 CheckBox
-            MoveScaled(23,10,18,4)
-            Tag = "noosd"
-            Text = ("NoOsd")
+          { GLParseMeHBox10 HBox
+            MoveScaled(1,54,45,6)
+            Padding = 8
+            { CheckBox20 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "slice-height="
+              Text = ("Slice Height")
+            }
+            { SpinBox9 SpinBox
+              MoveScaled(18,1,11,4)
+              MaxValue = 4096
+            }
           }
-          { CheckBox10 CheckBox
-            MoveScaled(1,14,18,4)
-            Tag = "noaspect"
-            Text = ("NoAspect")
+          { GLParseMeHBox4 HBox
+            MoveScaled(1,61,45,6)
+            Padding = 8
+            { CheckBox14 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "lscale="
+              Text = ("Lscale")
+            }
+            { SpinBox6 SpinBox
+              MoveScaled(18,1,11,4)
+              MaxValue = 5
+            }
+          }
+          { GLParseMeHBox5 HBox
+            MoveScaled(1,67,45,6)
+            Padding = 8
+            { CheckBox15 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "cscale="
+              Text = ("Cscale")
+            }
+            { SpinBox7 SpinBox
+              MoveScaled(18,1,11,4)
+              MaxValue = 5
+            }
+          }
+          { GLParseMeHBox6 HBox
+            MoveScaled(1,73,45,6)
+            Padding = 8
+            { CheckBox16 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "customprog="
+              Text = ("CustomProg")
+            }
+            { TextBox3 TextBox
+              MoveScaled(18,1,21,4)
+            }
+            { FragFileOpen ToolButton
+              MoveScaled(40,1,3.4286,3.4286)
+              Picture = Picture["icon:/24/open"]
+            }
+          }
+          { GLParseMeHBox7 HBox
+            MoveScaled(1,79,45,6)
+            Padding = 8
+            { CheckBox17 CheckBox
+              MoveScaled(1,2,17,4)
+              Tag = "customtex="
+              Text = ("CustomTex")
+            }
+            { TextBox4 TextBox
+              MoveScaled(18,1,21,4)
+            }
+            { FragFileOpen2 ToolButton
+              MoveScaled(40,1,3.4286,3.4286)
+              Picture = Picture["icon:/24/open"]
+            }
           }
         }
-        { GLParseMePanel2 Panel
-          MoveScaled(0,23,45,13)
-          Border = Border.Raised
-          { CheckBox11 CheckBox
-            MoveScaled(0.5714,1,14,4)
-            Tag = "osdcolor="
-            Text = ("OsdColor")
-          }
-          { TextBox2 TextBox
-            MoveScaled(18,1,13,4)
-            Text = ("0x00ffffff")
-            ReadOnly = True
-          }
-          { SpinBox3 SpinBox
-            MoveScaled(18,7,11,4)
-            MaxValue = 255
-          }
-          { GLColorButton1 ColorButton
-            MoveScaled(32,1,4,4)
-          }
-          { Label4 Label
-            MoveScaled(0.5714,7,15,4)
-            Text = ("Transparency")
-            Alignment = Align.Right
-          }
-        }
-        { GLParseMeHBox2 HBox
-          MoveScaled(1,36,45,6)
+        Index = 2
+        Text = ("GL2")
+        { GL2ParseMeHBox8 HBox
+          MoveScaled(1,1,45,6)
           Padding = 8
-          { CheckBox6 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "rectangle="
-            Text = ("Rectangle")
-          }
-          { ComboBox5 ComboBox
-            MoveScaled(18,1,10,4)
-            ReadOnly = True
-            List = [("1"), ("2"), ("3")]
-            Text = ("ComboBox5")
-          }
-        }
-        { GLParseMeHBox1 HBox
-          MoveScaled(1,42,45,6)
-          Padding = 8
-          { CheckBox12 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "swapinterval="
-            Text = ("SwapInterval")
-          }
-          { SpinBox4 SpinBox
-            MoveScaled(18,1,11,4)
-            MaxValue = 255
-          }
-        }
-        { GLParseMeHBox3 HBox
-          MoveScaled(1,48,45,6)
-          Padding = 8
-          { CheckBox13 CheckBox
+          { CheckBox18 CheckBox
             MoveScaled(1,2,17,4)
             Tag = "yuv="
             Text = ("Yuv")
           }
-          { SpinBox5 SpinBox
+          { SpinBox8 SpinBox
             MoveScaled(18,1,11,4)
             MaxValue = 6
           }
         }
-        { GLParseMeHBox10 HBox
-          MoveScaled(1,54,45,6)
+        { GL2ParseMeHBox9 HBox
+          MoveScaled(1,8,45,6)
           Padding = 8
-          { CheckBox20 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "slice-height="
-            Text = ("Slice Height")
-          }
-          { SpinBox9 SpinBox
-            MoveScaled(18,1,11,4)
-            MaxValue = 4096
-          }
-        }
-        { GLParseMeHBox4 HBox
-          MoveScaled(1,61,45,6)
-          Padding = 8
-          { CheckBox14 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "lscale="
-            Text = ("Lscale")
-          }
-          { SpinBox6 SpinBox
-            MoveScaled(18,1,11,4)
-            MaxValue = 5
-          }
-        }
-        { GLParseMeHBox5 HBox
-          MoveScaled(1,67,45,6)
-          Padding = 8
-          { CheckBox15 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "cscale="
-            Text = ("Cscale")
-          }
-          { SpinBox7 SpinBox
-            MoveScaled(18,1,11,4)
-            MaxValue = 5
-          }
-        }
-        { GLParseMeHBox6 HBox
-          MoveScaled(1,73,45,6)
-          Padding = 8
-          { CheckBox16 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "customprog="
-            Text = ("CustomProg")
-          }
-          { TextBox3 TextBox
-            MoveScaled(18,1,21,4)
-          }
-          { FragFileOpen ToolButton
-            MoveScaled(40,1,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
-          }
-        }
-        { GLParseMeHBox7 HBox
-          MoveScaled(1,79,45,6)
-          Padding = 8
-          { CheckBox17 CheckBox
-            MoveScaled(1,2,17,4)
-            Tag = "customtex="
-            Text = ("CustomTex")
-          }
-          { TextBox4 TextBox
-            MoveScaled(18,1,21,4)
-          }
-          { FragFileOpen2 ToolButton
-            MoveScaled(40,1,3.4286,3.4286)
-            Picture = Picture["icon:/24/open"]
-          }
-        }
-      }
-      Index = 2
-      Text = ("GL2")
-      { GL2ParseMeHBox8 HBox
-        MoveScaled(1,1,45,6)
-        Padding = 8
-        { CheckBox18 CheckBox
-          MoveScaled(1,2,17,4)
-          Tag = "yuv="
-          Text = ("Yuv")
-        }
-        { SpinBox8 SpinBox
-          MoveScaled(18,1,11,4)
-          MaxValue = 6
-        }
-      }
-      { GL2ParseMeHBox9 HBox
-        MoveScaled(1,8,45,6)
-        Padding = 8
-        { CheckBox19 CheckBox
-          MoveScaled(1,1,18,4)
-          Tag = "noglfinish"
-          Text = ("NoGlFinish")
-        }
-      }
-      Index = 3
-      Text = ("Vdpau")
-      { VdPauScrollView ScrollView
-        MoveScaled(1,0,57,35)
-        Arrangement = Arrange.Vertical
-        Border = False
-        { vdpauHBox6 HBox
-          MoveScaled(0,0,45,6)
-          ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
-          Padding = 8
-          { AddVdpauCHK CheckBox
-            MoveScaled(1,1,43,4)
-            Text = ("Autoload codecs for vdpau decoding")
-            Value = CheckBox.True
-          }
-        }
-        { vdpauParseMeHBox1 HBox
-          MoveScaled(0,6,45,6)
-          Padding = 8
-          { CheckBox21 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "sharpen="
-            Text = ("sharpen")
-          }
-          { ComboBox6 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("-1"), ("-0.9"), ("-0.8"), ("-0.7"), ("-0.6"), ("-0.5"), ("-0.4"), ("-0.3"), ("-0.2"), ("-0.1"), ("0 - no sharpen"), ("0.1"), ("0.2"), ("0.3"), ("0.4"), ("0.5"), ("0.6"), ("0.7"), ("0.8"), ("0.9"), ("1")]
-            Text = ("0 - no sharpen")
-          }
-        }
-        { vdpauParseMeHBox2 HBox
-          MoveScaled(0,12,45,6)
-          Padding = 8
-          { CheckBox22 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "denoise="
-            Text = ("denoise")
-          }
-          { ComboBox7 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("0 - no denoise"), ("0.1"), ("0.2"), ("0.3"), ("0.4"), ("0.5"), ("0.6"), ("0.7"), ("0.8"), ("0.9"), ("1")]
-            Text = ("0 - no denoise")
-          }
-        }
-        { vdpauParseMeHBox3 HBox
-          MoveScaled(0,18,45,6)
-          Padding = 8
-          { CheckBox23 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "deint="
-            Text = ("deint")
-          }
-          { ComboBox8 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("0 - No deinterlacing"), ("1 - Show only first field"), ("2 - Bob deinterlacing"), ("3 - Motion adaptive"), ("4 - Motion adaptive with edge-guided interpolation")]
-            Text = ("0 - No deinterlacing")
-          }
-        }
-        { vdpauParseMeHBox4 HBox
-          MoveScaled(0,25,45,5)
-          Padding = 8
-          { CheckBox24 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "chroma-deint"
-            Text = ("chroma-deint")
-          }
-        }
-        { vdpauParseMeHBox5 HBox
-          MoveScaled(0,30,45,5)
-          Padding = 8
-          { CheckBox25 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "pullup"
-            Text = ("pullup")
-          }
-        }
-        { vdpauParseMeHBox6 HBox
-          MoveScaled(0,36,45,6)
-          Padding = 8
-          { CheckBox26 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "colorspace="
-            Text = ("colorspace")
-          }
-          { ComboBox9 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("0 - Guess based on resolution"), ("1 - Use ITU-R BT.601 color space (default)"), ("2 - Use ITU-R BT.709 color space"), ("3 - Use SMPTE-240M color space")]
-            Text = ("0 - Guess based on resolution")
-          }
-        }
-        { vdpauParseMeHBox7 HBox
-          MoveScaled(0,42,45,6)
-          Padding = 8
-          { CheckBox27 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "hqscaling="
-            Text = ("hqscaling")
-          }
-          { ComboBox10 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("1"), ("2"), ("3"), ("4"), ("5"), ("6"), ("7"), ("8"), ("9")]
-            Text = ("0 - Use default VDPAU scaling")
-          }
-        }
-        { vdpauParseMeHBox8 HBox
-          MoveScaled(0,48,45,5)
-          Padding = 8
-          { CheckBox28 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "noforce-mixer"
-            Text = ("noforce-mixer")
-          }
-        }
-        { vdpauParseMeHBox9 HBox
-          MoveScaled(0,53,45,6)
-          Padding = 8
-          { CheckBox29 CheckBox
+          { CheckBox19 CheckBox
             MoveScaled(1,1,18,4)
-            Text = ("Additional options")
-          }
-          { TextBox6 TextBox
-            MoveScaled(22,1,22,4)
-            Mouse = Mouse.Blank
-            Expand = True
+            Tag = "noglfinish"
+            Text = ("NoGlFinish")
           }
         }
-      }
-      Index = 4
-      Text = ("Vaapi")
-      { VdPauScrollView2 ScrollView
-        MoveScaled(1,0,57,35)
-        Arrangement = Arrange.Vertical
-        Border = False
-        { vaapiHBox2 HBox
-          MoveScaled(0,1,45,6)
-          ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
-          Padding = 8
-          { Label7 Label
-            MoveScaled(0,1,45,4)
-            Expand = True
-            Text = ("** Note: Vaapi and multithreaded decoding don't play nice !! **")
+        Index = 3
+        Text = ("Vdpau")
+        { VdPauScrollView ScrollView
+          MoveScaled(1,0,57,35)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          Border = False
+          { vdpauHBox6 HBox
+            MoveScaled(0,0,45,6)
+            ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
+            Padding = 8
+            { AddVdpauCHK CheckBox
+              MoveScaled(1,1,43,4)
+              Text = ("Autoload codecs for vdpau decoding")
+              Value = CheckBox.True
+            }
+          }
+          { vdpauParseMeHBox1 HBox
+            MoveScaled(0,6,45,6)
+            Padding = 8
+            { CheckBox21 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "sharpen="
+              Text = ("sharpen")
+            }
+            { ComboBox6 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("-1"), ("-0.9"), ("-0.8"), ("-0.7"), ("-0.6"), ("-0.5"), ("-0.4"), ("-0.3"), ("-0.2"), ("-0.1"), ("0 - no sharpen"), ("0.1"), ("0.2"), ("0.3"), ("0.4"), ("0.5"), ("0.6"), ("0.7"), ("0.8"), ("0.9"), ("1")]
+              Text = ("0 - no sharpen")
+            }
+          }
+          { vdpauParseMeHBox2 HBox
+            MoveScaled(0,12,45,6)
+            Padding = 8
+            { CheckBox22 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "denoise="
+              Text = ("denoise")
+            }
+            { ComboBox7 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("0 - no denoise"), ("0.1"), ("0.2"), ("0.3"), ("0.4"), ("0.5"), ("0.6"), ("0.7"), ("0.8"), ("0.9"), ("1")]
+              Text = ("0 - no denoise")
+            }
+          }
+          { vdpauParseMeHBox3 HBox
+            MoveScaled(0,18,45,6)
+            Padding = 8
+            { CheckBox23 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "deint="
+              Text = ("deint")
+            }
+            { ComboBox8 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("0 - No deinterlacing"), ("1 - Show only first field"), ("2 - Bob deinterlacing"), ("3 - Motion adaptive"), ("4 - Motion adaptive with edge-guided interpolation")]
+              Text = ("0 - No deinterlacing")
+            }
+          }
+          { vdpauParseMeHBox4 HBox
+            MoveScaled(0,25,45,5)
+            Padding = 8
+            { CheckBox24 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "chroma-deint"
+              Text = ("chroma-deint")
+            }
+          }
+          { vdpauParseMeHBox5 HBox
+            MoveScaled(0,30,45,5)
+            Padding = 8
+            { CheckBox25 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "pullup"
+              Text = ("pullup")
+            }
+          }
+          { vdpauParseMeHBox6 HBox
+            MoveScaled(0,36,45,6)
+            Padding = 8
+            { CheckBox26 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "colorspace="
+              Text = ("colorspace")
+            }
+            { ComboBox9 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("0 - Guess based on resolution"), ("1 - Use ITU-R BT.601 color space (default)"), ("2 - Use ITU-R BT.709 color space"), ("3 - Use SMPTE-240M color space")]
+              Text = ("0 - Guess based on resolution")
+            }
+          }
+          { vdpauParseMeHBox7 HBox
+            MoveScaled(0,42,45,6)
+            Padding = 8
+            { CheckBox27 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "hqscaling="
+              Text = ("hqscaling")
+            }
+            { ComboBox10 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("1"), ("2"), ("3"), ("4"), ("5"), ("6"), ("7"), ("8"), ("9")]
+              Text = ("0 - Use default VDPAU scaling")
+            }
+          }
+          { vdpauParseMeHBox8 HBox
+            MoveScaled(0,48,45,5)
+            Padding = 8
+            { CheckBox28 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "noforce-mixer"
+              Text = ("noforce-mixer")
+            }
+          }
+          { vdpauParseMeHBox9 HBox
+            MoveScaled(0,53,45,6)
+            Padding = 8
+            { CheckBox29 CheckBox
+              MoveScaled(1,1,18,4)
+              Text = ("Additional options")
+            }
+            { TextBox6 TextBox
+              MoveScaled(22,1,22,4)
+              Mouse = Mouse.Blank
+              Expand = True
+            }
           }
         }
-        { vaapiHBox1 HBox
-          MoveScaled(0,7,45,6)
-          ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
-          Padding = 8
-          { AddvaapiCHK CheckBox
-            MoveScaled(1,1,43,4)
-            ToolTip = ("May be required or not depending on mplayer version")
-            Text = ("Add -va option to command line")
-            Value = CheckBox.True
+        Index = 4
+        Text = ("Vaapi")
+        { VdPauScrollView2 ScrollView
+          MoveScaled(1,0,57,35)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          Border = False
+          { vaapiHBox2 HBox
+            MoveScaled(0,1,45,6)
+            ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
+            Padding = 8
+            { Label7 Label
+              MoveScaled(0,1,45,4)
+              Expand = True
+              Text = ("** Note: Vaapi and multithreaded decoding don't play nice !! **")
+            }
+          }
+          { vaapiHBox1 HBox
+            MoveScaled(0,7,45,6)
+            ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
+            Padding = 8
+            { AddvaapiCHK CheckBox
+              MoveScaled(1,1,43,4)
+              ToolTip = ("May be required or not depending on mplayer version")
+              Text = ("Add -va option to command line")
+              Value = CheckBox.True
+            }
+          }
+          { vaapiParseMeHBox10 HBox
+            MoveScaled(0,13,45,6)
+            Padding = 8
+            { CheckBox30 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "dm="
+              Text = ("dm")
+            }
+            { ComboBox11 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("2 - auto-detect use of direct surface mapping (default)"), ("1 - identify VA surface with MPI index"), ("0 - use least-recently-used VA surface")]
+              Text = ("2 - auto-detect use of direct surface mapping (default)")
+            }
+          }
+          { vaapiParseMeHBox12 HBox
+            MoveScaled(0,19,45,6)
+            Padding = 8
+            { CheckBox32 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "deint="
+              Text = ("deint")
+            }
+            { ComboBox13 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("0 - no deinterlacing (default)"), ("1 - only show first field"), ("2 - bob deinterlacing")]
+              Text = ("0 - No deinterlacing (default)")
+            }
+          }
+          { vaapiParseMeHBox15 HBox
+            MoveScaled(0,25,45,6)
+            Padding = 8
+            { CheckBox35 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "colorspace="
+              Text = ("colorspace")
+            }
+            { ComboBox14 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("0 - Guess based on resolution"), ("1 - Use ITU-R BT.601 color space (default)"), ("2 - Use ITU-R BT.709 color space"), ("3 - Use SMPTE-240M color space")]
+              Text = ("0 - Guess based on resolution")
+            }
+          }
+          { vaapiParseMeHBox16 HBox
+            MoveScaled(0,31,45,6)
+            Padding = 8
+            { CheckBox36 CheckBox
+              MoveScaled(1,1,17,4)
+              Tag = "scaling="
+              Text = ("scaling")
+            }
+            { ComboBox15 ComboBox
+              MoveScaled(19,1,24,4)
+              Expand = True
+              ReadOnly = True
+              List = [("default - use implementation default (default)"), ("fast - use fast scaling, but possibly with less quality"), ("hq - use high-quality scaling, but possibly slower"), ("nla - use non-linear anamorphic scaling")]
+              Text = ("default - use implementation default (default)\n")
+            }
+          }
+          { vaapiParseMeHBox17 HBox
+            MoveScaled(0,38,45,5)
+            Padding = 8
+            { CheckBox37 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "gl"
+              Text = ("gl")
+            }
+          }
+          { vaapiParseMeHBox11 HBox
+            MoveScaled(0,43,45,5)
+            Padding = 8
+            { CheckBox31 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "glfinish"
+              Text = ("glfinish")
+            }
+          }
+          { vaapiParseMeHBox13 HBox
+            MoveScaled(0,48,45,5)
+            Padding = 8
+            { CheckBox33 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "tfp"
+              Text = ("tfp")
+            }
+          }
+          { vaapiParseMeHBox14 HBox
+            MoveScaled(0,53,45,5)
+            Padding = 8
+            { CheckBox34 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "reflect"
+              Text = ("reflect")
+            }
+          }
+          { vaapiParseMeHBox19 HBox
+            MoveScaled(0,58,45,5)
+            Padding = 8
+            { CheckBox39 CheckBox
+              MoveScaled(1,0,18,4)
+              Tag = "xrender"
+              Text = ("xrender")
+            }
+          }
+          { vaapiParseMeHBox18 HBox
+            MoveScaled(0,64,45,5)
+            Padding = 6
+            { CheckBox38 CheckBox
+              MoveScaled(1,1,18,4)
+              Text = ("Additional options")
+            }
+            { TextBox7 TextBox
+              MoveScaled(22,1,22,4)
+              Mouse = Mouse.Blank
+              Expand = True
+            }
           }
         }
-        { vaapiParseMeHBox10 HBox
-          MoveScaled(0,13,45,6)
-          Padding = 8
-          { CheckBox30 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "dm="
-            Text = ("dm")
+        Index = 5
+        Text = ("Xvmc")
+        { XvmcScrollView ScrollView
+          MoveScaled(1,0,57,35)
+          Expand = True
+          Arrangement = Arrange.Vertical
+          Border = False
+          { XvmcParseMeHbox4 HBox
+            MoveScaled(0,0,45,6)
+            Padding = 6
+            { XvmcPortChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "port="
+              Text = ("Port")
+            }
+            { SpinBox2 SpinBox
+              MoveScaled(18,1,9,4)
+            }
           }
-          { ComboBox11 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("2 - auto-detect use of direct surface mapping (default)"), ("1 - identify VA surface with MPI index"), ("0 - use least-recently-used VA surface")]
-            Text = ("2 - auto-detect use of direct surface mapping (default)")
+          { XvmcParseMeHbox5 HBox
+            MoveScaled(0,7,45,6)
+            Padding = 6
+            { XVmcckChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "ck="
+              Text = ("Ck")
+            }
+            { ComboBox4 ComboBox
+              MoveScaled(18,1,17,4)
+              ReadOnly = True
+              List = [("cur"), ("use"), ("set")]
+              Text = ("ComboBox1")
+            }
           }
-        }
-        { vaapiParseMeHBox12 HBox
-          MoveScaled(0,19,45,6)
-          Padding = 8
-          { CheckBox32 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "deint="
-            Text = ("deint")
+          { XvmcParseMeHbox9 HBox
+            MoveScaled(0,14,45,6)
+            Padding = 6
+            { XVmcckmethodChk CheckBox
+              MoveScaled(1,1,15,4)
+              Tag = "ck-method="
+              Text = ("Ck-Method")
+            }
+            { ComboBox3 ComboBox
+              MoveScaled(18,1,17,4)
+              ReadOnly = True
+              List = [("man"), ("bg"), ("auto")]
+              Text = ("ComboBox1")
+            }
           }
-          { ComboBox13 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("0 - no deinterlacing (default)"), ("1 - only show first field"), ("2 - bob deinterlacing")]
-            Text = ("0 - No deinterlacing (default)")
+          { XvmcHbox1 HBox
+            MoveScaled(0,21,45,6)
+            Spacing = True
+            Margin = True
+            Padding = 6
+            { ColorButton2 ColorButton
+              MoveScaled(1,2,5,4)
+            }
+            { Label3 Label
+              MoveScaled(7,1,10,4)
+              Text = ("ColorKey")
+            }
+            { ColorKeyBox2 TextBox
+              MoveScaled(18,1,17,4)
+              Text = ("0xFF00FF")
+            }
           }
-        }
-        { vaapiParseMeHBox15 HBox
-          MoveScaled(0,25,45,6)
-          Padding = 8
-          { CheckBox35 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "colorspace="
-            Text = ("colorspace")
-          }
-          { ComboBox14 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("0 - Guess based on resolution"), ("1 - Use ITU-R BT.601 color space (default)"), ("2 - Use ITU-R BT.709 color space"), ("3 - Use SMPTE-240M color space")]
-            Text = ("0 - Guess based on resolution")
-          }
-        }
-        { vaapiParseMeHBox16 HBox
-          MoveScaled(0,31,45,6)
-          Padding = 8
-          { CheckBox36 CheckBox
-            MoveScaled(1,1,17,4)
-            Tag = "scaling="
-            Text = ("scaling")
-          }
-          { ComboBox15 ComboBox
-            MoveScaled(19,1,24,4)
-            Expand = True
-            ReadOnly = True
-            List = [("default - use implementation default (default)"), ("fast - use fast scaling, but possibly with less quality"), ("hq - use high-quality scaling, but possibly slower"), ("nla - use non-linear anamorphic scaling")]
-            Text = ("default - use implementation default (default)\n")
-          }
-        }
-        { vaapiParseMeHBox17 HBox
-          MoveScaled(0,38,45,5)
-          Padding = 8
-          { CheckBox37 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "gl"
-            Text = ("gl")
-          }
-        }
-        { vaapiParseMeHBox11 HBox
-          MoveScaled(0,43,45,5)
-          Padding = 8
-          { CheckBox31 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "glfinish"
-            Text = ("glfinish")
-          }
-        }
-        { vaapiParseMeHBox13 HBox
-          MoveScaled(0,48,45,5)
-          Padding = 8
-          { CheckBox33 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "tfp"
-            Text = ("tfp")
-          }
-        }
-        { vaapiParseMeHBox14 HBox
-          MoveScaled(0,53,45,5)
-          Padding = 8
-          { CheckBox34 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "reflect"
-            Text = ("reflect")
+          { XvmcParseMeVpanel VPanel
+            MoveScaled(0,28,38,11)
+            AutoResize = True
+            Spacing = True
+            Margin = True
+            Padding = 10
+            { benchmarkchk CheckBox
+              MoveScaled(0,0,14,4)
+              Tag = "benchmark"
+              Text = ("Benchmark")
+            }
+            { bobdeintchk CheckBox
+              MoveScaled(0,4,14,4)
+              Tag = "bobdeint"
+              Text = ("Bobdeint")
+            }
+            { queuechk CheckBox
+              MoveScaled(17,0,14,4)
+              Tag = "queue"
+              Text = ("Queue")
+            }
+            { Sleepchk CheckBox
+              MoveScaled(17,5,14,4)
+              Tag = "sleep"
+              Text = ("Sleep")
+            }
           }
         }
-        { vaapiParseMeHBox19 HBox
-          MoveScaled(0,58,45,5)
-          Padding = 8
-          { CheckBox39 CheckBox
-            MoveScaled(1,0,18,4)
-            Tag = "xrender"
-            Text = ("xrender")
+        Index = 6
+        Text = ("SDL")
+        { SDLParseMeHbox1 HBox
+          MoveScaled(1,2,45,6)
+          Padding = 10
+          { SDLDriver CheckBox
+            MoveScaled(1,1,15,4)
+            Tag = "driver="
+            Text = ("Driver")
+          }
+          { TextBox1 TextBox
+            MoveScaled(19,1,22,4)
           }
         }
-        { vaapiParseMeHBox18 HBox
-          MoveScaled(0,64,45,5)
+        { SDLParseMeVBox1 VBox
+          MoveScaled(1,9,45,13)
+          Padding = 10
+          { CheckBox1 CheckBox
+            MoveScaled(2,1,17,4)
+            Tag = "forcexv"
+            Text = ("ForceXv")
+          }
+          { CheckBox2 CheckBox
+            MoveScaled(2,6,17,4)
+            Tag = "nohwaccel"
+            Text = ("NoHwAccel")
+          }
+        }
+        Index = 7
+        Text = ("Custom")
+        { Label5 Label
+          MoveScaled(2,1,36,4)
+          Text = (" Custom Driver(s) options, \"-vo \" is implicit.")
+        }
+        { HBox2 HBox
+          MoveScaled(1,6,48,6)
           Padding = 6
-          { CheckBox38 CheckBox
-            MoveScaled(1,1,18,4)
-            Text = ("Additional options")
-          }
-          { TextBox7 TextBox
-            MoveScaled(22,1,22,4)
-            Mouse = Mouse.Blank
+          { TextBox5 TextBox
+            MoveScaled(1,1,48,4)
             Expand = True
           }
         }
+        Index = 0
       }
-      Index = 5
-      Text = ("Xvmc")
-      { XvmcScrollView ScrollView
-        MoveScaled(1,0,57,35)
+      { DriverDescription TextArea
+        MoveScaled(1,40,56,16)
+        Expand = True
+        Text = ("Driver Description")
+        ReadOnly = True
+        Wrap = True
+      }
+    }
+    { VBox1 VBox
+      MoveScaled(1,2,16,55)
+      { Label2 Label
+        MoveScaled(1,0,14,4)
+        AutoResize = True
+        Text = ("Driver Priority")
+      }
+      { DriversPanel ScrollView
+        MoveScaled(1,6,15,47)
+        Background = Color.Background
+        ToolTip = ("Drag Elements with a mouse button to change their priority.\nmplayer will try to use the selected video drivers from top to bottom\nuntil it founds a workng driver.")
         Expand = True
         Arrangement = Arrange.Vertical
-        Border = False
-        { XvmcParseMeHbox4 HBox
-          MoveScaled(0,0,45,6)
-          Padding = 6
-          { XvmcPortChk CheckBox
-            MoveScaled(1,1,15,4)
-            Tag = "port="
-            Text = ("Port")
-          }
-          { SpinBox2 SpinBox
-            MoveScaled(18,1,9,4)
-          }
+        Spacing = True
+        Padding = 3
+        { XvBTN CheckBox VideoDriverList
+          Name = "XvBTN"
+          MoveScaled(1,1,10,4)
+          Tag = "       xv (X11 only)\n              Uses the XVideo extension of XFree86 4.x to enable hardware  ac-\n              celerated playback.  If you cannot use a hardware specific driv-\n              er, this is probably the best  option.   For  information  about\n              what  colorkey  is  used and how it is drawn run MPlayer with -v\n              option and look out for the lines tagged with [xv common] at the\n              beginning.\n                 adaptor=<number>\n                      Select a specific XVideo adaptor (check xvinfo results).\n                 port=<number>\n                      Select a specific XVideo port.\n                 ck=<cur|use|set>\n                      Select the source from which the colorkey is taken  (de-\n                      fault: cur).\n                         cur  The  default takes the colorkey currently set in\n                              Xv.\n                         use  Use but do not set  the  colorkey  from  MPlayer\n                              (use -colorkey option to change it).\n                         set  Same as use but also sets the supplied colorkey.\n                 ck-method=<man|bg|auto>\n                      Sets the colorkey drawing method (default: man).\n                         man  Draw the colorkey manually (reduces  flicker  in\n                              some cases).\n                         bg   Set the colorkey as window background.\n                         auto Let Xv draw the colorkey.\n"
+          Text = ("Xv")
+          Value = CheckBox.True
         }
-        { XvmcParseMeHbox5 HBox
-          MoveScaled(0,7,45,6)
-          Padding = 6
-          { XVmcckChk CheckBox
-            MoveScaled(1,1,15,4)
-            Tag = "ck="
-            Text = ("Ck")
-          }
-          { ComboBox4 ComboBox
-            MoveScaled(18,1,17,4)
-            ReadOnly = True
-            List = [("cur"), ("use"), ("set")]
-            Text = ("ComboBox1")
-          }
+        { GLBtn CheckBox VideoDriverList
+          Name = "GLBtn"
+          MoveScaled(1,5,10.1429,4)
+          Tag = "       gl\n              OpenGL video output driver, simple version.  Video size must be\n              smaller than the maximum texture size of your OpenGL  implemen-\n              tation.   Intended  to work even with the most basic OpenGL im-\n              plementations, but also makes use of  newer  extensions,  which\n              allow  support  for  more  colorspaces  and  direct  rendering.\n              Please use -dr if it works  with  your  OpenGL  implementation,\n              since  for higher resolutions this provides a big speedup.  The\n              code performs very few checks, so if a feature does  not  work,\n              this  might  be because it is not supported by your card/OpenGL\n              implementation even if you do not get any error  message.   Use\n              glxinfo  or  a similar tool to display the supported OpenGL ex-\n              tensions.\n                 (no)scaled-osd\n                      Changes the way the OSD behaves when the  size  of  the\n                      window  changes  (default: disabled).  When enabled be-\n                      haves more like the other video output  drivers,  which\n                      is  better  for  fixed-size fonts.  Disabled looks much\n                      better with FreeType fonts  and  uses  the  borders  in\n                      fullscreen mode.  Does not work correctly with ass sub-\n                      titles (see -ass), you can instead render them  without\n                      OpenGL support via -vf ass.\n                 osdcolor=<0xAARRGGBB>\n                      Color for OSD (default: 0x00ffffff, corresponds to non-\n                      transparent white).\n                 rectangle=<0,1,2>\n                      Select usage of rectangular textures which saves  video\n                      RAM, but often is slower (default: 0).\n                         0: Use power-of-two textures (default).\n                         1: Use the GL_ARB_texture_rectangle extension.\n                         2:  Use  the  GL_ARB_texture_non_power_of_two exten-\n                         sion.  In some cases only supported in software  and\n                         thus very slow.\n                 swapinterval=<n>\n                      Minimum  interval  between two buffer swaps, counted in\n                      displayed frames (default: 1).  1 is equivalent to  en-\n                      abling  VSYNC,  0  to  disabling VSYNC.  Values below 0\n                      will leave it at the system default.  This  limits  the\n                      framerate  to  (horizontal refresh rate / n).  Requires\n                      GLX_SGI_swap_control  support  to  work.    With   some\n                      (most/all?)   implementations   this   only   works  in\n                      fullscreen mode.\n                 yuv=<n>\n                      Select the type of YUV to RGB conversion.\n                         0: Use software  conversion  (default).   Compatible\n                         with all OpenGL versions.  Provides brightness, con-\n                         trast and saturation control.\n                         1: Use register combiners.  This uses an nVidia-spe-\n                         cific   extension   (GL_NV_register_combiners).   At\n                         least three texture units are needed.  Provides sat-\n                         uration  and  hue  control.  This method is fast but\n                         inexact.\n                         2: Use a fragment program.  Needs  the  GL_ARB_frag-\n                         ment_program  extension  and  at least three texture\n                         units.  Provides  brightness,  contrast,  saturation\n                         and hue control.\n                         3: Use a fragment program using the POW instruction.\n                         Needs the GL_ARB_fragment_program extension  and  at\n                         least  three  texture  units.   Provides brightness,\n                         contrast, saturation, hue and gamma control.   Gamma\n                         can  also  be  set  independently for red, green and\n                         blue.  Method 4 is usually faster.\n                         4: Use a fragment program  with  additional  lookup.\n                         Needs  the  GL_ARB_fragment_program extension and at\n                         least four texture units.  Provides brightness, con-\n                         trast, saturation, hue and gamma control.  Gamma can\n                         also be set independently for red, green and blue.\n                         5: Use ATI-specific method (for older cards).   This\n                         uses   an   ATI-specific   extension   (GL_ATI_frag-\n                         ment_shader  -  not  GL_ARB_fragment_shader!).    At\n                         least three texture units are needed.  Provides sat-\n                         uration and hue control.  This method  is  fast  but\n                         inexact.\n                         6:  Use  a  3D  texture to do conversion via lookup.\n                         Needs the GL_ARB_fragment_program extension  and  at\n                         least  four texture units.  Extremely slow (software\n                         emulation) on some (all?) ATI cards since it uses  a\n                         texture  with  border  pixels.  Provides brightness,\n                         contrast, saturation, hue and gamma control.   Gamma\n                         can  also  be  set  independently for red, green and\n                         blue.  Speed depends more on  GPU  memory  bandwidth\n                         than other methods.\n                 lscale=<n>\n                      Select  the scaling function to use for luminance scal-\n                      ing.  Only valid for yuv modes 2, 3, 4 and 6.\n                         0: Use simple linear filtering (default).\n                         1: Use bicubic B-spline filtering (better  quality).\n                         Needs one additional texture unit.  Older cards will\n                         not be able to handle this for chroma  at  least  in\n                         fullscreen mode.\n                         2: Use cubic filtering in horizontal, linear filter-\n                         ing in vertical direction.   Works  on  a  few  more\n                         cards than method 1.\n                         3:  Same  as  1  but  does not use a lookup texture.\n                         Might be faster on some cards.\n                         4: Use experimental unsharp masking with 3x3 support\n                         and a strength of 0.5.\n                         5: Use experimental unsharp masking with 5x5 support\n                         and a strength of 0.5.\n                 cscale=<n>\n                      Select the scaling  function  to  use  for  chrominance\n                      scaling.  For details see lscale.\n                 customprog=<filename>\n                      Load  a  custom  fragment program from <filename>.  See\n                      TOOLS/edgedect.fp for an example.\n                 customtex=<filename>\n                      Load a custom \"gamma  ramp\"  texture  from  <filename>.\n                      This  can be used in combination with yuv=4 or with the\n                      customprog option.\n                 (no)customtlin\n                      If enabled (default) use GL_LINEAR interpolation,  oth-\n                      erwise use GL_NEAREST for customtex texture.\n                 (no)customtrect\n                      If  enabled,  use  texture_rectangle for customtex tex-\n                      ture.  Default is disabled.\n\n              Normally there is no reason to use the following options,  they\n              mostly exist for testing purposes.\n\n                 (no)glfinish\n                      Call glFinish() before swapping buffers.  Slower but in\n                      some cases more correct output (default: disabled).\n                 (no)manyfmts\n                      Enables support for more (RGB and  BGR)  color  formats\n                      (default: enabled).  Needs OpenGL version >= 1.2.\n                 slice-height=<0-...>\n                      Number  of  lines  copied  to texture in one piece (de-\n                      fault: 0).  0 for whole image.\n                      NOTE: If YUV colorspace is used  (see  yuv  suboption),\n                      special rules apply:\n                         If the decoder uses slice rendering (see -noslices),\n                         this setting has no effect, the size of  the  slices\n                         as provided by the decoder is used.\n                         If the decoder does not use slice rendering, the de-\n                         fault is 16.\n                 (no)osd\n                      Enable or disable support for OSD rendering via  OpenGL\n                      (default:  enabled).   This  option  is for testing; to\n                      disable the OSD use -osdlevel 0 instead.\n                 (no)aspect\n                      Enable or disable aspect scaling and pan-and-scan  sup-\n                      port  (default:  enabled).   Disabling  might  increase\n                      speed.\n"
+          Text = ("GL")
+          Value = CheckBox.True
         }
-        { XvmcParseMeHbox9 HBox
-          MoveScaled(0,14,45,6)
-          Padding = 6
-          { XVmcckmethodChk CheckBox
-            MoveScaled(1,1,15,4)
-            Tag = "ck-method="
-            Text = ("Ck-Method")
-          }
-          { ComboBox3 ComboBox
-            MoveScaled(18,1,17,4)
-            ReadOnly = True
-            List = [("man"), ("bg"), ("auto")]
-            Text = ("ComboBox1")
-          }
+        { GL2BTN CheckBox VideoDriverList
+          Name = "GL2BTN"
+          MoveScaled(1,9,10.2857,4)
+          Tag = "       gl2\n              Variant of the OpenGL video  output  driver.   Supports  videos\n              larger  than the maximum texture size but lacks many of the ad-\n              vanced features and optimizations of the gl driver and  is  un-\n              likely to be extended further.\n                 (no)glfinish\n                      same as gl (default: enabled)\n                 yuv=<n>\n                      Select  the  type  of YUV to RGB conversion.  If set to\n                      anything except 0 OSD will be disabled and  brightness,\n                      contrast  and  gamma  setting is only available via the\n                      global X server settings.  Apart from this  the  values\n                      have the same meaning as for -vo gl.\n"
+          Text = ("GL2")
+          Value = CheckBox.True
         }
-        { XvmcHbox1 HBox
-          MoveScaled(0,21,45,6)
-          Spacing = True
-          Margin = True
-          Padding = 6
-          { ColorButton2 ColorButton
-            MoveScaled(1,2,5,4)
-          }
-          { Label3 Label
-            MoveScaled(7,1,10,4)
-            Text = ("ColorKey")
-          }
-          { ColorKeyBox2 TextBox
-            MoveScaled(18,1,17,4)
-            Text = ("0xFF00FF")
-          }
+        { vdpauBTN2 CheckBox VideoDriverList
+          Name = "vdpauBTN2"
+          MoveScaled(1,14,10,4)
+          Tag = "       vdpau (with -vc ffmpeg12vdpau, ffwmv3vdpau, ffvc1vdpau or ffh264vdpau)\n              Video output that uses VDPAU to decode video via hardware.  Also\n              supports displaying of software-decoded video.\n                 sharpen=<-1-1>\n                      For positive values, apply a sharpening algorithm to the\n                      video,  for  negative  values  a blurring algorithm (de-\n                      fault: 0).\n                 denoise=<0-1>\n                      Apply a noise reduction algorithm to the video (default:\n                      0, no noise reduction).\n                 deint=<0-4>\n                      Chooses  the  deinterlacer  (default: 0).  All modes > 0\n                      respect -field-dominance.\n                      NOTE: Values > 2 delay the video output by one frame.\n                         0    No deinterlacing.\n                         1    Show only first field, similar to -vf field.\n                         2    Bob deinterlacing, similar to -vf tfields=1.\n                         3    Motion  adaptive  temporal  deinterlacing.   May\n                              lead  to  A/V  desync  with  slow video hardware\n                              and/or high resolution.  This is the default  if\n                              \"D\" is used to enable deinterlacing.\n                         4    Motion   adaptive  temporal  deinterlacing  with\n                              edge-guided spatial interpolation.   Needs  fast\n                              video hardware.\n                 chroma-deint\n                      Makes  temporal  deinterlacers  operate both on luma and\n                      chroma (default).  Use nochroma-deint to solely use luma\n                      and  speed  up advanced deinterlacing.  Useful with slow\n                      video memory.\n                 pullup\n                      Try to apply inverse telecine, needs  temporal  deinter-\n                      lacing.\n                 colorspace\n                      Select the color space for YUV to  RGB  conversion.   In\n                      general  BT.601  should  be used for standard definition\n                      (SD) content and BT.709 for high  definition  (HD)  con-\n                      tent.   Using  incorrect color space results in slightly\n                      under or over saturated and shifted colors.\n                         0    Guess the color space based on video resolution.\n                              Video  with width >= 1280 or height > 576 is as-\n                              sumed to be HD and BT.709 color  space  will  be\n                              used.\n                         1    Use ITU-R BT.601 color space (default).\n                         2    Use ITU-R BT.709 color space.\n                         3    Use SMPTE-240M color space.\n                 hqscaling\n                         0    Use default VDPAU scaling (default).\n                         1-9  Apply  high quality VDPAU scaling (needs capable\n                              hardware).\n                 force-mixer\n                      Forces the use of the VDPAU mixer, which implements  all\n                      above  options  (default).   Use  noforce-mixer to allow\n                      displaying BGRA colorspace.  (Disables all above options\n                      and the hardware equalizer if image format BGRA is actu-\n                      ally used.)\n"
+          Text = ("Vdpau")
         }
-        { XvmcParseMeVpanel VPanel
-          MoveScaled(0,28,38,11)
-          AutoResize = True
-          Spacing = True
-          Margin = True
-          Padding = 10
-          { benchmarkchk CheckBox
-            MoveScaled(0,0,14,4)
-            Tag = "benchmark"
-            Text = ("Benchmark")
-          }
-          { bobdeintchk CheckBox
-            MoveScaled(0,4,14,4)
-            Tag = "bobdeint"
-            Text = ("Bobdeint")
-          }
-          { queuechk CheckBox
-            MoveScaled(17,0,14,4)
-            Tag = "queue"
-            Text = ("Queue")
-          }
-          { Sleepchk CheckBox
-            MoveScaled(17,5,14,4)
-            Tag = "sleep"
-            Text = ("Sleep")
-          }
+        { vaapiBTN CheckBox VideoDriverList
+          Name = "vaapiBTN"
+          MoveScaled(1,18,10,4)
+          Tag = "Vaapi   Options:\n  dm\n    0: use least-recently-used VA surface\n    1: identify VA surface with MPI index\n    2: auto-detect use of direct surface mapping (default)\n  deint (all modes > 0 respect -field-dominance)\n    0: no deinterlacing (default)\n    1: only show first field\n    2: bob deinterlacing\n  colorspace\n    0: guess based on video resolution\n    1: ITU-R BT.601 (default)\n    2: ITU-R BT.709\n    3: SMPTE-240M\n  scaling\n    default: use implementation default (default)\n    fast:    use fast scaling, but possibly with less quality\n    hq:      use high-quality scaling, but possibly slower\n    nla:     use non-linear anamorphic scaling\n  gl\n    Enable OpenGL rendering\n  glfinish\n    Call glFinish() before swapping buffers\n  tfp\n    Use GLX texture-from-pixmap instead of VA/GLX extensions\n  reflect\n    Enable OpenGL reflection effects\n  xrender\n    Enable Xrender rendering, thus vaPutSurface() to a Pixmap\n"
+          Text = ("Vaapi")
         }
-      }
-      Index = 6
-      Text = ("SDL")
-      { SDLParseMeHbox1 HBox
-        MoveScaled(1,2,45,6)
-        Padding = 10
-        { SDLDriver CheckBox
-          MoveScaled(1,1,15,4)
-          Tag = "driver="
-          Text = ("Driver")
+        { XvmcBTN CheckBox VideoDriverList
+          Name = "XvmcBTN"
+          MoveScaled(1,24,10,4)
+          Tag = "       xvmc (X11 with -vc ffmpeg12mc only)\n              Video output driver that uses the XvMC (X Video Motion  Compen-\n              sation)  extension of XFree86 4.x to speed up MPEG-1/2 and VCR2\n              decoding.\n                 port=<number>\n                      Select a specific XVideo port.\n                 (no)benchmark\n                      Disables image display.  Necessary  for  proper  bench-\n                      marking of drivers that change image buffers on monitor\n                      retrace only (nVidia).  Default is not to disable image\n                      display (nobenchmark).\n                 (no)bobdeint\n                      Very  simple  deinterlacer.  Might not look better than\n                      -vf tfields=1, but it is the only deinterlacer for xvmc\n                      (default: nobobdeint).\n                 (no)queue\n                      Queue frames for display to allow more parallel work of\n                      the video hardware.  May add a small  (not  noticeable)\n                      constant A/V desync (default: noqueue).\n                 (no)sleep\n                      Use  sleep function while waiting for rendering to fin-\n                      ish (not recommended on Linux) (default: nosleep).\n                 ck=cur|use|set\n                      Same as -vo xv:ck (see -vo xv).\n                 ck-method=man|bg|auto\n                      Same as -vo xv:ck-method (see -vo xv).\n"
+          Text = ("Xvmc")
         }
-        { TextBox1 TextBox
-          MoveScaled(19,1,22,4)
+        { SdlBTN CheckBox VideoDriverList
+          Name = "SdlBTN"
+          MoveScaled(2,29,10,4)
+          Tag = "       sdl (SDL only)\n              Highly  platform independent SDL (Simple Directmedia Layer) li-\n              brary video output driver.  Since SDL uses its own  X11  layer,\n              MPlayer X11 options do not have any effect on SDL.\n                 driver=<driver>\n                      Explicitly choose the SDL driver to use.\n                 (no)forcexv\n                      Use  XVideo  through  the  sdl video output driver (de-\n                      fault: forcexv).\n                 (no)hwaccel\n                      Use hardware accelerated scaler (default: hwaccel)."
+          Text = ("SDL")
         }
-      }
-      { SDLParseMeVBox1 VBox
-        MoveScaled(1,9,45,13)
-        Padding = 10
-        { CheckBox1 CheckBox
-          MoveScaled(2,1,17,4)
-          Tag = "forcexv"
-          Text = ("ForceXv")
+        { X11BTN CheckBox VideoDriverList
+          Name = "X11BTN"
+          MoveScaled(2,33,10,4)
+          Tag = "       x11 (X11 only)\n              Shared memory video output driver without hardware acceleration\n              that works whenever X11 is present.\n"
+          Text = ("X11")
+          Value = CheckBox.True
         }
-        { CheckBox2 CheckBox
-          MoveScaled(2,6,17,4)
-          Tag = "nohwaccel"
-          Text = ("NoHwAccel")
+        { NullBTN CheckBox VideoDriverList
+          Name = "NullBTN"
+          MoveScaled(2,37,11,4)
+          Tag = "       null\n              Produces no video output.  Useful for benchmarking.\n"
+          Text = ("Null")
+          Value = CheckBox.True
         }
-      }
-      Index = 7
-      Text = ("Custom")
-      { Label5 Label
-        MoveScaled(2,1,36,4)
-        Text = (" Custom Driver(s) options, \"-vo \" is implicit.")
-      }
-      { HBox2 HBox
-        MoveScaled(1,6,48,6)
-        Padding = 6
-        { TextBox5 TextBox
-          MoveScaled(1,1,48,4)
-          Expand = True
+        { CustomBTN CheckBox VideoDriverList
+          Name = "CustomBTN"
+          MoveScaled(1,41,11,4)
+          Tag = "\tWrite Your own driver options;\n\tEg: Xv:port=306,GL:yuv=3:kscale=3\n\n\n"
+          Text = ("Custom")
         }
-      }
-      Index = 0
-    }
-    { DriversPanel ScrollView
-      MoveScaled(1,5,15,52)
-      Background = Color.Background
-      ToolTip = ("Drag Elements with a mouse button to change their priority.\nmplayer will try to use the selected video drivers from top to bottom\nuntil it founds a workng driver.")
-      Arrangement = Arrange.Vertical
-      Spacing = True
-      Padding = 3
-      { XvBTN CheckBox VideoDriverList
-        Name = "XvBTN"
-        MoveScaled(1,1,10,4)
-        Tag = "       xv (X11 only)\n              Uses the XVideo extension of XFree86 4.x to enable hardware  ac-\n              celerated playback.  If you cannot use a hardware specific driv-\n              er, this is probably the best  option.   For  information  about\n              what  colorkey  is  used and how it is drawn run MPlayer with -v\n              option and look out for the lines tagged with [xv common] at the\n              beginning.\n                 adaptor=<number>\n                      Select a specific XVideo adaptor (check xvinfo results).\n                 port=<number>\n                      Select a specific XVideo port.\n                 ck=<cur|use|set>\n                      Select the source from which the colorkey is taken  (de-\n                      fault: cur).\n                         cur  The  default takes the colorkey currently set in\n                              Xv.\n                         use  Use but do not set  the  colorkey  from  MPlayer\n                              (use -colorkey option to change it).\n                         set  Same as use but also sets the supplied colorkey.\n                 ck-method=<man|bg|auto>\n                      Sets the colorkey drawing method (default: man).\n                         man  Draw the colorkey manually (reduces  flicker  in\n                              some cases).\n                         bg   Set the colorkey as window background.\n                         auto Let Xv draw the colorkey.\n"
-        Text = ("Xv")
-        Value = CheckBox.True
-      }
-      { GLBtn CheckBox VideoDriverList
-        Name = "GLBtn"
-        MoveScaled(1,5,10.1429,4)
-        Tag = "       gl\n              OpenGL video output driver, simple version.  Video size must be\n              smaller than the maximum texture size of your OpenGL  implemen-\n              tation.   Intended  to work even with the most basic OpenGL im-\n              plementations, but also makes use of  newer  extensions,  which\n              allow  support  for  more  colorspaces  and  direct  rendering.\n              Please use -dr if it works  with  your  OpenGL  implementation,\n              since  for higher resolutions this provides a big speedup.  The\n              code performs very few checks, so if a feature does  not  work,\n              this  might  be because it is not supported by your card/OpenGL\n              implementation even if you do not get any error  message.   Use\n              glxinfo  or  a similar tool to display the supported OpenGL ex-\n              tensions.\n                 (no)scaled-osd\n                      Changes the way the OSD behaves when the  size  of  the\n                      window  changes  (default: disabled).  When enabled be-\n                      haves more like the other video output  drivers,  which\n                      is  better  for  fixed-size fonts.  Disabled looks much\n                      better with FreeType fonts  and  uses  the  borders  in\n                      fullscreen mode.  Does not work correctly with ass sub-\n                      titles (see -ass), you can instead render them  without\n                      OpenGL support via -vf ass.\n                 osdcolor=<0xAARRGGBB>\n                      Color for OSD (default: 0x00ffffff, corresponds to non-\n                      transparent white).\n                 rectangle=<0,1,2>\n                      Select usage of rectangular textures which saves  video\n                      RAM, but often is slower (default: 0).\n                         0: Use power-of-two textures (default).\n                         1: Use the GL_ARB_texture_rectangle extension.\n                         2:  Use  the  GL_ARB_texture_non_power_of_two exten-\n                         sion.  In some cases only supported in software  and\n                         thus very slow.\n                 swapinterval=<n>\n                      Minimum  interval  between two buffer swaps, counted in\n                      displayed frames (default: 1).  1 is equivalent to  en-\n                      abling  VSYNC,  0  to  disabling VSYNC.  Values below 0\n                      will leave it at the system default.  This  limits  the\n                      framerate  to  (horizontal refresh rate / n).  Requires\n                      GLX_SGI_swap_control  support  to  work.    With   some\n                      (most/all?)   implementations   this   only   works  in\n                      fullscreen mode.\n                 yuv=<n>\n                      Select the type of YUV to RGB conversion.\n                         0: Use software  conversion  (default).   Compatible\n                         with all OpenGL versions.  Provides brightness, con-\n                         trast and saturation control.\n                         1: Use register combiners.  This uses an nVidia-spe-\n                         cific   extension   (GL_NV_register_combiners).   At\n                         least three texture units are needed.  Provides sat-\n                         uration  and  hue  control.  This method is fast but\n                         inexact.\n                         2: Use a fragment program.  Needs  the  GL_ARB_frag-\n                         ment_program  extension  and  at least three texture\n                         units.  Provides  brightness,  contrast,  saturation\n                         and hue control.\n                         3: Use a fragment program using the POW instruction.\n                         Needs the GL_ARB_fragment_program extension  and  at\n                         least  three  texture  units.   Provides brightness,\n                         contrast, saturation, hue and gamma control.   Gamma\n                         can  also  be  set  independently for red, green and\n                         blue.  Method 4 is usually faster.\n                         4: Use a fragment program  with  additional  lookup.\n                         Needs  the  GL_ARB_fragment_program extension and at\n                         least four texture units.  Provides brightness, con-\n                         trast, saturation, hue and gamma control.  Gamma can\n                         also be set independently for red, green and blue.\n                         5: Use ATI-specific method (for older cards).   This\n                         uses   an   ATI-specific   extension   (GL_ATI_frag-\n                         ment_shader  -  not  GL_ARB_fragment_shader!).    At\n                         least three texture units are needed.  Provides sat-\n                         uration and hue control.  This method  is  fast  but\n                         inexact.\n                         6:  Use  a  3D  texture to do conversion via lookup.\n                         Needs the GL_ARB_fragment_program extension  and  at\n                         least  four texture units.  Extremely slow (software\n                         emulation) on some (all?) ATI cards since it uses  a\n                         texture  with  border  pixels.  Provides brightness,\n                         contrast, saturation, hue and gamma control.   Gamma\n                         can  also  be  set  independently for red, green and\n                         blue.  Speed depends more on  GPU  memory  bandwidth\n                         than other methods.\n                 lscale=<n>\n                      Select  the scaling function to use for luminance scal-\n                      ing.  Only valid for yuv modes 2, 3, 4 and 6.\n                         0: Use simple linear filtering (default).\n                         1: Use bicubic B-spline filtering (better  quality).\n                         Needs one additional texture unit.  Older cards will\n                         not be able to handle this for chroma  at  least  in\n                         fullscreen mode.\n                         2: Use cubic filtering in horizontal, linear filter-\n                         ing in vertical direction.   Works  on  a  few  more\n                         cards than method 1.\n                         3:  Same  as  1  but  does not use a lookup texture.\n                         Might be faster on some cards.\n                         4: Use experimental unsharp masking with 3x3 support\n                         and a strength of 0.5.\n                         5: Use experimental unsharp masking with 5x5 support\n                         and a strength of 0.5.\n                 cscale=<n>\n                      Select the scaling  function  to  use  for  chrominance\n                      scaling.  For details see lscale.\n                 customprog=<filename>\n                      Load  a  custom  fragment program from <filename>.  See\n                      TOOLS/edgedect.fp for an example.\n                 customtex=<filename>\n                      Load a custom \"gamma  ramp\"  texture  from  <filename>.\n                      This  can be used in combination with yuv=4 or with the\n                      customprog option.\n                 (no)customtlin\n                      If enabled (default) use GL_LINEAR interpolation,  oth-\n                      erwise use GL_NEAREST for customtex texture.\n                 (no)customtrect\n                      If  enabled,  use  texture_rectangle for customtex tex-\n                      ture.  Default is disabled.\n\n              Normally there is no reason to use the following options,  they\n              mostly exist for testing purposes.\n\n                 (no)glfinish\n                      Call glFinish() before swapping buffers.  Slower but in\n                      some cases more correct output (default: disabled).\n                 (no)manyfmts\n                      Enables support for more (RGB and  BGR)  color  formats\n                      (default: enabled).  Needs OpenGL version >= 1.2.\n                 slice-height=<0-...>\n                      Number  of  lines  copied  to texture in one piece (de-\n                      fault: 0).  0 for whole image.\n                      NOTE: If YUV colorspace is used  (see  yuv  suboption),\n                      special rules apply:\n                         If the decoder uses slice rendering (see -noslices),\n                         this setting has no effect, the size of  the  slices\n                         as provided by the decoder is used.\n                         If the decoder does not use slice rendering, the de-\n                         fault is 16.\n                 (no)osd\n                      Enable or disable support for OSD rendering via  OpenGL\n                      (default:  enabled).   This  option  is for testing; to\n                      disable the OSD use -osdlevel 0 instead.\n                 (no)aspect\n                      Enable or disable aspect scaling and pan-and-scan  sup-\n                      port  (default:  enabled).   Disabling  might  increase\n                      speed.\n"
-        Text = ("GL")
-        Value = CheckBox.True
-      }
-      { GL2BTN CheckBox VideoDriverList
-        Name = "GL2BTN"
-        MoveScaled(1,9,10.2857,4)
-        Tag = "       gl2\n              Variant of the OpenGL video  output  driver.   Supports  videos\n              larger  than the maximum texture size but lacks many of the ad-\n              vanced features and optimizations of the gl driver and  is  un-\n              likely to be extended further.\n                 (no)glfinish\n                      same as gl (default: enabled)\n                 yuv=<n>\n                      Select  the  type  of YUV to RGB conversion.  If set to\n                      anything except 0 OSD will be disabled and  brightness,\n                      contrast  and  gamma  setting is only available via the\n                      global X server settings.  Apart from this  the  values\n                      have the same meaning as for -vo gl.\n"
-        Text = ("GL2")
-        Value = CheckBox.True
-      }
-      { vdpauBTN2 CheckBox VideoDriverList
-        Name = "vdpauBTN2"
-        MoveScaled(1,14,10,4)
-        Tag = "       vdpau (with -vc ffmpeg12vdpau, ffwmv3vdpau, ffvc1vdpau or ffh264vdpau)\n              Video output that uses VDPAU to decode video via hardware.  Also\n              supports displaying of software-decoded video.\n                 sharpen=<-1-1>\n                      For positive values, apply a sharpening algorithm to the\n                      video,  for  negative  values  a blurring algorithm (de-\n                      fault: 0).\n                 denoise=<0-1>\n                      Apply a noise reduction algorithm to the video (default:\n                      0, no noise reduction).\n                 deint=<0-4>\n                      Chooses  the  deinterlacer  (default: 0).  All modes > 0\n                      respect -field-dominance.\n                      NOTE: Values > 2 delay the video output by one frame.\n                         0    No deinterlacing.\n                         1    Show only first field, similar to -vf field.\n                         2    Bob deinterlacing, similar to -vf tfields=1.\n                         3    Motion  adaptive  temporal  deinterlacing.   May\n                              lead  to  A/V  desync  with  slow video hardware\n                              and/or high resolution.  This is the default  if\n                              \"D\" is used to enable deinterlacing.\n                         4    Motion   adaptive  temporal  deinterlacing  with\n                              edge-guided spatial interpolation.   Needs  fast\n                              video hardware.\n                 chroma-deint\n                      Makes  temporal  deinterlacers  operate both on luma and\n                      chroma (default).  Use nochroma-deint to solely use luma\n                      and  speed  up advanced deinterlacing.  Useful with slow\n                      video memory.\n                 pullup\n                      Try to apply inverse telecine, needs  temporal  deinter-\n                      lacing.\n                 colorspace\n                      Select the color space for YUV to  RGB  conversion.   In\n                      general  BT.601  should  be used for standard definition\n                      (SD) content and BT.709 for high  definition  (HD)  con-\n                      tent.   Using  incorrect color space results in slightly\n                      under or over saturated and shifted colors.\n                         0    Guess the color space based on video resolution.\n                              Video  with width >= 1280 or height > 576 is as-\n                              sumed to be HD and BT.709 color  space  will  be\n                              used.\n                         1    Use ITU-R BT.601 color space (default).\n                         2    Use ITU-R BT.709 color space.\n                         3    Use SMPTE-240M color space.\n                 hqscaling\n                         0    Use default VDPAU scaling (default).\n                         1-9  Apply  high quality VDPAU scaling (needs capable\n                              hardware).\n                 force-mixer\n                      Forces the use of the VDPAU mixer, which implements  all\n                      above  options  (default).   Use  noforce-mixer to allow\n                      displaying BGRA colorspace.  (Disables all above options\n                      and the hardware equalizer if image format BGRA is actu-\n                      ally used.)\n"
-        Text = ("Vdpau")
-      }
-      { vaapiBTN CheckBox VideoDriverList
-        Name = "vaapiBTN"
-        MoveScaled(1,18,10,4)
-        Tag = "Vaapi   Options:\n  dm\n    0: use least-recently-used VA surface\n    1: identify VA surface with MPI index\n    2: auto-detect use of direct surface mapping (default)\n  deint (all modes > 0 respect -field-dominance)\n    0: no deinterlacing (default)\n    1: only show first field\n    2: bob deinterlacing\n  colorspace\n    0: guess based on video resolution\n    1: ITU-R BT.601 (default)\n    2: ITU-R BT.709\n    3: SMPTE-240M\n  scaling\n    default: use implementation default (default)\n    fast:    use fast scaling, but possibly with less quality\n    hq:      use high-quality scaling, but possibly slower\n    nla:     use non-linear anamorphic scaling\n  gl\n    Enable OpenGL rendering\n  glfinish\n    Call glFinish() before swapping buffers\n  tfp\n    Use GLX texture-from-pixmap instead of VA/GLX extensions\n  reflect\n    Enable OpenGL reflection effects\n  xrender\n    Enable Xrender rendering, thus vaPutSurface() to a Pixmap\n"
-        Text = ("Vaapi")
-      }
-      { XvmcBTN CheckBox VideoDriverList
-        Name = "XvmcBTN"
-        MoveScaled(1,24,10,4)
-        Tag = "       xvmc (X11 with -vc ffmpeg12mc only)\n              Video output driver that uses the XvMC (X Video Motion  Compen-\n              sation)  extension of XFree86 4.x to speed up MPEG-1/2 and VCR2\n              decoding.\n                 port=<number>\n                      Select a specific XVideo port.\n                 (no)benchmark\n                      Disables image display.  Necessary  for  proper  bench-\n                      marking of drivers that change image buffers on monitor\n                      retrace only (nVidia).  Default is not to disable image\n                      display (nobenchmark).\n                 (no)bobdeint\n                      Very  simple  deinterlacer.  Might not look better than\n                      -vf tfields=1, but it is the only deinterlacer for xvmc\n                      (default: nobobdeint).\n                 (no)queue\n                      Queue frames for display to allow more parallel work of\n                      the video hardware.  May add a small  (not  noticeable)\n                      constant A/V desync (default: noqueue).\n                 (no)sleep\n                      Use  sleep function while waiting for rendering to fin-\n                      ish (not recommended on Linux) (default: nosleep).\n                 ck=cur|use|set\n                      Same as -vo xv:ck (see -vo xv).\n                 ck-method=man|bg|auto\n                      Same as -vo xv:ck-method (see -vo xv).\n"
-        Text = ("Xvmc")
-      }
-      { SdlBTN CheckBox VideoDriverList
-        Name = "SdlBTN"
-        MoveScaled(2,29,10,4)
-        Tag = "       sdl (SDL only)\n              Highly  platform independent SDL (Simple Directmedia Layer) li-\n              brary video output driver.  Since SDL uses its own  X11  layer,\n              MPlayer X11 options do not have any effect on SDL.\n                 driver=<driver>\n                      Explicitly choose the SDL driver to use.\n                 (no)forcexv\n                      Use  XVideo  through  the  sdl video output driver (de-\n                      fault: forcexv).\n                 (no)hwaccel\n                      Use hardware accelerated scaler (default: hwaccel)."
-        Text = ("SDL")
-      }
-      { X11BTN CheckBox VideoDriverList
-        Name = "X11BTN"
-        MoveScaled(2,33,10,4)
-        Tag = "       x11 (X11 only)\n              Shared memory video output driver without hardware acceleration\n              that works whenever X11 is present.\n"
-        Text = ("X11")
-        Value = CheckBox.True
-      }
-      { NullBTN CheckBox VideoDriverList
-        Name = "NullBTN"
-        MoveScaled(2,37,11,4)
-        Tag = "       null\n              Produces no video output.  Useful for benchmarking.\n"
-        Text = ("Null")
-        Value = CheckBox.True
-      }
-      { CustomBTN CheckBox VideoDriverList
-        Name = "CustomBTN"
-        MoveScaled(1,44,11,4)
-        Tag = "\tWrite Your own driver options;\n\tEg: Xv:port=306,GL:yuv=3:kscale=3\n\n\n"
-        Text = ("Custom")
       }
     }
   }

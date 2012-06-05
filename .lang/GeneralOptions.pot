@@ -1126,211 +1126,219 @@ msgstr ""
 msgid "Fixes  playback  of some bad AVI files"
 msgstr ""
 
+#: GeneralOptions.class:147
+msgid "Turns off xscreensaver at startup"
+msgstr ""
+
 #: GeneralOptions.class:148
+msgid "Turns off xscreensaver at startup and turns it on again on exit.\nUses XSS and XResetScreenSaver API.\nMplayer Option: -stop-xscreensaver"
+msgstr ""
+
+#: GeneralOptions.class:152
 msgid "aspect"
 msgstr ""
 
-#: GeneralOptions.class:149
+#: GeneralOptions.class:153
 msgid "Override movie aspect ratio, in case aspect information\n is incorrect or missing in the file being played.\n Mplayer Option: -aspect"
 msgstr ""
 
-#: GeneralOptions.class:154
+#: GeneralOptions.class:158
 msgid "Framerate override"
 msgstr ""
 
-#: GeneralOptions.class:155
+#: GeneralOptions.class:159
 msgid "Force video Framerate.\n Will probably cause Audio/Video desync.\n Mplayer Option: -fps"
 msgstr ""
 
-#: GeneralOptions.class:159
+#: GeneralOptions.class:163
 msgid "Gradually adjusts the A/V sync based on audio delay measurements."
 msgstr ""
 
-#: GeneralOptions.class:160
+#: GeneralOptions.class:164
 msgid "Try  -autosync 30 to smooth out problems with sound drivers which do not implement a perfect audio delay measurement.\n [..] Mplayer Option: -autosync"
 msgstr ""
 
-#: GeneralOptions.class:164
+#: GeneralOptions.class:168
 msgid "maximum A-V sync correction per frame (in seconds)"
 msgstr ""
 
-#: GeneralOptions.class:165
+#: GeneralOptions.class:169
 msgid "maximum A-V sync correction per frame (in seconds)\n mplayer options: -mc"
 msgstr ""
 
-#: GeneralOptions.class:170
+#: GeneralOptions.class:174
 msgid "Use it if your kernel timing is imprecise"
 msgstr ""
 
-#: GeneralOptions.class:171
+#: GeneralOptions.class:175
 msgid "Time frames by repeatedly checking the current time\n instead of asking the kernel to wake up MPlayer at the correct time.\n Useful if your kernel timing is imprecise and you cannot use the RTC either.\n Comes at the price of higher CPU consumption.\n Mplayer Option: -softsleep"
 msgstr ""
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:181
 msgid "Send cookies"
 msgstr ""
 
-#: GeneralOptions.class:177
+#: GeneralOptions.class:181
 msgid "Only valid for http:// Uries"
 msgstr ""
 
-#: GeneralOptions.class:178
+#: GeneralOptions.class:182
 msgid "Send cookies to websites when playing http:// Uries,\n Cookie file must be in Netscape format.\n Mplayer Option: -cookies"
 msgstr ""
 
-#: GeneralOptions.class:182
+#: GeneralOptions.class:186
 msgid "location"
 msgstr ""
 
-#: GeneralOptions.class:183
+#: GeneralOptions.class:187
 msgid "Specify cookies.txt location\n Mplayer Option: -cookies-file"
 msgstr ""
 
-#: GeneralOptions.class:188
+#: GeneralOptions.class:192
 msgid "prefer-ipv4"
 msgstr ""
 
-#: GeneralOptions.class:188
+#: GeneralOptions.class:192
 msgid "try ipv4 first"
 msgstr ""
 
-#: GeneralOptions.class:189
+#: GeneralOptions.class:193
 msgid "Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"
 msgstr ""
 
-#: GeneralOptions.class:193
+#: GeneralOptions.class:197
 msgid "(MPEG-1/2 and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:194
+#: GeneralOptions.class:198
 msgid "Number of threads to use for decoding.\nYou may need the 'mt' version of mplayer and ffmmpeg\nMplayer Option: -lavdopts threads=n"
 msgstr ""
 
-#: GeneralOptions.class:199
+#: GeneralOptions.class:203
 msgid "Lowres (lavdopts)"
 msgstr ""
 
-#: GeneralOptions.class:200
+#: GeneralOptions.class:204
 msgid "Decode at lower resolutions.  Low resolution decoding\nis not supported by all codecs, and it will  often result\nin ugly artifacts.  This is not a bug, but a side effect\nof not decoding at full resolution.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:204
+#: GeneralOptions.class:208
 msgid "(MPEG-2, MPEG-4, and H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:205
+#: GeneralOptions.class:209
 msgid "Enable optimizations which do not comply to the specification\nand might potentially cause problems, like simpler dequantization,\nsimpler motion compensation, assuming use of the  default\nquantization  matrix, assuming YUV 4:2:0 and skipping\na few checks to detect damaged bitstreams.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:209
+#: GeneralOptions.class:213
 msgid "(H.264 only)"
 msgstr ""
 
-#: GeneralOptions.class:210
+#: GeneralOptions.class:214
 msgid "Skips the loop filter (AKA deblocking) during H.264 decoding.\nthis has a worse effect on quality\nBut at least for high bitrate HDTV this provides a big speedup\nwith  no visible quality loss.\n Mplayer Option: -lavdopts"
 msgstr ""
 
-#: GeneralOptions.class:214
+#: GeneralOptions.class:218
 msgid "libmpeg2 and libavcodec codecs only"
 msgstr ""
 
-#: GeneralOptions.class:215
+#: GeneralOptions.class:219
 msgid "Disable drawing video by 16-pixel height slices/bands,\ninstead draws the whole frame in a single  run.\nMay  be faster  or slower, depending on video card and available cache.\n Mplayer Option: -noslices"
 msgstr ""
 
-#: GeneralOptions.class:219
+#: GeneralOptions.class:223
 msgid "Allow software scaling"
 msgstr ""
 
-#: GeneralOptions.class:220
+#: GeneralOptions.class:224
 msgid "Allow  software scaling, where hardware scaling is unavailable. \nThis will allow scaling with output drivers (like x11, fb-dev)\n that do not support hardware scaling where MPlayer disables\n scaling by default for performance reasons.\n Mplayer Option: -zoom"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "Scaler type (-sws)"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "0 - fast bilinear"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "1 - bilinear"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "2 - bicubic (good quality) (default)"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "3 - experimental"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "4 - nearest neighbor (bad quality)"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "5 - area"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "6 - luma bicubic/chroma bilinear"
 msgstr ""
 
-#: GeneralOptions.class:224
+#: GeneralOptions.class:228
 msgid "10 - natural bicubic spline"
 msgstr ""
 
-#: GeneralOptions.class:225
+#: GeneralOptions.class:229
 msgid "Specify the software scaler algorithm to be used, Some -sws options are tunable.\nThe description of the scale video filter has further information."
 msgstr ""
 
-#: GeneralOptions.class:229
+#: GeneralOptions.class:233
 msgid "Skip displaying some frames to maintain A/V sync"
 msgstr ""
 
-#: GeneralOptions.class:230
+#: GeneralOptions.class:234
 msgid "Skip displaying some frames to maintain A/V sync on slow systems.\nVideo filters are not applied to such frames.\nFor B-frames even decoding is skipped completely.\n Mplayer Option: -framedrop"
 msgstr ""
 
-#: GeneralOptions.class:234
+#: GeneralOptions.class:238
 msgid "Field dominance"
 msgstr ""
 
-#: GeneralOptions.class:234
+#: GeneralOptions.class:238
 msgid "-1=auto (default)"
 msgstr ""
 
-#: GeneralOptions.class:235
+#: GeneralOptions.class:239
 msgid "Set first field for interlaced content\n Mplayer Option: -field-dominance"
 msgstr ""
 
-#: GeneralOptions.class:239
+#: GeneralOptions.class:243
 msgid "Limit Drive Speed to"
 msgstr ""
 
-#: GeneralOptions.class:239
+#: GeneralOptions.class:243
 msgid "X"
 msgstr ""
 
-#: GeneralOptions.class:240
+#: GeneralOptions.class:244
 msgid "Try to limit DVD speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -dvd-speed"
 msgstr ""
 
-#: GeneralOptions.class:245
+#: GeneralOptions.class:249
 msgid "Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"
 msgstr ""
 
-#: GeneralOptions.class:494
+#: GeneralOptions.class:498
 msgid "Are you sure you want to delete selected items?"
 msgstr ""
 
-#: GeneralOptions.class:494
+#: GeneralOptions.class:498
 msgid "Yes, Delete"
 msgstr ""
 
-#: GeneralOptions.class:494
+#: GeneralOptions.class:498
 msgid "Don't delete"
 msgstr ""
 

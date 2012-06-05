@@ -143,6 +143,10 @@ Private Sub DrawFiltersGui()
     Global.DrawGui(AllParams, ("Tweaks"), Tabstrip1, Switchable, "\n Mplayer Option: -ni")
     AllParams.Clear
 
+  '-stop-xscreensaver
+    AllParams.add(["SWITCH", "Stop screensaver", "Enabled", "stop000xscreensaver", ("Turns off xscreensaver at startup")])
+    Global.DrawGui(AllParams, ("Video"), Tabstrip1, Switchable, ("Turns off xscreensaver at startup and turns it on again on exit.\nUses XSS and XResetScreenSaver API.\nMplayer Option: -stop-xscreensaver"))
+    AllParams.Clear
    
   '-aspect <ratio> (also see -zoom)
     AllParams.Add(["CHOOSE", ("aspect"), "4:3 - 1.33", "16:9 - 1.77", "16:10 - 1.60", "2.35:1 - 2.35", "1.25:1 - 1.25", "aspect", ""])

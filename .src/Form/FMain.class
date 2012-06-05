@@ -4843,6 +4843,8 @@ Private Function UseDvbSetChannel() As Boolean
     Return Not (mplayer.AudioSwitched)
   Endif
 
+
+  Return False 'the default,safer, choice.
 End
 
 

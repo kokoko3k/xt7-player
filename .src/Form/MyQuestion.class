@@ -52,41 +52,45 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
     If Me.x <= 0 Then Me.x = 1
     If Me.y <= 0 Then Me.y = 1
 
-
-
     Checkbox1.visible = (Checkboxstring <> "")
     If checkboxstring <> "" Then
       Checkbox1.text = CheckboxString
       Checkbox1.value = Checkboxobject.value
       Checkbox1.Width = Checkbox1.Font.TextWidth(Checkbox1.text) + 32
     Endif
-    Me.show
-    Me.autoresize = True
-    Me.padding = 4
-    Me.spacing = True
-    
-    Wait 0.01
-      If button2.visible Then
-        If Me.w < (Button2.x + button2.w + 50) Then
-          Me.autoresize = False
-          Me.w = Button2.x + button2.w + (Button1.x * 3)
-          VBox2.Reparent(zzzFake)
-            Else
-          Me.autoresize = True
-          VBox2.Reparent(buttoncontainer)
-        Endif
-          Else
-        Me.autoresize = True
-        VBox2.Reparent(buttoncontainer)
-      Endif
-    Wait 0.1
+    'Me.show
+    ' Me.autoresize = True
+    ' Me.padding = 4
+    ' Me.spacing = True
+    ' 
+    ' Wait
+    '   If (thebutton2string <> "") Then
+    '     If Me.w < (Button2.x + button2.w + 50) Then
+    '       Me.autoresize = False
+    '       Me.w = Button2.x + button2.w + (Button1.x * 3)
+    '       VBox2.Reparent(zzzFake)
+    '         Else
+    '       Me.autoresize = True
+    '       VBox2.Reparent(buttoncontainer)
+    '     Endif
+    '       Else
+    '     Me.autoresize = True
+    '     VBox2.Reparent(buttoncontainer)
+    '   Endif
+    ' Wait
+    Me.Show()
+    Me.w = Max((QuestionLabel.w), (Button1.w + Button2.w))
+    Me.h = ButtonContainer.h + hbox1.H
+    If Checkbox1.visible Then Me.h += Checkbox1.h
+    Me.Hide()
+    Me.ShowModal()
 
     Repeat
-      Wait 0.25
+      Wait '0.25
     Until answer <> -1
     If checkboxstring <> "" Then Checkboxobject.value = Checkbox1.value
-    MyQuestion.close
-    MyQuestion.hide
+    'MyQuestion.close
+    'MyQuestion.hide
     MessageAlreadyShown = False
     Return answer
       Else

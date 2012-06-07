@@ -1620,6 +1620,7 @@ Public Function GetSelectedAndLength(MyPlaylist As Gridview) As String
   Dim row As Integer
   Dim TotalItems, SelectedItems, TotalLength, SelectedLength, CurrentLength As Integer
   Dim SlenStr, TotLenStr As String
+
   TotalItems = myplaylist.rows.count
 
   If TotalItems > 0 Then

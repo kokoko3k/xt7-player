@@ -857,6 +857,7 @@
         }
         { PlayListSelInfoBox HBox
           MoveScaled(0,54,37,4)
+          Visible = False
           { MoveUpPlsBTN Button
             MoveScaled(0,0,4,4)
             ToolTip = ("Move selected items up in the list.\nYou can use the mouse wheel too.")

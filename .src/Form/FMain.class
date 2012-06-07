@@ -306,6 +306,7 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
   Next
   MyLibrary.Load(LibraryGrid, global.confpath)
  ' Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
+  If Lower(librarygrid.name) = "playlistgrid" Then PlayListSelInfoBox.visible = False
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
@@ -474,7 +475,6 @@ Public Sub AllInit_Post()
    Endif
   shadeup.visible = True
   shadelow.visible = True
-  PlayListSelInfoBox.Visible = True
 End
 
 Private RecentFileEntry As Menu
@@ -5011,6 +5011,12 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
           librarygrid[crow, 0].EnsureVisible()
         Endif
       Endif
+    Select Case Lower(librarygrid.name)
+      Case "librarygrid"
+        LibrarySelInfo.visible = False
+      Case "playlistgrid"
+        CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
+    End Select
   Endif
 End
 
@@ -5388,9 +5394,6 @@ Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gri
   Dim FreeSpace, NeededSpaces As Integer
   Dim SpaceWidth As Integer = InfoWidget.Font.TextWidth(" ")
   
-
-  
-  
   answer = Split(MyLibrary.GetSelectedAndLength(Playlistgrid), ";")
   PreText = ("Selected: ") & answer[0] & "/" & answer[1]
   PostText = "[" & answer[2] & "] / [" & answer[3] & "]"
@@ -5443,7 +5446,7 @@ End
 Public TimerCalcTotalLengthPls As Timer 
 
 Public Sub TimerCalcTotalLengthPls_Timer()
-  PlayListSelInfo.visible = True
+  PlayListSelInfobox.visible = True
   CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
   Try mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
   TimerCalcTotalLengthPls.stop
@@ -5454,7 +5457,7 @@ End
 
 Private movingitems As Boolean = False
 Public Sub PlayListGrid_Select()
-
+  If Not fmain.fullyloaded Then Return
   If Movingitems Then Return 'spare cpu cycles when changing playlist items order
 
   TimerCalcTotalLengthPls = New Timer As "TimerCalcTotalLengthPls"

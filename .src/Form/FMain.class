@@ -4764,6 +4764,16 @@ Public Sub PlayListGrid_Keypress()
   
 End
 
+Public Sub Librarygrid_Keypress()
+  
+  If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
+    Play(librarygrid[librarygrid.row, mylibrary.Columnindex["Full Path"]].text)
+    Return
+  Endif
+  GridKeyRelease(librarygrid, mylibrary)
+  librarygrid_Select()
+End
+
 
 '-----------------------------------
 

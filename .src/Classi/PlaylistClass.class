@@ -87,7 +87,7 @@ Private Function OneOf(one As String, two As String) As String
 End
 
 
-Public Sub Load(myplaylist As Gridview, profilename As String)
+Public Sub OLD_Load(myplaylist As Gridview, profilename As String)
   Dim filename As String = Profilename & "/" & myplaylist.name & ".txt"
   Dim i As Integer
   Dim Layout As String[]
@@ -106,11 +106,47 @@ Public Sub Load(myplaylist As Gridview, profilename As String)
     Endif
   Endif
   myplaylist.Rows.count = myplaylist.Rows.count + PTable.count
-
   InitSearchTable()
   Debug "Load()at: " & Time
   Debug
 End
+
+Public Sub Load(mygrid As Gridview, ConfDir As String)
+  Dim pTableFile As String = ConfDir & "/" & mygrid.name & ".txt"
+  Dim sTableFile As String = ConfDir & "/" & mygrid.name & ".sTable.txt"
+  Loading = True
+
+  If Exist(sTableFile, True) Then
+    LoadTable(ByRef pTable, pTableFile, mygrid)
+    LoadTable(ByRef searchtable, sTableFile, mygrid)
+      Else
+    LoadTable(ByRef pTable, pTableFile, mygrid)
+    InitSearchTable()
+  Endif
+End
+
+Public Sub LoadTable(ByRef table As String[], filename As String, mygrid As Gridview)
+  Dim i As Integer
+  Dim Layout As String[]
+  Try Table = Split(file.Load(filename), "\n")
+  Table.Resize(Table.count - 1)
+  
+  If table.Count > 0 Then
+    If table[0] Like "Layout*" Then
+      'load column layout
+        Layout = Split(table[0], ";", "", False)
+        table.Remove(0, 1)
+        For i = 1 To layout.count - 1
+          mygrid.Columns[i - 1].w = layout[i]
+        Next 'i
+    Endif
+  Endif
+  'mygrid.Rows.count = mygrid.Rows.count + Table.count 'why i've wrote this, it is not an append
+  mygrid.Rows.count = Table.count
+  Debug "Load()at: " & Time
+  Debug
+End
+
 
 Public Sub SaveAs(FileName As String)
   Dim MyFile As File
@@ -358,27 +394,59 @@ End
 
 
 
-Public Sub Save(myplaylist As Gridview, ProfileName As String)
-  Dim filename As String = Profilename & "/" & myplaylist.name & ".txt"
-  Dim MyFile As File
+' Public Sub Save(myplaylist As Gridview, ProfileName As String)
+'   Dim filename As String = Profilename & "/" & myplaylist.name & ".txt"
+'   Dim MyFile As File
+'   Dim i, r, c As Integer
+'   Dim layout As String = "Layout"
+'   CheckAndFixBloat()
+'   Myfile = Open filename For Write Create
+'   'write ptable layout
+'     For i = 0 To myplaylist.Columns.Count - 1
+'       Layout = Layout & ";" & myplaylist.Columns[i].w
+'     Next 'i
+'     Print #Myfile, Layout
+' 
+'   Debug Tablesize(ptable)
+' 
+'   For r = 0 To PTable.Count - 1
+'   'FOR r = 1 TO PTable.Count - 1
+'     Print #Myfile, PTable[r]
+'   Next 'c
+'   Close #MyFile
+' End
+
+Public Sub Save(mygrid As Gridview, ConfDir As String)
+  Dim pTableFile As String = ConfDir & "/" & mygrid.name & ".txt"
+  Dim sTableFile As String = ConfDir & "/" & mygrid.name & ".sTable.txt"
+  CheckAndFixBloat()
+  If ptable.count = searchtable.count Then
+    SaveTable(searchtable, pTableFile, mygrid)
+    Try Kill sTableFile
+      Else
+    SaveTable(searchtable, sTableFile, mygrid)
+    SaveTable(ptable, pTableFile, mygrid)
+  Endif
+End
+
+Public Sub SaveTable(table As String[], filename As String, mygrid As Gridview)
   Dim i, r, c As Integer
   Dim layout As String = "Layout"
-  CheckAndFixBloat()
+  Dim MyFile As File
   Myfile = Open filename For Write Create
-  'write ptable layout
-    For i = 0 To myplaylist.Columns.Count - 1
-      Layout = Layout & ";" & myplaylist.Columns[i].w
-    Next 'i
-    Print #Myfile, Layout
-
-  Debug Tablesize(ptable)
-
-  For r = 0 To PTable.Count - 1
-  'FOR r = 1 TO PTable.Count - 1
-    Print #Myfile, PTable[r]
+  'write table layout
+  For i = 0 To mygrid.Columns.Count - 1
+    Layout = Layout & ";" & mygrid.Columns[i].w
+  Next 'i
+  Print #Myfile, Layout
+  For r = 0 To Table.Count - 1
+    Print #Myfile, Table[r]
   Next 'c
   Close #MyFile
 End
+
+
+
 
 
 Private Sub InitSearchTable()
@@ -388,6 +456,7 @@ Private Sub InitSearchTable()
     For i = 0 To PTable.Count - 1
       SearchTable.Add(PTable[i])
     Next 'i
+    'fixme... usare string[]copy
 End
 
 
@@ -1380,8 +1449,8 @@ Public Sub AutoSizeColumns(MyGrid As GridView)
       Mygrid.Columns[c].w = CInt(MaxW)
     Next 'c
 
-    'The first column has a picture
-    MyGrid.Columns[0].w = MyGrid.Columns[0].w + Mygrid[0, 0].Picture.W
+    
+    Try MyGrid.Columns[0].w = MyGrid.Columns[0].w + Mygrid[0, 0].Picture.W
 
     t1 = Timer()
     Debug "AutosizeColumns, total time: " & CStr((t1 - t0))

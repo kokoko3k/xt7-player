@@ -407,10 +407,11 @@ Public Sub AllInit_Post()
   Endif  
 
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
-  librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
-  playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
-  dvbtgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
-  '
+  ' librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
+  ' playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
+  ' dvbtgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
+
+
   'some gtk component problem here
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
@@ -4992,6 +4993,7 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
     Endif
   LibraryGrid.clear
   MyLibrary.Search(LibraryGrid, Searchterm)
+  Debug
   If autosize Then
     MyLibrary.AutoSizeColumns(LibraryGrid)
     ' [GB2:FNTH] LibraryGrid.Rows.h = LibraryGrid.Font.Textheight("^_") + global.rowpadding

@@ -2054,11 +2054,11 @@ Public Sub menuitemopensubtitle_Click()
   If OpenSubs.savesub(suburl, subfile) Then
     mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
     Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
-    myDialog.Title = ("Save the selected subtitle")
-    myDialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
+    Dialog.Title = ("Save the selected subtitle")
+    Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
     If MyQuestion.Ask(("Do you want to save") & " " & subname & "?", "Save", "Don't Save") = 1 Then
-      myDialog.SaveFile()
-      fileout = myDialog.path 
+      Dialog.SaveFile()
+      fileout = Dialog.path 
       If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
     Endif
   Endif
@@ -6525,9 +6525,9 @@ Public Sub MenuSavePls_Click()
     MyDialog.Title = "Export a playlist"
     MyDialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
   End With
-  If MyDialog.SaveFile() Then Return
-  MyDialog.filter = PrevFilter
-  MyDialog.title = PrevTitle
+  If Dialog.SaveFile() Then Return
+  Dialog.filter = PrevFilter
+  Dialog.title = PrevTitle
   Try MyPlaylist.SaveAs(MyDialog.Path)
   If Error Then Message.error(("There was an error while saving the playlist"), ("Ok"))
 End
@@ -6873,9 +6873,9 @@ Public Sub FlashGrid_Menu()
 End
 
 Public Sub FlashMenuRecordAs_Click()
-  
-  myDialog.Title = ("Choose a destination file")
-  If myDialog.SaveFile() Then Return ' User pressed Cancel -
+  Dialog.filter = ["*.flv", ("Flash video files"), "*", ("All files")]
+  Dialog.Title = ("Choose a destination file")
+  If Dialog.SaveFile() Then Return ' User pressed Cancel -
   MyFlash.Record(Flashgrid[Flashgrid.row, 1].text, myDialog.path)
   
 End
@@ -8533,7 +8533,7 @@ Public Sub youtubetreeDownload_Click()
   
   Dim CurrentUrl, CurrentText As String
   Dim RealYTVideoUrl As String
-  
+  fmain.mouse = mouse.wait
   Try CurrentUrl = youtubetree.Current.Key
   If Error Then
     Message.Error(("Error: Cannot get current item"))
@@ -8545,6 +8545,7 @@ Public Sub youtubetreeDownload_Click()
     Message.error(("Unable to get the real stream url"))
     Return
   Endif
+  fmain.mouse = mouse.default
   StreamDownload(RealYTVideoUrl, CurrentText & ".mp4")
   
 End
@@ -8560,8 +8561,11 @@ Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   suggestname = Replace(suggestname, "/", "_")
   suggestname = Replace(suggestname, "\"", " ")
   suggestname = Replace(suggestname, "'", " ")
-  myDialog.Path = StreamDownloadDir & "/" & suggestname
-  If myDialog.SaveFile() Then Return
+  
+  Dialog.filter = [global.videofilter & global.UncommonVideoFilters, global.videofiltername, "*", ("All files")]
+  
+  Dialog.Path = StreamDownloadDir & "/" & suggestname
+  If Dialog.SaveFile() Then Return
   StreamDownloadDir = file.dir(myDialog.Path)
   If Trim(GeneralOptions.DownloaderCombobox.text) = "" Then GeneralOptions.DownloaderCombobox.text = "xterm -e wget %url -O %dest"
   destdir = Requote(file.Dir(myDialog.path))

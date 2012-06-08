@@ -144,7 +144,7 @@ Public Sub OkBTN_Click()
 End
 
 Public Sub PcmFileOpen_Click()
-    If myDialog.SaveFile() Then Return
+    If Dialog.SaveFile() Then Return
     textbox8.text = "\"" & myDialog.Path & "\""
 End
 

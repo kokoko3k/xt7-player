@@ -270,7 +270,7 @@ Geometry=[304,489,761,765]
 Geometry=[0,0,301,301]
 
 [DebugWindow/MyGrid]
-Geometry=[0,41,344,344]
+Geometry=[51,41,344,344]
 
 [DebugWindow/MyGrid.Data.Picture]
 Geometry=[48,-4,210,210]
@@ -287,6 +287,9 @@ Geometry=[0,41,344,344]
 [DebugWindow/MyLibrary.AlreadyPlayed]
 Geometry=[264,431,274,159]
 
+[DebugWindow/MyPlaylist]
+Geometry=[1280,0,462,720]
+
 [DebugWindow/MyPlaylist.PTable]
 Geometry=[119,166,657,246]
 
@@ -299,8 +302,11 @@ Geometry=[0,0,301,301]
 [DebugWindow/MyQuestion]
 Geometry=[-4,-3,210,210]
 
+[DebugWindow/Mygrid[0, 0]]
+Geometry=[1280,0,210,680]
+
 [DebugWindow/Mylibrary]
-Geometry=[-14,145,344,344]
+Geometry=[51,145,344,344]
 
 [DebugWindow/NewPtable]
 Geometry=[0,369,1120,344]
@@ -345,7 +351,10 @@ Geometry=[51,0,210,210]
 Geometry=[0,0,645,980]
 
 [DebugWindow/Playlistgrid]
-Geometry=[0,317,301,301]
+Geometry=[51,317,301,301]
+
+[DebugWindow/Playlistgrid.Rows]
+Geometry=[67,670,301,301]
 
 [DebugWindow/Playlistgrid[r, ColumnIndex["Filename"]]]
 Geometry=[0,0,301,301]
@@ -476,6 +485,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/TabStrip1]
 Geometry=[0,0,344,344]
 
+[DebugWindow/Table]
+Geometry=[1280,0,587,461]
+
 [DebugWindow/Tabstrip1]
 Geometry=[52,0,344,344]
 
@@ -562,6 +574,9 @@ Geometry=[47,-3,1229,1002]
 
 [DebugWindow/albums.Sort()]
 Geometry=[51,0,632,651]
+
+[DebugWindow/answer]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
@@ -723,10 +738,13 @@ Geometry=[1280,160,210,210]
 Geometry=[0,0,2550,412]
 
 [DebugWindow/librarygrid]
-Geometry=[51,340,614,580]
+Geometry=[51,417,614,580]
 
 [DebugWindow/librarygrid.Children[0]]
 Geometry=[1280,0,415,708]
+
+[DebugWindow/librarygrid.Rows]
+Geometry=[65,417,614,580]
 
 [DebugWindow/lines]
 Geometry=[0,0,1186,344]
@@ -776,6 +794,9 @@ Geometry=[52,0,606,604]
 [DebugWindow/mygrid]
 Geometry=[51,41,344,344]
 
+[DebugWindow/mygrid.Rows]
+Geometry=[65,55,344,344]
+
 [DebugWindow/mygrid.font]
 Geometry=[224,159,344,344]
 
@@ -802,6 +823,9 @@ Geometry=[420,115,344,344]
 
 [DebugWindow/myplaylist]
 Geometry=[669,70,344,344]
+
+[DebugWindow/myplaylist.Rows]
+Geometry=[683,84,344,344]
 
 [DebugWindow/myplaylist.SearchTable]
 Geometry=[125,290,1047,316]
@@ -844,6 +868,9 @@ Geometry=[0,0,259,330]
 
 [DebugWindow/p.PTable]
 Geometry=[51,0,210,210]
+
+[DebugWindow/pTable]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/panel2]
 Geometry=[0,0,301,301]
@@ -907,6 +934,9 @@ Geometry=[0,41,344,344]
 
 [DebugWindow/scr]
 Geometry=[42,95,210,210]
+
+[DebugWindow/searchtable]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/settings]
 Geometry=[0,0,210,210]
@@ -1040,15 +1070,15 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/MyQuestion.class:38.22"
+File[1]=".src/Form/MyQuestion.class:53.0"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:4833.28"
+File[4]=".src/Form/FMain.class:4773.22"
 Active=5
-File[5]="CHANGELOG_GIT:16.83"
+File[5]="CHANGELOG_GIT:3.12"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:295.16"
-File[8]=".src/Classi/PlaylistClass.class:118.24"
+File[8]=".src/Classi/PlaylistClass.class:1622.0"
 File[9]=".src/Form/GeneralOptions.form"
 File[10]=".src/Form/GeneralOptions.class:146.110"
 File[11]="AA_ToDo:98.0"
@@ -1099,10 +1129,16 @@ File[55]=".src/Form/EpgForm.class:451.2"
 File[56]=".src/Form/Xt7Egg.form"
 File[57]=".src/Form/AFiltersCfg.class:187.0"
 File[58]=".src/Form/VFiltersCfg.form"
-File[59]=".src/Form/VFiltersCfg.class:521.3"
-Count=59
+File[59]=".src/Form/VFiltersCfg.class:545.20"
+File[60]=".src/Form/MyQuestion.form"
+File[61]=".src/Form/MyAskName.form"
+File[62]=".src/Form/MyAskName.class:33.30"
+File[63]=".src/0_Moduli/ComboHistory.module:21.0"
+File[64]=".src/Classi/SettingsClass.class:14.556"
+Count=64
 
 [Watches]
-Count=1
-Watch[1]="i"
+Count=2
+Watch[1]="mylibrary.searchtable.count"
+Watch[2]="fmain.librarygrid.rows.count"
 

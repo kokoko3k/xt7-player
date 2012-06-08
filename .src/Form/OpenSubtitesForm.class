@@ -133,10 +133,10 @@ Public Sub MenuSaveSub_Click()
   If Trim(suburl) = "" Then Return
   subname = subsview[subsview.row, columnindex["SubFileName"]].text
   subfile = Temp() & "." & subname
-  myDialog.Title = ("Save the selected subtitle")
-  myDialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
-  myDialog.SaveFile()
-  fileout = myDialog.path
+  Dialog.Title = ("Save the selected subtitle")
+  Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
+  Dialog.SaveFile()
+  fileout = Dialog.path
   If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
 End
 

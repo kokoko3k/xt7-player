@@ -26,7 +26,6 @@ Private Sub sync()
 End
 
 
-
 Public Function SelectColor() As Boolean
   Try Dialog.SelectColor()
   If Error Then Try Dialog.SelectColor()
@@ -45,12 +44,7 @@ Public Function OpenFile() As Boolean
   If Error Then Try Dialog.OpenFile()
   sync()
 End
-Public Function SaveFile() As Boolean
-  Try Dialog.SaveFile()
-  If Error Then Try Dialog.SaveFile()
-  If Error Then Try Dialog.SaveFile()
-  sync()
-End
+
 Public Function SelectDate() As Boolean
   Try Dialog.SelectDate()
   If Error Then Try Dialog.SelectDate()

@@ -946,3 +946,12 @@ Public Function DektopHTotal() As Integer
   Next
   Return VeryBottom - verytop
 End
+
+Public Sub Which(exe As String) As Boolean
+  Dim exefound As String
+  Shell "which " & exe To exefound
+  If Trim(exefound) = "" Then Return False
+
+  Return True
+End
+

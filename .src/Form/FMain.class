@@ -8554,8 +8554,8 @@ Public StreamDownloadDir As String = ""
 
 Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   
-  Dim dest, commandline, destdir, destfile As String
-  
+  Dim dest, commandline, destdir, destfile, terminalexe As String
+
   If Trim(StreamDownloadDir) = "" Then StreamDownloadDir = User.Home
   suggestname = Replace(suggestname, ":", ".")
   suggestname = Replace(suggestname, "/", "_")
@@ -9515,13 +9515,19 @@ End
 Public Sub PlaylistsCombo_enter()
   Try fillplaylistcombo()
 End
+
 Public Sub fillplaylistcombo()
   Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
   Dim aplaylist As String
+  Dim previous As String = ""
+  Try previous = PlaylistsCombo.text
+  Object.Lock(playlistscombo)
   For Each aplaylist In Dir(playlistsfullpath, "*.xpl")
     aplaylist = Replace(aplaylist, ".xpl", "")
     If PlaylistsCombo.Find(aplaylist) = -1 Then PlaylistsCombo.Add(aplaylist)
   Next
+  PlaylistsCombo.text = previous
+  Object.unLock(playlistscombo)
 End
 
 Public Sub ButtonDeletePls_Click()
@@ -9537,13 +9543,13 @@ End
 
 Public Sub PlaylistsCombo_Click()
   Dim answer As Integer
+
   Dim playlistsfullpath As String = global.ConfPath & "/" & global.UserPlaylistsDir
-  
-  answer = Message.question("Loading the playlist:" & "\n" & PlaylistsCombo.current.text, ("Load/Replace"), ("Append"), ("Never mind"))
-  If answer = 3 Then Return
+  answer = MyQuestion.Ask(("Loading the playlist:") & "\n" & PlaylistsCombo.current.text, ("Load/Replace"), ("Append"))
+  'Message.question("Loading the playlist:" & "\n" & PlaylistsCombo.current.text, ("Load/Replace"), ("Append"), ("Never mind"))
+  If answer = -1 Then Return
   MyPlaylist.LoadFile(playlistsfullpath & "/" & PlaylistsCombo.text & ".xpl", PlayListGrid, (answer = 2))
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
-
 End
 
 Public Sub ButtonEPG_Click()

@@ -87,7 +87,7 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
 
     Repeat
       Wait '0.25
-    Until answer <> -1
+    Until (answer <> -1) Or (Me.visible = False)
     If checkboxstring <> "" Then Checkboxobject.value = Checkbox1.value
     'MyQuestion.close
     'MyQuestion.hide

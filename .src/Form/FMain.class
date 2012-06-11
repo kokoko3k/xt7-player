@@ -6519,16 +6519,16 @@ Public Sub MenuSavePls_Click()
   Dim dialogout As Boolean
   
   With Global
-    MyDialog.Path = .StartFolder & "/"
-    PrevFilter = MyDialog.filter
-    Prevtitle = MyDialog.title
-    MyDialog.Title = "Export a playlist"
-    MyDialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
+    Dialog.Path = .StartFolder & "/"
+    PrevFilter = Dialog.filter
+    Prevtitle = Dialog.title
+    Dialog.Title = "Export a playlist"
+    Dialog.filter = ["*.xpl", "Xt7 playlist", "*.m3u", "m3u playlist", "*.pls", "Winamp playlist"]
   End With
   If Dialog.SaveFile() Then Return
   Dialog.filter = PrevFilter
   Dialog.title = PrevTitle
-  Try MyPlaylist.SaveAs(MyDialog.Path)
+  Try MyPlaylist.SaveAs(Dialog.Path)
   If Error Then Message.error(("There was an error while saving the playlist"), ("Ok"))
 End
 

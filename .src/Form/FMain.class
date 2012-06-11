@@ -4739,8 +4739,67 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
   
 End
 
+
+
+
+' Public Sub DvbTGridToChanFile()
+'   Dim channelconf As String[]
+'   Dim i, j As Integer
+'   Dim fullpath, name As String
+'   'will:
+'   '1- Save the grid
+'   '2- find fullpath items in chanfile and rename them according to the grid
+'   '3- delete any channel not found
+'   '4- update the epg form (or close it and mark as not updated
+'   
+'   
+'   '1- save dvbtgrid:
+'   fmain.MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
+'   
+'   '2- find fullpath items in chanfile and rename them according to the grid
+' 'metti channels.conf in una stringa[]
+' 
+' '
+' 'per ogni fullpath (dvb://xxx) nella griglia:
+' 'se il corrispondente nome è diverso, allora:
+' '   cerca il canale in channels.conf e rinominalo in quello che hai trovato nella colonna nome
+' '   rinomina pure il fullpath
+' 
+' 
+'   channelconf = Split(file.Load(DVBTuner.mplayerchannelsfile), "\n",, True)
+'   For i = 0 To dvbtgrid.Rows.count - 1
+'     fullpath = MyDVBTList.CellValue(dvbtgrid, i, MyDVBTList.ColumnIndex["Full Path"])
+'     name = MyDVBTList.CellValue(dvbtgrid, i, MyDVBTList.ColumnIndex["Filename"])
+'     If Replace(fullpath, "dvb://", "") <> fullpath Then
+'       For j = 0 To channelconf.max
+'         If Split(channelconf[j], ":", "", False)[0] = Replace(fullpath, "dvb://", "") Then
+'           channelconf[i] = Replace(channelconf[i], Split(channelconf[j], ":", "", False)[0], name)
+'           Break
+'         Endif
+'       Next 'j
+'       If j <= channelconf.max Then
+'         
+'       Endif
+'     Endif
+'   Next
+' 
+' 
+' '3- delete any channel not found
+' 'per ogni nome canale trovato In channels.conf
+' 'se non lo trovi nella colonna griglia di fullpath
+' 'rimuovi la linea dal channels.conf
+' 
+' 
+' 
+' 
+' 
+' '   salva channels.conf
+' 
+' End
+
+
+
 Public Sub dvbtgrid_Keypress()
-  
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
     playselecteddvb()
     Return

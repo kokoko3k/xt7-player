@@ -393,29 +393,6 @@ Private Sub SaveXpl(MyFile As File)
 End
 
 
-
-' Public Sub Save(myplaylist As Gridview, ProfileName As String)
-'   Dim filename As String = Profilename & "/" & myplaylist.name & ".txt"
-'   Dim MyFile As File
-'   Dim i, r, c As Integer
-'   Dim layout As String = "Layout"
-'   CheckAndFixBloat()
-'   Myfile = Open filename For Write Create
-'   'write ptable layout
-'     For i = 0 To myplaylist.Columns.Count - 1
-'       Layout = Layout & ";" & myplaylist.Columns[i].w
-'     Next 'i
-'     Print #Myfile, Layout
-' 
-'   Debug Tablesize(ptable)
-' 
-'   For r = 0 To PTable.Count - 1
-'   'FOR r = 1 TO PTable.Count - 1
-'     Print #Myfile, PTable[r]
-'   Next 'c
-'   Close #MyFile
-' End
-
 Public Sub Save(mygrid As Gridview, ConfDir As String)
   Dim pTableFile As String = ConfDir & "/" & mygrid.name & ".txt"
   Dim sTableFile As String = ConfDir & "/" & mygrid.name & ".sTable.txt"

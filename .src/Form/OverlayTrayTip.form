@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  Move(0,0,266,98)
+  Move(0,0,270,102)
   #Scaled = False
   Font = Font["Bold,-1"]
   Background = &H000000&
@@ -15,12 +15,12 @@
   Sticky = True
   SkipTaskbar = True
   { Panel2 Panel
-    Move(0,0,329,98)
+    Move(0,0,329,102)
     Background = &H2A2D3C&
     { Timer1 #Timer
     }
     { Panel1 Panel
-      Move(0,0,78,78)
+      Move(3,3,78,78)
       Background = &H000000&
       Foreground = &H000000&
       { PictureBox1 PictureBox
@@ -32,12 +32,12 @@
       }
     }
     { PictureBox2 PictureBox
-      Move(0,0,266,98)
+      Move(0,0,270,102)
       Picture = Picture["backpanel.png"]
       Stretch = True
     }
     { Label1 Label
-      Move(84,0,175,91)
+      Move(88,4,175,91)
       Foreground = &HFFFFFF&
       Mouse = Mouse.SizeAll
       Expand = True
@@ -49,7 +49,7 @@
       Border = False
     }
     { HBox1 Panel
-      Move(0,80,77,17)
+      Move(3,83,77,17)
       { btnprev PictureBox
         Move(0,0,17,17)
         Picture = Picture["media-skip-backward.png"]

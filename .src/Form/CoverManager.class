@@ -932,7 +932,7 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
   Dim JustFileCover As Boolean = False 'are we going to set a cover for just this file?
   Dim tl As New TagLib
   
-  Me.show
+
   If Upper(FullPath) Like "*.FLAC" Then
     If (Trim(Artist) = "") And (Trim(Album) = "") Then
       tl.init(FullPath)
@@ -947,6 +947,7 @@ Public Sub SetACover(fullpath As String, artist As String, album As String, Opti
     tmpmessage = ("\nso you are going to set a cover for this particular file/stream")
     Message.Info(("Artist Or Album tag information are required to set a cover") & tmpmessage, ("Ok"))
   Endif
+  Me.show
   progressbar1.value = 0
 
 

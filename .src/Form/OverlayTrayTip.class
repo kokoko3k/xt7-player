@@ -144,6 +144,7 @@ Public Sub Form_Enter()
   MouseOnOverlayTraytip = True
   pinbutton.show
   Me.Stacking = Me.Above
+  FMain.TimerHideTray.stop
 End
 
 Public Sub btnprev_MouseDown()

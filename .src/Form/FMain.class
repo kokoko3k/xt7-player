@@ -9623,3 +9623,9 @@ End
 
 
 
+
+Public Sub ButtonSavePls2_Click()
+  If (Not global.initearlyformsdone) Then InitEarlyForms()
+  GeneralOptions.show
+  GeneralOptions.TabStrip1.index = Global.TabIndexByName(("DVB-T"), GeneralOptions.TabStrip1)
+End

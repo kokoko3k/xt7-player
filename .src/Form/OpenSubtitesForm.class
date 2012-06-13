@@ -24,17 +24,17 @@ End
 Public Sub mywait(dowait As Boolean)
   
   If dowait Then
-    subsview.mouse = mouse.wait
     TextBox1.mouse = mouse.wait
     combobox1.mouse = mouse.wait
     hbox1.mouse = mouse.wait
     buttonsearch.enabled = False
+    Me.mouse = mouse.wait
       Else
-    subsview.mouse = mouse.Normal
-    hbox1.mouse = mouse.normal
-    buttonsearch.enabled = True
     TextBox1.mouse = mouse.Normal
     combobox1.mouse = mouse.Normal
+    hbox1.mouse = mouse.normal
+    buttonsearch.enabled = True
+    Me.mouse = mouse.normal
   Endif
 End
 
@@ -133,11 +133,13 @@ Public Sub MenuSaveSub_Click()
   If Trim(suburl) = "" Then Return
   subname = subsview[subsview.row, columnindex["SubFileName"]].text
   subfile = Temp() & "." & subname
+  Dialog.filter = ["*." & file.Ext(subname), "Subtitle file"]
   Dialog.Title = ("Save the selected subtitle")
   Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
   Dialog.SaveFile()
   fileout = Dialog.path
   If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
+  Me.mouse = mouse.normal
 End
 
 Public Sub ComboBox1_KeyPress()

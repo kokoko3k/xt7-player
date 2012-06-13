@@ -2054,6 +2054,7 @@ Public Sub menuitemopensubtitle_Click()
   If OpenSubs.savesub(suburl, subfile) Then
     mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
     Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
+    Dialog.filter = ["*." & file.Ext(subname), "Subtitle file"]
     Dialog.Title = ("Save the selected subtitle")
     Dialog.Path = File.Dir(fmain.mplayer.Media_FullPath_Playing) & "/" & subname
     If MyQuestion.Ask(("Do you want to save") & " " & subname & "?", "Save", "Don't Save") = 1 Then
@@ -2063,10 +2064,6 @@ Public Sub menuitemopensubtitle_Click()
     Endif
   Endif
 End
-
-
-
-
 
 
 Public Sub TreeView1_Activate()

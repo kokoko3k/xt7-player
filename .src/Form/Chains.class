@@ -289,7 +289,7 @@ End
 
 Public Sub MenuSaveToAll_Click()
 Dim profilename, profilenamesplitted As String
-  If MyQuestion.Ask("This will save this window settings\n to all profiles found but the 'Factory_defaults' one", "Proceed", "Don't") = 2 Then
+  If MyQuestion.Ask(("This will save this window settings\n to all profiles found but the 'Factory_defaults' one"), ("Proceed"), ("Don't")) = 2 Then
     Return
       Else
      For Each profilename In Dir(global.confpath & "/", "*.profile")

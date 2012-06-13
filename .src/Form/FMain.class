@@ -3307,7 +3307,7 @@ Public Sub VersionCheck()
   If Userminiminor >= requiredminiminor Then Return
   
     'else...
-    MyQuestion.Ask("WARNING\nYour Gambas version is " & Trim(UserVersion) & "\nbut xt7-player requires " & global.RequiredVersion, "Understood", "")
+    MyQuestion.Ask(("WARNING\nYour Gambas version is ") & Trim(UserVersion) & ("\nbut xt7-player requires ") & global.RequiredVersion, ("Understood"), "")
 
 End
 
@@ -4803,7 +4803,7 @@ Public Sub dvbtgrid_Keypress()
     Return
   Endif
   If Key.code = Key.delete Then
-    If (MyQuestion.Ask("Delete Selected channel(s)?", "Delete", "Don't delete") = 1) Then
+    If (MyQuestion.Ask(("Delete Selected channel(s)?"), ("Delete"), ("Don't delete")) = 1) Then
       MyDVBTList.DeleteSelected(DVBTGrid)
     Endif
   Endif
@@ -8884,7 +8884,7 @@ Public Sub rightSidePanel_Enter()
 End
 
 Public Sub MenuBug_Click()
-    If MyQuestion.Ask("Thank you,\nyou will be taken to the \nbug reporting web page.", "Submit the bug", "Not now") = 1 Then
+    If MyQuestion.Ask(("Thank you,\nyou will be taken to the \nbug reporting web page."), ("Submit the bug"), ("Not now")) = 1 Then
       Desktop.Open("http://xt7-player.sourceforge.net/xt7forum/newmsg.php?mode=post&f=3")
     Endif
 End

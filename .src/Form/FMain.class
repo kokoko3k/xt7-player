@@ -5203,7 +5203,7 @@ Public Sub Hsplit1_MyRefresh()
       OuterBox.Background = Color.black
       rightsidepanel.Background = Color.background
     Endif
-    VideoBox.visible = True
+    If Not VideoBox.visible Then videobox.show
     rightsidepanel.visible = True
     audioform.AudioPanel.visible = True
   Endif

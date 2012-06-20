@@ -5186,6 +5186,8 @@ Public Sub Hsplit1_MyRefresh()
   Dim RightPanel As Integer = 0
 
   If (Not mplayer.audioonly) Then CorrectAreaAspect()
+  If mplayer.ProcessRunningOvr() And mplayer.Paused Then UpdateStatusBar()
+  
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
   Else

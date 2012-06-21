@@ -7951,7 +7951,6 @@ End
 
 Public Sub PlaylistGrid_Enter()
   Application.ShowTooltips = Buttonshowtooltips.value
-
 End
 
 Public Sub LibraryGrid_Leave()
@@ -9176,7 +9175,10 @@ Public Sub LibraryGrid_MouseMove()
     Try librarygrid[hirow, 0].text = ""
     Try librarygrid[hirow, 0].clear
   Endif
-   If Not (Buttonshowtooltips.value) Then Return
+   If Not (Buttonshowtooltips.value) Then 
+     mmliblocked = False
+     Return
+   Endif
    ShowGridTooltipIn(librarygrid, mylibrary)
    mmliblocked = False
 End
@@ -9190,7 +9192,10 @@ Public Sub PlaylistGrid_MouseMove()
     Try playlistgrid[hirow, 0].text = ""
     Try playlistgrid[hirow, 0].clear
   Endif
-  If Not (Buttonshowtooltips.value) Then Return
+   If Not (Buttonshowtooltips.value) Then 
+     mmplslocked = False
+     Return
+   Endif
   ShowGridTooltipIn(playlistgrid, myplaylist)
   mmplslocked = False
 End

@@ -7705,9 +7705,9 @@ Public Sub MenuCDDA_Click()
   fmain.mouse = mouse.wait
   CDDAGrid.clear
   CDDAGrid.Rows.count = 1
-  CDDAGrid.columns.count = 1
+  CDDAGrid.columns.count = 3
   cddagrid[0, 0].text = ("Please, wait while getting disc information")
-  cddagrid.Columns[0].width = -1
+  cddagrid.Columns[0].width = -1 'cddagrid.Font.TextWidth("Please, wait while getting disc information")
   SetCddaTabVisibility(True)
   'play media
   If GeneralOptions.CDDBCheckbox.value Then 
@@ -7728,7 +7728,7 @@ Public Sub MenuCDDA_Click()
     For track = 1 To numtracks
       Length = "00:" & Left(mplayer.FindTagValue("ID_CDDA_TRACK_" & track & "_MSF"), 5)
       CDDAGrid.Rows.count = CDDAGrid.Rows.count + 1
-      
+
       If global.IsCddb(mplayer.Media_FullPath) Then
         CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cddb://") & track
         Try CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = (mplayer.cddbtracks[track - 1])
@@ -7739,7 +7739,7 @@ Public Sub MenuCDDA_Click()
       
       CDDAGrid[CDDAGrid.Rows.count - 1, 2].text = Length
     Next 'track
-    cddagrid.Columns[0].width = -1
+    cddagrid.Columns[0].width = cddagrid.Font.TextWidth("cdda://000000")
     cddagrid.Columns[1].width = -1
   Else
     cddagrid[0, 0].text = ("Error, failed to get disc information")

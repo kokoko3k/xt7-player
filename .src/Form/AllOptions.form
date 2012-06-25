@@ -14,7 +14,7 @@
     MoveScaled(0,0,22.5714,5.8571)
     AutoResize = True
     Text = ("General Options")
-    Picture = Picture["configure.png"]
+    Picture = Picture["icon:/22/tools"]
   }
   { OkBTN5 Button
     MoveScaled(0,5,22.5714,5.8571)
@@ -26,37 +26,37 @@
     MoveScaled(0,10,22.5714,5.8571)
     AutoResize = True
     Text = ("Video Filters")
-    Picture = Picture["GeneralVideo.png"]
+    Picture = Picture["icon:/22/video"]
   }
   { VideoDriverBTN2 Button
     MoveScaled(0,16,22.5714,5.8571)
     AutoResize = True
     Text = ("Video Drivers")
-    Picture = Picture["GeneralVideo.png"]
+    Picture = Picture["icon:/22/video"]
   }
   { OkBTN3 Button
     MoveScaled(0,22,22.5714,5.8571)
     AutoResize = True
     Text = ("Audio Filters")
-    Picture = Picture["GeneralAudio.png"]
+    Picture = Picture["icon:/22/audio"]
   }
   { OkBTN1 Button
     MoveScaled(0,28,23,5.8571)
     AutoResize = True
     Text = ("Audio Drivers")
-    Picture = Picture["GeneralAudio.png"]
+    Picture = Picture["icon:/22/audio"]
   }
   { OkBTN7 Button
     MoveScaled(0,34,22.5714,5.8571)
     AutoResize = True
     Text = ("Codecs && demuxers")
-    Picture = Picture["icon:/24/wizard"]
+    Picture = Picture["icon:/22/wizard"]
   }
   { OkBTN4 Button
     MoveScaled(0,40,22.5714,5.8571)
     AutoResize = True
     Text = ("Subtitles")
-    Picture = Picture["icon:/24/font"]
+    Picture = Picture["icon:/22/font"]
   }
   { OkBTN6 Button
     MoveScaled(0,46,22.5714,5.8571)

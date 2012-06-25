@@ -42,10 +42,10 @@
       Expand = True
     }
     { SelectFile ToolButton
-      MoveScaled(58,1,4,4)
+      MoveScaled(58,0,4,4)
       Background = Color.Background
       ToolTip = ("Open a file")
-      Picture = Picture["document-open.png"]
+      Picture = Picture["icon:/medium/open"]
     }
   }
   { HBox4 HBox

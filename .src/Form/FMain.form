@@ -20,11 +20,11 @@
     }
     { MenuCDDA Menu
       Text = ("Play Audio Cd")
-      Picture = Picture["cdaudio16.png"]
+      Picture = Picture["icon:/small/cdrom"]
     }
     { MenuDVD Menu
       Text = ("Play DVD")
-      Picture = Picture["dvd16.png"]
+      Picture = Picture["icon:/small/cdrom"]
       { MenuDvdDrive Menu
         Text = ("From DVD drive")
         Picture = Picture["icon:/16/cdrom"]
@@ -397,7 +397,7 @@
     { About Menu MenuAbout
       Name = "About"
       Text = ("About")
-      Picture = Picture["MediaInfoTab.png"]
+      Picture = Picture["icon:/small/info"]
     }
   }
   { ShutdownMenu Menu
@@ -593,7 +593,7 @@
       Font = Font["1"]
       ToolTip = ("Configuration toolbox")
       AutoResize = True
-      Picture = Picture["configure.png"]
+      Picture = Picture["icon:/22/tools"]
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
@@ -659,7 +659,7 @@
       Font = Font["1"]
       ToolTip = ("Hide/show left panel")
       AutoResize = True
-      Picture = Picture["view-choose.png"]
+      Picture = Picture["icon:/22/view-split-h"]
     }
     { FullScreenBtn ToolButton DynaGuiToolbar
       Name = "FullScreenBtn"
@@ -667,7 +667,7 @@
       Font = Font["1"]
       ToolTip = ("Fullscreen Switch")
       AutoResize = True
-      Picture = Picture["view-fullscreen.png"]
+      Picture = Picture["icon:/22/fullscreen"]
     }
     { PoweroffBTN ToolButton DynaGuiToolbar
       Name = "PoweroffBTN"
@@ -792,7 +792,7 @@
         }
         Index = 2
         Text = ("Playlist")
-        Picture = Picture["PlaylistTab.png"]
+        Picture = Picture["icon:/small/view-detail"]
         { NOPARSETABPLAYLIST Label
           MoveScaled(1,1,8,3)
           Visible = False
@@ -1015,7 +1015,7 @@
         }
         Index = 5
         Text = ("Audio CD")
-        Picture = Picture["cdaudio16.png"]
+        Picture = Picture["icon:/small/cdrom"]
         { NOPARSETABCDDA Label
           MoveScaled(1,1,8,3)
           Visible = False
@@ -1380,7 +1380,7 @@
         }
         Index = 11
         Text = ("Media Info")
-        Picture = Picture["MediaInfoTab.png"]
+        Picture = Picture["icon:/small/info"]
         { NOPARSETABMEDIAINFO Label
           MoveScaled(0,0,8,3)
           Visible = False

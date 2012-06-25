@@ -7652,27 +7652,27 @@ Public Sub ShoutCastTreeaddtoplaylist_Click()
 End
 
 Public Sub CDDANext()
-  Try cddagrid.Rows[cddagrid.row].selected = False  
-  If cddagrid.row = (cddagrid.Rows.count - 1) Then
-    Try cddagrid.row = 0
-    Global.IsNextSelected = False
-  Else
-    Try cddagrid.row = cddagrid.row + 1
-    Global.IsNextSelected = True
-  Endif
-  Try cddagrid.Rows[cddagrid.row].selected = True
-  Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+ If cddagrid.row = -1 Then cddagrid.row = 0
+ If cddagrid.row = (cddagrid.Rows.count - 1) Then
+   Try cddagrid.row = 0
+   Global.IsNextSelected = False
+ Else
+   Try cddagrid.row = cddagrid.row + 1
+   Global.IsNextSelected = True
+ Endif
+ Try cddagrid.Rows[cddagrid.row].selected = True
+ Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
 End
 
 Public Sub CDDAPrev()
-  Try cddagrid.Rows[cddagrid.row].selected = False  
-  If cddagrid.row = 0 Then
-    Try cddagrid.row = (cddagrid.Rows.count - 1)
-  Else
-    Try cddagrid.row = cddagrid.row - 1
-  Endif
-  Try cddagrid.Rows[cddagrid.row].selected = True
-  Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+ If cddagrid.row = -1 Then cddagrid.row = 0
+ If cddagrid.row = 0 Then
+   Try cddagrid.row = (cddagrid.Rows.count - 1)
+ Else
+   Try cddagrid.row = cddagrid.row - 1
+ Endif
+ Try cddagrid.Rows[cddagrid.row].selected = True
+ Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
 End
 
 Public Function PopupCddaError() As Boolean

@@ -2485,7 +2485,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
     OtherOptions = OtherOptions & " -dvd-device " & "\"" & dvd_device & "\" "
   Endif
-  OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
+  OtherOptions = otheroptions & " " & GeneralOptions.ParseAdditionalOptions() 'GeneralOptions.NoParseAdditionalOptions.text
     
   firstplay = False
   mplayer.CurrentOptions = OtherOptions

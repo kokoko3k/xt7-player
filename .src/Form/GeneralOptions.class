@@ -85,6 +85,7 @@ Public Sub Init()
   Try Optionslist.Add("DVB-T", ("DVB-T"), Picture["GeneralDVBT.png"])
   Try Optionslist.Add("Language", ("Language"), Picture["GeneralLanguage.png"])
   Try Optionslist.Add("Misc", ("Misc"), Picture["GeneralMisc.png"])
+  Try Optionslist.Add("User options", ("User options"), Stock["32/terminal"]) 'Picture["GeneralMisc.png"])
   Try Optionslist.Add("Style", ("Style"), Picture["GeneralStyle.png"])
   DrawFiltersGui()
   InitDone = True
@@ -906,7 +907,10 @@ End
 
 
 Public Sub notifyobj_Click()
-   If alreadyloaded Then global.ManageNotifies_click(Last) 
+  If Upper(Last.name) Like "*USEROPTIONCHACKBOX*" Then
+    Try Last.next.enabled = Last.value
+  Endif
+  If alreadyloaded Then global.ManageNotifies_click(Last) 
 End
 
 Public Sub notifyobj_Change()
@@ -1047,4 +1051,20 @@ Public Sub IconWidthAlbums_Change()
   IconWidthAlbums_click()
 End
 
+Public Function ParseAdditionalOptions() As String
+  Dim MyHbox, MyCheckbox As Object
+  Dim AdditionalOpts As String = ""
+  If Not InitDone Then Init()
+  For Each MyHbox In ScrollViewUserOptions.Children
+    If MyHbox Is Hbox Then
+      If MyHbox.children[0] Is Checkbox Then
+        MyCheckbox = MyHbox.children[0]
+        If MyCheckbox.value Then 
+          Try AdditionalOpts &= " " & MyCheckbox.next.text & " "
+        Endif
+      Endif
+    Endif
+  Next
+  Return AdditionalOpts
+End
 

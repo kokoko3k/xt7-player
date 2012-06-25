@@ -2480,10 +2480,10 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'initialvolume
   If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
   If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0
-  OtherOptions = otheroptions & " " & " -volume " & lastvolume
+  OtherOptions = otheroptions & " " & " -volume " & lastvolume & " "
   
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
-    OtherOptions = OtherOptions & "-dvd-device " & "\"" & dvd_device & "\" "
+    OtherOptions = OtherOptions & " -dvd-device " & "\"" & dvd_device & "\" "
   Endif
   OtherOptions = otheroptions & " " & GeneralOptions.NoParseAdditionalOptions.text
     

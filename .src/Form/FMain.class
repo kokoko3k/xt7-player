@@ -3323,7 +3323,7 @@ Public Sub SaveVolumeSlider_Change()
   mplayer.Send("get_property volume")
 End
 
-Public Sub SeekBar_Change()
+Public Sub OLD_SeekBar_Change()
   '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
 
   If Not (Seekbar.tag = "timer") Then
@@ -3334,10 +3334,78 @@ Public Sub SeekBar_Change()
   
 End
 
+Public SeekingRestarting As Boolean = False
+
+
+Public Sub SeekOrSeekAndRestart(Action As String)
+  'Restart the stream from a new position on youtube streams instead of seeking.
+  Dim delta As Integer
+  Dim newpos As Integer
+  
+  'do as usual for non YT streams:
+  If Not ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
+    mplayer.Send(Action) 'WTH?
+    Return
+  Endif
+
+  'or issue restarts to the current stream (youtube)
+  If SeekingRestarting Then Return
+    'Do as usual on strange errors ?
+    Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
+    If Error Then mplayer.Send(Action) 'WTH?
+    SeekingRestarting = True
+    SeekRestart(newpos)
+    SeekingRestarting = False
+  
+End
+
+
+
+
+
+
+Public Sub SeekBar_Change()
+  '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
+  Dim percent As Integer
+  Dim newpos As Integer
+  If fmain.closing Then Return
+  If Not (Seekbar.tag = "timer") Then
+    OneSecTimer.Enabled = False
+    percent = SeekBar.value Div 10
+    
+    'Restart the stream from a new position on youtube streams instead of seeking.
+    If ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
+      If SeekingRestarting Then Return
+      Try newpos = CInt(mplayer.Media_Length / (100 / percent))
+      If Error Then newpos = 0
+      SeekingRestarting = True
+      SeekRestart(newpos)
+      SeekingRestarting = False
+        Else
+      mplayer.do_seek(percent)
+    Endif
+
+    OneSecTimer.Enabled = True
+  Endif
+  
+End
+
+Public Sub SeekRestart(newpos As Integer)
+  VEqHasBeenSet = False
+  If mplayer.ProcessRunningOvr() Then
+    ForcedAspectRT = "default"
+    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded(), False, False, newpos)
+    aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
+    mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
+    CorrectAreaAspect
+    LogWindow.clearlogs()
+    LogWindow.ShowLogs()
+  Endif
+  UpdateOverboostLevel()
+End
+
 Public Sub MenuOpen_Click()
-  
   ButtonOpen_Click()
-  
 End
 
 Public Sub MenuQuit_Click()
@@ -4379,6 +4447,8 @@ Public Sub HotKeyToMplayer(HotKey As String)
 
   'PRINT Action
   Select Case Action
+    Case Like "*Seek *"
+      SeekOrSeekAndRestart(Action)
     Case "Vo_fullscreen"
       FullScreenBtn_Click()
     Case "Panscan +0.05"

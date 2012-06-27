@@ -494,7 +494,7 @@ End
 
 '######################### Player controls section
 
-Public Sub do_restart(filename As String, options As String, Optional rewind As Boolean = True, Optional bugid1870 As Boolean = False)
+Public Sub do_restart(filename As String, options As String, Optional rewind As Boolean = True, Optional bugid1870 As Boolean = False, Optional SeekTo As Integer = "-1")
 
   Dim NewOptions As String
   Dim CurrentSeconds As Integer
@@ -506,19 +506,25 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
   mplayeroptions = options
   Repeat 'We've to catch an error, because CurrentTime may not return Seconds!
     NewOptions = options
-    Try CurrentSeconds = CurrentTime()
-    If Not Error Then 'catch if currenttime fails
-      If rewind Then 'seek some seconds back after an apply
-        If Not (Media_AudioOnly()) Then
-          CurrentSeconds = CurrentSeconds - 3 'if is video, then seek back some seconds more
-        Else
-          CurrentSeconds = CurrentSeconds - 1
+    
+    If seekto = -1 Then
+      Try CurrentSeconds = CurrentTime()
+      If Not Error Then 'catch if currenttime fails
+        If rewind Then 'seek some seconds back after an apply
+          If Not (Media_AudioOnly()) Then
+            CurrentSeconds = CurrentSeconds - 3 'if is video, then seek back some seconds more
+          Else
+            CurrentSeconds = CurrentSeconds - 1
+          Endif
+        Else 'dont rewind
+          CurrentSeconds = CurrentSeconds + 1
         Endif
-      Else 'dont rewind
-        CurrentSeconds = CurrentSeconds + 1
       Endif
+      NewOptions = Options & " -ss " & CurrentSeconds
+        Else
+      NewOptions = Options & " -ss " & seekto
     Endif
-    NewOptions = Options & " -ss " & CurrentSeconds
+    
     do_stop()
     do_play(filename, NewOptions, False, bugid1870)
     Break

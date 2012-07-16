@@ -4674,7 +4674,7 @@ Public Sub ButtonNext_Click()
     Wait 0.025
     If mplayerwasrunning Then playselecteddvb()
   Else If TabSelectedBrowse() Then
-    BrowseSelectNext()
+    Try BrowseSelectNext()
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedCDDA() Then
@@ -4715,8 +4715,8 @@ Public Sub BrowseSelectNext()
       Try obj.movecurrent
       If Error Then Return
       
-      Try obj.MoveBelow()
-      If Error Then Return
+      If obj.MoveBelow() Then Try obj.movefirst()
+      
       
       Try obj.item.selected = True
       If Error Then Return
@@ -4724,7 +4724,7 @@ Public Sub BrowseSelectNext()
       mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
     Endif
   Next
-
+  obj.item.EnsureVisible
 End
 
 
@@ -4737,7 +4737,7 @@ Public Sub BrowseSelectPrev()
       Try obj.movecurrent
       If Error Then Return
       
-      Try obj.MoveAbove()
+      If obj.MoveAbove() Then Try obj.movelast()
       If Error Then Return
       
       Try obj.item.selected = True
@@ -4746,7 +4746,7 @@ Public Sub BrowseSelectPrev()
       mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
     Endif
   Next
-
+  obj.item.EnsureVisible
 End
 
 
@@ -4776,7 +4776,7 @@ Public Sub ButtonPrev_Click()
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedBrowse() Then
-    BrowseSelectPrev()
+    Try BrowseSelectPrev()
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
   Else If TabSelectedYoutube() Then
     Youtube.Select_PrevTreeItem(youtubetree)

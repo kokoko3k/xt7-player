@@ -3,6 +3,7 @@ Git changes:
 Jul7, 16 2012
   FIX:    Try hardly to allow youtube seeking by searching mp4 first, then webm and flv as last chance.
   FIX:    Prevent "Null Object error" when trying to tag an item which is not in library or playlist.
+  FIX:    Cycle through items (last->first) in browse tab too.
 
 July, 01 2012
   FIX:     'User Options' weren't take into account when hitting apply, fixed 

@@ -172,6 +172,9 @@ Geometry=[-4,-3,210,210]
 [DebugWindow/Fmain]
 Geometry=[-4,-4,227,299]
 
+[DebugWindow/FormatsBySize]
+Geometry=[51,0,210,210]
+
 [DebugWindow/GeneralOptions]
 Geometry=[0,41,344,344]
 
@@ -691,6 +694,9 @@ Geometry=[1280,0,210,210]
 [DebugWindow/findouts]
 Geometry=[0,0,344,344]
 
+[DebugWindow/flvs]
+Geometry=[51,0,210,210]
+
 [DebugWindow/fmain]
 Geometry=[-4,-4,561,728]
 
@@ -1072,14 +1078,14 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:89.29"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:2490.72"
+File[4]=".src/Form/FMain.class:1591.14"
 Active=5
-File[5]="CHANGELOG_GIT:3.11"
+File[5]="CHANGELOG_GIT:3.10"
 File[6]=".src/Form/CoverManager.class:908.30"
-File[7]=".src/Classi/MplayerClass.class:295.16"
+File[7]=".src/Classi/MplayerClass.class:470.3"
 File[8]=".src/Classi/PlaylistClass.class:59.19"
 File[9]=".src/Form/GeneralOptions.form"
-File[10]=".src/Form/GeneralOptions.class:1048.0"
+File[10]=".src/Form/GeneralOptions.class:187.54"
 File[11]="AA_ToDo:117.80"
 File[12]=".src/Classi/AlbumView.class:94.27"
 File[13]=".src/Form/FMain.form"
@@ -1098,7 +1104,7 @@ File[25]=".src/Form/XConfigureVideoDriver.form"
 File[26]=".src/Form/CoverManager.form"
 File[27]=".src/Form/ProfileManager.class:28.94"
 File[28]=".src/Form/DVBTuner.class:385.26"
-File[29]=".src/Classi/YoutubeClass.class:571.22"
+File[29]=".src/Classi/YoutubeClass.class:544.0"
 File[30]=".src/Classi/ShoutCastClass.class:279.34"
 File[31]=".src/Classi/FlashClass.class:129.11"
 File[32]=".src/Form/AllOptions.form"
@@ -1121,7 +1127,7 @@ File[48]=".src/Form/HotKeyGrab.form"
 File[49]=".src/Form/AskName.form"
 File[50]=".src/Form/AskName.class:0.0"
 File[51]=".src/Classi/AudiotagClass.class:0.0"
-File[52]=".src/Form/EpgForm.class:3.69"
+File[52]=".src/Form/EpgForm.class:374.3"
 File[53]=".src/Form/Xt7Egg.form"
 File[54]=".src/Form/AFiltersCfg.class:187.0"
 File[55]=".src/Form/VFiltersCfg.form"
@@ -1134,7 +1140,8 @@ File[61]=".src/Classi/SettingsClass.class:14.556"
 File[62]=".src/Form/OpenSubtitesForm.class:135.31"
 File[63]="xt7-player.png"
 File[64]=".src/Form/AddUriForm.form"
-Count=64
+File[65]=".src/Classi/WgetClass.class:65.32"
+Count=65
 
 [Watches]
 Count=2

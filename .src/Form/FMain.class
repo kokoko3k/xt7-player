@@ -2406,6 +2406,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
+  needytcookie = False
   ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
   generaloptions.Init()
@@ -2886,6 +2887,7 @@ End
 Public Sub UpdateSeekSlider()
   'Get the current playing time and update seek bar accordingly
   Dim totaltime, actualtime, percent, stream_length, stream_pos As Integer
+  If SeekingRestarting Then Return
 
     SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
     Try totaltime = mplayer.Media_Length
@@ -3346,12 +3348,14 @@ Public Sub SeekOrSeekAndRestart(Action As String)
   Dim newpos As Integer
   
   'do as usual for non YT streams:
+
   If Not ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
     mplayer.Send(Action) 'WTH?
     Return
   Endif
 
   'or issue restarts to the current stream (youtube)
+  needytcookie = True
   If SeekingRestarting Then Return
     'Do as usual on strange errors ?
     Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
@@ -3364,13 +3368,11 @@ End
 
 
 
-
-
-
 Public Sub SeekBar_Change()
   '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
   Dim percent As Integer
   Dim newpos As Integer
+ ' Seekbar.enabled = False
   If fmain.closing Then Return
   If Not (Seekbar.tag = "timer") Then
     OneSecTimer.Enabled = False
@@ -3378,26 +3380,34 @@ Public Sub SeekBar_Change()
     
     'Restart the stream from a new position on youtube streams instead of seeking.
     If ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
+      seekbar.enabled = False
       If SeekingRestarting Then Return
       Try newpos = CInt(mplayer.Media_Length / (100 / percent))
       If Error Then newpos = 0
       SeekingRestarting = True
       SeekRestart(newpos)
       SeekingRestarting = False
+      seekbar.enabled = True
         Else
       mplayer.do_seek(percent)
+      
     Endif
 
     OneSecTimer.Enabled = True
+
   Endif
-  
+'Seekbar.enabled = True
 End
 
 Public Sub SeekRestart(newpos As Integer)
+  Dim cookieopts As String
   VEqHasBeenSet = False
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
-    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded(), False, False, newpos)
+    If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
+    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & " " & cookieopts, False, False, newpos)
+
+    
     aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect
@@ -3437,15 +3447,11 @@ Public Sub ShowVolBtn_MouseWheel()
 End
 
 Public Sub SeekBar_MouseDown()
-  
   MousePressed = True
-  
 End
 
 Public Sub SeekBar_MouseUp()
-  
   MousePressed = False
-  
 End
 
 Public Sub VideoAreaGroup_MouseDrag()
@@ -4450,8 +4456,8 @@ Public Sub HotKeyToMplayer(HotKey As String)
 
   'PRINT Action
   Select Case Action
-    Case Like "*Seek *"
-      SeekOrSeekAndRestart(Action)
+    ' Case Like "*Seek *"
+    '   SeekOrSeekAndRestart(Action)
     Case "Vo_fullscreen"
       FullScreenBtn_Click()
     Case "Panscan +0.05"

@@ -438,9 +438,150 @@ Public Function YoutubeDlInstalled() As Boolean
   Return True
 End
 
+Public Function fHeight(fmt As Integer) As Integer
+  Dim FormatsBySize As New String[]
+  Dim i As Integer
+  'resolution,code,container
+  FormatsBySize.Add("1080,37,mp4")
+  FormatsBySize.Add("720,22,mp4")
+  FormatsBySize.Add("720,45,webm")
+  FormatsBySize.Add("480,35,flv")
+  FormatsBySize.Add("480,44,webm")
+  FormatsBySize.Add("360,34,flv")
+  FormatsBySize.Add("360,18,mp4")
+  FormatsBySize.Add("360,43,webm")
+  FormatsBySize.Add("240,5,flv")
+  FormatsBySize.Add("144,17,mp4")
+  
+  For i = 0 To FormatsBySize.Max
+    If Split(FormatsBySize[i], ",")[1] = fmt Then 
+      Return Split(FormatsBySize[i], ",")[0]
+    Endif
+  Next
+  Return -1
+End
 
 
 Public Function realvideourl(sourceurl As String, maxformat As String) As String
+  Dim stream As String
+  Dim videoid As String
+  Dim maxfmt As String
+  Dim fline As String
+  Dim FormatsOut As String
+  Dim flvs As New Integer[] 
+  Dim mp4s As New Integer[]
+  Dim webms As New Integer[] 
+  Dim others As New Integer[] 
+  Dim availablefmt As Integer
+  Dim FmtToDownload As Integer
+  Dim i As Integer
+
+  If Not YoutubeDlInstalled() Then Return
+
+
+
+
+  videoid = getvideoid(sourceurl)
+
+'if the user want...
+  'Get the available formats:
+  Shell "youtube-dl " & videoid & " -F" To FormatsOut  
+  For Each fline In Split(FormatsOut, "\n", "", True)
+    If fline Like "*:*[*x*]*" Then
+      If fline Like "*mp4*[*x*]*" Then
+        Try mp4s.Add(Split(fline, "\t :", "", True)[0])
+          Else If fline Like "*webm*[*x*]*" Then
+            Try webms.Add(Split(fline, "\t :", "", True)[0])
+          Else If fline Like "*flv*[*x*]*" Then
+            Try flvs.Add(Split(fline, "\t :", "", True)[0])
+          Else 
+            Try others.Add(Split(fline, "\t :", "", True)[0])
+      Endif
+    Endif
+  Next
+
+
+  'both arrays are already sorted by resolution by youtube-dl
+  'find the nearest to user pref format.
+  
+  FmtToDownload = -1
+  For Each availablefmt In mp4s
+    'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
+    If (fHeight(availablefmt)) <= CInt(Replace(maxformat, "p", "")) Then
+      FmtToDownload = availablefmt
+      Break
+    Endif
+  Next
+
+  
+  If FmtToDownload = -1 Then 
+    Debug "Sorry, couldn't get an mp4, check for webm"
+    For Each availablefmt In webms
+      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
+      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
+        FmtToDownload = availablefmt
+        Break
+      Endif
+    Next
+  Endif
+
+ If FmtToDownload = -1 Then 
+    Debug "Sorry, couldn't get an webm, check for flv"
+    For Each availablefmt In webms
+      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
+      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
+        FmtToDownload = availablefmt
+        Break
+      Endif
+    Next
+  Endif
+  
+  If FmtToDownload = -1 Then 
+    Debug "Sorry, couldn't get an flv, check for others..."
+    For Each availablefmt In webms
+      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
+      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
+        FmtToDownload = availablefmt
+        Break
+      Endif
+    Next
+  Endif  
+
+ '  i = 0
+ '  Repeat
+ '    While (CInt(Split(FormatsBySize[i], ",")[0]) > CInt(Replace(maxformat, "p", "")))
+ '      i = i + 1 
+ '    Wend
+ '    FmtToDownload = Split(FormatsBySize[i], ",")[1]
+ '  Until Split(FormatsBySize[i], ",")[2] <> "flv" 'but avoid flvs (seek problems)
+ ' 
+ ' 
+ ' If Split(FormatsBySize[i], ",")[2] = "flv" Then '...means we couldn't avoid flvs, pick up an flv
+ '   Debug "Sorry, got an flv, expect seek problems!"
+ '   While (CInt(Split(FormatsBySize[i], ",")[0]) > CInt(Replace(maxformat, "p", "")))
+ '      i = i + 1 
+ '   Wend
+ '   FmtToDownload = Split(FormatsBySize[i], ",")[1]
+ ' Endif
+
+  ' Debug "Youtube container: " & Split(FormatsBySize[i], ",")[2]
+  ' Debug "Youtube resolution: " & Split(FormatsBySize[i], ",")[0]
+  ' Debug "Youtube format code: " & Split(FormatsBySize[i], ",")[1]
+  
+
+  Cookiesfile = Temp("ytcookie")
+  Debug cookiesfile
+  Debug
+  Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " -f " & FmtToDownload To stream
+  Debug stream
+  Debug
+  Return Trim(stream)
+End
+
+
+
+
+Public Function OLD_realvideourl(sourceurl As String, maxformat As String) As String
   Dim stream As String
   Dim videoid As String
   Dim maxfmt As String

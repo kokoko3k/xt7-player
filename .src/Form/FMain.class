@@ -5667,7 +5667,7 @@ End
 Public Sub EnableDisableTagBtn()
   Dim tablib, tabpls, tabalbum As Boolean
   tablib = TabSelectedLibrary()
-  tabpls = TabSelectedPlaylist() Or TabSelectedBrowse()
+  tabpls = TabSelectedPlaylist() 'Or TabSelectedBrowse()
   tabalbum = TabSelectedAlbums()
   
   UpdateTabs()
@@ -5684,6 +5684,11 @@ Public Sub EnableDisableTagBtn()
   Searchfield.Visible = tablib
   SearchfieldPLS.Visible = tabpls
   searchfieldalbums.visible = tabalbum
+  
+  If Not (tabpls Or tablib) Then
+     If EditTagModeSwitch1.Checked Then TagEditorBtn_click()
+  Endif 
+  
 End
 
 Public Sub LeftSideTabs_Click()
@@ -6497,7 +6502,6 @@ Public Sub MenuDvdFile_Click()
 End
 
 Public Sub ButtonTag_Click()
-  
   Dim tl As TagLib
   'Dim audiotag As New TagLib
   Dim MyGrid As GridView
@@ -6506,6 +6510,7 @@ Public Sub ButtonTag_Click()
   Dim Filename, Album, Artist, Title, MyYear, Genre, Track, Comment As String
   Dim ts As String = Chr(8) ' use it as a marker to disable tag writing
   Dim Err As Boolean = False
+  Dim errormsg As String
   Librarygrid.enabled = False
   PlaylistGrid.enabled = False
   Last.enabled = False
@@ -6517,8 +6522,12 @@ Public Sub ButtonTag_Click()
   Else If TabSelectedPlaylist() Then
     MyGrid = PlaylistGrid
     Table = MyPlaylist
+      Else
+    errormsg = ("Sorry, Audio tagging is only possible for library and playlist items\n")
+    errormsg &= ("To tag this item, please add it to library or playlist first.")
+    Message.Error(errormsg, ("Ok"))
+    Return
   Endif
-  
   'Tag the selected items
   For row = 0 To MyGrid.Rows.count - 1
     tl = New Taglib

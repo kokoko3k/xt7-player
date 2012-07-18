@@ -1,6 +1,10 @@
 Git changes:
 --------------------------------------
-Jul7, 16 2012
+July, 18 2012
+  FIX:    Don't call "gbx -v", but use system.Fullversion to do gambas version check (faster)
+  WORKAROUND: Make youtube feeds work with gambas 3.2.0 (still charset problems will probably be fixed with gb > 3.2.0)
+  
+July, 16 2012
   FIX:    Try hardly to allow youtube seeking by searching mp4 first, then webm and flv as last chance.
   FIX:    Prevent "Null Object error" when trying to tag an item which is not in library or playlist.
   FIX:    Cycle through items (last->first) in browse tab too.

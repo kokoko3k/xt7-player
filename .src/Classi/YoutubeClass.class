@@ -10,8 +10,10 @@ Public Sub CollapseAll(tree As Treeview)
   Until tree.movebelow()
 End
 
-
+Private DoXmlWorkaround As Boolean = False
 Public Sub init_tree(tree As Treeview)
+  DoXmlWorkaround = (System.FullVersion = "3.2.0")
+
   Tree.Add("top_rated", ("Top Rated"), picture["youtubeicon.png"])
   Tree.Add("top_favorites", ("Top favourites"), picture["youtubeicon.png"])
   Tree.Add("most_viewed", ("Most viewed"), picture["youtubeicon.png"])
@@ -110,6 +112,24 @@ Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As S
   tree.item.text = "*" & ("Related to: ") & relatedtotext
 End
 
+Private Function HaveToParseNode(MyXmlreader As Xmlreader) As Boolean
+'gambas 3.2.0 misses Xmlreader.Node.IsEmptyElement property, workaround just for that version.
+
+
+  If Not DoXmlWorkaround Then
+    If Not (MyXmlreader.Node.IsEmptyElement) And (MyXmlreader.Node.Attributes.count > 0) Then
+      Return True
+    Endif
+    Return False
+      Else
+    If (MyXmlreader.Node.Attributes.count > 0) And (MyXmlreader.Node.Depth > 0) Then
+      Return True
+    Endif
+    Return False
+  Endif
+End
+
+
 
 Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
   Dim feed As String
@@ -122,6 +142,8 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   Dim needpicture As Boolean = True
   Dim lastlink As String = ""
   Dim wget As New Wgetclass
+  Dim i As Integer
+  
   If tree.item = Null Then tree.movecurrent
   
   If myappend Then url = url & "&start-index=" & CStr(tree.Item.Children + 1)
@@ -134,7 +156,8 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   feed = wget.DownloadAsync(url)
 
   reader = New Xmlreader
-  Try reader.FromString(feed)
+
+  Try reader.FromString(feed) 
   If Error Then
     Message.Error("Error when trying to open the XML file!")
     Return
@@ -144,6 +167,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     If reader.Node.type = XmlReaderNodeType.endelement Then Try reader.Read() 'skip end elements like </ID>
     If Error Then Break
     Try nodename = reader.node.name
+Wait
     If Error Then Break
     'IF nodename LIKE "*thumbnail*" THEN out = out & "*********************************\n" 
     'elemento con attributi
@@ -185,9 +209,11 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     Endif
 
     'l'elemento con attributi può avere un valore:
-    If Not (reader.Node.IsEmptyElement) And (reader.Node.Attributes.count > 0) Then
+    If HaveToParseNode(reader) Then
+    'If Not (reader.Node.IsEmptyElement) And (reader.Node.Attributes.count > 0) Then
       Try reader.Read()
       If Error Then Break
+Wait
       Try value = reader.Node.Value
       If Error Then Break
       If Trim(value) <> "" Then out = out & nodename & " has value " & value & "\n"
@@ -195,7 +221,6 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
         needpicture = True
         Select Case nodename
           Case "title"
-            'PRINT "Titolo: " & value
             streaminfo.Add(value, "title")
             feedinfo.Add(value, "title")
           Case "content"
@@ -212,6 +237,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     If (reader.Node.type = XmlReaderNodeType.element) And (reader.Node.Attributes.count = 0) Then
       Try reader.Read()
       If Error Then Break
+Wait
       If reader.Node.type = XmlReaderNodeType.Text Then 'c'è un valore per l'elemento <elemento [boh=boh]>valore</elemento>
         out = out & "elemento: " & nodename & " has value= " & reader.Node.value & "\n"
         If entryfound Then
@@ -252,7 +278,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     Endif
     Try reader.Read()
     If Error Then Break
-    'WAIT 0.1
+Wait
   Wend
   AddMoreResultsItem(tree, feedname, resizew)
   'PRINT out

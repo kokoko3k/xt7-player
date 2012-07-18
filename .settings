@@ -2,7 +2,8 @@
 Count=0
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="obj"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -153,6 +154,9 @@ Geometry=[51,0,344,344]
 
 [DebugWindow/FileView1]
 Geometry=[0,0,564,770]
+
+[DebugWindow/FileView1.Children]
+Geometry=[642,262,210,210]
 
 [DebugWindow/FileView1.filter]
 Geometry=[0,35,1073,466]
@@ -863,7 +867,7 @@ Geometry=[0,0,344,344]
 Geometry=[0,64,301,301]
 
 [DebugWindow/obj]
-Geometry=[52,0,301,301]
+Geometry=[1799,355,301,301]
 
 [DebugWindow/objs]
 Geometry=[0,0,301,301]
@@ -1078,9 +1082,9 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:89.29"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:1591.14"
+File[4]=".src/Form/FMain.class:4669.14"
 Active=5
-File[5]="CHANGELOG_GIT:3.10"
+File[5]="CHANGELOG_GIT:16.30"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:470.3"
 File[8]=".src/Classi/PlaylistClass.class:59.19"

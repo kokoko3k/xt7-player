@@ -3298,7 +3298,11 @@ Public Sub VersionCheck()
   Dim UserVersion, UserMajor, UserMinor, RequiredMajor, RequiredMinor, Userminiminor, requiredminiminor As String
   Dim Required As String = Global.requiredversion
 
-  Shell "gbx3 -V" Wait To UserVersion
+
+  UserVersion = System.fullversion
+
+
+  'Shell "gbx3 -V" Wait To UserVersion
 
   RequiredMajor = Split(Required, ".")[0]
   RequiredMinor = Split(Required, ".")[1]

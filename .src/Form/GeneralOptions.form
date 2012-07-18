@@ -110,7 +110,7 @@
           }
           { NoParse42 HBox
             MoveScaled(0,4,50,4)
-            ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
+            ToolTip = ("If you see meters moving sooner than the audio, raise this value.")
             Spacing = True
             Indent = True
             { NoParseLabel8 Label
@@ -132,7 +132,7 @@
           }
           { NoParse40 HBox
             MoveScaled(0,8,50,4)
-            ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
+            ToolTip = ("Frames per second")
             Spacing = True
             Indent = True
             { NoParseLabel17 Label
@@ -155,7 +155,7 @@
           }
           { NoParse43 HBox
             MoveScaled(0,12,50,4)
-            ToolTip = ("If not maximized, the gui size will be at most the value you specify here.")
+            ToolTip = ("How many samples to get to calculate the average audio level.")
             Spacing = True
             Indent = True
             { NoParseLabel19 Label

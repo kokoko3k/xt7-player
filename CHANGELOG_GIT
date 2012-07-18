@@ -3,6 +3,7 @@ Git changes:
 July, 18 2012
   FIX:    Don't call "gbx -v", but use system.Fullversion to do gambas version check (faster)
   WORKAROUND: Make youtube feeds work with gambas 3.2.0 (still charset problems will probably be fixed with gb > 3.2.0)
+  FIX:    Added some missing tooltips
   
 July, 16 2012
   FIX:    Try hardly to allow youtube seeking by searching mp4 first, then webm and flv as last chance.

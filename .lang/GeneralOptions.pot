@@ -67,7 +67,7 @@ msgid "Show Vmeters"
 msgstr ""
 
 #: GeneralOptions.form:444
-msgid "If not maximized, the gui size will be at most the value you specify here."
+msgid "If you see meters moving sooner than the audio, raise this value."
 msgstr ""
 
 #: GeneralOptions.form:451
@@ -78,12 +78,20 @@ msgstr ""
 msgid "ms"
 msgstr ""
 
+#: GeneralOptions.form:470
+msgid "Frames per second"
+msgstr ""
+
 #: GeneralOptions.form:477
 msgid "Update Vmeters at"
 msgstr ""
 
 #: GeneralOptions.form:491
 msgid "fps"
+msgstr ""
+
+#: GeneralOptions.form:497
+msgid "How many samples to get to calculate the average audio level."
 msgstr ""
 
 #: GeneralOptions.form:504

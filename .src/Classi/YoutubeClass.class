@@ -132,7 +132,7 @@ End
 
 
 Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
-  Dim feed As String
+  Dim feedfile As String
   Dim reader As Xmlreader
   Dim nodename, out, attribute, value As String
   Dim entryfound As Boolean = False
@@ -153,11 +153,11 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     url = "'" & url & "'"
   'ENDIF
 
-  feed = wget.DownloadAsync(url)
+  feedfile = wget.DownloadAsync(url, True)
 
+  Debug url
   reader = New Xmlreader
-
-  Try reader.FromString(feed) 
+  Try reader.Open(feedfile)
   If Error Then
     Message.Error("Error when trying to open the XML file!")
     Return

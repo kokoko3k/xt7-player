@@ -307,6 +307,12 @@ Geometry=[0,0,301,301]
 [DebugWindow/MyQuestion]
 Geometry=[-4,-3,210,210]
 
+[DebugWindow/MyXmlreader.Node]
+Geometry=[1280,0,210,210]
+
+[DebugWindow/MyXmlreader.Node.Attributes]
+Geometry=[1276,-3,210,210]
+
 [DebugWindow/Mygrid[0, 0]]
 Geometry=[1280,0,210,680]
 
@@ -1085,7 +1091,8 @@ File[1]=".src/Form/MyQuestion.class:89.29"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
 File[4]=".src/Form/FMain.class:3308.32"
-File[5]="CHANGELOG_GIT:11.34"
+Active=5
+File[5]="CHANGELOG_GIT:8.13"
 File[6]=".src/Form/CoverManager.class:908.30"
 File[7]=".src/Classi/MplayerClass.class:470.3"
 File[8]=".src/Classi/PlaylistClass.class:59.19"
@@ -1109,8 +1116,7 @@ File[25]=".src/Form/XConfigureVideoDriver.form"
 File[26]=".src/Form/CoverManager.form"
 File[27]=".src/Form/ProfileManager.class:28.94"
 File[28]=".src/Form/DVBTuner.class:385.26"
-Active=29
-File[29]=".src/Classi/YoutubeClass.class:122.17"
+File[29]=".src/Classi/YoutubeClass.class:238.4"
 File[30]=".src/Classi/ShoutCastClass.class:279.34"
 File[31]=".src/Classi/FlashClass.class:129.11"
 File[32]=".src/Form/AllOptions.form"
@@ -1121,7 +1127,7 @@ File[36]=".src/Form/OverlayTrayTip.form"
 File[37]=".src/Form/zzzFake.form"
 File[38]=".src/Form/zzzFake.class:86.86"
 File[39]=".src/Form/AudioForm.form"
-File[40]=".src/Classi/Meters.class:66.1"
+File[40]=".src/Classi/Meters.class:0.0"
 File[41]=".src/Classi/TagLib.class:137.13"
 File[42]=".src/Classi/FloatSpinBox.class:19.46"
 File[43]=".src/Form/VideoEqualizer.class:68.15"
@@ -1150,7 +1156,8 @@ File[65]=".src/Classi/WgetClass.class:65.32"
 Count=65
 
 [Watches]
-Count=2
+Count=3
 Watch[1]="mylibrary.searchtable.count"
 Watch[2]="fmain.librarygrid.rows.count"
+Watch[3]="url"
 

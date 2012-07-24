@@ -12,7 +12,7 @@ End
 
 Private DoXmlWorkaround As Boolean = False
 Public Sub init_tree(tree As Treeview)
-  DoXmlWorkaround = (System.FullVersion = "3.2.0")
+  DoXmlWorkaround = (System.FullVersion = "3.2.0") Or (System.FullVersion = "3.2.1")
 
   Tree.Add("top_rated", ("Top Rated"), picture["youtubeicon.png"])
   Tree.Add("top_favorites", ("Top favourites"), picture["youtubeicon.png"])

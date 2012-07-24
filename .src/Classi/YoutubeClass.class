@@ -491,6 +491,107 @@ End
 Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim stream As String
   Dim videoid As String
+  Dim fmtcode As Integer
+  Dim fmt As String
+  Dim i As Integer
+  Dim fSorted As New String[] 'formats sorted by container (mp4,webm,flv) then resolution becausewebm and flv gives more seek troubles
+  Dim gotall As Boolean = False
+  Dim tempfile As String
+  Dim useless As String
+  Dim fmtresult As String
+  Dim luckyformat As String
+  If Not YoutubeDlInstalled() Then Return
+
+  videoid = getvideoid(sourceurl)
+  Debug videoid
+  
+  fSorted.Add("1080,37,mp4")
+  fSorted.Add("720,22,mp4")
+  fSorted.Add("360,18,mp4")
+  fSorted.Add("1080,46,webm")
+  fSorted.Add("720,45,webm")
+  fSorted.Add("480,44,webm")
+  fSorted.Add("360,43,webm")
+  fSorted.Add("480,35,flv")
+  fSorted.Add("360,34,flv")
+  fSorted.Add("240,5,flv")
+
+  'strip out any format higher than maxformat and delete previous temp files
+  For i = fsorted.max DownTo 0 
+    If CInt(Split(fsorted[i], ",")[0]) > CInt(Replace(maxformat, "p", "")) Then 
+      useless = fsorted.Extract(i)[0]
+      Debug "dropping " & useless
+    Endif
+    fmtcode = Split(fsorted[i], ",")[1]
+    Try Kill Temp("fmt." & CStr(fmtcode))
+  Next
+
+  Cookiesfile = Temp("ytcookie")
+  Debug "cookiesfile: " & cookiesfile
+
+  'get the urls for all of the formats
+  For Each fmt In fsorted
+    fmtcode = Split(fmt, ",")[1]
+    Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " -f " & CStr(fmtcode) & " &>" & Temp("fmt." & CStr(fmtcode))
+  Next
+
+  'search for the code of the exact resolution in mp4:
+  For Each fmt In fsorted
+    If (fmt Like Replace(maxformat, "p", "") & ",*,mp4") Then 
+      luckyformat = Split(fmt, ",")[1]
+    Endif
+  Next
+  
+
+  'wait for all of the youtube-dl processes to end
+  While (Not gotall)
+    gotall = True
+    'check for gotone(an mp4 with exact resolution, luckyformat) so that we can exit first
+    'check also that the file is like "*http://*"
+    If Exist(Temp("fmt." & luckyformat)) Then
+      If (Stat(Temp("fmt." & luckyformat)).size > 0) Then
+        fmtresult = File.Load(Temp("fmt." & luckyformat))
+        If fmtresult Like "*http*" Then
+          Debug "Lucky, got an mp4 h264 with the best resolution requested!"
+          Return Trim(fmtresult)
+        Endif
+      Endif
+    Endif
+    
+    For Each fmt In fsorted
+      fmtcode = Split(fmt, ",")[1]
+      tempfile = Temp("fmt." & CStr(fmtcode))
+      If Exist(tempfile) Then
+        If (Stat(tempfile).size = 0) Then
+          gotall = False
+          Break
+        Endif
+          Else
+       gotall = False
+      Endif 
+    Next
+    Wait 0.01
+  Wend
+
+ 
+  'pick up the first (if they exists) mp4 or webm or flv
+  'our array is already sorted that way.
+  For Each fmt In fsorted
+    fmtcode = Split(fmt, ",")[1]
+    fmtresult = File.Load(Temp("fmt." & CStr(fmtcode)))
+    Debug fmtresult
+    Try fmtresult = File.Load(Temp("fmt." & CStr(fmtcode)))
+    If Not Error Then
+      If fmtresult Like "*http*" Then
+        Return Trim(fmtresult)
+      Endif
+    Endif
+  Next
+End
+
+Public Function realvideourl_littleold(sourceurl As String, maxformat As String) As String
+  Dim stream As String
+  Dim videoid As String
   Dim maxfmt As String
   Dim fline As String
   Dim FormatsOut As String
@@ -573,28 +674,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
     Next
   Endif  
 
- '  i = 0
- '  Repeat
- '    While (CInt(Split(FormatsBySize[i], ",")[0]) > CInt(Replace(maxformat, "p", "")))
- '      i = i + 1 
- '    Wend
- '    FmtToDownload = Split(FormatsBySize[i], ",")[1]
- '  Until Split(FormatsBySize[i], ",")[2] <> "flv" 'but avoid flvs (seek problems)
- ' 
- ' 
- ' If Split(FormatsBySize[i], ",")[2] = "flv" Then '...means we couldn't avoid flvs, pick up an flv
- '   Debug "Sorry, got an flv, expect seek problems!"
- '   While (CInt(Split(FormatsBySize[i], ",")[0]) > CInt(Replace(maxformat, "p", "")))
- '      i = i + 1 
- '   Wend
- '   FmtToDownload = Split(FormatsBySize[i], ",")[1]
- ' Endif
-
-  ' Debug "Youtube container: " & Split(FormatsBySize[i], ",")[2]
-  ' Debug "Youtube resolution: " & Split(FormatsBySize[i], ",")[0]
-  ' Debug "Youtube format code: " & Split(FormatsBySize[i], ",")[1]
   
-
   Cookiesfile = Temp("ytcookie")
   Debug cookiesfile
   Debug

@@ -185,7 +185,7 @@ Private Sub DrawFiltersGui()
 
 
   '-prefer-ipv4
-    AllParams.add(["SWITCH", ("prefer-ipv4"), "ENABLED", "prefer000ipv4", ("try ipv4 first")])
+    AllParams.add(["SWITCH", ("prefer-ipv4"), "DISABLED", "prefer000ipv4", ("try ipv4 first")])
     Global.DrawGui(AllParams, ("Network"), Tabstrip1, NotSwitchable, ("Use IPv4 on network connections.  Falls back on IPv6 automatically.\n-prefer-ipv4 (network only)"))
     AllParams.Clear
 

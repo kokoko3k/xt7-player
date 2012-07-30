@@ -4601,10 +4601,8 @@ Public Sub PanelNowNextArrange(Optional Exdended As Boolean = False)
   End With
 End
 
-Public Sub VideoAreaGroup_KeyPress()
-  
+Public Sub VideoAreaGroup_KeyPress() 
   Dim HotKey As String
-  
   If ((Key.code = Key.space) And (Key.control) And (Key.shift) And (Key.alt)) Then Xt7Egg.show
   HotKey = HotKeyGrab.GetKey()
   HotKeyToMplayer(HotKey)
@@ -9727,4 +9725,23 @@ Public Sub ButtonSavePls2_Click()
   If (Not global.initearlyformsdone) Then InitEarlyForms()
   GeneralOptions.show
   GeneralOptions.TabStrip1.index = Global.TabIndexByName(("DVB-T"), GeneralOptions.TabStrip1)
+End
+
+Public Sub PictureBox1_Drop()
+  Dim droppedfile As String
+  Dim mywget As New Wgetclass
+  
+  Try droppedfile = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)[0]
+  If Error Then 
+    Try droppedfile = Split(Drag.Paste("text/plain"), "\n\r", "", True)[0]
+    If Error Then Return
+  Endif
+
+  droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
+  If droppedfile Like "http*://*" Then
+    Try picturebox1.Picture = picture.Load(mywget.DownloadAsync(droppedfile, True))
+      Else
+    Try picturebox1.Picture = picture.Load(droppedfile)
+  Endif
+
 End

@@ -1755,6 +1755,7 @@
           Font = Font["6"]
           { PictureBox1 PictureBox
             MoveScaled(9,1,60,7)
+            Drop = True
             Expand = True
             Picture = Picture["backpanel.png"]
             Stretch = True

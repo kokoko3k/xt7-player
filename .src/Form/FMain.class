@@ -753,7 +753,7 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
   ControlPanel.h = ButtonHovr
   SliderBox.h = CInt(ButtonHovr / 1.33)
-  ControlPanel.y = SliderBox.y + SliderBox.h
+  ControlPanel.y = SliderBox.y + SliderBox.h - 2
   controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
    

@@ -1063,3 +1063,30 @@ Public Function ParseAdditionalOptions() As String
   Return AdditionalOpts
 End
 
+Private previousimagepath As String = ""
+Public Sub OpenImageFile_Click()
+  Dim tmp As String[]
+  Dim expat As String = myDialog.Path
+  tmp = myDialog.filter
+  myDialog.Filter = ["*.png;*.jpg;*.jpeg;*.bmp", "Picture files"]
+   myDialog.path = previousimagepath
+  If previousimagepath = "" Then myDialog.path = User.Home
+  If Not (MyDialog.OpenFile()) Then
+    BottomPanelImage.text = myDialog.path
+  Endif
+  myDialog.filter = tmp
+  previousimagepath = file.Dir(MyDialog.path)
+  myDialog.path = expat
+  fmain.PictureBox1.picture = Picture.Load(BottomPanelImage.text)
+  If Error Then Message.Error(("Couldn't load the picture"))
+End
+
+
+Public Sub BottomPanelImage_Activate()
+  If Trim(BottomPanelImage.text) <> "" Then 
+    Try fmain.PictureBox1.picture = Picture.Load(BottomPanelImage.text)
+    If Error Then Message.Error(("Couldn't load the picture"))
+      Else
+    fmain.PictureBox1.picture = picture["backpanel.png"]
+  Endif
+End

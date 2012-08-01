@@ -1337,7 +1337,7 @@
       Index = 11
       Text = ("Style")
       { ScrollView9 ScrollView
-        MoveScaled(1,0,59,61)
+        MoveScaled(2,1,59,61)
         Tag = "style"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -1345,7 +1345,7 @@
         Margin = True
         Padding = 6
         { NoParseStyle4 HBox
-          MoveScaled(0,-2,59,4)
+          MoveScaled(1,0,59,4)
           Spacing = True
           { Label2 Label
             MoveScaled(0,0,58,3)
@@ -1355,10 +1355,10 @@
           }
         }
         { NOPARSESEPARATOR5 Separator
-          MoveScaled(0,2,50,0.5714)
+          MoveScaled(0,6,50,0.5714)
         }
         { NoParse29 HBox
-          MoveScaled(1,2,50,4)
+          MoveScaled(1,7,50,4)
           Spacing = True
           { ShowCoversInListChk CheckBox
             MoveScaled(1,0,47,4)
@@ -1368,7 +1368,7 @@
           }
         }
         { NoParse41 HBox
-          MoveScaled(1,6,50,4)
+          MoveScaled(1,12,50,4)
           Spacing = True
           { ShowThumbsCHK CheckBox
             MoveScaled(0,0,47,4)
@@ -1377,8 +1377,26 @@
             Text = ("Show thumbnails for video files")
           }
         }
+        { NoParse5 HBox
+          MoveScaled(1,17,50,4)
+          ToolTip = ("Background image for the bottom panel.\nYou can also set this by dragging an image file or from a web page\ninto the bottom panel, just remember to save the profile.")
+          Spacing = True
+          { NoParseLabel6 Label
+            MoveScaled(1,0,14,3)
+            AutoResize = True
+            Text = ("Bottom picture background")
+          }
+          { BottomPanelImage TextBox
+            MoveScaled(24,0,19,3)
+            Expand = True
+          }
+          { OpenImageFile ToolButton
+            MoveScaled(44,0,4,4)
+            Picture = Picture["icon:/small/open"]
+          }
+        }
         { NoParseStyle3 HBox
-          MoveScaled(1,10,50,4)
+          MoveScaled(2,34,50,4)
           Spacing = True
           { FontLabel3 Label
             MoveScaled(1,1,17,3)
@@ -1402,7 +1420,7 @@
           }
         }
         { NoParseStyle9 HBox
-          MoveScaled(1,14,50,4)
+          MoveScaled(2,39,50,4)
           Spacing = True
           { FontLabel8 Label
             MoveScaled(1,1,17,3)
@@ -1426,7 +1444,7 @@
           }
         }
         { NoParse30 HBox
-          MoveScaled(1,19,50,4)
+          MoveScaled(2,44,50,4)
           Spacing = True
           { HighlightCHK CheckBox
             MoveScaled(1,0,48,4)
@@ -1436,10 +1454,10 @@
           }
         }
         { NOPARSESEPARATOR1 Separator
-          MoveScaled(1,23,50,0.5714)
+          MoveScaled(3,48,50,0.5714)
         }
         { NoParseStyle1 HBox
-          MoveScaled(1,24,50,4)
+          MoveScaled(2,49,50,4)
           Spacing = True
           { FontLabel1 Label
             MoveScaled(1,1,17,3)
@@ -1469,7 +1487,7 @@
           }
         }
         { NoParseStyle2 HBox
-          MoveScaled(0,29,50,4)
+          MoveScaled(2,54,50,4)
           Spacing = True
           { FontLabel2 Label
             MoveScaled(2,1,23,3)
@@ -1493,7 +1511,7 @@
           }
         }
         { NoParseStyle5 HBox
-          MoveScaled(1,34,50,4)
+          MoveScaled(2,59,50,4)
           Spacing = True
           { FontLabel4 Label
             MoveScaled(0,1,30,3)
@@ -1517,10 +1535,10 @@
           }
         }
         { NOPARSESEPARATOR2 Separator
-          MoveScaled(1,40,50,0.5714)
+          MoveScaled(3,64,50,0.5714)
         }
         { NoParseStyle8 HBox
-          MoveScaled(1,41,50,4)
+          MoveScaled(2,65,50,4)
           Spacing = True
           { FontLabel7 Label
             MoveScaled(1,1,17,3)
@@ -1550,7 +1568,7 @@
           }
         }
         { NoParseStyle7 HBox
-          MoveScaled(0,47,50,4)
+          MoveScaled(2,70,50,4)
           Spacing = True
           { FontLabel6 Label
             MoveScaled(1,1,23,3)
@@ -1574,10 +1592,10 @@
           }
         }
         { NOPARSESEPARATOR3 Separator
-          MoveScaled(0,52,50,0.5714)
+          MoveScaled(2,75,50,0.5714)
         }
         { NoParseStyle6 HBox
-          MoveScaled(1,53,50,4)
+          MoveScaled(2,76,50,4)
           Spacing = True
           { FontLabel5 Label
             MoveScaled(1,1,17,3)

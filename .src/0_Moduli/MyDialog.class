@@ -25,20 +25,35 @@ Private Sub sync()
   myDate = Dialog.date
 End
 
+Private Sub Getsync()
+  Try Dialog.date = mydate
+  Try Dialog.font = font
+  Try Dialog.color = color
+  Try Dialog.filter = filter
+  Try Dialog.path = path
+  Try Dialog.paths = paths
+  Try Dialog.showhidden = showhidden
+  Try Dialog.title = title
+  Try Dialog.autoext = autoext
+
+End
 
 Public Function SelectColor() As Boolean
+  Getsync()
   Try Dialog.SelectColor()
   If Error Then Try Dialog.SelectColor()
   If Error Then Try Dialog.SelectColor()
   sync()
 End
 Public Function SelectFont() As Boolean
+  Getsync()
   Try Dialog.SelectFont()
   If Error Then Try Dialog.SelectFont()
   If Error Then Try Dialog.SelectFont()
   sync()
 End
 Public Function OpenFile() As Boolean
+  Getsync()
   Try Dialog.OpenFile()
   If Error Then Try Dialog.OpenFile()
   If Error Then Try Dialog.OpenFile()
@@ -46,12 +61,14 @@ Public Function OpenFile() As Boolean
 End
 
 Public Function SelectDate() As Boolean
+  Getsync()
   Try Dialog.SelectDate()
   If Error Then Try Dialog.SelectDate()
   If Error Then Try Dialog.SelectDate()
   sync()
 End
 Public Function SelectDirectory() As Boolean
+  Getsync()
   Try Dialog.SelectDirectory()
   If Error Then Try Dialog.SelectDirectory()
   If Error Then Try Dialog.SelectDirectory()

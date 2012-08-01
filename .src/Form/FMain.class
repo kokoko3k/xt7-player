@@ -360,7 +360,6 @@ Public Sub AllInit_Pre()
      Debug
    Endif
   
-  
   HideGrid(PlaylistGrid)
   HideGrid(LibraryGrid)
   HideGrid(dvbtGrid)
@@ -959,10 +958,12 @@ Public Sub DelayTimer_Timer()
   Debug "Ended at: " & Timer
   Debug
 End
+
 Private FirstTimeXt7 As Boolean = True ' has the user ever used xt7?
 Private fastquit As Boolean = False
 Public havetoshowbrowsetab As Boolean = False
 Private PlayFromCommandline As Boolean = False
+
 Public Sub MainInit()
 
   Dim quick As Boolean
@@ -1284,6 +1285,7 @@ Public Sub Form_Close()
   Try zzzFake.hide
   Try realtimeform.hide
   Try EpgForm.hide
+  Try ButtonMenu.hide
   Debug "hidden all forms"
   Debug
   
@@ -1378,6 +1380,7 @@ Public Sub Form_Close()
   Try realtimeform.close
   Try DBus.Session.Unregister(mpris)
   Try epgform.close
+  Try ButtonMenu.close
   Wait 0.01
   Print "Bye"
 
@@ -1456,16 +1459,29 @@ Public Sub SaveFormGeometry()
       SubSaveFormGeometry(fmain.x - fmain.screenx, fmain.y - fmain.screeny)
     Endif
   Endif
-  
 End
 
 Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
   
   Dim myfile As File
   Dim myfilename As String = global.confpath & "/" & "fmain.geometry"
+  Dim buttonmenuvisible As String
+  Dim maximized As String
+  
+  If fmain.maximized Then 
+    maximized = "T"
+      Else
+    maximized = "F"
+  Endif
+  
+  If ButtonmenuBTN.Visible Then 
+    buttonmenuvisible = "T"
+      Else
+    buttonmenuvisible = "F"
+  Endif
 
   myfile = Open myfilename For Write Create
-  Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & fmain.Maximized
+  Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & Maximized & ";" & buttonmenuvisible
   Close #myfile
 End
 
@@ -1475,6 +1491,7 @@ Public Sub LoadFormGeometry()
   Dim myfilename As String = global.confpath & "/" & "fmain.geometry"
   Dim geometry As String
   Dim rx, ry, rw, rh As Integer
+
   
   If Exist(myfilename) Then
     myfile = Open myfilename For Read
@@ -1484,13 +1501,15 @@ Public Sub LoadFormGeometry()
       Try ry = Split(geometry, ";", "", True)[1]
       Try rw = Split(geometry, ";", "", True)[2]
       Try rh = Split(geometry, ";", "", True)[3]
-      Try fmain.maximized = Split(geometry, ";", "", True)[4]
+      Try fmain.maximized = (Split(geometry, ";", "", True)[4] = "T")
+      buttonmenubtn.visible = False
+      Try buttonmenubtn.visible = (Split(geometry, ";", "", False)[5] = "F")
+      ShowHideMenuBarMenu_Click()
       fmain.Move(rx, ry, rw, rh)
     Endif
     Close #myfile
   Endif
   fmain.refresh
-
 End
 
 
@@ -1500,7 +1519,7 @@ Public Sub Form_Resize()
   CostrainFormSizes()
   CorrectAreaAspect()
   
-  
+  Try fmain.Picture = fmain.Picture.Image.Stretch(fmain.w, fmain.h).picture
   Debug Me.ScreenX
   Debug Me.screeny
 End
@@ -8912,7 +8931,11 @@ Public Sub HSplit1_MouseMove()
   fakesplit.Ignore = True
   fakesplit.x = hsplit1.Layout[0]
   fakesplit.w = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1]) 
-  fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
+  If fmain.menus.visible Then
+    fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
+      Else
+    fakesplit.y = hsplit1.screeny - fmain.screeny 
+  Endif
   fakesplit.h = hsplit1.h 
   fakesplit.raise
   fakesplit.visible = True
@@ -9740,8 +9763,31 @@ Public Sub PictureBox1_Drop()
   droppedfile = DConv(Global.NoFileSuffix(Global.FormatDrag(droppedfile)))
   If droppedfile Like "http*://*" Then
     Try picturebox1.Picture = picture.Load(mywget.DownloadAsync(droppedfile, True))
+    If Not Error Then fmain.Picture = picturebox1.Picture.Image.Stretch(fmain.w, fmain.h).picture
       Else
     Try picturebox1.Picture = picture.Load(droppedfile)
+    If Not Error Then fmain.Picture = picturebox1.Picture.Image.stretch(fmain.w, fmain.h).picture
   Endif
 
 End
+
+Public Sub ButtonmenuBTN_Click()
+  ButtonMenu.init()
+  Buttonmenu.Move(mouse.screenx, mouse.screeny)
+  Buttonmenu.show  
+End
+
+
+Public Sub ShowHideMenuBarMenu_Click()
+  If ButtonmenuBTN.Visible Then
+    ButtonmenuBTN.Hide
+    separator6.hide
+    fmain.menus.Show
+      Else
+    ButtonmenuBTN.show
+    fmain.menus.hide
+    separator6.show
+  Endif
+End
+
+

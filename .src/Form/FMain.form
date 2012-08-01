@@ -9,6 +9,7 @@
   { MenuMain Menu MainMenu
     Name = "MenuMain"
     Text = ("File")
+    Tag = "000"
     { MenuOpen Menu MenuOpen
       Name = "MenuOpen"
       Text = ("Open local file")
@@ -79,6 +80,7 @@
   { MenuLibrary Menu MainMenu
     Name = "MenuLibrary"
     Text = ("Library")
+    Tag = "000"
     { MenuLibraryUpdate Menu
       Text = ("Sync library")
       Picture = Picture["icon:/16/watch"]
@@ -176,6 +178,7 @@
   { MenuPlaylist Menu MainMenu
     Name = "MenuPlaylist"
     Text = ("Playlist")
+    Tag = "000"
     { MenuplaylistOpenFolder Menu
       Text = ("Open containing folder")
       Picture = Picture["icon:/16/open"]
@@ -258,6 +261,7 @@
   { MenuConfigure Menu MainMenu
     Name = "MenuConfigure"
     Text = ("Windows")
+    Tag = "000"
     { GeneralOptionsMenu Menu
       Text = ("General Options")
       Picture = Picture["icon:/16/options"]
@@ -335,9 +339,15 @@
       Checked = True
       Visible = False
     }
+    { ShowHideMenuBarMenu Menu
+      Text = ("Show/Hide Menubar")
+      Picture = Picture["icon:/medium/menu"]
+      Shortcut = "Ctrl+M"
+    }
   }
   { AspectMenu Menu
     Text = ("Video Aspect")
+    Tag = "000"
     { Separator7 Menu
     }
     { AspectDefaultMenu Menu
@@ -362,6 +372,7 @@
   { MenuState Menu MainMenu
     Name = "MenuState"
     Text = ("Profile")
+    Tag = "000"
     { MenuLoadDefault Menu
       Text = ("Reload current profile")
       Picture = Picture["icon:/16/open"]
@@ -380,6 +391,7 @@
   { MenuAbout Menu MainMenu
     Name = "MenuAbout"
     Text = ("?")
+    Tag = "000"
     { MenuShowLog Menu
       Text = ("Show logs")
       Picture = Picture["icon:/16/text"]
@@ -563,9 +575,21 @@
   { MainToolBar Panel
     MoveScaled(1,0,92,4.5714)
     Arrangement = Arrange.Horizontal
+    { ButtonmenuBTN MenuButton
+      MoveScaled(0,0,8,4)
+      Font = Font["1"]
+      ToolTip = ("Open a file")
+      AutoResize = True
+      Picture = Picture["icon:/22/menu"]
+      Border = False
+    }
+    { Separator6 Separator
+      MoveScaled(10,0,2,4)
+      Font = Font["1"]
+    }
     { ShowVolBtn2 ToolButton DynaGuiToolbar
       Name = "ShowVolBtn2"
-      MoveScaled(1,0,4.5714,4.5714)
+      MoveScaled(15,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Open a file")
       AutoResize = True
@@ -573,7 +597,7 @@
     }
     { OpenNetworkBTN ToolButton DynaGuiToolbar
       Name = "OpenNetworkBTN"
-      MoveScaled(6,0,4.5714,4.5714)
+      MoveScaled(21,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Open an URI/Network stream")
       AutoResize = True
@@ -581,7 +605,7 @@
     }
     { ConfigureChainsBTN ToolButton DynaGuiToolbar
       Name = "ConfigureChainsBTN"
-      MoveScaled(11,0,4.5714,4.5714)
+      MoveScaled(26,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Show/hide chains window")
       AutoResize = True
@@ -589,7 +613,7 @@
     }
     { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
-      MoveScaled(16,0,4.5714,4.5714)
+      MoveScaled(30,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Configuration toolbox")
       AutoResize = True
@@ -597,7 +621,7 @@
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
-      MoveScaled(21,0,4.5714,4.5714)
+      MoveScaled(36,0,4.5714,4.5714)
       Enabled = False
       Font = Font["1"]
       ToolTip = ("Show/Hide AudioTag editor")
@@ -605,7 +629,7 @@
       Picture = Picture["icon:/22/edit"]
     }
     { FlexSpace PictureBox
-      MoveScaled(30,0,19,4)
+      MoveScaled(42,0,10,4)
       Font = Font["1"]
       Expand = True
     }

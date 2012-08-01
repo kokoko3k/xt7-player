@@ -1,0 +1,46 @@
+' Gambas class file
+
+
+Public submenubutton As MenuButton
+
+
+Public Sub submenubutton_click()
+  Object.Call(Last.tag, "popup")
+End
+
+Public Sub submenubutton_enter()
+Wait 0.5
+  If ((Mouse.screenx >= Last.screenx) And (Mouse.screenx <= (Last.screenx + Last.w)) And (Mouse.screeny >= Last.screeny) And (Mouse.screeny <= Last.screeny + Last.Height)) Then
+    Object.Call(Last.tag, "popup")
+  Endif
+  
+End
+
+
+Public Sub init()
+    Dim tmpmenu As Menu
+    Dim oldchild As Object
+    For Each oldchild In Me.Children
+      oldchild.delete
+    Next
+    
+    For Each tmpmenu In fmain.menus
+       If (tmpmenu.tag = "000") And tmpmenu.Visible Then
+         ButtonMenu.submenubutton = New MenuButton(buttonmenu) As "submenubutton"
+         'Object.attach(submenubutton, buttonmenu, "submenubutton")
+         ButtonMenu.submenubutton.text = Tmpmenu.Text
+         submenubutton.Picture = tmpmenu.picture
+         'ButtonMenu.submenubutton.border = border.none
+         ButtonMenu.submenubutton.AutoResize = True
+         ButtonMenu.submenubutton.h = CInt(Me.Font.TextHeight("|") * 1.5)
+         ButtonMenu.submenubutton.tag = tmpmenu
+         submenubutton.MenuOnly = True
+       Endif
+     Next
+End
+
+Public Sub Form_Leave()
+  'Wait 0.1
+  'If Not ((Mouse.screenx >= Me.screenx) And (Mouse.screenx <= (Me.screenx + Me.w)) And (Mouse.screeny >= Me.screeny) And (Mouse.screeny <= Me.screeny + Me.Height)) Then Me.hide
+  Me.hide
+End

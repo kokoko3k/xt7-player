@@ -1,0 +1,12 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,23,29)
+  Text = ("Button menu")
+  Icon = Picture["icon:/small/menu"]
+  Resizable = False
+  Stacking = Window.Above
+  SkipTaskbar = True
+  Arrangement = Arrange.Vertical
+  AutoResize = True
+}

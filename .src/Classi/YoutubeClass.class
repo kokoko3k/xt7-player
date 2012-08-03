@@ -500,6 +500,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim useless As String
   Dim fmtresult As String
   Dim luckyformat As String
+  
   If Not YoutubeDlInstalled() Then Return
 
   videoid = getvideoid(sourceurl)
@@ -583,6 +584,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
     Try fmtresult = File.Load(Temp("fmt." & CStr(fmtcode)))
     If Not Error Then
       If fmtresult Like "*http*" Then
+        Debug fmtresult
         Return Trim(fmtresult)
       Endif
     Endif

@@ -706,7 +706,7 @@
     #MoveScaled(43,6)
   }
   { HSplit1 HSplit
-    MoveScaled(1,6,103,68)
+    MoveScaled(0,6,103,68)
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
@@ -1894,11 +1894,11 @@
       }
     }
     { TimerQuit #Timer
-      #MoveScaled(51,0)
+      #MoveScaled(49,0)
       Delay = 100
     }
     { DelayTimer #Timer
-      #MoveScaled(58,-1)
+      #MoveScaled(56,0)
     }
     { OneSecTimer #Timer
       #MoveScaled(65,0)

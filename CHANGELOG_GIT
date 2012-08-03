@@ -1,22 +1,25 @@
 Git changes:
 --------------------------------------
+Aug, 3 2012
+  FIX:    Wrong(inverted) seek/skip pictures
+
 Aug, 1
   NEW:    General options -> style: Allow to set a background image for the bottom panel
   NEW:    Use menubutton instead of menu bar (switch via windows menu back to menu bar or with CTRL-M)
 
-July, 31 
+July, 31 2012
   NEW:    Drag'n drop any image from the web or from a local file into the bottom panel to theme it :)
   NEW:    Updated Russian translation, thanks to Виктор/VictorR2007
   CHANGE: New default control buttons
 
-July, 24
+July, 24 2012
   CHANGE: Faster retrival youtube videos by parallelizing youtube-dl instances
   CHANGE: --prefer-ipv4 now disabled by default
 
-July, 21 
+July, 21 2012
   WORKAROUND: Apply youtube feeds workaround for gambas 3.2.1 too
 
-July, 20
+July, 20 2012
   FIX:    Workaround for wrong encoded characters when getting youtube videos
 
 July, 18 2012

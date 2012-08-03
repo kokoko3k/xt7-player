@@ -2431,6 +2431,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
+  OneSecTimer.Stop()
+  
   needytcookie = False
   ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
@@ -2495,7 +2497,9 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
 
     mplayer.Media_FullPath = fullpath
     If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
+      'OneSecTimer.stop()
       Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
+      'OneSecTimer.start()
       If Error Then
         Message.error(("Unable to get the real stream url"))
         cachingbox.delete
@@ -2531,7 +2535,9 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   ForcedAspectRT = "default"
   LogWindow.streamtextbox.text = mplayer.Media_FullPath
   If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
+    'OneSecTimer.stop()
     Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
+    'OneSecTimer.Start()
     If Error Then
       Message.error(("Unable to get the real stream url"))
       Try Last.mouse = mouse.Default

@@ -7069,7 +7069,7 @@ Public Sub FlashMenuRecordAs_Click()
   Dialog.filter = ["*.flv", ("Flash video files"), "*", ("All files")]
   Dialog.Title = ("Choose a destination file")
   If Dialog.SaveFile() Then Return ' User pressed Cancel -
-  MyFlash.Record(Flashgrid[Flashgrid.row, 1].text, myDialog.path)
+  MyFlash.Record(Flashgrid[Flashgrid.row, 1].text, Dialog.path)
   
 End
 
@@ -8504,7 +8504,6 @@ Public Sub youtubeTree_Activate()
 End
 
 Public Sub youtubetree_Select()
-  
   Dim IsChild As Boolean = False
   'if the item has no parent then refresh it, else play it
   youtubeTree.MoveCurrent
@@ -8516,7 +8515,6 @@ Public Sub youtubetree_Select()
   Endif
   Try mplayer.Media_FullPath = youtubeTree.Current.key
   Try YouVideoInfo.w = scrollviewyt.w - 64
-  
 End
 
 Public Sub YouSearchfield_Activate(Optional myappend As Boolean = False)

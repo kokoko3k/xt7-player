@@ -823,7 +823,8 @@ End
 
 Public Sub Select_NextTreeItem(MyTree As Treeview)
   MyTree.movecurrent
-  Try MyTree.MoveBelow()
+  If MyTree.MoveBelow() Then Try MyTree.MoveFirst()
+  
   If Not Error Then
     Try MyTree.Item.selected = True
   Endif
@@ -832,7 +833,7 @@ End
 
 Public Sub Select_PrevTreeItem(MyTree As Treeview)
   MyTree.movecurrent
-  Try MyTree.MoveAbove
+    If MyTree.MoveAbove() Then Try MyTree.MoveLast()
   If Not Error Then
     Try MyTree.Item.selected = True
   Endif

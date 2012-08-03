@@ -4753,13 +4753,12 @@ Public Sub BrowseSelectNext()
     If Not Error Then
       Try obj.movecurrent
       If Error Then Return
-      
+
       If obj.MoveBelow() Then Try obj.movefirst()
-      
-      
+
       Try obj.item.selected = True
       If Error Then Return
-      
+
       mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
     Endif
   Next

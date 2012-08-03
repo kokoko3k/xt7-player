@@ -1723,6 +1723,8 @@ Public Sub ButtonPlay_Click()
   Endif
   VideoBox.setfocus
   
+  If TabSelectedYoutube() Then Try customtitle = youtubetree.Current.text
+  
 End
 
 Public Sub ClearStreamsMenu()
@@ -3234,7 +3236,7 @@ Public Sub OneSecTimer_Timer()
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
-        ButtonNext_Click()
+        ButtonNext_Click(True)
         PlaylistFinished = Not global.IsNextSelected
         If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
         
@@ -4689,11 +4691,11 @@ Public Sub GeneralOptionsMenu_Click()
   
 End
 
-Public Sub ButtonNext_Click()
+Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
   Dim FromGrid As Boolean = True
   Dim Returnvalue As Boolean
-  Dim mplayerwasrunning As Boolean = False
-  Try mplayerwasrunning = mplayer.ProcessRunningOvr()
+  Dim mplayerwasrunning As Boolean 
+  Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)

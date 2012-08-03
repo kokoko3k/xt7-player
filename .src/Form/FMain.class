@@ -3407,6 +3407,9 @@ Public Sub SeekBar_Change()
   '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
   Dim percent As Integer
   Dim newpos As Integer
+  Object.Lock(seekbar)
+  Wait
+  Object.unLock(seekbar)
  ' Seekbar.enabled = False
   If fmain.closing Then Return
   If Not (Seekbar.tag = "timer") Then
@@ -3417,10 +3420,13 @@ Public Sub SeekBar_Change()
     If ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
       seekbar.enabled = False
       If SeekingRestarting Then Return
+      
+      fmain.mouse = mouse.wait
       Try newpos = CInt(mplayer.Media_Length / (100 / percent))
       If Error Then newpos = 0
       SeekingRestarting = True
       SeekRestart(newpos)
+      fmain.mouse = mouse.normal
       SeekingRestarting = False
       seekbar.enabled = True
         Else
@@ -4684,16 +4690,15 @@ Public Sub GeneralOptionsMenu_Click()
 End
 
 Public Sub ButtonNext_Click()
-  
   Dim FromGrid As Boolean = True
   Dim Returnvalue As Boolean
   Dim mplayerwasrunning As Boolean = False
-  
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
   OneSecTimer.stop
-  
   fmain.mouse = mouse.wait
+  Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = fmain.SeekBar.MinValue
+  Object.unLock(fmain.SeekBar)
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectNext(PlaylistGrid, ShufflePls.value)
     Wait 0.025
@@ -4717,7 +4722,7 @@ Public Sub ButtonNext_Click()
   Else If TabSelectedYoutube() Then
     Youtube.Select_NextTreeItem(youtubetree)
     Wait 0.025
-    If mplayerwasrunning Or (TogglePls.value) Then
+    If mplayerwasrunning Then 'Or (TogglePls.value) Then
       Try customtitle = youtubetree.Current.text
       Debug "mplayer was off so hit play from here"
       Debug
@@ -4735,7 +4740,6 @@ Public Sub ButtonNext_Click()
     Endif
   Endif
   fmain.mouse = mouse.normal
-  
 End
 
 
@@ -4785,13 +4789,15 @@ End
 
 
 Public Sub ButtonPrev_Click()
-  
 
   Dim Returnvalue As Boolean
   Dim mplayerwasrunning As Boolean = False
-  
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
-  
+  OneSecTimer.stop
+  fmain.mouse = mouse.wait
+  Object.Lock(fmain.SeekBar)
+  fmain.SeekBar.Value = fmain.SeekBar.MinValue
+  Object.unLock(fmain.SeekBar)
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectPrev(PlaylistGrid) ', ShufflePls.value)
     Wait 0.025
@@ -4814,7 +4820,12 @@ Public Sub ButtonPrev_Click()
   Else If TabSelectedYoutube() Then
     Youtube.Select_PrevTreeItem(youtubetree)
     Wait 0.025
-    If mplayerwasrunning Then Play(mplayer.Media_FullPath)
+    If mplayerwasrunning Then 
+      Try customtitle = youtubetree.Current.text
+      Debug "mplayer was off so hit play from here"
+      Debug
+      Play(mplayer.Media_FullPath)
+    Endif
   Else If TabSelectedShoutcast() Then
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_PrevTreeItem(genresTree)
@@ -4826,7 +4837,7 @@ Public Sub ButtonPrev_Click()
       If mplayerwasrunning Then Play(mplayer.Media_FullPath,, ShutResultGrid[ShutResultGrid.row, 0].text)
     Endif
   Endif
-  
+  fmain.mouse = mouse.normal
 End
 
 '-----------------------------------
@@ -8447,6 +8458,7 @@ Public Sub youtubeTree_Activate()
   
   Dim IsChild As Boolean = False
   Dim RealYTVideoUrl As String = ""
+  Dim msgrelated As String
   'if the item has no parent then refresh it, else play it
   fmain.mouse = mouse.wait
   youtubeTree.MoveCurrent
@@ -8475,7 +8487,8 @@ Public Sub youtubeTree_Activate()
         Youtube.CollapseAll(youtubetree)
         YouSearchfield_Activate()
       Else If youtubetree.Current.Key = "related" Then
-        Message.info("Please, right click on a video and select 'Get related videos'", "Ok")
+        msgrelated = (("Please, right click on a video and select")) & "'" & (("Get related videos")) & "'"
+        Message.info(msgrelated, "Ok")
       Else
         If Trim(ComboBoxRegion.text) = "" Then ComboBoxRegion.Index = 0 'ComboBoxRegion.text = "Any:"
         

@@ -9797,10 +9797,10 @@ Public Sub PictureBox1_Drop()
       If MyQuestion.Ask(("Would you like to save the current profile?"), "Save", "Don't Save") = 1 Then 
         Try Kill global.confpath & "/" & ".bottombackground"
         Try Copy wgetfile To global.confpath & "/" & ".bottombackground"
-        'generaloptions.FirstLoadIfNeeded()
-       ' generaloptions.BottomPanelImage.text = global.confpath & "/" & ".bottombackground"
-       ' generaloptions.SaveCurrentTo(global.CurrentProfile)
-       fmain.MenuSaveDefault_Click()
+        generaloptions.FirstLoadIfNeeded()
+        generaloptions.BottomPanelImage.text = global.confpath & "/" & ".bottombackground"
+        'generaloptions.SaveCurrentTo(global.CurrentProfile)
+        fmain.MenuSaveDefault_Click()
       Endif
     Endif
     'If Not Error Then fmain.Picture = picturebox1.Picture.Image.Stretch(fmain.w, fmain.h).picture
@@ -9815,7 +9815,8 @@ Public Sub PictureBox1_Drop()
         Try Copy droppedfile To global.confpath & "/" & ".bottombackground"
         generaloptions.FirstLoadIfNeeded()
         generaloptions.BottomPanelImage.text = global.confpath & "/" & ".bottombackground"
-        generaloptions.SaveCurrentTo(global.CurrentProfile)
+        'generaloptions.SaveCurrentTo(global.CurrentProfile)
+        fmain.MenuSaveDefault_Click()
       Endif
     Endif
   Endif

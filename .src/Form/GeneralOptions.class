@@ -14,6 +14,7 @@ Private LastDirectory As String = ""
 Public UntranslatedTabNames As String[] = ["VIDEO", "AUDIO", "LIBRARY", "TWEAKS", "DVD", "NETWORK", "LANGUAGE", "MISC"]
 
 Public Sub FirstLoadIfNeeded()
+  If Not initdone Then Init()
   If Not AlreadyLoaded Then 
     MenuLoadDefault_Click()
     Alreadyloaded = True

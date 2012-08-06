@@ -8333,55 +8333,44 @@ Public Sub ButtonHome_Click()
   
 End
 
-Public Sub menubrowseaddtolibrary_Click()
-  
+
+Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, filterstring As String)
   Dim nulllistbox As New ListBox(zzzfake)
   Dim selecteditem As String
   Dim StatType As Integer
   
-  SelectedItem = Replace(FileView1.dir & "/" & FileView1.current, "//", "/")
-  StatType = Stat(selecteditem, True).type
-  If StatType = gb.file Then
-    mylibrary.AddFile(librarygrid, SelectedItem, False, False)
-    UpdateSearchResults(mylibrary, librarygrid, Searchfield.text)
-  Else If StatType = gb.Directory Then
-    If MyQuestion.Ask(("Are you sure you want to\nrecursively add this directory?"), "Add", "Cancel") = 1 Then
-      librarygrid.enabled = False
-      Fileview1.enabled = False
-      mylibrary.AddDir(librarygrid, selecteditem, nulllistbox)
-      Fileview1.enabled = True
-      librarygrid.enabled = True
-      UpdateSearchResults(mylibrary, librarygrid, Searchfield.text)
+  For Each selecteditem In FileView1.Selection
+    SelectedItem = Replace(FileView1.dir & "/" & selecteditem, "//", "/")
+    If Exist(selecteditem, True) Then
+      StatType = Stat(selecteditem, True).type
+      If StatType = gb.file Then
+        theplaylist.AddFile(thegrid, SelectedItem, False, False)
+        UpdateSearchResults(theplaylist, thegrid, filterstring)
+      Else If StatType = gb.Directory Then
+        If MyQuestion.Ask(("Are you sure you want to recursively add this directory?\n") & selecteditem, "Add", "Cancel") = 1 Then
+          thegrid.enabled = False
+          Fileview1.enabled = False
+          theplaylist.AddDir(librarygrid, selecteditem, nulllistbox)
+          Fileview1.enabled = True
+          thegrid.enabled = True
+          UpdateSearchResults(theplaylist, thegrid, filterstring)
+        Endif
+      Endif
     Endif
-  Endif
+  Next 'selecteditem
+End
+
+
+Public Sub menubrowseaddtolibrary_Click()
   Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
+  ItemsFromBrowseTo(mylibrary, librarygrid, Searchfield.text)
   If Error Then Debug "Error while initializing albums view"
   Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
   If Error Then Debug "Error while Arranging albums view"
 End
 
 Public Sub menubrowseaddtoplaylist_Click()
-  
-  Dim nulllistbox As New ListBox(zzzfake)
-  Dim selecteditem As String
-  Dim StatType As Integer
-  
-  SelectedItem = Replace(FileView1.dir & "/" & FileView1.current, "//", "/")
-  StatType = Stat(selecteditem, True).type
-  If StatType = gb.file Then
-    myplaylist.AddFile(playlistgrid, SelectedItem, False, False)
-    UpdateSearchResults(myplaylist, playlistgrid, SearchfieldPLS.text)
-  Else If StatType = gb.Directory Then
-    If MyQuestion.Ask(("Are you sure you want to\nrecursively add this directory?"), "Add", "Cancel") = 1 Then
-      playlistgrid.enabled = False
-      Fileview1.enabled = False
-      myplaylist.AddDir(playlistgrid, selecteditem, nulllistbox)
-      Fileview1.enabled = True
-      playlistgrid.enabled = True
-      UpdateSearchResults(myplaylist, playlistgrid, SearchfieldPLS.text)
-    Endif
-  Endif
-  
+  ItemsFromBrowseTo(myplaylist, playlistgrid, SearchfieldPLS.text)
 End
 
 Public Sub FileView1_Menu()
@@ -8425,23 +8414,26 @@ Public Sub MenuAddToHistory_Click()
 End
 
 Public Sub MenuBrowseDelete_Click()
-  
   Dim selecteditem As String
+  Dim therewasanerror As Boolean = False
+  If (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then Return
   
-  SelectedItem = Replace(FileView1.dir & "/" & FileView1.current, "//", "/")
-  If Not (IsDir(selecteditem)) Then
-    If Not (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
-      Try Kill selecteditem
-      If Not Error Then
-        FileView1.Reload
-        myplaylist.DeleteFromPath(selecteditem)
-        mylibrary.DeleteFromPath(selecteditem)
-      Else
-        Message.Error(("There was an error while trying to delete the item"), ("Ok"))
+  For Each selecteditem In FileView1.Selection 
+    selectedItem = Replace(FileView1.dir & "/" & selecteditem, "//", "/")
+    If Exist(selecteditem, True) Then
+      If Not (IsDir(selecteditem)) Then        
+        Try Kill selecteditem
+        If Not Error Then
+          myplaylist.DeleteFromPath(selecteditem)
+          mylibrary.DeleteFromPath(selecteditem)
+        Else
+          therewasanerror = True
+        Endif
       Endif
     Endif
-  Endif
-  
+  Next 'selecteditem
+  FileView1.Reload
+  If therewasanerror Then Message.Error(("There was an error while trying to delete the item"), ("Ok"))
 End
 
 Public Function YoutubeParseOpts() As String

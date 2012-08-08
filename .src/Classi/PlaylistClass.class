@@ -1090,7 +1090,7 @@ Public Function TableRowByPath(p As String, t As String[]) As Integer
   Dim fstr As String = (TableSeparator & "Full Path" & TableSeparator & p)
   Dim i As Integer
   For i = 0 To t.Max
-    If t[i] Like "*" & fstr & "*" Then 
+    If InStr(t[i], fstr, 0, gb.Binary) > 0 Then
       Return i
     Endif
   Next

@@ -8750,10 +8750,10 @@ Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   
   Dialog.Path = StreamDownloadDir & "/" & suggestname
   If Dialog.SaveFile() Then Return
-  StreamDownloadDir = file.dir(myDialog.Path)
+  StreamDownloadDir = file.dir(Dialog.Path)
   If Trim(GeneralOptions.DownloaderCombobox.text) = "" Then GeneralOptions.DownloaderCombobox.text = "xterm -e wget %url -O %dest"
-  destdir = Requote(file.Dir(myDialog.path))
-  destfile = Requote(file.name(myDialog.path))
+  destdir = Requote(file.Dir(Dialog.path))
+  destfile = Requote(file.name(Dialog.path))
   dest = Requote(dest)
   url = Requote(url)
   

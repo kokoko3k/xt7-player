@@ -8933,7 +8933,7 @@ Public Sub GridPanels_Arrange()
   Next
   Try newsize = CInt(brother.Rows[1].h / 2) 
   If newsize > 18 Then newsize = 18
-  Try shadeup.h = newsize
+  Try shadeup.h = newsize Div 2
   shadelist(brother)
 
 End
@@ -9667,21 +9667,21 @@ Public Sub PlaylistGrid_MouseDown()
 End
 
 Private brothersproxies As New Collection
-Public Sub shadeuplow_Enter()
-  Dim brother As Gridview
-  For Each brother In Last.Parent.Children 
-    If brother Is Gridview Then Break
-  Next
-  Try brothersproxies.Add(brother.proxy, brother.name)
-  brother.proxy = Last
-End
-Public Sub shadeuplow_Leave()
-  Dim brother As Gridview
-  For Each brother In Last.Parent.Children 
-    If brother Is Gridview Then Break
-  Next
-  Try brother.proxy = brothersproxies[brother.name]
-End
+' Public Sub shadeuplow_Enter()
+'   Dim brother As Gridview
+'   For Each brother In Last.Parent.Children 
+'     If brother Is Gridview Then Break
+'   Next
+'   Try brothersproxies.Add(brother.proxy, brother.name)
+'   brother.proxy = Last
+' End
+' Public Sub shadeuplow_Leave()
+'   Dim brother As Gridview
+'   For Each brother In Last.Parent.Children 
+'     If brother Is Gridview Then Break
+'   Next
+'   Try brother.proxy = brothersproxies[brother.name]
+' End
 
 
 Public Sub ButtonSavePls_Click()
@@ -9847,6 +9847,6 @@ Public Sub GetLastVersion()
     HttpClient1.url = "http://xt7-player.sourceforge.net/xt7forum/checkupdates.php"
     HttpClient1.Async = True
     HttpClient1.timeout = 10 
-    HttpClient1.Get()
+    Try HttpClient1.Get()
   Endif
 End

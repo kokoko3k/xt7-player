@@ -169,7 +169,76 @@ End
 
 
 
-Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
+Private Sub ParseChannel(Rootnode As Xmlelement, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
+  'returns podcast title,link,description,icon
+  Dim t, j, k As Integer
+  Dim channelnode, stationnode As XmlNode
+  Dim buf As String
+  Dim title, name, br, mt, id, MyLink As String = ""
+  Dim feedlink As String = ""
+  Dim description As String = ""
+  Dim image As String = ""
+  Dim Attribute As Xmlnode
+  Dim channelfound As Boolean = False
+  Dim stationfound As Boolean = False
+  Dim LastRow As Integer = 0
+  Dim tunein_base As String = ""
+  Dim TuneinAttribute As XmlNode
+  Dim StationAttribute As XmlNode
+  'find channel
+  For t = 0 To Rootnode.Children.Count - 1
+    If Rootnode.Children[t].name = "tunein" Then
+      For Each TuneinAttribute In Rootnode.Children[t].Attributes
+        If TuneinAttribute.name = "base" Then tunein_base = TuneinAttribute.value
+      Next 'TuneinAttribute
+      channelfound = True
+      Break
+    Endif
+  Next 't
+  If channelfound Then
+         'find stations
+         For j = j To RootNode.Children.Count - 1
+               If RootNode.Children[j].name = "station" Then
+                   'station found
+                   For Each StationAttribute In Rootnode.Children[j].Attributes
+                     If StationAttribute.name = "name" Then
+                         title = StationAttribute.value
+                       Else If StationAttribute.name = "mt" Then
+                         mt = StationAttribute.value
+                       Else If StationAttribute.name = "id" Then
+                         id = StationAttribute.value
+                       Else If StationAttribute.name = "br" Then
+                         br = StationAttribute.value
+                     Endif
+                   Next 'attribute
+                   If ((id <> "") And (title <> "")) Then
+                      MyLink = "http://yp.shoutcast.com/" & tunein_base & "?id=" & id
+                      If (GenresTree <> Null) Then
+                        Try GenresTree.add(MyLink, title & ts & " Type: " & mt & ts & " Bitrate: " & br, picture["filetypeuri.png"], GenresTree.Current.key)
+                          Else
+                        If (ShutResultGrid <> Null) Then
+                          'ShutResultGrid.Rows.count = ShutResultGrid.Rows.count + 1
+                          'LastRow = ShutResultGrid.Rows.count - 1
+                          If Lastrow < ShutResultGrid.Rows.count Then
+                            ShutResultGrid[LastRow, 0].Picture = picture["filetypeuri.png"]
+                            ShutResultGrid[LastRow, 0].text = title
+                            ShutResultGrid[LastRow, 1].text = mt
+                            ShutResultGrid[LastRow, 2].text = br
+                            ShutResultGrid[LastRow, 3].text = MyLink
+                            LastRow = LastRow + 1
+                          Endif
+                        Endif
+                      Endif
+                      id = ""
+                      title = ""
+                   Endif
+              Endif
+        Next 'j
+  Endif
+  Try ShutResultGrid.rows.count = lastrow
+End
+
+Private Sub OLD_ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
   'returns podcast title,link,description,icon
   Dim t, j, k As Integer
   Dim channelnode, stationnode As XmlNode
@@ -238,7 +307,6 @@ Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = 
   Endif
   Try ShutResultGrid.rows.count = lastrow
 End
-
 
 
 Public Sub Select_NextTreeItem(MyTree As Treeview)

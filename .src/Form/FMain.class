@@ -2425,7 +2425,7 @@ Public Function VmetersOptionsAndInitIfNeeded() As String
   Endif
 End
 
-'Public needytcookie As Boolean = False
+Public needytcookie As Boolean = False
 
 Private dumpfile As String
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
@@ -2438,7 +2438,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Wait
   OneSecTimer.Stop()
   
-  'needytcookie = False
+  needytcookie = False
   ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
   generaloptions.Init()
@@ -3395,7 +3395,7 @@ Public Sub SeekOrSeekAndRestart(Action As String)
   Endif
 
   'or issue restarts to the current stream (youtube)
-  'needytcookie = True
+  needytcookie = True
   If SeekingRestarting Then Return
     'Do as usual on strange errors ?
     Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
@@ -8473,7 +8473,7 @@ Public Sub youtubeTree_Activate()
         fmain.mouse = mouse.Default
         Return
       Endif
-      'needytcookie = True
+      needytcookie = True
       fmain.Play(RealYTVideoUrl)
       Try customtitle = youtubetree.Current.Text
     Endif

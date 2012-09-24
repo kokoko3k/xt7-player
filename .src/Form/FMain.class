@@ -2425,7 +2425,7 @@ Public Function VmetersOptionsAndInitIfNeeded() As String
   Endif
 End
 
-Public needytcookie As Boolean = False
+'Public needytcookie As Boolean = False
 
 Private dumpfile As String
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
@@ -2438,7 +2438,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Wait
   OneSecTimer.Stop()
   
-  needytcookie = False
+  'needytcookie = False
   ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
   generaloptions.Init()
@@ -2551,7 +2551,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Endif
   Endif
   OneSecTimer.start
-  If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
+  If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
   
   ' Debug "TTTTTTT:"
   ' Debug "TTTTTTT: Calling mplayer at: " & Timer
@@ -3395,7 +3395,7 @@ Public Sub SeekOrSeekAndRestart(Action As String)
   Endif
 
   'or issue restarts to the current stream (youtube)
-  needytcookie = True
+  'needytcookie = True
   If SeekingRestarting Then Return
     'Do as usual on strange errors ?
     Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
@@ -3450,7 +3450,7 @@ Public Sub SeekRestart(newpos As Integer)
   VEqHasBeenSet = False
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
-    If needytcookie And (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
+    If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & " " & cookieopts, False, False, newpos)
 
     
@@ -8473,7 +8473,7 @@ Public Sub youtubeTree_Activate()
         fmain.mouse = mouse.Default
         Return
       Endif
-      needytcookie = True
+      'needytcookie = True
       fmain.Play(RealYTVideoUrl)
       Try customtitle = youtubetree.Current.Text
     Endif

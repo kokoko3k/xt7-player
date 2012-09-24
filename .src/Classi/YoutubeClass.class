@@ -268,7 +268,6 @@ Wait
             feedsinfo.Add(feedinfo["published"], lastlink & "." & "published")
             feedsinfo.Add(feedinfo["updated"], lastlink & "." & "updated")
             feedsinfo.Add(feedinfo["author"], lastlink & "." & "author")
-            
             lastlink = ""
             feedinfo.Clear
           Endif
@@ -380,75 +379,7 @@ End
 
 
 Public currentvideoid As String = ""
-Public Function Oldrealvideourl(sourceurl As String, maxformat As String) As String
-  Dim wget As New Wgetclass
-  Dim videoid, out, url, fmtstr As String
-  Dim urlfmt As New String[]
-  Dim videourls As New String[]
-  Dim start1, stop1, fmt, maxfmt, maxindex As Integer
-  Dim fmts As New Integer[7]
 
-  'fmts:
-  fmts[0] = 18 ' 480x360 h264
-  fmts[1] = 34 ' 640x360 h264
-  fmts[2] = 43 ' 854x480 vp8
-  fmts[3] = 35 ' 854x480 h264
-  fmts[4] = 45 ' 1280x720 vp8
-  fmts[5] = 22 ' 1280x720 h264
-  fmts[6] = 37 ' 1920x1080 h264
-
-  'translate formats into numbers
-  Select Case maxformat
-    Case "1080p"
-      maxfmt = 6
-    Case "720p"
-      maxfmt = 5
-    Case "480p"
-      maxfmt = 3
-    Case "360p"
-      maxfmt = 1
-  End Select
-  
-
-  'get the whole webpage
-  videoid = getvideoid(sourceurl)
-  currentvideoid = videoid
-  out = wget.DownloadAsync("http://www.youtube.com/watch?v=" & videoid) & "&has_verified=1"
-  'cut from "fmt_url_map" to ";"
-  start1 = InStr(out, "fmt_url_map=")
-  stop1 = InStr(out, ";", start1)
-  'decode the webpage
-  out = Mid$(out, start1, stop1 - start1)
-  out = CGI.Decode(out)
-  out = Right$(out, Len(out) - Len("fmt_url_map="))
-
- 
-  'find video urls in the page and select the best according to maxformat
-  For Each url In Split(out, ",", "", True)
-    If ((url Like "*|http://*") Or (url Like "*|https://*")) Then
-        urlfmt = Split(url, "|")
-        Try fmt = urlfmt[0]
-        If Not Error Then
-          maxindex = fmts.Find(fmt)
-          If ((maxindex > 0) And (maxindex <= maxfmt)) Then
-          'If fmt <= maxfmt Then
-            fmtstr = maxindex
-             'add zeros In front Of fmt To make a 3 digit number
-             If Len(fmtstr) < 2 Then fmtstr = "0" & fmtstr
-             If Len(fmtstr) < 3 Then fmtstr = "0" & fmtstr
-            videourls.Add(fmtstr & "|" & Split(url, "|")[1])
-            Debug videourls[videourls.Length - 1]
-          Endif
-        Endif
-    Endif
-  Next
-  ' [GB2:TEXT] Try videourls = videourls.sort(gb.descent + gb.text)
-  Try videourls = videourls.sort(gb.descent + gb.IgnoreCase)
-
-  If Error Then Return ""
-  Return CGI.decode(Split(videourls[0], "|")[1])
-
-End
 
 Public Cookiesfile As String = ""
 
@@ -488,18 +419,20 @@ Public Function fHeight(fmt As Integer) As Integer
 End
 
 
+Private ytdlout As String = Temp(Rnd(0, 1000) & "youtubedl-out")
+
 Public Function realvideourl(sourceurl As String, maxformat As String) As String
-  Dim stream As String
   Dim videoid As String
   Dim fmtcode As Integer
   Dim fmt As String
   Dim i As Integer
   Dim fSorted As New String[] 'formats sorted by container (mp4,webm,flv) then resolution becausewebm and flv gives more seek troubles
-  Dim gotall As Boolean = False
-  Dim tempfile As String
   Dim useless As String
   Dim fmtresult As String
   Dim luckyformat As String
+  Dim ytdlprocess As Process
+  Dim ytdloutlines As String[]
+  Dim UrlAndFormats As New Collection
   
   If Not YoutubeDlInstalled() Then Return
 
@@ -523,18 +456,10 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
       useless = fsorted.Extract(i)[0]
       Debug "dropping " & useless
     Endif
-    fmtcode = Split(fsorted[i], ",")[1]
-    Try Kill Temp("fmt." & CStr(fmtcode))
   Next
-
-  Cookiesfile = Temp("ytcookie")
+  
+  Cookiesfile = Temp(Rnd(0, 1000) & "ytcookie")
   Debug "cookiesfile: " & cookiesfile
-
-  'get the urls for all of the formats
-  For Each fmt In fsorted
-    fmtcode = Split(fmt, ",")[1]
-    Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " -f " & CStr(fmtcode) & " &>" & Temp("fmt." & CStr(fmtcode))
-  Next
 
   'search for the code of the exact resolution in mp4:
   For Each fmt In fsorted
@@ -542,263 +467,41 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
       luckyformat = Split(fmt, ",")[1]
     Endif
   Next
+
+  ytdlprocess = Shell "youtube-dl " & videoid & " --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
+
+  Repeat
+    Wait 0.02
+  Until ytdlprocess.State <> Process.Running
+
+  Try ytdloutlines = Split(File.Load(ytdlout), "\n", "", True)
+  If Not Error Then 
+    Try Kill ytdlout
+      Else
+    Return
+  Endif
   
-
-  'wait for all of the youtube-dl processes to end
-  While (Not gotall)
-    gotall = True
-    'check for gotone(an mp4 with exact resolution, luckyformat) so that we can exit first
-    'check also that the file is like "*http://*"
-    If Exist(Temp("fmt." & luckyformat)) Then
-      If (Stat(Temp("fmt." & luckyformat)).size > 0) Then
-        fmtresult = File.Load(Temp("fmt." & luckyformat))
-        If fmtresult Like "*http*" Then
-          Debug "Lucky, got an mp4 h264 with the best resolution requested!"
-          Return Trim(fmtresult)
-        Endif
-      Endif
-    Endif
-    
-    For Each fmt In fsorted
-      fmtcode = Split(fmt, ",")[1]
-      tempfile = Temp("fmt." & CStr(fmtcode))
-      If Exist(tempfile) Then
-        If (Stat(tempfile).size = 0) Then
-          gotall = False
-          Break
-        Endif
-          Else
-       gotall = False
-      Endif 
-    Next
-    Wait 0.01
-  Wend
-
- 
+  If ytdloutlines.count = 0 Then Return
+  For i = 0 To ytdloutlines.max Step 2
+    Try UrlAndFormats[ytdloutlines[i + 1]] = ytdloutlines[i]
+  Next
+  
   'pick up the first (if they exists) mp4 or webm or flv
   'our array is already sorted that way.
   For Each fmt In fsorted
     fmtcode = Split(fmt, ",")[1]
-    fmtresult = File.Load(Temp("fmt." & CStr(fmtcode)))
-    Debug fmtresult
-    Try fmtresult = File.Load(Temp("fmt." & CStr(fmtcode)))
+    Try fmtresult = UrlAndFormats[fmtcode]
     If Not Error Then
       If fmtresult Like "*http*" Then
         Debug fmtresult
         Return Trim(fmtresult)
       Endif
     Endif
+
   Next
 End
 
-Public Function realvideourl_littleold(sourceurl As String, maxformat As String) As String
-  Dim stream As String
-  Dim videoid As String
-  Dim maxfmt As String
-  Dim fline As String
-  Dim FormatsOut As String
-  Dim flvs As New Integer[] 
-  Dim mp4s As New Integer[]
-  Dim webms As New Integer[] 
-  Dim others As New Integer[] 
-  Dim availablefmt As Integer
-  Dim FmtToDownload As Integer
-  Dim i As Integer
 
-  If Not YoutubeDlInstalled() Then Return
-
-
-
-
-  videoid = getvideoid(sourceurl)
-
-'if the user want...
-  'Get the available formats:
-  Shell "youtube-dl " & videoid & " -F" To FormatsOut  
-  For Each fline In Split(FormatsOut, "\n", "", True)
-    If fline Like "*:*[*x*]*" Then
-      If fline Like "*mp4*[*x*]*" Then
-        Try mp4s.Add(Split(fline, "\t :", "", True)[0])
-          Else If fline Like "*webm*[*x*]*" Then
-            Try webms.Add(Split(fline, "\t :", "", True)[0])
-          Else If fline Like "*flv*[*x*]*" Then
-            Try flvs.Add(Split(fline, "\t :", "", True)[0])
-          Else 
-            Try others.Add(Split(fline, "\t :", "", True)[0])
-      Endif
-    Endif
-  Next
-
-
-  'both arrays are already sorted by resolution by youtube-dl
-  'find the nearest to user pref format.
-  
-  FmtToDownload = -1
-  For Each availablefmt In mp4s
-    'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
-    If (fHeight(availablefmt)) <= CInt(Replace(maxformat, "p", "")) Then
-      FmtToDownload = availablefmt
-      Break
-    Endif
-  Next
-
-  
-  If FmtToDownload = -1 Then 
-    Debug "Sorry, couldn't get an mp4, check for webm"
-    For Each availablefmt In webms
-      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
-      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
-        FmtToDownload = availablefmt
-        Break
-      Endif
-    Next
-  Endif
-
- If FmtToDownload = -1 Then 
-    Debug "Sorry, couldn't get an webm, check for flv"
-    For Each availablefmt In webms
-      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
-      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
-        FmtToDownload = availablefmt
-        Break
-      Endif
-    Next
-  Endif
-  
-  If FmtToDownload = -1 Then 
-    Debug "Sorry, couldn't get an flv, check for others..."
-    For Each availablefmt In webms
-      'se la risoluzione associata al nonflv è minore uguale a quello che vuole l'utente allora esci ok
-      If (fHeight(availablefmt)) < CInt(Replace(maxformat, "p", "")) Then
-        FmtToDownload = availablefmt
-        Break
-      Endif
-    Next
-  Endif  
-
-  
-  Cookiesfile = Temp("ytcookie")
-  Debug cookiesfile
-  Debug
-  Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " -f " & FmtToDownload To stream
-  Debug stream
-  Debug
-  Return Trim(stream)
-End
-
-
-
-
-Public Function OLD_realvideourl(sourceurl As String, maxformat As String) As String
-  Dim stream As String
-  Dim videoid As String
-  Dim maxfmt As String
-  
-  If Not YoutubeDlInstalled() Then Return
-  
-    '37: mp4  [1080 x1920]
-    '22: mp4  [720 x1280]
-    '45: webm [720 x1280]
-    '35: flv  [480 x854]
-    '44: webm [480 x854]
-    '34: flv  [360 x640]
-    '18: mp4  [360 x640]
-    '43: webm [360 x640]
-    '5 : flv  [240 x400]
-
-  
-    'translate formats into numbers
-  Select Case maxformat
-    Case "1080p"
-      maxfmt = 37
-    Case "720p"
-      maxfmt = 22
-    Case "480p"
-      maxfmt = 35
-    Case "360p"
-      maxfmt = 18
-  End Select
-  
-  videoid = getvideoid(sourceurl)
-  Cookiesfile = Temp("ytcookie")
-  Debug cookiesfile
-  Debug
-  Shell "youtube-dl --cookies " & Cookiesfile & " -g " & videoid & " --max-quality " & maxfmt To stream
-  Debug stream
-  Debug
-  Return Trim(stream)
-End
-
-
-
-
-Public Function Oldrealvideourl2(sourceurl As String, maxformat As String) As String
-  'input: http://something/something/VIDEOID
-  'output: http://url/to/file.flv
-  'maxformat = 360p,720p or 1080p
-  Dim formats As New Collection
-  Dim videoid As String
-  Dim videoinfo As String
-  Dim videoinfo1 As String
-  Dim videoinfo2 As String
-  Dim token As String
-  Dim start, length As Integer
-  Dim fmta As New String[]
-  Dim mq As Integer
-  Dim out As String
-  Dim wget As New Wgetclass
-  videoid = getvideoid(sourceurl)
-  'we have two methods to get infos, try them both:
-  videoinfo1 = wget.DownloadAsync("'http://www.youtube.com/get_video_info?video_id=" & videoid & "&el=vevo&ps=default&eurl=&gl=US&hl=en" & "'")
-  videoinfo2 = wget.DownloadAsync("wget --quiet -O - " & "'http://www.youtube.com/get_video_info?&video_id=" & videoid & "'")
-  '...and choose the one which gives more info:
-  If Len(videoinfo1) > Len(videoinfo2) Then
-    videoinfo = videoinfo1
-      Else
-    videoinfo = videoinfo2
-  Endif
-  'SHELL "curl " & "'http://www.youtube.com/get_video_info?&video_id=" & videoid & "'" TO videoinfo
-  'get a temporary toke out of video info string
-  'doc_id=&token=vjVQa1PpcFOhoASF5cW90-Tm8sbeWo4bh58eZB-O63M%3D&thumbnail'
-  'PRINT videoinfo
-  start = InStr(videoinfo, "&token=") + Len("& token=")
-  length = InStr(Mid(videoinfo, start), "&")
-  token = CGI.Decode(Mid(videoinfo, start - 1, length))
-  
-  formats.Add("18", "360p")
-  formats.Add("22", "720p")
-  formats.Add("37", "1080p")
-  
-  fmta.Add(formats["360p"])
-  fmta.Add(formats["720p"])
-  fmta.Add(formats["1080p"])
-
-  Select Case maxformat
-    Case "1080p"
-      mq = 2
-    Case "720p"
-      mq = 1
-    Case "360p"
-      mq = 0
-  End Select
-
-  Repeat
-    Debug "checking formats..."
-    out = "http://www.youtube.com/get_video?video_id=" & videoid & "&t=" & token & "&eurl=&el=&ps=&asv=&fmt=" & fmta[mq]
-    mq = mq - 1
-    Debug "checking url: " & out
-  Until wget.ExistsUrl("'" & out & "'") Or (mq = -1)
-  Debug
-  If mq >= -1 Then
-    Debug "best format found is: " & fmta[mq + 1]
-    Debug
-    Return out
-      Else
-    Debug "no good format found, sorry..."
-    Debug
-    Return ""
-  Endif
-End
 
 
 

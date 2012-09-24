@@ -143,7 +143,7 @@ Geometry=[51,0,344,820]
 Geometry=[52,0,210,210]
 
 [DebugWindow/FMain]
-Geometry=[-60,268,776,554]
+Geometry=[48,268,776,554]
 
 [DebugWindow/FMain.mplayer.GetListOf("ao")]
 Geometry=[52,0,222,507]
@@ -553,6 +553,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/Triples]
 Geometry=[0,0,1187,344]
 
+[DebugWindow/UrlAndFormats]
+Geometry=[48,660,811,335]
+
 [DebugWindow/Userfont]
 Geometry=[1280,0,210,210]
 
@@ -573,6 +576,9 @@ Geometry=[51,0,210,210]
 
 [DebugWindow/Youtube.AvailableSubs(VideoId)]
 Geometry=[0,0,344,344]
+
+[DebugWindow/Youtube.feedsinfo]
+Geometry=[24,687,660,588]
 
 [DebugWindow/[0]]
 Geometry=[0,41,344,344]
@@ -694,6 +700,9 @@ Geometry=[0,0,210,210]
 [DebugWindow/feedinfo]
 Geometry=[51,0,377,395]
 
+[DebugWindow/feedsinfo]
+Geometry=[1300,68,831,752]
+
 [DebugWindow/fields]
 Geometry=[51,0,344,344]
 
@@ -714,6 +723,9 @@ Geometry=[-4,-4,561,728]
 
 [DebugWindow/fmain.Controls["Button1"]]
 Geometry=[0,0,344,344]
+
+[DebugWindow/fsorted]
+Geometry=[982,479,339,451]
 
 [DebugWindow/generaloptions]
 Geometry=[1280,0,497,854]
@@ -1076,11 +1088,17 @@ Geometry=[51,0,210,210]
 ShowHidden=True
 Geometry=[0,0,344,344]
 
+[DebugWindow/youtubeTree.current]
+Geometry=[44,-3,490,476]
+
 [DebugWindow/youtubetree]
 Geometry=[0,0,344,344]
 
 [DebugWindow/youtubetree.Current]
 Geometry=[0,0,210,503]
+
+[DebugWindow/ytdloutlines]
+Geometry=[48,0,703,911]
 
 [FFind]
 SearchIn="Project"
@@ -1093,10 +1111,9 @@ SearchString=True
 File[1]=".src/Form/MyQuestion.class:89.29"
 File[2]=".src/Form/LogWindow.class:46.49"
 File[3]=".src/Form/LogWindow.form"
-Active=4
-File[4]=".src/Form/FMain.class:8920.26"
+File[4]=".src/Form/FMain.class:8475.7"
 File[5]="CHANGELOG_GIT:3.10"
-File[6]=".src/Form/CoverManager.class:908.30"
+File[6]=".src/Form/CoverManager.class:986.14"
 File[7]=".src/Classi/MplayerClass.class:470.3"
 File[8]=".src/Classi/PlaylistClass.class:709.16"
 File[9]=".src/Form/GeneralOptions.form"
@@ -1119,7 +1136,8 @@ File[25]=".src/Form/XConfigureVideoDriver.form"
 File[26]=".src/Form/CoverManager.form"
 File[27]=".src/Form/ProfileManager.class:28.94"
 File[28]=".src/Form/DVBTuner.class:385.26"
-File[29]=".src/Classi/YoutubeClass.class:835.22"
+Active=29
+File[29]=".src/Classi/YoutubeClass.class:473.13"
 File[30]=".src/Classi/ShoutCastClass.class:188.42"
 File[31]=".src/Classi/FlashClass.class:129.11"
 File[32]=".src/Form/AllOptions.form"

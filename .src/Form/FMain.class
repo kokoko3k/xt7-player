@@ -4144,7 +4144,7 @@ Public Sub AllmenuVisible(AreVisible As Boolean)
 End
 
 Private Sub MouseHide()
-  
+
   If (Mouse.screenx & "." & Mouse.ScreenY = MousePos) Then
     OuterBox.Mouse = mouse.blank
     VideoBox.Mouse = mouse.blank
@@ -4154,7 +4154,7 @@ Private Sub MouseHide()
   Endif
 
   MousePos = Mouse.screenx & "." & Mouse.ScreenY
-  
+
 End
 
 Public Function MouseInsideFmainByCoords() As Boolean
@@ -4649,9 +4649,8 @@ Public Sub VideoAreaGroup_KeyPress()
 End
 
 Public Sub VideoAreaGroup_MouseUp()
-  
   Dim HotKey As String
-  
+  Dim mx, my As Integer
   If GuiDragging Then
     guidragging = False
     Return
@@ -4663,7 +4662,14 @@ Public Sub VideoAreaGroup_MouseUp()
   
   IgnoreMouse = True
   guidragging = False
-  
+
+  'move the mouse so that a mousemove event is triggered inside the videoarea.
+  'this avoids stuck mouse buttons (gambas bug)
+  mx = mouse.screenx
+  my = mouse.screeny
+  mouse.Move(mx + 1, my) 
+  mouse.Move(mx, my)
+
 End
 
 Public Sub VideoAreaGroup_MouseWheel()
@@ -9863,4 +9869,7 @@ End
 
 
 Public Sub PictureBox1_MouseMove()
+End
+
+Public Sub VideoAreaGroup_MouseMove()
 End

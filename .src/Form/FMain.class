@@ -3419,7 +3419,7 @@ Public Sub SeekBar_Change()
     percent = SeekBar.value Div 10
     
     'Restart the stream from a new position on youtube streams instead of seeking.
-    If ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
+    If (generaloptions.DoSeekRestartBox.value = True) And (((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*"))) Then
       seekbar.enabled = False
       If SeekingRestarting Then Return
       

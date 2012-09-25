@@ -14,1043 +14,1051 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: GeneralOptions.form:322
+#: GeneralOptions.form:324
 msgid "General options"
 msgstr ""
 
-#: GeneralOptions.form:331
+#: GeneralOptions.form:333
 msgid "Profile"
 msgstr ""
 
-#: GeneralOptions.form:334
+#: GeneralOptions.form:336
 msgid "Reload current profile"
 msgstr ""
 
-#: GeneralOptions.form:339
+#: GeneralOptions.form:341
 msgid "Save to current profile"
 msgstr ""
 
-#: GeneralOptions.form:344
+#: GeneralOptions.form:346
 msgid "Save these settings to all profiles"
 msgstr ""
 
-#: GeneralOptions.form:359
+#: GeneralOptions.form:361
 msgid "General Options"
 msgstr ""
 
-#: GeneralOptions.form:376
+#: GeneralOptions.form:378
 msgid "Video"
 msgstr ""
 
-#: GeneralOptions.form:389
+#: GeneralOptions.form:391
 msgid "If you zoomed-in a video, this will allow you to pan it with mouse-drag operation.\nWorks in full-screen mode only."
 msgstr ""
 
-#: GeneralOptions.form:396
+#: GeneralOptions.form:398
 msgid "Allow video panning via mouse-drag"
 msgstr ""
 
-#: GeneralOptions.form:402
+#: GeneralOptions.form:404
 msgid "If your video card doesn't support brightness, gamma, contrast or hue settings,\nyou may want to try this (slower method) for video equalizer to work properly.\nNote that this does not conflict with configuration you explicitly set in eq2 and hue filters."
 msgstr ""
 
-#: GeneralOptions.form:409
+#: GeneralOptions.form:411
 msgid "Auto add eq2 and hue filters to video chain"
 msgstr ""
 
-#: GeneralOptions.form:415
+#: GeneralOptions.form:417
 msgid "Audio"
 msgstr ""
 
-#: GeneralOptions.form:442
+#: GeneralOptions.form:444
 msgid "Show Vmeters"
 msgstr ""
 
-#: GeneralOptions.form:448
+#: GeneralOptions.form:450
 msgid "If you see meters moving sooner than the audio, raise this value."
 msgstr ""
 
-#: GeneralOptions.form:455
+#: GeneralOptions.form:457
 msgid "Audio Latency"
 msgstr ""
 
-#: GeneralOptions.form:468
+#: GeneralOptions.form:470
 msgid "ms"
 msgstr ""
 
-#: GeneralOptions.form:474
+#: GeneralOptions.form:476
 msgid "Frames per second"
 msgstr ""
 
-#: GeneralOptions.form:481
+#: GeneralOptions.form:483
 msgid "Update Vmeters at"
 msgstr ""
 
-#: GeneralOptions.form:495
+#: GeneralOptions.form:497
 msgid "fps"
 msgstr ""
 
-#: GeneralOptions.form:501
+#: GeneralOptions.form:503
 msgid "How many samples to get to calculate the average audio level."
 msgstr ""
 
-#: GeneralOptions.form:508
+#: GeneralOptions.form:510
 msgid "Rms window size"
 msgstr ""
 
-#: GeneralOptions.form:523
+#: GeneralOptions.form:525
 msgid "samples"
 msgstr ""
 
-#: GeneralOptions.form:529
+#: GeneralOptions.form:531
 msgid "Library"
 msgstr ""
 
-#: GeneralOptions.form:543
+#: GeneralOptions.form:545
 msgid "Specify what additional file extensions are allowed in playlist and library.\nEx: mov,dts,h264"
 msgstr ""
 
-#: GeneralOptions.form:549
+#: GeneralOptions.form:551
 msgid "Other known extensions"
 msgstr ""
 
-#: GeneralOptions.form:560
+#: GeneralOptions.form:562
 msgid "Directories specified here are recursively added to the playlist\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop."
 msgstr ""
 
-#: GeneralOptions.form:568
+#: GeneralOptions.form:570
 msgid "Watched Directories"
 msgstr ""
 
-#: GeneralOptions.form:585
+#: GeneralOptions.form:587
 msgid "Add"
 msgstr ""
 
-#: GeneralOptions.form:591
+#: GeneralOptions.form:593
 msgid "Del"
 msgstr ""
 
-#: GeneralOptions.form:602
+#: GeneralOptions.form:604
 msgid "Sync Now"
 msgstr ""
 
-#: GeneralOptions.form:610
+#: GeneralOptions.form:612
 msgid "Directories specified here will excluded\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop."
 msgstr ""
 
-#: GeneralOptions.form:618
+#: GeneralOptions.form:620
 msgid "Excluded Directories"
 msgstr ""
 
-#: GeneralOptions.form:652
+#: GeneralOptions.form:654
 msgid "Exclude Now"
 msgstr ""
 
-#: GeneralOptions.form:663
+#: GeneralOptions.form:665
 msgid "Tweaks"
 msgstr ""
 
-#: GeneralOptions.form:676
+#: GeneralOptions.form:678
 msgid "Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes."
 msgstr ""
 
-#: GeneralOptions.form:682
+#: GeneralOptions.form:684
 msgid "Xt7 Player nice level"
 msgstr ""
 
-#: GeneralOptions.form:695
+#: GeneralOptions.form:697
 msgid "(The lower, the 'faster')"
 msgstr ""
 
-#: GeneralOptions.form:713
+#: GeneralOptions.form:715
 msgid "Local file cache size (KB)"
 msgstr ""
 
-#: GeneralOptions.form:726
+#: GeneralOptions.form:728
 msgid "The playback will start as soon as the cache has been filled enough.\nMplayer option: -cache-min"
 msgstr ""
 
-#: GeneralOptions.form:738
+#: GeneralOptions.form:740
 msgid "Start playback after filling"
 msgstr ""
 
-#: GeneralOptions.form:752
+#: GeneralOptions.form:754
 msgid "% of total cache size"
 msgstr ""
 
-#: GeneralOptions.form:768
+#: GeneralOptions.form:770
 msgid "Use dbus (need dbus-send command) to disable kwin effects\nand avoid glitches in fullscreen mode."
 msgstr ""
 
-#: GeneralOptions.form:770
+#: GeneralOptions.form:772
 msgid "Disable Kde Effects in fullscreen mode"
 msgstr ""
 
-#: GeneralOptions.form:775
+#: GeneralOptions.form:777
 msgid "Audio CD"
 msgstr ""
 
-#: GeneralOptions.form:788
+#: GeneralOptions.form:790
 msgid "Select your CD device (es /dev/dvd, /dev/cdrom, /dev/sr2...)."
 msgstr ""
 
-#: GeneralOptions.form:794
+#: GeneralOptions.form:796
 msgid "Audio CD Device"
 msgstr ""
 
-#: GeneralOptions.form:800
+#: GeneralOptions.form:802
 msgid "Please, choose"
 msgstr ""
 
-#: GeneralOptions.form:822
+#: GeneralOptions.form:824
 msgid "CD Cache size (KB)"
 msgstr ""
 
-#: GeneralOptions.form:835
+#: GeneralOptions.form:837
 msgid "Fetch CD Audio information from internet through cddb protocol.\nNote that this may slow down or even hangs the play the very first time."
 msgstr ""
 
-#: GeneralOptions.form:847
+#: GeneralOptions.form:849
 msgid "Use CDDB"
 msgstr ""
 
-#: GeneralOptions.form:852
+#: GeneralOptions.form:854
 msgid "DVD"
 msgstr ""
 
-#: GeneralOptions.form:865
+#: GeneralOptions.form:867
 msgid "Select your Dvd device (es /dev/dvd, /dev/cdrom, /dev/sr2...)."
 msgstr ""
 
-#: GeneralOptions.form:871
+#: GeneralOptions.form:873
 msgid "DVD Device"
 msgstr ""
 
-#: GeneralOptions.form:900
+#: GeneralOptions.form:902
 msgid "Dvd Cache size (KB)"
 msgstr ""
 
-#: GeneralOptions.form:944
+#: GeneralOptions.form:946
 msgid "Network"
 msgstr ""
 
-#: GeneralOptions.form:957
+#: GeneralOptions.form:959
 msgid "Maximum cache size.\nMplayer option: -cache "
 msgstr ""
 
-#: GeneralOptions.form:969
+#: GeneralOptions.form:971
 msgid "Net Cache size (KB)"
 msgstr ""
 
-#: GeneralOptions.form:1014
+#: GeneralOptions.form:1016
 msgid "HINT: For youtube, enable this option and set 0.\n--\n If a seek is to be made to a position within <percentage> of the cache size from the current position, \nMPlayer will wait  for  the cache to be filled to this position rather than performing a stream seek (default: 50).\nMplayer option: -cache-seek-min <percentage>"
 msgstr ""
 
-#: GeneralOptions.form:1027
+#: GeneralOptions.form:1029
 msgid "Minimum seek cache size"
 msgstr ""
 
-#: GeneralOptions.form:1039
+#: GeneralOptions.form:1041
 msgid "% of total cache size "
 msgstr ""
 
-#: GeneralOptions.form:1049
+#: GeneralOptions.form:1051
 msgid "Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://"
 msgstr ""
 
-#: GeneralOptions.form:1055
+#: GeneralOptions.form:1057
 msgid "Skip tags on network streams."
 msgstr ""
 
-#: GeneralOptions.form:1062
+#: GeneralOptions.form:1064
 msgid "Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer."
 msgstr ""
 
-#: GeneralOptions.form:1068
+#: GeneralOptions.form:1070
 msgid "Http proxy"
 msgstr ""
 
-#: GeneralOptions.form:1084
+#: GeneralOptions.form:1086
 msgid "When playing youtube videos, \nprefer this format if available."
 msgstr ""
 
-#: GeneralOptions.form:1091
+#: GeneralOptions.form:1093
 msgid "Preferred youtube resolution"
 msgstr ""
 
-#: GeneralOptions.form:1097
+#: GeneralOptions.form:1099
 msgid "360p"
 msgstr ""
 
-#: GeneralOptions.form:1097
+#: GeneralOptions.form:1099
 msgid "480p"
 msgstr ""
 
-#: GeneralOptions.form:1097
+#: GeneralOptions.form:1099
 msgid "720p"
 msgstr ""
 
-#: GeneralOptions.form:1097
+#: GeneralOptions.form:1099
 msgid "1080p"
 msgstr ""
 
-#: GeneralOptions.form:1104
+#: GeneralOptions.form:1106
+msgid "Seeking on youtube streams may be problematic.\nChecking this will cause mplayer to be restarted at the new position \ninstead of issuing a seek.\nThis may or not work better for you."
+msgstr ""
+
+#: GeneralOptions.form:1112
+msgid "Restart youtube stream instead of seeking"
+msgstr ""
+
+#: GeneralOptions.form:1118
 msgid "Choose how to download network streams\nsuch as youtube video and podcasts.\nkde4 - choose kioclient ; \nkde3 - choose kfmclient ; \nIf you wish to write your own downloader, \nremember that\n%url is the stream to download\n%destdir is the destination directory\n%destfile is the destination file (without the path)\n\nNote then kioclient and kfmclient do not work with youtubeì streams."
 msgstr ""
 
-#: GeneralOptions.form:1111
+#: GeneralOptions.form:1125
 msgid "Download with"
 msgstr ""
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "xterm -e wget %url -O %destdir/%destfile"
 msgstr ""
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "xterm -e aria2c -c -x 3 -k 10M -s 3 %url -d %destdir -o %destfile"
 msgstr ""
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "kioclient copy %url %destdir/%destfile"
 msgstr ""
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "kfmclient copy %url %destdir/%destfile"
 msgstr ""
 
-#: GeneralOptions.form:1117
+#: GeneralOptions.form:1131
 msgid "Write your own: %url=source %destdir=destination dir %destfile=destination file"
 msgstr ""
 
-#: GeneralOptions.form:1127
+#: GeneralOptions.form:1141
 msgid "DVB-T"
 msgstr ""
 
-#: GeneralOptions.form:1132
+#: GeneralOptions.form:1146
 msgid "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer Option: -tsprobe <byte position>"
 msgstr ""
 
-#: GeneralOptions.form:1141
+#: GeneralOptions.form:1155
 msgid "Select your 'scan' executable.\nJust write 'scan' for default.\nscan is needed to scan for new channels"
 msgstr ""
 
-#: GeneralOptions.form:1147
+#: GeneralOptions.form:1161
 msgid "scan executable"
 msgstr ""
 
-#: GeneralOptions.form:1153
+#: GeneralOptions.form:1167
 msgid "scan"
 msgstr ""
 
-#: GeneralOptions.form:1164
+#: GeneralOptions.form:1178
 msgid "Select your femon executable.\nJust write 'femon' for default.\nfemon is needed to monitor signal strength."
 msgstr ""
 
-#: GeneralOptions.form:1170
+#: GeneralOptions.form:1184
 msgid "femon executable"
 msgstr ""
 
-#: GeneralOptions.form:1176
+#: GeneralOptions.form:1190
 msgid "femon"
 msgstr ""
 
-#: GeneralOptions.form:1187
+#: GeneralOptions.form:1201
 msgid "Select your dvbsnoop executable.\nJust write 'dvbsnoop' for default.\ndvbsnoop is needed to get EPG data."
 msgstr ""
 
-#: GeneralOptions.form:1193
+#: GeneralOptions.form:1207
 msgid "dvbsnoop executable"
 msgstr ""
 
-#: GeneralOptions.form:1199
+#: GeneralOptions.form:1213
 msgid "dvbsnoop"
 msgstr ""
 
-#: GeneralOptions.form:1210
+#: GeneralOptions.form:1224
 msgid "Temporary recording folder"
 msgstr ""
 
-#: GeneralOptions.form:1221
+#: GeneralOptions.form:1235
 msgid "Select your femon executable.\nJust write 'femon' for default."
 msgstr ""
 
-#: GeneralOptions.form:1223
+#: GeneralOptions.form:1237
 msgid "/tmp/"
 msgstr ""
 
-#: GeneralOptions.form:1240
+#: GeneralOptions.form:1254
 msgid "Final recording folder"
 msgstr ""
 
-#: GeneralOptions.form:1274
+#: GeneralOptions.form:1288
 msgid "DVB-T Cache size (KB)"
 msgstr ""
 
-#: GeneralOptions.form:1319
+#: GeneralOptions.form:1333
 msgid "It you have more than a dvb card,\nyou can specify one here.\nmplayer option: -dvbin card=#"
 msgstr ""
 
-#: GeneralOptions.form:1325
+#: GeneralOptions.form:1339
 msgid "Card #"
 msgstr ""
 
-#: GeneralOptions.form:1337
+#: GeneralOptions.form:1351
 msgid "How much seconds to wait for the channel to be tuned.\nmplayer option: -dvbin timeout=#\n"
 msgstr ""
 
-#: GeneralOptions.form:1343
+#: GeneralOptions.form:1357
 msgid "Tuner Timeout"
 msgstr ""
 
-#: GeneralOptions.form:1356
+#: GeneralOptions.form:1370
 msgid "When playing an MPEG-TS stream, this option lets you specify how  many  bytes  in  the\nstream you want MPlayer to search for the desired audio and video IDs.\nMplayer option:\n-tsprobe <byte position>\n\nThis can speed-up tuning/zapping."
 msgstr ""
 
-#: GeneralOptions.form:1363
+#: GeneralOptions.form:1377
 msgid "tsprobe"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "64000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "128000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "256000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "512000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "1024000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "2048000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "4096000"
 msgstr ""
 
-#: GeneralOptions.form:1369
+#: GeneralOptions.form:1383
 msgid "8192000"
 msgstr ""
 
-#: GeneralOptions.form:1376
+#: GeneralOptions.form:1390
 msgid "Use mplayer command: dvb_set_channel.\nIt will cut down time needed to tune channels, \nbut you could have troubles with missing or wrong audio,\nIt is an mplayer bug you may want to check here:\nhttp://bugzilla.mplayerhq.hu/show_bug.cgi?id=2070\n--\n0 - The safer choice.\n1 - Let xt7 decide if it is safe or not.\n2 - Could even crash mplayer, depends on its version."
 msgstr ""
 
-#: GeneralOptions.form:1383
+#: GeneralOptions.form:1397
 msgid "Faster channel zapping"
 msgstr ""
 
-#: GeneralOptions.form:1389
+#: GeneralOptions.form:1403
 msgid "0 - Never"
 msgstr ""
 
-#: GeneralOptions.form:1389
+#: GeneralOptions.form:1403
 msgid "1 - When audio is not switched"
 msgstr ""
 
-#: GeneralOptions.form:1389
+#: GeneralOptions.form:1403
 msgid "2 - Always"
 msgstr ""
 
-#: GeneralOptions.form:1400
+#: GeneralOptions.form:1414
 msgid "Rescan Channels with simple DVB-T Tuner"
 msgstr ""
 
-#: GeneralOptions.form:1405
+#: GeneralOptions.form:1419
 msgid "Language"
 msgstr ""
 
-#: GeneralOptions.form:1418
+#: GeneralOptions.form:1432
 msgid "Preferred Audio languages:"
 msgstr ""
 
-#: GeneralOptions.form:1423
+#: GeneralOptions.form:1437
 msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-alang \"language list\""
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "alb,sq,(Albanian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ara,ar,(Arabic)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "arm,hy,(Armenian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "baq,eu,(Basque)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ben,bn,(Bengali)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "bos,bs,(Bosnian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "bre,br,(Breton)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "bul,bg,(Bulgarian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "cat,ca,(Catalan)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "cze,cs,(Czech)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "dan,da,(Danish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "de,ger,deu (german)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ell,el,(Greek)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "en,eng (english)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "epo,eo,(Esperanto)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "es,spa (spanish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "est,et,(Estonian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "fi,fin (finnish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "fr,fre (french)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "geo,ka,(Georgian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "glg,gl,(Galician)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "heb,he,(Hebrew)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "hin,hi,(Hindi)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "hrv,hr,(Croatian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "hun,hu,(Hungarian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ice,is,(Icelandic)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ind,id,(Indonesian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "it,ita (italian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ja,jpn (japanese)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "kaz,kk,(Kazakh)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "kor,ko,(Korean)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "lav,lv,(Latvian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "lit,lt,(Lithuanian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ltz,lb,(Luxembourgish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "mac,mk,(Macedonian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "may,ms,(Malay)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "nl,dut,nld (dutch,flemish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "no,nor (norwegian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "oci,oc,(Occitan)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "per,fa,(Farsi)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "pob,pb,(Portuguese-BR)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "pol,pl,(Polish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "pt,por (portuguese)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ru,rus (russian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "rum,ro,(Romanian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "scc,sr,(Serbian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "sin,si,(Sinhalese)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "slo,sk,(Slovak)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "slv,sl,(Slovenian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "sv,swe (swedish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "syr,sy,(Syriac)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "tgl,tl,(Tagalog)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "tha,th,(Thai)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "tur,tr,(Turkish)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "ukr,uk,(Ukrainian)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "urd,ur,(Urdu)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "vie,vi,(Vietnamese)"
 msgstr ""
 
-#: GeneralOptions.form:1431
+#: GeneralOptions.form:1445
 msgid "zh,chi,zho (chinese)"
 msgstr ""
 
-#: GeneralOptions.form:1432
+#: GeneralOptions.form:1446
 msgid "iso-8859-1"
 msgstr ""
 
-#: GeneralOptions.form:1450
+#: GeneralOptions.form:1464
 msgid "en,eng"
 msgstr ""
 
-#: GeneralOptions.form:1456
+#: GeneralOptions.form:1470
 msgid "Preferred Subtitle languages:"
 msgstr ""
 
-#: GeneralOptions.form:1461
+#: GeneralOptions.form:1475
 msgid "Add the selected language to the list of preferred languages.\nMplayer Option:\n-slang \"language list\"\n\nThis option also allows you to search for online subtitles at Opensubtitles.org"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "ger,deu,de (german)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "eng,en (english)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "spa,esp (spanish)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "fin,fi (finnish)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "fre,fr (french)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "ita,it (italian)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "jpn,ja (japanese)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "dut,nld,nl (dutch,flemish)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "nor,no (norwegian)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "por,pt (portuguese)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "rus,ru (russian)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "swe,sv (swedish)"
 msgstr ""
 
-#: GeneralOptions.form:1469
+#: GeneralOptions.form:1483
 msgid "chi,zh,zho (chinese)"
 msgstr ""
 
-#: GeneralOptions.form:1493
+#: GeneralOptions.form:1507
 msgid "Misc"
 msgstr ""
 
-#: GeneralOptions.form:1506
+#: GeneralOptions.form:1520
 msgid "Select your mplayer executable.\nJust write 'mplayer' for default."
 msgstr ""
 
-#: GeneralOptions.form:1512
+#: GeneralOptions.form:1526
 msgid "Environment Variables"
 msgstr ""
 
-#: GeneralOptions.form:1517
+#: GeneralOptions.form:1531
 msgid "You can override some environment variables here, write them in thre form:\nVARIABLE1=VALUE VARIABLE2=VALUE"
 msgstr ""
 
-#: GeneralOptions.form:1530
+#: GeneralOptions.form:1544
 msgid "mplayer executable"
 msgstr ""
 
-#: GeneralOptions.form:1536
+#: GeneralOptions.form:1550
 msgid "mplayer"
 msgstr ""
 
-#: GeneralOptions.form:1547
+#: GeneralOptions.form:1561
 msgid "Command or commands (semicolon separated) which\nwill be executed before a file is played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one."
 msgstr ""
 
-#: GeneralOptions.form:1553
+#: GeneralOptions.form:1567
 msgid "Pre Command"
 msgstr ""
 
-#: GeneralOptions.form:1564
+#: GeneralOptions.form:1578
 msgid "Command or commands (semicolon separated) which\nwill be executed after a file has been played.\nHINT: you can execute multiple commands using \";\" between them.\nHINT: If you don't want Xt7-player to wait for the command(s) to exit, use \"&\" at the end of each one."
 msgstr ""
 
-#: GeneralOptions.form:1570
+#: GeneralOptions.form:1584
 msgid "Post Command"
 msgstr ""
 
-#: GeneralOptions.form:1581
+#: GeneralOptions.form:1595
 msgid "Enter the shutdown command \\n (make sure your  have rights to do it)"
 msgstr ""
 
-#: GeneralOptions.form:1587
+#: GeneralOptions.form:1601
 msgid "Shutdown Command"
 msgstr ""
 
-#: GeneralOptions.form:1592
+#: GeneralOptions.form:1606
 msgid "Enter the shutdown command\n(also make sure your user has rights to do it)"
 msgstr ""
 
-#: GeneralOptions.form:1594
+#: GeneralOptions.form:1608
 msgid "poweroff"
 msgstr ""
 
-#: GeneralOptions.form:1604
+#: GeneralOptions.form:1618
 msgid "Enable/Disbale Tooltips"
 msgstr ""
 
-#: GeneralOptions.form:1610
+#: GeneralOptions.form:1624
 msgid "Enable ToolTips"
 msgstr ""
 
-#: GeneralOptions.form:1617
+#: GeneralOptions.form:1631
 msgid "Enable this if you want xt7 to be controlled through an mpris2 compliant client.\n"
 msgstr ""
 
-#: GeneralOptions.form:1622
+#: GeneralOptions.form:1636
 msgid "Makes xt7 register itself into dbus.\nThis will export media properties and gives basic options to control the player."
 msgstr ""
 
-#: GeneralOptions.form:1624
+#: GeneralOptions.form:1638
 msgid "Dbus support"
 msgstr ""
 
-#: GeneralOptions.form:1631
+#: GeneralOptions.form:1645
 msgid "   (MPRIS 2.1 - Incomplete)"
 msgstr ""
 
-#: GeneralOptions.form:1643
+#: GeneralOptions.form:1657
 msgid "If you close xt7-player while playing a local file,\nxt7 will start just were you left the next time."
 msgstr ""
 
-#: GeneralOptions.form:1645
+#: GeneralOptions.form:1659
 msgid "Start were you left"
 msgstr ""
 
-#: GeneralOptions.form:1651
+#: GeneralOptions.form:1665
 msgid "When an audio file is played, the right panel will show\ninformations on the file played, allowing to set covers\nfor your library items."
 msgstr ""
 
-#: GeneralOptions.form:1658
+#: GeneralOptions.form:1672
 msgid "Use cover manager."
 msgstr ""
 
-#: GeneralOptions.form:1665
+#: GeneralOptions.form:1679
 msgid "Enable/Disbale the tray icon"
 msgstr ""
 
-#: GeneralOptions.form:1672
+#: GeneralOptions.form:1686
 msgid "Use Tray icon (xt7-player restart needed)"
 msgstr ""
 
-#: GeneralOptions.form:1686
+#: GeneralOptions.form:1700
 msgid "Save all settings to profile on program exit"
 msgstr ""
 
-#: GeneralOptions.form:1693
+#: GeneralOptions.form:1707
 msgid "Save xt7 position and size on program exit."
 msgstr ""
 
-#: GeneralOptions.form:1698
+#: GeneralOptions.form:1712
 msgid "Also save xt7 geometry on exit"
 msgstr ""
 
-#: GeneralOptions.form:1705
+#: GeneralOptions.form:1719
 msgid "If your window manager is not kwin\nand you find that form position is not correctly restored,\ntry checking this."
 msgstr ""
 
-#: GeneralOptions.form:1710
+#: GeneralOptions.form:1724
 msgid "Alternative saving method (compiz/emerald)"
 msgstr ""
 
-#: GeneralOptions.form:1716
+#: GeneralOptions.form:1730
 msgid "User Options"
 msgstr ""
 
-#: GeneralOptions.form:1729
+#: GeneralOptions.form:1743
 msgid "The following options will be appended to mplayer command line:"
 msgstr ""
 
-#: GeneralOptions.form:1734
+#: GeneralOptions.form:1748
 msgid "Type an mplayer option like \"-rtc\" or more like \"-rtc -loop 5\""
 msgstr ""
 
-#: GeneralOptions.form:1903
+#: GeneralOptions.form:1917
 msgid "Style"
 msgstr ""
 
-#: GeneralOptions.form:1922
+#: GeneralOptions.form:1936
 msgid "* Some Options may require application restart."
 msgstr ""
 
-#: GeneralOptions.form:1936
+#: GeneralOptions.form:1950
 msgid "Display cover thumbnails in side lists"
 msgstr ""
 
-#: GeneralOptions.form:1938
+#: GeneralOptions.form:1952
 msgid "Show covers in listviews"
 msgstr ""
 
-#: GeneralOptions.form:1948
+#: GeneralOptions.form:1962
 msgid "Generate and show video thumbnails to for the side lists, this is made runtime in background and thumbnails will be  cached on disk."
 msgstr ""
 
-#: GeneralOptions.form:1950
+#: GeneralOptions.form:1964
 msgid "Show thumbnails for video files"
 msgstr ""
 
-#: GeneralOptions.form:1956
+#: GeneralOptions.form:1970
 msgid "Background image for the bottom panel.\nYou can also set this by dragging an image file or from a web page\ninto the bottom panel, just remember to save the profile."
 msgstr ""
 
-#: GeneralOptions.form:1962
+#: GeneralOptions.form:1976
 msgid "Bottom picture background"
 msgstr ""
 
-#: GeneralOptions.form:1983
+#: GeneralOptions.form:1997
 msgid "Default icon size"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "16"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "24"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "32"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "48"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "64"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "96"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "128"
 msgstr ""
 
-#: GeneralOptions.form:1994
+#: GeneralOptions.form:2008
 msgid "160"
 msgstr ""
 
-#: GeneralOptions.form:2011
+#: GeneralOptions.form:2025
 msgid "Albums view icon size"
 msgstr ""
 
-#: GeneralOptions.form:2022
+#: GeneralOptions.form:2036
 msgid "224"
 msgstr ""
 
-#: GeneralOptions.form:2022
+#: GeneralOptions.form:2036
 msgid "256"
 msgstr ""
 
-#: GeneralOptions.form:2038
+#: GeneralOptions.form:2052
 msgid "Highlight the sideview item which is under the mouse"
 msgstr ""
 
-#: GeneralOptions.form:2040
+#: GeneralOptions.form:2054
 msgid "Highlight listview items on mouse over"
 msgstr ""
 
-#: GeneralOptions.form:2055
+#: GeneralOptions.form:2069
 msgid "Left-side list font and font color:"
 msgstr ""
 
-#: GeneralOptions.form:2067
+#: GeneralOptions.form:2081
 msgid "Default"
 msgstr ""
 
-#: GeneralOptions.form:2091
+#: GeneralOptions.form:2105
 msgid "Left-side list background color:"
 msgstr ""
 
-#: GeneralOptions.form:2120
+#: GeneralOptions.form:2134
 msgid "Left-side list alternate background color:"
 msgstr ""
 
-#: GeneralOptions.form:2153
+#: GeneralOptions.form:2167
 msgid "Trayicon panel font and font color:"
 msgstr ""
 
-#: GeneralOptions.form:2189
+#: GeneralOptions.form:2203
 msgid "TrayIcon panel background color:"
 msgstr ""
 
-#: GeneralOptions.form:2222
+#: GeneralOptions.form:2236
 msgid "Audio panel font and font color:"
 msgstr ""
 
-#: GeneralOptions.form:2268
+#: GeneralOptions.form:2282
 msgid "Save and use new settings"
 msgstr ""
 
-#: GeneralOptions.form:2269
+#: GeneralOptions.form:2283
 msgid "Save"
 msgstr ""
 
-#: GeneralOptions.form:2275
+#: GeneralOptions.form:2289
 msgid "Use new settings without save"
 msgstr ""
 
-#: GeneralOptions.form:2276
+#: GeneralOptions.form:2290
 msgid "Use "
 msgstr ""
 
-#: GeneralOptions.form:2282
+#: GeneralOptions.form:2296
 msgid "Close the window"
 msgstr ""
 
-#: GeneralOptions.form:2283
+#: GeneralOptions.form:2297
 msgid "Close"
 msgstr ""
 

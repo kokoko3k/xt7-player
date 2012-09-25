@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Sep 24 2012
+  CHANGE: Allow to choose to restart or not  the stream when seeking on youtube. (generaloptions -> network)
   FIX:    Give tracking to controlframe picturebox solve stuck mouse button issue (i think it is a gambas bug)
   FIX:    Temporally switch browse tab to single selection mode before selecting prev/next item
   FIX:    Code cleanup (removed some unused vars/functions)

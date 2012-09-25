@@ -469,6 +469,9 @@ Geometry=[0,0,423,670]
 [DebugWindow/SplitterLayout]
 Geometry=[1276,-3,210,210]
 
+[DebugWindow/Stat(bufferfile)]
+Geometry=[48,0,295,364]
+
 [DebugWindow/Stat(fullpathitem)]
 Geometry=[0,35,344,344]
 
@@ -1141,13 +1144,49 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-Active=1
-File[1]="CHANGELOG_GIT:7.54"
-Count=1
+File[1]="CHANGELOG_GIT:3.2"
+File[2]=".src/Classi/YoutubeClass.class:333.6"
+File[3]=".src/Form/FMain.form"
+File[4]=".src/Form/FMain.class:4697.0"
+File[5]=".src/Classi/PodCast.class:39.0"
+File[6]=".src/Classi/ShoutCastClass.class:182.0"
+File[7]=".src/Classi/SettingsClass.class:68.0"
+File[8]=".src/Form/Chains.form"
+Active=9
+File[9]=".src/0_Moduli/Global.module:339.0"
+File[10]=".src/Classi/AlbumView.class:351.0"
+File[11]=".src/Classi/DynaGuiClass.class:24.0"
+File[12]=".src/Classi/DynaGuiClassBAK.class:23.27"
+File[13]=".src/Classi/FlashClass.class:72.23"
+File[14]=".src/Classi/Meters.class:10.0"
+File[15]=".src/Classi/MplayerClass.class:835.0"
+File[16]=".src/Classi/OpenSubtitlesAPI.class:308.0"
+File[17]=".src/Classi/PlaylistClass.class:1033.0"
+File[18]=".src/Classi/TagLib.class:162.0"
+File[19]=".src/Classi/dvbsnoop_class.class:233.0"
+File[20]=".src/Classi/mpris.class:141.0"
+File[21]=".src/Form/AFiltersCfg.class:107.0"
+File[22]=".src/Form/AddUriForm.class:18.0"
+File[23]=".src/Form/CoverManager.class:437.0"
+File[24]=".src/Form/DVBTuner.class:86.11"
+File[25]=".src/Form/EpgForm.class:455.0"
+File[26]=".src/Form/GeneralOptions.class:530.0"
+File[27]=".src/Form/HotKeyGrab.class:188.0"
+File[28]=".src/Form/HotKeys.class:501.0"
+File[29]=".src/Form/LogWindow.class:99.28"
+File[30]=".src/Form/OpenSubtitesForm.class:93.0"
+File[31]=".src/Form/OverlayTip.class:6.0"
+File[32]=".src/Form/OverlayTrayTip.class:53.0"
+File[33]=".src/Form/SubAndOsd.class:78.0"
+File[34]=".src/Form/VFiltersCfg.class:124.0"
+File[35]=".src/Form/XConfigureAudioDriver.class:173.0"
+File[36]=".src/Form/XConfigureVideoDriver.class:133.0"
+Count=36
 
 [Watches]
-Count=3
+Count=4
 Watch[1]="mylibrary.searchtable.count"
 Watch[2]="fmain.librarygrid.rows.count"
 Watch[3]="url"
+Watch[4]="node1.Children[t].name"
 

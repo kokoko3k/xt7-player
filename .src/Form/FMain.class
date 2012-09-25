@@ -4751,43 +4751,55 @@ End
 Public Sub BrowseSelectNext()
   Dim obj As Object
   Dim tmpstr As String
+  FileView1.mode = Select.Single
   For Each obj In FileView1.Children
     Try tmpstr = obj.current.text
     If Not Error Then
       Try obj.movecurrent
-      If Error Then Return
-
+      If Error Then 
+        FileView1.mode = Select.Multiple
+        Return
+      Endif
       If obj.MoveBelow() Then Try obj.movefirst()
-
       Try obj.item.selected = True
-      If Error Then Return
-
+      If Error Then 
+        FileView1.mode = Select.Multiple
+        Return
+      Endif
       mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
     Endif
   Next
   obj.item.EnsureVisible
+  FileView1.mode = Select.Multiple
 End
 
 
 Public Sub BrowseSelectPrev()
   Dim obj As Object
   Dim tmpstr As String
+  FileView1.mode = Select.Single
   For Each obj In FileView1.Children
     Try tmpstr = obj.current.text
     If Not Error Then
       Try obj.movecurrent
-      If Error Then Return
-      
+      If Error Then 
+        FileView1.mode = Select.Multiple
+        Return
+      Endif
       If obj.MoveAbove() Then Try obj.movelast()
       If Error Then Return
       
       Try obj.item.selected = True
-      If Error Then Return
+      If Error Then 
+        FileView1.mode = Select.Multiple
+        Return
+      Endif
       
       mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
     Endif
   Next
   obj.item.EnsureVisible
+  FileView1.mode = Select.Multiple
 End
 
 

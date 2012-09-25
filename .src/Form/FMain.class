@@ -3139,9 +3139,6 @@ Public Sub OneSecTimer_Timer()
 
   Dim PlaylistFinished As Boolean
 
-
-
-
   If mplayer.ProcessRunningOvr() Then
     
     If mplayer.Paused Then
@@ -3436,7 +3433,7 @@ Public Sub SeekBar_Change()
       seekbar.enabled = True
         Else
       mplayer.do_seek(percent)
-      
+
     Endif
 
     OneSecTimer.Enabled = True
@@ -6487,6 +6484,7 @@ Public VolumeFocused As Boolean = False
 Public Sub VideoAreaGroup_Enter()
   
   If mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus
+
   If Lower(mplayer.Media_FullPath_Playing) Like "dvdnav*" Then
     timerdvd.enabled = True
   Else
@@ -9861,4 +9859,8 @@ Public Sub GetLastVersion()
     HttpClient1.timeout = 10 
     Try HttpClient1.Get()
   Endif
+End
+
+
+Public Sub PictureBox1_MouseMove()
 End

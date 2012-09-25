@@ -139,7 +139,7 @@ Public Function GetMouse(CheckWheel As Boolean) As String
        If Mouse.delta < 0 Then LastMouseWheel = "DOWN"
      Endif
    Endif
-   
+
    LastMouseButton = Mouse.Button
    Return AllGrabbedData()
 End

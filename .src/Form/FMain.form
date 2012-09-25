@@ -1779,6 +1779,7 @@
           Font = Font["6"]
           { PictureBox1 PictureBox
             MoveScaled(9,1,60,7)
+            Tracking = True
             Drop = True
             Expand = True
             Picture = Picture["backpanel.png"]

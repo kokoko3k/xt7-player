@@ -332,6 +332,7 @@ End
 
 Public Sub AllInit_Pre()
   Dim MySettings As New SettingsClass
+
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
   MakeScreenshotsPath()

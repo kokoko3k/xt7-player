@@ -129,8 +129,6 @@ Private Function HaveToParseNode(MyXmlreader As Xmlreader) As Boolean
   Endif
 End
 
-
-
 Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
   Dim feedfile As String
   Dim reader As Xmlreader
@@ -143,6 +141,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   Dim lastlink As String = ""
   Dim wget As New Wgetclass
   Dim i As Integer
+
   
   If tree.item = Null Then tree.movecurrent
   

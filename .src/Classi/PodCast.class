@@ -124,7 +124,8 @@ Public Sub Add(PodCastUrl As String, PodcastTree As Treeview)
       title = Split(newitem, ts)[0]
       desc = Split(newitem, ts)[1]
       podlink = Split(newitem, ts)[2]
-      Try PodcastTree.Add(podlink, title, picture["filetypeuri.png"], PodcastUrl)
+      'Try PodcastTree.Add(podlink, title, picture["filetypeuri.png"], PodcastUrl)
+      Try PodcastTree.Add(podlink, title, picture["rss.png"], PodcastUrl)
     Next 'newitem
   Endif
   'set channel info (to do after fetch)
@@ -171,7 +172,8 @@ Public Sub Append(PodCastUrl As String, PodcastTree As Treeview)
       title = Split(newitem, ts)[0]
       desc = Split(newitem, ts)[1]
       podlink = Split(newitem, ts)[2]
-      Try PodcastTree.Add(podlink, title, picture["filetypeuri.png"], PodcastUrl)
+      Try PodcastTree.Add(podlink, title, picture["rss.png"], PodcastUrl)
+      'Try PodcastTree.Add(podlink, title, picture["filetypeuri.png"], PodcastUrl)
       ' TRY PodcastTree.expanded = TRUE
       ' PodcastTree.Refresh
       ' WAIT 0.1

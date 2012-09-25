@@ -328,6 +328,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/Object]
 Geometry=[52,0,301,301]
 
+[DebugWindow/Object.GetProperty(node.Children[t], "children")]
+Geometry=[48,0,210,210]
+
 [DebugWindow/OneSecTimer]
 Geometry=[-4,-3,210,210]
 
@@ -570,6 +573,18 @@ Geometry=[51,0,210,210]
 
 [DebugWindow/WorkingCover["mygrid"]]
 Geometry=[1276,-3,210,210]
+
+[DebugWindow/XmlElement(node.Children[t]).Attributes]
+Geometry=[62,14,344,344]
+
+[DebugWindow/XmlElement(node.Children[t]).ChildNodes]
+Geometry=[62,14,344,344]
+
+[DebugWindow/XmlElement(node.Children[t]).Children]
+Geometry=[62,14,344,344]
+
+[DebugWindow/XmlElement(node.Children[t]).Children[6]]
+Geometry=[76,28,344,344]
 
 [DebugWindow/XmlFields]
 Geometry=[51,0,210,210]
@@ -872,13 +887,28 @@ Geometry=[51,0,210,210]
 Geometry=[1470,250,668,467]
 
 [DebugWindow/node]
-Geometry=[0,40,1592,525]
+Geometry=[48,40,1224,525]
+
+[DebugWindow/node.Children]
+Geometry=[48,54,1224,525]
+
+[DebugWindow/node.Children[0]]
+Geometry=[62,68,1224,525]
 
 [DebugWindow/node.Children[t]]
-Geometry=[0,0,344,344]
+Geometry=[837,180,344,344]
+
+[DebugWindow/node.Children[t].Children]
+Geometry=[48,0,210,210]
 
 [DebugWindow/node1]
-Geometry=[0,0,344,344]
+Geometry=[48,0,344,344]
+
+[DebugWindow/node1.Children]
+Geometry=[62,14,344,344]
+
+[DebugWindow/node1.Children[3]]
+Geometry=[76,28,344,344]
 
 [DebugWindow/node1.Children[t1].Attributes]
 Geometry=[0,0,344,344]
@@ -911,7 +941,7 @@ Geometry=[0,0,301,301]
 Geometry=[1280,0,210,210]
 
 [DebugWindow/picture]
-Geometry=[0,0,344,344]
+Geometry=[48,0,344,344]
 
 [DebugWindow/picture.Load(tmpfile)]
 Geometry=[1280,0,251,316]
@@ -1088,6 +1118,9 @@ Geometry=[51,0,210,210]
 ShowHidden=True
 Geometry=[0,0,344,344]
 
+[DebugWindow/xml.Root]
+Geometry=[116,387,813,653]
+
 [DebugWindow/youtubeTree.current]
 Geometry=[44,-3,490,476]
 
@@ -1108,81 +1141,9 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/MyQuestion.class:89.29"
-File[2]=".src/Form/LogWindow.class:46.49"
-File[3]=".src/Form/LogWindow.form"
-File[4]=".src/Form/FMain.class:8475.7"
-File[5]="CHANGELOG_GIT:3.10"
-File[6]=".src/Form/CoverManager.class:986.14"
-File[7]=".src/Classi/MplayerClass.class:470.3"
-File[8]=".src/Classi/PlaylistClass.class:709.16"
-File[9]=".src/Form/GeneralOptions.form"
-File[10]=".src/Form/GeneralOptions.class:15.30"
-File[11]="AA_ToDo:117.80"
-File[12]=".src/Classi/AlbumView.class:94.27"
-File[13]=".src/Form/FMain.form"
-File[14]="selectionbox.png"
-File[15]="MoreResults.png"
-File[16]="shadow.png"
-File[17]=".src/0_Moduli/Global.module:331.56"
-File[18]=".src/Form/Chains.form"
-File[19]=".src/Form/Chains.class:69.30"
-File[20]=".src/Classi/DynaGuiClass.class:267.34"
-File[21]=".src/Classi/StartClass.class:3.0"
-File[22]=".src/Form/XConfigureAudioDriver.form"
-File[23]=".src/Form/XConfigureAudioDriver.class:13.30"
-File[24]=".src/Form/XConfigureVideoDriver.class:13.0"
-File[25]=".src/Form/XConfigureVideoDriver.form"
-File[26]=".src/Form/CoverManager.form"
-File[27]=".src/Form/ProfileManager.class:28.94"
-File[28]=".src/Form/DVBTuner.class:385.26"
-Active=29
-File[29]=".src/Classi/YoutubeClass.class:473.13"
-File[30]=".src/Classi/ShoutCastClass.class:188.42"
-File[31]=".src/Classi/FlashClass.class:129.11"
-File[32]=".src/Form/AllOptions.form"
-File[33]=".src/Form/DVBTuner.form"
-File[34]=".src/Form/AFiltersCfg.form"
-File[35]=".src/Form/OverlayTrayTip.class:158.0"
-File[36]=".src/Form/OverlayTrayTip.form"
-File[37]=".src/Form/zzzFake.form"
-File[38]=".src/Form/zzzFake.class:21.21"
-File[39]=".src/Form/AudioForm.form"
-File[40]=".src/Classi/Meters.class:0.0"
-File[41]=".src/Classi/TagLib.class:137.13"
-File[42]=".src/Classi/FloatSpinBox.class:19.46"
-File[43]=".src/Form/VideoEqualizer.class:58.30"
-File[44]=".src/Form/ChooseAspect.form"
-File[45]=".src/0_Moduli/MyDialog.class:6.22"
-File[46]=".src/Classi/dvbsnoop_class.class:482.18"
-File[47]=".src/Form/EpgForm.form"
-File[48]=".src/Form/HotKeyGrab.form"
-File[49]=".src/Form/AskName.form"
-File[50]=".src/Form/AskName.class:0.0"
-File[51]=".src/Classi/AudiotagClass.class:0.0"
-File[52]=".src/Form/EpgForm.class:374.3"
-File[53]=".src/Form/Xt7Egg.form"
-File[54]=".src/Form/AFiltersCfg.class:187.0"
-File[55]=".src/Form/VFiltersCfg.form"
-File[56]=".src/Form/VFiltersCfg.class:545.20"
-File[57]=".src/Form/MyQuestion.form"
-File[58]=".src/Form/MyAskName.form"
-File[59]=".src/Form/MyAskName.class:33.30"
-File[60]=".src/0_Moduli/ComboHistory.module:21.0"
-File[61]=".src/Classi/SettingsClass.class:14.556"
-File[62]=".src/Form/OpenSubtitesForm.class:135.31"
-File[63]="xt7-player.png"
-File[64]=".src/Form/AddUriForm.form"
-File[65]=".src/Classi/WgetClass.class:4.79"
-File[66]=".src/Classi/StringFileReqClass.class:39.2"
-File[67]=".src/Form/ButtonMenu.form"
-File[68]=".src/Form/ButtonMenu.class:16.3"
-File[69]=".src/Form/HotKeys.class:265.30"
-File[70]=".src/Form/SubAndOsd.class:280.30"
-File[71]=".src/Form/AudioVideoCodecs.class:36.0"
-File[72]=".src/Form/OpenSubtitesForm.form"
-File[73]=".src/Classi/OpenSubtitlesAPI.class:285.0"
-Count=73
+Active=1
+File[1]="CHANGELOG_GIT:7.54"
+Count=1
 
 [Watches]
 Count=3

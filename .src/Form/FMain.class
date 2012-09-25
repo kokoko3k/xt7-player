@@ -401,7 +401,6 @@ Public Sub AllInit_Post()
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
 
-
   If TabSelectedAlbums() Then 
     Albums_Select()
   Endif  

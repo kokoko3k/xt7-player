@@ -10,9 +10,9 @@ Public ts As String = Chr(8)
 
 Public Function Fetch(PodCastUrl As String) As String[]
   Dim http As New Httpclient
-  Dim buffer, bufferfile As String
+  Dim buffer As String
   Dim xml As New Xmldocument
-  Dim node As Xmlnode
+  Dim node, subnode As Xmlnode
   Dim Response As New String[]
   Dim i As Integer
   Dim tmpfile As String = Temp()
@@ -20,14 +20,11 @@ Public Function Fetch(PodCastUrl As String) As String[]
   channelinfo = ""
   'SHELL "wget '" & PodcastUrl & "' --timeout=4 --tries=3 --output-document=" & tmpfile WAIT
   'TRY buffer = File.Load(tmpfile)
-  'buffer = wget.DownloadAsync(podcasturl)
-  Try bufferfile = wget.DownloadAsync(podcasturl, True)
+  buffer = wget.DownloadAsync(podcasturl)
   If Error Then Return ""
-   If Not Exist(bufferfile) Then Return ""
-   If Stat(bufferfile).Size = 0 Then Return ""
-   Try xml.Open(bufferfile)
+   If Trim(buffer) = "" Then Return ""
+   Try xml.FromString(buffer)
    If Error Then Return ""
-   'xml.Root.Prefix = "" 'gambas bug workaround ?
    node = xml.Root
    items.clear
    channelinfo = parsechannel(node)
@@ -36,10 +33,10 @@ Public Function Fetch(PodCastUrl As String) As String[]
    Try Kill tmpfile
 End
 
-Private Function ParseChannel(node As Xmlelement) As String
+Private Function ParseChannel(node As XmlNode) As String
   'returns podcast title,link,description,icon
   Dim t, t1 As Integer
-  Dim node1 As XmlElement
+  Dim node1 As XmlNode
   Dim buf As String
   Dim title As String = ""
   Dim feedlink As String = ""
@@ -58,7 +55,7 @@ Private Function ParseChannel(node As Xmlelement) As String
   Next
   If channelfound Then
     For t = 0 To node1.Children.Count - 1
-      If node1.Children[t].name = "image" Then
+      If node1.Children[t].name Like "*image" Then
          For Each ImageAttribute In node1.Children[t].Attributes
          
            If ImageAttribute.name = "href" Then
@@ -77,15 +74,13 @@ Private Function ParseChannel(node As Xmlelement) As String
 End
 
 
-Private Sub OLD_parseNode(node As Xmlelement)
+Private Sub parseNode(node As XmlNode)
   Dim t, t1 As Integer
-
-  Dim node1 As Xmlelement
+  Dim node1 As XmlNode
   Dim buf As String
   Dim title, description, item_link As String
   Dim EnclosureAttribute As Xmlnode
   For t = 0 To node.Children.Count - 1
-    'node1 = node.Children[t]
     node1 = node.Children[t]
     If node1.name = "item" Then
       For t1 = 0 To node1.Children.Count - 1
@@ -114,45 +109,6 @@ Private Sub OLD_parseNode(node As Xmlelement)
   Next
 End
 
-
-Private Sub parseNode(node As Xmlelement)
-  Dim t, t1 As Integer
-
-  Dim node1 As Xmlelement
-  Dim buf As String
-  Dim title, description, item_link As String
-  Dim EnclosureAttribute As Xmlnode
-  For t = 0 To node.Children.Count - 1
-    'node1 = node.Children[t]
-    Try node1 = node.Children[t]
-    If Error Then Return
-    If node1.name = "item" Then
-      For t1 = 0 To node1.Children.Count - 1
-        buf = node1.Children[t1].name
-        If buf = "title" Then
-          title = node1.Children[t1].value
-        ' Else If buf = "description" Then
-        '   'description = Object.GetProperty(node1.Children[t1], "value")
-        '   description = "ciao"
-        Else If buf = "enclosure" Then
-          For Each EnclosureAttribute In node1.Children[t1].Attributes
-            If EnclosureAttribute.name = "url" Then
-              item_link = EnclosureAttribute.value
-            Endif
-          Next
-        End If
-      Next
-      
-    'fetch return format:
-    'Items.Add(title & ts & description & ts & item_link)
-      
-      Items.Add(title & ts & description & ts & item_link)
-      'PRINT "title=" & title & " Desc=" & description & " link=" & item_LINK
-    Else
-      If node1.Children.Count > 0 Then parseNode(node1)
-    End If
-  Next
-End
 
 Public Sub Add(PodCastUrl As String, PodcastTree As Treeview)
   Dim newitem, title, desc, podlink As String
@@ -251,7 +207,7 @@ Public Sub Refresh(PodCastUrl As String, PodcastTree As Treeview)
     Try PodcastTree.Item.Delete
   Until Error
   'append new results 
-  Append(PodCastUrl, PodcastTree)
+  Try Append(PodCastUrl, PodcastTree)
   'set channel attributes
   SetchannelInfo(PodCastUrl, PodcastTree)
   'restore the previous position

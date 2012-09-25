@@ -32,10 +32,10 @@ Public EventDB As New EventInfo[]
 Event GotInfo(MyEventInfo As EventInfo)
 
 Public Sub Init(Dvbsnoop_Exe As String, Channels_conf_file As String)
-  Dim channels_str As String
+
   Dim LTZ As String
   Dim LTZdiff As Integer
-  Dim i As Integer
+
 
   DvbsnoopExe = Dvbsnoop_Exe ' = "/home/root/Desktop2_kde4/dvbsnoop"
   channels = Split(File.Load(channels_conf_file), "\n")
@@ -151,7 +151,7 @@ End
 
 
 Private Sub ParseService(s As String[])
-  Dim i, j As Integer
+  Dim i As Integer
   Dim eMarker As String = "*Event_ID:*"
   Dim ServiceiD, EventID, Table_ID, ChannelName As String
   Dim ebuffer As New String[]
@@ -227,11 +227,11 @@ End
 
 Private Sub ParseEvent(e As String[], ChannelName As String, EventID As String, ServiceID As String)
   Dim i As Integer
-  Dim Start_time, Duration, Free_Ca_mode, event_name, text_char, ContentNibble As String
+  Dim Start_time, Duration, Free_Ca_mode, event_name, text_char As String
   Dim h, m, s As Integer
   Dim Start_time_date As Date
   Dim Duration_date As Date
-  Dim tmp As String
+
   Dim MyEventInfo As New Eventinfo
   Dim nib, nib1, nib2 As String
 

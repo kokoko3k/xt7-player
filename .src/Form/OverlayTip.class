@@ -4,7 +4,7 @@
 ' Gambas class file
 
 Public Sub Redraw(tip As String, x As Integer, y As Integer)
-  Dim Mypic As Picture
+
   Textlabel1.text = tip
   Me.Move(x, y, Textlabel1.Font.TextWidth(tip), Textlabel1.Font.TextHeight(tip) + 4)
 End

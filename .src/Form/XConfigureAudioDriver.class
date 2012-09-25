@@ -106,7 +106,7 @@ Public Function ParseOptions(TheContainer As Object, TheOptionKeyword As String)
 'The output syntax will be like:
 ' checkbox1.tagSpinbox1.text:checkbox2.tagSpinbox2.text:...:checkboxN.tagTextBoxN.text
 
-Dim obj, child, nextchild As Object
+Dim obj, child As Object
 Dim outline As String = ""
   For Each obj In TheContainer.controls
     If Upper(obj.name) Like Upper(TheOptionKeyword) & "*" Then
@@ -171,7 +171,7 @@ End
 Public Function AddAudioDriver(AlreadyParsedDrivers As String, DriverName As String) As String
   Dim MyDriverName As String = ""
   Dim AoCmdLine As String = ""
-  Dim AdditionalOpts As String = ""
+
   Dim ParsedOptions As String = ""
   
   MyDriverName = Trim(Upper(Replace(DriverName, "&", "")))

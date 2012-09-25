@@ -25,7 +25,7 @@ Private Playeroutput As String = ""
 Public GotHeaders As Boolean = False
 Private LastSplittedOutput As String = ""
 Private stopping As Boolean = False
-Private LastAnswer As String = ""                       'will contains output lines containing "ANS_"
+
 
 Private Takingscreenshot As Boolean = False
 Private lastscreenshot As String = ""
@@ -265,8 +265,6 @@ End
 
 Public Sub Renice(nice As Integer)
 
-  Dim out As String
-
   Debug "nice=" & nice
   Debug
   RenicerProcess = Shell "renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
@@ -293,7 +291,7 @@ Public Sub playerprocess_read()
 
   Dim Splitted As String[]
   Dim VideoOut_dimensions As String
-  Dim tmpout, tmp, tmp2 As String = ""
+  Dim tmpout, tmp As String = ""
   Dim RposPercent As Integer
   
   
@@ -552,8 +550,6 @@ Private Silences As Integer = 0
 
 Public Sub stucktimer_timer()
 
-  Dim maxrestarts As Integer = 3
-
   Silences = silences + 1
   If (ProcessRunningOvr() And (silences >= 2) And (Not paused)) Then
     Debug "WARNING: Not receiving any output from mplayer which is not paused... did it freezed?"
@@ -762,12 +758,6 @@ Public Stimer As Timer 'detect silence from mplayer
 Public stucktimeout As Integer = 5000 ' milliseconds to detect a stuck mplayer process
 Public StuckRestartedTimes As Integer = 0
 
-Private Sub InitStucktimer(options As Integer)
-    Stimer = New Timer As "stucktimer"
-    STimer.delay = StuckTimeout
-    'stimer.enabled = TRUE
-    stimer.enabled = Not (options Like "*-idle*")
-End
 
 
 Public Function DeMuxerslist() As String[]
@@ -843,21 +833,9 @@ Public Function do_IdlePlay(filename As String) As Boolean
   Return True
 End
 
-Private ladspaworkaroundstr As String = "Audio_delay Sub_delay Speed_incr Balance speed_mult Sub_scale"
 
-Private Function LadspaWorkaround(command As String) As String
 
-  If (Upper(commandline) Like "*-af*LADSPA=*") Then
-    If (InStr(ladspaworkaroundstr, Split(command, " ")[0]) > 0) Then
-      Return Replace(command, ".", ",")
-    Else
-      Return command
-    Endif
-  Else
-    Return command
-  Endif
 
-End
 
 Public Function DoDeinterlace()
   If commandline Like "*vdpau*" Then
@@ -1157,7 +1135,7 @@ Public Function IsSubFile(SubfilePath As String) As Boolean
 
 End
 
-Private AddedSubs As Integer = 0
+
 Public Sub SubtitleAdd(SubFilePath As String)
 
   Dim TotalFileSubtitles As String = "0"
@@ -1280,7 +1258,7 @@ End
 
 Public Function DeFormatTime(FormattedTime As String) As String
 
-  Dim ss, mm, hh, Total As Integer
+  Dim ss, mm, hh As Integer
 
   Try ss = Split(FormattedTime, ":")[2]
   If Error Then ss = "0"
@@ -1352,7 +1330,7 @@ End
 
 Public Sub Media_GetLength() As String
 
-  Dim t1, tmp As String = ""
+  Dim t1 As String = ""
   Dim ofpos, i As Integer = 0
 
   
@@ -1473,7 +1451,7 @@ Private gridpriv As Gridview
 Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300, mygrid As Gridview, row As Integer, column As Integer) 
   Dim outdir As String = Shell(Temp()) & Rnd(0, 99999)
   Dim cmdline As String = ""
-  Dim mpout As String
+
   Mkdir outdir
 
   rowpriv = row

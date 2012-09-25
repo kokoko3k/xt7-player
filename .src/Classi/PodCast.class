@@ -9,12 +9,12 @@ Public ts As String = Chr(8)
 
 
 Public Function Fetch(PodCastUrl As String) As String[]
-  Dim http As New Httpclient
+
   Dim buffer As String
   Dim xml As New Xmldocument
-  Dim node, subnode As Xmlnode
-  Dim Response As New String[]
-  Dim i As Integer
+  Dim node As Xmlnode
+
+
   Dim tmpfile As String = Temp()
   Dim wget As New Wgetclass
   channelinfo = ""
@@ -35,9 +35,9 @@ End
 
 Private Function ParseChannel(node As XmlNode) As String
   'returns podcast title,link,description,icon
-  Dim t, t1 As Integer
+  Dim t As Integer
   Dim node1 As XmlNode
-  Dim buf As String
+
   Dim title As String = ""
   Dim feedlink As String = ""
   Dim description As String = ""

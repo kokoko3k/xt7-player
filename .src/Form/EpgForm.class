@@ -5,7 +5,7 @@ Private ChannelsFile As String = User.home & "/.mplayer/channels.conf.ter"
 Private TimeLabelW As Integer = 180 '180pixels = 1 hour -> 1pix = 1/3minute
 Private TimeLabelCount As Integer = 168
 Private StartDate As Date
-Private DateAndHandle As String[]
+
 Public InitDone As Boolean = False
 
 Public Struct EventInfo
@@ -162,15 +162,15 @@ End
 
 
 Public Sub dvbsnoop_GotInfo(MyEventInfo As EventInfo)
-Dim GridStartTime As Date
-Dim yy, mm, dd As Integer
-Dim myHour As Date
+
+
+
 Dim tmp As String
 Dim mOffset As Long
 Dim gOffset As Integer
 Dim mDuration As Integer
 Dim gDuration As Integer
-Dim y, i As Integer
+Dim i As Integer
 Dim EpgButton As Button
   
   BlinkTimer.delay = 1
@@ -446,14 +446,14 @@ Private Function MatchEvent(o As Object, e As String) As Boolean
   Return False
 End
 
-Private Function MatchEventDb(eInfo As EventInfo, e As String) As Boolean
-  Dim s As String = "*" & e & "*"
-  'Debug o.text
-  If eInfo.event_name Like s Then Return True
-  If eInfo.text_char Like s Then Return True
-  If eInfo.ChannelName Like s Then Return True
-  Return False
-End
+
+
+
+
+
+
+
+
 
 
 Private lastsearch As String
@@ -512,9 +512,9 @@ End
 
 Private LastepgFound As Button
 Public Sub OldScrollToEvent(e As String, Optional SecondSearch As Boolean = False)
-  Dim i, j As Integer
+
   Dim o As Object
-  Dim eInfo As EventInfo
+
   Dim x, y As Integer
   Dim FromScratch As Boolean
 

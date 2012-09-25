@@ -48,8 +48,8 @@ Public Function GetGenres(GenresTree As TreeView)
   'Enum shoucast genres and fill a treeview in the format
   Dim i As Integer
   Dim buffer, GenreName, description, numstations, mylink As String
-  Dim xml As New Xmldocument
-  Dim node, subnode As Xmlnode
+
+
   Dim lines As New String[]
   'DIM AskUrl AS String = "http://yp.shoutcast.com/sbin/newxml.phtml?rss=1"
   Dim AskUrl As String = "'http://api.shoutcast.com/legacy/genrelist?k=sh17tOUi_ezL61_A&rss=1'"
@@ -132,9 +132,9 @@ End
 Private Function DownloadAndParse(AskUrl As String, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null) As String
   Dim buffer As String
   Dim xml As New Xmldocument
-  Dim node, subnode As Xmlnode
-  Dim Response As New String[]
-  Dim i As Integer
+  Dim node As Xmlnode
+
+
   Dim tmpfile As String = Temp()
   Dim wget As New Wgetclass
   channelinfo = ""
@@ -171,16 +171,16 @@ End
 
 Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
   'returns podcast title,link,description,icon
-  Dim t, j, k As Integer
-  Dim channelnode, stationnode As XmlNode
-  Dim buf As String
-  Dim title, name, br, mt, id, MyLink As String = ""
-  Dim feedlink As String = ""
-  Dim description As String = ""
-  Dim image As String = ""
-  Dim Attribute As Xmlnode
+  Dim t, j As Integer
+
+
+  Dim title, br, mt, id, MyLink As String = ""
+
+
+
+
   Dim channelfound As Boolean = False
-  Dim stationfound As Boolean = False
+
   Dim LastRow As Integer = 0
   Dim tunein_base As String = ""
   Dim TuneinAttribute As XmlNode

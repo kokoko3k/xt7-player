@@ -259,9 +259,7 @@ Public Function IsDVBuri(filename As String) As Boolean
  Return Lower(filename) Like "dvb://*"
 End
 
-Private Function ConfPath_read() As String
-  Return Settings.defaultdir & "/" & Appname
-End
+
 
 
 Public Function NoFileSuffix(Myfilename As String) As String
@@ -341,7 +339,6 @@ End
 
 Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As Boolean = True, Optional cachedopts As String = "")
   Dim MySettings As New SettingsClass
-  Dim cachefile As File
   If cachedopts <> "" Then SaveCachedOpts(ProfileName, cachedopts)
   
   SaveMandatorySettings(Profilename)
@@ -363,9 +360,6 @@ End
 
 Public Sub LoadEarlySettings(ProfileName As String)
   Dim MySettings As New SettingsClass
-  'DIM MyForms AS NEW Object[]
-  'DIM TheForm AS Object
-  Dim WasVisible As Boolean = False
   Dim out As String
   
   'changed name from Xt7-Player to xt7-player, config transition needed:
@@ -381,9 +375,6 @@ End
 
 Public Sub LoadAllSettings(ProfileName As String) 'THIS Is PROBABLY BROKEN
   Dim MySettings As New SettingsClass
-  'DIM MyForms AS NEW Object[]
-  'DIM TheForm AS Object
-  Dim WasVisible As Boolean = False
   Dim out As String
   'changed name from Xt7-Player to xt7-player, config transition needed:
     Shell "mv -f " & Settings.DefaultDir & "/Xt7-Player.conf " & Settings.DefaultDir & "/xt7-player.conf >/dev/null 2>&1" Wait To out
@@ -533,18 +524,7 @@ Public Sub FilterListFromTab(TheTabStrip As Tabstrip, FilterList As Listbox)
     Next 'i
 End
 
-Private Sub Resize(AComboBox As Combobox)
-'will resize combobox width according to it's contents
-  Dim Astring As String
-  Dim i, TmpWidth, TheMax As Integer = 0
-  For i = 0 To AcomboBox.count - 1
-    ' [GB2:FNTW] TmpWidth = AcomboBox.Font.TextWidth(AComboBox[i].Text)
-    TmpWidth = AcomboBox.Font.TextWidth(AComboBox[i].Text)
-    If TmpWidth > TheMax Then TheMax = TmpWidth
-  Next 'i
-  AComboBox.w = TheMax + 32
-  
-End
+
 
 Public Function RemoveShortcut(Tmpstring As String) As String
   '&AText -> Atext

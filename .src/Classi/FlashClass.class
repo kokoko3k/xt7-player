@@ -70,7 +70,7 @@ Public Function IsRecording(infile As String) As Boolean
 End
 
 Public Function getflashes() As String[]
-  Dim findout, cmdline, filename As String
+  Dim findout, cmdline As String
   Dim findouts As New String[]
   'find all file descriptors with reference to something like /tmp/Flash*
   Shell "find /proc/*/fd/ -lname '/tmp/Flash*'" To findout
@@ -93,7 +93,6 @@ Public Function UpdateGrid() As Boolean
   Dim LastSelected, c, r As Integer
   Dim i As Integer
   Dim newflashvideo, recordingfile As String = ""
-  Dim recordingsize As Integer = 0
   'DIM CatchedFlashesNew AS NEW String[]
   LastSelected = Grid.row
   Grid.rows.Count = 0

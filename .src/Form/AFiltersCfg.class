@@ -79,7 +79,7 @@ End
 Public Sub SyncFiltersList(CheckFilterName As String, IsInChain As Boolean)
   'this will add or remove the "*" symbol from filter name
   'in VideoFilterList
-  Dim FilterName As String
+
   Dim i As Integer
   For i = 0 To FilterList.count - 1
     If (Upper(FilterList[i].text) = Upper(CheckFilterName)) Or (Upper(FilterList[i].text) = Pre & Upper(CheckFilterName)) Then
@@ -94,18 +94,18 @@ Public Sub SyncFiltersList(CheckFilterName As String, IsInChain As Boolean)
 End
 
 
-Private Sub Resize(AComboBox As Combobox)
-'will resize combobox width according to it's contents
-  Dim Astring As String
-  Dim i, TmpWidth, TheMax As Integer = 0
-  For i = 0 To AcomboBox.count - 1
-    ' [GB2:FNTW] TmpWidth = AcomboBox.Font.TextWidth(AComboBox[i].Text)
-    TmpWidth = AcomboBox.Font.TextWidth(AComboBox[i].Text)
-    If TmpWidth > TheMax Then TheMax = TmpWidth
-  Next 'i
-  AComboBox.w = TheMax + 32
-  
-End
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Private Sub DrawFiltersGui()

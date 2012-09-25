@@ -8,10 +8,6 @@ Private samplesperchannel As Integer
 
 Private buffer As New Integer[][]
 
-
-Private currentreading As Integer = 0
-Private maxreadings As Integer = 10
-
 Public latency As Integer = 300
 Public MaxH As Integer
 
@@ -46,7 +42,6 @@ End
 Public Sub Timer1_Timer()
   Dim hFile As File
   Dim bufsize, sync, meter As Integer
-  Dim i, c, s, total, avg, start, sstop As Integer
   Dim samples As New Integer[]
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input

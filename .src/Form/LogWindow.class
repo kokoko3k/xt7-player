@@ -91,13 +91,13 @@ End
 
 
 Private Function DoHighlight(logarea As Object, foundstr As String) As Boolean
-  Dim FoundStartPos, lenfoundstr As Integer = 0
+  Dim lenfoundstr As Integer = 0
   Dim rtext As String
   Dim hlight1 As String = "<font color=red><b>"
   Dim hlight2 As String = "</b></font>"
   Dim i, sfound As Integer
   Dim found As Boolean = False
-  Dim MyLeft, MyMid, MyRight, allstr As String
+  Dim MyLeft, MyMid, MyRight As String
   lenfoundstr = Len(foundstr)
   logarea.EnsureVisible
   rtext = logarea.text

@@ -5,7 +5,6 @@
 Public ts As String
 Private localtable As New String[]
 Private localplaylist As Playlistclass
-Private albums As New String[]
 Private iconsize As Integer = 64
 Private columnwidth As Integer = 128
 Private view As Gridview
@@ -65,7 +64,6 @@ Public Function Init(playlist As Playlistclass, theview As Gridview, Optional fi
   Dim album, nextalbum As String
   Dim path As String
   Dim artist As String
-  Dim coverfile As String
   Dim filter As String
   Dim matchfilter As Boolean = False
   
@@ -348,28 +346,11 @@ Public Sub highlighter(mousex As Integer, mousey As Integer)
 End
 
 
-Private lastcelltext As String 
-Private timg As New Image
-Private big As Integer
-
 Public Sub zoompic(r As Integer, c As Integer)
-  Dim img As New Image
   Dim nw, nh As Integer
   Dim savetext As String
-  Dim mystep As Integer = 0
-  'nw = view[r, c].Picture.w
-  'nh = view[r, c].Picture.h
 
-  'img = view[r, c].Picture.image
-  'Try savetext = view[r, c].text
-  ' mystep = CInt((iconsize / 5) / 10)
-  ' While (nw - iconsize) < (iconsize / 5)
-  '   nw = view[r, c].Picture.w + mystep 'timg.w + CInt(img.w + (img.w / 10))
-  '   nh = view[r, c].Picture.h + mystep 'timg.h + CInt(img.h + (img.h / 10))
-  '   view[r, c].Picture = img.Stretch(nw, nh).Picture
-  '   view[r, c].text = savetext
-  '   Wait 
-  ' Wend
+
   nw = CInt(view[r, c].Picture.w * 1.1)
   nh = CInt(view[r, c].Picture.h * 1.1)
   Try savetext = view[r, c].text 

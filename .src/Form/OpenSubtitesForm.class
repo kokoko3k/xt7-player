@@ -5,7 +5,7 @@ Private XmlFields As New String[]
 Private Columnindex As New Collection
 
 Public Sub Form_Open()
-  Dim field As String
+
   Dim i As Integer
   Global.Center(fmain, Me)
   opensubs = New OpenSubtitlesAPI

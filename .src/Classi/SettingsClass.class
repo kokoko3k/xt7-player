@@ -33,32 +33,7 @@ Public Function ReadedConfFile(FileName As String) As String[]
   
 End
 
-Private Sub oldReparent(TheObject As Object, TheParentName As String, TheForm As Object)
-  'Will reparent an object basing on the new parent name searched in TheForm
-  'if TheObject is a container, no reparent operation is done.
-  'Tf TheParent is the same, it is necessary to "Parent out" the object
-  '   And then reparent it into its original container, otherwise the gambas reparent
-  '   function does nothing.
-  '   We do this Through HiddenBox
-  
-  Dim ParentObj As Object
-  Dim HiddenBox As Form
-  
-  For Each ParentObj In TheForm.controls
-    If ParentObj.name = TheParentName Then
-      If Not (TheObject Is Container) Then
-        If ParentObj.name = TheObject.parent.name Then
-          HiddenBox = New Form
-          TheObject.reparent(hiddenbox)
-        Endif
-        TheObject.Reparent(ParentObj)
-        Try HiddenBox.Delete
-        'Debug "Reparenting " & TheObject.name & " into " & ParentObj.name  'Debug
-        Break
-      Endif
-    Endif
-  Next
-End
+
 
 
 
@@ -91,33 +66,7 @@ End
 
 
 
-Private Sub newReparent(TheObject As Object, TheParentName As String, TheForm As Object)
-  'Will reparent an object basing on the new parent name searched in TheForm
-  'if TheObject is a container, no reparent operation is done.
-  'Tf TheParent is the same, it is necessary to "Parent out" the object
-  '   And then reparent it into its original container, otherwise the gambas reparent
-  '   function does nothing.
-  '   We do this Through HiddenBox
-  
-  Dim ParentObj As Object
 
-  
-  For Each ParentObj In TheForm.controls
-    If ParentObj.name = TheParentName Then
-      If Not (TheObject Is Container) Then
-        If ParentObj.name = TheObject.parent.name Then
-     
-          TheObject.reparent(theform)
-        Endif
-        TheObject.Reparent(ParentObj)
-
-        'Debug "Reparenting " & TheObject.name & " into " & ParentObj.name  'Debug
-        Break
-      Endif
-    Endif
-  Next
-  
-End
 
 Private Sub Reconfigure(theObject As Object, TheSettings As String[], TheForm As Object)
   'Will parse String[] and try to reconfigure the object
@@ -356,7 +305,7 @@ End
 
 Public Sub ReparentAndSort(TheForm As Object, settings As String[])
   Dim i, j As Integer
-  Dim subsettings As New String[]
+
   Dim objname, parentname As String
   Dim tmpobject As Object
 
@@ -505,7 +454,7 @@ Public Sub SaveCachefiles()
   'save cache size in text files to retrieve it fast on 'boot'
   Dim cachesize, mincache, seekcache As String
   
-  Dim cachetextfile As String = ""
+
   With GeneralOptions
     
   'file
@@ -558,8 +507,8 @@ End
 Public Sub Save(TheForm As Object, FileName As String)
   
   Dim ConfFile As File
-  Dim TheObject, TheChildren As Object
-  Dim MyType As String
+  Dim TheObject As Object
+
   Dim MyValue As String = 0
   Dim SaveColor As Boolean = False
   Dim i As Integer

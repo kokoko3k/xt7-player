@@ -98,7 +98,7 @@ End
 
 Public Function ParseOptions(TheContainer As Object, TheOptionKeyword As String) As String
 
-Dim obj, child, nextchild As Object
+Dim obj, child As Object
 Dim outline As String = "" 'outline is the tag which indicates a driver parameter
   For Each obj In TheContainer.controls
     If Upper(obj.name) Like Upper(TheOptionKeyword) & "*" Then
@@ -131,7 +131,7 @@ End
 Public Function AddVideoDriver(AlreadyParsedDrivers As String, DriverName As String) As String
   Dim MyDriverName As String = ""
   Dim VoCmdLine As String = ""
-  Dim AdditionalOpts As String = ""
+
   Dim ParsedOptions As String = ""
   
   MyDriverName = Trim(Upper(Replace(DriverName, "&", "")))

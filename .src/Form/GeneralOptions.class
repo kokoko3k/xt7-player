@@ -260,9 +260,9 @@ Public Sub OptionsList_Click()
 End
 
 Private Sub ItemSelection()
-  Dim i As Integer
+
   Dim caption As String
-  Dim ChainObj As Object
+
   If OptionsList.Current.Key = "Chains" Then
     Chains.show
   Else If OptionsList.Current.key = "Subtitles" Then
@@ -515,7 +515,7 @@ End
 Public Sub NoParseWatchedListbox_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile As String
-  Dim i As Integer
+
   droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If Trim(DroppedFile) <> "" Then
@@ -528,7 +528,7 @@ End
 Public Sub NoParseExcludedListbox_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile As String
-  Dim i As Integer
+
   droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
     If Trim(DroppedFile) <> "" Then

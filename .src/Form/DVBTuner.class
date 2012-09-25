@@ -84,7 +84,7 @@ End
 
 
 Public Sub scanprocess_read()
-  Dim sLine, sLines As String
+  Dim sLine As String
 
   For Each sLine In scanprocess.Lines
     If sLine Like "*dumping lists*" Then

@@ -150,14 +150,14 @@ End
 Public Sub GetCoversFromGoogle(query As String)
   Dim baseurl As String = "http://images.google.com/images?q=${QUERY}&svnum=100&hl=en&lr=&safe=off&sa=G&imgsz=${SIZE}&start=${START}"
   Dim url As String
-  Dim resultfile As String = Temp()
+
   Dim result As String
   Dim resultlines As String[]
   Dim myline As String
   Dim mystart, myend, mylen As Integer
   Dim imgurls As New String[]
   Dim imgurl As String
-  Dim imgfile As String = Temp()
+
   Dim size As String = "medium" '"icon|small|medium|large|xlarge|xxlarge"
   Dim timeout As Integer = 1000 ' centisecs
   Dim hastimedout As Boolean = True
@@ -308,7 +308,7 @@ Public Sub Search()
 End
 
 Public Sub CoverList_Select()
-  Dim blackpicture As New Picture
+
   Picturebox1.picture = Picture.Load(Coverlist.Current.key)
   Picturebox1.refresh
 End
@@ -326,7 +326,7 @@ Public CoverCacheList As New ListView(zzzfake)
 
 Public Sub RemoveCoverCache(coverfile As String, Optional RemoveSourceToo As Boolean)
   Dim cachefile As String = coverfile & "_thumbcache" 'ricava il nome dei file cache
-  Dim catcherror As Boolean
+
   Shell "rm '" & cachefile & "'" & "*.*" 'rimuovilo dal disco
   'cercalo in memoria e rimuovilo:
   If CoverCacheList.Count > 0 Then 
@@ -353,10 +353,10 @@ Public Function coverpicture(coverfile As String, uripath As String, height As I
 Dim cachefile As String = coverfile & "_thumbcache" & height & "." & File.ext(coverfile)
 Dim tmpimage As Image
 Dim defaultcover As Boolean = False
-Dim FileExists As Boolean = False
+
 Dim width As Integer
-Dim neww, newh As Integer
-Dim newx, newy As Integer
+Dim neww As Integer
+
   
 ' zzzfake.Arrangement = Arrange.Fill
 ' Try CoverCacheList.expand = True
@@ -470,8 +470,8 @@ Public Function IsUncovered(fullpath As String) As Boolean
 End
 
 Public Sub MarkUncovered(fullpath As String)
-  Dim newfilename As String
-  Dim tmppic As Picture
+
+
   If (Uncovered.Find(fullpath) = -1) Then Uncovered.Add(fullpath) 'Uncovered.Add(file.Name(fullpath))
 End
 
@@ -490,7 +490,7 @@ Private Const B64Const As String = "=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 Public Sub FromB64(B64Str As String) As String
   Dim Position As Long
   Dim dt As Byte
-  Dim B64Decoded, u, c As String
+  Dim B64Decoded, c As String
   Dim Tkn, p As Integer
   '
   Position = 1
@@ -987,12 +987,13 @@ Public Sub CoversLookerTimer_timer()
  Dim row, firstR, lastR As Integer
  Dim column As Integer = 0
  Dim mygrid As Gridview
- Dim mypicture As Picture
- Dim fullpathcheck As String
- Dim fullpathindex As Integer = 19 'fixme, il fullpathindex andrebbe calcolato da playlist.columnindex["full path"]
- Dim savedtext As String
- Dim savedback As Integer
- Dim rowheight As Integer = 24 - global.rowpadding
+
+
+
+
+
+
+
 
 'will check for embedded covers or covers inside folders.
 
@@ -1096,7 +1097,6 @@ Public Sub FileNotFoundAdd(path As String)
   If (filesnotfound.Find(path) = -1) Then filesnotfound.Add(path)
 End
 
-
 Public Function SavePic(fullpath As String, artist As String, album As String, rowheight As Integer, Optional forcethumbs As Boolean = False, mygrid As Gridview, row As Integer, column As Integer) As Boolean
   Dim coverfilename As String
   coverfilename = coverfile(artist, album, fullpath)
@@ -1181,7 +1181,7 @@ End
 
 
 Public ThumbsToBeMade As New String[]
-Private thumbstimer As New Timer As "thumbstimer"
+
 Private runningthumblers As Integer = 0
 Private mplayerthumb As Mplayerclass
 
@@ -1244,7 +1244,7 @@ End
 
 
 
-Private canvas As Image = Image.Load("null.png")
+
 Private shadowimg As Image = image.load("shadow.png")
 Public ShadowOffset As Integer 
 Private ShadowOffsetPaint As Integer

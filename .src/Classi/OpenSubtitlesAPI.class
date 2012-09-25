@@ -43,7 +43,7 @@ Public Function StringFromName(ByRef aXml As String, aName As String, discard As
 End
 
 Public Function LogOut(token As String) As String
-  Dim answer, question, status As String
+  Dim answer, question As String
   question = "<?xml version='1.0'?>"
            "<methodCall>"
            "  <methodName>LogOut</methodName>"
@@ -101,8 +101,8 @@ End
 Public XmlFields As String = "SubFileName,SubLanguageID,SubFormat,SubRating,SubDownloadsCnt,SubDownloadLink,SubtitlesLink"
 
 Public Function SearchByTag(token As String, Language As String, myquery As String) As Collection[]
-  Dim question, subs, status As String
-  Dim field, fields As String 
+  Dim question, subs As String
+  Dim field As String 
   Dim mysub As Collection
   Dim mysubs As New Collection[]
   Dim t As String
@@ -156,7 +156,7 @@ Public Function SearchByTag(token As String, Language As String, myquery As Stri
 End
 
 Public Function removenullitems(mysubs As Collection[]) As Collection[]
-  Dim mysub As Collection
+
   Dim i As Integer
   For i = 0 To mysubs.count - 1
     If Trim(mysubs[i]["SubDownloadLink"]) = "" Then mysubs.Remove(i)
@@ -166,8 +166,8 @@ End
 
 
 Public Function SearchByQuery(token As String, Language As String, myquery As String) As Collection[]
-  Dim question, subs, status As String
-  Dim field, fields As String 
+  Dim question, subs As String
+  Dim field As String 
   Dim mysub As Collection
   Dim mysubs As New Collection[]
   Dim t As String
@@ -221,8 +221,8 @@ Public Function SearchByQuery(token As String, Language As String, myquery As St
 End
 
 Public Function SearchByHash(token As String, Language As String, moviehash As String, moviesizebytes As Long) As Collection[]
-  Dim question, subs, status As String
-  Dim field, fields As String 
+  Dim question, subs As String
+  Dim field As String 
   Dim mysub As Collection
   Dim mysubs As New Collection[]
   Dim t As String
@@ -306,7 +306,7 @@ Public Function MovieHash(filename As String) As String
 End
 
 Public Function SaveSub(SubUrl As String, Target As String) As Boolean
-  Dim myhttp As New Httpclient
+
   Dim Cp As New Uncompress
   Dim tmpfile As String = Temp() & ".gz"
   Dim timeout As Integer = 1000 'centisecs

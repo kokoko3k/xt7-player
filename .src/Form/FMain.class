@@ -213,8 +213,8 @@ End
 
 Public Sub Form_Open()
 
-  Dim tmpimage As Image
-  Dim msg As String
+
+
 
   SetFlexSpaceVisibility(False)
   'init dynagui toolbar objects
@@ -331,7 +331,7 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
 End
 
 Public Sub AllInit_Pre()
-  Dim MySettings As New SettingsClass
+
 
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
@@ -387,7 +387,7 @@ Public Sub InitEarlyForms()
 End
 
 Public Sub AllInit_Post()
-  Dim DefaultProfilepath As String = global.confpath & "/default.profile"
+
   Dim savefileview1path As String
   Hsplit1ResizeDelayed = New Timer As "Hsplit1ResizeDelayed" 'used to delay the hsplit resize and better performance
   Hsplit1ResizeDelayed.delay = 300
@@ -484,7 +484,7 @@ Private RecentFileEntry As Menu
 
 Private HaveToPlay As String = ""
 Public Sub updaterecentfiles()
-  Dim child As Menu
+
   Dim history, entry As String
   Dim historyarray As String[]
   Dim sep As String = Chr(8)
@@ -733,7 +733,7 @@ End
 Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
  Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
  Dim TheObject As Object
- Dim nextisvisible As Boolean = False
+
  Dim cX As Integer = 0
  NumButtonsCPL = 0
  'fix bottom panel for high sized fonts
@@ -767,7 +767,7 @@ End
 Public Sub SetStyle_early()
   
   Dim TheObject As Object
-  Dim h1, h2, h3 As String
+
  
   Dim backcolor As String = GeneralOptions.backcolorChooseBTN1.Background
   Dim forecolor As String = GeneralOptions.ColorChooseBTN1.Background
@@ -975,9 +975,9 @@ Private PlayFromCommandline As Boolean = False
 
 Public Sub MainInit()
 
-  Dim quick As Boolean
+
   Dim AlreadyRunning As Boolean = False
-  Dim out As String
+
   Dim cachedfile As File
   Dim MySettings As New SettingsClass
   'Disable Shutdown feature at start.
@@ -1229,7 +1229,7 @@ End
 
 Public Sub Form_Close()
   
-  Dim i As Integer
+
   Dim MySettings As New SettingsClass
   
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
@@ -1402,7 +1402,7 @@ Public Sub CorrectAreaAspect()
   
   Dim VideoW As Integer = 4
   Dim VideoH As Integer = 3
-  Dim CenterX, CenterY As Integer
+
   Dim Aspect As Float = 1.333
   Dim TmpX, TmpY, TmpW, TmpH As Integer
   
@@ -1779,7 +1779,7 @@ Public Function FillStreamsMenu()
   Dim i As Integer
   Dim AudioMenu, SubMenu As Menu
   Dim menuopensubtitles As Menu
-  Dim menuopensubsearchbyname As Menu
+
 
   Dim menuopensubsearchmanual As Menu
   Dim menuopensubconfigurelanguages As Menu
@@ -1969,7 +1969,7 @@ Public Function makeiso6392(langcode As String) As String
 End
 
 Private OpenSubs As New OpenSubtitlesAPI
-Private OpenSubsAgent As String = "xt7player"
+
 Private TimerMenuHashSearch As New Timer As "TimerMenuHashSearch"
 
 
@@ -2101,7 +2101,7 @@ End
 
 Public Sub TreeView1_Activate()
   
-  Dim CurTitle, NextTitle, CurChapter, NextChapter, CurAngle, NextAngle As Integer
+  Dim CurTitle, NextTitle, NextChapter, NextAngle As Integer
   Dim MyKey, tmp As String
   
   tmp = ""
@@ -2251,7 +2251,7 @@ Public Sub Menuswitchsub_click()
 End
 
 Public Function Displaysub(MenuLine As String)
-  Dim fmax, emax, rfid, reid, fid, eid As Integer
+  Dim fmax, emax As Integer
   Dim sub As String
   Dim ID As Integer
   'when you insert an external sub file into a file that embeds other subtitles like mkv,
@@ -2297,7 +2297,7 @@ Public Function Displaysub(MenuLine As String)
 End
 
 Public Function OLD_Displaysub(MenuLine As String)
-  Dim fmax, emax, rfid, reid, fid, eid As Integer
+  Dim fmax, emax As Integer
   Dim sub As String
   Dim ID As Integer
   'when you insert an external sub file into a file that embeds other subtitles like mkv,
@@ -2429,8 +2429,8 @@ Public needytcookie As Boolean = False
 
 Private dumpfile As String
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
-  Dim prevtabindex As Integer = Leftsidetabs.index
-  Dim SelectedRow As Integer
+
+
   Dim MkvSubsWorkaround As Boolean
   Dim cookieopts As String = ""
   Dim cachingbox As MovieBox 'show an animation while caching...
@@ -2691,7 +2691,7 @@ Public Function SetRightCache() As String
 
   Dim cachesize As String = "NULL"
   Dim mincache, seekcache As String
-  Dim cachesizefile As String = global.confpath & "/" & global.CurrentProfile & ".profile/" & "cachesize."
+
 
   With GeneralOptions
     If global.IsNetworkURI(mplayer.Media_FullPath) Then
@@ -2922,7 +2922,7 @@ End
 
 Public Sub UpdateSeekSlider()
   'Get the current playing time and update seek bar accordingly
-  Dim totaltime, actualtime, percent, stream_length, stream_pos As Integer
+  Dim totaltime, actualtime As Integer
   If SeekingRestarting Then Return
 
     SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
@@ -3136,11 +3136,11 @@ End
 
 Public Sub OneSecTimer_Timer()
   
-  Dim running As Boolean = False
+
   Dim PlaylistFinished As Boolean
-  Dim oldaspect, newaspect As Float
-  Dim VideoW As Integer
-  Dim VideoH As Integer
+
+
+
 
   If mplayer.ProcessRunningOvr() Then
     
@@ -3384,7 +3384,7 @@ Public SeekingRestarting As Boolean = False
 
 Public Sub SeekOrSeekAndRestart(Action As String)
   'Restart the stream from a new position on youtube streams instead of seeking.
-  Dim delta As Integer
+
   Dim newpos As Integer
   
   'do as usual for non YT streams:
@@ -3503,7 +3503,7 @@ End
 Public Sub VideoAreaGroup_MouseDrag()
   
   Dim NewX, NewY As Integer
-  Dim MinX, MinY As Integer
+
   
   If (Not Fmain.FullScreen) Then
     If SwitchingFullScreen Then Return
@@ -3824,7 +3824,7 @@ End
 
 Public Sub FullScreenSwitch_OLD()
 
-  Dim MenuBarItem As Object
+
   Dim MaxWait As Integer = 1000
   Dim blackbox As New Panel(fmain)
 
@@ -3966,7 +3966,7 @@ End
 
 Public Sub NEW_FullScreenSwitch()
   
-  Dim MenuBarItem As Object
+
   Dim MaxWait As Integer = 1000
   Dim Blackform As Form
   Dim blackpanel As Panel
@@ -4285,7 +4285,7 @@ Public Sub LibraryGrid_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile, ext As String
   Dim dragdata As String
-  Dim i As Integer
+
   Dim IsFile, IsURI, IsDirectory, IsPlayList As Boolean
   
   dragdata = Drag.Paste("text/uri-list")
@@ -4498,7 +4498,7 @@ Public Sub HotKeyToMplayer(HotKey As String)
   'Some actions such as fullscreen and panscan are treated internally
   
   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
-  Dim tmpfloat As Float
+
 
   'PRINT Action
   Select Case Action
@@ -4695,8 +4695,8 @@ Public Sub GeneralOptionsMenu_Click()
 End
 
 Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
-  Dim FromGrid As Boolean = True
-  Dim Returnvalue As Boolean
+
+
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
@@ -4794,7 +4794,7 @@ End
 
 Public Sub ButtonPrev_Click()
 
-  Dim Returnvalue As Boolean
+
   Dim mplayerwasrunning As Boolean = False
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
   OneSecTimer.stop
@@ -5047,7 +5047,7 @@ End
 Public Sub PlaySelectedDvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
-  Dim myradiolabel As String
+
   
     'start from a blank panel
     zzzfake.LabelNowName.text = ("Not available")
@@ -5122,11 +5122,11 @@ End
 
 Public Sub RefreshVisibleRows(mygrid As Gridview, mylibrary As Playlistclass)
   
-  Dim TheColumn As Integer
+
   Dim R, FirstR, LastR As Integer
-  Dim C, FirstC, LastC As Integer
-  Dim TextW As Integer
-  Dim Text As String
+  Dim FirstC, LastC As Integer
+
+
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
@@ -5148,11 +5148,11 @@ End
 
 Public Sub RefreshVisibleCovers(mygrid As Gridview)
   
-  Dim TheColumn As Integer
-  Dim R, FirstR, LastR As Integer
-  Dim C, FirstC, LastC As Integer
-  Dim TextW As Integer
-  Dim Text As String
+
+  Dim FirstR, LastR As Integer
+  Dim FirstC, LastC As Integer
+
+
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
@@ -5387,11 +5387,11 @@ End
 
 
 Public Sub CleanVideoThumbs()
-  Dim ffile As String
+
   Dim videofilter, videofile As String
   Dim videofiles As String[]
   Dim coverfile As String
-  Dim coverfilesOK As New String[]
+
   Dim safeplace As String
   safeplace = global.confpath & "/coverstmp"
   Try Mkdir safeplace
@@ -5428,7 +5428,7 @@ Public Sub MenuLibraryUpdate_Click()
   Dim removedfiles As String[]
   Dim Watcheddirs As String = ""
   Dim ExcludedDirs As String = ""
-  Dim i, k, j, AnswerRemove As Integer
+  Dim i, j, AnswerRemove As Integer
   
   If Not global.LSyncing Then
     'show the progressbar and disable library:
@@ -5583,12 +5583,12 @@ End
 
 Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gridview, InfoWidget As Label)
   
-  Dim row, count, Length As Integer
+
   Dim Answer As String[]
-  Dim pretext, LotOfSpaces, PostText As String
-  Dim TextW As Integer
-  Dim FreeSpace, NeededSpaces As Integer
-  Dim SpaceWidth As Integer = InfoWidget.Font.TextWidth(" ")
+  Dim pretext, PostText As String
+
+
+
   
   answer = Split(MyLibrary.GetSelectedAndLength(Playlistgrid), ";")
   PreText = ("Selected: ") & answer[0] & "/" & answer[1]
@@ -5597,7 +5597,7 @@ Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gri
   
 End
 
-Private prevHigLibRow As Integer = -1
+
 
 Public Sub LibraryGrid_Select()
 
@@ -5807,7 +5807,7 @@ End
 
 Public Sub MoveUpPlsBTN_Click()
   
-  Dim FirstSelected, howmanyselected As Integer
+  Dim howmanyselected As Integer
   Dim i, j As Integer = 0
 
   MovingItems = True
@@ -5835,7 +5835,7 @@ End
 
 Public Sub MoveDownPlsBTN_Click()
   
-  Dim FirstSelected, howmanyselected As Integer
+  Dim howmanyselected As Integer
   Dim i, j As Integer
 
   MovingItems = True
@@ -5862,12 +5862,12 @@ End
 Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
   
   Dim i As Integer
-  Dim TheRow As String = ""
+
   Dim TargetRow As Integer
   Dim TotalRows As Integer = ClipboardRows.count - 1
-  Dim IsFile, IsURI, IsDirectory As Boolean
-  Dim droppedfiles As String[]
-  Dim DroppedFile As String
+
+
+
   
   If TargetRowOverride <> -1 Then
     TargetRow = TargetRowOverride
@@ -6031,10 +6031,10 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  Dim artist, album As String
  Dim rowheight As Integer
  Dim rowpadding As Integer = global.rowpadding
- Dim coverfound As Boolean = True
+
  Dim bigfactor As Integer = 1
  Dim filefound As Boolean = True
- Dim prevscrollX As Integer
+
  
  If mygrid.data = Null Then Return
  If Not fmain.FullyLoaded Then Return
@@ -6103,7 +6103,7 @@ Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Ro
  Dim fullpath As String
  Dim artist, album As String
  Dim rowheight As Integer
- Dim coverfound As Boolean = True
+
  Dim bigfactor As Integer = 1
  Dim filefound As Boolean = True
  Dim rowpadding As Integer = global.rowpadding
@@ -6393,7 +6393,7 @@ End
 
 Public Sub ExecuteRemote(command As String)
   Dim parameter As String
-  Dim i As Integer
+
   parameter = Mid(command, InStr(command, " ") + 1)
   Debug "command= " & command
   Debug "parameter= " & parameter
@@ -6561,8 +6561,8 @@ Public Sub ButtonTag_Click()
   Dim MyGrid As GridView
   Dim Table As Playlistclass
   Dim row As Integer = 0
-  Dim Filename, Album, Artist, Title, MyYear, Genre, Track, Comment As String
-  Dim ts As String = Chr(8) ' use it as a marker to disable tag writing
+  Dim Filename As String
+ 
   Dim Err As Boolean = False
   Dim errormsg As String
   Librarygrid.enabled = False
@@ -6711,7 +6711,7 @@ Public Sub MenuSavePls_Click()
   
   Dim PrevTitle As String
   Dim PrevFilter As String[]
-  Dim dialogout As Boolean
+
   
   With Global
     Dialog.Path = .StartFolder & "/"
@@ -7100,7 +7100,7 @@ End
 Public Sub MyFlash_NewVideo(lastvideopath As String) 'when a new flash video is found, this event is raised
 
   Dim Question As String = ("New Flash(tm) video detected: \n") & lastvideopath & ("\n  Would you like to play it now in Xt7-Player?")
-  Dim AnotherQuestion As New MyQuestion
+
   
   If FlashCHK2.value = True Then
     If MyQuestion.Ask(Question, ("Play now"), ("Don't Play"), FlashCHK2.text, FlashCHK2) = 1 Then
@@ -7125,12 +7125,12 @@ Public Sub UpdateMenuTabVisibility()
   'enable/disable menu voices
   
   Dim i, j As Integer
-  Dim profile As String
+
   Dim submenu, submenu2, pmenu As Menu '(hide/show,go to tab)
   Dim HideShowTabsMenu As Menu '(visibility)
-  Dim GoToTabMenu As Menu '(Go to tab)
+
   Dim WasInvisible As Boolean
-  Dim tmpmenu As Menu
+
   
   MenuTabs.Children.Clear
   TabsonleftMenu = New Menu(Menutabs) As "tabsonleftmenu"
@@ -7190,7 +7190,7 @@ End
 
 Public Sub menutabs_click()
 
-  Dim i As Integer
+
   Dim ClickedtabID As Integer
 
   ClickedtabID = Global.TabIndexByName(Last.name, Leftsidetabs)
@@ -7493,7 +7493,7 @@ End
 Public Sub Button3_Click()
   
   Dim HotKeyConfigured As Boolean = True
-  Dim tmpstr As String
+
   Dim Rewind As Boolean = True
   'HotKeysCheck First  
   HotKeyConfigured = HotKeyConfigured And (Trim(HotKeys.HotKeysGrid[73, 0].text) <> "")
@@ -7759,7 +7759,7 @@ End
 
 Public Sub ShoutCastTreeAddToLibrary_Click()
   
-  Dim r As Integer
+
   Dim QuickMode As Boolean
   
   QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
@@ -7774,7 +7774,7 @@ End
 
 Public Sub ShoutCastTreeaddtoplaylist_Click()
   
-  Dim r As Integer
+
   Dim QuickMode As Boolean
   
   QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
@@ -7966,7 +7966,7 @@ End
 Public Sub PodcastTree_Drop()
   
   Dim droppedfiles As String[]
-  Dim DroppedFile, ext As String
+  Dim DroppedFile As String
   
   droppedfiles = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)
   For Each DroppedFile In Droppedfiles
@@ -8051,7 +8051,7 @@ End
 
 Public Sub PodCastMenuAddLibrary_Click()
   
-  Dim childitem As Boolean = False
+
   
   podcasttree.movefirst()
   Repeat
@@ -8067,7 +8067,7 @@ End
 
 Public Sub PodCastMenuAddPlaylist_Click()
   
-  Dim childitem As Boolean = False
+
   
   podcasttree.movefirst()
   Repeat
@@ -8097,24 +8097,24 @@ Public Sub PlaylistGrid_Leave()
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
 End
 
-Private PrevHigRow As Integer = -1
+
 
 
 Public hirow As Integer = -1
-Private Sub HighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
-  If hirow = hrow Then Return
-  hirow = hrow
-  mygrid[hirow, 0].text = ""
-  mygrid[hirow, 0].clear
-  Debug
-  
-End
-Private Sub DeHighlightRow(hrow As Integer, mygrid As Gridview, increment As Integer)
-  If hirow = hrow Then Return
-  hirow = -1
-  mygrid[hirow, 0].text = ""
-  mygrid[hirow, 0].clear
-End
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8691,7 +8691,7 @@ End
 
 Public Sub YoutubetreeTreeaddtoLibrary_Click()
   
-  Dim r As Integer
+
   Dim QuickMode As Boolean
   QuickMode = True
   Try MyLibrary.AddFile(librarygrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
@@ -8704,7 +8704,7 @@ Public Sub YoutubetreeTreeaddtoLibrary_Click()
 End
 
 Public Sub YoutubetreeTreeaddtoPlaylist_Click()
-  Dim r As Integer
+
   Dim QuickMode As Boolean
 
   QuickMode = True
@@ -8741,7 +8741,7 @@ Public StreamDownloadDir As String = ""
 
 Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   
-  Dim dest, commandline, destdir, destfile, terminalexe As String
+  Dim dest, commandline, destdir, destfile As String
 
   If Trim(StreamDownloadDir) = "" Then StreamDownloadDir = User.Home
   suggestname = Replace(suggestname, ":", ".")
@@ -8828,7 +8828,7 @@ End
 Public Sub GetYoutubeSubs(VideoId As String)
 
   Dim Subdir As String = settings.defaultdir & "/" & Global.Appname & "/" & ".substmp/"
-  Dim subtitle, subfile, track, langcode, trackname As String
+  Dim subfile, track, langcode, trackname As String
   Dim id As Integer = 0
 
   Try Mkdir Subdir
@@ -9141,9 +9141,9 @@ End
 
 Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As String)
   Dim r As Integer = -1
-  Dim savedtext As String
-  Dim savedback As Integer
-  Dim RowHeight As Integer
+
+
+
   Try r = mypls.FindRowByPath(mygrid, fullpath)
   If r = -1 Then Return
   mygrid[r, 0].text = ""
@@ -9163,7 +9163,7 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
   Dim i, w As Integer
   Dim Maxw As Integer = 0
   Dim sep As Integer 
-  Dim tmp As String
+
   
   
   Try r = mylibrary.FindRowByPath(LibraryGrid, mypath) 
@@ -9256,8 +9256,8 @@ End
 Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Dim currentpath, album As String
   Dim popupmsg As String
-  Dim scrollx As Integer
-  Dim scrolly As Integer
+
+
   Dim crow, fpcolumn, ccolumn As Integer
   Dim msx, msy As Integer
   If mouse.left Or mouse.right Or mouse.middle Then Return
@@ -9385,7 +9385,7 @@ End
 
 Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Playlistclass, newname As String)
   Dim fullpath, sep, oldname As String
-  Dim pRow As String
+
   Dim i As Integer
   Dim imax As Integer
   Try fullpath = myplaylist.ColumnIndex["Full Path"]
@@ -9666,7 +9666,7 @@ Public Sub PlaylistGrid_MouseDown()
   Endif
 End
 
-Private brothersproxies As New Collection
+
 ' Public Sub shadeuplow_Enter()
 '   Dim brother As Gridview
 '   For Each brother In Last.Parent.Children 

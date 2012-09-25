@@ -279,7 +279,7 @@ End
 
 Private Function CheckDuplicate(Hotkey As String, RowSrc As Integer, ColSrc As Integer, MyGrid As Gridview) As Boolean
   Dim C, R As Integer
-  Dim HotFile As File
+
   Dim FoundDupe As Boolean = False
   Dim DupedFunction As String
   Dim Answer As Integer
@@ -499,7 +499,7 @@ Public Function ActionRelatedTo(Hotkey As String) As String
 'will find the cell containing 'Hotkey' in Hotkeys grid
 'will return the related action
   Dim c, r As Integer
-  Dim found As Boolean = False
+
   If FMain.timerdvd.enabled Then
     If Lower(Split(Hotkey, " ")[0]) = "mouse=1" Then Return "dvdnav select"
   Endif

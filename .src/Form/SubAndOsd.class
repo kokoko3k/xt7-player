@@ -11,7 +11,7 @@ Public mplayer As New MplayerClass
 
 
 Public Sub Init()
-  Dim FontName As String
+
   Global.Center(Fmain, Me)
   'Create the scale slider
     MyScaleslider = New VSlider(SubScaleHbox)
@@ -65,18 +65,18 @@ Public Function ParseSubGui(ForPreview As Boolean) As String
   Dim FontName As String = ",FontName=" "\"" & FontString.Font.name & "\""
   Dim Outline As String = ",outline=" & OutlineSpinBox.text
   Dim Shadow As String = ",shadow=" & ShadowSpinBox.text
-  Dim ShadowColor As String 'shadow colour and alpha
+
   Dim MarginV As String = ",MarginV=" & MarginVSpinBox.text
   Dim Alignment As String = "Alignment=" & Left(ComboAlignment.Text, 1)
   Dim AssForceStyle As String = " -ass-force-style "
-  Dim AssColor As String = " -ass-color " & Hex(FontColorBox.value, 6) & Hex(FontColorSpinBox.value, 2)
-  Dim AssBorderColor As String = " -ass-border-color " & Hex(BorderColorBox.value, 6) & Hex(BorderColorSpinBox.value, 2)
+
+
   Dim AssFontScale As String
   Dim SubFuzziness As String = " -sub-fuzziness 0"
 
 'Subtitle related
   Dim SubCp As String
-  Dim SubFile As String
+
   Dim SubDelay As String
 
 'Osd related

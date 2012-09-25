@@ -51,7 +51,7 @@ End
 Private Sub ArrangeButtons()
  Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
  Dim TheObject As Object
- Dim nextisvisible As Boolean = False
+
  Dim cX As Integer = 4
  Dim NumButtonsCPL As Integer = 0
  'fix bottom panel for high sized fonts

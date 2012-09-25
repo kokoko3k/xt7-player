@@ -116,8 +116,8 @@ End
 
 
 Public Function GetKey() As String
-  Dim out As String
-  Dim i As Integer
+
+
   Me.hide
   lastkey = GetLastKey()
   LastMouseButton = 0
@@ -175,8 +175,8 @@ End
 
 Public Sub Form_KeyPress()
   'DIM Modifier AS Boolean = (Key.shift) OR (Key.alt) OR (Key.control)
-  Dim Modifiers As String = ""
-  Dim i As Integer
+
+
   If ModifiersOnly() Then Return 'skip modifiers
   'find which key has been pressed by testing all printable ascii characters:
   If Not (Key.code = Key.capslock) Then GetKey()
@@ -186,8 +186,4 @@ Public Sub Form_MouseDown()
   IgnoreNext = False
 End
 
-Public Sub Form_Insert(Control As Control)
 
-  
-
-End

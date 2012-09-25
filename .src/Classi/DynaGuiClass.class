@@ -22,8 +22,7 @@ Public AllowedContainers As New String[] 'Container names of allowed destination
 
 
 Private OldParent As Object
-Private OldParentFix As Object 'used as a workaround to mouseup events not being
-                                'raised if mouse is outside the form
+
 
 Public DelayEndDrag As New Timer As "DelayEndDrag"
 
@@ -52,7 +51,6 @@ End
 Public Sub ObjectsUnderMouse(TheForm As Object) As Object[]
   'returns an array of references to 
   'containers under the mouse pointer
-  Dim i As Integer = 0
   Dim obj As Object
   Dim objs As New Object[]
   Dim Dx0, Dx1, Dy0, Dy1 As Integer = 0

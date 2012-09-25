@@ -83,7 +83,7 @@ Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As S
   '   &Max-results=10
   '   &v=2
   Dim AskUrl As String
-  Dim startindex As Integer = 1
+
   Dim v As Integer = 1 'api version
   Dim videoid As String
 
@@ -140,7 +140,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   Dim needpicture As Boolean = True
   Dim lastlink As String = ""
   Dim wget As New Wgetclass
-  Dim i As Integer
+
 
   
   If tree.item = Null Then tree.movecurrent
@@ -330,8 +330,8 @@ End
 
 
 Public Sub AddMoreResultsItem(tree As Treeview, feed As String, resizew As Integer)
-  Dim Mykey, title As String
-  Dim tmp, thumb As Picture
+  Dim Mykey As String
+  Dim thumb As Picture
   Dim resizeh As Integer
   resizeh = (resizew * 3) Div 4
   mykey = "__MORERESULTS__" & CStr(Rnd(0, 9999999999999999999))

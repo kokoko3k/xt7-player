@@ -3491,6 +3491,9 @@ End
 
 Public Sub SeekBar_MouseDown()
   MousePressed = True
+  'Object.Lock(seekbar)
+  seekbar.value = ((seekbar.MaxValue - seekbar.MinValue) * mouse.x) Div seekbar.w
+  'Object.unLock(seekbar)
 End
 
 Public Sub SeekBar_MouseUp()

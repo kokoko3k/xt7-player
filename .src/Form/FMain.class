@@ -3653,7 +3653,7 @@ End
 
 Public Sub FullScreenSwitch()
   SwitchingFullScreen = True
-  If fmain.fullscreen Then
+  If fsform.fullscreen Then
     SwitchToWindow()
       Else
     SwitchToFS()
@@ -3662,84 +3662,48 @@ Public Sub FullScreenSwitch()
   SwitchingFullScreen = False
 End
 
-
-Public Sub InitAndShowBlackForm(blackform As Form) As Form
-  Dim blackpanel As Panel
-  Dim scr As Screen
-  scr = Screenbypos(fmain.screenx + (fmain.w Div 2), fmain.screeny + (fmain.h Div 2))
-  blackform = New Form
-  blackpanel = New Panel(blackform)
-  blackpanel.Background = color.black
-  Blackform.Background = color.black
-  blackpanel.border = border.none  
-  Blackform.visible = False
-  Blackform.Arrangement = Arrange.fill
-  blackform.maximized = True
-  Blackform.Border = border.None
-  Blackform.SkipTaskbar = True
-  Blackform.w = scr.W
-  Blackform.h = scr.H 
-  Blackform.x = scr.x
-  Blackform.y = scr.y
-  Blackform.Stacking = Window.above
-  Blackform.FullScreen = True
-  Blackform.show
-  Blackform.mouse = mouse.blank
-  Return blackform
-End
-
+Private buttonmenuwasvisible As Boolean = False
 
 Public Sub SwitchToFS()
-  Dim blackform As Form
   'save the windowed information
-  Global.FormX = FMain.ScreenX
-  Global.FormY = FMain.ScreenY
-  Global.FormW = FMain.Width
-  Global.FormH = FMain.Height
-  LeftsideWasVisible = LeftsidePanel.Visible
-  Global.FormMaximized = FMain.maximized
-  If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
-  
   OuterBox.Mouse = mouse.blank
   VideoBox.Mouse = mouse.blank
-  
-  'Hide all the work
-  blackform = InitAndShowBlackForm(blackform)
+  If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
+  buttonmenuwasvisible = ButtonmenuBTN.Visible
 
+  FsForm.x = fmain.x
+  FsForm.y = fmain.y
+  FsForm.FullScreen = True
+  FsForm.show
+
+
+  Maintoolbar.Reparent(FsForm)
+  Showbuttonmenu()
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
   
   Object.Lock(hsplit1)
-  
-  'make the form fullscreen
-  fmain.fullscreen = True
 
-  blackform.fullscreen = False
-  blackform.fullscreen = True
-
-  'Hide the menu
-  AllmenuVisible(False)
-  Maintoolbar.visible = False
-  
   'invert the HSplit with a vSplit
   fmain.HSplit1.Reparent(zzzFake)
-  zzzFake.VSplit1.Reparent(Fmain)
+  zzzFake.VSplit1.Reparent(FsForm)
   
   'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
 
-
+  'restore the form position
+  LeftsideWasVisible = LeftsidePanel.Visible 
+  
   'hide the upper controls
   Leftsidepanel.hide()
 
   'let the bottom panel adapts to the new size:
   Wait '<-this wait has to come before ConstrainFormSizes()
   CostrainFormSizes()
+  bottomvbox.Hide
+  Maintoolbar.hide
   Wait '<-this wait has to come just after ConstrainFormSizes()
-
-  'Hide the bottom controls
-  bottomvbox.Hide '<-this can be hidden only after it has adapted its size
 
   'start the timer 
   TimerFullScreen.start
@@ -3755,26 +3719,24 @@ Public Sub SwitchToFS()
   Endif
   
   'show all
-  blackform.delete
   Object.unLock(hsplit1)
 End
 
 
-Public Sub SwitchToWindow()
-  Dim blackform As Form
 
-  'hide all the work
-  blackform = InitAndShowBlackForm(blackform)
-  
+
+Public Sub SwitchToWindow()
+
   bottomvbox.y = rightsidepanel.h - bottomvbox.h
   BottomVbox.ignore = False
   
   'execute shell commands
   FsCommandsExec(False, 60)
 
-  'make the form windowed
-  fmain.fullscreen = False
 
+  If Not (buttonmenuwasvisible) Then Hidebuttonmenu()
+  Maintoolbar.Reparent(fmain)
+  
   'invert the VSplit with a HSplit
   zzzFake.VSplit1.Reparent(zzzFake)
   Hsplit1.Reparent(Fmain)
@@ -3785,15 +3747,14 @@ Public Sub SwitchToWindow()
   If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
   Wait
 
+
   'show the menu
   AllmenuVisible(True)
   Maintoolbar.visible = True
   
   'restore the form position
-  fmain.Move(Global.FormX, Global.FormY, Global.FormW, Global.FormH)
   LeftsidePanel.Visible = LeftsideWasVisible
-  fmain.maximized = False '<-hack
-  FMain.maximized = Global.FormMaximized
+  
   
   UpdateStatusBar()
 
@@ -3810,156 +3771,20 @@ Public Sub SwitchToWindow()
     Wait
   Endif
 
-  blackform.delete 'show all
 
   RightSidePanel.SetFocus()
   
   OuterBox.Mouse = mouse.Default
   VideoBox.Mouse = mouse.Default
 
+  'make the form windowed
+  Wait
+  FsForm.hide
+  FsForm.FullScreen = False
+
   Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
 End
 
-
-
-Public Sub FullScreenSwitch_OLD()
-
-
-  Dim MaxWait As Integer = 1000
-  Dim blackbox As New Panel(fmain)
-
-  SwitchingFullScreen = True
-  blackbox.border = border.none
-  blackbox.visible = False
-  blackbox.background = Color.black
-  blackbox.Background = Color.black
-  blackbox.raise
-  blackbox.ignore = True
-  blackbox.w = Desktop.w * 2
-  blackbox.h = Desktop.h * 2
-  blackbox.x = fmain.screenx - Desktop.w 'fmain.screenx - (blackbox.w DIV 4)
-  blackbox.y = fmain.screeny - Desktop.h ' (blackbox.w DIV 4)
-  blackbox.visible = True
-  
-  OuterBox.Mouse = 0
-  VideoBox.Mouse = 0
-  If FMain.fullscreen Then                                           'prepare to return in window mode
-    FsCommandsExec(False, mplayer.Media_VideoFps)
-    Wait
-
-    If GeneralOptions.NoEffectsCheckbox.value Then
-      If KdeEffectsWereActive Then EnableKDECompositing()
-    Endif
-    If (Not mplayer.AudioOnly) Then fmain.OuterBox.ignore = False
-    Audioform.AudioPanel.ignore = False
-    
-    'reorganize the controls to fit window mode
-    'cachebar.reparent(zzzFake)
-    zzzfake.VSplit1.Reparent(zzzfake)
-    Hsplit1.visible = False
-    HSplit1.Reparent(Fmain)
-    blackbox.raise
-    hsplit1.visible = True
-    
-    Leftsidepanel.Reparent(Hsplit1)
-    Rightsidepanel.Reparent(hsplit1)
-    fmain.refresh
-    Wait 0.01
-    tagpanel.Reparent(zzzfake)
-    EditTagModeSwitch1.Checked = False
-    If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
-    LeftsidePanel.Visible = LeftsideWasVisible
-    BottomVbox.Reparent(zzzfake)
-    BottomVbox.visible = False
-    BottomVbox.ignore = False
-    BottomVbox.Reparent(fmain)
-    blackbox.raise()
-    BottomVbox.visible = True
-    Statusbar1.Width = 100
-    FMain.fullscreen = False
-    RightSidePanel.SetFocus()
-    OuterBox.Mouse = mouse.default
-    VideoBox.Mouse = mouse.default
-    AllmenuVisible(True)
-    Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
-
-  Else                                                                 '(fit fullscreen mode) **************************
-    If GeneralOptions.NoEffectsCheckbox.value Then
-      Try KdeEffectsWereActive = DisableKDECompositing()
-      If Error Then
-        Debug "Unable to disable kde effects, are you sure use kwin window manager?"
-        KdeEffectsWereActive = False
-      Endif
-    Endif
-    AllmenuVisible(False)
-    'cachebar.hide
-    'cachebar.Reparent(fmain)
-    If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
-
-    'save form size for late restore    
-    Global.FormX = FMain.ScreenX
-    Global.FormY = FMain.ScreenY
-    Global.FormW = FMain.Width
-    Global.FormH = FMain.Height
-    LeftsideWasVisible = LeftsidePanel.Visible
-
-    'reorganize controls to fit fullscreen mode
-    HSplit1.Reparent(zzzfake)
-    Leftsidepanel.Reparent(zzzfake.vsplit1)
-    Rightsidepanel.Reparent(zzzfake.vsplit1)
-    zzzfake.VSplit1.visible = False
-    zzzfake.VSplit1.Reparent(fmain)
-    'blackbox.raise()
-    zzzfake.VSplit1.visible = True
-    tagpanel.Reparent(zzzfake)
-    EditTagModeSwitch1.Checked = False
-    BottomVbox.Reparent(zzzfake)
-
-    ' BottomVbox.visible = False
-    BottomVbox.Reparent(fmain)
-    'blackbox.raise()
-    BottomVbox.visible = True
-    LeftsidePanel.h = (Desktop.Height Div 2)
-    LeftsidePanel.visible = False
-    OuterBox.Background = Color.black
-    VideoBox.visible = True
-    
-    If mplayer.ProcessRunningOvr() Then 
-      If Not (mplayer.AudioOnly) Then 
-        FsCommandsExec(True, mplayer.Media_VideoFps)
-      Endif
-    Endif
-'blackbox.Resize(Screen.x * 4, Screen.y * 4)
-
-'videobox.visible = False
-    FMain.fullscreen = True
-    'sit and wait until fmain has changed his size (is gone fullscreen)
-    Repeat
-      Wait 0.001
-      maxwait = maxwait - 1
-    Until (global.formw <> fmain.w) Or (global.formh <> fmain.h) Or Maxwait = 0
-  Endif
-'videobox.visible = True
-
-  TimerFullScreen.enabled = FMain.FullScreen
-
-  If Fmain.Fullscreen Then
-    BottomVbox.visible = False
-    BottomVbox.h = 0
-  Else
-    SlideTimer.stop
-    BottomVbox.visible = True
-    BottomVbox.h = controlframe.h + Statusbar1.h
-  Endif
-
-  CostrainFormSizes()
-  fmain.VideoBox.setfocus
-  'wait a little bit before setting switchingfullscreen to false
-  Wait 0.1
-  SwitchingFullScreen = False
-  blackbox.visible = False
-  CorrectAreaAspect()
-End
 
 
 
@@ -6311,7 +6136,7 @@ Public Sub FullScreenBtn_Click()
   If Not Tageditmode Then 
     FullScreenSwitch()
   Endif
-  
+
 End
 
 Public Sub SlideTimer_Timer()
@@ -9848,15 +9673,24 @@ End
 
 Public Sub ShowHideMenuBarMenu_Click()
   If ButtonmenuBTN.Visible Then
-    ButtonmenuBTN.Hide
-    separator6.hide
-    fmain.menus.Show
+    Hidebuttonmenu()
       Else
-    ButtonmenuBTN.show
-    fmain.menus.hide
-    separator6.show
+    Showbuttonmenu()
   Endif
 End
+
+Public Sub Showbuttonmenu()
+  ButtonmenuBTN.show
+  fmain.menus.hide
+  separator6.show
+End
+
+Public Sub Hidebuttonmenu()
+  ButtonmenuBTN.Hide
+  separator6.hide
+  fmain.menus.Show
+End
+
 
 
 Public Sub GetLastVersion()

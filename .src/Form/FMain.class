@@ -3670,11 +3670,12 @@ Public Sub SwitchToFS()
   VideoBox.Mouse = mouse.blank
   If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
   buttonmenuwasvisible = ButtonmenuBTN.Visible
-
-  FsForm.x = fmain.x
-  FsForm.y = fmain.y
-  FsForm.FullScreen = True
+  FsForm.Background = color.black
+  FsForm.x = fmain.ScreenX
+  FsForm.y = fmain.screeny
   FsForm.show
+  FsForm.FullScreen = True
+  FsForm.Background = color.Default
 
 
   Maintoolbar.Reparent(FsForm)
@@ -3778,11 +3779,12 @@ Public Sub SwitchToWindow()
   VideoBox.Mouse = mouse.Default
 
   'make the form windowed
+  fsform.Background = color.black
   Wait
   FsForm.hide
   FsForm.FullScreen = False
-
-  Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+  fsform.Background = color.Default
+  'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
 End
 
 

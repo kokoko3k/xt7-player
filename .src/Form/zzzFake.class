@@ -4,6 +4,7 @@
 ' Gambas class file
 
 Public Sub Start()
+  Dim argument As String
   Print ""
   Print Application.name & " " & Application.version
   Print "Usage: " & Application.name & ".gambas [Options] Mediafile"
@@ -21,7 +22,6 @@ Public Sub Start()
        Try Global.Center(Fmain, Me)
        FMain.maininit()
   Endif
-  
 End
 
 Public Sub Form_Open()

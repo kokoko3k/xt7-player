@@ -2,6 +2,8 @@
 
 { Form Form
   MoveScaled(0,0,64,64)
+  Background = &H000000&
+  Border = False
   SkipTaskbar = True
   Arrangement = Arrange.Vertical
 }

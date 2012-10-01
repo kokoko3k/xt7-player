@@ -102,6 +102,16 @@ bisogna trovare un altro modo per identificare le jpg...
 * epgform: permettere di impostare un sintonizzatore diverso dal primo
 
 * non usare xterm per scaricare da youtube? implementare una specie di terminale in gambas...
+
+* migliorare la gestione degli argomenti con qualcosa del genere:
+se numero argomenti (il primo è xt7) è > 1 allora
+  per ogni argomento:
+  se l'argomento è -append allora appendi l'argomento successivo
+  se l'argomento è minimal allora parti l'interfaccia minima
+    altrimenti (il numero di argomenti è uno)
+  lancia xt7 normalmente.uy
+
+
 --------------------------------------------------------------------------
 
 ***********************************************

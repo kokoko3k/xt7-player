@@ -3327,29 +3327,46 @@ Public Sub SaveVolumeSlider_MouseUp()
   
 End
 
+Public Function makeN(number As String, digits As Integer) As String
+  If Len(number) < digits Then
+    Repeat
+      number = "0" & number
+    Until Len(number) = digits
+  Endif
+  Return number
+End
+
+
 Public Sub VersionCheck()
   Dim UserVersion, UserMajor, UserMinor, RequiredMajor, RequiredMinor, Userminiminor, requiredminiminor As String
   Dim Required As String = Global.requiredversion
-
+  Dim cfruser, cfrrequired As Long
 
   UserVersion = System.fullversion
 
 
   'Shell "gbx3 -V" Wait To UserVersion
 
-  RequiredMajor = Split(Required, ".")[0]
-  RequiredMinor = Split(Required, ".")[1]
-  RequiredMiniminor = Split(Required, ".")[2]
-  UserMajor = Split(UserVersion, ".")[0]
-  UserMinor = Split(UserVersion, ".")[1]
-  Userminiminor = Trim(Split(UserVersion, ".")[2])
-  
-  If UserMajor > RequiredMajor Then Return
-  If Userminor > RequiredMinor Then Return
-  If Userminiminor >= requiredminiminor Then Return
-  
+  RequiredMajor = makeN(Split(Required, ".")[0], 5)
+  RequiredMinor = makeN(Split(Required, ".")[1], 5)
+  RequiredMiniminor = makeN(Split(Required, ".")[2], 5)
+  UserMajor = makeN(Split(UserVersion, ".")[0], 5)
+  UserMinor = makeN(Split(UserVersion, ".")[1], 5)
+  Userminiminor = makeN(Trim(Split(UserVersion, ".")[2]), 5)
+
+  Try cfruser = UserMajor & UserMinor & Userminiminor
+  If Error Then 
+    Debug "Couldn't check required version"
+    Return
+  Endif
+  Try cfrrequired = RequiredMajor & RequiredMinor & RequiredMiniminor
+  If Error Then 
+    Debug "Couldn't check required version"
+    Return
+  Endif
+  If cfruser >= cfrrequired Then Return
     'else...
-    MyQuestion.Ask(("WARNING\nYour Gambas version is ") & Trim(UserVersion) & ("\nbut xt7-player requires ") & global.RequiredVersion, ("Understood"), "")
+  MyQuestion.Ask(("WARNING\nYour Gambas version is ") & Trim(UserVersion) & ("\nbut xt7-player requires ") & global.RequiredVersion, ("Understood"), "")
 
 End
 

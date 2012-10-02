@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Oct 02 2012
+  FIX:    Fixed versioncheck() function 
+
 Sep 28 2012
   CHANGE: Default seekbar behaviour changed, click will seek to mouse position.
   CHANGE: Use another form for fullscreen window (allows fullscreen to work with mozplugger)
@@ -216,7 +219,7 @@ May 07 2012
   FIX:    Interpret m3u,asx,wax,wvx,ram,b4s files as playlists as well (was only *.pls)
   CHANGE: Try to read 2K of data from mplayer, may be more or less stable or change nothing, trying it...
   
-Mai 03 2012
+May 03 2012
   FIX:    Removed an unuseful debug message
   FIX:    Grab hotkeys only when mplayer is running (fixes a latency when clicking in the video box and then into the library)
 

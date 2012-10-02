@@ -1306,7 +1306,7 @@ Public Sub Form_Close()
   'delete temporary screenshots on exit (if any)
   Try Shell "rm -R " & global.confpath & "/.xt7-screenshots/* >/dev/null 2>&1" Wait
 
-  If (Me.FullScreen = True) Then FullScreenSwitch()
+  If (fsform.FullScreen = True) Then FullScreenSwitch()
   OneSecTimer.Stop
   If mplayer.ProcessRunningOvr() Then
     mplayer.do_stop()
@@ -1390,6 +1390,7 @@ Public Sub Form_Close()
   Try DBus.Session.Unregister(mpris)
   Try epgform.close
   Try ButtonMenu.close
+  Try fsform.close
   Wait 0.01
   Print "Bye"
 
@@ -2562,7 +2563,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Endif
     
     OneSecTimer_Timer()
-    aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.FullScreen)
+    aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     FillStreamsMenu()
@@ -2622,7 +2623,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Try ComboHistory.AddHistory(SearchFieldDVB, (SearchfieldDVB.text))
   Endif
 
-  If Not fmain.FullScreen Then Fmain.HSplit1_Resize()
+  If Not fsform.FullScreen Then Fmain.HSplit1_Resize()
   LogWindow.ShowLogs()
 
   videobox.cached = True
@@ -3252,7 +3253,7 @@ Public Sub OneSecTimer_Timer()
         Playstarted = False
         UserStopped = False
         FirstPlay = False
-        If ((Not TogglePls.value) And fmain.FullScreen) Then FullScreenSwitch()
+        If ((Not TogglePls.value) And fsform.FullScreen) Then FullScreenSwitch()
       Endif
     Endif
     Try Statusbar1.text = (" Stopped")
@@ -3468,7 +3469,7 @@ Public Sub SeekRestart(newpos As Integer)
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & " " & cookieopts, False, False, newpos)
 
     
-    aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
+    aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect
     LogWindow.clearlogs()
@@ -3522,7 +3523,7 @@ Public Sub VideoAreaGroup_MouseDrag()
   Dim NewX, NewY As Integer
 
   
-  If (Not Fmain.FullScreen) Then
+  If (Not fsform.FullScreen) Then
     If SwitchingFullScreen Then Return
     If mouse.left Then
       GuiDragging = True
@@ -3703,13 +3704,12 @@ Public Sub SwitchToFS()
   Object.Lock(hsplit1)
 
   'invert the HSplit with a vSplit
+  Wait 'don't remove me or the bottom panel will be smaller
   fmain.HSplit1.Reparent(zzzFake)
   zzzFake.VSplit1.Reparent(FsForm)
-  
   'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
-
   'restore the form position
   LeftsideWasVisible = LeftsidePanel.Visible 
   
@@ -3853,7 +3853,7 @@ Public Sub NEW_FullScreenSwitch()
 
 
   'Execute shell commands
-  If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec((Not FMain.fullscreen), mplayer.Media_VideoFps)
+  If (mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly)) Then FsCommandsExec((Not fsform.fullscreen), mplayer.Media_VideoFps)
 
 
   OuterBox.Mouse = 0
@@ -4105,12 +4105,12 @@ End
 Public Sub SwitchSidePanelBTN_Click()
   
   If Leftsidepanel.visible Then
-    If Not fmain.FullScreen Then Hsplit1.tag = Hsplit1.layout
+    If Not fsform.FullScreen Then Hsplit1.tag = Hsplit1.layout
     Leftsidepanel.visible = False
   Else
     Leftsidepanel.visible = True
     'Wait 1
-    If Not fmain.FullScreen Then 
+    If Not fsform.FullScreen Then 
       If hsplit1.tag = Null Then
         Leftsidepanel.w = 256
         'Wait 1
@@ -4312,7 +4312,7 @@ Public Sub Apply()
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded())
-    aspectmenu.visible = Not (mplayer.AudioOnly Or fmain.fullscreen)
+    aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect
     LogWindow.clearlogs()
@@ -4367,11 +4367,11 @@ Public Sub HotKeyToMplayer(HotKey As String)
       mplayer.Send(Action)
     Case "Exit"
       mplayer.Send(Action)
-      If fmain.FullScreen Then FullScreenSwitch()
+      If fsform.visible Then FullScreenSwitch()
     Case "quit"
       'mplayer.Send(Action)
       ButtonStop_Click()
-      If fmain.FullScreen Then FullScreenSwitch()
+      If fsform.FullScreen Then FullScreenSwitch()
     Case "Volume +0.5"
       SaveVolumeSlider.value = SaveVolumeSlider.value + 1
     Case "Volume -0.5"
@@ -5166,7 +5166,7 @@ Private Hsplit1ResizeDelayed As New Timer
 
 Public Sub Hsplit1ResizeDelayed_timer()
   
-  If Not fmain.fullscreen Then Hsplit1_MyRefresh
+  If Not fsform.fullscreen Then Hsplit1_MyRefresh
   
 End
 
@@ -5174,13 +5174,14 @@ Public Sub Hsplit1_MyRefresh()
   
   Dim RightPanel As Integer = 0
 
-  If (Not mplayer.audioonly) Then CorrectAreaAspect()
+  If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() And mplayer.Paused Then UpdateStatusBar()
+
   
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
   Else
-    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fmain.FullScreen)) Then BottomVbox.Reparent(RightSidePanel)
+    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then BottomVbox.Reparent(RightSidePanel)
   Endif
   CostrainFormSizes()
   Try RightPanel = HSplit1.layout[1]
@@ -6495,7 +6496,7 @@ End
 
 Public Sub EditTagModeSwitch1_Click()
   
-  If Not fmain.FullScreen Then
+  If Not fsform.FullScreen Then
     
     EditTagModeSwitch1.Checked = Not EditTagModeSwitch1.Checked
     TagEditMode = EditTagModeSwitch1.Checked
@@ -7073,7 +7074,7 @@ Private Sub TabOrientation()
   
   Dim tmplayout As Integer[] = hsplit1.layout
   
-  If fmain.FullScreen Then Return 
+  If fsform.FullScreen Then Return 
   If Leftsidetabs.Orientation = 19 Then 
      Leftsidetabs.Orientation = 1
       Else

@@ -8,10 +8,11 @@ Public Sub Start()
   Dim i As Integer
   Print ""
   Print Application.name & " " & Application.version
-  Print "Usage: " & Application.name & ".gambas [Options] Mediafile"
+  Print "Usage: " & Application.name & ".gambas [Mediafile] [options]"
   Print "Options:"
-  Print "-append <URL/FILE> (add a media to the playlist)"
-  Print "-pluginmode When xt7 is embedded into another application"
+  Print "-append (add the media specified before the option to the playlist)"
+  Print "Eg: xt7-player mediafile.avi -append"
+  Print "-pluginmode tells xt7 that it is embedded into another application"
   Print ""
   Print ""
   Debug "Start at: " & Timer
@@ -25,35 +26,39 @@ Public Sub Start()
   '      FMain.maininit()
   ' Endif
 
-
+  
+  
+  
 
 
   If (Application.Args.count > 1) Then
-    For i = 1 To Application.Args.Count - 1
-      
-      If Not (Application.Args[i] Like "-*") Then 'file or url specified, maininit manages it
-        Try Global.Center(Fmain, Me)
-        FMain.maininit()
-        Return
+      For i = 1 To Application.Args.Count - 1
+      If Application.Args[i] = "-pluginmode" Then
+        global.pluginmode = True
       Endif
-      
+    Next
+
+    For i = 1 To Application.Args.Count - 1
+
       If Application.Args[i] = "-append" Then '-append specified, look for next
         Try Sock_Append(Application.Args[i + 1])
         Debug "Appended to the running playlist"
         Quit
       Endif
-      
-      If Application.Args[i] = "-pluginmode" Then
-        global.pluginmode = True
+            
+      If Not (Application.Args[i] Like "-*") Then 'file or url specified, maininit manages it
+        Try Global.Center(Fmain, Me)
+        FMain.maininit()
+        Return
       Endif
-      
+
     Next
+  Endif
       
-      Else ' argument, start normally
-        
+  'else is implicit, make sure every condition up there will return or quit
      Try Global.Center(Fmain, Me)
      FMain.maininit()
-    Endif
+    
 
 
 End

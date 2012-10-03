@@ -1,27 +1,28 @@
 ' Gambas class file
+
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas class file
 
 
-PUBLIC SUB Timer1_Timer()
-  ME.hide
+Public Sub Timer1_Timer()
+  Me.hide
   Timer1.stop
-END
+End
 
-PUBLIC SUB Form_Show()
+Public Sub Form_Show()
   'ME.center
-  Global.Center(Fmain, ME)
+  Global.Center(Fmain, Me)
   Timer1.start
-END
+End
 
-PUBLIC SUB Form_Close()
+Public Sub Form_Close()
 
-  IF FMain.mplayer.ProcessRunningOvr() THEN FMain.VideoBox.setfocus()
+  If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 
-END
+End
 
-PUBLIC SUB Form_Hide()
+Public Sub Form_Hide()
 
-  IF FMain.mplayer.ProcessRunningOvr() THEN FMain.VideoBox.setfocus()
+  If FMain.mplayer.ProcessRunningOvr() Then FMain.VideoBox.setfocus()
 
-END
+End

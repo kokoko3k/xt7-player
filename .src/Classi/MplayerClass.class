@@ -36,6 +36,7 @@ Public InputPipe As String = ""
 Public exportfile As String = ""
 
 Public Function executable() As String
+  Dim timeout As Integer = 600
   Dim out As String
   out &= out & GeneralOptions.MplayerEnvVars.text & " " 'user specified environment variables
   
@@ -46,7 +47,8 @@ Public Function executable() As String
 
   'stop idle mplayer after 10 minutes
   If ImIdlePlaying Then 
-    out &= "timeout 600 "
+    If global.pluginmode Then timeout = 10
+    out &= "timeout " & timeout & " "
       Else
     'add c locale to workaround somw buggy ladspa filters which calls setlocale
     out &= "LC_ALL=C "

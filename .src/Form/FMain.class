@@ -1019,7 +1019,7 @@ Public Sub MainInit()
         Debug
      Endif
   'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
-  If Application.Args.count = 2 Then
+  If Application.Args.count >= 2 Then
     If alreadyrunning Then
       'try to play the file to the running xt7-player:
       zzzfake.sock_play(Application.Args[1])
@@ -1232,9 +1232,8 @@ Public Sub SyncCachedOptsPlus()
 End
 
 Public Sub Form_Close()
-  
-
   Dim MySettings As New SettingsClass
+
   
   StartClass.ProcessSignals(False)
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
@@ -1263,6 +1262,8 @@ Public Sub Form_Close()
     Endif
     ButtonStop_Click() 'don't remove me.
   Endif
+
+
 
   Try AFiltersCfg.hide
   Try AddUriForm.hide

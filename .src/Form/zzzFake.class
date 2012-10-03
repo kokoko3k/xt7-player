@@ -10,49 +10,50 @@ Public Sub Start()
   Print Application.name & " " & Application.version
   Print "Usage: " & Application.name & ".gambas [Options] Mediafile"
   Print "Options:"
-  Print "-append (add a media to the playlist)"
+  Print "-append <URL/FILE> (add a media to the playlist)"
+  Print "-pluginmode When xt7 is embedded into another application"
   Print ""
   Print ""
   Debug "Start at: " & Timer
   Debug
   global.init()
-  If (Application.Args.count = 3) And (Application.Args[1] = "-append") Then
-      Sock_Append(Application.Args[2])
-      Me.close
-    Else
-       Try Global.Center(Fmain, Me)
-       FMain.maininit()
-  Endif
+  ' If (Application.Args.count = 3) And (Application.Args[1] = "-append") Then
+  '     Sock_Append(Application.Args[2])
+  '     Me.close
+  '   Else
+  '      Try Global.Center(Fmain, Me)
+  '      FMain.maininit()
+  ' Endif
 
 
 
 
-  ' If (Application.Args.count > 1) Then
-  '   For i = 1 To Application.Args.Count - 1
-  '     
-  '     If Not (Application.Args[i] Like "-*") Then 'file or url specified
-  '       Try Global.Center(Fmain, Me)
-  '       FMain.maininit()
-  '       Return
-  '     Endif
-  '     
-  '     If Application.Args[i] = "-append" Then
-  '       Try Sock_Append(Application.Args[i + 1])
-  '       Me.close
-  '       Return
-  '     Endif
-  '     
-  '     If Application.Args[i] = "-pluginmode" Then
-  '       global.pluginmode = True
-  '     Endif
-  '     
-  '   Next
-  '     
-  '     Else
-  '       
-  '    Try Global.Center(Fmain, Me)
-  '    FMain.maininit()
-  '   Endif
+  If (Application.Args.count > 1) Then
+    For i = 1 To Application.Args.Count - 1
+      
+      If Not (Application.Args[i] Like "-*") Then 'file or url specified, maininit manages it
+        Try Global.Center(Fmain, Me)
+        FMain.maininit()
+        Return
+      Endif
+      
+      If Application.Args[i] = "-append" Then '-append specified, look for next
+        Try Sock_Append(Application.Args[i + 1])
+        Debug "Appended to the running playlist"
+        Quit
+      Endif
+      
+      If Application.Args[i] = "-pluginmode" Then
+        global.pluginmode = True
+      Endif
+      
+    Next
+      
+      Else ' argument, start normally
+        
+     Try Global.Center(Fmain, Me)
+     FMain.maininit()
+    Endif
 
 
 End

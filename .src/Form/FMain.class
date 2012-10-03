@@ -20,6 +20,10 @@ Public Struct EventInfo
   icon As String
 End Struct
 
+
+
+
+
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
   
   Dim found As Boolean = False

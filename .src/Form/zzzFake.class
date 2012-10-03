@@ -5,6 +5,7 @@
 
 Public Sub Start()
   Dim argument As String
+  Dim i As Integer
   Print ""
   Print Application.name & " " & Application.version
   Print "Usage: " & Application.name & ".gambas [Options] Mediafile"
@@ -22,7 +23,46 @@ Public Sub Start()
        Try Global.Center(Fmain, Me)
        FMain.maininit()
   Endif
+
+
+
+
+  ' If (Application.Args.count > 1) Then
+  '   For i = 1 To Application.Args.Count - 1
+  '     
+  '     If Not (Application.Args[i] Like "-*") Then 'file or url specified
+  '       Try Global.Center(Fmain, Me)
+  '       FMain.maininit()
+  '       Return
+  '     Endif
+  '     
+  '     If Application.Args[i] = "-append" Then
+  '       Try Sock_Append(Application.Args[i + 1])
+  '       Me.close
+  '       Return
+  '     Endif
+  '     
+  '     If Application.Args[i] = "-pluginmode" Then
+  '       global.pluginmode = True
+  '     Endif
+  '     
+  '   Next
+  '     
+  '     Else
+  '       
+  '    Try Global.Center(Fmain, Me)
+  '    FMain.maininit()
+  '   Endif
+
+
 End
+
+
+
+
+
+
+
 
 Public Sub Form_Open()
   'Start()

@@ -1019,7 +1019,7 @@ Public Sub MainInit()
         Debug
      Endif
   'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
-  If Application.Args.count >= 2 Then
+  If Application.Args.count = 2 Then
     If alreadyrunning Then
       'try to play the file to the running xt7-player:
       zzzfake.sock_play(Application.Args[1])
@@ -1236,6 +1236,7 @@ Public Sub Form_Close()
 
   Dim MySettings As New SettingsClass
   
+  StartClass.ProcessSignals(False)
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
 
   Try Unlock hLock
@@ -1397,7 +1398,7 @@ Public Sub Form_Close()
   Try fsform.close
   Wait 0.01
   Print "Bye"
-
+  
 End
 
 Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty

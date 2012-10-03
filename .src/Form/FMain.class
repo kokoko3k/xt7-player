@@ -365,6 +365,8 @@ Public Sub AllInit_Pre()
      Debug
    Endif
   
+  If global.pluginmode Then Leftsidepanel.hide
+  
   HideGrid(PlaylistGrid)
   HideGrid(LibraryGrid)
   HideGrid(dvbtGrid)
@@ -1030,13 +1032,18 @@ Public Sub MainInit()
       mplayer.Media_FullPath = DConv(Application.Args[1])
       FirstPlay = True 'used to  avoid playing media at start when togglepls button is toggled
       Me.mouse = mouse.Wait
-      FMain.LoadFormGeometry()
+      If Not global.pluginmode Then
+        FMain.LoadFormGeometry()
+          Else
+        buttonmenubtn.visible = False
+        ShowHideMenuBarMenu_Click()
+      Endif
       fmain.Show
       Wait 
       PlayFromCommandline = True 
       Play(DConv(Application.Args[1]), cachedopts)
       Me.Mouse = mouse.Default
-      havetoshowbrowsetab = True
+      If Not global.pluginmode Then havetoshowbrowsetab = True
     Endif
   Endif
   If Application.Args.count = 1 Then 
@@ -1252,7 +1259,7 @@ Public Sub Form_Close()
   Try trayicon1.Delete
   Closing = True
 
-  If Not fastquit Then
+  If Not (fastquit Or global.pluginmode) Then
     fmain.SaveFormGeometry()
     Me.hide
     If mplayer.ProcessRunningOvr() Then
@@ -1327,7 +1334,7 @@ Public Sub Form_Close()
   Try HotKeys.xbindkeys.kill
   Print "xbindkeys killed"
 
-  If Not fastquit Then
+  If Not (fastquit Or global.pluginmode) Then
 
     If GeneralOptions.SaveOnExitCHK.value = True Then
       Try Global.SaveAllSettings(global.CurrentProfile)
@@ -1343,7 +1350,7 @@ Public Sub Form_Close()
     Endif
   Endif
   SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
-  If Not fastquit Then
+  If Not (fastquit Or global.pluginmode) Then
     MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
     Debug "wrote last profile"
     Debug

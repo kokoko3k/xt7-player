@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Oct 03 2012
+  CHANGE: Hide left side panel by default when in "-pluginmode"
   CHANGE: Give mplayer_idle a shorter timeout when using "-pluginmode"
   FIX:    Better commandline arguments parsing
   FIX:    stop intercepting signals before quitting

@@ -768,7 +768,7 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
   ControlPanel.h = ButtonHovr
   SliderBox.h = CInt(ButtonHovr / 1.33)
-  ControlPanel.y = SliderBox.y + SliderBox.h - 2
+  ControlPanel.y = SliderBox.y + SliderBox.h - 2 
   controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
   
@@ -3693,7 +3693,11 @@ Private Sub CostrainFormSizes()
   SliderBox.left = ControlFrame.left + 16
   SliderBox.width = ControlFrame.Width - 32
   MainToolbar.width = FMain.clientw - 16
-  BottomVbox.h = controlframe.h + (Statusbar1.h * statusbar1.visible) + cachebar.h 
+  If statusbar1.visible Then
+    BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
+      Else
+    BottomVbox.h = controlframe.h + cachebar.h 
+  Endif
   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End

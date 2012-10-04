@@ -1351,8 +1351,8 @@ Public Sub Form_Close()
   Try HotKeys.xbindkeys.kill
   Print "xbindkeys killed"
 
-  If Not (fastquit Or global.pluginmode) Then
-
+  If Not fastquit Then
+  
     If GeneralOptions.SaveOnExitCHK.value = True Then
       Try Global.SaveAllSettings(global.CurrentProfile)
       If Error Then 

@@ -292,7 +292,7 @@ Public Sub DynaGuiToolbar_Click()
 End
 
 '--------------------------------------------------
-
+ 
 Public Sub TagEditorBtn_click()
   EditTagModeSwitch1_Click()
 End
@@ -428,7 +428,7 @@ Public Sub AllInit_Post()
   Try ComboHistory.LoadHistory(SearchFieldDVB, global.confpath & "/" & global.CurrentProfile)
   Myflash = New FlashClass As "MyFlash"
   InitFlashGrid()
-  SetStyle_early()
+  'SetStyle_early()
   ' UpdateSearchResults(MyLibrary, LibraryGrid, False, Searchfield.text)
   ' UpdateSearchResults(MyPlaylist, PlaylistGrid, False, SearchfieldPLS.text)
   ' LibraryGrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
@@ -748,6 +748,13 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   ButtonHovr = 36 '36
   PaddingOvr = 5 '5
   
+  
+  If global.pluginmode Then
+     ButtonWovr = 24
+     buttonhovr = 24
+     PaddingOvr = 2
+  Endif
+  
   For Each theobject In ControlPanel.Children
     If theobject.visible Then
       theobject.w = ButtonWovr
@@ -764,7 +771,9 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   ControlPanel.y = SliderBox.y + SliderBox.h - 2
   controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
-   
+  
+  If global.pluginmode Then statusbar1.visible = False
+
   '---------------------------------------------------------------------------
 End
 
@@ -778,26 +787,32 @@ Public Sub SetStyle_early()
   Dim backcolor As String = GeneralOptions.backcolorChooseBTN1.Background
   Dim forecolor As String = GeneralOptions.ColorChooseBTN1.Background
   Dim Userfont As Font = GeneralOptions.FontChooseBTN1.font
- 
+  ' 
   If Trim(generaloptions.BottomPanelImage.text) <> "" Then
     Try picturebox1.Picture = picture.Load(generaloptions.BottomPanelImage.text)
     If Error Then Debug "sorry, couldn't load the image " & generaloptions.BottomPanelImage.text
   Endif
- 
- 
+  
+  ' 
   shadeup.visible = False
   shadelow.visible = False
   
   cachebar.h = (fmain.font.textHeight("iJ") Div 2)
-  If desktop.Height > 600 Then
-    Maintoolbar.h = 32
-  Else
-    Maintoolbar.h = 24
-  Endif
-  'Set font size AND stile OF the whole form; beware the AudioForm!
-  
-  ArrangeCpl(9)
 
+  'Set font size AND stile OF the whole form; beware the AudioForm!
+  If global.pluginmode Then 
+    Maintoolbar.h = 0
+    'cachebar.h = 6
+      Else
+    If desktop.Height > 600 Then
+      Maintoolbar.h = 32
+        Else
+      Maintoolbar.h = 24
+    Endif
+  Endif
+  ' 
+  ArrangeCpl(9)
+  
   
   If audioform.AudioPanel.parent = Rightsidepanel Then
     If (Not mplayer.ProcessRunningOvr()) Then ShowAudioPanel(False) 
@@ -1029,7 +1044,6 @@ Public Sub MainInit()
       fmain.form_Close()
     Else
       AllInit_pre()
-      mplayer.Media_FullPath = DConv(Application.Args[1])
       FirstPlay = True 'used to  avoid playing media at start when togglepls button is toggled
       Me.mouse = mouse.Wait
       If Not global.pluginmode Then
@@ -1040,8 +1054,11 @@ Public Sub MainInit()
       Endif
       fmain.Show
       Wait 
-      PlayFromCommandline = True 
-      Play(DConv(Application.Args[1]), cachedopts)
+      If Not (Application.Args[1] Like "-*") Then 
+        mplayer.Media_FullPath = DConv(Application.Args[1])
+        PlayFromCommandline = True 
+        Play(DConv(Application.Args[1]), cachedopts)
+      Endif
       Me.Mouse = mouse.Default
       If Not global.pluginmode Then havetoshowbrowsetab = True
     Endif
@@ -3676,7 +3693,7 @@ Private Sub CostrainFormSizes()
   SliderBox.left = ControlFrame.left + 16
   SliderBox.width = ControlFrame.Width - 32
   MainToolbar.width = FMain.clientw - 16
-  BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
+  BottomVbox.h = controlframe.h + (Statusbar1.h * statusbar1.visible) + cachebar.h 
   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End

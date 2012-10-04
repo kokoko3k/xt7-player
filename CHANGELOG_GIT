@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Oct 04 2012
+  FIX:    Don't call setstyle_early from allinit_post
+
 Oct 03 2012
   CHANGE: Hide left side panel by default when in "-pluginmode"
   CHANGE: Give mplayer_idle a shorter timeout when using "-pluginmode"

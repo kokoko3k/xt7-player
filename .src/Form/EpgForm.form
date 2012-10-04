@@ -44,14 +44,13 @@
       }
       { Timer1 #Timer
         #MoveScaled(30,2)
-        Enabled = True
         Delay = 1
       }
       { Panel2 Panel
         MoveScaled(38,1,48,7)
         AutoResize = True
         { ClockLabel2 TextLabel
-          MoveScaled(-3.2857,0.2857,48,7)
+          MoveScaled(-4.2857,0.2857,48,7)
           Font = Font["Bold,18"]
           Foreground = &H000000&
           Text = ("EPG GUIDE")

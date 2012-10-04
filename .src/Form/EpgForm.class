@@ -656,7 +656,7 @@ End
 
 
 Public Sub Form_Close()
-  'Try dvbsnoop.Stopit()
+    Timer1.Stop()
 End
 
 Public Sub EpgView_Arrange()
@@ -725,5 +725,11 @@ End
 Public Sub VBox1_GotFocus()
 
   
+
+End
+
+Public Sub Form_Show()
+
+  Timer1.Start()
 
 End

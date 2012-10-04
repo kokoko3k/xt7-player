@@ -3041,6 +3041,7 @@ Public Sub UpdateStatusBar()
   Try LotOfSpaces = Space(NeededSpaces - 2)
   Statusbar1.text = " " & PreText & LotOfSpaces & PostText
   AudioForm.UpdateLength(PostText)
+  If fsform.FullScreen Then statusbar1.w = statusbar1.Parent.w
 End
 
 Private lastvolume As String = -2 'remember the exit volume so that we can set it when opening new medias
@@ -3720,6 +3721,7 @@ Public Sub SwitchToFS()
   'save the windowed information
   OuterBox.Mouse = mouse.blank
   VideoBox.Mouse = mouse.blank
+  Object.Lock(hsplit1)
   If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
   buttonmenuwasvisible = ButtonmenuBTN.Visible
   FsForm.Background = color.black
@@ -3734,13 +3736,12 @@ Public Sub SwitchToFS()
   Showbuttonmenu()
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
-  
-  Object.Lock(hsplit1)
+
 
   'invert the HSplit with a vSplit
-  Wait 'don't remove me or the bottom panel will be smaller
   fmain.HSplit1.Reparent(zzzFake)
   zzzFake.VSplit1.Reparent(FsForm)
+
   'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
@@ -3754,6 +3755,7 @@ Public Sub SwitchToFS()
   Wait '<-this wait has to come before ConstrainFormSizes()
   CostrainFormSizes()
   bottomvbox.Hide
+  BottomVbox.Reparent(rightsidepanel)
   Maintoolbar.hide
   Wait '<-this wait has to come just after ConstrainFormSizes()
 
@@ -3772,6 +3774,17 @@ Public Sub SwitchToFS()
   
   'show all
   Object.unLock(hsplit1)
+  
+  If statusbar1.visible Then 
+    statusbar1.ignore = True
+    statusbar1.y = statusbar1.Parent.h - statusbar1.h
+  Endif
+  bottomvbox.ignore = True
+  controlframe.ignore = True
+  bottomvbox.w = Screenbypos(fmain.screenx, fmain.screeny).Width
+  controlframe.w = bottomvbox.W
+  Wait
+  CostrainFormSizes() 
 End
 
 
@@ -3832,6 +3845,10 @@ Public Sub SwitchToWindow()
   'make the form windowed
   fsform.Background = color.black
   Wait
+  bottomvbox.ignore = False
+  controlframe.ignore = False
+  statusbar1.ignore = False
+  CostrainFormSizes()
   FsForm.hide
   FsForm.FullScreen = False
   fsform.Background = color.Default
@@ -4062,7 +4079,7 @@ Public Sub TimerFullScreen_Timer()
   Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
   Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
   Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
-  
+
   MouseOnFmain = MouseOnFmain Or MouseInsideFmainByCoords()
 
   If MouseOnFmain Then MouseHide()
@@ -4072,6 +4089,7 @@ Public Sub TimerFullScreen_Timer()
     bottomvbox.y = rightsidepanel.h - bottomvbox.h
     Audioform.AudioPanel.ignore = True
     BottomVbox.visible = True
+    
   Endif
   
   If AttachZone2 And MouseOnFmain Then

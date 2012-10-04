@@ -4387,6 +4387,45 @@ Public Sub HotkeysMenu_Click()
   
 End
 
+Public Sub PauseUnPause(doPause As Boolean)
+  If dopause Then
+    'OneSecTimer.stop
+    ButtonPlay.picture = Picture["media-playback-start.png"]
+    mplayer.Send("pausing get_property paused") 'in questo modo abbiamo certamente una pausa, non uno switch.
+      Else
+    If mplayer.paused Then
+      OneSecTimer.start
+      ButtonPlay.picture = Picture["media-playback-pause.png"]    
+      mplayer.Send("Pause")
+    Endif
+  Endif
+End
+
+
+Public Sub HandlePause()
+  Dim PreviousFullscreenstate As Boolean
+  Dim doubleclicktime As Float = 0.5
+  Previousfullscreenstate = fsform.fullscreen
+
+  If mplayer.paused Then
+    PauseUnPause(False)
+    'wait a while to see if we are changing fullscreenmode
+    Wait doubleclicktime
+    If fsform.fullscreen <> Previousfullscreenstate Then
+      PauseUnPause(True)
+    Endif
+      Else
+    PauseUnPause(True)
+    'wait a while to see if we are changing fullscreenmode
+    Wait doubleclicktime
+    If fsform.fullscreen <> Previousfullscreenstate Then
+      PauseUnPause(False)
+    Endif
+  Endif
+
+End
+
+
 'HotKeys Handling *******************************************
 
 Public Sub HotKeyToMplayer(HotKey As String)
@@ -4409,14 +4448,7 @@ Public Sub HotKeyToMplayer(HotKey As String)
     Case "deinterlace"
       mplayer.DoDeinterlace()
     Case "Pause"
-      If mplayer.Paused Then
-        OneSecTimer.start
-        ButtonPlay.picture = Picture["media-playback-pause.png"]
-      Else
-        'OneSecTimer.stop
-        ButtonPlay.picture = Picture["media-playback-start.png"]
-      Endif
-      mplayer.Send(Action)
+      HandlePause()
     Case "Exit"
       mplayer.Send(Action)
       If fsform.visible Then FullScreenSwitch()
@@ -9781,4 +9813,10 @@ Public Sub PictureBox1_MouseMove()
 End
 
 Public Sub VideoAreaGroup_MouseMove()
+End
+
+Public Sub Button5_Click()
+
+  PauseUnPause(True)
+
 End

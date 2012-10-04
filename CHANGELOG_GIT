@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Oct 04 2012
+  NEW:    Try to get the pausing state when switching from/to Fullscreen via doubleclick
   FIX:    better fullscreen handling for -pluginmode
   FIX:    Calculate right bottom vbox height depending on statusbar visibility
   FIX:    Don't call setstyle_early from allinit_post

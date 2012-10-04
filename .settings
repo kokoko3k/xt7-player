@@ -1,5 +1,10 @@
+[Bookmarks]
+FMain=[]
+
 [Breakpoints]
-Count=0
+Breakpoint[1]="GeneralOptions.386"
+Breakpoint[2]="GeneralOptions.551"
+Count=2
 
 [DebugWindow]
 Count=0
@@ -997,6 +1002,9 @@ Geometry=[1364,265,993,778]
 [DebugWindow/returnvalue]
 Geometry=[0,41,344,344]
 
+[DebugWindow/s]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/scr]
 Geometry=[42,95,210,210]
 
@@ -1144,22 +1152,22 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:6.79"
+File[1]="CHANGELOG_GIT:3.52"
 File[2]=".src/Classi/YoutubeClass.class:333.6"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:3711.42"
+File[4]=".src/Form/FMain.class:299.9"
 File[5]=".src/Classi/PodCast.class:39.0"
 File[6]=".src/Classi/ShoutCastClass.class:182.0"
 File[7]=".src/Classi/SettingsClass.class:68.0"
 File[8]=".src/Form/Chains.form"
 Active=9
-File[9]=".src/0_Moduli/Global.module:339.0"
+File[9]=".src/0_Moduli/Global.module:341.17"
 File[10]=".src/Classi/AlbumView.class:351.0"
 File[11]=".src/Classi/DynaGuiClass.class:24.0"
 File[12]=".src/Classi/DynaGuiClassBAK.class:23.27"
 File[13]=".src/Classi/FlashClass.class:72.23"
 File[14]=".src/Classi/Meters.class:10.0"
-File[15]=".src/Classi/MplayerClass.class:293.0"
+File[15]=".src/Classi/MplayerClass.class:49.24"
 File[16]=".src/Classi/OpenSubtitlesAPI.class:308.0"
 File[17]=".src/Classi/PlaylistClass.class:1033.0"
 File[18]=".src/Classi/TagLib.class:162.0"
@@ -1169,14 +1177,14 @@ File[21]=".src/Form/AFiltersCfg.class:107.0"
 File[22]=".src/Form/AddUriForm.class:18.0"
 File[23]=".src/Form/CoverManager.class:437.0"
 File[24]=".src/Form/DVBTuner.class:86.11"
-File[25]=".src/Form/EpgForm.class:151.0"
-File[26]=".src/Form/GeneralOptions.class:530.0"
+File[25]=".src/Form/EpgForm.class:660.0"
+File[26]=".src/Form/GeneralOptions.class:386.24"
 File[27]=".src/Form/HotKeyGrab.class:142.33"
 File[28]=".src/Form/HotKeys.class:501.0"
 File[29]=".src/Form/LogWindow.class:99.28"
 File[30]=".src/Form/OpenSubtitesForm.class:93.0"
 File[31]=".src/Form/OverlayTip.class:6.0"
-File[32]=".src/Form/OverlayTrayTip.class:53.0"
+File[32]=".src/Form/OverlayTrayTip.class:42.15"
 File[33]=".src/Form/SubAndOsd.class:78.0"
 File[34]=".src/Form/VFiltersCfg.class:124.0"
 File[35]=".src/Form/XConfigureAudioDriver.class:173.0"
@@ -1187,11 +1195,13 @@ File[39]=".src/Form/GeneralOptions.form"
 File[40]=".src/Form/FsForm.form"
 File[41]=".src/Form/FsForm.class:0.0"
 File[42]=".src/Form/zzzFake.form"
-File[43]=".src/Form/zzzFake.class:23.7"
+File[43]=".src/Form/zzzFake.class:63.3"
 File[44]="AA_ToDo:111.27"
 File[45]=".src/Classi/FloatSpinBox.class:87.17"
 File[46]=".src/Form/VideoEqualizer.class:24.13"
-Count=46
+File[47]=".src/Classi/StartClass.class:21.0"
+File[48]=".src/Form/EpgForm.form"
+Count=48
 
 [Watches]
 Count=4

@@ -1555,6 +1555,9 @@
       MoveScaled(42,5,60,65)
       Background = Color.Background
       Arrangement = Arrange.Vertical
+      { timerpluginmode #Timer
+        #MoveScaled(0,1)
+      }
       { TagPanel ScrollView
         MoveScaled(27,3,30,45)
         Expand = True

@@ -365,7 +365,10 @@ Public Sub AllInit_Pre()
      Debug
    Endif
   
-  If global.pluginmode Then Leftsidepanel.hide
+  If global.pluginmode Then 
+    Leftsidepanel.hide
+    bottomvbox.hide
+  Endif
   
   HideGrid(PlaylistGrid)
   HideGrid(LibraryGrid)
@@ -1044,6 +1047,8 @@ Public Sub MainInit()
       fmain.form_Close()
     Else
       AllInit_pre()
+      
+      
       FirstPlay = True 'used to  avoid playing media at start when togglepls button is toggled
       Me.mouse = mouse.Wait
       If Not global.pluginmode Then
@@ -3690,7 +3695,27 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
   
 End
 
+
+
+Public Sub ArrangeBottmVbox()
+   bottomvbox.ignore = True
+   bottomvbox.x = 0
+   bottomvbox.y = bottomvbox.Parent.h - bottomvbox.h
+   bottomvbox.w = bottomvbox.Parent.W
+   controlframe.ignore = True
+   controlframe.x = 0
+   controlframe.y = controlframe.Parent.h - controlframe.h
+   controlframe.w = controlframe.Parent.w
+   Debug
+End
+
+
 Private Sub CostrainFormSizes()
+
+  If (global.pluginmode) Then 
+    If Not fsform.fullscreen Then ArrangeBottmVbox()
+  Endif
+  
   SliderBox.left = ControlFrame.left + 16
   SliderBox.width = ControlFrame.Width - 32
   MainToolbar.width = FMain.clientw - 16
@@ -9813,6 +9838,17 @@ Public Sub PictureBox1_MouseMove()
 End
 
 Public Sub VideoAreaGroup_MouseMove()
+
+  If global.pluginmode Then
+    timerpluginmode.Stop()
+    If fsform.fullscreen Then 
+      Return
+        Else
+      bottomvbox.visible = True
+      timerpluginmode.Start()
+    Endif
+  Endif
+
 End
 
 Public Sub Button5_Click()
@@ -9820,3 +9856,9 @@ Public Sub Button5_Click()
   PauseUnPause(True)
 
 End
+
+Public Sub timerpluginmode_Timer()
+  bottomvbox.visible = False
+End
+
+

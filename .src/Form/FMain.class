@@ -3874,6 +3874,7 @@ Public Sub SwitchToWindow()
   controlframe.ignore = False
   statusbar1.ignore = False
   CostrainFormSizes()
+  If global.pluginmode Then bottomvbox.Hide
   FsForm.hide
   FsForm.FullScreen = False
   fsform.Background = color.Default

@@ -1036,8 +1036,8 @@ Public Sub MainInit()
         Debug
      Endif
   'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
-  If (Application.Args.count >= 2) And (Not global.pluginmode) Then
-    If alreadyrunning Then
+  If (Application.Args.count >= 2) Then
+    If alreadyrunning And (Not global.pluginmode) Then
       'try to play the file to the running xt7-player:
       zzzfake.sock_play(Application.Args[1])
       Fastquit = True

@@ -7,6 +7,8 @@ Private exportfilespath As String
 Public cachedopts As String = ""
 Public albumviewtexlen As Integer = 30
 
+Public mouseonfsform As Boolean = False
+
 Public Struct EventInfo
   Start_time_date As Date
   ServiceID As String
@@ -4081,13 +4083,13 @@ Private Sub MouseHide()
 
 End
 
-Public Function MouseInsideFmainByCoords() As Boolean
+Public Function MouseInsideFsFormByCoords() As Boolean
   'reports if the cursor is inside fmain by checking the coordinates
 
-  If mouse.ScreenX >= fmain.screenx Then
-    If mouse.ScreenX <= fmain.screenx + fmain.W Then
-      If mouse.ScreenY >= fmain.ScreenY Then
-        If mouse.ScreenY <= fmain.ScreenY + fmain.h Then
+  If mouse.ScreenX >= fsform.screenx Then
+    If mouse.ScreenX <= fsform.screenx + fsform.W Then
+      If mouse.ScreenY >= fsform.ScreenY Then
+        If mouse.ScreenY <= fsform.ScreenY + fsform.h Then
           Return True
         Endif
       Endif
@@ -4101,16 +4103,26 @@ Public Sub TimerFullScreen_Timer()
   
   Dim BottomThreshold As Integer = 96
   Dim TopThreshold As Integer = 48
-  Dim AttachZone1 As Boolean = (Mouse.screeny > Fmain.screeny + Fmain.h - BottomThreshold) 'bottom
+  Dim AttachZone1 As Boolean = (Mouse.screeny > fsform.screeny + Fsform.h - BottomThreshold) 'bottom
   Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
   Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
   Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
 
-  MouseOnFmain = MouseOnFmain Or MouseInsideFmainByCoords()
 
-  If MouseOnFmain Then MouseHide()
+  If MouseonFsForm Then 
+    MouseHide()
+      Else
+    Return
+  Endif
+  
+
+  ' If MouseInsideFsFormByCoords() Then 
+  '   MouseHide()
+  '     Else
+  '   Return
+  ' Endif
   '     
-  If AttachZone1 And MouseOnFmain Then
+  If AttachZone1 Then
     BottomVbox.ignore = True
     bottomvbox.y = rightsidepanel.h - bottomvbox.h
     Audioform.AudioPanel.ignore = True
@@ -4118,7 +4130,7 @@ Public Sub TimerFullScreen_Timer()
     
   Endif
   
-  If AttachZone2 And MouseOnFmain Then
+  If AttachZone2 Then
     MainToolBar.visible = True
     AllmenuVisible(True)
   Endif
@@ -4137,48 +4149,7 @@ Public Sub TimerFullScreen_Timer()
   
 End
 
-Public Sub TimerFullScreen_Timer_OLD() 'causes glitches with qt4
-  
-  Dim BottomThreshold As Integer = 128
-  Dim TopThreshold As Integer = 32
-  Dim AttachZone1 As Boolean = (Mouse.screeny > Fmain.screeny + Fmain.h - BottomThreshold) 'bottom
-  Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
-  
-  Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
-  Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
-  
-  MouseOnFmain = MouseOnFmain Or MouseInsideFmainByCoords()
-  
-  If MouseOnFmain Then MouseHide()
-  '     
-  If AttachZone1 And MouseOnFmain Then
-    OuterBox.ignore = True
-    Audioform.AudioPanel.ignore = True
-    DoSlideUp = True
-    SlideTimer.start
-  Endif
-  
-  If AttachZone2 And MouseOnFmain Then
-    MainToolBar.visible = True
-    AllmenuVisible(True)
-    CorrectAreaAspect
-  Endif
-  
-  If ReleaseZone1 Then
-    DoSlideUp = False
-    SlideTimer.start
-  Endif
-  
-  If ReleaseZone2 And (Not AttachZone1) And (MainToolBar.Visible) Then
-    MainToolBar.Visible = False
-    AllmenuVisible(False)
-    If (Not BottomVbox.visible) Then CorrectAreaAspect
-  Endif
-  If Not fmain.FullScreen Then
-    mouse
-  Endif
-  
-End
+
 
 Public Sub SwitchSidePanelBTN_Click()
   

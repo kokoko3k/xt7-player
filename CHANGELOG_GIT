@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 
 Oct 05 2012
+  FIX:    Only show panels in fullscreen if mouse is inside the fullscreen form
   FIX:    Hide bottomvbox in pluginmode when returning to window mode
   CHANGE: Hide bottomvbox in pluginmode (show on mousemove)
   FIX:    Do not reuse xt7 instance in -pluginmode

@@ -1,6 +1,3 @@
-[Bookmarks]
-FMain=[]
-
 [Breakpoints]
 Breakpoint[1]="GeneralOptions.386"
 Breakpoint[2]="GeneralOptions.551"
@@ -690,6 +687,12 @@ Geometry=[0,0,210,837]
 [DebugWindow/control]
 Geometry=[0,0,301,301]
 
+[DebugWindow/controlframe]
+Geometry=[1276,-3,342,726]
+
+[DebugWindow/controlframe.Parent]
+Geometry=[1290,11,342,726]
+
 [DebugWindow/covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight)]
 Geometry=[48,-4,210,210]
 
@@ -1152,16 +1155,16 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]="CHANGELOG_GIT:3.52"
+File[1]="CHANGELOG_GIT:4.69"
 File[2]=".src/Classi/YoutubeClass.class:333.6"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:299.9"
+File[4]=".src/Form/FMain.class:299.12"
 File[5]=".src/Classi/PodCast.class:39.0"
 File[6]=".src/Classi/ShoutCastClass.class:182.0"
 File[7]=".src/Classi/SettingsClass.class:68.0"
 File[8]=".src/Form/Chains.form"
 Active=9
-File[9]=".src/0_Moduli/Global.module:341.17"
+File[9]=".src/0_Moduli/Global.module:341.0"
 File[10]=".src/Classi/AlbumView.class:351.0"
 File[11]=".src/Classi/DynaGuiClass.class:24.0"
 File[12]=".src/Classi/DynaGuiClassBAK.class:23.27"
@@ -1201,7 +1204,8 @@ File[45]=".src/Classi/FloatSpinBox.class:87.17"
 File[46]=".src/Form/VideoEqualizer.class:24.13"
 File[47]=".src/Classi/StartClass.class:21.0"
 File[48]=".src/Form/EpgForm.form"
-Count=48
+File[49]="caching.gif"
+Count=49
 
 [Watches]
 Count=4

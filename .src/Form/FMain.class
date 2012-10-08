@@ -1025,9 +1025,15 @@ Public Sub MainInit()
     Shell "rm " & global.confpath & "/.InputPipes/Xt7Input-* >/dev/null 2>&1" Wait ' To out
     Shell "rm " & global.confpath & "/.ExportFiles/* >/dev/null 2>&1" Wait ' To out
   Endif
+    If Not global.pluginmode Then
      If global.currentprofile = "" Then
       global.CurrentProfile = MySettings.GetLastProfile(global.confpath)
      Endif
+      Else
+     global.currentprofile = "pluginmode"
+    Endif
+  
+  
      If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
         cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
         Line Input #cachedfile, cachedopts

@@ -137,6 +137,8 @@ End
 Public Sub MoveObject(TheObject As Object, TheForm As Object)
   Dim MenuHeight As Integer
   Dim SafeBack As Integer = 8
+  
+  
     If mouse.left Then Try Theform.mouse = 18 'missing mouse constant
     Try MenuHeight = TheForm.Font.textheight("Ij") + 4 'gambas3
     If Error Then   'gambas2
@@ -147,14 +149,12 @@ Public Sub MoveObject(TheObject As Object, TheForm As Object)
     If Mouse.screeny - safeback < TheForm.screeny + MenuHeight Then mouse.Move(mouse.screenx, TheForm.screeny + MenuHeight + SafeBack)
     If Mouse.screenx + safeback > TheForm.screenx + TheForm.width Then mouse.move(TheForm.screenx + TheForm.width - safeback, mouse.screeny)
     If Mouse.screeny + safeback > TheForm.screeny + TheForm.Height Then mouse.move(mouse.screenx, TheForm.screeny + TheForm.Height - safeback)
-    
     If ObjDragging Then
       'move the object on the screen and center it under the mouse pointer
-      If Mouse.button <> 0 Then
+      'If Mouse.button <> 0 Then
         ShadowObj.x = Mouse.screenx - ShadowObj.Parent.ScreenX - ShadowObj.Width Div 2 + XOffset
         ShadowObj.y = Mouse.screeny - ShadowObj.Parent.Screeny - ShadowObj.Height Div 2 + YOffset
-        
-      Endif
+      'Endif
     Endif
 End
 

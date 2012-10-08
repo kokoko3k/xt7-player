@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Oct 08 2012
+  FIX:    with newer gambas (tested 3.3.2) dynagui object dragging didn't work properly
+  CHANGE: Bind pluginmode profile to -pluginmode option
 
 Oct 05 2012
   FIX:    Only show panels in fullscreen if mouse is inside the fullscreen form

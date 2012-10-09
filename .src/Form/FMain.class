@@ -1341,6 +1341,7 @@ Public Sub Form_Close()
   Debug "hidden all forms"
   Debug
   
+  Try timerpluginmode.stop
 
   If ChooseAspect.visible Then ChooseAspect.CancelBtn_Click
 
@@ -1436,7 +1437,7 @@ Public Sub Form_Close()
   Try fsform.close
   Wait 0.01
   Print "Bye"
-  
+  Quit
 End
 
 Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty
@@ -9816,7 +9817,6 @@ Public Sub PictureBox1_MouseMove()
 End
 
 Public Sub VideoAreaGroup_MouseMove()
-
   If global.pluginmode Then
     timerpluginmode.Stop()
     If fsform.fullscreen Then 
@@ -9826,8 +9826,9 @@ Public Sub VideoAreaGroup_MouseMove()
       timerpluginmode.Start()
     Endif
   Endif
-
 End
+
+
 
 Public Sub Button5_Click()
 

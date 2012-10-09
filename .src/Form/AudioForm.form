@@ -10,11 +10,13 @@
     Move(14,-7,630,504)
     Font = Font["1"]
     Background = &H000000&
+    Tracking = True
     Drop = True
     Expand = True
     { HBox10 HBox AudioAreaGroup
       Name = "HBox10"
       Move(119,0,273,28)
+      Tracking = True
       Drop = True
       Expand = True
     }
@@ -22,11 +24,13 @@
       Name = "HBox7"
       Move(14,21,588,392)
       Font = Font["1"]
+      Tracking = True
       Drop = True
       { VBox7 VBox AudioAreaGroup
         Name = "VBox7"
         Move(7,77,21,182)
         Background = &H000000&
+        Tracking = True
         Expand = True
       }
       { VBox5 VBox AudioAreaGroup
@@ -34,11 +38,13 @@
         Move(42,7,490,378)
         Font = Font["Bitstream Vera Sans,1"]
         Background = &H000000&
+        Tracking = True
         Drop = True
         { HBox3 HBox AudioAreaGroup
           Name = "HBox3"
           Move(70,7,308,14)
           Font = Font["1"]
+          Tracking = True
           Expand = True
         }
         { HBox2 HBox AudioAreaGroup
@@ -46,6 +52,7 @@
           Move(42,14,434,203)
           Font = Font["Bitstream Vera Sans,1"]
           Background = &H000000&
+          Tracking = True
           Margin = True
           { TimerZoomIn #Timer
             Delay = 23
@@ -53,12 +60,14 @@
           { BarBox HBox
             Move(7,56,49,133)
             Background = &H000000&
+            Tracking = True
           }
           { Panel1 Panel AudioAreaGroup
             Name = "Panel1"
             Move(63,0,161,203)
             Font = Font["Bitstream Vera Sans,1"]
             Background = &H000000&
+            Tracking = True
             Drop = True
             Spacing = True
             Margin = True
@@ -79,6 +88,7 @@
               Font = Font["1"]
               Background = &H000000&
               Foreground = Color.SelectedBackground
+              Tracking = True
               Picture = Picture["emptycover.png"]
               Stretch = True
               Alignment = Align.Center
@@ -92,6 +102,7 @@
             Name = "VBox1"
             Move(231,14,133,182)
             Background = &H000000&
+            Tracking = True
             Drop = True
             AutoResize = True
             Margin = True
@@ -99,6 +110,7 @@
             { HBox4 HBox AudioAreaGroup
               Name = "HBox4"
               Move(14,0,98,21)
+              Tracking = True
               Expand = True
             }
             { Label2 Label AudioAreaGroup
@@ -107,6 +119,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               AutoResize = True
               Text = ("Artist")
             }
@@ -116,6 +129,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               AutoResize = True
               Text = ("Album")
             }
@@ -125,6 +139,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               AutoResize = True
               Text = ("Year")
             }
@@ -134,6 +149,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               AutoResize = True
               Text = ("Title")
             }
@@ -143,12 +159,14 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               AutoResize = True
               Text = ("Comment")
             }
             { HBox11 HBox AudioAreaGroup
               Name = "HBox11"
               Move(14,154,98,21)
+              Tracking = True
               Expand = True
             }
           }
@@ -156,12 +174,14 @@
             Name = "VBox2"
             Move(371,14,56,182)
             Background = &H000000&
+            Tracking = True
             AutoResize = True
             Margin = True
             Padding = 8
             { HBox5 HBox AudioAreaGroup
               Name = "HBox5"
               Move(0,0,35,21)
+              Tracking = True
               Expand = True
             }
             { Label12 Label AudioAreaGroup
@@ -170,6 +190,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label13 Label AudioAreaGroup
               Name = "Label13"
@@ -177,6 +198,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label14 Label AudioAreaGroup
               Name = "Label14"
@@ -184,6 +206,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label15 Label AudioAreaGroup
               Name = "Label15"
@@ -191,6 +214,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label16 Label AudioAreaGroup
               Name = "Label16"
@@ -198,10 +222,12 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { HBox12 HBox AudioAreaGroup
               Name = "HBox12"
               Move(7,161,28,21)
+              Tracking = True
               Expand = True
             }
           }
@@ -209,11 +235,13 @@
         { HBox1 HBox AudioAreaGroup
           Name = "HBox1"
           Move(42,224,434,147)
+          Tracking = True
           Drop = True
           { VBox3 VBox AudioAreaGroup
             Name = "VBox3"
             Move(77,7,126,133)
             Background = &H000000&
+            Tracking = True
             Drop = True
             AutoResize = True
             Margin = True
@@ -225,6 +253,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               Text = ("Radio")
             }
             { Label10 Label AudioAreaGroup
@@ -233,6 +262,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               Text = ("Name")
             }
             { Label9 Label AudioAreaGroup
@@ -241,6 +271,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               Text = ("Length")
             }
             { Label8 Label AudioAreaGroup
@@ -249,6 +280,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               Text = ("FileSize")
             }
             { Label7 Label AudioAreaGroup
@@ -257,6 +289,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
               Text = ("Audio Info")
             }
           }
@@ -264,6 +297,7 @@
             Name = "VBox4"
             Move(217,7,203,133)
             Background = &H000000&
+            Tracking = True
             Drop = True
             AutoResize = True
             Margin = True
@@ -274,6 +308,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label18 Label AudioAreaGroup
               Name = "Label18"
@@ -281,6 +316,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label19 Label AudioAreaGroup
               Name = "Label19"
@@ -288,6 +324,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label20 Label AudioAreaGroup
               Name = "Label20"
@@ -295,6 +332,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
             { Label21 Label AudioAreaGroup
               Name = "Label21"
@@ -302,6 +340,7 @@
               Font = Font["Bold,13"]
               Background = &H000000&
               Foreground = &HFFFFFF&
+              Tracking = True
             }
           }
         }
@@ -324,6 +363,7 @@
       Name = "PictureBox1"
       Move(28,427,231,63)
       Background = &H000000&
+      Tracking = True
       Drop = True
       Expand = True
       Picture = Picture["shade1.png"]

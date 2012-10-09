@@ -4103,8 +4103,23 @@ Public Function MouseInsideFsFormByCoords() As Boolean
     Endif
   Endif
   Return False
-
 End
+
+Public Function MouseInside(obj As Object) As Boolean
+   'reports if the cursor is inside obj
+  If mouse.ScreenX >= obj.screenx Then
+    If mouse.ScreenX <= obj.screenx + fsform.W Then
+      If mouse.ScreenY >= obj.ScreenY Then
+        If mouse.ScreenY <= obj.ScreenY + fsform.h Then
+          Return True
+        Endif
+      Endif
+    Endif
+  Endif
+  Return False 
+End
+
+
 
 Public Sub TimerFullScreen_Timer()
   
@@ -9837,7 +9852,15 @@ Public Sub Button5_Click()
 End
 
 Public Sub timerpluginmode_Timer()
-  bottomvbox.visible = False
+    bottomvbox.visible = False
 End
 
 
+Private timerpluginmodenabled As Boolean = False
+Public Sub ControlFrame_Enter()
+   timerpluginmodenabled = timerpluginmode.enabled
+   timerpluginmode.stop
+End
+Public Sub ControlFrame_Leave()
+  timerpluginmode.enabled = timerpluginmodenabled
+End

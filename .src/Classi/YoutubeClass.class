@@ -436,6 +436,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   If Not YoutubeDlInstalled() Then Return
 
   videoid = getvideoid(sourceurl)
+  currentvideoid = videoid
   Debug videoid
   
   fSorted.Add("1080,37,mp4")

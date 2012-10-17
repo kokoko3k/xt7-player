@@ -9864,3 +9864,21 @@ End
 Public Sub ControlFrame_Leave()
   timerpluginmode.enabled = timerpluginmodenabled
 End
+
+
+Public Sub SeekBar_MouseDrag()
+  Dim relative As Float
+  Dim msg As String
+  If Not mplayer.ProcessRunningOvr() Then Return
+  relative = (mouse.x / seekbar.w)
+  
+  If relative <= 0 Then 
+    relative = 0.00000000000000000000001
+      Else
+        If relative > 1 Then relative = 1
+  Endif
+  'Debug relative
+  msg = ("Seek to: ") & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
+  statusbar1.text = msg
+  mplayer.ShowText(msg, 1000)
+End

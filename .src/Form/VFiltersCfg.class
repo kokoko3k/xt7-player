@@ -450,6 +450,9 @@ Public Sub Form_Open()
   Endif
   
   Global.Center(Fmain, Me)
+  Me.show()
+  Wait 
+  Form_Resize()
 End
 
 

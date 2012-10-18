@@ -152,8 +152,8 @@ Public Sub MoveObject(TheObject As Object, TheForm As Object)
     If ObjDragging Then
       'move the object on the screen and center it under the mouse pointer
       'If Mouse.button <> 0 Then
-        ShadowObj.x = Mouse.screenx - ShadowObj.Parent.ScreenX - ShadowObj.Width Div 2 + XOffset
-        ShadowObj.y = Mouse.screeny - ShadowObj.Parent.Screeny - ShadowObj.Height Div 2 + YOffset
+        Try ShadowObj.x = Mouse.screenx - ShadowObj.Parent.ScreenX - ShadowObj.Width Div 2 + XOffset
+        Try ShadowObj.y = Mouse.screeny - ShadowObj.Parent.Screeny - ShadowObj.Height Div 2 + YOffset
       'Endif
     Endif
 End

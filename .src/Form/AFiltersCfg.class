@@ -16,6 +16,9 @@ Public Sub Form_Open()
      VFiltersCfg.MenuLoadDefault_Click()
   Endif
   Global.Center(Fmain, Me)
+  Me.show()
+  Wait 
+  Form_Resize()
 End
 
 Private pre As String = Global.pre

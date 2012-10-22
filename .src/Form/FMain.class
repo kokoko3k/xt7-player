@@ -4406,43 +4406,43 @@ Public Sub HotkeysMenu_Click()
   
 End
 
-Public Sub PauseUnPause(doPause As Boolean)
-  If dopause Then
-    'OneSecTimer.stop
-    ButtonPlay.picture = Picture["media-playback-start.png"]
-    mplayer.Send("pausing get_property paused") 'in questo modo abbiamo certamente una pausa, non uno switch.
-      Else
-    If mplayer.paused Then
-      OneSecTimer.start
-      ButtonPlay.picture = Picture["media-playback-pause.png"]    
-      mplayer.Send("Pause")
-    Endif
-  Endif
-End
-
-
-Public Sub HandlePause()
-  Dim PreviousFullscreenstate As Boolean
-  Dim doubleclicktime As Float = 0.5
-  Previousfullscreenstate = fsform.fullscreen
-
-  If mplayer.paused Then
-    PauseUnPause(False)
-    'wait a while to see if we are changing fullscreenmode
-    Wait doubleclicktime
-    If fsform.fullscreen <> Previousfullscreenstate Then
-      PauseUnPause(True)
-    Endif
-      Else
-    PauseUnPause(True)
-    'wait a while to see if we are changing fullscreenmode
-    Wait doubleclicktime
-    If fsform.fullscreen <> Previousfullscreenstate Then
-      PauseUnPause(False)
-    Endif
-  Endif
-
-End
+' Public Sub PauseUnPause(doPause As Boolean)
+'   If dopause Then
+'     'OneSecTimer.stop
+'     ButtonPlay.picture = Picture["media-playback-start.png"]
+'     mplayer.Send("pausing get_property paused") 'in questo modo abbiamo certamente una pausa, non uno switch.
+'       Else
+'     If mplayer.paused Then
+'       OneSecTimer.start
+'       ButtonPlay.picture = Picture["media-playback-pause.png"]    
+'       mplayer.Send("Pause")
+'     Endif
+'   Endif
+' End
+' 
+' 
+' Public Sub HandlePause()
+'   Dim PreviousFullscreenstate As Boolean
+'   Dim doubleclicktime As Float = 0.5
+'   Previousfullscreenstate = fsform.fullscreen
+' 
+'   If mplayer.paused Then
+'     PauseUnPause(False)
+'     'wait a while to see if we are changing fullscreenmode
+'     Wait doubleclicktime
+'     If fsform.fullscreen <> Previousfullscreenstate Then
+'       PauseUnPause(True)
+'     Endif
+'       Else
+'     PauseUnPause(True)
+'     'wait a while to see if we are changing fullscreenmode
+'     Wait doubleclicktime
+'     If fsform.fullscreen <> Previousfullscreenstate Then
+'       PauseUnPause(False)
+'     Endif
+'   Endif
+' 
+' End
 
 
 'HotKeys Handling *******************************************
@@ -4457,7 +4457,7 @@ Public Sub HotKeyToMplayer(HotKey As String)
   'PRINT Action
   Select Case Action
     ' Case Like "*Seek *"
-    '   SeekOrSeekAndRestart(Action)
+    ' SeekOrSeekAndRestart(Action)
     Case "Vo_fullscreen"
       FullScreenBtn_Click()
     Case "Panscan +0.05"
@@ -4467,7 +4467,14 @@ Public Sub HotKeyToMplayer(HotKey As String)
     Case "deinterlace"
       mplayer.DoDeinterlace()
     Case "Pause"
-      HandlePause()
+      If mplayer.Paused Then
+        OneSecTimer.start
+        ButtonPlay.picture = Picture["media-playback-pause.png"]
+      Else
+        'OneSecTimer.stop
+        ButtonPlay.picture = Picture["media-playback-start.png"]
+      Endif
+      mplayer.Send(Action)
     Case "Exit"
       mplayer.Send(Action)
       If fsform.visible Then FullScreenSwitch()
@@ -4489,11 +4496,11 @@ Public Sub HotKeyToMplayer(HotKey As String)
       VideoEqualizer.slider2.value -= 1
     Case "Gamma +1"
       VideoEqualizer.slider3.value += 1
-    Case "Gamma -1"  
+    Case "Gamma -1"
       VideoEqualizer.slider3.value -= 1
     Case "Hue +1"
       VideoEqualizer.slider4.value += 1
-    Case "Hue -1"  
+    Case "Hue -1"
       VideoEqualizer.slider4.value -= 1
     Case "Saturation +1"
       VideoEqualizer.slider5.value += 1
@@ -4504,6 +4511,64 @@ Public Sub HotKeyToMplayer(HotKey As String)
   End Select
   
 End
+' 
+' Public Sub HotKeyToMplayer(HotKey As String)
+'   'will send the action to the running mplayer
+'   'Some actions such as fullscreen and panscan are treated internally
+'   
+'   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
+' 
+' 
+'   'PRINT Action
+'   Select Case Action
+'     ' Case Like "*Seek *"
+'     '   SeekOrSeekAndRestart(Action)
+'     Case "Vo_fullscreen"
+'       FullScreenBtn_Click()
+'     Case "Panscan +0.05"
+'       PanScanCorrect(+0.05)
+'     Case "Panscan -0.05"
+'       PanScanCorrect(-0.05)
+'     Case "deinterlace"
+'       mplayer.DoDeinterlace()
+'     Case "Pause"
+'       HandlePause()
+'     Case "Exit"
+'       mplayer.Send(Action)
+'       If fsform.visible Then FullScreenSwitch()
+'     Case "quit"
+'       'mplayer.Send(Action)
+'       ButtonStop_Click()
+'       If fsform.FullScreen Then FullScreenSwitch()
+'     Case "Volume +0.5"
+'       SaveVolumeSlider.value = SaveVolumeSlider.value + 1
+'     Case "Volume -0.5"
+'       SaveVolumeSlider.value = SaveVolumeSlider.value - 1
+'     Case "Brightness +1"
+'       VideoEqualizer.slider1.value += 1
+'     Case "Brightness -1"
+'       VideoEqualizer.slider1.value -= 1
+'     Case "Contrast +1"
+'       VideoEqualizer.slider2.value += 1
+'     Case "Contrast -1"
+'       VideoEqualizer.slider2.value -= 1
+'     Case "Gamma +1"
+'       VideoEqualizer.slider3.value += 1
+'     Case "Gamma -1"  
+'       VideoEqualizer.slider3.value -= 1
+'     Case "Hue +1"
+'       VideoEqualizer.slider4.value += 1
+'     Case "Hue -1"  
+'       VideoEqualizer.slider4.value -= 1
+'     Case "Saturation +1"
+'       VideoEqualizer.slider5.value += 1
+'     Case "Saturation -1"
+'       VideoEqualizer.slider5.value -= 1
+'     Case Else
+'       mplayer.Send(Action)
+'   End Select
+'   
+' End
 
 
 Public Sub PanScanCorrect(delta As Float)
@@ -9845,11 +9910,7 @@ End
 
 
 
-Public Sub Button5_Click()
 
-  PauseUnPause(True)
-
-End
 
 Public Sub timerpluginmode_Timer()
     bottomvbox.visible = False

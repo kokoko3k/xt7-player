@@ -9939,7 +9939,7 @@ Public Sub SeekBar_MouseDrag()
         If relative > 1 Then relative = 1
   Endif
   'Debug relative
-  msg = ("Seek to: ") & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
+  msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
   statusbar1.text = msg
   mplayer.ShowText(msg, 1000)
 End

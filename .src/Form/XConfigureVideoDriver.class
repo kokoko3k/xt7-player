@@ -27,6 +27,9 @@ Public Sub Form_Open()
   DynaGui.YOffset = - Me.Font.Textheight("Ij") * 1.5
   Global.Center(Fmain, Me)
   TabToDescription()
+  Me.show()
+  Wait 
+  Form_Resize()
 End
 
 Private Sub TabToDescription()

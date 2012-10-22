@@ -30,6 +30,10 @@ Public Sub Form_Open()
   'ME.center
   Global.Center(Fmain, Me)
   TabToDescription()
+  Me.show()
+  Wait 
+  Form_Resize()
+  
 End
 
 Private Sub TabToDescription()

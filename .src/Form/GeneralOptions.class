@@ -31,7 +31,9 @@ Public Sub Form_Open()
   ALangComboBox.visible = False
   Button2.visible = True
   Button1.visible = True
-  
+  Me.show()
+  Wait 
+  Form_Resize()
   'OptionsList.MoveFirst
   'TabStrip1.index = 0
 End

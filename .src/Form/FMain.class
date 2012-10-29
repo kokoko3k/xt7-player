@@ -3747,6 +3747,7 @@ Public Sub FullScreenSwitch()
   Endif
   Wait 0.1
   SwitchingFullScreen = False
+  UpdateStatusBar()
 End
 
 Private buttonmenuwasvisible As Boolean = False
@@ -5344,7 +5345,7 @@ Public Sub Hsplit1_MyRefresh()
 
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() And mplayer.Paused Then UpdateStatusBar()
-
+  UpdateStatusBar()
   
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
@@ -9941,5 +9942,6 @@ Public Sub SeekBar_MouseDrag()
   'Debug relative
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
   statusbar1.text = msg
+  
   mplayer.ShowText(msg, 1000)
 End

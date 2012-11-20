@@ -3069,10 +3069,12 @@ Public Sub UpdateVolumeSlider()
   Try newvolume = Left(tmp, InStr(tmp, ".") - 1)
   If newvolume = 0 Then
     Try newvolume = Left(tmp, InStr(tmp, ",") - 1)
-    If Error Then Return
+    If Error Then Goto ReturnLabel
   Endif
   Try SaveVolumeSlider.Value = newvolume Div 4
-  If Error Then Return
+  If Error Then Goto ReturnLabel
+  
+  ReturnLabel:
   SaveVolumeSlider.tag = "user"
   lastvolume = newvolume
 End
@@ -3420,7 +3422,7 @@ End
 Public Sub SaveVolumeSlider_Change()
   OneSecTimer.delay = OneSecTimer.delay * 100
   If Not (SaveVolumeSlider.tag = "timer") Then
-    mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue) + 1) 'don't allow volume=0 as it has problems with softvol
+    mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue)) ' + 1) 'don't allow volume=0 as it has problems with softvol
     If VolumeFocused Then UpdateVolumeTooltip()
   Endif
   OneSecTimer.delay = OneSecTimer.delay Div 100
@@ -4544,7 +4546,7 @@ End
 Public Sub VideoAreaGroup_DblClick()
 Dim timenow As Float = Timer
   If mouseleft And Not TagEditMode Then 
-    If (timenow - LastClickTime) < 0.25 Then mplayer.Send("pause") 'keep the pausing state when switching fullscreen mode
+    If (timenow - LastClickTime) < 0.25 Then mplayer.Send("pause") ' keep the pausing state when switching fullscreen mode
     FullScreenSwitch()
   Endif
 End

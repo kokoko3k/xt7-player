@@ -4,7 +4,6 @@
 ' Gambas class file
 
 Public Sub Start()
-  Dim argument As String
   Dim i As Integer
   Print ""
   Print Application.name & " " & Application.version

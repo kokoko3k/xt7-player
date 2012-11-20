@@ -868,19 +868,13 @@ Public AudioSwitched As Boolean = False
 
 Public Function Send(command As String) As Boolean
   Dim mystream As File
-  If (command) = "Pause" Then
-    If paused Then
-      do_leave_pause()
-        Else
-      do_pause()
-    Endif
-    Return
-  Endif
   If ProcessRunningOvr() And (Exist(inputpipe)) Then
     If Stat(inputpipe).type = gb.pipe Then
       mystream = Open inputpipe For Write
       If command Like "*af_*" Then Debug command
-      If inputpipe <> "" Then Print #mystream, command
+      If inputpipe <> "" Then 
+        Print #mystream, command
+      Endif
     Endif
   Endif
   If Lower(command) Like "switch_audio*" Then AudioSwitched = True
@@ -1407,10 +1401,14 @@ Public Function GetListOf(TheType As String) As String[]
   'thetype can be ao,vo,af,vf
   Dim list, mpline As String
   Dim outlist As New String[]
+  Debug Timer
+  Debug Thetype
   Shell executable() & "  -noconfig all -" & TheType & " help" To List
+  Debug Timer
   For Each mpline In Split(list, "\n", "", True)
     outlist.Add(Lower(Split(mpline, " \t", "", True)[0]))
   Next 'mpline
+  Debug Timer
   Return outlist
 End
 

@@ -1435,8 +1435,8 @@ Public Sub Form_Close()
   Try epgform.close
   Try ButtonMenu.close
   Try fsform.close
-  Wait 0.01
   Print "Bye"
+  Wait 0.5
   Quit
 End
 
@@ -4502,9 +4502,12 @@ Public Sub VideoAreaGroup_KeyPress()
   
 End
 
+Private LastClickTime As Float
+
 Public Sub VideoAreaGroup_MouseUp()
   Dim HotKey As String
   Dim mx, my As Integer
+  LastClickTime = Timer
   If GuiDragging Then
     guidragging = False
     Return
@@ -4539,9 +4542,11 @@ End
 '/HotKeys Handling *******************************************
 
 Public Sub VideoAreaGroup_DblClick()
-  
-  If mouseleft And Not TagEditMode Then FullScreenSwitch()
-  
+Dim timenow As Float = Timer
+  If mouseleft And Not TagEditMode Then 
+    If (timenow - LastClickTime) < 0.25 Then mplayer.Send("pause") 'keep the pausing state when switching fullscreen mode
+    FullScreenSwitch()
+  Endif
 End
 
 Public Sub GeneralOptionsMenu_Click()

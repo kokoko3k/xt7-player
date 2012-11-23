@@ -9632,14 +9632,6 @@ Public Sub ButtonEPG_Click()
   EpgForm.Show()
 End
 
-Public Sub PlayListSelInfo_MouseDown()
-
-  SwitchToFS()
-
-End
-
-
-
 
 Public Sub ButtonSavePls2_Click()
   If (Not global.initearlyformsdone) Then InitEarlyForms()

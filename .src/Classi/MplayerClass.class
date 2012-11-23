@@ -969,23 +969,26 @@ Public Function ProcessRunningOvr() As Boolean
 End
 
 Public Function do_stop() As Boolean
-
-  Dim timeout As Integer = 11
+  Dim maxtimeout As Integer = 11
+  Dim timeout As Integer 
   AudioSwitched = False
   Try STimer.stop
   stopping = True
   ICY = ""
   ICYStreamTitle = ""
   ClearMediaHeaders()
+  timeout = maxtimeout
   Repeat 'con le buone...
     send("quit")
     Wait 0.1
     timeout = timeout - 1
   Until ((timeout <= 0) Or (Not ProcessRunningOvr()))
-  
+  timeout = maxtimeout
   Repeat 'con le cattive...
     Try Playerprocess.Kill
-  Until Not (ProcessRunningOvr())
+     Wait 0.1
+    timeout = timeout - 1
+    Until ((timeout <= 0) Or (Not ProcessRunningOvr()))
   'delete previous pipe
   'If Trim(inputpipe) <> "" Then Shell "rm " & inputpipe Wait
   Try Kill inputpipe

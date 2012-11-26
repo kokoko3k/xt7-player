@@ -2473,13 +2473,14 @@ End
 
 Public needytcookie As Boolean = False
 
+Private cachingbox As Moviebox
 Private dumpfile As String
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
 
 
   Dim MkvSubsWorkaround As Boolean
   Dim cookieopts As String = ""
-  Dim cachingbox As MovieBox 'show an animation while caching...
+  'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Wait
   OneSecTimer.Stop()
@@ -3750,6 +3751,8 @@ Public Sub FullScreenSwitch()
     SwitchToFS()
   Endif
   Wait 0.1
+  Try cachingbox.x = (outerbox.w Div 2) - 33
+  Try cachingbox.y = (outerbox.h Div 2) - 33
   SwitchingFullScreen = False
   UpdateStatusBar()
 End
@@ -5187,7 +5190,6 @@ Public Sub Hsplit1ResizeDelayed_timer()
 End
 
 Public Sub Hsplit1_MyRefresh()
-  
   Dim RightPanel As Integer = 0
 
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
@@ -5222,7 +5224,10 @@ Public Sub Hsplit1_MyRefresh()
     Wait
     PanelNowNextArrange()
   Endif
-End
+  
+  Try cachingbox.x = (outerbox.w Div 2) - 33
+  Try cachingbox.y = (outerbox.h Div 2) - 33
+  End
 
 
 

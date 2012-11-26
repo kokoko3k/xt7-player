@@ -802,7 +802,8 @@ Public Sub SetStyle_early()
   shadeup.visible = False
   shadelow.visible = False
   
-  cachebar.h = (fmain.font.textHeight("iJ") Div 2)
+  cachegauge.w = 0
+  cachebar.h = (fmain.font.textHeight("iJ") Div 4)
 
   'Set font size AND stile OF the whole form; beware the AudioForm!
   If global.pluginmode Then 
@@ -2998,7 +2999,7 @@ Public Sub UpdateStatusBar()
   Dim FreeSpace As Integer
   Dim NeededSpaces As Integer
   Dim LotOfSpaces As String = ""
-  Dim Cachevalue As Integer = 0
+  Dim cachevalue As Integer = 0
   
  
     pretext = file.BaseName(mplayer.Media_FullPath_Playing)
@@ -3044,7 +3045,8 @@ Public Sub UpdateStatusBar()
         Else
       fmain.caption = pretext & " [ cache: " & cachevalue & "% (Auto) ]"
     Endif
-    cachebar.value = cachevalue / 100
+    'cachebar.value = cachevalue / 100
+    cachegauge.w = (cachevalue / 100) * cachebar.w
   Endif
   
   
@@ -3258,7 +3260,7 @@ Public Sub OneSecTimer_Timer()
     'cachebar.visible = False
     Fmain.caption = global.AppName
     OneSecTimer.stop
-    cachebar.value = 0
+    cachegauge.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]
     If PlayStarted Then 'we've reached the end of the media or stopped it.
       SubNotSet = True

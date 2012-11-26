@@ -1552,7 +1552,7 @@
     }
     { RightSidePanel Panel VideoAreaGroup
       Name = "RightSidePanel"
-      MoveScaled(42,5,60,65)
+      MoveScaled(43,5,60,65)
       Background = Color.Background
       Tracking = True
       Arrangement = Arrange.Vertical
@@ -1774,13 +1774,16 @@
       { BottomVbox VBox
         MoveScaled(-4,48,71,15)
         Background = Color.Background
-        { cachebar ProgressBar
-          MoveScaled(1,0,54,1.5714)
-          Font = Font["Bold,5"]
-          Label = False
+        { cachebar HBox
+          MoveScaled(4,2,60,1)
+          Background = &H000000&
+          { cachegauge Panel
+            MoveScaled(0,0,50,1)
+            Background = Color.SelectedBackground
+          }
         }
         { ControlFrame Frame
-          MoveScaled(1,2,70,10)
+          MoveScaled(1,3,70,10)
           Font = Font["6"]
           { PictureBox1 PictureBox
             MoveScaled(8,1,60,7)

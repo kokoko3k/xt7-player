@@ -756,7 +756,7 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   
   If global.pluginmode Then
      ButtonWovr = 24
-     buttonhovr = 24
+     buttonhovr = 28
      PaddingOvr = 2
   Endif
   

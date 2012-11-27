@@ -3726,8 +3726,10 @@ End
 
 Private Sub CostrainFormSizes()
 
-  If (global.pluginmode) Then 
-    If Not fsform.fullscreen Then ArrangeBottmVbox()
+  If (global.pluginmode) Then
+    If Not fsform.fullscreen Then
+      ArrangeBottmVbox()
+    Endif
   Endif
   
   SliderBox.left = ControlFrame.left + 16
@@ -3775,7 +3777,11 @@ Public Sub SwitchToFS()
   FsForm.x = fmain.ScreenX
   FsForm.y = fmain.screeny
   FsForm.show
+  
   FsForm.FullScreen = True
+  Repeat
+    Wait
+  Until fsform.w >= Screenbypos(fmain.screenx, fmain.screeny).Width
   FsForm.Background = color.Default
 
 
@@ -3832,7 +3838,6 @@ Public Sub SwitchToFS()
   controlframe.w = bottomvbox.W
   Wait
   CostrainFormSizes() 
-
 End
 
 
@@ -6177,7 +6182,6 @@ Public Sub FullScreenBtn_Click()
   If Not Tageditmode Then 
     FullScreenSwitch()
   Endif
-
 End
 
 Public Sub SlideTimer_Timer()

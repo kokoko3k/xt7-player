@@ -300,10 +300,8 @@ Public Sub TagEditorBtn_click()
 End
 
 Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, WithMplayer As Boolean)
-
   Dim Tag As String
   Dim i As Integer = 0
-
   MyLibrary.Init(WithMplayer)
   LibraryGrid.Columns.count = MyLibrary.ColumnIndex.Count
   For Each Tag In MyLibrary.ColumnIndex
@@ -5930,7 +5928,7 @@ Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As
  
  If mygrid.data = Null Then Return
  If Not fmain.FullyLoaded Then Return
- If Not fmain.visible Then Return
+ If Not (fmain.visible Or fsform.FullScreen) Then Return
 
 
 
@@ -7990,25 +7988,19 @@ Public Sub PlaylistGrid_Leave()
 End
 
 
+Private Sub HideScrollbars(librarygrid As Gridview)
+  librarygrid.Scrollbar = Scroll.none
+  GridPanels_Arrange()
+End
+
+Private Sub ShowScrollbars(librarygrid As Gridview)
+  librarygrid.Scrollbar = Scroll.both
+  GridRefreshWorkaround(librarygrid)
+End
+
 
 
 Public hirow As Integer = -1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Public Sub ChengeToggleColor(Tbutton As Object)
   

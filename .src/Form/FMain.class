@@ -313,6 +313,7 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
   MyLibrary.Load(LibraryGrid, global.confpath)
  ' Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
   If Lower(librarygrid.name) = "playlistgrid" Then PlayListSelInfoBox.visible = False
+  GridRefreshWorkaround(librarygrid)
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
@@ -337,8 +338,6 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
 End
 
 Public Sub AllInit_Pre()
-
-
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
   MakeScreenshotsPath()
@@ -378,7 +377,6 @@ Public Sub AllInit_Pre()
   SetDvdTabVisibility(False)
   SetCDDATabVisibility(False)
   SetStyle_early()
-
 End
 
 Public Sub InitEarlyForms()
@@ -803,7 +801,7 @@ Public Sub SetStyle_early()
   shadelow.visible = False
   
   cachegauge.w = 0
-  cachebar.h = (fmain.font.textHeight("iJ") Div 4)
+  cachebar.h = (fmain.font.textHeight("iJ") Div 5)
 
   'Set font size AND stile OF the whole form; beware the AudioForm!
   If global.pluginmode Then 
@@ -1671,7 +1669,12 @@ Public Sub mplayererroravailable(outline As String)
         Endif
 End
 
-
+Public Sub GridRefreshWorkaround(librarygrid As Gridview)
+  'seems something has a bug here and scrollbars didn't show up at first.
+  librarygrid.Rows.h = librarygrid.Rows.h
+  Object.SetProperty(librarygrid.parent, "Padding", Object.GetProperty(librarygrid.parent, "Padding") + 1)
+  Object.SetProperty(librarygrid.parent, "Padding", Object.GetProperty(librarygrid.parent, "Padding") - 1)
+End
 
 Public Sub ButtonStop_Click()
   zzzfake.PanelNowNext.visible = False

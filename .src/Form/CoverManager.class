@@ -470,16 +470,14 @@ Public Function IsUncovered(fullpath As String) As Boolean
 End
 
 Public Sub MarkUncovered(fullpath As String)
-
-
   If (Uncovered.Find(fullpath) = -1) Then Uncovered.Add(fullpath) 'Uncovered.Add(file.Name(fullpath))
 End
 
 Public Sub UnMarkUncovered(fullpath As String)
   Dim i As Integer
   If Not UncoveredInitialized Then UncoveredInit()
-  Try i = uncovered.Find(file.Name(fullpath))
-  If Not Error Then uncovered.Remove(i, 1)
+  Try i = uncovered.Find(fullpath)
+  If (Not Error ) And (i >= 0) Then uncovered.Remove(i, 1)
 End
 
 
@@ -1110,6 +1108,16 @@ Public Function SavePic(fullpath As String, artist As String, album As String, r
 End
 
 Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As String, mygrid As Gridview, row As Integer, column As Integer)
+  Dim folderpicturefile As String
+  folderpicturefile = FolderPicture(directory)
+  If folderpicturefile <> "" Then
+    Copy Directory & "/" & folderpicturefile To coverfilename
+    Try mygrid[row, column].text = ""
+    Try mygrid[row, column].clear
+  Endif
+End
+
+Public Function FolderPicture(Directory As String) As String  
   Dim Files As New String[]
   Files = Dir(Directory, "*front*.jpg")
   If Files.count > 0 Then Goto FILEFOUND  
@@ -1136,11 +1144,12 @@ Public Sub FolderPictureToCoverCache(Directory As String, coverfilename As Strin
 
   FILEFOUND:
   If Files.count > 0 Then 
-    Copy Directory & "/" & Files[0] To coverfilename
-    Try mygrid[row, column].text = ""
-    Try mygrid[row, column].clear
+    Return Files[0]
+      Else
+    Return ""
   Endif
 End
+
 
 
 Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As String, coverfilename As String, mygrid As Gridview, row As Integer, column As Integer)

@@ -799,7 +799,7 @@ Public Sub SetStyle_early()
   shadelow.visible = False
   
   cachegauge.w = 0
-  cachebar.h = (fmain.font.textHeight("iJ") Div 5)
+  cachebar.h = (fmain.font.textHeight("iJ") Div 4)
 
   'Set font size AND stile OF the whole form; beware the AudioForm!
   If global.pluginmode Then 
@@ -2814,6 +2814,7 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
 
     If (Not samecover) Or force Then 
        Try audioform.CoverBox.picture = covermanager.keepaspect(Image.Load(coverfile), 160)
+       If Error Then Try audioform.CoverBox.picture = covermanager.keepaspect((Image.Load(mplayer.Media_FullPath & "/" & covermanager.FolderPicture(file.Dir(mplayer.Media_FullPath)))), 160)
        If Error Then audioform.CoverBox.picture = covermanager.DefaultLibraryIcon(mplayer.Media_FullPath, 160)
     Endif
 
@@ -8070,6 +8071,7 @@ Public Sub UpdateEmbeddedFromSelected(mygrid As Gridview)
       fullpath = mygrid[r, myplaylist.Columnindex["Full Path"]].text
       coverfilename = covermanager.Coverfile("", "", fullpath) 'generate a coverfilename using just filename (not album/artist)
       Try covermanager.RemoveCoverCache(coverfilename, True)
+      covermanager.UnMarkUncovered(fullpath) 'unvalidate uncovered state
       mygrid[r, 0].text = ""
       mygrid[r, 0].Clear
     Endif

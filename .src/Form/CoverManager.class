@@ -318,8 +318,10 @@ Public Sub TextBox1_Activate()
 End
 
 Public Sub Form_Open()
-  'ME.center
   Global.Center(Fmain, Me)
+  CoverManager.Show
+  combobox1.readonly = True
+  combobox1.index = 0
 End
 
 Public CoverCacheList As New ListView(zzzfake)
@@ -812,12 +814,23 @@ Public Sub DeleteThumbsBy(album As String, artist As String, p As String)
   Next 'filename
 End
 
+Public Sub SaveScaled(infile As String, outfile As String, TheWidth As Integer)
+  Dim myimage As Image
+  Dim TheHeight As Integer
+  Dim aspect As Float
+  myimage = image.Load(infile)
+  aspect = myimage.w / myimage.h
+  TheHeight = CInt(TheWidth / aspect)
+  myimage = myimage.Stretch(TheWidth, TheHeight)
+  myimage.Save(outfile, 100)
+End
 
 
 
 Public Sub PictureBox1_DblClick()
   Dim newfilename As String
   Dim currentfilename As String
+  Dim ScaleTo As Integer
   CoverManager.close
   'stop any previous search
   HitCancel = True
@@ -827,7 +840,12 @@ Public Sub PictureBox1_DblClick()
   Try currentfilename = Coverlist.Current.key
   If Not Error Then
     Try Kill newfilename
-    Try Copy currentfilename To ((newfilename))
+    Try ScaleTo = combobox1.Current.Text
+    If Error Then 'non numeric value means we won't scale
+      Try Copy currentfilename To ((newfilename))
+        Else 'scale it
+      SaveScaled(currentfilename, newfilename, ScaleTo)
+    Endif
   Endif
   Try RemoveCoverCache(newfilename, False)
   FMain.CoverRefresh()
@@ -1301,3 +1319,5 @@ End
 Public Sub Button1_Click()
   Try Search()
 End
+
+

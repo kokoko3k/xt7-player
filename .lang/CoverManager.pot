@@ -14,39 +14,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: CoverManager.form:34
+#: CoverManager.form:35
 msgid "Cover fetcher"
 msgstr ""
 
-#: CoverManager.form:57
+#: CoverManager.form:58
 msgid "Artist/Author:"
 msgstr ""
 
-#: CoverManager.form:73
+#: CoverManager.form:74
 msgid "Album:"
 msgstr ""
 
-#: CoverManager.form:98
+#: CoverManager.form:99
 msgid "Amazon"
 msgstr ""
 
-#: CoverManager.form:105
+#: CoverManager.form:106
 msgid "Google"
 msgstr ""
 
-#: CoverManager.form:157
+#: CoverManager.form:158
 msgid "Unset Cover"
 msgstr ""
 
-#: CoverManager.form:163
+#: CoverManager.form:164
 msgid "Load cover"
 msgstr ""
 
-#: CoverManager.form:174
+#: CoverManager.form:176
+msgid "Don't Scale"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "640"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "480"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "320"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "240"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "160"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "128"
+msgstr ""
+
+#: CoverManager.form:181
 msgid "Set Cover"
 msgstr ""
 
-#: CoverManager.form:180
+#: CoverManager.form:187
 msgid "Close"
 msgstr ""
 
@@ -74,19 +102,19 @@ msgstr ""
 msgid "Try to use less strict terms, remove symbols and so on..."
 msgstr ""
 
-#: CoverManager.class:897
+#: CoverManager.class:915
 msgid "Load a Jpg cover image"
 msgstr ""
 
-#: CoverManager.class:913
+#: CoverManager.class:931
 msgid "Error while loading the picture"
 msgstr ""
 
-#: CoverManager.class:945
+#: CoverManager.class:963
 msgid "\nso you are going to set a cover for this particular file/stream"
 msgstr ""
 
-#: CoverManager.class:946
+#: CoverManager.class:964
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr ""
 

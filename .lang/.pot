@@ -227,7 +227,7 @@ msgid "Close the window"
 msgstr ""
 
 #: AFiltersCfg.form:410 AddUriForm.form:156 AudioVideoCodecs.form:220
-#: Chains.form:541 CoverManager.form:180 GeneralOptions.form:2297
+#: Chains.form:541 CoverManager.form:187 GeneralOptions.form:2297
 #: LogWindow.form:138 SubAndOsd.form:644 VFiltersCfg.form:128
 #: XConfigureAudioDriver.form:500 XConfigureVideoDriver.form:1235
 msgid "Close"
@@ -892,35 +892,63 @@ msgstr ""
 msgid "10"
 msgstr ""
 
-#: CoverManager.form:34
+#: CoverManager.form:35
 msgid "Cover fetcher"
 msgstr ""
 
-#: CoverManager.form:57
+#: CoverManager.form:58
 msgid "Artist/Author:"
 msgstr ""
 
-#: CoverManager.form:73
+#: CoverManager.form:74
 msgid "Album:"
 msgstr ""
 
-#: CoverManager.form:98
+#: CoverManager.form:99
 msgid "Amazon"
 msgstr ""
 
-#: CoverManager.form:105
+#: CoverManager.form:106
 msgid "Google"
 msgstr ""
 
-#: CoverManager.form:157
+#: CoverManager.form:158
 msgid "Unset Cover"
 msgstr ""
 
-#: CoverManager.form:163
+#: CoverManager.form:164
 msgid "Load cover"
 msgstr ""
 
-#: CoverManager.form:174
+#: CoverManager.form:176
+msgid "Don't Scale"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "640"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "480"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "320"
+msgstr ""
+
+#: CoverManager.form:176
+msgid "240"
+msgstr ""
+
+#: CoverManager.form:176 GeneralOptions.form:2008
+msgid "160"
+msgstr ""
+
+#: CoverManager.form:176 GeneralOptions.form:2008
+msgid "128"
+msgstr ""
+
+#: CoverManager.form:181
 msgid "Set Cover"
 msgstr ""
 
@@ -944,21 +972,21 @@ msgstr ""
 msgid "Try to use less strict terms, remove symbols and so on..."
 msgstr ""
 
-#: CoverManager.class:897
+#: CoverManager.class:915
 msgid "Load a Jpg cover image"
 msgstr ""
 
-#: CoverManager.class:913
+#: CoverManager.class:931
 msgid "Error while loading the picture"
 msgstr ""
 
-#: CoverManager.class:945 FMain.class:6687
+#: CoverManager.class:963 FMain.class:6687
 msgid ""
 "\n"
 "so you are going to set a cover for this particular file/stream"
 msgstr ""
 
-#: CoverManager.class:946 FMain.class:6688
+#: CoverManager.class:964 FMain.class:6688
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr ""
 
@@ -3823,14 +3851,6 @@ msgstr ""
 
 #: GeneralOptions.form:2008
 msgid "96"
-msgstr ""
-
-#: GeneralOptions.form:2008
-msgid "128"
-msgstr ""
-
-#: GeneralOptions.form:2008
-msgid "160"
 msgstr ""
 
 #: GeneralOptions.form:2025

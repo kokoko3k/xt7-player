@@ -1675,6 +1675,8 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
+  zzzfake.cachingbox.Reparent(outerbox)
+  zzzfake.cachingbox.raise
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
@@ -2474,7 +2476,6 @@ End
 
 Public needytcookie As Boolean = False
 
-Private cachingbox As Moviebox
 Private dumpfile As String
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
 
@@ -2502,17 +2503,18 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   lastsubid = -1
   global.ResetApplyBtnColor()
   
-  cachingbox = New MovieBox(outerbox)
+ 
   'cachingbox.ignore = True
-  cachingbox.h = 66
-  cachingbox.w = 66
-  cachingbox.x = (outerbox.w Div 2) - 33
-  cachingbox.y = (outerbox.h Div 2) - 33
-  cachingbox.border = False
-  cachingbox.path = "caching.gif"
-  cachingbox.playing = True
-  cachingbox.Raise
-  cachingbox.Show
+  zzzfake.cachingbox.Reparent(outerbox)
+  zzzfake.cachingbox.h = 66
+  zzzfake.cachingbox.w = 66
+  zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
+  zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
+  zzzfake.cachingbox.border = False
+  zzzfake.cachingbox.path = "caching.gif"
+  zzzfake.cachingbox.playing = True
+  zzzfake.cachingbox.Raise
+  zzzfake.cachingbox.Show
   'Wait 0.0001
   
   TooMuchCache = False
@@ -2555,7 +2557,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
       'OneSecTimer.start()
       If Error Then
         Message.error(("Unable to get the real stream url"))
-        cachingbox.delete
+        zzzfake.cachingbox.Hide
+        zzzfake.cachingbox.playing = False
         Return
       Endif
     Endif
@@ -2594,7 +2597,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     If Error Then
       Message.error(("Unable to get the real stream url"))
       Try Last.mouse = mouse.Default
-      cachingbox.delete
+      zzzfake.cachingbox.Hide
+      zzzfake.cachingbox.playing = False
       Return
     Endif
   Endif
@@ -2686,7 +2690,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   buttoncapture.visible = buttoncapture.enabled
   ArrangeCpl()
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
-  cachingbox.delete
+  zzzfake.cachingbox.Hide
+  zzzfake.cachingbox.playing = False
   global.ResetApplyBtnColor()
   Return True
 
@@ -3755,8 +3760,8 @@ Public Sub FullScreenSwitch()
     SwitchToFS()
   Endif
   Wait 0.1
-  Try cachingbox.x = (outerbox.w Div 2) - 33
-  Try cachingbox.y = (outerbox.h Div 2) - 33
+  zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
+  zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
   SwitchingFullScreen = False
   UpdateStatusBar()
 End
@@ -5232,8 +5237,8 @@ Public Sub Hsplit1_MyRefresh()
     PanelNowNextArrange()
   Endif
   
-  Try cachingbox.x = (outerbox.w Div 2) - 33
-  Try cachingbox.y = (outerbox.h Div 2) - 33
+  zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
+  zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
   End
 
 

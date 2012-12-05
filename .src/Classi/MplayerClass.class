@@ -450,12 +450,10 @@ End
 
 
 
-
 Private Function WaitForHeaders() As Boolean
 
   Dim Prevcount As Integer = 0
   Dim MaxWait As Integer = 400 'act as a timeout in case mplayer got stuck (400 = about 4secs)
-
   If Media_FullPath Like "*://*" Then MaxWait = 800 'increase timeout on uries. (800 = about 8secs)
   If Media_FullPath Like "dvd://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
   If Media_FullPath Like "dvdnav://*" Then MaxWait = 3000 ' for dvd, we'll wait 30 secs.
@@ -470,6 +468,7 @@ Private Function WaitForHeaders() As Boolean
       Wait 0.01
       If (MediaHeaders.count = PrevCount) Then MaxWait = MaxWait - 1
       PrevCount = MediaHeaders.count
+      'Debug "waiting headers on " & Media_FullPath
     Wend
     If (maxwait = 0) Or (MediaHeaders.count >= maxheaders) Then
       Debug "Timeout! or maxheaders reached on Media_FullPath=" & Media_FullPath

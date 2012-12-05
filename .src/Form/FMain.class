@@ -1675,8 +1675,6 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
-  zzzfake.cachingbox.Reparent(outerbox)
-  zzzfake.cachingbox.raise
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
@@ -4576,8 +4574,6 @@ Public Sub GeneralOptionsMenu_Click()
 End
 
 Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
-
-
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop

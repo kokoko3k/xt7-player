@@ -2602,7 +2602,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Endif
   OneSecTimer.start
   If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
-  
+
   ' Debug "TTTTTTT:"
   ' Debug "TTTTTTT: Calling mplayer at: " & Timer
   ' Debug "TTTTTTT:"
@@ -2610,13 +2610,13 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
     Endif
-    
+
     OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     FillStreamsMenu()
-    
+  
     If (Fullpath Like "dvd://*") Then
       IsDVD = True
       FillTitlesAndChaptersMenu()
@@ -2662,7 +2662,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Else
     audioform.RadioLabel.visible = False
   Endif
-  
+
   VideoBox.Visible = True
   If TabSelectedLibrary() Then 
     Try ComboHistory.AddHistory(Searchfield, (Searchfield.text))
@@ -3072,7 +3072,7 @@ Public Sub UpdateVolumeSlider()
   Dim newvolume As Integer
   'DEBUG "asking for volume level..."
   mplayer.Send("get_property volume")
-  SaveVolumeSlider.tag = "timer"          'this will avoid seekbar to send volume to mplayer
+  Try SaveVolumeSlider.tag = "timer"          'this will avoid seekbar to send volume to mplayer
   tmp = mplayer.currentvolume
   Try newvolume = Left(tmp, InStr(tmp, ".") - 1)
   If newvolume = 0 Then
@@ -3083,7 +3083,7 @@ Public Sub UpdateVolumeSlider()
   If Error Then Goto ReturnLabel
   
   ReturnLabel:
-  SaveVolumeSlider.tag = "user"
+  Try SaveVolumeSlider.tag = "user"
   lastvolume = newvolume
 End
 

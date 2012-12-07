@@ -639,7 +639,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
     ClearMediaProperties()
     Media_FullPath = filename
     
-    
+
     
     commandline = executable() & " " & "-identify -slave "
     If wid <> "" Then commandline = commandline & " -wid " & wid
@@ -661,7 +661,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
         commandline = commandline & " -subfile " & "\"" & SConv(filename) & "\""
       Endif
     Endif
-    
+
   commandline = commandline & " -input conf=/tmp/FakeInput.conf:file=" & inputpipe
     If global.isplaylist(filename) Then
       commandline = commandline & " -playlist "
@@ -718,7 +718,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Else
       MaxHeaders = MaxHeadersFile
     Endif
-
+ 
     Debug "Starting mplayer now:"
     Debug "commandline=" & commandline
     Debug
@@ -729,10 +729,10 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Media_Length = "0"
     Media_percent_pos = "0"
     MediaHeaders.Resize(0) 'fixes an issue when playlisting youtube results
+  
     WaitForHeaders()
     GetAllTags()
-    'detect if mplayer will eventually freeze throuch stimer (as stucktimer)
-    'InitStucktimer(options)
+
     Return True
   Endif
 End

@@ -1723,7 +1723,8 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
-
+  previousfile_cover = ""
+  mplayer.CurrentCache = 0
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
@@ -2568,17 +2569,19 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   lastsubid = -1
   global.ResetApplyBtnColor()
   
-  'cachingbox.ignore = True
-  zzzfake.cachingbox.Reparent(outerbox)
-  zzzfake.cachingbox.h = 66
-  zzzfake.cachingbox.w = 66
-  zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
-  zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
-  zzzfake.cachingbox.border = False
-  zzzfake.cachingbox.path = "caching.gif"
-  zzzfake.cachingbox.playing = True
-  zzzfake.cachingbox.Raise
-  zzzfake.cachingbox.Show
+  If audioform.AudioPanel.parent <> outerbox Then
+    zzzfake.cachingbox.ignore = True
+    zzzfake.cachingbox.Reparent(outerbox)
+    zzzfake.cachingbox.h = 66
+    zzzfake.cachingbox.w = 66
+    zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
+    zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
+    zzzfake.cachingbox.border = False
+    zzzfake.cachingbox.path = "caching.gif"
+    zzzfake.cachingbox.playing = True
+    zzzfake.cachingbox.Raise
+    zzzfake.cachingbox.Show
+  Endif
   'Wait 0.0001
   
   TooMuchCache = False
@@ -2882,43 +2885,45 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
 
 End
 
-Public audioformshown As Boolean = False
-Private currentfile As String = ""
-Private previousfile As String = ""
+Private currentfile_cover As String = ""
+Private previousfile_cover As String = ""
 Public mymeters As New Meters
 
 Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
-
   If Show And (Not TagEditMode) Then
-    previousfile = currentfile
-    currentfile = mplayer.Media_FullPath_Playing
-    If ((currentfile <> previousfile) Or (Not audioformshown)) Then  'avoid showing twice
-      fmain.OuterBox.ignore = True
+    audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
+    If GeneralOptions.ShowVmeterCHK.value = True Then
+      Try mymeters.stopp
+      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
+      mymeters.startt
+    Endif
+   ' If audioform.AudioPanel.parent = Rightsidepanel Then Return
+    previousfile_cover = currentfile_cover
+    currentfile_cover = mplayer.Media_FullPath_Playing
+    If ((currentfile_cover <> previousfile_cover)) Then  'avoid showing twice
+      'fmain.OuterBox.ignore = True
+      fmain.OuterBox.Arrangement = Arrange.fill
       If Not samecover Then audioform.CoverBox.Resize(0, 0)
-      If ((Lower(audioform.AudioPanel.Parent.name) <> "rightsidepanel") Or (Not audioformshown)) Then
-        BottomVbox.Reparent(zzzfake)
-        audioform.AudioPanel.Reparent(Rightsidepanel)
-        BottomVbox.Reparent(rightsidepanel)
+      If (audioform.AudioPanel.Parent <> outerbox) Then
+        BottomVbox.hide
+        Wait
+        'audioform.AudioPanel.Reparent(Rightsidepanel)
+        audioform.AudioPanel.Reparent(outerbox)
+        BottomVbox.raise() ' Reparent(rightsidepanel)
+        bottomvbox.show
         cachebar.Reparent(audioform.AudioPanel)
         cachebar.Move(0, audioform.AudioPanel.h - cachebar.h, 0)
         'cachebar.raise
       Endif
-    Endif
-    audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
-    If GeneralOptions.ShowVmeterCHK.value = True Then
-      
-      Try mymeters.stopp
-      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
-      mymeters.startt
     Endif
     If Not samecover Then
       audioform.coverbox.Refresh
       AudioForm.TimerZoomIn.start
       audioform.refresh
     Endif
-    'rightsidepanel.Background = audioform.AudioPanel.Background
-    OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
+    'OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
   Else
+    fmain.OuterBox.Arrangement = Arrange.none
     Try mymeters.stopp
     If Not tageditmode Then rightsidepanel.Background = audioform.AudioPanel.Background
     fmain.OuterBox.ignore = False
@@ -2926,13 +2931,8 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
     audioform.AudioPanel.Reparent(audioform)
     cachebar.Reparent(rightsidepanel)
     cachebar.Move(0, outerbox.h - cachebar.h, 0)
-    'bottomvbox.raise
-    ' BottomVbox.Reparent(fmain)
-    ' BottomVbox.Reparent(RightSidePanel)
     audioform.refresh
   Endif
-  audioformshown = show
-
 End
 
 Public Sub SetCddaTabVisibility(visibility As Boolean)
@@ -3321,7 +3321,8 @@ Public Sub OneSecTimer_Timer()
         Endif
         
         If (mplayer.AudioOnly) Then
-          If (Not audioformshown) Then
+          'If (Not audioformshown) Then
+          If (audioform.AudioPanel.parent <> outerbox) Then
             If (Not tageditmode) Then
               ShowAudioPanel(True)
             Endif
@@ -3350,7 +3351,10 @@ Public Sub OneSecTimer_Timer()
       'reset overboost value
       overboost = 100
       'hide the cover
-      If GeneralOptions.CoverCHK2.value Then ShowAudioPanel(False)
+       ' If GeneralOptions.CoverCHK2.value Then
+       '   'ShowAudioPanel(False)
+       '   Try mymeters.stopp
+       ' Endif
       'Execute PostCommand
       ExecutePostCmd()
       'delete export file

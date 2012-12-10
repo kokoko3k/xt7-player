@@ -22,10 +22,6 @@ Public Struct EventInfo
   icon As String
 End Struct
 
-
-
-
-
 Private Function IsTabChildren(name As String, Optional index As Integer = 99999) As Boolean
   
   Dim found As Boolean = False
@@ -51,64 +47,93 @@ Private Function IsTabChildren(name As String, Optional index As Integer = 99999
 End
 
 Public Function TabSelectedLibrary() As Boolean
+
   Return IsTabChildren("NOPARSETABLIBRARY")
+
 End
 
 Public Function TabSelectedPlaylist() As Boolean
+
   Return IsTabChildren("NOPARSETABPLAYLIST")
+
 End
 
 Public Function TabSelectedFlash() As Boolean
+
   Return IsTabChildren("NOPARSETABFLASH")
+
 End
 
 Public Function TabSelectedShoutcast() As Boolean
+
   Return IsTabChildren("NOPARSETABSHOUTCAST")
+
 End
 
 Public Function TabSelectedyoutube() As Boolean
+
   Return IsTabChildren("NOPARSETABYOUTUBE")
+
 End
 
 Public Function TabSelectedCDDA() As Boolean
+
   Return IsTabChildren("NOPARSETABCDDA")
+
 End
 
 Public Function TabSelectedDVD() As Boolean
+
   Return IsTabChildren("NOPARSETABDVD")
+
 End
 
 Public Function TabSelectedDVB() As Boolean
+
   Return IsTabChildren("NOPARSETABDVB")
+
 End
 
 Public Function TabSelectedBrowse() As Boolean
+
   Return IsTabChildren("NOPARSETABBROWSE")
+
 End
 
 Public Function TabSelectedDVDAt(index As Integer) As Boolean
+
   Return IsTabChildren("NOPARSETABDVD", index)
+
 End
 
 Public Function TabSelectedCDDAAt(index As Integer) As Boolean
+
   Return IsTabChildren("NOPARSETABCDDA", index)
+
 End
 
 Public Function TabSelectedPodCasts() As Boolean
+
   Return IsTabChildren("NOPARSETABPODCAST")
+
 End
 
 Public Function TabSelectedMediaInfo() As Boolean
+
   Return IsTabChildren("NOPARSETABMEDIAINFO")
+
 End
 
 Public Function TabSelectedAlbums() As Boolean
+
   Return IsTabChildren("NOPARSETABALBUMS")
+
 End
 
-
 Public Function TabSelectedProfiles() As Boolean
+
   Return IsTabChildren("NOPARSETABPROFILES")
+
 End
 
 Public closing As Boolean = False
@@ -133,7 +158,6 @@ Public MyDVBTList As New PlaylistClass
 Public Host As Object
 Public dvd_device As String
 Public MyAlbumsLib As New AlbumView
-
 
 Public overboost As Integer = 100 'contains softvol max value.
 
@@ -201,6 +225,7 @@ Public trayicon1 As Trayicon
 
 Public Sub InitTrayIcon()
   'Dim trayicon1 As New TrayIcon
+
   Dim SystemTray As Boolean = True
   Try SystemTray = desktop.HasSystemTray
   If Error Then
@@ -218,10 +243,7 @@ Public Sub InitTrayIcon()
 End
 
 Public Sub Form_Open()
-
-
-
-
+  
   SetFlexSpaceVisibility(False)
   'init dynagui toolbar objects
   DynaGuiTools.AllowedContainers = ["MainToolbar"] ', "SliderBox"]
@@ -232,18 +254,22 @@ Public Sub Form_Open()
   If global.TranslationNeeded Then
     If Not (Exist(TranslationNeeded.Notranslatefile)) Then TranslationNeeded.show
   Endif
+
 End
 
 Public Sub SetFlexSpaceVisibility(Visibility As Boolean)
+
   If Visibility = True Then
     FlexSpace.border = Border.plain
     FlexSpace.background = Color.White
   Else
     FlexSpace.border = Border.none 'gambas3
   Endif
+
 End
 
 Public Sub DynaGuiToolbar_Click()
+
   Dim ButtonName As String
   If MenuToolBarLocked.checked Then
     Try ButtonName = Last.name
@@ -259,20 +285,20 @@ Public Sub DynaGuiToolbar_Click()
           ConfigureChainsBTN_Click()
         Case "ConfigureBTN"
           'If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-           If (Not global.initearlyformsdone) Then InitEarlyForms()
+          If (Not global.initearlyformsdone) Then InitEarlyForms()
           ConfigureBTN_Click()
-         Case "RealtimeBTN"
+        Case "RealtimeBTN"
           'If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-           If (Not global.initearlyformsdone) Then InitEarlyForms()
+          If (Not global.initearlyformsdone) Then InitEarlyForms()
           Global.Center(fmain, realtimeform)
           RealtimeForm.show()
         Case "ShowVideoEq"
           'If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-           If (Not global.initearlyformsdone) Then InitEarlyForms()
+          If (Not global.initearlyformsdone) Then InitEarlyForms()
           ShowVideoEq_Click()
         Case "ShowAudioEq"
           'If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-           If (Not global.initearlyformsdone) Then InitEarlyForms()
+          If (Not global.initearlyformsdone) Then InitEarlyForms()
           ShowAudioEq_Click()
         Case "SwitchAudioBTN"
           SwitchAudioBTN_Click()
@@ -280,7 +306,7 @@ Public Sub DynaGuiToolbar_Click()
           SwitchSubBtn_Click()
         Case "PoweroffBTN"
           'If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-           If (Not global.initearlyformsdone) Then InitEarlyForms()
+          If (Not global.initearlyformsdone) Then InitEarlyForms()
           PowerffBTN_click()
         Case "SwitchSidePanelBTN"
           SwitchSidePanelBTN_click()
@@ -291,17 +317,22 @@ Public Sub DynaGuiToolbar_Click()
       End Select
     Endif
   Endif
+
 End
 
 '--------------------------------------------------
- 
+
 Public Sub TagEditorBtn_click()
+
   EditTagModeSwitch1_Click()
+
 End
 
 Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, WithMplayer As Boolean)
+
   Dim Tag As String
   Dim i As Integer = 0
+
   MyLibrary.Init(WithMplayer)
   LibraryGrid.Columns.count = MyLibrary.ColumnIndex.Count
   For Each Tag In MyLibrary.ColumnIndex
@@ -309,16 +340,20 @@ Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, With
     i = i + 1
   Next
   MyLibrary.Load(LibraryGrid, global.confpath)
- ' Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
+  ' Try Object.SetProperty(librarygrid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
   If Lower(librarygrid.name) = "playlistgrid" Then PlayListSelInfoBox.visible = False
   GridRefreshWorkaround(librarygrid)
+
 End
 
 Public Sub HideGrid(Librarygrid As Gridview)
-    librarygrid.visible = False
+
+  librarygrid.visible = False
+
 End
 
 Public Sub ShowGrid(LibraryGrid As Gridview)
+
   Select Case librarygrid.name
     Case "PlaylistGrid"
       WaitPanel2.visible = False
@@ -333,9 +368,11 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
   End Select
   librarygrid.scrollx = 0
   librarygrid.scrolly = 0
+
 End
 
 Public Sub AllInit_Pre()
+
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
   MakeScreenshotsPath()
@@ -358,11 +395,11 @@ Public Sub AllInit_Pre()
   Global.LoadEarlySettings(global.CurrentProfile) 'slow
   'the following has To be called after loadearlysettings because 
   'Is There where we load generaloptions form settings
-   If generaloptions.ShowCoversInListChk.value Then
-     covermanager.prebuffer()
-     Debug "the User likes cover, so we prebuffer cover list In background..."
-     Debug
-   Endif
+  If generaloptions.ShowCoversInListChk.value Then
+    covermanager.prebuffer()
+    Debug "the User likes cover, so we prebuffer cover list In background..."
+    Debug
+  Endif
   
   If global.pluginmode Then 
     Leftsidepanel.hide
@@ -375,9 +412,11 @@ Public Sub AllInit_Pre()
   SetDvdTabVisibility(False)
   SetCDDATabVisibility(False)
   SetStyle_early()
+
 End
 
 Public Sub InitEarlyForms()
+
   Debug "start at: " & Time
   Debug
   Try Last.mouse = mouse.wait
@@ -391,11 +430,13 @@ Public Sub InitEarlyForms()
   fmain.mouse = mouse.default
   Debug "Ends at:" & Time
   Debug
+
 End
 
 Public Sub AllInit_Post()
-
+  
   Dim savefileview1path As String
+
   Hsplit1ResizeDelayed = New Timer As "Hsplit1ResizeDelayed" 'used to delay the hsplit resize and better performance
   Hsplit1ResizeDelayed.delay = 300
   Hsplit1ResizeDelayed.Enabled = False
@@ -408,17 +449,16 @@ Public Sub AllInit_Post()
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
   InitLibrary(MyDVBTList, DVBTGrid, False)
-
+  
   If TabSelectedAlbums() Then 
     Albums_Select()
   Endif  
-
+  
   Try mypodcast.LoadPods(global.confpath & "/mypods.txt", PodcastTree)
   ' librarygrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up, it will be triggered by combohistory.loadhistory
   ' playlistgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
   ' dvbtgrid.tag = "FORCEUPDATE" 'this allows updatesearchresults to work even while we're starting up
-
-
+  
   'some gtk component problem here
   Try ComboHistory.LoadHistory(Searchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(SearchfieldPLS, global.confpath & "/" & global.CurrentProfile)
@@ -473,12 +513,12 @@ Public Sub AllInit_Post()
     If Exist(Application.Args[1]) Then fmain.ShowBrowseTabTo(Application.Args[1])
   Endif
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
-   updaterecentfiles()
-   'we created a "default" empty profile, copy the factory settings to it
-   If FirstTimeXt7 Then 
+  updaterecentfiles()
+  'we created a "default" empty profile, copy the factory settings to it
+  If FirstTimeXt7 Then 
     ReallySaveAllSettings("default", False, True)
     global.currentprofile = "default"
-   Endif
+  Endif
   shadeup.visible = True
   shadelow.visible = True
   
@@ -488,14 +528,15 @@ End
 
 Private RecentFileEntry As Menu
 
-
 Private HaveToPlay As String = ""
-Public Sub updaterecentfiles()
 
+Public Sub updaterecentfiles()
+  
   Dim history, entry As String
   Dim historyarray As String[]
   Dim sep As String = Chr(8)
   Dim HaveToSeek As String = ""
+
   Try history = file.Load(global.Historyfile)
   If Error Then Return
   'Clear and pupulate the list:
@@ -517,57 +558,66 @@ Public Sub updaterecentfiles()
     If entry Like ("*" & sep & "*") Then
       Try RecentFileEntry.caption = Split(entry, sep, "", True, "")[0]
       If Error Then Return
-        Else
+    Else
       RecentFileEntry.caption = entry
     Endif
     RecentFileEntry.Picture = picture["icon:/medium/recent"]
   Next 'entry
-   RecentFileEntry = New Menu(MenuOpenRecent) As "ClearRecentFiles"
-   RecentFileEntry.name = "menuclearrecent"
-   RecentFileEntry.caption = "Clear History"
-   RecentFileEntry.picture = picture["icon:/medium/delete"]
-
-   'restore the previous media
-   If GeneralOptions.RestorePlayCHK.value Then
+  RecentFileEntry = New Menu(MenuOpenRecent) As "ClearRecentFiles"
+  RecentFileEntry.name = "menuclearrecent"
+  RecentFileEntry.caption = "Clear History"
+  RecentFileEntry.picture = picture["icon:/medium/delete"]
+  
+  'restore the previous media
+  If GeneralOptions.RestorePlayCHK.value Then
     If HaveToPlay <> "" Then 
       If HaveToSeek <> "" Then
         If Not (PlayFromCommandline) Then 
-         Play(HaveToPlay, " -ss " & HaveToSeek & " " & cachedopts)
+          Play(HaveToPlay, " -ss " & HaveToSeek & " " & cachedopts)
         Endif
       Endif
     Endif
-   Endif
+  Endif
+
 End
 
 Public Sub RecentFileEntry_Click()
+
   Try Play(Last.caption)
+
 End
 
 Public Sub ClearRecentFiles_Click()
+
   Try Kill global.Historyfile
   If Not Error Then 
     ClearRecentFilesSub()
-      Else
+  Else
     Message.Error(("Couldn't clear the history!"), "Ok")
   Endif
+
 End
 
 Public Sub ClearRecentFilesSub()
+
   Dim child As Menu
   Repeat 
     For Each child In MenuOpenRecent.Children
       child.delete
     Next 'child
   Until (MenuOpenRecent.Children.count = 0)
+
 End
 
 Public Sub InitFlashGrid()
+
   MyFlash.Grid = Fmain.FlashGrid
   MyFlash.init()
+
 End
 
-
 Public Sub MakeProfilePath()
+
   Dim DefaultProfilepath As String = global.confpath & "/default.profile"
   'Try to make some profile folders
   If Not Exist(file.Dir(DefaultProfilepath), True) Then
@@ -578,15 +628,17 @@ Public Sub MakeProfilePath()
     Try Mkdir File.Dir(DefaultProfilepath)
     Try Mkdir DefaultProfilepath
   Endif
+
 End
 
-
 Public Sub MakeScreenshotsPath()
+
   Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
+
 End
 
 Private Sub InitGenresTag()
-
+  
   tagbox5.add("A capella")
   tagbox5.add("Acid")
   tagbox5.add("Acid Jazz")
@@ -735,25 +787,27 @@ Private Sub InitGenresTag()
   tagbox5.add("Tribal")
   tagbox5.add("Trip-Hop")
   tagbox5.add("Vocal")
+
 End
 
 Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
- Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
- Dim TheObject As Object
 
- Dim cX As Integer = 0
- NumButtonsCPL = 0
- 'fix bottom panel for high sized fonts
- '---------------------------------------------------------------------------
+  Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
+  Dim TheObject As Object
+  
+  Dim cX As Integer = 0
+
+  NumButtonsCPL = 0
+  'fix bottom panel for high sized fonts
+  '---------------------------------------------------------------------------
   ButtonWovr = 36 '36
   ButtonHovr = 36 '36
   PaddingOvr = 5 '5
   
-  
   If global.pluginmode Then
-     ButtonWovr = 24
-     buttonhovr = 28
-     PaddingOvr = 2
+    ButtonWovr = 24
+    buttonhovr = 28
+    PaddingOvr = 2
   Endif
   
   For Each theobject In ControlPanel.Children
@@ -774,17 +828,14 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
   
   If global.pluginmode Then statusbar1.visible = False
-
+  
   '---------------------------------------------------------------------------
 End
-
-
 
 Public Sub SetStyle_early()
   
   Dim TheObject As Object
-
- 
+  
   Dim backcolor As String = GeneralOptions.backcolorChooseBTN1.Background
   Dim forecolor As String = GeneralOptions.ColorChooseBTN1.Background
   Dim Userfont As Font = GeneralOptions.FontChooseBTN1.font
@@ -798,23 +849,22 @@ Public Sub SetStyle_early()
   shadeup.visible = False
   shadelow.visible = False
   
-  cachegauge.w = 0
+  cachebar.w = 0
   cachebar.h = (fmain.font.textHeight("iJ") Div 4)
-
+  
   'Set font size AND stile OF the whole form; beware the AudioForm!
   If global.pluginmode Then 
     Maintoolbar.h = 0
     'cachebar.h = 6
-      Else
+  Else
     If desktop.Height > 600 Then
       Maintoolbar.h = 32
-        Else
+    Else
       Maintoolbar.h = 24
     Endif
   Endif
   ' 
   ArrangeCpl(9)
-  
   
   If audioform.AudioPanel.parent = Rightsidepanel Then
     If (Not mplayer.ProcessRunningOvr()) Then ShowAudioPanel(False) 
@@ -846,51 +896,47 @@ Public Sub SetStyle_early()
   OverlayTrayTip.font = GeneralOptions.FontChooseBTN4.font
   OverlayTrayTip.foreground = GeneralOptions.ColorChooseBTN4.Background
   OverlayTrayTip.Panel2.background = GeneralOptions.backcolorChooseBTN3.Background
-
+  
   Librarygrid.font = Userfont
   Librarygrid.Foreground = forecolor
   Librarygrid.Background = backcolor
   Panel2.background = Librarygrid.Background
-
+  
   Global.Alternatecolor = GeneralOptions.backcolorChooseBTN2.Background
-
+  
   dvbtgrid.font = Userfont
   dvbtgrid.Foreground = forecolor
   dvbtgrid.Background = backcolor
   panel3.Background = backcolor
   dvbtgrid.Rows.h = dvbtgrid.Font.TextHeight("^_") + global.rowpadding
   
-  
   Playlistgrid.font = Userfont
   PlaylistGrid.Foreground = forecolor
   PlayListGrid.Background = backcolor
   Panel1.background = backcolor
-
   
   FlashGrid.font = Userfont
   FlashGrid.Foreground = forecolor
   FlashGrid.Background = backcolor
   Panel5.background = backcolor
-
-
+  
   ProfilesListBox.font = Userfont
   ProfilesListBox.foreground = forecolor
   ProfilesListBox.background = backcolor
-
+  
   CDDAGrid.font = Userfont
   CDDAGrid.Foreground = forecolor
   CDDAGrid.Background = backcolor
   panel4.Background = backcolor
   
-  
   treeview1.font = Userfont
   treeview1.Foreground = forecolor
   treeview1.Background = backcolor
-
+  
   FileView1.font = Userfont
   FileView1.Foreground = forecolor
   FileView1.Background = backcolor
-
+  
   AlbumGridView.font = Userfont
   AlbumGridView.Foreground = forecolor
   AlbumGridView.Background = backcolor
@@ -901,27 +947,23 @@ Public Sub SetStyle_early()
   PropertiesGrid.Background = backcolor
   Panel7.Background = backcolor
   
-
-  
   youtubetree.font = Userfont
   youtubetree.Foreground = forecolor
   youtubetree.Background = backcolor
-
+  
   GenresTree.font = Userfont
   GenresTree.Foreground = forecolor
   GenresTree.Background = backcolor
-
+  
   PodcastTree.font = Userfont
   PodcastTree.Foreground = forecolor
   PodcastTree.Background = backcolor
-
-
+  
   ShutResultGrid.font = Userfont
   ShutResultGrid.Foreground = forecolor
   ShutResultGrid.Background = backcolor
   panel6.Background = backcolor
- 
-
+  
   SearchField.Font.size = zzzFake.Font.size
   SearchFieldPLS.Font.size = zzzFake.Font.size
   SearchFieldalbums.Font.size = zzzFake.Font.size
@@ -953,9 +995,9 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(VfiltersCfg)
   SetSubControlsStyles(XConfigureAudioDriver)
   SetSubControlsStyles(XConfigureVideoDriver)
-
+  
   covermanager.ResizeShadowTemplate(generaloptions.IconWidthCombobox.text)
-
+  
 End
 
 Public Sub SetSubControlsStyles(TheForm As Form)
@@ -963,6 +1005,7 @@ Public Sub SetSubControlsStyles(TheForm As Form)
   
   Dim TheObject As Object
   Dim objvalid As Boolean
+
   If closing Then Return
   
   For Each TheObject In TheForm.controls
@@ -989,6 +1032,7 @@ Public Sub DelayTimer_Timer()
   AllInit_Post()
   Debug "Ended at: " & Timer
   Debug
+
 End
 
 Private FirstTimeXt7 As Boolean = True ' has the user ever used xt7?
@@ -997,14 +1041,13 @@ Public havetoshowbrowsetab As Boolean = False
 Private PlayFromCommandline As Boolean = False
 
 Public Sub MainInit()
-
-
+  
   Dim AlreadyRunning As Boolean = False
-
+  
   Dim cachedfile As File
   Dim MySettings As New SettingsClass
   'Disable Shutdown feature at start.
-
+  
   FirstTimeXt7 = Not (Exist(global.ConfPath))
   ShutOff_Click()
   MakeProfilePath()
@@ -1012,7 +1055,7 @@ Public Sub MainInit()
   Try Shell "mkdir -p " & Global.ScreenshotFolder & " >/dev/null 2>&1" Wait
   
   covermanager.MakeCoverDirs()
-
+  
   'TRY TO get a LOCK file:
   Try hLock = Lock global.confpath & "/.lock"
   If Error Then
@@ -1022,27 +1065,26 @@ Public Sub MainInit()
     Shell "rm " & global.confpath & "/.InputPipes/Xt7Input-* >/dev/null 2>&1" Wait ' To out
     Shell "rm " & global.confpath & "/.ExportFiles/* >/dev/null 2>&1" Wait ' To out
   Endif
-    If Not global.pluginmode Then
-     If global.currentprofile = "" Then
+  If Not global.pluginmode Then
+    If global.currentprofile = "" Then
       global.CurrentProfile = MySettings.GetLastProfile(global.confpath)
-     Endif
-      Else
-     global.currentprofile = "pluginmode"
     Endif
+  Else
+    global.currentprofile = "pluginmode"
+  Endif
   
-  
-     If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
-        cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
-        Line Input #cachedfile, cachedopts
-        Close #cachedfile
-        cachedopts = Trim(cachedopts)
-        Debug cachedopts
-        Debug
-          Else
-        Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
-        Debug "To recreate the cache file, simply reload the profile"
-        Debug
-     Endif
+  If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
+    cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
+    Line Input #cachedfile, cachedopts
+    Close #cachedfile
+    cachedopts = Trim(cachedopts)
+    Debug cachedopts
+    Debug
+  Else
+    Debug "Error: last profile cache file does not exists anymore, using default mplayer values"
+    Debug "To recreate the cache file, simply reload the profile"
+    Debug
+  Endif
   'Try Shell "mkdir -p " & global.confpath & "/covers/uncovered/" & " >/dev/null 2>&1" Wait
   If (Application.Args.count >= 2) Then
     If alreadyrunning And (Not global.pluginmode) Then
@@ -1053,12 +1095,11 @@ Public Sub MainInit()
     Else
       AllInit_pre()
       
-      
       FirstPlay = True 'used to  avoid playing media at start when togglepls button is toggled
       Me.mouse = mouse.Wait
       If Not global.pluginmode Then
         FMain.LoadFormGeometry()
-          Else
+      Else
         buttonmenubtn.visible = False
         ShowHideMenuBarMenu_Click()
       Endif
@@ -1089,24 +1130,26 @@ Public Sub MainInit()
   LeftSideTabs_Click()
   Debug "Myinit ended at: " & Timer
   Debug
-
+  
 End
-
 
 Public Sub SyncCachedOpts()
-    If (Not global.initearlyformsdone) Then InitEarlyForms()
-    cachedopts = GetOptionsFromGui()
-    Debug "CACHED OPTIONS ARE: " & cachedopts
-    Debug
-    cachedopts = cachedopts & " " & mplayer.AoAdditionalopts & " " & mplayer.AoDriver & " "
-    cachedopts = cachedopts & " " & mplayer.VoDriver & " " & mplayer.VoAdditionalopts & " " & mplayer.AoAdditionalopts
-    cachedopts = cachedopts & " " & mplayer.AVcodecs
+
+  If (Not global.initearlyformsdone) Then InitEarlyForms()
+  cachedopts = GetOptionsFromGui()
+  Debug "CACHED OPTIONS ARE: " & cachedopts
+  Debug
+  cachedopts = cachedopts & " " & mplayer.AoAdditionalopts & " " & mplayer.AoDriver & " "
+  cachedopts = cachedopts & " " & mplayer.VoDriver & " " & mplayer.VoAdditionalopts & " " & mplayer.AoAdditionalopts
+  cachedopts = cachedopts & " " & mplayer.AVcodecs
+
 End
 
-
 Public Sub ShowBrowseTabTo(fullpath As String)
+
   Dim path As String
   Dim tabid As Integer
+
   If global.IsNetworkURI(fullpath) Then Return
   Try path = file.Dir(fullpath)
   If Error Then 
@@ -1123,18 +1166,19 @@ Public Sub ShowBrowseTabTo(fullpath As String)
   Try UrlBox.text = path
   Try FileView1.dir = path
   FileView1.ShowDetailed = True
- 
+  
   Leftsidetabs.Index = Tabid
   Wait 0.001
   FileView1.Current = file.name(fullpath)
-   FileView1.refresh
+  FileView1.refresh
   Wait 0.001
-End
 
+End
 
 Public Sub InitPropertiesGrid()
   
   Dim i As Integer
+
   PropertiesGrid.Columns.count = 2
   PropertiesGrid.Rows.count = 20
   PropertiesGrid[0, 0].text = "FileName"
@@ -1157,13 +1201,13 @@ Public Sub InitPropertiesGrid()
   PropertiesGrid[17, 0].text = "Video Fps"
   PropertiesGrid[18, 0].text = "Video Codec"
   PropertiesGrid[19, 0].text = "Video Bitrate"
-
+  
   For i = 0 To PropertiesGrid.Rows.count - 1
     PropertiesGrid[i, 0].Font.bold = True
   Next 'i
-
+  
   PropertiesGrid.Columns[0].Width = "-1"      'Autosize Columns
-
+  
 End
 
 Private Function OneOf(one As String, two As String) As String
@@ -1188,7 +1232,7 @@ Public Sub FillPropertiesGrid()
   PropertiesGrid[0, 1].text = mplayer.Media_FullPath
   If global.IsCddb(mplayer.Media_FullPath_Playing) Then 
     PropertiesGrid[1, 1].text = mplayer.media_name & " " & ("(Audio CD)")
-      Else
+  Else
     PropertiesGrid[1, 1].text = File.Name(mplayer.Media_FullPath)
   Endif
   PropertiesGrid[2, 1].text = mplayer.Media_Size
@@ -1241,17 +1285,17 @@ Public Sub FillPropertiesGrid()
     audioform.label19.text = PropertiesGrid[3, 1].text
     If Trim(PropertiesGrid[2, 1].text) <> "" Then 
       audioform.label20.text = PropertiesGrid[2, 1].text & "KB"
-        Else
-       audioform.label20.text = "Unknown" 
+    Else
+      audioform.label20.text = "Unknown" 
     Endif
     audioform.RadioLabel.text = ""
-
+    
     If (Trim(PropertiesGrid[14, 1].text) <> "") Then audioform.label21.text = PropertiesGrid[14, 1].Text
     If (Trim(PropertiesGrid[15, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[15, 1].text & "bps"
     If (Trim(PropertiesGrid[12, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & ", " & PropertiesGrid[12, 1].text & (" channels")
     If (Trim(PropertiesGrid[13, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[13, 1].text & "Hz"
   Endif
-
+  
   If (global.IsAudioFile(mplayer.Media_FullPath)) Or (global.IsNetworkURI(mplayer.Media_FullPath)) Or (Lower(mplayer.Media_FullPath) Like "cdd?://*") Then
     AutoresizeAudioForm()
   Endif
@@ -1260,32 +1304,34 @@ End
 
 Public Sub SyncCachedOptsPlus()
   'reload the current profile and save cached options
+
   global.ReallyLoadAllSettings()
   SyncCachedOpts()
   global.SaveCachedOpts(global.currentprofile, cachedopts)
+
 End
 
 Public Sub Form_Close()
-  Dim MySettings As New SettingsClass
 
+  Dim MySettings As New SettingsClass
   
   StartClass.ProcessSignals(False)
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
-
+  
   Try Unlock hLock
   Repeat
     FMain.Mysocket.Close
   Until FMain.Mysocket.status = Net.inactive
   Debug "closed socket"
   Debug
-
+  
   Try HotKeys.xbindkeys.kill
-
+  
   ChooseAspect.visible = False
   'it is needed for lockfile and local socket to be correctly freed:
   Try trayicon1.Delete
   Closing = True
-
+  
   If Not (fastquit Or global.pluginmode) Then
     fmain.SaveFormGeometry()
     Me.hide
@@ -1296,9 +1342,7 @@ Public Sub Form_Close()
     Endif
     ButtonStop_Click() 'don't remove me.
   Endif
-
-
-
+  
   Try AFiltersCfg.hide
   Try AddUriForm.hide
   Try AllOptions.hide
@@ -1339,14 +1383,14 @@ Public Sub Form_Close()
   Debug
   
   Try timerpluginmode.stop
-
+  
   If ChooseAspect.visible Then ChooseAspect.CancelBtn_Click
-
+  
   'delete temporary covers on exit:
   Try Shell "rm -R " & global.confpath & "/covertmp/* >/dev/null 2>&1" Wait
   'delete temporary screenshots on exit (if any)
   Try Shell "rm -R " & global.confpath & "/.xt7-screenshots/* >/dev/null 2>&1" Wait
-
+  
   If (fsform.FullScreen = True) Then FullScreenSwitch()
   OneSecTimer.Stop
   If mplayer.ProcessRunningOvr() Then
@@ -1361,15 +1405,15 @@ Public Sub Form_Close()
   Debug
   Try HotKeys.xbindkeys.kill
   Print "xbindkeys killed"
-
-  If Not fastquit Then
   
+  If Not fastquit Then
+    
     If GeneralOptions.SaveOnExitCHK.value = True Then
       Try Global.SaveAllSettings(global.CurrentProfile)
       If Error Then 
         Debug "couldn't save all settings at exit as requested..."
         Debug
-          Else
+      Else
         Debug "All settings saved"
         Debug
       Endif
@@ -1383,18 +1427,18 @@ Public Sub Form_Close()
     Debug "wrote last profile"
     Debug
   Endif
-
+  
   'stop any epg scanning instance
   epgform.StopScan()
-
+  
   'kill all recordings processes
   Try MyFlash.StopAllRecordings()
-
+  
   'this allow to close the Fake form.
   'Try Application.MainWindow.Close 'crashes!
   fmain.close
   zzzFake.Close
-
+  
   Try AFiltersCfg.close
   Try AddUriForm.close
   Try AllOptions.close
@@ -1435,6 +1479,7 @@ Public Sub Form_Close()
   Print "Bye"
   Wait 0.5
   Quit
+
 End
 
 Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty
@@ -1444,7 +1489,7 @@ Public Sub CorrectAreaAspect()
   
   Dim VideoW As Integer = 4
   Dim VideoH As Integer = 3
-
+  
   Dim Aspect As Float = 1.333
   Dim TmpX, TmpY, TmpW, TmpH As Integer
   
@@ -1468,7 +1513,7 @@ Public Sub CorrectAreaAspect()
       TmpH = (OuterBox.Height) '* ResizeFactor
       TmpW = (OuterBox.Height * Aspect) '* ResizeFactor
     Endif
-
+    
     'apply the zoom factor:
     Select Case ForcedZoomRT
       Case "NOBARS"
@@ -1481,15 +1526,14 @@ Public Sub CorrectAreaAspect()
     realtimeform.PanscanSlider.value = resizefactor * 10000
     TmpW = TmpW * resizefactor
     TmpH = TmpH * resizefactor
-
+    
     'finally, resize and center VideoBox in Outerbox 
     TmpX = (OuterBox.Width / 2) - (TmpW / 2)
     TmpY = (OuterBox.Height / 2) - (TmpH / 2)
     If (tmpw > 64) Then VideoBox.Move(TmpX, TmpY, TmpW + 1, TmpH + 1) 'don't touch (tmpw>64) or else heavy swap will occour!
   Endif
-
+  
 End
-
 
 Public Sub SaveFormGeometry()
   
@@ -1510,6 +1554,7 @@ Public Sub SaveFormGeometry()
       SubSaveFormGeometry(fmain.x - fmain.screenx, fmain.y - fmain.screeny)
     Endif
   Endif
+
 End
 
 Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
@@ -1521,19 +1566,20 @@ Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
   
   If fmain.maximized Then 
     maximized = "T"
-      Else
+  Else
     maximized = "F"
   Endif
   
   If ButtonmenuBTN.Visible Then 
     buttonmenuvisible = "T"
-      Else
+  Else
     buttonmenuvisible = "F"
   Endif
-
+  
   myfile = Open myfilename For Write Create
   Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & Maximized & ";" & buttonmenuvisible
   Close #myfile
+
 End
 
 Public Sub LoadFormGeometry()
@@ -1542,7 +1588,6 @@ Public Sub LoadFormGeometry()
   Dim myfilename As String = global.confpath & "/" & "fmain.geometry"
   Dim geometry As String
   Dim rx, ry, rw, rh As Integer
-
   
   If Exist(myfilename) Then
     myfile = Open myfilename For Read
@@ -1561,8 +1606,8 @@ Public Sub LoadFormGeometry()
     Close #myfile
   Endif
   fmain.refresh
-End
 
+End
 
 Public Sub Form_Resize()
   
@@ -1573,6 +1618,7 @@ Public Sub Form_Resize()
   Try fmain.Picture = fmain.Picture.Image.Stretch(fmain.w, fmain.h).picture
   Debug Me.ScreenX
   Debug Me.screeny
+
 End
 
 Public Sub ButtonOpen_Click()
@@ -1599,7 +1645,7 @@ Public Sub mplayeroutputavailable(outline As String)
       If Not (outline Like "*A:*") Then
         If Not (outline Like "*V:*") Then
           LogWindow.LogArea.pos = Len(LogWindow.LogArea.text) 'go to the end
-
+          
           If Trim(outline) = prevmpoutput Then          'we get a dupe message,
             Try repeatedmpoutlines = repeatedmpoutlines + 1
           Else
@@ -1622,8 +1668,6 @@ Public Sub mplayeroutputavailable(outline As String)
   
 End
 
-
-
 'In network streams, if the cache size is higher than the stream size,it happens:
 'Server returns 416: Requested range not satisfiable
 'and then a lot of nop_streaming_read error.
@@ -1631,50 +1675,55 @@ End
 Private TooMuchCache As Boolean = False
 
 Public Sub mplayererroravailable(outline As String)
-  If (Trim(outline) <> "") Then
-          If outline Like "*erver returns*416*range*" Then
-            Toomuchcache = True
-            Return
-          Endif
-          If mplayer.Media_FullPath Like "http*youtube*" Then
-            If outline Like "*nop_streaming_read error*Bad file descriptor*" Then
-              If Not TooMuchCache Then
-                Debug "problem seeking on " & mplayer.Media_FullPath
-                Debug "mplayer.currenttime is " & mplayer.CurrentTime()
-                Debug "restarting mplayer"
-                Debug
-                mplayer.do_restart(mplayer.Media_FullPath, mplayer.CurrentOptions)
-              Endif
-            Endif
-          Endif
-          LogWindow.errorArea.pos = Len(LogWindow.errorArea.text) 'go to the end
 
-          If Trim(outline) = prevmpoutput Then          'we get a dupe message,
-            Try repeatedmpoutlines = repeatedmpoutlines + 1
-          Else
-            repeatedmpoutlines = 0
-          Endif
-          If repeatedmpoutlines > 30 Then
-            If (repeatedmpoutlines Mod 5) = 0 Then
-              LogWindow.errorArea.Insert("R ") 'write "."
-              LogWindow.Label2.visible = True
-            Endif
-          Else
-            'put something on the log, but skip program_id lines (from dvb-t)
-            If Not (outline Like "*PROGRAM_ID=*") Then LogWindow.errorArea.Insert(outline & "\n")
-            prevmpoutput = Trim(outline)
-          Endif
+  If (Trim(outline) <> "") Then
+    If outline Like "*erver returns*416*range*" Then
+      Toomuchcache = True
+      Return
+    Endif
+    If mplayer.Media_FullPath Like "http*youtube*" Then
+      If outline Like "*nop_streaming_read error*Bad file descriptor*" Then
+        If Not TooMuchCache Then
+          Debug "problem seeking on " & mplayer.Media_FullPath
+          Debug "mplayer.currenttime is " & mplayer.CurrentTime()
+          Debug "restarting mplayer"
+          Debug
+          mplayer.do_restart(mplayer.Media_FullPath, mplayer.CurrentOptions)
         Endif
+      Endif
+    Endif
+    LogWindow.errorArea.pos = Len(LogWindow.errorArea.text) 'go to the end
+    
+    If Trim(outline) = prevmpoutput Then          'we get a dupe message,
+      Try repeatedmpoutlines = repeatedmpoutlines + 1
+    Else
+      repeatedmpoutlines = 0
+    Endif
+    If repeatedmpoutlines > 30 Then
+      If (repeatedmpoutlines Mod 5) = 0 Then
+        LogWindow.errorArea.Insert("R ") 'write "."
+        LogWindow.Label2.visible = True
+      Endif
+    Else
+      'put something on the log, but skip program_id lines (from dvb-t)
+      If Not (outline Like "*PROGRAM_ID=*") Then LogWindow.errorArea.Insert(outline & "\n")
+      prevmpoutput = Trim(outline)
+    Endif
+  Endif
+
 End
 
 Public Sub GridRefreshWorkaround(librarygrid As Gridview)
   'seems something has a bug here and scrollbars didn't show up at first.
+
   librarygrid.Rows.h = librarygrid.Rows.h
   Object.SetProperty(librarygrid.parent, "Padding", Object.GetProperty(librarygrid.parent, "Padding") + 1)
   Object.SetProperty(librarygrid.parent, "Padding", Object.GetProperty(librarygrid.parent, "Padding") - 1)
+
 End
 
 Public Sub ButtonStop_Click()
+
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
@@ -1696,31 +1745,36 @@ Public Sub ButtonStop_Click()
   Try epgform.dvbsnoop.Stopit()
   ButtonNowNext.Hide()
   ArrangeCpl()
+
 End
 
 Public Sub Buttonfwd_Click()
+
   mplayer.do_ffwd
+
 End
 
 Public Sub ButtonRew_Click()
+
   mplayer.do_slow
+
 End
 
 Public Function GetOptionsFromGui() As String
   
   Dim GotOptions As String = ""
-
+  
   'we need to load any form which hasn't been loaded yet,
   'or else we'll only get factory defaults values.
-    generaloptions.FirstLoadIfNeeded()
-    Chains.FirstLoadIfNeeded()
-      'chains.firstloadifneeded will call [afilterscfg,vfilterscfg].firstloadifneeded()
-    XConfigureAudioDriver.FirstLoadIfNeeded()
-    XConfigureVideoDriver.FirstLoadIfNeeded()
-    AudioVideoCodecs.FirstLoadIfNeeded()
-    HotKeys.FirstLoadIfNeeded()
-    SubAndOsd.FirstLoadIfNeeded()
-    VideoEqualizer.FirstLoadIfNeeded()
+  generaloptions.FirstLoadIfNeeded()
+  Chains.FirstLoadIfNeeded()
+  'chains.firstloadifneeded will call [afilterscfg,vfilterscfg].firstloadifneeded()
+  XConfigureAudioDriver.FirstLoadIfNeeded()
+  XConfigureVideoDriver.FirstLoadIfNeeded()
+  AudioVideoCodecs.FirstLoadIfNeeded()
+  HotKeys.FirstLoadIfNeeded()
+  SubAndOsd.FirstLoadIfNeeded()
+  VideoEqualizer.FirstLoadIfNeeded()
   '-----------------------------------------------------
   mplayer.VoDriver = XConfigureVideoDriver.ParsedVideoDriver()
   mplayer.AoDriver = XConfigureAudioDriver.ParsedAudioDriver()
@@ -1752,13 +1806,14 @@ Public Function GetOptionsFromGui() As String
   Endif
   GotOptions = GotOptions & postvfilters
   
-  
   GotOptions = GotOptions & generaloptions.ParseAdditionalOptions()
   
   Return GotOptions
+
 End
 
 Public Sub ButtonPlay_Click()
+
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       OneSecTimer.start
@@ -1778,15 +1833,15 @@ Public Sub ButtonPlay_Click()
 End
 
 Public Sub ClearStreamsMenu()
-
+  
   Dim child As Menu
-
+  
   Repeat
     'clear all previous sub-menus
     For Each child In Streamsaudiomenu.Children
       child.delete
     Next 'child
-   Until (Streamsaudiomenu.Children.count = 0)
+  Until (Streamsaudiomenu.Children.count = 0)
   Repeat
     For Each child In Streamssubtitlesmenu.Children
       child.delete
@@ -1796,14 +1851,15 @@ Public Sub ClearStreamsMenu()
 End
 
 Public Sub ClearMenu(target As Menu)
+
   Dim child As Menu
   Repeat
     For Each child In target.Children
       child.delete
     Next 'child
   Until target.children.count = 0
-End
 
+End
 
 Public Sub ClearChaptersAndTitlesMenu()
   
@@ -1818,19 +1874,17 @@ Public Sub ClearChaptersAndTitlesMenu()
   
 End
 
-
 Private menuopensubsearchbyhash As Menu
 Private fakemenu As Menu
+
 Public Function FillStreamsMenu()
   
   Dim i As Integer
   Dim AudioMenu, SubMenu As Menu
   Dim menuopensubtitles As Menu
-
-
+  
   Dim menuopensubsearchmanual As Menu
   Dim menuopensubconfigurelanguages As Menu
-
   
   'read audiotracks and subtitletracks from mplayer class
   'and compile streams menu accordingly
@@ -1851,61 +1905,65 @@ Public Function FillStreamsMenu()
   Endif
   'fill sub streams menu
   'If Streamssubtitlesmenu.enabled Then
- 
-    'add a menu item to disable subtitles:
-    SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
-    SubMenu.name = "DisableSubs"
-    SubMenu.caption = ("Don't display subtitles")
-    If mplayer.subtitletracks.count > 0 Then
-      For i = 0 To mplayer.subtitletracks.count - 1
-        SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
-        SubMenu.name = "SubMenuID" & i
-        SubMenu.caption = mplayer.subtitletracks[i]
-      Next 'i
-    Endif
-
+  
+  'add a menu item to disable subtitles:
+  SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
+  SubMenu.name = "DisableSubs"
+  SubMenu.caption = ("Don't display subtitles")
+  If mplayer.subtitletracks.count > 0 Then
+    For i = 0 To mplayer.subtitletracks.count - 1
+      SubMenu = New Menu(Streamssubtitlesmenu) As "Menuswitchsub"
+      SubMenu.name = "SubMenuID" & i
+      SubMenu.caption = mplayer.subtitletracks[i]
+    Next 'i
+  Endif
+  
   SubMenu = New Menu(Streamssubtitlesmenu) As "MenuLoadSubtitle"
   SubMenu.name = "Streamssubtitlesmenu"
   SubMenu.caption = ("Load from disk...")
   submenu.Picture = picture["icon:/medium/insert-text"]
+  
+  'opensubtitles.org:
+  menuopensubtitles = New Menu(Streamssubtitlesmenu) As "menuopensubtitles"
+  menuopensubtitles.caption = ("Ask Opensubtitles.org")
+  menuopensubtitles.picture = picture["opensubtitles.png"]
+  menuopensubconfigurelanguages = New Menu(menuopensubtitles) As "menuopensubconfigurelanguages"
+  menuopensubconfigurelanguages.caption = (("Configure preferred languages"))
+  menuopensubconfigurelanguages.picture = picture["icon:/16/options"]
+  
+  menuopensubsearchmanual = New Menu(menuopensubtitles) As "menuopensubsearchmanual"
+  menuopensubsearchmanual.caption = (("Manual search"))
+  menuopensubsearchmanual.picture = picture["icon:/16/find"]
+  
+  ' menuopensubsearchbyname = New Menu(menuopensubtitles) As "menuopensubsearchbyname"
+  ' menuopensubsearchbyname.caption = (("By Name (guess):"))
+  ' menuopensubsearchbyname.picture = picture["icon:/16/wizard"]
+  ' 'FillOpensubtitleLanguages(menuopensubsearchbyname)
+  
+  menuopensubsearchbyhash = New Menu(menuopensubtitles) As "menuopensubsearchbyhash"
+  menuopensubsearchbyhash.caption = (("I feel lucky"))
+  menuopensubsearchbyhash.picture = picture["icon:/16/wizard"]
+  ''L
+  fakemenu = New Menu(menuopensubsearchbyhash)
+  fakemenu.text = ("Please Wait...")
+  fakemenu.picture = picture["icon:/16/clock"]
+  fakemenu.enabled = False
 
-'opensubtitles.org:
-    menuopensubtitles = New Menu(Streamssubtitlesmenu) As "menuopensubtitles"
-    menuopensubtitles.caption = ("Ask Opensubtitles.org")
-    menuopensubtitles.picture = picture["opensubtitles.png"]
-        menuopensubconfigurelanguages = New Menu(menuopensubtitles) As "menuopensubconfigurelanguages"
-        menuopensubconfigurelanguages.caption = (("Configure preferred languages"))
-        menuopensubconfigurelanguages.picture = picture["icon:/16/options"]
-
-        menuopensubsearchmanual = New Menu(menuopensubtitles) As "menuopensubsearchmanual"
-        menuopensubsearchmanual.caption = (("Manual search"))
-        menuopensubsearchmanual.picture = picture["icon:/16/find"]
-
-        ' menuopensubsearchbyname = New Menu(menuopensubtitles) As "menuopensubsearchbyname"
-        ' menuopensubsearchbyname.caption = (("By Name (guess):"))
-        ' menuopensubsearchbyname.picture = picture["icon:/16/wizard"]
-        ' 'FillOpensubtitleLanguages(menuopensubsearchbyname)
-
-        menuopensubsearchbyhash = New Menu(menuopensubtitles) As "menuopensubsearchbyhash"
-        menuopensubsearchbyhash.caption = (("I feel lucky"))
-        menuopensubsearchbyhash.picture = picture["icon:/16/wizard"]
-        ''L
-            fakemenu = New Menu(menuopensubsearchbyhash)
-            fakemenu.text = ("Please Wait...")
-            fakemenu.picture = picture["icon:/16/clock"]
-            fakemenu.enabled = False
 End
 
 Public Sub menuopensubconfigurelanguages_Click()
+
   If (Not global.initearlyformsdone) Then InitEarlyForms()
   GeneralOptions.show
   Try GeneralOptions.TabStrip1.index = Global.TabIndexByName(("Language"), GeneralOptions.TabStrip1)
+
 End
 
 Public Function menuopensubsearchmanual_Click()
-  OpenSubtitesForm.Show()
-End
 
+  OpenSubtitesForm.Show()
+
+End
 
 Public Function FillTitlesAndChaptersMenu() As Boolean
   
@@ -1998,9 +2056,9 @@ Public Function FillTitlesAndChaptersMenu() As Boolean
   
 End
 
-
 Public Function makeiso6392(langcode As String) As String
-'convert from 2 digits langcodes to 3digits langcodes
+  'convert from 2 digits langcodes to 3digits langcodes
+
   Dim lang As String = ""
   For Each lang In generaloptions.SlangComboBox.List
     If (lang Like langcode & "*") Then
@@ -2010,33 +2068,33 @@ Public Function makeiso6392(langcode As String) As String
   Next
   If lang = "" Then 
     Return langcode
-      Else
+  Else
     Return lang
   Endif
+
 End
 
 Private OpenSubs As New OpenSubtitlesAPI
 
 Private TimerMenuHashSearch As New Timer As "TimerMenuHashSearch"
 
-
-
-
 Public Sub menuopensubsearchbyhash_Show()
+
   Dim currentmovie As String
   currentmovie = mplayer.Media_FullPath_playing
   If global.IsNetworkURI(currentmovie) Then Return
-
+  
   If Not (global.IsVideoFile(currentmovie)) Then Return
-
+  
   TimerMenuHashSearch.delay = 1
   TimerMenuHashSearch.start
-End
 
+End
 
 Private myopensubs As New Collection[]
 
 Public Sub TimerMenuHashSearch_timer()
+
   Dim token As String
   Dim mysub As Collection
   Dim menuitemopensubtitle As Menu
@@ -2048,14 +2106,13 @@ Public Sub TimerMenuHashSearch_timer()
   Dim AllLangs As String
   Dim tmplang As String
   Dim currentmovie As String
-
+  
   currentmovie = mplayer.Media_FullPath_playing
-
   
   If Not mplayer.ProcessRunningOvr() Then Return
   
   TimerMenuHashSearch.stop
-
+  
   token = OpenSubs.TokenFromLogIn("", "", "en", OpenSubs.defaultagent)
   If token = -1 Then
     Debug "Sorry, couldn't take the token from opensubtitles.org"
@@ -2084,7 +2141,7 @@ Public Sub TimerMenuHashSearch_timer()
     Endif
   Next
   AllLangs = Left(allLangs, Len(alllangs) - 1)
-
+  
   If myopensubs.count = 0 Then  
     Try filesize = Stat(currentmovie).size
     If Error Then
@@ -2095,7 +2152,7 @@ Public Sub TimerMenuHashSearch_timer()
       Return
     Endif
   Endif
-
+  
   If myopensubs.count = 0 Then 
     myopensubs = OpenSubs.SearchByHash(token, AllLangs, moviehash, filesize)
     If myopensubs.count = 0 Then
@@ -2106,7 +2163,7 @@ Public Sub TimerMenuHashSearch_timer()
       Return
     Endif
   Endif
-
+  
   ClearMenu(menuopensubsearchbyhash)
   For Each langcode In preferredlangs
     menuopensublang = New Menu(menuopensubsearchbyhash) As "menuopensublang"
@@ -2122,15 +2179,16 @@ Public Sub TimerMenuHashSearch_timer()
       Endif
     Next
   Next
+
 End
 
-
-
 Public Sub menuitemopensubtitle_Click()
+
   Dim suburl As String = Last.tag
   Dim subname As String = Last.text
   Dim subfile As String = Temp() & "." & subname
   Dim fileout As String
+
   If OpenSubs.savesub(suburl, subfile) Then
     mplayer.SubtitleAdd(subfile) 'add the subtitle and append it to mplayer.subtitletracks
     Displaysub(mplayer.subtitletracks[mplayer.subtitletracks.count - 1])
@@ -2143,8 +2201,8 @@ Public Sub menuitemopensubtitle_Click()
       If Not (OpenSubs.savesub(suburl, fileout)) Then Message.Error(("Sorry, couldn't save the file"), "Ok")
     Endif
   Endif
-End
 
+End
 
 Public Sub TreeView1_Activate()
   
@@ -2261,6 +2319,7 @@ Public Sub Menuswitchaudio_click()
   Last.checked = True
   Try ID = Split(Last.caption, " ")[0] 
   mplayer.Send("switch_audio " & ID)
+
 End
 
 Public Sub PowerffBTN_click()
@@ -2275,29 +2334,31 @@ Public lastsubid As Integer = -1
 Public Sub Menuswitchsub_click()
   
   Dim brother As Menu
-
+  
   For Each brother In Streamssubtitlesmenu.Children
     brother.checked = False
   Next
-
+  
   If Last.caption = ("Don't display subtitles") Then
     nosub = (Not nosub)
     Last.checked = nosub
     If Last.checked Then 
       mplayer.Send("sub_select -1")
-        Else
+    Else
       If lastsubID <> -1 Then 
         mplayer.Send("sub_select " & lastsubid) 
-          Else
+      Else
         mplayer.Send("sub_select") 
       Endif
     Endif
   Else
     Displaysub(Last.Caption)
   Endif
+
 End
 
 Public Function Displaysub(MenuLine As String)
+
   Dim fmax, emax As Integer
   Dim sub As String
   Dim ID As Integer
@@ -2319,31 +2380,32 @@ Public Function Displaysub(MenuLine As String)
   emax = 0
   For Each sub In mplayer.subtitletracks
     If sub Like "* (file)" Then 
-        fmax += 1
-      Else If sub Like "* (embedded)" Then 
-        emax += 1
+      fmax += 1
+    Else If sub Like "* (embedded)" Then 
+      emax += 1
     Endif
   Next
   ' Debug "fmax=" & fmax
   ' Debug "emax=" & emax
-
-
+  
   Try ID = Split(MenuLine, " ")[0] '- 1
   If Not Error Then 
     If MenuLine Like "* (file)" Then 
-        mplayer.Send("SUB_FILE " & ID)
-        'ID = ID - emax
-      Else If MenuLine Like "* (embedded)" Then 
-        mplayer.Send("SUB_DEMUX " & ID)
-        ' ID = ID + fmax
-        ' If fmax = 0 Then ID = ID - 1
+      mplayer.Send("SUB_FILE " & ID)
+      'ID = ID - emax
+    Else If MenuLine Like "* (embedded)" Then 
+      mplayer.Send("SUB_DEMUX " & ID)
+      ' ID = ID + fmax
+      ' If fmax = 0 Then ID = ID - 1
     Endif
     'mplayer.Send("sub_select " & ID)
     lastsubid = ID
   Endif
+
 End
 
 Public Function OLD_Displaysub(MenuLine As String)
+
   Dim fmax, emax As Integer
   Dim sub As String
   Dim ID As Integer
@@ -2365,28 +2427,27 @@ Public Function OLD_Displaysub(MenuLine As String)
   emax = 0
   For Each sub In mplayer.subtitletracks
     If sub Like "* (file)" Then 
-        fmax += 1
-      Else If sub Like "* (embedded)" Then 
-        emax += 1
+      fmax += 1
+    Else If sub Like "* (embedded)" Then 
+      emax += 1
     Endif
   Next
   ' Debug "fmax=" & fmax
   ' Debug "emax=" & emax
-
-
+  
   Try ID = Split(MenuLine, " ")[0] '- 1
   If Not Error Then 
     If MenuLine Like "* (file)" Then 
-        ID = ID - emax
-      Else If MenuLine Like "* (embedded)" Then 
-        ID = ID + fmax
-        If fmax = 0 Then ID = ID - 1
+      ID = ID - emax
+    Else If MenuLine Like "* (embedded)" Then 
+      ID = ID + fmax
+      If fmax = 0 Then ID = ID - 1
     Endif
     mplayer.Send("sub_select " & ID)
     lastsubid = ID
   Endif
-End
 
+End
 
 Public Function LargestDvdTitle() As Integer
   'Analyze mediaheaders and find the largest DVD title
@@ -2412,7 +2473,9 @@ Public Function LargestDvdTitle() As Integer
 End
 
 Private DbusAlreadyRegistered As Boolean = False
+
 Public Sub ExportDbusProperties()
+
   If Not DbusAlreadyRegistered Then
     Try DBus.Name = "org.mpris.MediaPlayer2.xt7"
     If Error Then 
@@ -2456,32 +2519,36 @@ Public Sub ExportDbusProperties()
   ' DbusProperties.Comment = mplayer.Media_Comments
   ' DbusProperties.MyYear = mplayer.Media_Year
   ' DbusProperties.CreationDate = mplayer.Media_CreationDate 
+
 End
 
 Public Function VmetersOptionsAndInitIfNeeded() As String
+
   If GeneralOptions.ShowVmeterCHK.value Then
     If Not (global.IsVideoFile(mplayer.Media_FullPath)) Then
       mplayer.exportfile = exportfilespath & Int(Rnd(1, 9999))
       Return " -af-add export=" & mplayer.exportfile & ":" & GeneralOptions.RmsSizeSpinBox.value
       audioform.BarBox.visible = True
-  Else
+    Else
       audioform.BarBox.visible = False
     Endif
-      Else
+  Else
     audioform.BarBox.visible = False
   Endif
+
 End
 
 Public needytcookie As Boolean = False
 
 Private dumpfile As String
+
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
-
-
+  
   Dim MkvSubsWorkaround As Boolean
   Dim cookieopts As String = ""
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
+
   Wait
   OneSecTimer.Stop()
   
@@ -2501,7 +2568,6 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   lastsubid = -1
   global.ResetApplyBtnColor()
   
- 
   'cachingbox.ignore = True
   zzzfake.cachingbox.Reparent(outerbox)
   zzzfake.cachingbox.h = 66
@@ -2540,27 +2606,26 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Shell DConv(GeneralOptions.NoParsePreCommand.text) Wait
   Seekbar.tag = "timer"
   VideoBox.Visible = False
-
+  
   If Trim(cachedopts) = "" Then
-       If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
-       SyncCachedOpts()
-       otheroptions = cachedopts
+    If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
+    SyncCachedOpts()
+    otheroptions = cachedopts
   Endif
   
-
-    mplayer.Media_FullPath = fullpath
-    If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
-      'OneSecTimer.stop()
-      Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
-      'OneSecTimer.start()
-      If Error Then
-        Message.error(("Unable to get the real stream url"))
-        zzzfake.cachingbox.Hide
-        zzzfake.cachingbox.playing = False
-        Return
-      Endif
+  mplayer.Media_FullPath = fullpath
+  If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
+    'OneSecTimer.stop()
+    Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
+    'OneSecTimer.start()
+    If Error Then
+      Message.error(("Unable to get the real stream url"))
+      zzzfake.cachingbox.Hide
+      zzzfake.cachingbox.playing = False
+      Return
     Endif
-
+  Endif
+  
   'If global.initlatelyformsdone Then otheroptions = otheroptions & " " & SetRightCache()
   otheroptions = otheroptions & " " & SetRightCache()
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
@@ -2573,10 +2638,9 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     OtherOptions = OtherOptions & " -dvd-device " & "\"" & dvd_device & "\" "
   Endif
   'OtherOptions = otheroptions & " " & GeneralOptions.ParseAdditionalOptions() 'GeneralOptions.NoParseAdditionalOptions.text
-    
+  
   firstplay = False
   mplayer.CurrentOptions = OtherOptions
-
   
   Try Last.mouse = Mouse.wait
   ButtonPlay.enabled = False
@@ -2602,7 +2666,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Endif
   OneSecTimer.start
   If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
-
+  
   ' Debug "TTTTTTT:"
   ' Debug "TTTTTTT: Calling mplayer at: " & Timer
   ' Debug "TTTTTTT:"
@@ -2610,13 +2674,13 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
     Endif
-
+    
     OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     FillStreamsMenu()
-  
+    
     If (Fullpath Like "dvd://*") Then
       IsDVD = True
       FillTitlesAndChaptersMenu()
@@ -2648,7 +2712,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   
   'find overboost levels (volume)
   UpdateOverboostLevel()
-
+  
   PlayStarted = True
   EndOfMediaReached = False
   VEqHasBeenSet = False
@@ -2662,7 +2726,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Else
     audioform.RadioLabel.visible = False
   Endif
-
+  
   VideoBox.Visible = True
   If TabSelectedLibrary() Then 
     Try ComboHistory.AddHistory(Searchfield, (Searchfield.text))
@@ -2671,16 +2735,15 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Else If TabSelectedDVB() Then
     Try ComboHistory.AddHistory(SearchFieldDVB, (SearchfieldDVB.text))
   Endif
-
+  
   If Not fsform.FullScreen Then Fmain.HSplit1_Resize()
   LogWindow.ShowLogs()
-
- videobox.cached = True
+  
+  videobox.cached = True
   
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
-  
   
   buttoncapture.enabled = (Lower(mplayer.Media_Type) Like "*mpeg*")  'all mpeg demuxed files (ts,ps..)
   buttoncapture.enabled = buttoncapture.enabled Or (Lower(mplayer.Media_FullPath_Playing) Like "*dvb*://*") 'all dvb channels
@@ -2692,16 +2755,15 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   zzzfake.cachingbox.playing = False
   global.ResetApplyBtnColor()
   Return True
-
-
-
-
+  
 End
 
 Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
+
   Dim history, entry As String
   Dim historyarray As New String[]
   Dim sep As String = Chr(8)
+
   If Not (Exist(fullpath)) Then Return
   If Not global.IsNetworkURI(fullpath) Then
     If Not (Exist(global.historyfile)) Then file.Save(global.historyfile, "")
@@ -2719,7 +2781,7 @@ Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
     Next
     If Savetime <> "0" Then 
       historyarray.Add(fullpath & sep & Savetime)
-        Else
+    Else
       historyarray.Add(fullpath)
     Endif
     If historyarray.count > Global.MaxHistory Then
@@ -2734,41 +2796,33 @@ Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
     file.Save(global.Historyfile, history)
   Endif
   If Not closing Then updaterecentfiles()
+
 End
 
-
-
 Public Function SetRightCache() As String
-
+  
   Dim cachesize As String = "NULL"
   Dim mincache, seekcache As String
-
-
+  
   With GeneralOptions
     If global.IsNetworkURI(mplayer.Media_FullPath) Then
       If .NetCacheCheckbox.value Then cachesize = .NetCacheSpinBox.value
       If .NetminCacheCheckbox.value Then mincache = " -cache-min " & .cacheminspinbox.value
       If .NetseekCacheCheckbox.value Then seekcache = " -cache-seek-min " & .cacheseekspinbox.value
-  
-  
+      
     Else If (mplayer.Media_FullPath Like "dvb://*") Then
       If .dvbtCacheCheckbox.value Then cachesize = .dvbtCacheSpinBox.value
       If .dvbtminCacheCheckbox.value Then mincache = " -cache-min " & .dvbtcacheminspinbox.value
-  
-  
+      
     Else If (mplayer.Media_FullPath Like "dvd://*") Then
       If .DvdCacheCheckbox.Value Then cachesize = .DVDCacheSpinBox.value
-
-  
-  
+      
     Else If (mplayer.Media_FullPath Like "dvdnav://*") Then
       If .DvdCacheCheckbox.Value Then cachesize = "0" 'dvdnav wont work with a cache
-  
-  
+      
     Else If global.IsCdaudio(mplayer.Media_FullPath) Then
       If .CDDACacheCheckbox.Value Then cachesize = .CDDACacheSpinBox.value & " -cache-min 0"
-  
-  
+      
     Else
       If .CacheCheckbox.value Then cachesize = .CacheSpinBox.value
       If .CacheMinCheckbox.value Then mincache = " -cache-min " & .CacheMinSpinBoxFile.value
@@ -2780,12 +2834,11 @@ Public Function SetRightCache() As String
   Else If cachesize <> "NULL" Then
     Return " -cache " & cachesize & mincache & seekcache
   Endif
+
 End
 
-
-
-
 Private PreviousCoverFile As String = "NOPE"
+
 Public Sub CoverRefresh(Optional force As Boolean = False)
   
   Dim coverfile As String
@@ -2802,39 +2855,40 @@ Public Sub CoverRefresh(Optional force As Boolean = False)
         Try tl.tlfree
       Endif
     Endif
-
+    
     CoverManager.MediaFileFullPath = mplayer.Media_FullPath
-
+    
     coverfile = CoverManager.Coverfile(mplayer.Media_Artist, mplayer.Media_Album, mplayer.Media_FullPath)
     samecover = (coverfile = PreviousCoverFile)
     PreviousCoverFile = coverfile
-
+    
     If Not (Exist(coverfile)) Then
       If Exist(Trim(coverfile)) Then coverfile = Trim(coverfile)
     Endif
-
+    
     audioform.coverbox.refresh
-
+    
     If (Not samecover) Or force Then 
-       Try audioform.CoverBox.picture = covermanager.keepaspect(Image.Load(coverfile), 160)
-       If Error Then Try audioform.CoverBox.picture = covermanager.keepaspect((Image.Load(mplayer.Media_FullPath & "/" & covermanager.FolderPicture(file.Dir(mplayer.Media_FullPath)))), 160)
-       If Error Then audioform.CoverBox.picture = covermanager.DefaultLibraryIcon(mplayer.Media_FullPath, 160)
+      Try audioform.CoverBox.picture = covermanager.keepaspect(Image.Load(coverfile), 160)
+      If Error Then Try audioform.CoverBox.picture = covermanager.keepaspect((Image.Load(mplayer.Media_FullPath & "/" & covermanager.FolderPicture(file.Dir(mplayer.Media_FullPath)))), 160)
+      If Error Then audioform.CoverBox.picture = covermanager.DefaultLibraryIcon(mplayer.Media_FullPath, 160)
     Endif
-
+    
     ShowAudioPanel(True, Samecover)
   Endif
   audioform.coverbox.refresh
   'AlbumGridView.Current.Refresh()
   MyAlbumsLib.selectcell(AlbumGridView.Row, AlbumGridView.Column)
+
 End
-
-
 
 Public audioformshown As Boolean = False
 Private currentfile As String = ""
 Private previousfile As String = ""
 Public mymeters As New Meters
+
 Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
+
   If Show And (Not TagEditMode) Then
     previousfile = currentfile
     currentfile = mplayer.Media_FullPath_Playing
@@ -2845,6 +2899,9 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
         BottomVbox.Reparent(zzzfake)
         audioform.AudioPanel.Reparent(Rightsidepanel)
         BottomVbox.Reparent(rightsidepanel)
+        cachebar.Reparent(audioform.AudioPanel)
+        cachebar.Move(0, audioform.AudioPanel.h - cachebar.h, 0)
+        'cachebar.raise
       Endif
     Endif
     audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
@@ -2859,7 +2916,7 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
       AudioForm.TimerZoomIn.start
       audioform.refresh
     Endif
-    rightsidepanel.Background = audioform.AudioPanel.Background
+    'rightsidepanel.Background = audioform.AudioPanel.Background
     OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
   Else
     Try mymeters.stopp
@@ -2867,11 +2924,16 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
     fmain.OuterBox.ignore = False
     OuterBox.visible = True 'OuterBox.Reparent(Rightsidepanel)
     audioform.AudioPanel.Reparent(audioform)
+    cachebar.Reparent(rightsidepanel)
+    cachebar.Move(0, outerbox.h - cachebar.h, 0)
+    'bottomvbox.raise
+    ' BottomVbox.Reparent(fmain)
+    ' BottomVbox.Reparent(RightSidePanel)
     audioform.refresh
   Endif
   audioformshown = show
-End
 
+End
 
 Public Sub SetCddaTabVisibility(visibility As Boolean)
   
@@ -2929,19 +2991,20 @@ Public Sub SetFLASHTabVisibility(visibility As Boolean)
 End
 
 Public Sub UpdateOverboostLevel()
-
+  
   If (mplayer.commandline Like "*-softvol *") And (mplayer.commandline Like "*-softvol-max *") Then
     Try overboost = CInt(Trim(Mid(mplayer.commandline, InStr(mplayer.commandline, "-softvol-max") + 13, 4)))
     If Error Then overboost = 100
   Else
     overboost = 100
   Endif
-
+  
 End
 
 Public Sub VideoAreaGroup_Drop()
-
+  
   Dim droppedfile As String
+
   Try droppedfile = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)[0]
   If Error Then 
     Try droppedfile = Split(Drag.Paste("text/plain"), "\n\r", "", True)[0]
@@ -2964,38 +3027,40 @@ Public Sub VideoAreaGroup_Drop()
     Try librarygrid.rows[librarygrid.row].Selected = False
     Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, droppedfile)
     Try librarygrid.rows[librarygrid.row].Selected = True
-      Else If TabSelectedPlaylist() Then 
-        Try playlistgrid.rows[playlistgrid.row].Selected = False
-        Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, droppedfile)
-        Try playlistgrid.rows[playlistgrid.row].Selected = True
+  Else If TabSelectedPlaylist() Then 
+    Try playlistgrid.rows[playlistgrid.row].Selected = False
+    Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, droppedfile)
+    Try playlistgrid.rows[playlistgrid.row].Selected = True
   Endif
   
 End
 
 Public Sub UpdateSeekSlider()
   'Get the current playing time and update seek bar accordingly
+
   Dim totaltime, actualtime As Integer
   If SeekingRestarting Then Return
+  
+  SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
+  Try totaltime = mplayer.Media_Length
+  Try actualtime = mplayer.CurrentTime()
+  Try SeekBar.value = (actualtime * 1000) Div totaltime
+  'workaround a bug with mts files:
+  'mplayer is unable to get id_length and reports always 0
+  'while mplayer2 reports a wrong length
+  If (totaltime = "0") Or (actualtime > totaltime) Then  
+    mplayer.Send("get_percent_pos")
+    Seekbar.value = mplayer.Media_percent_pos * 10
+  Endif
+  SeekBar.tag = "user"
 
-    SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
-    Try totaltime = mplayer.Media_Length
-    Try actualtime = mplayer.CurrentTime()
-    Try SeekBar.value = (actualtime * 1000) Div totaltime
-    'workaround a bug with mts files:
-    'mplayer is unable to get id_length and reports always 0
-    'while mplayer2 reports a wrong length
-    If (totaltime = "0") Or (actualtime > totaltime) Then  
-      mplayer.Send("get_percent_pos")
-      Seekbar.value = mplayer.Media_percent_pos * 10
-    Endif
-    SeekBar.tag = "user"
 End
 
 Public customtitle As String = ""
 
 Public Sub UpdateStatusBar()
   'Print the current filename and playing time on the status bar
-
+  
   Dim SpaceWidth As Integer = Statusbar1.Font.TextWidth(" ")
   Dim RemainingTime, maxcachehuman As String
   Dim PreText As String = ""
@@ -3007,32 +3072,31 @@ Public Sub UpdateStatusBar()
   Dim LotOfSpaces As String = ""
   Dim cachevalue As Integer = 0
   
- 
-    pretext = file.BaseName(mplayer.Media_FullPath_Playing)
-    If global.IsCddb(mplayer.Media_FullPath_Playing) Then pretext = mplayer.media_name & " " & ("(Audio CD)")
-    If IsDvd Then Pretext = "DVD: " & mplayer.FindTagValue("ID_DVD_VOLUME_ID")
-    If mplayer.IsNetworkURI Then
-      If mplayer.ICYStreamTitle <> "" Then
-        Pretext = mplayer.ICYStreamTitle ' Pretext & ": " & mplayer.ICYStreamTitle
-      Else If customtitle <> "" Then
-        pretext = customtitle
-      Endif
-    Endif 
-
-    '------------------------------
-    'Depending on the Choosed timeformat, draw the current time:
-    If TimeFormat = 0 Then
-      PostText = mplayer.FormatTime(mplayer.CurrentTime()) & " / " & mplayer.FormatTime(mplayer.Media_Length)
-    Else If Timeformat = 1 Then
-      RemainingTime = mplayer.Media_Length - mplayer.CurrentTime()
-      PostText = "-" & mplayer.FormatTime(remainingtime) & " / " & mplayer.FormatTime(mplayer.Media_Length)
-    Else If Timeformat = 2 Then
-      PostText = mplayer.CurrentTime() & " / " & mplayer.Media_Length
-    Else If Timeformat = 3 Then
-      RemainingTime = mplayer.Media_Length - mplayer.CurrentTime()
-      PostText = "-" & RemainingTime & " / " & mplayer.Media_Length
+  pretext = file.BaseName(mplayer.Media_FullPath_Playing)
+  If global.IsCddb(mplayer.Media_FullPath_Playing) Then pretext = mplayer.media_name & " " & ("(Audio CD)")
+  If IsDvd Then Pretext = "DVD: " & mplayer.FindTagValue("ID_DVD_VOLUME_ID")
+  If mplayer.IsNetworkURI Then
+    If mplayer.ICYStreamTitle <> "" Then
+      Pretext = mplayer.ICYStreamTitle ' Pretext & ": " & mplayer.ICYStreamTitle
+    Else If customtitle <> "" Then
+      pretext = customtitle
     Endif
-
+  Endif 
+  
+  '------------------------------
+  'Depending on the Choosed timeformat, draw the current time:
+  If TimeFormat = 0 Then
+    PostText = mplayer.FormatTime(mplayer.CurrentTime()) & " / " & mplayer.FormatTime(mplayer.Media_Length)
+  Else If Timeformat = 1 Then
+    RemainingTime = mplayer.Media_Length - mplayer.CurrentTime()
+    PostText = "-" & mplayer.FormatTime(remainingtime) & " / " & mplayer.FormatTime(mplayer.Media_Length)
+  Else If Timeformat = 2 Then
+    PostText = mplayer.CurrentTime() & " / " & mplayer.Media_Length
+  Else If Timeformat = 3 Then
+    RemainingTime = mplayer.Media_Length - mplayer.CurrentTime()
+    PostText = "-" & RemainingTime & " / " & mplayer.Media_Length
+  Endif
+  
   smallwindow = (Statusbar1.Font.TextWidth(PreText & PostText) > Statusbar1.Width)
   If SmallWindow Then
     pretext = Left$(pretext, CInt(((Statusbar1.Width) Div Statusbar1.font.TextWidth("_")) - Len(PostText)) / 1.) & "..."
@@ -3043,18 +3107,18 @@ Public Sub UpdateStatusBar()
   If Not Error Then
     If CInt(mplayer.maxcache) >= 1024 Then 
       Try maxcachehuman = Format$(((CFloat(mplayer.maxcache) / 1024)), "##.#") & "MB"
-        Else
+    Else
       MaxCacheHuman = mplayer.maxcache & "KB"
     Endif
     If maxcachehuman <> "0KB" Then 
       fmain.caption = pretext & " [ cache: " & cachevalue & "%" & (" of: ") & MaxCacheHuman & " ]"
-        Else
+    Else
       fmain.caption = pretext & " [ cache: " & cachevalue & "% (Auto) ]"
     Endif
     'cachebar.value = cachevalue / 100
-    cachegauge.w = (cachevalue / 100) * cachebar.w
+    'cachegauge.w = (cachevalue / 100) * cachebar.w
+    cachebar.w = (cachevalue / 100) * Rightsidepanel.w
   Endif
-  
   
   'Debug mplayer.currentcache
   StatusTextWidth = Statusbar1.Font.TextWidth(PreText & PostText)
@@ -3064,10 +3128,13 @@ Public Sub UpdateStatusBar()
   Statusbar1.text = " " & PreText & LotOfSpaces & PostText
   AudioForm.UpdateLength(PostText)
   If fsform.FullScreen Then statusbar1.w = statusbar1.Parent.w
+
 End
 
 Private lastvolume As String = -2 'remember the exit volume so that we can set it when opening new medias
+
 Public Sub UpdateVolumeSlider()
+
   Dim tmp As String
   Dim newvolume As Integer
   'DEBUG "asking for volume level..."
@@ -3082,15 +3149,17 @@ Public Sub UpdateVolumeSlider()
   Try SaveVolumeSlider.Value = newvolume Div 4
   If Error Then Goto ReturnLabel
   
-  ReturnLabel:
+ReturnLabel:
   Try SaveVolumeSlider.tag = "user"
   lastvolume = newvolume
+
 End
 
 Public Sub UpdateStreamsMenu()
   'read current subtitle and audio tracks and check the relevant item in the streams menu 
-  Dim tmpsub, tmpaudio As String
 
+  Dim tmpsub, tmpaudio As String
+  
   mplayer.Send("get_property sub")
   mplayer.Send("get_property switch_audio")
   tmpsub = mplayer.CurrentSubStream
@@ -3111,12 +3180,12 @@ End
 
 Public subnotset As Boolean = True
 
-
 Private alreadypaused As Boolean = False
 
-
 Private PrevCache As String = ""
+
 Public Function CacheChanged() As Boolean
+
   Dim curcache As String = ""
   curcache = mplayer.CurrentCache
   If PrevCache <> CurCache Then
@@ -3124,6 +3193,7 @@ Public Function CacheChanged() As Boolean
     Return True
   Endif
   Return False
+
 End
 
 Private eiNow As Eventinfo
@@ -3131,35 +3201,35 @@ Private eiNext As EventInfo
 Private PrevEiNow As EventInfo
 
 Public Function UpdateNowNextInfo()
+
   Dim channel As String = Replace(Lower(mplayer.Media_FullPath_Playing), "dvb://", "")
   PrevEiNow = einow
   zzzfake.VBox4.visible = False
   zzzfake.clocklabel.text = Make2(Hour(Now())) & ":" & Make2(Minute(Now())) & " - " & Date()
   zzzfake.LabelChannelName.text = Upper(channel)
-
+  
   Try eiNow = epgform.dvbsnoop.WhatsNow(channel)
   If einow = Null Then Return
   If eiNow.event_name = "" Then 
     eiNow.event_name = ("Not available")
-      Else
+  Else
     zzzfake.LabelNowName.text = eiNow.event_name
   Endif
-
+  
   Try einext = epgform.dvbsnoop.WhatsNext(channel)
-
+  
   Try zzzfake.LabelNextStart.visible = (eiNext.Start_time_date <> "")
   zzzfake.VBox4.visible = zzzfake.LabelNextStart.visible
-
+  
   If einext <> Null Then
     If eiNext.event_name = "" Then
       eiNext.event_name = ("Not available")
-        Else
+    Else
       zzzfake.LabelNextName.text = eiNext.event_name
       zzzfake.LabelNextStart.text = Make2(Hour(eiNext.Start_time_date)) & ":" & Make2(Minute(einext.Start_time_date))  
     Endif
   Endif
-
-
+  
   If PrevEiNow <> einow Then 
     zzzfake.LabelNowInfo.text = ""
     zzzfake.LabelNextInfo.text = ""
@@ -3167,15 +3237,17 @@ Public Function UpdateNowNextInfo()
     Try zzzfake.LabelNextInfo.text = einext.text_char
     PanelNowNextArrange(zzzfake.LabelNowInfo.visible)
   Endif
+
 End
 
-
-
 Public Sub TimerUpdateNowNext_Timer()
+
   UpdateNowNextInfo()
+
 End
 
 Public Function Make2(n As String) As String
+
   Dim t, neg As String
   If n Like "-*" Then neg = "-"
   t = Abs(CInt(n))
@@ -3183,18 +3255,13 @@ Public Function Make2(n As String) As String
     t = "0" & t
   Wend
   Return neg & t
+
 End
-
-
-
-
-
 
 Public Sub OneSecTimer_Timer()
   
-
   Dim PlaylistFinished As Boolean
-
+  
   If mplayer.ProcessRunningOvr() Then
     
     If mplayer.Paused Then
@@ -3211,10 +3278,10 @@ Public Sub OneSecTimer_Timer()
     Endif
     If (Not mplayer.Paused) Then
       If (Not MousePressed) Then
-
+        
         UpdateVolumeSlider()  '12% --> ok 3-4%
         If Not (mplayer.Media_FullPath_Playing Like ("dvb://*")) Then 
-            If Not (mplayer.Media_FullPath_Playing Like ("http://*shoutcast*")) Then
+          If Not (mplayer.Media_FullPath_Playing Like ("http://*shoutcast*")) Then
             'mplayer.Send("get_property length") '12% --> ok 3-4%
             'mplayer.Send("get_time_length") '12% --> ok 3-4%
             mplayer.getlength()
@@ -3222,7 +3289,7 @@ Public Sub OneSecTimer_Timer()
         Endif
         UpdateStatusBar()      '1%
         UpdateSeekSlider()     '0%
-
+        
         'Load youtube subtitles...
         
         If SubNotSet Then
@@ -3235,14 +3302,14 @@ Public Sub OneSecTimer_Timer()
             Endif
           Endif
         Endif
-
+        
         If (Not VEqHasBeenSet) Then
           If VideoEqualizer.ApplyEqCheckbox.value Then
             VideoEqualizer.ApplyEqSettings()
           Endif
         Endif
         VEqHasBeenSet = True
-
+        
         If mplayer.IsNetworkURI Then
           If mplayer.ICYStreamTitle <> "" Then
             If mplayer.ICYStreamTitle <> PropertiesGrid[1, 1].text Then
@@ -3252,7 +3319,7 @@ Public Sub OneSecTimer_Timer()
             Endif
           Endif
         Endif
-
+        
         If (mplayer.AudioOnly) Then
           If (Not audioformshown) Then
             If (Not tageditmode) Then
@@ -3266,7 +3333,7 @@ Public Sub OneSecTimer_Timer()
     'cachebar.visible = False
     Fmain.caption = global.AppName
     OneSecTimer.stop
-    cachegauge.w = 0
+    cachebar.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]
     If PlayStarted Then 'we've reached the end of the media or stopped it.
       SubNotSet = True
@@ -3288,7 +3355,7 @@ Public Sub OneSecTimer_Timer()
       ExecutePostCmd()
       'delete export file
       Try Kill mplayer.exportfile
-
+      
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
@@ -3300,7 +3367,7 @@ Public Sub OneSecTimer_Timer()
         Debug
         If Not (mplayer.ProcessRunningOvr()) Then
           Play(mplayer.Media_FullPath)
-            Else
+        Else
           Debug "Not hitting PLay from here because ButtonNext did it first"
           Debug
         Endif
@@ -3315,19 +3382,21 @@ Public Sub OneSecTimer_Timer()
     SeekBar.value = 0
     Fmain.caption = global.AppName
   Endif
+
 End
 
 Private Sub UpdateVolumeTooltip()
-
+  
   Dim tip As String
   Dim tipw As Integer
   Dim volume As Integer
   Dim underw As Integer
+
   volume = CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))
   tip = "   Volume: " & CStr(volume) & "%    "
   If volume > 100 Then 
     OverlayTip.TextLabel1.Foreground = color.red
-      Else
+  Else
     OverlayTip.TextLabel1.Foreground = color.white
   Endif
   OverlayTip.TextLabel1.Background = color.black
@@ -3340,38 +3409,41 @@ Private Sub UpdateVolumeTooltip()
   If tipw < underw Then tipw = underw + 2
   
   OverlayTip.TextLabel1.Move(bottomvbox.w - OverlayTip.Textlabel1.w, statusbar1.y, tipw, statusbar1.h)
-
   
 End
-
-
 
 Public Sub ShowVolBtn_enter()
   
   VolumeFocused = True
   UpdateVolumeTooltip()
   UpdateVolumeTooltip()
- 'OverlayTip.raise
+  'OverlayTip.raise
   UpdateVolumeTooltip()
   
 End
 
 Public Sub ShowVolBtn_leave()
+
   VolumeFocused = False
   OverlayTip.TextLabel1.reparent(OverlayTip)
+
 End
 
 Public Sub SaveVolumeSlider_enter()
+
   If Global.MouseInside(SaveVolumeSlider) Then
     VolumeFocused = True
     UpdateVolumeTooltip()
     UpdateVolumeTooltip()
   Endif
+
 End
 
 Public Sub SaveVolumeSlider_leave()
+
   VolumeFocused = False
   OverlayTip.TextLabel1.reparent(OverlayTip)
+
 End
 
 Public Sub SaveVolumeSlider_MouseUp()
@@ -3384,32 +3456,33 @@ Public Sub SaveVolumeSlider_MouseUp()
 End
 
 Public Function makeN(number As String, digits As Integer) As String
+
   If Len(number) < digits Then
     Repeat
       number = "0" & number
     Until Len(number) = digits
   Endif
   Return number
+
 End
 
-
 Public Sub VersionCheck()
+
   Dim UserVersion, UserMajor, UserMinor, RequiredMajor, RequiredMinor, Userminiminor, requiredminiminor As String
   Dim Required As String = Global.requiredversion
   Dim cfruser, cfrrequired As Long
-
+  
   UserVersion = System.fullversion
-
-
+  
   'Shell "gbx3 -V" Wait To UserVersion
-
+  
   RequiredMajor = makeN(Split(Required, ".")[0], 5)
   RequiredMinor = makeN(Split(Required, ".")[1], 5)
   RequiredMiniminor = makeN(Split(Required, ".")[2], 5)
   UserMajor = makeN(Split(UserVersion, ".")[0], 5)
   UserMinor = makeN(Split(UserVersion, ".")[1], 5)
   Userminiminor = makeN(Trim(Split(UserVersion, ".")[2]), 5)
-
+  
   Try cfruser = UserMajor & UserMinor & Userminiminor
   If Error Then 
     Debug "Couldn't check required version"
@@ -3421,13 +3494,13 @@ Public Sub VersionCheck()
     Return
   Endif
   If cfruser >= cfrrequired Then Return
-    'else...
+  'else...
   MyQuestion.Ask(("WARNING\nYour Gambas version is ") & Trim(UserVersion) & ("\nbut xt7-player requires ") & global.RequiredVersion, ("Understood"), "")
-
+  
 End
 
-
 Public Sub SaveVolumeSlider_Change()
+
   OneSecTimer.delay = OneSecTimer.delay * 100
   If Not (SaveVolumeSlider.tag = "timer") Then
     mplayer.do_SetVolume(SaveVolumeSlider.value * (100 Div SaveVolumeSlider.MaxValue)) ' + 1) 'don't allow volume=0 as it has problems with softvol
@@ -3436,11 +3509,12 @@ Public Sub SaveVolumeSlider_Change()
   OneSecTimer.delay = OneSecTimer.delay Div 100
   'Call GetProperty"volume" now, so onesectimer will found the answer
   mplayer.Send("get_property volume")
+
 End
 
 Public Sub OLD_SeekBar_Change()
   '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
-
+  
   If Not (Seekbar.tag = "timer") Then
     OneSecTimer.Enabled = False
     mplayer.do_seek(SeekBar.value Div 10)
@@ -3451,41 +3525,40 @@ End
 
 Public SeekingRestarting As Boolean = False
 
-
 Public Sub SeekOrSeekAndRestart(Action As String)
   'Restart the stream from a new position on youtube streams instead of seeking.
-
+  
   Dim newpos As Integer
   
   'do as usual for non YT streams:
-
+  
   If Not ((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*")) Then
     mplayer.Send(Action) 'WTH?
     Return
   Endif
-
+  
   'or issue restarts to the current stream (youtube)
   needytcookie = True
   If SeekingRestarting Then Return
-    'Do as usual on strange errors ?
-    Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
-    If Error Then mplayer.Send(Action) 'WTH?
-    SeekingRestarting = True
-    SeekRestart(newpos)
-    SeekingRestarting = False
+  'Do as usual on strange errors ?
+  Try newpos = CInt(mplayer.CurrentTime()) + Split(Action, " ", "", True, False)[1]
+  If Error Then mplayer.Send(Action) 'WTH?
+  SeekingRestarting = True
+  SeekRestart(newpos)
+  SeekingRestarting = False
   
 End
 
-
-
 Public Sub SeekBar_Change()
   '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
+
   Dim percent As Integer
   Dim newpos As Integer
+
   Object.Lock(seekbar)
   Wait
   Object.unLock(seekbar)
- ' Seekbar.enabled = False
+  ' Seekbar.enabled = False
   If fmain.closing Then Return
   If Not (Seekbar.tag = "timer") Then
     OneSecTimer.Enabled = False
@@ -3504,25 +3577,26 @@ Public Sub SeekBar_Change()
       fmain.mouse = mouse.normal
       SeekingRestarting = False
       seekbar.enabled = True
-        Else
+    Else
       mplayer.do_seek(percent)
-
+      
     Endif
-
+    
     OneSecTimer.Enabled = True
-
+    
   Endif
-'Seekbar.enabled = True
+  'Seekbar.enabled = True
+
 End
 
 Public Sub SeekRestart(newpos As Integer)
+
   Dim cookieopts As String
   VEqHasBeenSet = False
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
     If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & " " & cookieopts, False, False, newpos)
-
     
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
@@ -3531,19 +3605,25 @@ Public Sub SeekRestart(newpos As Integer)
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
+
 End
 
 Public Sub MenuOpen_Click()
+
   ButtonOpen_Click()
+
 End
 
 Public Sub MenuQuit_Click()
+
   FMain.Close
+
 End
 
 Public Sub MenuAbout_Click()
-  MyQuestion.ask(Global.aboutmessage, ("GotIt!"), "")
 
+  MyQuestion.ask(Global.aboutmessage, ("GotIt!"), "")
+  
 End
 
 Public Sub ShowVolBtn_Click()
@@ -3563,20 +3643,23 @@ Public Sub ShowVolBtn_MouseWheel()
 End
 
 Public Sub SeekBar_MouseDown()
+
   MousePressed = True
   'Object.Lock(seekbar)
   seekbar.value = ((seekbar.MaxValue - seekbar.MinValue) * mouse.x) Div seekbar.w
   'Object.unLock(seekbar)
+
 End
 
 Public Sub SeekBar_MouseUp()
+
   MousePressed = False
+
 End
 
 Public Sub VideoAreaGroup_MouseDrag()
   
   Dim NewX, NewY As Integer
-
   
   If (Not fsform.FullScreen) Then
     If SwitchingFullScreen Then Return
@@ -3630,36 +3713,34 @@ End
 
 Private KdeEffectsWereActive As Boolean = False
 
-
 Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
+
   Dim fscommand As String = global.ConfPath & "/switch.fs.command.sh"
   Dim windowcommand As String = global.ConfPath & "/switch.win.command.sh"
   Dim WasPaused As Boolean = False
   Dim sw, sh, mx, my As Integer
   
-
   sw = Screen.w
   sh = Screen.h
   mx = mouse.Screenx
   my = mouse.screeny
   
-
   If fullscreen Then
     If Exist(fscommand) Then 
       Debug "Executing " & fscommand & " " & fps
       Debug
-       If Not mplayer.paused Then 'pause the video before swhitching fullscreen
-         mplayer.do_pause()
-         WasPaused = False
-           Else
-         WasPaused = True
-       Endif
+      If Not mplayer.paused Then 'pause the video before swhitching fullscreen
+        mplayer.do_pause()
+        WasPaused = False
+      Else
+        WasPaused = True
+      Endif
       
       Shell ". " & fscommand & " " & fps Wait
       If Not WasPaused Then
         If mplayer.Paused Then mplayer.do_leave_pause()
       Endif
-        Else
+    Else
       Debug "!!!"
       Debug ("Hint: create (and make executable) a script named") & " " & fscommand 
       Debug ("xt7 will execute it with and pass fps argument when switching to fullscreen")
@@ -3671,38 +3752,38 @@ Public Sub FsCommandsExec(Fullscreen As Boolean, fps As String)
   Endif
   
   'if windowed
-    If Exist(windowcommand) Then
-      Debug "Executing " & windowcommand 
-      Debug
-      If Not mplayer.paused Then 'pause the video before swhitching fullscreen
-        mplayer.do_pause()
-        WasPaused = False
-          Else
-        WasPaused = True
-      Endif
-      Shell ". " & windowcommand Wait
-      If Not WasPaused Then
-        If mplayer.Paused Then mplayer.do_leave_pause()
-      Endif
-        Else
-      Debug "!!!"
-      Debug ("Hint: create (and make executable) a script named ") & " " & windowcommand
-      Debug ("xt7 will execute it when switching from fullscreen to window mode")
-      Debug "!!!"
-      Debug
+  If Exist(windowcommand) Then
+    Debug "Executing " & windowcommand 
+    Debug
+    If Not mplayer.paused Then 'pause the video before swhitching fullscreen
+      mplayer.do_pause()
+      WasPaused = False
+    Else
+      WasPaused = True
     Endif
-    Goto ReturnLabel
-    
-  ReturnLabel:
-    If (sw + sh) <> (Screen.w + Screen.h) Then 'resolution is changed
-      mouse.Move(CInt((mx * Screen.w)) / sw, CInt((my * Screen.h) / sh))
+    Shell ". " & windowcommand Wait
+    If Not WasPaused Then
+      If mplayer.Paused Then mplayer.do_leave_pause()
     Endif
-    Return
+  Else
+    Debug "!!!"
+    Debug ("Hint: create (and make executable) a script named ") & " " & windowcommand
+    Debug ("xt7 will execute it when switching from fullscreen to window mode")
+    Debug "!!!"
+    Debug
+  Endif
+  Goto ReturnLabel
+  
+ReturnLabel:
+  If (sw + sh) <> (Screen.w + Screen.h) Then 'resolution is changed
+    mouse.Move(CInt((mx * Screen.w)) / sw, CInt((my * Screen.h) / sh))
+  Endif
+  Return
   
 End
 
-
 Public Function Screenbypos(x As Integer, y As Integer) As Screen
+
   Dim s As Screen
   For Each s In Screens
     If (x >= s.x) And x <= (s.x + s.W) Then
@@ -3714,23 +3795,22 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
   
 End
 
-
-
 Public Sub ArrangeBottmVbox()
-   bottomvbox.ignore = True
-   bottomvbox.x = 0
-   bottomvbox.y = bottomvbox.Parent.h - bottomvbox.h
-   bottomvbox.w = bottomvbox.Parent.W
-   controlframe.ignore = True
-   controlframe.x = 0
-   controlframe.y = controlframe.Parent.h - controlframe.h
-   controlframe.w = controlframe.Parent.w
-   Debug
+
+  bottomvbox.ignore = True
+  bottomvbox.x = 0
+  bottomvbox.y = bottomvbox.Parent.h - bottomvbox.h
+  bottomvbox.w = bottomvbox.Parent.W
+  controlframe.ignore = True
+  controlframe.x = 0
+  controlframe.y = controlframe.Parent.h - controlframe.h
+  controlframe.w = controlframe.Parent.w
+  Debug
+
 End
 
-
 Private Sub CostrainFormSizes()
-
+  
   If (global.pluginmode) Then
     If Not fsform.fullscreen Then
       ArrangeBottmVbox()
@@ -3741,20 +3821,21 @@ Private Sub CostrainFormSizes()
   SliderBox.width = ControlFrame.Width - 32
   MainToolbar.width = FMain.clientw - 16
   If statusbar1.visible Then
-    BottomVbox.h = controlframe.h + Statusbar1.h + cachebar.h 
-      Else
-    BottomVbox.h = controlframe.h + cachebar.h 
+    BottomVbox.h = controlframe.h + Statusbar1.h ' + cachebar.h 
+  Else
+    BottomVbox.h = controlframe.h '+ cachebar.h 
   Endif
   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
+
 End
 
-
 Public Sub FullScreenSwitch()
+
   SwitchingFullScreen = True
   If fsform.fullscreen Then
     SwitchToWindow()
-      Else
+  Else
     SwitchToFS()
   Endif
   Wait 0.1
@@ -3762,6 +3843,7 @@ Public Sub FullScreenSwitch()
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
   SwitchingFullScreen = False
   UpdateStatusBar()
+
 End
 
 Private buttonmenuwasvisible As Boolean = False
@@ -3770,6 +3852,7 @@ Private winmax As Boolean
 
 Public Sub SwitchToFS()
   'save the windowed information
+
   OuterBox.Mouse = mouse.blank
   VideoBox.Mouse = mouse.blank
   Object.Lock(hsplit1)
@@ -3788,18 +3871,16 @@ Public Sub SwitchToFS()
     Wait
   Until fsform.w >= Screenbypos(fmain.screenx, fmain.screeny).Width
   FsForm.Background = color.Default
-
-
+  
   Maintoolbar.Reparent(FsForm)
   Showbuttonmenu()
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
-
-
+  
   'invert the HSplit with a vSplit
   fmain.HSplit1.Reparent(zzzFake)
   zzzFake.VSplit1.Reparent(FsForm)
-
+  
   'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
@@ -3808,15 +3889,17 @@ Public Sub SwitchToFS()
   
   'hide the upper controls
   Leftsidepanel.hide()
-
+  
   'let the bottom panel adapts to the new size:
   Wait '<-this wait has to come before ConstrainFormSizes()
   CostrainFormSizes()
   bottomvbox.Hide
   BottomVbox.Reparent(rightsidepanel)
   Maintoolbar.hide
+  cachebar.hide
+  cachebar.raise
   Wait '<-this wait has to come just after ConstrainFormSizes()
-
+  
   'start the timer 
   TimerFullScreen.start
   
@@ -3843,34 +3926,30 @@ Public Sub SwitchToFS()
   controlframe.w = bottomvbox.W
   Wait
   CostrainFormSizes() 
+
 End
 
-
-
-
 Public Sub SwitchToWindow()
-
+  
   bottomvbox.y = rightsidepanel.h - bottomvbox.h
   BottomVbox.ignore = False
   
   'execute shell commands
   FsCommandsExec(False, 60)
-
-
+  
   If Not (buttonmenuwasvisible) Then Hidebuttonmenu()
   Maintoolbar.Reparent(fmain)
   
   'invert the VSplit with a HSplit
   zzzFake.VSplit1.Reparent(zzzFake)
   Hsplit1.Reparent(Fmain)
-
+  
   'populate HSplit with controls
   Leftsidepanel.Reparent(Hsplit1)
   rightsidepanel.Reparent(HSplit1)
   If (SplitterLayout <> Null) Then Hsplit1.Layout = SplitterLayout
   Wait
-
-
+  
   'show the menu
   AllmenuVisible(True)
   Maintoolbar.visible = True
@@ -3879,26 +3958,24 @@ Public Sub SwitchToWindow()
   LeftsidePanel.Visible = LeftsideWasVisible
   
   UpdateStatusBar()
-
+  
   'show the bottom controls
   bottomvbox.Raise() '<-make sure it is on the bottom
   bottomvbox.show
-
   CostrainFormSizes()
-
+  
   TimerFullScreen.Stop()
-
+  
   If zzzfake.PanelNowNext.visible Then 
     PanelNowNextArrange()
     Wait
   Endif
-
-
+  
   RightSidePanel.SetFocus()
   
   OuterBox.Mouse = mouse.Default
   VideoBox.Mouse = mouse.Default
-
+  
   'make the form windowed
   fsform.Background = color.black
   Wait
@@ -3911,17 +3988,17 @@ Public Sub SwitchToWindow()
   FsForm.FullScreen = False
   fmain.Maximized = winmax
   fmain.show  
-
-
+  
+  cachebar.Reparent(rightsidepanel)
+  cachebar.Move(0, outerbox.h - cachebar.h, 0)
+  cachebar.raise
+  cachebar.show
   'fsform.Background = color.Default
   'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
 End
 
-
-
-
-
 Public Sub AllmenuVisible(AreVisible As Boolean)
+
   Menuplaylist.visible = AreVisible
   MenuMain.visible = AreVisible
   MenuState.visible = AreVisible
@@ -3930,10 +4007,11 @@ Public Sub AllmenuVisible(AreVisible As Boolean)
   MenuConfigure.visible = AreVisible
   MenuLibrary.Visible = AreVisible
   AspectMenu.Visible = (AreVisible And (Not mplayer.audioonly))
+
 End
 
 Private Sub MouseHide()
-
+  
   If (Mouse.screenx & "." & Mouse.ScreenY = MousePos) Then
     OuterBox.Mouse = mouse.blank
     VideoBox.Mouse = mouse.blank
@@ -3941,14 +4019,14 @@ Private Sub MouseHide()
     OuterBox.Mouse = 0
     VideoBox.Mouse = 0
   Endif
-
+  
   MousePos = Mouse.screenx & "." & Mouse.ScreenY
-
+  
 End
 
 Public Function MouseInsideFsFormByCoords() As Boolean
   'reports if the cursor is inside fmain by checking the coordinates
-
+  
   If mouse.ScreenX >= fsform.screenx Then
     If mouse.ScreenX <= fsform.screenx + fsform.W Then
       If mouse.ScreenY >= fsform.ScreenY Then
@@ -3959,10 +4037,12 @@ Public Function MouseInsideFsFormByCoords() As Boolean
     Endif
   Endif
   Return False
+
 End
 
 Public Function MouseInside(obj As Object) As Boolean
-   'reports if the cursor is inside obj
+  'reports if the cursor is inside obj
+
   If mouse.ScreenX >= obj.screenx Then
     If mouse.ScreenX <= obj.screenx + fsform.W Then
       If mouse.ScreenY >= obj.ScreenY Then
@@ -3973,9 +4053,8 @@ Public Function MouseInside(obj As Object) As Boolean
     Endif
   Endif
   Return False 
+
 End
-
-
 
 Public Sub TimerFullScreen_Timer()
   
@@ -3985,15 +4064,13 @@ Public Sub TimerFullScreen_Timer()
   Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
   Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
   Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
-
-
+  
   If MouseonFsForm Then 
     MouseHide()
-      Else
+  Else
     Return
   Endif
   
-
   ' If MouseInsideFsFormByCoords() Then 
   '   MouseHide()
   '     Else
@@ -4005,7 +4082,8 @@ Public Sub TimerFullScreen_Timer()
     bottomvbox.y = rightsidepanel.h - bottomvbox.h
     Audioform.AudioPanel.ignore = True
     BottomVbox.visible = True
-    
+    cachebar.Move(0, bottomvbox.y - cachebar.h)
+    cachebar.show
   Endif
   
   If AttachZone2 Then
@@ -4016,6 +4094,7 @@ Public Sub TimerFullScreen_Timer()
   If ReleaseZone1 Then
     BottomVbox.ignore = False
     BottomVbox.visible = False
+    cachebar.hide
     Audioform.AudioPanel.ignore = False
   Endif
   
@@ -4026,8 +4105,6 @@ Public Sub TimerFullScreen_Timer()
   Endif
   
 End
-
-
 
 Public Sub SwitchSidePanelBTN_Click()
   
@@ -4056,7 +4133,7 @@ Public Sub LibraryGrid_Drop()
   Dim droppedfiles As String[]
   Dim DroppedFile, ext As String
   Dim dragdata As String
-
+  
   Dim IsFile, IsURI, IsDirectory, IsPlayList As Boolean
   
   dragdata = Drag.Paste("text/uri-list")
@@ -4082,7 +4159,7 @@ Public Sub LibraryGrid_Drop()
       ext = Upper(File.Ext(DroppedFile))
       Try IsPlaylist = ((ext = "M3U") Or (ext = "PLS") Or (ext = "XPL"))
       IsUri = (droppedfile Like "*://*")
-
+      
       If IsPlayList And (Not isuri) Then 
         MyLibrary.LoadFile(droppedfile, LibraryGrid, True)
       Else If IsFile Then
@@ -4153,24 +4230,24 @@ Public Sub MenuAudioDriver_Click()
 End
 
 Public Sub MenuSaveDefault_Click()
-
+  
   If Lower(global.CurrentProfile) = "factory_defaults" Then
     If MyQuestion.Ask(("You can't modify the current profile\nbecause it is the Factory defaults one"), ("Switch to ''default'' profile and save"), ("Don't save")) = 1 Then
       global.CurrentProfile = "default"
-        Else
+    Else
       Return
     Endif
   Endif
- 
+  
   Try ReallySaveAllSettings(global.CurrentProfile, True, True)
   'GetOptionsFromGui() 'commented because it is called by reallysaveallsettings
   If Error Then Message.Error(("Error while saving default settings"))
   UpdateProfilesTabList()
+
 End
 
 Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibraryAndPls As Boolean = True, Optional WithCachedopts As Boolean = True)
   'Dim cachedopts As String
-  
   
   If (Not global.initearlyformsdone) Then InitEarlyForms()
   If (DestinationProfile = "Factory_Defaults") Then ReLoadCurrentProfile()
@@ -4180,8 +4257,7 @@ Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibr
     cachedopts = cachedopts & " " & mplayer.VoDriver & " " & mplayer.VoAdditionalopts & " " & mplayer.AoAdditionalopts
     cachedopts = cachedopts & " " & mplayer.AVcodecs
   Endif
-
-
+  
   Global.SaveAllSettings(DestinationProfile, WithLibraryAndPls, cachedopts)
   GeneralOptions.SaveWatchDir(global.confpath & "/" & DestinationProfile)
   GeneralOptions.SaveExcludeDir(global.confpath & "/" & DestinationProfile)
@@ -4205,7 +4281,7 @@ End
 Public Sub MenuRestoreDefaults_Click()
   
   Dim DefaultFile As String
-
+  
   If Not (MyQuestion.ask(("Are you sure you want to reset the default profile\nto factory values?"), ("Don't Reset"), ("Reset")) = 1) Then
     For Each DefaultFile In Dir(Global.confpath, "Default.*")
       Try Kill global.confpath & "/" & DefaultFile
@@ -4231,6 +4307,7 @@ Public Sub MenuConfigureAudioFilters_Click()
 End
 
 Public Sub Apply()
+
   Debug "Cached Options unvalidated"
   Debug
   global.ResetApplyBtnColor()
@@ -4246,6 +4323,7 @@ Public Sub Apply()
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
+
 End
 
 Public Sub SubTitlesMenu_Click()
@@ -4300,7 +4378,6 @@ End
 ' 
 ' End
 
-
 'HotKeys Handling *******************************************
 
 Public Sub HotKeyToMplayer(HotKey As String)
@@ -4308,12 +4385,11 @@ Public Sub HotKeyToMplayer(HotKey As String)
   'Some actions such as fullscreen and panscan are treated internally
   
   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
-
-
+  
   'PRINT Action
   Select Case Action
-    ' Case Like "*Seek *"
-    ' SeekOrSeekAndRestart(Action)
+      ' Case Like "*Seek *"
+      ' SeekOrSeekAndRestart(Action)
     Case "Vo_fullscreen"
       FullScreenBtn_Click()
     Case "Panscan +0.05"
@@ -4426,10 +4502,11 @@ End
 '   
 ' End
 
-
 Public Sub PanScanCorrect(delta As Float)
+
   Dim MaxRFactor As Float = 20
   Dim MinRFactor As Float = 0.1
+
   ForcedZoomRT = ""
   If delta > 0 Then
     ResizeFactor = Resizefactor + SnapToBorders(delta)
@@ -4439,7 +4516,7 @@ Public Sub PanScanCorrect(delta As Float)
     If (videobox.w = Rightsidepanel.w) Or (videobox.h = Rightsidepanel.h) Then
       Try mplayer.ShowText(("Video snaps to borders"), 500)
     Endif
-      Else
+  Else
     ResizeFactor = ResizeFactor + delta
     If ResizeFactor < MinRFactor Then resizefactor = MinRFactor
     CorrectAreaAspect
@@ -4448,8 +4525,8 @@ Public Sub PanScanCorrect(delta As Float)
       Try mplayer.ShowText(("Video snaps to borders"), 500)
     Endif
   Endif
-End
 
+End
 
 Public Function SnapToBorders(adding As Float) As Float
   'Se l'operazione di zoomingIN sta facendo sì che il video sarà più grande della finestra,
@@ -4480,19 +4557,23 @@ Public Function SnapToBorders(adding As Float) As Float
 End
 
 Public Sub VideoAreaGroup_MouseDown()
+
   mouseleft = mouse.left
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False
   'PanelNowNextShow()
+
 End
 
 Public Sub PanelNowNextShow()
+
   PanelNowNextArrange()
   zzzfake.PanelNowNext.show()
+
 End
 
-
 Public Sub PanelNowNextArrange(Optional Exdended As Boolean = False)
+
   With zzzfake
     .PanelNowNext.Reparent(outerbox)
     .PanelNowNext.ignore = True
@@ -4504,14 +4585,16 @@ Public Sub PanelNowNextArrange(Optional Exdended As Boolean = False)
     .HBox2.y = .Separator1.y + .Separator1.h
     .HBox3.y = .HBox1.y + .HBox1.h
     .PanelNowNext.h = .hbox1.h + .hbox2.h + .hbox3.h + .Separator1.h + (.PanelNowNext.padding * 2)
-     If .LabelNowInfo.visible Then .PanelNowNext.h += .LabelNowInfo.h + .LabelNextInfo.h
+    If .LabelNowInfo.visible Then .PanelNowNext.h += .LabelNowInfo.h + .LabelNextInfo.h
     .PanelNowNext.w = CInt(outerbox.w * 0.8)
     .PanelNowNext.x = (outerbox.w / 2) - (.PanelNowNext.w / 2)
     .PanelNowNext.y = - .PanelNowNext.padding
   End With
+
 End
 
 Public Sub VideoAreaGroup_KeyPress() 
+
   Dim HotKey As String
   If ((Key.code = Key.space) And (Key.control) And (Key.shift) And (Key.alt)) Then Xt7Egg.show
   HotKey = HotKeyGrab.GetKey()
@@ -4522,8 +4605,10 @@ End
 Private LastClickTime As Float
 
 Public Sub VideoAreaGroup_MouseUp()
+
   Dim HotKey As String
   Dim mx, my As Integer
+
   LastClickTime = Timer
   If GuiDragging Then
     guidragging = False
@@ -4536,14 +4621,14 @@ Public Sub VideoAreaGroup_MouseUp()
   
   IgnoreMouse = True
   guidragging = False
-
+  
   'move the mouse so that a mousemove event is triggered inside the videoarea.
   'this avoids stuck mouse buttons (gambas bug)
   mx = mouse.screenx
   my = mouse.screeny
   mouse.Move(mx + 1, my) 
   mouse.Move(mx, my)
-
+  
 End
 
 Public Sub VideoAreaGroup_MouseWheel()
@@ -4559,11 +4644,13 @@ End
 '/HotKeys Handling *******************************************
 
 Public Sub VideoAreaGroup_DblClick()
-Dim timenow As Float = Timer
+
+  Dim timenow As Float = Timer
   If mouseleft And Not TagEditMode Then 
     If (timenow - LastClickTime) < 0.25 Then mplayer.Send("pause") ' keep the pausing state when switching fullscreen mode
     FullScreenSwitch()
   Endif
+
 End
 
 Public Sub GeneralOptionsMenu_Click()
@@ -4574,6 +4661,7 @@ Public Sub GeneralOptionsMenu_Click()
 End
 
 Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
+
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
@@ -4589,7 +4677,7 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
     MyLibrary.SelectNext(LibraryGrid, ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-   Else If TabSelectedDVB() Then
+  Else If TabSelectedDVB() Then
     MyDVBTList.SelectNext(dvbtGrid, False)
     Wait 0.025
     If mplayerwasrunning Then playselecteddvb()
@@ -4622,12 +4710,14 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
     Endif
   Endif
   fmain.mouse = mouse.normal
+
 End
 
-
 Public Sub BrowseSelectNext()
+
   Dim obj As Object
   Dim tmpstr As String
+
   FileView1.mode = Select.Single
   For Each obj In FileView1.Children
     Try tmpstr = obj.current.text
@@ -4648,12 +4738,14 @@ Public Sub BrowseSelectNext()
   Next
   obj.item.EnsureVisible
   FileView1.mode = Select.Multiple
+
 End
 
-
 Public Sub BrowseSelectPrev()
+
   Dim obj As Object
   Dim tmpstr As String
+
   FileView1.mode = Select.Single
   For Each obj In FileView1.Children
     Try tmpstr = obj.current.text
@@ -4677,14 +4769,13 @@ Public Sub BrowseSelectPrev()
   Next
   obj.item.EnsureVisible
   FileView1.mode = Select.Multiple
+
 End
 
-
-
 Public Sub ButtonPrev_Click()
-
-
+  
   Dim mplayerwasrunning As Boolean = False
+
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
   OneSecTimer.stop
   fmain.mouse = mouse.wait
@@ -4699,7 +4790,7 @@ Public Sub ButtonPrev_Click()
     MyLibrary.SelectPrev(LibraryGrid) ', ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-   Else If TabSelectedDVB() Then
+  Else If TabSelectedDVB() Then
     MyDVBTList.SelectPrev(dvbtGrid)
     Wait 0.025
     If mplayerwasrunning Then playselecteddvb()
@@ -4731,6 +4822,7 @@ Public Sub ButtonPrev_Click()
     Endif
   Endif
   fmain.mouse = mouse.normal
+
 End
 
 '-----------------------------------
@@ -4744,7 +4836,7 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
     LibraryGrid.visible = False
     
     MyLibrary.DeleteSelected(LibraryGrid)
-
+    
     LibraryGrid.scrollx = PrevScrollX
     LibraryGrid.scrollY = PrevScrollY
     LibraryGrid.visible = True
@@ -4752,9 +4844,6 @@ Private Sub GridKeyRelease(LibraryGrid As GridView, MyLibrary As PlaylistClass)
   Endif
   
 End
-
-
-
 
 ' Public Sub DvbTGridToChanFile()
 '   Dim channelconf As String[]
@@ -4811,9 +4900,8 @@ End
 ' 
 ' End
 
-
-
 Public Sub dvbtgrid_Keypress()
+
   If (Key.code = Key.Return) Or (Key.code = Key.Enter) Then
     playselecteddvb()
     Return
@@ -4824,6 +4912,7 @@ Public Sub dvbtgrid_Keypress()
     Endif
   Endif
   DVBTGrid_select()
+
 End
 
 Public Sub PlayListGrid_Keypress()
@@ -4845,8 +4934,8 @@ Public Sub Librarygrid_Keypress()
   Endif
   GridKeyRelease(librarygrid, mylibrary)
   librarygrid_Select()
-End
 
+End
 
 '-----------------------------------
 
@@ -4867,6 +4956,7 @@ Public Sub PlayListGrid_DblClick()
   
   Dim SelectedPath As String
   Dim myradiolabel As String
+
   Try customtitle = PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]].text
   Last.mouse = mouse.wait
   Try SelectedPath = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Full Path"]].text
@@ -4886,6 +4976,7 @@ Public Sub LibraryGrid_DblClick()
   
   Dim SelectedPath As String
   Dim myradiolabel As String
+
   Try customtitle = librarygrid[librarygrid.row, myplaylist.ColumnIndex["Filename"]].text
   Last.mouse = mouse.wait
   Try SelectedPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
@@ -4897,69 +4988,66 @@ Public Sub LibraryGrid_DblClick()
     If global.IsPlaylist(selectedpath) Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
     Try Play(SelectedPath,, myradiolabel)
   Endif
-  Last.mouse = mouse.Default
+  Try Last.mouse = mouse.Default
   
 End
 
 Public Sub ButtonNowNext_Click()
+
   If zzzfake.PanelNowNext.visible Then 
     zzzfake.PanelNowNext.hide
     TimerUpdateNowNext.Stop
-      Else
+  Else
     UpdateNowNextInfo()
     PanelNowNextShow()
     TimerUpdateNowNext.Start
   Endif
+
 End
 
 Private Function UseDvbSetChannel() As Boolean
+
   Dim Userpreference As String = ""
   Try Userpreference = generaloptions.ComboboxFastZapping.Text
   If Error Then Return False
   If Not mplayer.ProcessRunningOvr() Then Return False
   If Not (Lower(mplayer.Media_FullPath_Playing) Like "dvb://*") Then Return False
-
-
+  
   If Userpreference Like "*0*" Then Return False 'never use
   If Userpreference Like "*2*" Then Return True 'always use
-
+  
   If Userpreference Like "*1*" Then 'let xt7 choose
     Return Not (mplayer.AudioSwitched)
   Endif
-
-
+  
   Return False 'the default,safer, choice.
+
 End
-
-
 
 Public Sub PlaySelectedDvb(Optional channel As String = ":::")
   
   Dim SelectedPath As String
-
   
-    'start from a blank panel
-    zzzfake.LabelNowName.text = ("Not available")
-    zzzfake.LabelNextName.text = ("Not available")
-    zzzfake.LabelNextStart.text = ""
-    zzzfake.LabelNextStart.visible = False
-    zzzfake.VBox4.visible = False
+  'start from a blank panel
+  zzzfake.LabelNowName.text = ("Not available")
+  zzzfake.LabelNextName.text = ("Not available")
+  zzzfake.LabelNextStart.text = ""
+  zzzfake.LabelNextStart.visible = False
+  zzzfake.VBox4.visible = False
   
   'start epg in background
   If Not epgform.initdone Then 
     epgform.Init()
-      Else
+  Else
     epgform.StopScan()
   Endif
   epgform.dvbsnoop.Stopit()
   epgform.dvbsnoop.Startit()
   
-
-  
   Last.mouse = mouse.wait
   If channel = ":::" Then 
     Try SelectedPath = dvbtGrid[dvbtGrid.row, MyDVBTList.Columnindex["Full Path"]].text
-      Else
+  Else
     selectedpath = "dvb://" & channel
   Endif
   
@@ -4969,25 +5057,23 @@ Public Sub PlaySelectedDvb(Optional channel As String = ":::")
   If UseDvbSetChannel() Then
     mplayer.DvbSetChannel(Replace(Lower(SelectedPath), "dvb://", ""), CInt(generaloptions.spinboxcard.Text) - 1)
     'simulate a dry run:
-      FillStreamsMenu()
-      CorrectAreaAspect()
-      FillPropertiesGrid()
-      LogWindow.ShowLogs()
+    FillStreamsMenu()
+    CorrectAreaAspect()
+    FillPropertiesGrid()
+    LogWindow.ShowLogs()
     Last.mouse = mouse.Default
     Goto ReturnLabel
   Endif
   Try Play(SelectedPath)
-
   
   Last.mouse = mouse.Default
   Goto ReturnLabel
-
+  
   Return
-  ReturnLabel:
+ReturnLabel:
   If Not OneSecTimer.Enabled Then OneSecTimer.Start()
-
+  
 End
-
 
 Public Sub dvbtGrid_DblClick()
   
@@ -5011,11 +5097,8 @@ End
 
 Public Sub RefreshVisibleRows(mygrid As Gridview, mylibrary As Playlistclass)
   
-
   Dim R, FirstR, LastR As Integer
   Dim FirstC, LastC As Integer
-
-
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
@@ -5037,11 +5120,8 @@ End
 
 Public Sub RefreshVisibleCovers(mygrid As Gridview)
   
-
   Dim FirstR, LastR As Integer
   Dim FirstC, LastC As Integer
-
-
   
   If fmain.closing Then Return
   If MyGrid.Rows.count <= 0 Then Return
@@ -5062,18 +5142,17 @@ Public Sub RefreshVisibleCovers(mygrid As Gridview)
   Else
     Try libraryGrid.refresh
   Endif
-
+  
 End
-
-
 
 Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridview, Optional autosize As Boolean = True, searchterm As String)
   'some gtk component problem here
+
   Dim crow As Integer
   HideGrid(LibraryGrid)
   If (Not fmain.fullyloaded) Then
-      If Not (librarygrid.tag = "FORCEUPDATE") Then Return
-    Endif
+    If Not (librarygrid.tag = "FORCEUPDATE") Then Return
+  Endif
   LibraryGrid.clear
   MyLibrary.Search(LibraryGrid, Searchterm)
   Debug
@@ -5084,16 +5163,16 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
   Endif
   If fmain.fullyloaded Then 
     ShowGrid(LibraryGrid)
+    'Wait
+    If mplayer.ProcessRunningOvr() Then
       'Wait
-      If mplayer.ProcessRunningOvr() Then
-      'Wait
-        crow = mylibrary.FindRowByPath(librarygrid, mplayer.Media_FullPath_playing)
-        If crow <> -1 Then
-          librarygrid.MoveTo(crow, 0)
-          librarygrid.Rows[crow].selected = True
-          librarygrid[crow, 0].EnsureVisible()
-        Endif
+      crow = mylibrary.FindRowByPath(librarygrid, mplayer.Media_FullPath_playing)
+      If crow <> -1 Then
+        librarygrid.MoveTo(crow, 0)
+        librarygrid.Rows[crow].selected = True
+        librarygrid[crow, 0].EnsureVisible()
       Endif
+    Endif
     Select Case Lower(librarygrid.name)
       Case "librarygrid"
         LibrarySelInfo.visible = False
@@ -5101,70 +5180,86 @@ Public Sub UpdateSearchResults(MyLibrary As PlaylistClass, LibraryGrid As Gridvi
         CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
     End Select
   Endif
+
 End
 
-
 Public Sub SearchField_KeyRelease()
+
   Dim previous_search As String
   If (Key.code < Key.space) Or (Key.code > Key.delete) Then Return
   If key.code = key.tab Then Return
   previous_search = Searchfield.text
   'If ((Len(Searchfield.text) > 2) Or (Len(Searchfield.text) = 0)) Then
-      Wait 0.5
-      If previous_search = Searchfield.text Then
-        UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
-          Else
-        Return
-      Endif
+  Wait 0.5
+  If previous_search = Searchfield.text Then
+    UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
+  Else
+    Return
+  Endif
   'Endif
   MenuLibraryZapSelected.enabled = (LibraryGrid.row > 0)
+
 End
 
-
 Public Sub SearchFieldPLS_KeyRelease()
+
   Dim previous_search As String
   If (Key.code < Key.space) Or (Key.code > Key.delete) Then Return
   If key.code = key.tab Then Return
   previous_search = Searchfieldpls.text
   'If ((Len(Searchfieldpls.text) > 2) Or (Len(Searchfieldpls.text) = 0)) Then
-    Wait 0.5
-    If previous_search = Searchfieldpls.text Then
-      UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
-        Else
-      Return
-    Endif
+  Wait 0.5
+  If previous_search = Searchfieldpls.text Then
+    UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
+  Else
+    Return
+  Endif
   'Endif
   MenuPlaylistZapSelected.enabled = (PlaylistGrid.row > 0)
+
 End
 
 Public Sub SearchField_Activate()
+
   Try customtitle = librarygrid[librarygrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(Searchfield, Searchfield.text)
+
 End
+
 Public Sub SearchFieldPLS_Activate()
+
   Try customtitle = PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
   ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
+
 End
 
 Public Sub SearchField_Click()
+
   UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
   MenuLibraryZapSelected.enabled = (LibraryGrid.row > 0)
+
 End
 
 Public Sub SearchFieldPLS_Click()
+
   UpdateSearchResults(MyPlayList, PlayListGrid, fmain.FullyLoaded, SearchfieldPLS.text)
   MenuPlaylistZapSelected.enabled = (PlaylistGrid.row > 0)
+
 End
 
 '-----------------------------------
 Public Sub LibraryGrid_ColumnClick(Column As Integer)
+
   ColumnClick(LibraryGrid, Mylibrary, column, Searchfield.text)
+
 End
 
 Public Sub PlaylistGrid_ColumnClick(Column As Integer)
+
   ColumnClick(PlayListGrid, MyPlaylist, column, SearchfieldPLS.text)
+
 End
 
 Public Sub dvbtGrid_ColumnClick(Column As Integer)
@@ -5174,8 +5269,10 @@ Public Sub dvbtGrid_ColumnClick(Column As Integer)
 End
 
 Public Sub ColumnClick(Grid As GridView, pls As PlaylistClass, column As Integer, search As String)
+
   Dim ClickedColumn As String = Grid.Columns[column].text
   Dim PrevScrollX As Integer = Grid.scrollX
+
   Grid.mouse = mouse.Wait
   pls.DoSort(ClickedColumn, pls.searchtable)
   pls.AutoSizeColumns(grid)
@@ -5186,6 +5283,7 @@ Public Sub ColumnClick(Grid As GridView, pls As PlaylistClass, column As Integer
   If ((column <> 0) And Not (Object.GetProperty(grid, "sorted"))) Then
     Try Object.SetProperty(grid, "sorted", True) 'use setproperty to make it compile with gb 3.0 too
   Endif
+
 End
 '-----------------------------------
 
@@ -5198,11 +5296,12 @@ Public Sub Hsplit1ResizeDelayed_timer()
 End
 
 Public Sub Hsplit1_MyRefresh()
-  Dim RightPanel As Integer = 0
 
+  Dim RightPanel As Integer = 0
+  
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
-  If mplayer.ProcessRunningOvr() And mplayer.Paused Then UpdateStatusBar()
-  UpdateStatusBar()
+  If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
+
   
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
@@ -5235,17 +5334,18 @@ Public Sub Hsplit1_MyRefresh()
   
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
-  End
 
-
+End
 
 Public Sub LibraryGrid_Menu()
+
   MenuLibraryZapSelected.Enabled = (LibraryGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuOpenContainingFolderPopUp.visible = True
   MenuSortLibraryPopup.enabled = True
   MenuSortLibraryPopup.visible = True
   MenuOpenContainingFolderPopUp.enabled = MyLibrary.OnlyOneSelected(librarygrid)
   Menupopuplibrary.Popup
+
 End
 
 Public Sub MenuOpenContainingFolderPopUp_Click()
@@ -5271,20 +5371,22 @@ Public Sub MenuplaylistOpenFolder_Click()
 End
 
 Public Sub Playlistgrid_Menu()
+
   MenuplaylistOpenFolder.visible = True
   MenuplaylistOpenFolder.enabled = MyPlaylist.OnlyOneSelected(playlistgrid)
   MenuPlaylistZapSelected.Enabled = (PlaylistGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuPlaylist.popup
+
 End
 
-
 Public Sub CleanVideoThumbs()
-
+  
   Dim videofilter, videofile As String
   Dim videofiles As String[]
   Dim coverfile As String
-
+  
   Dim safeplace As String
+
   safeplace = global.confpath & "/coverstmp"
   Try Mkdir safeplace
   'get a list of video files:
@@ -5306,8 +5408,8 @@ Public Sub CleanVideoThumbs()
   Shell "mv " & safeplace & "/* " & global.confpath & "/covers/ " Wait
   'clean up
   Shell "rm -R " & safeplace
-End
 
+End
 
 Public Sub MenuLibraryUpdate_popup_Click()
   
@@ -5401,7 +5503,7 @@ Public Sub MenuLibraryUpdate_Click()
     global.LSyncing = False
     GeneralOptions.NOPARSEVBox2.mouse = Mouse.Default
     GeneralOptions.NOPARSEVBox2.enabled = True
-
+    
     Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
     If Error Then Debug "Error while initializing albums view"
     Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
@@ -5420,17 +5522,14 @@ Public Sub MenuLibraryWatch_Click()
   
 End
 
-
-
 Public Sub SearchLabel_DblClick()
   
   Searchfields.show
   
 End
 
-
-
 Public Sub MenuItemsUpdate_Click()
+
   Debug "start at " & Time
   If LibraryGrid.Rows.count > 0 Then
     MyLibrary.UpdateSelected(LibraryGrid)
@@ -5438,27 +5537,33 @@ Public Sub MenuItemsUpdate_Click()
   Endif
   Debug "end at " & Time
   Debug
+
 End
 
 Public Sub MenuItemsUpdatePls_Click()
+
   If PlaylistGrid.Rows.count > 0 Then
     MyPlaylist.UpdateSelected(PlaylistGrid)
     'SearchFieldPLS_Click()
   Endif
+
 End
 
 Public Sub CopyRow(SourceList As PlaylistClass, SourceRow As Integer, DestList As PlaylistClass)
   'Append SearchTable row from sourcelist into Ptable DestList
+
   DestList.Ptable.add(SourceList.SearchTable[SourceRow])
   
 End
 
 Private Sub FromLibraryToPlaylist()
+
   Dim r As Integer
   For r = 0 To LibraryGrid.Rows.count - 1
     If LibraryGrid.Rows[r].Selected Then CopyRow(MyLibrary, r, MyPlaylist)
   Next 'r
   UpdateSearchResults(MyPlaylist, PlaylistGrid, fmain.FullyLoaded, SearchfieldPLS.text)
+
 End
 
 Public Sub MenuLibraryAddToPlaylist_Click()
@@ -5469,18 +5574,10 @@ End
 
 '-----------------------------------
 
-
-
-
-
 Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gridview, InfoWidget As Label)
   
-
   Dim Answer As String[]
   Dim pretext, PostText As String
-
-
-
   
   answer = Split(MyLibrary.GetSelectedAndLength(Playlistgrid), ";")
   PreText = ("Selected: ") & answer[0] & "/" & answer[1]
@@ -5489,17 +5586,13 @@ Public Sub CalcTotalLengthInfoOn(MyLibrary As Playlistclass, Playlistgrid As Gri
   
 End
 
-
-
 Public Sub LibraryGrid_Select()
-
-
-
+  
   TimerCalcTotalLengthLib = New Timer As "TimerCalcTotalLengthLib"
   TimerCalcTotalLengthLib.delay = 100
   TimerCalcTotalLengthLib.stop
   TimerCalcTotalLengthLib.start
-
+  
   Try mplayer.Media_FullPath = LibraryGrid[LibraryGrid.row, MyLibrary.Columnindex["Full Path"]].text
   Try filetaglabel.text = MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Full Path")
   
@@ -5511,13 +5604,13 @@ Public Sub LibraryGrid_Select()
   tagbox5.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Genre"))
   tagbox6.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Track"))
   tagbox7.text = Trim(MyLibrary.GetValue(MyLibrary.SearchTable[librarygrid.row], "Comment"))
+
 End
-
-
 
 Public TimerCalcTotalLengthLib As Timer 
 
 Public Sub TimerCalcTotalLengthLib_Timer()
+
   Dim howmany As Integer
   HowMany = MyLibrary.HowManySelected(librarygrid)
   If howmany > 1 Then
@@ -5528,31 +5621,32 @@ Public Sub TimerCalcTotalLengthLib_Timer()
     LibrarySelInfo.visible = False
   Endif
   TimerCalcTotalLengthLib.stop
-End
 
+End
 
 Public TimerCalcTotalLengthPls As Timer 
 
 Public Sub TimerCalcTotalLengthPls_Timer()
+
   PlayListSelInfobox.visible = True
   CalcTotalLengthInfoOn(myplaylist, playlistgrid, PlayListSelInfo)
   Try mplayer.Media_FullPath = playlistgrid[playlistgrid.row, myplaylist.Columnindex["Full Path"]].text
   TimerCalcTotalLengthPls.stop
+
 End
 
-
-
-
 Private movingitems As Boolean = False
+
 Public Sub PlayListGrid_Select()
+
   If Not fmain.fullyloaded Then Return
   If Movingitems Then Return 'spare cpu cycles when changing playlist items order
-
+  
   TimerCalcTotalLengthPls = New Timer As "TimerCalcTotalLengthPls"
   TimerCalcTotalLengthPls.delay = 100
   TimerCalcTotalLengthPls.stop
   TimerCalcTotalLengthPls.start
-
+  
   Try mplayer.Media_FullPath = PlaylistGrid[PlaylistGrid.row, MyPlaylist.Columnindex["Full Path"]].text
   Try filetaglabel.text = myplaylist.GetValue(myplaylist.SearchTable[playlistgrid.row], "Full Path")
   
@@ -5568,13 +5662,12 @@ Public Sub PlayListGrid_Select()
 End
 
 Public Sub dvbtgrid_Select()
-
+  
   Try mplayer.Media_FullPath = dvbtgrid[dvbtgrid.row, MyDVBTList.Columnindex["Full Path"]].text
   Try filetaglabel.text = MyDVBTList.GetValue(MyDVBTList.SearchTable[dvbtgrid.row], "Full Path")
   If Error Then Return
-
+  
 End
-
 
 Public Sub MenuSearch_Click()
   
@@ -5584,7 +5677,7 @@ End
 
 Public Sub UpdateTabs()
   'force a select to handle the correct item to tag
-
+  
   If TabSelectedLibrary() Then
     LibraryGrid_Select()
   Else If TabSelectedPlaylist() Then
@@ -5593,15 +5686,16 @@ Public Sub UpdateTabs()
     If fullyloaded Then ShoutCast_Select()
   Else If TabSelectedyoutube() Then
     If fullyloaded Then Youtube_Select()
-   Else If TabSelectedAlbums() Then
+  Else If TabSelectedAlbums() Then
     If fullyloaded Then Albums_Select()
   Endif
-
+  
   HBox2.visible = (TabSelectedLibrary() Or TabSelectedPlaylist() Or tabselectedcdda() Or TabSelectedBrowse() Or TabselectedAlbums())
   SearchLabel.enabled = Not (tabselectedcdda() Or tabselectedbrowse())
   Searchfield.enabled = SearchLabel.enabled
   SearchfieldPLS.enabled = SearchLabel.enabled
   shufflepls.enabled = SearchLabel.enabled
+
 End
 
 Public Sub Leftsidetabs_MouseWheel()
@@ -5611,6 +5705,7 @@ Public Sub Leftsidetabs_MouseWheel()
 End
 
 Public Sub EnableDisableTagBtn()
+
   Dim tablib, tabpls, tabalbum As Boolean
   tablib = TabSelectedLibrary()
   tabpls = TabSelectedPlaylist() 'Or TabSelectedBrowse()
@@ -5619,7 +5714,7 @@ Public Sub EnableDisableTagBtn()
   UpdateTabs()
   If TabSelectedyoutube() Then 
     TogglePls.Reparent(hbox13)
-      Else 
+  Else 
     TogglePls.Reparent(hbox2)
   Endif
   
@@ -5632,27 +5727,31 @@ Public Sub EnableDisableTagBtn()
   searchfieldalbums.visible = tabalbum
   
   If Not (tabpls Or tablib) Then
-     If EditTagModeSwitch1.Checked Then TagEditorBtn_click()
+    If EditTagModeSwitch1.Checked Then TagEditorBtn_click()
   Endif 
   
 End
 
 Public Sub LeftSideTabs_Click()
+
   EnableDisableTagBtn()
   resizerows(librarygrid)
   resizerows(playlistgrid)
   resizerows(dvbtgrid)
-   If TabSelectedAlbums() Then
-     If fullyloaded Then 
-       Wait
-       MyAlbumsLib.Init(mylibrary, AlbumGridView, SearchFieldAlbums.text)
-       MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
-     Endif
-   Endif
+  If TabSelectedAlbums() Then
+    If fullyloaded Then 
+      Wait
+      MyAlbumsLib.Init(mylibrary, AlbumGridView, SearchFieldAlbums.text)
+      MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
+    Endif
+  Endif
+
 End
 
 Public Sub LeftSideTabs_KeyRelease()
+
   UpdateTabs()
+
 End
 
 Public Sub MenuAddUri_Click()
@@ -5701,13 +5800,13 @@ Public Sub MoveUpPlsBTN_Click()
   
   Dim howmanyselected As Integer
   Dim i, j As Integer = 0
-
+  
   MovingItems = True
   'find the index of the first selected row:
   While Not (playlistgrid.Rows[i].Selected Or i = playlistgrid.Rows.count)
     i = i + 1
   Wend
- 
+  
   If i > 0 Then
     MovingItems = True
     CutSelectedRows()
@@ -5729,7 +5828,7 @@ Public Sub MoveDownPlsBTN_Click()
   
   Dim howmanyselected As Integer
   Dim i, j As Integer
-
+  
   MovingItems = True
   'find the index of the Last selected row:
   i = playlistgrid.Rows.count - 1
@@ -5754,22 +5853,19 @@ End
 Public Sub PasteSelectedRows(Optional TargetRowOverride As Integer = -1)
   
   Dim i As Integer
-
+  
   Dim TargetRow As Integer
   Dim TotalRows As Integer = ClipboardRows.count - 1
-
-
-
   
   If TargetRowOverride <> -1 Then
     TargetRow = TargetRowOverride
   Else
     TargetRow = Playlistgrid.row + 1
   Endif
-
+  
   For i = 0 To (ClipboardRows.count - 1)
     If targetrow = -1 Then targetrow = PlayListGrid.Rows.count
-
+    
     MyPlaylist.SearchTable.Add(ClipboardRows[totalrows - i], targetrow + i)
     MyPlaylist.PTable.Add(ClipboardRows[i], targetrow + i)
     PlayListGrid.Rows.Insert(targetrow + i)
@@ -5785,6 +5881,7 @@ Public Function CopySelectedRows()
   'prepare the dragging, fill draggingrows
   
   Dim i As Integer = PlayListGrid.Rows.count - 1
+
   ClipboardRows.clear
   While i >= 0 'for every selected rows in playlistgrid
     If PlayListGrid.Rows[i].selected Then
@@ -5800,7 +5897,7 @@ Public Sub CutSelectedRows()
   CopySelectedRows()
   'playlistgrid.Rows.h = LibraryGrid.Font.TextHeight("^_") + global.rowpadding
   MyPlaylist.DeleteSelected(Playlistgrid, True)
-
+  
 End
 
 Public Sub MenuCopyRows_Click()
@@ -5816,11 +5913,15 @@ Public Sub MenuCut_Click()
 End
 
 Public Sub MenuPlaylistDelete_Click()
+
   MyPlaylist.DeleteSelected(Playlistgrid, True)
+
 End
 
 Public Sub MenuLibraryDeleteSelected_Click()
+
   MyLibrary.DeleteSelected(Librarygrid, True)
+
 End
 
 Public Sub MenuPaste_Click()
@@ -5840,11 +5941,13 @@ Public Sub MenuClearLibrary_Click()
 End
 
 Public Sub MenuPlaylistDeleteAll_Click()
+
   If Not (Message.delete(("Are you sure you want to clear the Playlist?"), ("Don't clear the playlist"), ("Clear the playlist")) = 1) Then
     MyPlaylist.clear(Playlistgrid)
     PlaylistGrid_Select()
     UpdateSearchResults(myplaylist, playlistgrid, True, SearchfieldPLS.text)
   Endif
+
 End
 
 '/---Playlist Cut/copy/paste/delete-------------------------------
@@ -5883,6 +5986,7 @@ Public Sub PlaylistGrid_Drop()
 End
 
 Function BigFactorTable(w As Integer) As Integer
+
   Select Case w
     Case 16
       Return 4
@@ -5894,7 +5998,7 @@ Function BigFactorTable(w As Integer) As Integer
       Return 3
     Case 64
       Return 2
-     Case 96
+    Case 96
       Return 2
     Case 128
       Return 2
@@ -5903,125 +6007,125 @@ Function BigFactorTable(w As Integer) As Integer
     Case Else
       Return 2
   End Select
+
 End
 
 Public Sub resizerows(mygrid As Gridview)
- Dim rowheight As Integer
- Dim rowpadding As Integer = global.rowpadding
+
+  Dim rowheight As Integer
+  Dim rowpadding As Integer = global.rowpadding
   
- If mygrid.name <> "DVBTGrid" Then
-  rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
-    Else
-  rowheight = dvbtgrid.Font.TextHeight("|")
-  rowheight *= 1.2
- Endif
- If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight) + rowpadding)
+  If mygrid.name <> "DVBTGrid" Then
+    rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
+  Else
+    rowheight = dvbtgrid.Font.TextHeight("|")
+    rowheight *= 1.2
+  Endif
+  If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight) + rowpadding)
+
 End
 
 Public Sub Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
- Dim fullpath As String
- Dim artist, album As String
- Dim rowheight As Integer
- Dim rowpadding As Integer = global.rowpadding
 
- Dim bigfactor As Integer = 1
- Dim filefound As Boolean = True
+  Dim fullpath As String
+  Dim artist, album As String
+  Dim rowheight As Integer
+  Dim rowpadding As Integer = global.rowpadding
+  
+  Dim bigfactor As Integer = 1
+  Dim filefound As Boolean = True
+  
+  If mygrid.data = Null Then Return
+  If Not fmain.FullyLoaded Then Return
+  If Not (fmain.visible Or fsform.FullScreen) Then Return
+  
+  If mygrid.name <> "DVBTGrid" Then
+    rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
+  Else
+    rowheight = dvbtgrid.Font.TextHeight("|")
+    rowheight *= 1.2
+    mygrid.Columns[0].Width = dvbtgrid.Font.TextWidth("0") * 120
+  Endif
+  
+  'draw an icon (or a cover) on the first column
+  If column = 0 Then
+    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
+    
+    If mygrid.name <> "DVBTGrid" Then
+      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+      
+      If Not myplaylist.ISURI(fullpath) Then
+        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
+          mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
+          filefound = False
+        Endif
+      Endif
+      '---
+      If filefound Or (Lower(fullpath) Like "*dvb*://*") Then
+        If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
+          If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
+            If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
+              MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor) 'ritorna la coverdi Default
+            Else 'il coverfile non esiste, ma potrebbe essere creato
+              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
+            Endif
+          Else 'il coverfile c'è
+            MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
+          Endif
+        Else 'the user don't want any cover
+          MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
+        Endif 'user wanted covers
+      Endif 'filefound was true
+      
+    Else 'for dvbt
+      MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
+    Endif
+    
+  Endif 'column was 0
+  
+  If (row Mod 2) = 0 Then
+    MyGrid.data.background = MyGrid.Background
+  Else
+    MyGrid.data.background = Global.Alternatecolor
+  Endif
+  If row = hirow Then mygrid.Data.Font.bold = True
+  MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 
- 
- If mygrid.data = Null Then Return
- If Not fmain.FullyLoaded Then Return
- If Not (fmain.visible Or fsform.FullScreen) Then Return
-
-
-
- If mygrid.name <> "DVBTGrid" Then
-  rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
-    Else
-  rowheight = dvbtgrid.Font.TextHeight("|")
-  rowheight *= 1.2
-  mygrid.Columns[0].Width = dvbtgrid.Font.TextWidth("0") * 120
- Endif
-
-
- 
- 'draw an icon (or a cover) on the first column
- If column = 0 Then
-   Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-
-   If mygrid.name <> "DVBTGrid" Then
-     artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
-     album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
-
-     If Not myplaylist.ISURI(fullpath) Then
-       If covermanager.filesnotfound.Find(fullpath) <> -1 Then
-         mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
-         filefound = False
-       Endif
-     Endif
-   '---
-     If filefound Or (Lower(fullpath) Like "*dvb*://*") Then
-       If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
-         If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
-           If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
-             MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor) 'ritorna la coverdi Default
-               Else 'il coverfile non esiste, ma potrebbe essere creato
-             covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
-           Endif
-             Else 'il coverfile c'è
-           MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
-         Endif
-           Else 'the user don't want any cover
-         MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
-       Endif 'user wanted covers
-     Endif 'filefound was true
-
-      Else 'for dvbt
-     MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
-   Endif
-   
- Endif 'column was 0
-
- If (row Mod 2) = 0 Then
-   MyGrid.data.background = MyGrid.Background
- Else
-   MyGrid.data.background = Global.Alternatecolor
- Endif
- If row = hirow Then mygrid.Data.Font.bold = True
- MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
 
-
 Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Row As Integer, Column As Integer)
- Dim fullpath As String
- Dim artist, album As String
- Dim rowheight As Integer
 
- Dim bigfactor As Integer = 1
- Dim filefound As Boolean = True
- Dim rowpadding As Integer = global.rowpadding
- Dim prevscrollX As Integer
- 
- If Not fmain.FullyLoaded Then Return
- If Not fmain.visible Then Return
- 
- If mygrid.name <> "DVBTGrid" Then
-  rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
-    Else
-  rowheight = dvbtgrid.Font.TextHeight("|")
-  rowheight *= 1.2
-  mygrid.Columns[0].Width = dvbtgrid.Font.TextWidth("0") * 120
- Endif
- 
- 'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
- If (row = hirow) Then 
+  Dim fullpath As String
+  Dim artist, album As String
+  Dim rowheight As Integer
+  
+  Dim bigfactor As Integer = 1
+  Dim filefound As Boolean = True
+  Dim rowpadding As Integer = global.rowpadding
+  Dim prevscrollX As Integer
+  
+  If Not fmain.FullyLoaded Then Return
+  If Not fmain.visible Then Return
+  
+  If mygrid.name <> "DVBTGrid" Then
+    rowheight = CInt(generaloptions.IconWidthCombobox.text) '+ rowpadding 
+  Else
+    rowheight = dvbtgrid.Font.TextHeight("|")
+    rowheight *= 1.2
+    mygrid.Columns[0].Width = dvbtgrid.Font.TextWidth("0") * 120
+  Endif
+  
+  'If mygrid.Rows.H <> (rowheight + rowpadding) Then mygrid.Rows.H = rowheight + rowpadding
+  If (row = hirow) Then 
     If row <> 0 Then bigfactor = BigFactorTable(generaloptions.IconWidthCombobox.text)
     'rowpadding rowpa
   Else If (mygrid.Rows[row].h <> rowheight) Then 
     bigfactor = 1
- Endif
- 
- 'mygrid.Rows[row].h = (rowheight * bigfactor) + rowpadding '* bigfactor
-'If mygrid.Rows.h <> ((rowheight * bigfactor) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
+  Endif
+  
+  'mygrid.Rows[row].h = (rowheight * bigfactor) + rowpadding '* bigfactor
+  'If mygrid.Rows.h <> ((rowheight * bigfactor) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
   'If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight * bigfactor) + rowpadding)
   If mygrid.Rows.h <> ((rowheight) + rowpadding) Then mygrid.Rows.h = ((rowheight) + rowpadding)
   If mygrid.Rows[row].h <> ((rowheight * bigfactor) + rowpadding) Then
@@ -6030,63 +6134,64 @@ Public Sub OLD_Gridviews_Data(MyGrid As GridView, MyLibrary As Playlistclass, Ro
     mygrid[row, column].EnsureVisible
     mygrid.scrollx = prevscrollx
   Endif
+  
+  'draw an icon (or a cover) on the first column
+  If column = 0 Then
+    Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
+    
+    If mygrid.name <> "DVBTGrid" Then
+      artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
+      album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
+      
+      If Not myplaylist.ISURI(fullpath) Then
+        If covermanager.filesnotfound.Find(fullpath) <> -1 Then
+          mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
+          filefound = False
+        Endif
+      Endif
+      '---
+      If filefound Or (Lower(fullpath) Like "*dvb*://*") Then
+        If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
+          If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
+            If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
+              MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor) 'ritorna la coverdi Default
+            Else 'il coverfile non esiste, ma potrebbe essere creato
+              covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
+            Endif
+          Else 'il coverfile c'è
+            Try MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
+          Endif
+        Else 'the user don't want any cover
+          MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
+        Endif 'user wanted covers
+      Endif 'filefound was true
+      
+    Else 'for dvbt
+      MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
+    Endif
+    
+  Endif 'column was 0
+  
+  If (row Mod 2) = 0 Then
+    Try MyGrid.data.background = MyGrid.Background
+  Else
+    Try MyGrid.data.background = Global.Alternatecolor
+  Endif
+  If row = hirow Then mygrid.Data.Font.bold = True
+  Try MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 
-
- 
- 'draw an icon (or a cover) on the first column
- If column = 0 Then
-   Try fullpath = Mylibrary.CellValue(MyGrid, Row, Myplaylist.Columnindex["Full Path"])
-
-   If mygrid.name <> "DVBTGrid" Then
-     artist = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Artist"])
-     album = mylibrary.CellValue(mygrid, row, mylibrary.ColumnIndex["Album"])
-
-     If Not myplaylist.ISURI(fullpath) Then
-       If covermanager.filesnotfound.Find(fullpath) <> -1 Then
-         mygrid.Data.picture = picture["icon:/" & CStr((rowheight - rowpadding + covermanager.shadowoffset) * bigfactor) & "/error"]
-         filefound = False
-       Endif
-     Endif
-   '---
-     If filefound Or (Lower(fullpath) Like "*dvb*://*") Then
-       If GeneralOptions.ShowCoversInListChk.value Then  'the user want covers
-         If Not Exist(covermanager.Coverfile(artist, album, fullpath)) Then 'se il coverfile non esiste
-           If covermanager.IsUncovered(fullpath) Then '...e non puòessere creato
-             MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor) 'ritorna la coverdi Default
-               Else 'il coverfile non esiste, ma potrebbe essere creato
-             covermanager.QueueThumb(MyGrid, fullpath, artist, album, row, (rowheight - rowpadding) * bigfactor) 'prova a crearlo
-           Endif
-             Else 'il coverfile c'è
-           Try MyGrid.Data.Picture = covermanager.coverpicture(covermanager.Coverfile(artist, album, fullpath), fullpath, (rowheight - rowpadding) * bigfactor)
-         Endif
-           Else 'the user don't want any cover
-         MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
-       Endif 'user wanted covers
-     Endif 'filefound was true
-
-      Else 'for dvbt
-     MyGrid.Data.Picture = covermanager.DefaultLibraryIcon(fullpath, (rowheight - rowpadding) * bigfactor)
-   Endif
-   
- Endif 'column was 0
-
- If (row Mod 2) = 0 Then
-   Try MyGrid.data.background = MyGrid.Background
- Else
-   Try MyGrid.data.background = Global.Alternatecolor
- Endif
- If row = hirow Then mygrid.Data.Font.bold = True
- Try MyGrid.data.text = MyLibrary.CellValue(MyGrid, row, column)
 End
 
-
-
 Public Sub LibraryGrid_Data(Row As Integer, Column As Integer)
+
   Gridviews_Data(LibraryGrid, mylibrary, Row, Column)
+
 End
 
 Public Sub PlaylistGrid_Data(Row As Integer, Column As Integer)
+
   Gridviews_Data(PlayListGrid, myplaylist, Row, Column)
+
 End
 
 Public Sub DVBTGRID_Data(Row As Integer, Column As Integer)
@@ -6139,18 +6244,20 @@ Public Sub ShowVolBtn2_Click()
 End
 
 Public Sub SwitchSubBtn_Click()
+
   If Not (mplayer.ProcessRunningOvr()) Then Return
- ' If Streamssubtitlesmenu.enabled Then
-    ' Streamssubtitlesmenu.Popup
+  ' If Streamssubtitlesmenu.enabled Then
+  ' Streamssubtitlesmenu.Popup
   ' Else
   '   mplayer.Send("sub_select")
   ' Endif
-    streamssubtitlesmenu.Popup
-
- ' Endif
+  streamssubtitlesmenu.Popup
+  
+  ' Endif
 End
 
 Public Sub SwitchAudioBTN_Click()
+
   If Not (mplayer.ProcessRunningOvr()) Then Return
   If Streamsaudiomenu.enabled Then
     Streamsaudiomenu.Popup
@@ -6185,6 +6292,7 @@ Public Sub FullScreenBtn_Click()
   If Not Tageditmode Then 
     FullScreenSwitch()
   Endif
+
 End
 
 Public Sub SlideTimer_Timer()
@@ -6235,6 +6343,7 @@ Public Sub MenuConfigureGeneralAudio_Click()
 End
 
 Public Sub MenuPlaylistZapSelected_Click()
+
   playlistgrid.enabled = False
   If (PlaylistGrid.row >= 0) Then
     If Not (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
@@ -6244,9 +6353,11 @@ Public Sub MenuPlaylistZapSelected_Click()
     Endif
   Endif
   playlistgrid.enabled = True
+
 End
 
 Public Sub MenuLibraryZapSelected_Click()
+
   librarygrid.enabled = False
   If (LibraryGrid.row >= 0) Then
     If Not (MyQuestion.Ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
@@ -6256,6 +6367,7 @@ Public Sub MenuLibraryZapSelected_Click()
     Endif
   Endif
   librarygrid.enabled = True
+
 End
 
 Public Sub MenuCodecs_Click()
@@ -6273,6 +6385,7 @@ Public Sub Mysocket_Connection(RemoteHostIP As String)
 End
 
 Public Sub socket_Read()
+
   Dim command As String = ""
   Line Input #Last, command
   Debug "command= " & command
@@ -6280,11 +6393,13 @@ Public Sub socket_Read()
   Mysocket.close
   ExecuteRemote(command)
   Mysocket.Listen(1)
+
 End
 
 Public Sub ExecuteRemote(command As String)
-  Dim parameter As String
 
+  Dim parameter As String
+  
   parameter = Mid(command, InStr(command, " ") + 1)
   Debug "command= " & command
   Debug "parameter= " & parameter
@@ -6307,19 +6422,19 @@ Public Sub ExecuteRemote(command As String)
       fmain.Minimized = False
       fmain.Show
     Endif
-      Play(parameter)
-      If TabSelectedLibrary() Then
-        Try librarygrid.rows[librarygrid.row].Selected = False
-        Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, parameter)
-        Try librarygrid.rows[librarygrid.row].Selected = True
-          Else If TabSelectedPlaylist() Then 
-            Try playlistgrid.rows[playlistgrid.row].Selected = False
-            Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, parameter)
-            Try playlistgrid.rows[playlistgrid.row].Selected = True
-        Endif
+    Play(parameter)
+    If TabSelectedLibrary() Then
+      Try librarygrid.rows[librarygrid.row].Selected = False
+      Try librarygrid.row = mylibrary.FindRowByPath(librarygrid, parameter)
+      Try librarygrid.rows[librarygrid.row].Selected = True
+    Else If TabSelectedPlaylist() Then 
+      Try playlistgrid.rows[playlistgrid.row].Selected = False
+      Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, parameter)
+      Try playlistgrid.rows[playlistgrid.row].Selected = True
+    Endif
   Endif
-End
 
+End
 
 Public Function NoQuotes(quoted As String) As String
   ' '/home/user/song.mp3' ->/home/user/song.mp3
@@ -6362,11 +6477,10 @@ End
 
 Public VolumeFocused As Boolean = False
 
-
 Public Sub VideoAreaGroup_Enter()
   
   If mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus
-
+  
   If Lower(mplayer.Media_FullPath_Playing) Like "dvdnav*" Then
     timerdvd.enabled = True
   Else
@@ -6395,10 +6509,11 @@ Public Sub ShowVideoEq_Click()
 End
 
 Public Sub ShowAudioEq_Click()
+
   If (Not AFiltersCfg.visible) Then
     AFiltersCfg.show
     AFiltersCfg.ShowFilterConfiguration("equalizer")
-      Else
+  Else
     AFiltersCfg.hide
   Endif
   
@@ -6407,7 +6522,7 @@ End
 Public Sub MenuHomepage_Click()
   
   Desktop.Open("http://xt7player.homelinux.org/xt7forum")
-
+  
 End
 
 Public Sub MenuToolBarLocked_Click()
@@ -6448,15 +6563,17 @@ Public Sub MenuDvdFile_Click()
 End
 
 Public Sub ButtonTag_Click()
+
   Dim tl As TagLib
   'Dim audiotag As New TagLib
   Dim MyGrid As GridView
   Dim Table As Playlistclass
   Dim row As Integer = 0
   Dim Filename As String
- 
+  
   Dim Err As Boolean = False
   Dim errormsg As String
+
   Librarygrid.enabled = False
   PlaylistGrid.enabled = False
   Last.enabled = False
@@ -6468,7 +6585,7 @@ Public Sub ButtonTag_Click()
   Else If TabSelectedPlaylist() Then
     MyGrid = PlaylistGrid
     Table = MyPlaylist
-      Else
+  Else
     errormsg = ("Sorry, Audio tagging is only possible for library and playlist items\n")
     errormsg &= ("To tag this item, please add it to library or playlist first.")
     Message.Error(errormsg, ("Ok"))
@@ -6494,7 +6611,7 @@ Public Sub ButtonTag_Click()
         Endif
         If Not (err) Then
           tl.Save()
-            Else
+        Else
           Try tl.tlFree()
           Librarygrid.enabled = True 
           PlaylistGrid.enabled = True
@@ -6508,9 +6625,9 @@ Public Sub ButtonTag_Click()
     Endif
   Next 'r
   If TabSelectedLibrary() Then
-     Librarygrid.refresh
-      Else If TabSelectedPlaylist() Then
-     PlaylistGrid.refresh
+    Librarygrid.refresh
+  Else If TabSelectedPlaylist() Then
+    PlaylistGrid.refresh
   Endif
   Last.enabled = True
   Librarygrid.enabled = True
@@ -6520,6 +6637,7 @@ Public Sub ButtonTag_Click()
   MyPlaylist.AutoSizeColumns(PlayListGrid)
   Fmain.mouse = mouse.default
   Wait 0.001
+
 End
 
 Public Sub EditTagModeSwitch1_Click()
@@ -6603,7 +6721,6 @@ Public Sub MenuSavePls_Click()
   
   Dim PrevTitle As String
   Dim PrevFilter As String[]
-
   
   With Global
     Dialog.Path = .StartFolder & "/"
@@ -6617,6 +6734,7 @@ Public Sub MenuSavePls_Click()
   Dialog.title = PrevTitle
   Try MyPlaylist.SaveAs(Dialog.Path)
   If Error Then Message.error(("There was an error while saving the playlist"), ("Ok"))
+
 End
 
 Public Sub MenuLoadPls_Click()
@@ -6665,6 +6783,7 @@ Public Sub SetACover(Album As String, Artist As String, filepath As String)
   Dim tmpmessage As String
   Dim JustFileCover As Boolean = False 'are we going to set a cover for just this file?
   Dim tl As New Taglib
+
   PreviousCoverFile = "NOPE"
   If CoverManager.fetching Then
     CoverManager.HitCancel = True
@@ -6716,7 +6835,9 @@ Public Sub SetACover(Album As String, Artist As String, filepath As String)
 End
 
 Public Sub CoverBox_DblClick()
+
   covermanager.SetACover(mplayer.Media_FullPath, mplayer.Media_Artist, mplayer.media_album)
+
 End
 
 Public Sub CloseTagEdBtn_Click()
@@ -6803,7 +6924,7 @@ Public Sub AutoresizeAudioForm()
       If oggetto.Font.TextWidth(oggetto.text) > MaxLabel_18__21 Then MaxLabel_18__21 = oggetto.Font.TextWidth(oggetto.text)
     Endif
   Next 'oggetto
-
+  
   upperboxW = 300 + vbox1.w + MaxLabel_12__16 ' +32 '++Relevant correction
   lowerboxW = audioform.VBox3.w + MaxLabel_18__21 '+32 '++Relevant correction
   audioform.vbox5.w = Max(upperboxW, lowerboxW) + 32
@@ -6812,13 +6933,12 @@ Public Sub AutoresizeAudioForm()
   audioform.VBox4.w = MaxLabel_18__21 + 32 '+ 32 '++Relevant correction
   audioform.VBox2.w = MaxLabel_12__16 + 32 '+ 32 '++Relevant correction
   
-  
   labelheight = Label2.Font.TextHeight("IJ") + (Label2.Font.TextHeight("IJ") Div 2)
   
   For Each oggetto In audioform.VBox1.children
     If oggetto Is Label Then
-     oggetto.h = labelheight
-     oggetto.w = oggetto.Font.TextWidth(oggetto.text)
+      oggetto.h = labelheight
+      oggetto.w = oggetto.Font.TextWidth(oggetto.text)
     Endif
   Next 'oggetto
   
@@ -6847,8 +6967,8 @@ Public Sub AutoresizeAudioForm()
   
 End
 
-
 Public Sub TrayIcon1_MouseDown()
+
   Dim iconified As Boolean = False
   iconified = (fmain.minimized And fmain.SkipTaskbar)
   If mouse.left Then
@@ -6857,41 +6977,50 @@ Public Sub TrayIcon1_MouseDown()
       fmain.Minimized = False
       fmain.SkipTaskbar = False
       fmain.show
-        Else
+    Else
       fmain.Minimized = True
       fmain.SkipTaskbar = True
     Endif
   Endif
+
 End
 
 Public Sub TrayIcon1_Menu()
+
   OverlaytrayTip.hide
   MenuMain.popup
+
 End
 
 Public Sub TrayIcon1_MouseWheel()
+
   If mouse.delta > 0 Then
     SaveVolumeSlider.value = SaveVolumeSlider.value + 1
   Else
     SaveVolumeSlider.value = SaveVolumeSlider.value - 1
   Endif
+
 End
 
 Public TimerHideTray As New Timer As "TimerHideTray"
+
 Public Sub TrayIcon1_Enter()
+
   If mplayer.ProcessRunningOvr() Then
     OverlaytrayTip.Redraw("..:Xt7-Player::.", Last.screenx - (TrayIcon1.w), Last.screeny - (OverlayTrayTip.h))
     OverlaytrayTip.show
     TimerHideTray.delay = 5000
     TimerHideTray.start
   Endif
+
 End
 
 Public Sub TimerHideTray_Timer()
+
   OverlaytrayTip.hide
   TimerHideTray.stop
-End
 
+End
 
 Public Function ObjectByName(Objectname As String) As Object
   
@@ -6961,6 +7090,7 @@ Public Sub FlashGrid_Menu()
 End
 
 Public Sub FlashMenuRecordAs_Click()
+
   Dialog.filter = ["*.flv", ("Flash video files"), "*", ("All files")]
   Dialog.Title = ("Choose a destination file")
   If Dialog.SaveFile() Then Return ' User pressed Cancel -
@@ -6990,9 +7120,8 @@ Public Sub FlashCHK2_Click()
 End
 
 Public Sub MyFlash_NewVideo(lastvideopath As String) 'when a new flash video is found, this event is raised
-
+  
   Dim Question As String = ("New Flash(tm) video detected: \n") & lastvideopath & ("\n  Would you like to play it now in Xt7-Player?")
-
   
   If FlashCHK2.value = True Then
     If MyQuestion.Ask(Question, ("Play now"), ("Don't Play"), FlashCHK2.text, FlashCHK2) = 1 Then
@@ -7006,10 +7135,10 @@ End
 Public Sub LeftSideTabs_Menu()
   
   UpdateMenuTabVisibility()
-
+  
   MenuTabs.popup
-End
 
+End
 
 Private TabsonLeftMenu As Menu
 
@@ -7017,18 +7146,17 @@ Public Sub UpdateMenuTabVisibility()
   'enable/disable menu voices
   
   Dim i, j As Integer
-
+  
   Dim submenu, submenu2, pmenu As Menu '(hide/show,go to tab)
   Dim HideShowTabsMenu As Menu '(visibility)
-
+  
   Dim WasInvisible As Boolean
-
   
   MenuTabs.Children.Clear
   TabsonleftMenu = New Menu(Menutabs) As "tabsonleftmenu"
   TabsonLeftMenu.text = ("Use vertical tabs")
   TabsonleftMenu.Picture = picture["icon:/16/previous"]
-
+  
   HideShowTabsMenu = New Menu(menutabs)
   HideShowTabsMenu.name = "HideShowTabsMenu"
   HideShowTabsMenu.Text = "Hide/Show tabs"
@@ -7037,7 +7165,7 @@ Public Sub UpdateMenuTabVisibility()
   For i = 0 To Leftsidetabs.count - 1
     WasInvisible = Not (Leftsidetabs[i].visible) 'we need the caption of the tab which is lost if it is invisible,
     Leftsidetabs[i].visible = True
-
+    
     If Not (TabSelectedDVDAt(i) Or TabSelectedCDDAAt(i)) Then
       submenu2 = New Menu(menutabs) As "menutabs"
       SubMenu = New Menu(HideShowTabsMenu) As "HideShowTabMenu"
@@ -7056,11 +7184,11 @@ Public Sub UpdateMenuTabVisibility()
       ' pmenu = New Menu(submenu2)
       ' pmenu.text = "prova"
       For j = 0 To ProfilesListBox.count - 1
-          pmenu = New Menu(submenu2) As "menuprofileselect"
-          pmenu.text = ProfilesListBox[j].Text
-          pmenu.tag = ProfilesListBox[j].Text
-          pmenu.Checked = (global.CurrentProfile = pmenu.tag)
-          If (Not pmenu.checked) Then pmenu.picture = picture["icon:/16/properties"]
+        pmenu = New Menu(submenu2) As "menuprofileselect"
+        pmenu.text = ProfilesListBox[j].Text
+        pmenu.tag = ProfilesListBox[j].Text
+        pmenu.Checked = (global.CurrentProfile = pmenu.tag)
+        If (Not pmenu.checked) Then pmenu.picture = picture["icon:/16/properties"]
       Next
     Endif
     
@@ -7068,8 +7196,8 @@ Public Sub UpdateMenuTabVisibility()
   
 End
 
-
 Public Function IsProfileTab(i As Integer) As Boolean
+
   Dim theobject As Object
   For Each theobject In Leftsidetabs[i].Children
     If theobject Is Label Then
@@ -7077,14 +7205,13 @@ Public Function IsProfileTab(i As Integer) As Boolean
     Endif
   Next 'theobject
   Return False
+
 End
 
-
 Public Sub menutabs_click()
-
-
+  
   Dim ClickedtabID As Integer
-
+  
   ClickedtabID = Global.TabIndexByName(Last.name, Leftsidetabs)
   Leftsidetabs.Refresh
   If (ClickedTabId <> -1) Then Leftsidetabs.index = ClickedtabID
@@ -7092,11 +7219,12 @@ Public Sub menutabs_click()
 End
 
 Public Sub menuprofileselect_Click()
+
   Global.CurrentProfile = Last.tag
   ReLoadCurrentProfile()
   UpdateProfilesTabList()
-End
 
+End
 
 Private Sub TabOrientation()
   
@@ -7104,9 +7232,9 @@ Private Sub TabOrientation()
   
   If fsform.FullScreen Then Return 
   If Leftsidetabs.Orientation = 19 Then 
-     Leftsidetabs.Orientation = 1
-      Else
-     Leftsidetabs.Orientation = 19
+    Leftsidetabs.Orientation = 1
+  Else
+    Leftsidetabs.Orientation = 19
   Endif
   
   If fmain.fullyloaded Then  'force an update
@@ -7118,7 +7246,9 @@ Private Sub TabOrientation()
 End
 
 Public Sub tabsonleftmenu_Click()
+
   If fmain.fullyloaded Then TabOrientation()
+
 End
 
 Public Sub HideShowTabMenu_click()
@@ -7158,8 +7288,6 @@ Public Function IsTabVisible(tabname As String) As Boolean
   
 End
 
-
-
 Public Sub UpdateProfilesTabList()
   
   Dim profilename As String
@@ -7182,8 +7310,9 @@ Public Sub UpdateProfilesTabList()
 End
 
 Public Sub ProfileDeleteBTN_Click()
-
+  
   Dim profilename As String
+
   Try ProfileName As String = ProfilesListBox.Current.text & ".profile"
   If Not Error Then
     If ProfileName <> "Factory_Defaults.profile" Then
@@ -7235,9 +7364,10 @@ End
 
 Public Sub ReLoadCurrentProfile()
   'DIM TheError AS Boolean = FALSE
+
   Dim cachedfile As File
   Try Global.ReallyLoadAllSettings() 'current profile is the default
-
+  
   Try GeneralOptions.LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try GeneralOptions.LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Try HotKeys.LoadHotKeys(global.confpath & "/" & global.CurrentProfile)
@@ -7249,19 +7379,19 @@ Public Sub ReLoadCurrentProfile()
   Try ComboHistory.LoadHistory(youSearchfield, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(AddUriForm.UriInsComboBox, global.confpath & "/" & global.CurrentProfile)
   Try ComboHistory.LoadHistory(Fmain.UrlBox, global.confpath & "/" & global.CurrentProfile)
-
+  
   If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
     cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
     Line Input #cachedfile, cachedopts
     Close #cachedfile
     cachedopts = Trim(cachedopts)
     Debug "Found cachedopts for new profile"
-      Else
+  Else
     Debug "Cannot find cachedopts for new profile, regenerating..."
     Fmain.apply
     Debug
   Endif
-
+  
   FMain.SetStyle_early()
   FMain.SetStyle_later()
   UpdateSearchResults(MyLibrary, LibraryGrid, fmain.FullyLoaded, Searchfield.text)
@@ -7270,8 +7400,10 @@ Public Sub ReLoadCurrentProfile()
 End
 
 Public Sub ProfileLoadBTN_Click()
+
   Dim i As Integer
   Dim MySettings As New SettingsClass
+
   Try Global.CurrentProfile = ProfilesListBox.Current.text
   If Error Then
     For i = 0 To ProfilesListBox.count - 1
@@ -7285,11 +7417,8 @@ Public Sub ProfileLoadBTN_Click()
   UpdateProfilesTabList()
   MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
   Debug "wrote last profile"
+
 End
-
-
-
-
 
 Public Sub ProfileRenameBTN_Click()
   
@@ -7385,7 +7514,7 @@ End
 Public Sub Button3_Click()
   
   Dim HotKeyConfigured As Boolean = True
-
+  
   Dim Rewind As Boolean = True
   'HotKeysCheck First  
   HotKeyConfigured = HotKeyConfigured And (Trim(HotKeys.HotKeysGrid[73, 0].text) <> "")
@@ -7402,16 +7531,14 @@ Public Sub Button3_Click()
     Return
   Endif
   
-
-   OneSecTimer.start
+  OneSecTimer.start
   mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
   fmain.VideoBox.setfocus
- 
   
 End
 
 Public Sub TimerDVD_Timer()
-
+  
   Try mplayer.Send("set_mouse_pos " & (mouse.screenx - VideoBox.screenx) & " " & (mouse.screeny - VideoBox.screeny))
   
 End
@@ -7476,7 +7603,8 @@ Public Sub startshoutSearch()
   Leftsidepanel.mouse = mouse.normal
   NOSAVEHBox10.mouse = mouse.normal
   TextBox1.enabled = True
-   ShutResultGrid.Rows.h = ShutResultGrid.Font.TextHeight("^_") + global.rowpadding
+  ShutResultGrid.Rows.h = ShutResultGrid.Font.TextHeight("^_") + global.rowpadding
+
 End
 
 Public Sub ShutResultGrid_DblClick()
@@ -7552,14 +7680,13 @@ Public Sub ShoutCastGridaddtoplaylist_Click()
 End
 
 Public Sub FilterTextBox_Change()
+
   Dim previous_search As String = FilterTextBox.text
   Wait 0.5
   If previous_search <> FilterTextBox.text Then Return
   Highlight_shout_results()
   
 End
-
-
 
 Public Sub Highlight_shout_results()
   
@@ -7588,7 +7715,7 @@ Public Sub Highlight_shout_results()
 End
 
 Public Sub ShoutCast_Select()
-
+  
   If NOSAVEVBox3.visible And GenresTree.count = 0 Then 
     MyRadio.FillCachedGenres(GenresTree)
   Endif
@@ -7600,7 +7727,6 @@ Public Sub Youtube_Select()
   If youtubetree.count = 0 Then Youtube.init_tree(youtubetree)
   
 End
-
 
 Public Sub TextBox1_Click()
   
@@ -7651,7 +7777,6 @@ End
 
 Public Sub ShoutCastTreeAddToLibrary_Click()
   
-
   Dim QuickMode As Boolean
   
   QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
@@ -7666,7 +7791,6 @@ End
 
 Public Sub ShoutCastTreeaddtoplaylist_Click()
   
-
   Dim QuickMode As Boolean
   
   QuickMode = (MyQuestion.Ask(("How do you want to add?"), ("Add quickly"), ("Get Stream info")) = 1)
@@ -7680,27 +7804,31 @@ Public Sub ShoutCastTreeaddtoplaylist_Click()
 End
 
 Public Sub CDDANext()
- If cddagrid.row = -1 Then cddagrid.row = 0
- If cddagrid.row = (cddagrid.Rows.count - 1) Then
-   Try cddagrid.row = 0
-   Global.IsNextSelected = False
- Else
-   Try cddagrid.row = cddagrid.row + 1
-   Global.IsNextSelected = True
- Endif
- Try cddagrid.Rows[cddagrid.row].selected = True
- Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+
+  If cddagrid.row = -1 Then cddagrid.row = 0
+  If cddagrid.row = (cddagrid.Rows.count - 1) Then
+    Try cddagrid.row = 0
+    Global.IsNextSelected = False
+  Else
+    Try cddagrid.row = cddagrid.row + 1
+    Global.IsNextSelected = True
+  Endif
+  Try cddagrid.Rows[cddagrid.row].selected = True
+  Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+
 End
 
 Public Sub CDDAPrev()
- If cddagrid.row = -1 Then cddagrid.row = 0
- If cddagrid.row = 0 Then
-   Try cddagrid.row = (cddagrid.Rows.count - 1)
- Else
-   Try cddagrid.row = cddagrid.row - 1
- Endif
- Try cddagrid.Rows[cddagrid.row].selected = True
- Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+
+  If cddagrid.row = -1 Then cddagrid.row = 0
+  If cddagrid.row = 0 Then
+    Try cddagrid.row = (cddagrid.Rows.count - 1)
+  Else
+    Try cddagrid.row = cddagrid.row - 1
+  Endif
+  Try cddagrid.Rows[cddagrid.row].selected = True
+  Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
+
 End
 
 Public Function PopupCddaError() As Boolean
@@ -7740,7 +7868,7 @@ Public Sub MenuCDDA_Click()
   'play media
   If GeneralOptions.CDDBCheckbox.value Then 
     Play("cddb://1")
-      Else
+  Else
     Play("cdda://1")
   Endif
   'get cd informations
@@ -7756,12 +7884,12 @@ Public Sub MenuCDDA_Click()
     For track = 1 To numtracks
       Length = "00:" & Left(mplayer.FindTagValue("ID_CDDA_TRACK_" & track & "_MSF"), 5)
       CDDAGrid.Rows.count = CDDAGrid.Rows.count + 1
-
+      
       If global.IsCddb(mplayer.Media_FullPath) Then
         CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cddb://") & track
         Try CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = (mplayer.cddbtracks[track - 1])
         If Error Then CDDAGrid[CDDAGrid.Rows.count - 1, 1].text = ("Unknown entry (connection problem?)")
-          Else
+      Else
         CDDAGrid[CDDAGrid.Rows.count - 1, 0].text = ("cdda://") & track
       Endif
       
@@ -7943,8 +8071,6 @@ End
 
 Public Sub PodCastMenuAddLibrary_Click()
   
-
-  
   podcasttree.movefirst()
   Repeat
     If podcasttree.item.Children > 0 Then podcasttree.MoveChild()
@@ -7959,8 +8085,6 @@ End
 
 Public Sub PodCastMenuAddPlaylist_Click()
   
-
-  
   podcasttree.movefirst()
   Repeat
     If podcasttree.item.Children > 0 Then podcasttree.MoveChild()
@@ -7974,33 +8098,42 @@ Public Sub PodCastMenuAddPlaylist_Click()
 End
 
 Public Sub LibraryGrid_Enter()
+
   Application.ShowTooltips = Buttonshowtooltips.value
+
 End
 
 Public Sub PlaylistGrid_Enter()
+
   Application.ShowTooltips = Buttonshowtooltips.value
+
 End
 
 Public Sub LibraryGrid_Leave()
+
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
+
 End
 
 Public Sub PlaylistGrid_Leave()
+
   Application.ShowTooltips = GeneralOptions.ToolTipsCHK.value
+
 End
 
-
 Private Sub HideScrollbars(librarygrid As Gridview)
+
   librarygrid.Scrollbar = Scroll.none
   GridPanels_Arrange()
+
 End
 
 Private Sub ShowScrollbars(librarygrid As Gridview)
+
   librarygrid.Scrollbar = Scroll.both
   GridRefreshWorkaround(librarygrid)
+
 End
-
-
 
 Public hirow As Integer = -1
 
@@ -8022,44 +8155,47 @@ Public Sub ShufflePls_Click()
   Else
     If ShufflePls.value Then TogglePls.value = True
   Endif
-
+  
 End
 
-
-
 Public Sub MenuLibrarySetCover_click()
+
   Dim artist, album, filepath As String
-    With librarygrid
-      Artist = librarygrid[.row, MyLibrary.ColumnIndex["Artist"]].text
-      Album = librarygrid[.row, MyLibrary.ColumnIndex["Album"]].text
-      filepath = librarygrid[.row, MyLibrary.ColumnIndex["Full Path"]].text
-    End With
-    covermanager.SetACover(filepath, Artist, Album, True)
+  With librarygrid
+    Artist = librarygrid[.row, MyLibrary.ColumnIndex["Artist"]].text
+    Album = librarygrid[.row, MyLibrary.ColumnIndex["Album"]].text
+    filepath = librarygrid[.row, MyLibrary.ColumnIndex["Full Path"]].text
+  End With
+  covermanager.SetACover(filepath, Artist, Album, True)
+
 End
 
 Public Sub MenuEmbeddedCoversLibrary_click()
-  UpdateEmbeddedFromSelected(librarygrid)
-End
 
+  UpdateEmbeddedFromSelected(librarygrid)
+
+End
 
 Public Sub MenuEmbeddedCoversPls_click()
+
   UpdateEmbeddedFromSelected(Playlistgrid)
+
 End
-
-
 
 Public Sub MenuPlsSetCover_click()
+
   Dim artist, album, filepath As String
-    With playlistgrid
-      Artist = playlistgrid[.row, Myplaylist.ColumnIndex["Artist"]].text
-      Album = playlistgrid[.row, Myplaylist.ColumnIndex["Album"]].text
-      filepath = playlistgrid[.row, Myplaylist.ColumnIndex["Full Path"]].text
-    End With
-    covermanager.SetACover(filepath, Artist, Album, True)
+  With playlistgrid
+    Artist = playlistgrid[.row, Myplaylist.ColumnIndex["Artist"]].text
+    Album = playlistgrid[.row, Myplaylist.ColumnIndex["Album"]].text
+    filepath = playlistgrid[.row, Myplaylist.ColumnIndex["Full Path"]].text
+  End With
+  covermanager.SetACover(filepath, Artist, Album, True)
+
 End
 
-
 Public Sub UpdateEmbeddedFromSelected(mygrid As Gridview)
+
   Dim r As Integer
   Dim coverfilename As String
   Dim fullpath As String
@@ -8079,8 +8215,8 @@ Public Sub UpdateEmbeddedFromSelected(mygrid As Gridview)
   Next 'r
   mygrid.mouse = mouse.Default
   mygrid.enabled = True
-End
 
+End
 
 Public ForcedAspectRT As String = "default"
 
@@ -8208,12 +8344,14 @@ Public Sub Urlbox_KeyPress()
 End
 
 Public Sub FileView1_Icon(Path As String)
+
   Dim iconsize As Integer = FileView1.Font.TextHeight("|èJj")
   If IsDir(path) Then
     FileView1.icon = stock[CStr(iconsize) & "/directory"]
   Else
     FileView1.icon = covermanager.DefaultLibraryIcon(path, iconsize, True)
   Endif
+
 End
 
 Public Sub ButtonHome_Click()
@@ -8223,8 +8361,8 @@ Public Sub ButtonHome_Click()
   
 End
 
-
 Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, filterstring As String)
+
   Dim nulllistbox As New ListBox(zzzfake)
   Dim selecteditem As String
   Dim StatType As Integer
@@ -8248,19 +8386,23 @@ Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, 
       Endif
     Endif
   Next 'selecteditem
+
 End
 
-
 Public Sub menubrowseaddtolibrary_Click()
+
   Try MyAlbumsLib.Init(mylibrary, AlbumGridView, searchfieldalbums.text)
   ItemsFromBrowseTo(mylibrary, librarygrid, Searchfield.text)
   If Error Then Debug "Error while initializing albums view"
   Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
   If Error Then Debug "Error while Arranging albums view"
+
 End
 
 Public Sub menubrowseaddtoplaylist_Click()
+
   ItemsFromBrowseTo(myplaylist, playlistgrid, SearchfieldPLS.text)
+
 End
 
 Public Sub FileView1_Menu()
@@ -8304,8 +8446,10 @@ Public Sub MenuAddToHistory_Click()
 End
 
 Public Sub MenuBrowseDelete_Click()
+
   Dim selecteditem As String
   Dim therewasanerror As Boolean = False
+
   If (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then Return
   
   For Each selecteditem In FileView1.Selection 
@@ -8324,6 +8468,7 @@ Public Sub MenuBrowseDelete_Click()
   Next 'selecteditem
   FileView1.Reload
   If therewasanerror Then Message.Error(("There was an error while trying to delete the item"), ("Ok"))
+
 End
 
 Public Function YoutubeParseOpts() As String
@@ -8349,7 +8494,6 @@ Public Sub youtubeTree_Activate()
     youtubeappendmenu_Click()
     Return
   Endif
-  
   
   IsChild = Not (youtubeTree.moveparent())
   If IsChild Then
@@ -8386,6 +8530,7 @@ Public Sub youtubeTree_Activate()
 End
 
 Public Sub youtubetree_Select()
+
   Dim IsChild As Boolean = False
   'if the item has no parent then refresh it, else play it
   youtubeTree.MoveCurrent
@@ -8397,11 +8542,13 @@ Public Sub youtubetree_Select()
   Endif
   Try mplayer.Media_FullPath = youtubeTree.Current.key
   Try YouVideoInfo.w = scrollviewyt.w - 64
+
 End
 
 Public Sub YouSearchfield_Activate(Optional myappend As Boolean = False)
   
   Dim searchstring As String
+
   If Not (fmain.fullyloaded) Then Return
   fmain.mouse = mouse.wait
   youtubetree.mouse = mouse.wait
@@ -8523,17 +8670,17 @@ Public Sub youtubeappendmenu_Click()
   Dim relatedlink As String
   Dim relatedtotext As String
   Dim tmpkey As String
-
+  
   youtubetree.MoveCurrent
-
+  
   If youtubetree.Current.Key Like "__MORERESULTS__*" Then 
     tmpkey = youtubetree.Current.Key
     youtubetree.MoveParent()
     If Error Then Return
-      Try youtubetree.Item.selected = True
+    Try youtubetree.Item.selected = True
   Endif
-   Debug youtubetree.Current.key
-   Debug
+  Debug youtubetree.Current.key
+  Debug
   Try youtubetree.Remove(tmpkey)
   If Not ischild Then
     fmain.mouse = mouse.wait
@@ -8555,6 +8702,7 @@ Public Sub youtubeappendmenu_Click()
     fmain.mouse = mouse.default
     youtubetree.mouse = mouse.default
   Endif
+
 End
 
 Public Sub YoutubeTreeTreeGetRelatedMenu_click(Optional myappend As Boolean = False)
@@ -8578,8 +8726,8 @@ End
 
 Public Sub YoutubetreeTreeaddtoLibrary_Click()
   
-
   Dim QuickMode As Boolean
+
   QuickMode = True
   Try MyLibrary.AddFile(librarygrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
@@ -8591,9 +8739,9 @@ Public Sub YoutubetreeTreeaddtoLibrary_Click()
 End
 
 Public Sub YoutubetreeTreeaddtoPlaylist_Click()
-
+  
   Dim QuickMode As Boolean
-
+  
   QuickMode = True
   Try MyPlaylist.AddFile(PlaylistGrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
@@ -8601,12 +8749,14 @@ Public Sub YoutubetreeTreeaddtoPlaylist_Click()
   Else
     UpdateSearchResults(MyPlaylist, PlaylistGrid, fmain.FullyLoaded, SearchfieldPLS.text)
   Endif
+
 End
 
 Public Sub youtubetreeDownload_Click()
   
   Dim CurrentUrl, CurrentText As String
   Dim RealYTVideoUrl As String
+
   fmain.mouse = mouse.wait
   Try CurrentUrl = youtubetree.Current.Key
   If Error Then
@@ -8629,7 +8779,7 @@ Public StreamDownloadDir As String = ""
 Public Sub StreamDownload(url As String, Optional suggestname As String = "")
   
   Dim dest, commandline, destdir, destfile As String
-
+  
   If Trim(StreamDownloadDir) = "" Then StreamDownloadDir = User.Home
   suggestname = Replace(suggestname, ":", ".")
   suggestname = Replace(suggestname, "/", "_")
@@ -8713,23 +8863,23 @@ Public Sub Form_DblClick()
 End
 
 Public Sub GetYoutubeSubs(VideoId As String)
-
+  
   Dim Subdir As String = settings.defaultdir & "/" & Global.Appname & "/" & ".substmp/"
   Dim subfile, track, langcode, trackname As String
   Dim id As Integer = 0
-
+  
   Try Mkdir Subdir
   For Each track In Youtube.AvailableSubs(VideoId)
     langcode = Split(track, ":", "", False, False)[0]
     trackname = Split(track, ":", "", False, False)[1]
-
+    
     SubFile = Subdir & id & " - " & Trackname & "_" & LangCode & ".srt"
     file.Save(SubFile, Youtube.GetSub(VideoId, LangCode, trackname))
     mplayer.SubtitleAdd(SubFile)
     id = id + 1
   Next 'LangCode
   FillStreamsMenu()
-
+  
 End
 
 Public Sub MenuShowDVBT_Click()
@@ -8739,8 +8889,10 @@ Public Sub MenuShowDVBT_Click()
 End
 
 Public Sub ScanBtn_Click()
+
   If (Not global.initearlyformsdone) Then global.DelayLoadStates_Timer
   DVBTuner.show
+
 End
 
 'Public fakesplit As New Panel(zzzfake) As "Fakesplit"
@@ -8773,38 +8925,43 @@ End
 '   FakeSplitRefresh()
 ' End
 
-
-
 Public Sub HSplit1_Resize()
   'fakesplit.hide
+
   Hsplit1_MyRefresh
+
 End
 
 Public Sub ShadeList(brother As Gridview)
+
   shadeup.x = brother.x 
   shadelow.x = shadeup.X  
   shadeup.y = brother.clienty + brother.Columns.Height
   
   If (brother.Scrollbar = Scroll.Both Or brother.Scrollbar = Scroll.Horizontal) Then
     shadelow.y = brother.clienty + brother.clienth - shadelow.h + 2
-      Else
+  Else
     shadelow.y = brother.clienty + brother.h - shadelow.h + 2
   Endif
   shadeup.w = brother.clientw + 2
   shadelow.w = brother.clientw + 2
+
 End
 
 Public Sub GridPanels_BeforeArrange()
-    shadeup.Reparent(Last)
-    shadelow.Reparent(Last)
+
+  shadeup.Reparent(Last)
+  shadelow.Reparent(Last)
+
 End
 
 Public Sub GridPanels_Arrange()
+
   Dim brother As Gridview
   Dim newsize As Integer = 18
-      
-'  If Not (fmain.fullyloaded) Then Return
-
+  
+  '  If Not (fmain.fullyloaded) Then Return
+  
   For Each brother In shadelow.Parent.Children 
     If brother Is Gridview Then Break
   Next
@@ -8812,7 +8969,7 @@ Public Sub GridPanels_Arrange()
   If newsize > 18 Then newsize = 18
   Try shadeup.h = newsize Div 2
   shadelist(brother)
-
+  
 End
 
 ' Public Sub HSplit1_MouseMove()
@@ -8869,14 +9026,13 @@ Public Sub SearchFieldDVB_Click()
 End
 
 Public Sub SearchFieldDVB_KeyRelease()
-
+  
   If (Key.code < Key.space) Or (Key.code > Key.delete) Then Return
   If key.code = key.tab Then Return
   UpdateSearchResults(MyDVBTList, DVBTGrid, fmain.FullyLoaded, Searchfielddvb.text)
   Searchfielddvb.SetFocus()
   
 End
-
 
 ' Public Sub LeftSidePanel_Enter()
 '   Fakesplit_Leave()
@@ -8887,59 +9043,73 @@ End
 ' End
 
 Public Sub MenuBug_Click()
-    If MyQuestion.Ask(("Thank you,\nyou will be taken to the \nbug reporting web page."), ("Submit the bug"), ("Not now")) = 1 Then
-      Desktop.Open("http://xt7-player.sourceforge.net/xt7forum/newmsg.php?mode=post&f=3")
-    Endif
+
+  If MyQuestion.Ask(("Thank you,\nyou will be taken to the \nbug reporting web page."), ("Submit the bug"), ("Not now")) = 1 Then
+    Desktop.Open("http://xt7-player.sourceforge.net/xt7forum/newmsg.php?mode=post&f=3")
+  Endif
+
 End
 
-
 Public Sub FileView1_Select()
+
   mplayer.Media_FullPath = FileView1.dir & "/" & FileView1.Current
+
 End
 
 Public Sub HBox2_Arrange()
-If fmain.fullyloaded Then
- hbox20.enabled = (TabSelectedLibrary() Or TabSelectedPlaylist() Or TabSelectedAlbums())
-Endif
+
+  If fmain.fullyloaded Then
+    hbox20.enabled = (TabSelectedLibrary() Or TabSelectedPlaylist() Or TabSelectedAlbums())
+  Endif
+
 End
 
-
-
 Public Sub PanScan_Click()
+
   Dim msgstr As String
   msgstr = ("Roll Your mouse wheel over the button\nto change panscan or Setup some hotkeys.") & "\n"
   msgstr &= ("Right click over the button will cycle through zoom modes")
   MyQuestion.Ask(msgstr, "Ok", "")
+
 End
 
 Public Sub PanScan_MouseWheel()
+
   If mplayer.ProcessRunningOvr() Then
     If Not (mplayer.Media_AudioOnly()) Then
       If mouse.Delta > 0 Then 
-          PanScanCorrect(+0.05)
-            Else
-          PanScanCorrect(-0.05)
+        PanScanCorrect(+0.05)
+      Else
+        PanScanCorrect(-0.05)
       Endif
     Endif
   Endif
+
 End
 
 Public Sub LibraryGrid_Click()
+
   EnableDisableTagBtn()
+
 End
 
 Public Sub PlaylistGrid_Click()
+
   EnableDisableTagBtn()
+
 End
 
-
 Public Sub TimerQuit_Timer()
+
   fmain.close
+
 End
 
 Public Sub MenuLoadSubtitle_Click()
+
   Dim tmp As String[]
   Dim tmp2 As String = myDialog.path
+
   tmp = myDialog.filter
   Try myDialog.path = file.Dir(mplayer.Media_FullPath)
   myDialog.filter = ["*.srt;*.sub;*.ass;*.ssa;*.txt", ("SubTitle files")]
@@ -8951,22 +9121,21 @@ Public Sub MenuLoadSubtitle_Click()
   Endif
   myDialog.filter = tmp
   myDialog.path = tmp2
+
 End
 
-
 Public Sub StreamsSubtitlesMenu_show()
+
   If mplayer.ProcessRunningOvr() Then 
     FillStreamsMenu()
   Endif
+
 End
 
 Public querymp As MplayerClass
 
-
-
-
-
 Public Sub PanScan_Menu()
+
   Dim mptxt As String 
   Object.Detach(realtimeform.PanscanSlider)
   Select Case forcedzoomrt
@@ -8981,51 +9150,54 @@ Public Sub PanScan_Menu()
       ResizeFactor = 1
       mptxt = ("Zoom mode: 1:1")
   End Select
-
+  
   mplayer.ShowText(mptxt, "1000")
   CorrectAreaAspect()
   realtimeform.PanscanSpinBox.value = realtimeform.PanscanSlider.value
   Object.Attach(realtimeform.PanscanSlider, realtimeform, realtimeform.PanscanSlider.name)
+
 End
-
-
-
 
 Public Function WantThumbs(fullpath As String) As Boolean
-Return True
- '  If Not global.IsVideoFile(fullpath) Then
- '   Return True
- '     Else
- '   Return GeneralOptions.ShowThumbsCHK.Value
- ' Endif
+
+  Return True
+  '  If Not global.IsVideoFile(fullpath) Then
+  '   Return True
+  '     Else
+  '   Return GeneralOptions.ShowThumbsCHK.Value
+  ' Endif
+
 End
 
-
 Public Sub NewThumbReadyFor(fullpath As String)
+
   If TabSelectedPlaylist() Then 
     ThumbToGrid(myplaylist, playlistgrid, fullpath)
-      Else If TabSelectedLibrary() Then
-          ThumbToGrid(mylibrary, libraryGrid, fullpath) 
+  Else If TabSelectedLibrary() Then
+    ThumbToGrid(mylibrary, libraryGrid, fullpath) 
   Endif
+
 End
 
 Public Sub ThumbToGrid(mypls As PlaylistClass, mygrid As Gridview, fullpath As String)
+
   Dim r As Integer = -1
-
-
-
+  
   Try r = mypls.FindRowByPath(mygrid, fullpath)
   If r = -1 Then Return
   mygrid[r, 0].text = ""
   mygrid[r, 0].clear
+
 End
 
-
 Public Sub SearchLabel_Click()
-    Searchfields.show
+
+  Searchfields.show
+
 End
 
 Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary As Playlistclass) As String
+
   Dim r As Integer
   Dim album, myyear, genre, artist, title, track, length, vcodec, width, height, vkbps, fps, acodec, arate, akbps, channels, comment, path As String
   Dim m As String = ""
@@ -9033,8 +9205,6 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
   Dim i, w As Integer
   Dim Maxw As Integer = 0
   Dim sep As Integer 
-
-  
   
   Try r = mylibrary.FindRowByPath(LibraryGrid, mypath) 
   If Error Then Return
@@ -9061,10 +9231,10 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
   width = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Width"])
   height = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Height"])
   path = mylibrary.CellValue(librarygrid, r, Mylibrary.Columnindex["Full Path"])
-
+  
   ms.add(("Filename: ") & Chr(0) & file.name(mypath) & "\n")
   ms.add(("In: ") & Chr(0) & file.Dir(path) & "\n")
-
+  
   If Trim(album) & Trim(myyear) & Trim(genre) <> "" Then
     If Trim(album) = "" Then album = ("Unknown")
     If Trim(myyear) = "" Then myyear = ("Unknown")
@@ -9079,7 +9249,7 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
     ms.add(("Title: ") & Chr(0) & Title & (", Track No.: ") & Track & "\n")
   Endif
   ms.add(("Length: ") & Chr(0) & length & "\n")
-
+  
   If Trim(vcodec) & Trim(width) & Trim(height) & Trim(vkbps) & Trim(fps) <> "" Then
     If Trim(vcodec) = "" Then vcodec = ("Unknown")
     If Trim(width) = "" Then width = ("Unknown")
@@ -9096,10 +9266,10 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
     ms.add(("Audio: ") & Chr(0) & acodec & ", " & arate & "Hz @" & akbps & "kbps, " & channels & " " & ("channels") & "\n")
   Endif
   If Trim(comment) <> "" Then ms.add(("Comment: ") & Chr(0) & comment)
-
+  
   For i = 0 To ms.count - 1
     'w = Application.Font.TextWidth(ms[i])
-     w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
+    w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
     If (w > maxw) Then maxw = w
   Next
   
@@ -9111,39 +9281,41 @@ Public Function maketooltip(mypath As String, librarygrid As Gridview, mylibrary
     w = Application.Font.TextWidth(Left(ms[i], InStr(ms[i], Chr(0))))
     m &= Replace(ms[i], Chr(0), pixelspaces(maxw - w, sep))
   Next
-
+  
   If Right(m) = "\n" Then m = Left(m, Len(m) - 1)
   
   Return m
-End
 
+End
 
 Public Function pixelspaces(width As Integer, singlewidth As Integer) As String
+
   Return Space(width Div singlewidth)
+
 End
 
-
 Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
+
   Dim currentpath, album As String
   Dim popupmsg As String
-
-
+  
   Dim crow, fpcolumn, ccolumn As Integer
   Dim msx, msy As Integer
-  If mouse.left Or mouse.right Or mouse.middle Then Return
 
+  If mouse.left Or mouse.right Or mouse.middle Then Return
+  
   Repeat 'wait until mouse finished moving
     msx = mouse.screenx
     msy = mouse.ScreenY
     Wait 0.01
   Until ((msx = mouse.screenx) And (msy = mouse.ScreenY)) 'wait until mouse is still
-
+  
   Try crow = global.MyRowAt(mygrid, mouse.screeny - mygrid.screeny)
   If ( Error Or (crow = -1)) Then 
     Application.ShowTooltips = False
     Return
   Endif
-
+  
   fpcolumn = myplaylist.ColumnIndex["Full Path"]
   If mygrid.name <> "AlbumGridView" Then
     Try currentpath = mygrid[crow, fpcolumn].text
@@ -9151,7 +9323,7 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
       Application.ShowTooltips = False
       Return
     Endif
-      Else 'is albumgrid
+  Else 'is albumgrid
     ccolumn = mygrid.ColumnAt(mouse.screenx - mygrid.screenx)
     If ccolumn = -1 Then Return
     currentpath = MyAlbumsLib.PathFromCoordinates(crow, ccolumn)
@@ -9159,17 +9331,19 @@ Public Sub ShowGridTooltipIn(mygrid As Gridview, myplaylist As Playlistclass)
   Application.ShowTooltips = Buttonshowtooltips.value
   If mygrid.name <> "AlbumGridView" Then
     Try popupmsg = maketooltip(currentpath, mygrid, myplaylist)
-      Else
+  Else
     album = MyAlbumsLib.AlbumFromCoordinates(crow, ccolumn)
     If album = "" Then Return
     Try popupmsg = MyAlbumsLib.AlbumToolTip(album)
   Endif
   mygrid.tooltip = popupmsg
+
 End
 
-
 Private mmliblocked As Boolean = False
+
 Public Sub LibraryGrid_MouseMove()
+
   If mmliblocked Then Return
   mmliblocked = True
   If generaloptions.HighlightCHK.value Then
@@ -9177,16 +9351,19 @@ Public Sub LibraryGrid_MouseMove()
     Try librarygrid[hirow, 0].text = ""
     Try librarygrid[hirow, 0].clear
   Endif
-   If Not (Buttonshowtooltips.value) Then 
-     mmliblocked = False
-     Return
-   Endif
-   ShowGridTooltipIn(librarygrid, mylibrary)
-   mmliblocked = False
+  If Not (Buttonshowtooltips.value) Then 
+    mmliblocked = False
+    Return
+  Endif
+  ShowGridTooltipIn(librarygrid, mylibrary)
+  mmliblocked = False
+
 End
 
 Private mmplslocked As Boolean = False
+
 Public Sub PlaylistGrid_MouseMove()
+
   If mmplslocked Then Return
   mmplslocked = True
   If generaloptions.HighlightCHK.value Then
@@ -9194,115 +9371,139 @@ Public Sub PlaylistGrid_MouseMove()
     Try playlistgrid[hirow, 0].text = ""
     Try playlistgrid[hirow, 0].clear
   Endif
-   If Not (Buttonshowtooltips.value) Then 
-     mmplslocked = False
-     Return
-   Endif
+  If Not (Buttonshowtooltips.value) Then 
+    mmplslocked = False
+    Return
+  Endif
   ShowGridTooltipIn(playlistgrid, myplaylist)
   mmplslocked = False
+
 End
 
 Private mmalblocked As Boolean = False
+
 Public Sub AlbumGridView_MouseMove()
+
   MyAlbumsLib.highlighter(mouse.screenx, mouse.screeny)
   If mmalblocked Then Return
   mmalblocked = True
   If Not (Buttonshowtooltips.value) Then Return
   ShowGridTooltipIn(AlbumGridView, mylibrary)
   mmalblocked = False
-End
 
+End
 
 Private scrollingtimer As New Timer As "scrollingtimer"
 Public gridscrolling As Boolean = False
+
 Public Sub PlaylistGrid_Scroll()
+
   gridscrolling = True
   scrollingtimer.delay = 100
   scrollingtimer.start
+
 End
+
 Public Sub LibraryGrid_Scroll()
+
   gridscrolling = True
   scrollingtimer.delay = 100
   scrollingtimer.start
+
 End
+
 Public Sub scrollingtimer_Timer()
+
   scrollingtimer.Stop
   gridscrolling = False
+
 End
 
 Public Sub MenuLibraryInvertSort_Click()
-
   
-
 End
 
 Public Sub MenuLibrarySortByAlbum_Click()
+
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Album"], Searchfield.text)
+
 End
 
 Public Sub MenuLibrarySortByArtist_Click()
+
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Artist"], Searchfield.text)
+
 End
 
 Public Sub MenuLibrarySortByPath_Click()
+
   ColumnClick(librarygrid, mylibrary, mylibrary.ColumnIndex["Full Path"], Searchfield.text)
+
 End
 
 Public Sub DVBTGrid_Menu()
   'if i'm alone, then leave me here!
+
   menudvbt.Popup
+
 End
 
 Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Playlistclass, newname As String)
-  Dim fullpath, sep, oldname As String
 
+  Dim fullpath, sep, oldname As String
+  
   Dim i As Integer
   Dim imax As Integer
+
   Try fullpath = myplaylist.ColumnIndex["Full Path"]
   If Error Then Return
   
   sep = myplaylist.TableSeparator
   oldname = mygrid[myrow, myplaylist.ColumnIndex["Filename"]].text
   
-
   'find pRow to update ptable too (other than searchtable)
   imax = myplaylist.PTable.count - 1
   For i = 0 To imax
     If myplaylist.AreEquivalentRows(myplaylist.PTable[i], myplaylist.SearchTable[myrow]) Then
       Break
-        Else
-       Debug "source", myplaylist.SearchTable[myrow] 
-       Debug "destin", myplaylist.PTable[i]
+    Else
+      Debug "source", myplaylist.SearchTable[myrow] 
+      Debug "destin", myplaylist.PTable[i]
     Endif
   Next
   If i > imax Then 
     Debug "cannot rename, couldn't find searchtable element into ptable (!?)"
     Debug
     Return
-      Else
+  Else
     myplaylist.SearchTable[myrow] = Replace(myplaylist.SearchTable[myrow], sep & oldname & sep, sep & newname & sep)
     myplaylist.ptable[i] = myplaylist.SearchTable[myrow]
     mygrid[myrow, 0].text = ""
     mygrid[myrow, 0].Clear
   Endif
+
 End
 
-
 Public Sub MenuLibraryRename_CLICK()
+
   RenameGridItemWrapper(librarygrid, mylibrary)
+
 End
 
 Public Sub MenuPlaylistRename_click()
+
   RenameGridItemWrapper(PLAYLISTGRID, MyPlaylist)
+
 End
 
-
-
 Public Sub MenuRename_Click()
+
   RenameGridItemWrapper(dvbtgrid, MyDVBTList)
+
 End
 
 Public Sub RenameGridItemWrapper(g As Gridview, p As Playlistclass)
+
   Dim i As Integer
   Dim newname As String
   g.enabled = False

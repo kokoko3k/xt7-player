@@ -2675,7 +2675,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   If Not fsform.FullScreen Then Fmain.HSplit1_Resize()
   LogWindow.ShowLogs()
 
-  videobox.cached = True
+ videobox.cached = True
   
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
@@ -6372,7 +6372,7 @@ Public Sub VideoAreaGroup_Enter()
   Else
     timerdvd.enabled = False
   Endif
-  Fakesplit_Leave()
+  'Fakesplit_Leave()
   
 End
 
@@ -8743,50 +8743,40 @@ Public Sub ScanBtn_Click()
   DVBTuner.show
 End
 
-Public fakesplit As New Panel(zzzfake) As "Fakesplit"
+'Public fakesplit As New Panel(zzzfake) As "Fakesplit"
 
-Public Sub Fakesplit_Enter()
-  
-  Last.mouse = mouse.SplitH
-  
-End
+' Public Sub Fakesplit_Enter()
+'   Last.mouse = mouse.SplitH
+' End
 
-Public Sub Fakesplit_Leave()
-  
-  Last.mouse = mouse.default
-  fakesplit.hide
-  
-End
+' Public Sub Fakesplit_Leave()
+'   Last.mouse = mouse.default
+'   fakesplit.hide
+' End
 
-Public Sub Fakesplit_MouseMove()
-  
-  Dim delta As Integer
-  
-  delta = fakesplit.screenx - fakesplit.x 
-  fakesplit.x = mouse.screenx - delta
-  
-End
-
-Public Sub FakeSplitRefresh()
-  
-  Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
-  Dim tmplayout As Integer[] = hsplit1.layout
-  
-  tmplayout[1] = (hsplit1.w - fakesplit.x - splitterw)
-  tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
-  hsplit1.Layout = tmplayout
-  Hsplit1_MyRefresh()
-  
-End
-
-Public Sub Fakesplit_MouseUp()
-  FakeSplitRefresh()
-End
+' Public Sub Fakesplit_MouseMove()
+'   Dim delta As Integer
+'   delta = fakesplit.screenx - fakesplit.x 
+'   fakesplit.x = mouse.screenx - delta
+' End
+' 
+' Public Sub FakeSplitRefresh()
+'   Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
+'   Dim tmplayout As Integer[] = hsplit1.layout
+'   tmplayout[1] = (hsplit1.w - fakesplit.x - splitterw)
+'   tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
+'   hsplit1.Layout = tmplayout
+'   Hsplit1_MyRefresh()
+' End
+' 
+' Public Sub Fakesplit_MouseUp()
+'   FakeSplitRefresh()
+' End
 
 
 
 Public Sub HSplit1_Resize()
-  fakesplit.hide
+  'fakesplit.hide
   Hsplit1_MyRefresh
 End
 
@@ -8825,48 +8815,45 @@ Public Sub GridPanels_Arrange()
 
 End
 
-Public Sub HSplit1_MouseMove()
-  If SwitchingFullScreen Then Return
-  If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
-  Object.Attach(fakesplit, fmain, "fakesplit")
-  fakesplit.Background = color.selectedbackground
-  Try fakesplit.x = hsplit1.Layout[0]
-  If Error Then Return
-  fakesplit.border = border.none
-  fakesplit.x = hsplit1.Layout[0]
-  fakesplit.Ignore = True
-  fakesplit.x = hsplit1.Layout[0]
-  fakesplit.w = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1]) 
-  If fmain.menus.visible Then
-    fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
-      Else
-    fakesplit.y = hsplit1.screeny - fmain.screeny 
-  Endif
-  fakesplit.h = hsplit1.h 
-  fakesplit.raise
-  fakesplit.visible = True
-  fakesplit.SetFocus()
-End
+' Public Sub HSplit1_MouseMove()
+'   If SwitchingFullScreen Then Return
+'   If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
+'   Object.Attach(fakesplit, fmain, "fakesplit")
+'   fakesplit.Background = color.selectedbackground
+'   Try fakesplit.x = hsplit1.Layout[0]
+'   If Error Then Return
+'   fakesplit.border = border.none
+'   fakesplit.x = hsplit1.Layout[0]
+'   fakesplit.Ignore = True
+'   fakesplit.x = hsplit1.Layout[0]
+'   fakesplit.w = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1]) 
+'   If fmain.menus.visible Then
+'     fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
+'       Else
+'     fakesplit.y = hsplit1.screeny - fmain.screeny 
+'   Endif
+'   fakesplit.h = hsplit1.h 
+'   fakesplit.raise
+'   fakesplit.visible = True
+'   fakesplit.SetFocus()
+' End
 
-Public Sub Fakesplit_DblClick()
-  
-  Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
-  Dim tmplayout As Integer[] = hsplit1.layout
-  
-  If hsplit1.Layout[0] > 20 Then
-    tmplayout[1] = (hsplit1.w - splitterw)
-    tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
-  Else
-    tmplayout[0] = (fmain.w Div 3)
-    tmplayout[1] = hsplit1.w - tmplayout[0] - splitterw
-  Endif
-  hsplit1.Layout = tmplayout
-  Hsplit1_MyRefresh()
-  fakesplit.lower
-  fakesplit.visible = False
-  Object.Detach(fakesplit)
-  
-End
+' Public Sub Fakesplit_DblClick()
+'   Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
+'   Dim tmplayout As Integer[] = hsplit1.layout
+'   If hsplit1.Layout[0] > 20 Then
+'     tmplayout[1] = (hsplit1.w - splitterw)
+'     tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
+'   Else
+'     tmplayout[0] = (fmain.w Div 3)
+'     tmplayout[1] = hsplit1.w - tmplayout[0] - splitterw
+'   Endif
+'   hsplit1.Layout = tmplayout
+'   Hsplit1_MyRefresh()
+'   fakesplit.lower
+'   fakesplit.visible = False
+'   Object.Detach(fakesplit)
+' End
 
 Public Sub SearchFieldDVB_Activate()
   
@@ -8891,17 +8878,13 @@ Public Sub SearchFieldDVB_KeyRelease()
 End
 
 
-Public Sub LeftSidePanel_Enter()
-  
-  Fakesplit_Leave()
-  
-End
-
-Public Sub rightSidePanel_Enter()
-  
-  Fakesplit_Leave()
-  
-End
+' Public Sub LeftSidePanel_Enter()
+'   Fakesplit_Leave()
+' End
+' 
+' Public Sub rightSidePanel_Enter()
+'   Fakesplit_Leave()
+' End
 
 Public Sub MenuBug_Click()
     If MyQuestion.Ask(("Thank you,\nyou will be taken to the \nbug reporting web page."), ("Submit the bug"), ("Not now")) = 1 Then

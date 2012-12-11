@@ -1095,7 +1095,8 @@ Public Function Get_ICYStreamTitle(ICYString As String) As String
 
 End
 
-Private previoustime As Float = "0"
+Private previoustime As Integer = "0"
+Private previoustimefloat As Float = 0
 
 Public Sub CurrentTime() As String
   Dim timeint As Integer = 0
@@ -1112,10 +1113,10 @@ Public Sub CurrentTimeFloat() As String
   Dim timefloat As Float = 0
   Try timefloat = CFloat(Trim(Mid(Playeroutput, 3, InStr(playeroutput, ".") - 1)))
   If Error Then
-    Return previoustime
+    Return previoustimefloat
   Else
-    previoustime = timefloat
-    Return previoustime
+    previoustimefloat = timefloat
+    Return previoustimefloat
   Endif
 End
 

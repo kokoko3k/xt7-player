@@ -2619,9 +2619,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   
   mplayer.Media_FullPath = fullpath
   If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
-    'OneSecTimer.stop()
     Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
-    'OneSecTimer.start()
     If Error Then
       Message.error(("Unable to get the real stream url"))
       zzzfake.cachingbox.Hide
@@ -2657,9 +2655,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   ForcedAspectRT = "default"
   LogWindow.streamtextbox.text = mplayer.Media_FullPath
   If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
-    'OneSecTimer.stop()
     Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
-    'OneSecTimer.Start()
     If Error Then
       Message.error(("Unable to get the real stream url"))
       Try Last.mouse = mouse.Default
@@ -2668,7 +2664,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
       Return
     Endif
   Endif
-  OneSecTimer.start
+  '''''OneSecTimer.start
   If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
   
   ' Debug "TTTTTTT:"
@@ -2679,7 +2675,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
       ShowAudioPanel(False)
     Endif
     
-    OneSecTimer_Timer()
+    '''''OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
@@ -2697,10 +2693,10 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Endif
     
     If (fullpath Like "dvd://") Then 'eg: the user didn't specified a start title
-      OneSecTimer.start
+      '''''OneSecTimer.start
       Play("dvd://" & LargestDvdTitle()) 'play the bigger one
-      OneSecTimer_Timer()
-      OneSecTimer.start
+      '''''OneSecTimer_Timer()
+      '''''OneSecTimer.start
       IsDVD = True
       FillTitlesAndChaptersMenu()
     Endif

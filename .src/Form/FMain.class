@@ -3039,13 +3039,14 @@ End
 Public Sub UpdateSeekSlider()
   'Get the current playing time and update seek bar accordingly
 
-  Dim totaltime, actualtime As Integer
+  Dim totaltime, actualtime As Float
   If SeekingRestarting Then Return
   
   SeekBar.tag = "timer" 'this will avoid seekbar to send seek to mplayer
   Try totaltime = mplayer.Media_Length
-  Try actualtime = mplayer.CurrentTime()
-  Try SeekBar.value = (actualtime * 1000) Div totaltime
+  'Try actualtime = mplayer.CurrentTime()
+  Try actualtime = mplayer.CurrentTimeFloat()
+  Try SeekBar.value = CInt((actualtime * 1000) / totaltime)
   'workaround a bug with mts files:
   'mplayer is unable to get id_length and reports always 0
   'while mplayer2 reports a wrong length

@@ -19,6 +19,7 @@ Private spacingg As Integer
 Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pexportfile As String, pspacingg As Integer, fps As Integer)
   latency = platency
   MaxH = MaxHeight
+  Debug maxh
   mparent = pparent
   exportfile = pexportfile
   spacingg = pspacingg
@@ -127,9 +128,7 @@ Private Sub updatebars(ByRef samples As Integer[])
      bars[c - 1].h = (avg * maxh) Div 15000 '32768  '32768 'write value into Vmeter
      'Print avg
      bars[c - 1].y = maxh - bars[c - 1].h ' + mparent.h  'avg Div 100
-     'Print bars[c - 1].x
-     'Print "x " & bars[c - 1].x
-     'Print "w " & bars[c - 1].w
+     'Debug bars[c - 1].y
   Next
 End
 

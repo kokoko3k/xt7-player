@@ -2889,11 +2889,6 @@ Public mymeters As New Meters
 Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
   If Show And (Not TagEditMode) Then
     audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
-    If GeneralOptions.ShowVmeterCHK.value = True Then
-      Try mymeters.stopp
-      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
-      mymeters.startt
-    Endif
    ' If audioform.AudioPanel.parent = Rightsidepanel Then Return
     previousfile_cover = currentfile_cover
     currentfile_cover = mplayer.Media_FullPath_Playing
@@ -2919,6 +2914,11 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
       audioform.refresh
     Endif
     'OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
+    If GeneralOptions.ShowVmeterCHK.value = True Then
+      Try mymeters.stopp
+      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
+      mymeters.startt
+    Endif
   Else
     fmain.OuterBox.Arrangement = Arrange.none
     Try mymeters.stopp

@@ -7533,9 +7533,11 @@ Public Sub Button3_Click()
     MyQuestion.Ask(("No hotkeys defined for dvd navigation mode\nPlease configure dvdnav hotkeys first."), "Ok", "")
     Return
   Endif
-  
-  OneSecTimer.start
+  OneSecTimer.Stop
+  Wait
   mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
+  Wait
+  OneSecTimer.start
   fmain.VideoBox.setfocus
   
 End

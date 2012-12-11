@@ -1724,6 +1724,7 @@ End
 
 Public Sub ButtonStop_Click()
   previousfile_cover = ""
+  videobox.cached = False
   mplayer.CurrentCache = 0
   zzzfake.PanelNowNext.visible = False
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
@@ -2742,7 +2743,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   If Not fsform.FullScreen Then Fmain.HSplit1_Resize()
   LogWindow.ShowLogs()
   
-  videobox.cached = True
+  videobox.cached = True 
   
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
@@ -3357,6 +3358,7 @@ Public Sub OneSecTimer_Timer()
        ' Endif
       'Execute PostCommand
       ExecutePostCmd()
+      videobox.cached = False
       'delete export file
       Try Kill mplayer.exportfile
       
@@ -9976,6 +9978,7 @@ Public Sub SeekBar_MouseDrag()
   'Debug relative
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
   statusbar1.text = msg
-  
   mplayer.ShowText(msg, 1000)
 End
+
+

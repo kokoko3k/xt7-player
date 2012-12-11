@@ -1747,7 +1747,6 @@ Public Sub ButtonStop_Click()
   Try epgform.dvbsnoop.Stopit()
   ButtonNowNext.Hide()
   ArrangeCpl()
-
 End
 
 Public Sub Buttonfwd_Click()
@@ -2892,7 +2891,7 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
    ' If audioform.AudioPanel.parent = Rightsidepanel Then Return
     previousfile_cover = currentfile_cover
     currentfile_cover = mplayer.Media_FullPath_Playing
-    If ((currentfile_cover <> previousfile_cover)) Then  'avoid showing twice
+    If ((currentfile_cover <> previousfile_cover) Or (audioform.AudioPanel.Parent <> outerbox)) Then  'avoid showing twice
       'fmain.OuterBox.ignore = True
       fmain.OuterBox.Arrangement = Arrange.fill
       If Not samecover Then audioform.CoverBox.Resize(0, 0)

@@ -1,6 +1,5 @@
 [Breakpoints]
-Breakpoint[1]="FMain.6674"
-Count=1
+Count=0
 
 [DebugWindow]
 Count=0
@@ -626,6 +625,9 @@ Geometry=[1280,0,210,210]
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
+[DebugWindow/audioform.AudioPanel.Parent]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/audios]
 Geometry=[1525,157,777,754]
 
@@ -1173,25 +1175,27 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:0.0"
-Active=5
-File[5]=".src/Form/FMain.class:9967.23"
+File[5]=".src/Form/FMain.class:330.37"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:341.2"
-File[9]="CHANGELOG_GIT:5.10"
-File[10]=".src/Classi/MplayerClass.class:295.0"
+File[9]="CHANGELOG_GIT:7.10"
+File[10]=".src/Classi/MplayerClass.class:1111.39"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
 File[13]=".src/Classi/PlaylistClass.class:527.0"
 File[14]=".src/Form/HotKeys.class:248.14"
 File[15]=".src/Form/AudioForm.form"
-File[16]=".src/Form/AudioForm.class:76.30"
+File[16]=".src/Form/AudioForm.class:83.29"
 File[17]=".src/Classi/DynaGuiClass.class:222.13"
 File[18]=".src/Form/CoverManager.class:933.20"
-File[19]=".src/Form/GeneralOptions.class:695.54"
-File[20]=".src/Classi/Meters.class:26.26"
+Active=19
+File[19]=".src/Form/GeneralOptions.class:190.31"
+File[20]=".src/Classi/Meters.class:24.22"
 File[21]="AA_ToDo:44.0"
-Count=21
+File[22]=".src/Form/EpgForm.form"
+File[23]=".src/Form/GeneralOptions.form"
+Count=23
 
 [Watches]
 Count=4

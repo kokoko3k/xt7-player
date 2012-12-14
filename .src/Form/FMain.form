@@ -577,6 +577,7 @@
     Arrangement = Arrange.Horizontal
     { ButtonmenuBTN MenuButton
       MoveScaled(0,0,8,4)
+      Visible = False
       Font = Font["1"]
       ToolTip = ("Open a file")
       AutoResize = True

@@ -200,7 +200,13 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
         media_comments = media_Comment
         Media_TrackNo = media.Track
         Media_Length = media.Length
+        If Media_Length = 0 Then 
+          tmp = Split(Media_GetLength(), ".")
+          tmp = Split(tmp[0], ",")
+          Media_Length = tmp[0]
+        Endif
         Media_AudioBitrate = media.Bitrate
+        If Media_AudioBitrate = 0 Then Try Media_AudioBitrate = FindTagValue("ID_AUDIO_BITRATE")
         Media_Channels = media.Channels
         Media_AudioRate = media.Samplerate
         Debug "got info from taglib on " & Media_FullPath & " --"

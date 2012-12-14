@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Dec 14 2012
   CHANGE: Update Russian translation
+  FIX:    Get audio bitrate and medialength from mplayer if taglib returns 0
 
 Dec 11 2012
   CHANGE: Main play timer delay set to 500ms (was 1000ms)

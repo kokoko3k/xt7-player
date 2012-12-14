@@ -586,6 +586,7 @@
     }
     { Separator6 Separator
       MoveScaled(10,0,2,4)
+      Visible = False
       Font = Font["1"]
     }
     { ShowVolBtn2 ToolButton DynaGuiToolbar

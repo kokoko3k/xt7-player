@@ -1,3 +1,45 @@
+* Fri Dec 14 2012 Antonio Orefice <xt7player@gmail.com> 3.3.4
+- CHANGE: gb.signal required
+- CHANGE: Update Russian (Виктор/VictorR2007) and italian translation
+- CHANGE: make cachebar background transparent
+- FIX:    Get rid of some graphical glitches
+- FIX:    Avoid crash on exit "FMain.UpdateVolumeSlider.3075"
+- FIX:    Avoid crash when skipping files too quickly
+- CHANGE: Allow to resize covers before set them
+- FIX:    Display folder picture for audiofiles even if the picture wasn't cached
+- FIX:    keep the pausing state when switching fullscreen mode
+- FIX:    Avoid the volume to stuck at 0%
+- FIX:    Unglitchy FS/win switch
+- FIX:    Video and audio drivers window werent' coreectly arranged if not resized
+- FIX:    Avoid crash when dragging video/audio drivers
+- FIX:    Video and audio filters window werent' coreectly arranged if not resized
+- NEW:    <Noemi>: Display next seek position on seekbar change. </Noemi>
+- FIX:    Youtube captions (subtitles) were broken
+- FIX:    with newer gambas (tested 3.3.2) dynagui object dragging didn't work properly
+- CHANGE: Bind pluginmode profile to -pluginmode option
+- FIX:    Only show panels in fullscreen if mouse is inside the fullscreen form
+- FIX:    Better commandline arguments parsing
+- NEW:    Intercept quit signals and quit as clean as possible
+- CHANGE: Default seekbar behaviour changed, click will seek to mouse position.
+- CHANGE: Use another form for fullscreen window (allows fullscreen to work with mozplugger)
+- CHANGE: Allow to choose to restart or not  the stream when seeking on youtube. (generaloptions -> network)
+- FIX:    Workaround to let shoutcast and podcasts works with newer (and buggy) gambas xml component
+- FIX:    Faster youtube url retrival
+- FIX:    Do not overwrite files saved from youtube.
+- FIX:    Unable to update items containing "[,]" characters
+- CHANGE: Allow multiple selection in file view
+- FIX:    Flash files wasn't saved to the right path
+- FIX:    Move to first item after the last (and viceversa) in youtube tab.
+- FIX:    Show the right youtube title when hitting the play button
+- FIX:    Don't jump every second video when playing from youtube tab continuosly.
+- NEW:    General options -> style: Allow to set a background image for the bottom panel
+- NEW:    Allow to use a menubutton instead of menu bar (switch via windows menu back to menu bar or with CTRL-M)
+- NEW:    Drag'n drop any image from the web or from a local file into the bottom panel to theme it :)
+- CHANGE: Faster retrival youtube videos by parallelizing youtube-dl instances
+- FIX:    Try hardly to allow youtube seeking by searching mp4 first, then webm and flv as last chance.
+- FIX:    Prevent "Null Object error" when trying to tag an item which is not in library or playlist.
+- FIX:    Cycle through items (last->first) in browse tab too.
+
 * Tue Oct 02 2012 Antonio Orefice <xt7player@gmail.com> 3.3.0
 
 * Tue Oct 02 2012 Antonio Orefice <xt7player@gmail.com> 3.3.0

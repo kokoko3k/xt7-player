@@ -483,7 +483,8 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   
   If ytdloutlines.count = 0 Then Return
   For i = 0 To ytdloutlines.max Step 2
-    Try UrlAndFormats[ytdloutlines[i + 1]] = ytdloutlines[i]
+    'Try UrlAndFormats[ytdloutlines[i + 1]] = ytdloutlines[i]
+    Try UrlAndFormats[Split(ytdloutlines[i + 1], " ")[0]] = ytdloutlines[i] 'split(ytdloutlines[i],"")[0]
   Next
   
   'pick up the first (if they exists) mp4 or webm or flv

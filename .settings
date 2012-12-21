@@ -2,7 +2,8 @@
 Count=0
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="ytdloutlines"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -566,7 +567,7 @@ Geometry=[0,0,344,344]
 Geometry=[0,0,1187,344]
 
 [DebugWindow/UrlAndFormats]
-Geometry=[48,660,811,335]
+Geometry=[48,660,922,335]
 
 [DebugWindow/Userfont]
 Geometry=[1280,0,210,210]
@@ -764,7 +765,7 @@ Geometry=[-4,-4,561,728]
 Geometry=[0,0,344,344]
 
 [DebugWindow/fsorted]
-Geometry=[982,479,339,451]
+Geometry=[856,570,339,451]
 
 [DebugWindow/generaloptions]
 Geometry=[1280,0,497,854]
@@ -1161,7 +1162,7 @@ Geometry=[0,0,344,344]
 Geometry=[0,0,210,503]
 
 [DebugWindow/ytdloutlines]
-Geometry=[48,0,703,911]
+Geometry=[129,217,672,607]
 
 [FFind]
 SearchIn="Project"
@@ -1175,12 +1176,12 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:0.0"
-File[5]=".src/Form/FMain.class:3046.40"
+File[5]=".src/Form/FMain.class:2620.53"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
-Active=8
 File[8]=".src/0_Moduli/Global.module:341.2"
-File[9]="CHANGELOG_GIT:4.10"
+Active=9
+File[9]="CHANGELOG_GIT:9.11"
 File[10]=".src/Classi/MplayerClass.class:747.35"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1195,7 +1196,8 @@ File[20]=".src/Classi/Meters.class:24.22"
 File[21]="AA_ToDo:44.0"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
-Count=23
+File[24]=".src/Classi/YoutubeClass.class:470.86"
+Count=24
 
 [Watches]
 Count=4

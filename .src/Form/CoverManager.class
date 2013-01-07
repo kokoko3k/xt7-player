@@ -1137,16 +1137,23 @@ End
 
 Public Function FolderPicture(Directory As String) As String  
   Dim Files As New String[]
-  Files = Dir(Directory, "*front*.jpg")
+  
+  Files = (Dir(Directory, "*ront*.jpg"))
   If Files.count > 0 Then Goto FILEFOUND  
-  
-  Files.Insert(Dir(Directory, "front*.JPEG"))
+
+  Files = (Dir(Directory, "*FRONT*.jpg")) 
+  If Files.count > 0 Then Goto FILEFOUND  
+
+  Files = (Dir(Directory, "*FRONT*.JPG"))
+  If Files.count > 0 Then Goto FILEFOUND  
+
+  Files.Insert(Dir(Directory, "ront*.JPEG"))
   If Files.count > 0 Then Goto FILEFOUND
   
-  Files.Insert(Dir(Directory, "front*.PNG"))
+  Files.Insert(Dir(Directory, "*ront*.PNG"))
   If Files.count > 0 Then Goto FILEFOUND
   
-  Files.Insert(Dir(Directory, "front*.BMP"))
+  Files.Insert(Dir(Directory, "*ront*.BMP"))
   If Files.count > 0 Then Goto FILEFOUND
   
   Files.Insert(Dir(Directory, "*.JPG"))

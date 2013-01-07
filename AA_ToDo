@@ -649,4 +649,18 @@ FIX: tries hardly (5 seconds limit) to pause mplayer even when it doesn't answer
 
 -BUG: L'asterisco in XConfigureAudio(Video)Driver sui filtri presenti nei chain attivi non viene sempre aggiunto.
 
+in pluginmode non si chiude bene, le sessioni di mplayer rimangono appese.
+basta, anche senza aprire più tab, guardare più video uno dietro l'altro.
 
+in browse mode non si vedono le copertine se non è impostata, ma c'è
+nella cartella il .jpg
+
+*con i dts dice che ci sono 2 canali, perchè id_numero_canali di
+mplayer compare 2 volte; una volta con 2 e l'altra con 6 canali
+(provare canzoni beatles)
+
+*lo spazio trai meter con i dts è errato
+
+*dopo il play di un dts i meter rimangono 6. anche con canzoni a 2 canali.
+
+Il colore di sfondo delle playlist è sempre bianco.

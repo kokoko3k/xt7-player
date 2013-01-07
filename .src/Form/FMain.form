@@ -749,13 +749,12 @@
         }
         { Panel2 Panel GridPanels
           Name = "Panel2"
-          MoveScaled(2,11,31,32)
-          Background = Color.TextBackground
+          MoveScaled(2,10,31,32)
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { LibraryGrid GridView
-            MoveScaled(2,1,24,23)
+            MoveScaled(3,2,24,23)
             Tracking = True
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
@@ -774,7 +773,7 @@
           }
           { shadelow PictureBox shadeuplow
             Name = "shadelow"
-            MoveScaled(0,26,31,1.1429)
+            MoveScaled(0,29,31,1.1429)
             Ignore = True
             Picture = Picture["shadelow.png"]
             Stretch = True
@@ -803,7 +802,6 @@
         { Panel8 Panel GridPanels
           Name = "Panel8"
           MoveScaled(0,2,35,54)
-          Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
@@ -857,7 +855,6 @@
         { Panel1 Panel GridPanels
           Name = "Panel1"
           MoveScaled(0,10,35,34)
-          Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
@@ -1017,7 +1014,6 @@
         }
         { Panel3 Panel
           MoveScaled(6,19,26,23)
-          Background = Color.TextBackground
           ToolTip = (" ")
           Expand = True
           Arrangement = Arrange.Fill
@@ -1050,7 +1046,6 @@
         }
         { Panel4 Panel
           MoveScaled(2,5,30,37)
-          Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
@@ -1097,7 +1092,6 @@
         }
         { Panel5 Panel
           MoveScaled(2,10,30,15)
-          Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
@@ -1354,7 +1348,6 @@
           }
           { Panel6 Panel
             MoveScaled(3,13,27,10)
-            Background = Color.TextBackground
             Expand = True
             Arrangement = Arrange.Fill
             Border = Border.Plain

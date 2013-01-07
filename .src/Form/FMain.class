@@ -900,25 +900,25 @@ Public Sub SetStyle_early()
   Librarygrid.font = Userfont
   Librarygrid.Foreground = forecolor
   Librarygrid.Background = backcolor
-  Panel2.background = Librarygrid.Background
+  'Panel2.background = Librarygrid.Background
   
   Global.Alternatecolor = GeneralOptions.backcolorChooseBTN2.Background
   
   dvbtgrid.font = Userfont
   dvbtgrid.Foreground = forecolor
   dvbtgrid.Background = backcolor
-  panel3.Background = backcolor
+  'panel3.Background = backcolor
   dvbtgrid.Rows.h = dvbtgrid.Font.TextHeight("^_") + global.rowpadding
   
   Playlistgrid.font = Userfont
   PlaylistGrid.Foreground = forecolor
   PlayListGrid.Background = backcolor
-  Panel1.background = backcolor
+  'Panel1.background = backcolor
   
   FlashGrid.font = Userfont
   FlashGrid.Foreground = forecolor
   FlashGrid.Background = backcolor
-  Panel5.background = backcolor
+  'Panel5.background = backcolor
   
   ProfilesListBox.font = Userfont
   ProfilesListBox.foreground = forecolor
@@ -927,7 +927,7 @@ Public Sub SetStyle_early()
   CDDAGrid.font = Userfont
   CDDAGrid.Foreground = forecolor
   CDDAGrid.Background = backcolor
-  panel4.Background = backcolor
+  'panel4.Background = backcolor
   
   treeview1.font = Userfont
   treeview1.Foreground = forecolor
@@ -940,12 +940,12 @@ Public Sub SetStyle_early()
   AlbumGridView.font = Userfont
   AlbumGridView.Foreground = forecolor
   AlbumGridView.Background = backcolor
-  Panel8.background = backcolor
+  'Panel8.background = backcolor
   
   PropertiesGrid.font = Userfont
   PropertiesGrid.Foreground = forecolor
   PropertiesGrid.Background = backcolor
-  Panel7.Background = backcolor
+  'Panel7.Background = backcolor
   
   youtubetree.font = Userfont
   youtubetree.Foreground = forecolor
@@ -962,7 +962,7 @@ Public Sub SetStyle_early()
   ShutResultGrid.font = Userfont
   ShutResultGrid.Foreground = forecolor
   ShutResultGrid.Background = backcolor
-  panel6.Background = backcolor
+  'panel6.Background = backcolor
   
   SearchField.Font.size = zzzFake.Font.size
   SearchFieldPLS.Font.size = zzzFake.Font.size
@@ -5336,7 +5336,7 @@ Public Sub Hsplit1_MyRefresh()
   
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
-
+  cachebar.Move(0, outerbox.h - cachebar.h, 0)
 End
 
 Public Sub LibraryGrid_Menu()

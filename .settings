@@ -1,5 +1,6 @@
 [Breakpoints]
-Count=0
+Breakpoint[1]="FMain.1059"
+Count=1
 
 [DebugWindow]
 Count=0
@@ -1175,11 +1176,12 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:0.0"
-File[5]=".src/Form/FMain.class:330.36"
+Active=5
+File[5]=".src/Form/FMain.class:1075.0"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:341.2"
-File[9]="CHANGELOG_GIT:4.60"
+File[9]="CHANGELOG_GIT:4.49"
 File[10]=".src/Classi/MplayerClass.class:747.35"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1191,13 +1193,14 @@ File[17]=".src/Classi/DynaGuiClass.class:222.13"
 File[18]=".src/Form/CoverManager.class:933.20"
 File[19]=".src/Form/GeneralOptions.class:198.6"
 File[20]=".src/Classi/Meters.class:24.22"
-Active=21
 File[21]="AA_ToDo:659.25"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
 File[24]=".src/Classi/YoutubeClass.class:470.86"
 File[25]="xt7-player.desktop:13.0"
-Count=25
+File[26]=".src/Classi/StartClass.class:20.15"
+File[27]=".src/Form/zzzFake.class:58.19"
+Count=27
 
 [Watches]
 Count=4

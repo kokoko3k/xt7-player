@@ -2915,7 +2915,7 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
     If GeneralOptions.ShowVmeterCHK.value = True Then
       Try mymeters.stopp
       mymeters = New Meters As "mymeters"
-      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
+      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 6, GeneralOptions.fpsspinbox.value)
       mymeters.startt
     Endif
   Else

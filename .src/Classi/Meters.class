@@ -92,9 +92,12 @@ Private Sub updatebars(ByRef samples As Integer[])
   Dim i, c, s, total, avg, start, sstop As Integer 
   Dim bar As Picturebox
   Dim widt As Integer
+  Dim scaledspacing As Integer = spacingg Div channels
   
   If Not barsdone Then
-    widt = (mparent.w Div channels) - ((channels - 1) * spacingg)
+    'widt = (mparent.w Div channels) - ((channels - 1) * spacingg)
+    widt = CInt((mparent.w / channels) - scaledspacing)
+    Debug channels
     For i = 1 To channels
       bar = New Picturebox(mparent) As "mbar" & i
       bar.alignment = Align.Bottom
@@ -103,14 +106,8 @@ Private Sub updatebars(ByRef samples As Integer[])
       'bar.Background = Color.black
       bar.ignore = True
       bar.h = 0
-      'bar.w = (mparent.w Div channels) - (channels * spacingg) 'Widthh
-      'bar.w = (mparent.w Div (channels * spacingg)) ' - (channels * spacingg) 'Widthh
-       bar.w = Widt ' - (channels * spacingg) 'Widthh
-      If i > 1 Then 
-        bar.x = ((i - 1) * bar.w) + (spacingg)
-          Else
-        bar.x = 0
-      Endif
+      bar.w = Widt ' - (channels * spacingg) 'Widthh
+      bar.x = (i - 1) * (Widt + scaledspacing)
       bars.Add(bar)
       
     Next

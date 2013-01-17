@@ -1040,26 +1040,28 @@ Dim fileUtf8 As String
   If Error Then fileutf8 = f
   fileutf8 = f
   fileutf8 = Trim(fileutf8)
-  If tl.IsSupported(fileUtf8) And tl.Init(fileutf8) Then 'use fast taglib when possible
-    Leng = tl.Length
-    typ = "audio"
-    aco = file.Ext(fileUtf8)
-    abi = tl.Bitrate
-    ara = tl.Samplerate
-    cha = tl.Channels
-    vco = ""
-    vbi = ""
-    fps = ""
-    w = ""
-    h = ""
-    art = (tl.Artist)
-    alb = (tl.Album)
-    yea = tl.MyYear
-    tra = tl.Track
-    tit = (tl.Title)
-    gen = (tl.Genre)
-    com = (tl.Comment)
-    tl.tlFree()
+  If tl.IsSupported(fileUtf8) Then
+    If tl.Init(fileutf8) Then 'use fast taglib when possible
+      Leng = tl.Length
+      typ = "audio"
+      aco = file.Ext(fileUtf8)
+      abi = tl.Bitrate
+      ara = tl.Samplerate
+      cha = tl.Channels
+      vco = ""
+      vbi = ""
+      fps = ""
+      w = ""
+      h = ""
+      art = (tl.Artist)
+      alb = (tl.Album)
+      yea = tl.MyYear
+      tra = tl.Track
+      tit = (tl.Title)
+      gen = (tl.Genre)
+      com = (tl.Comment)
+      tl.tlFree()
+    Endif
       Else 'but fallback to mplayertag if needed
     Debug "TagLib doesnt support " & f & ",fallback to mplayer routines..."
     Debug

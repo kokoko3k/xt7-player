@@ -171,6 +171,13 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
   Dim tracks As Integer = 0
   Dim cddbtrack As Integer = 0
   Dim i As Integer = 0
+  Dim fileUtf8 As String
+  Try fileUtf8 = DConv(Media_FullPath) 'from system charset to utf8
+  If Error Then fileutf8 = Media_FullPath
+  fileutf8 = Media_FullPath
+  fileutf8 = Trim(fileutf8)
+  
+  
   If Media_FullPath = "" Then Return
   cddbtracks.clear()
   AudioOnly = Media_AudioOnly()
@@ -188,7 +195,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
   'try first to get them using fast taglib
   'but fallback to mplayer in idle mode
   
-  If (AudioOnly And (Not Global.IsNetworkURI(Media_FullPath))) Then
+  If (AudioOnly And (Not Global.IsNetworkURI(Media_FullPath)) And media.IsSupported(fileutf8)) Then
       If media.Init(Media_FullPath) Then
         Media_Artist = media.Artist
         Media_author = media.Artist
@@ -1318,6 +1325,7 @@ Public Sub FindTagValue(mytag As String) As String
   Else
     Media_FullPath_Playing = ""
   Endif
+  Debug mytag; " "; value
   Return value
 
 End

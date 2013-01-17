@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 Jan 16 2013
+  FIX:    Don't use taglib for wav files as it fails to parse channel number (https://github.com/taglib/taglib/issues/92)
   FIX:    Vmeters spacing with channels number >2 was wrong
   FIX:    Vmeters are instancied objects now
 

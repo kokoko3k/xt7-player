@@ -68,9 +68,14 @@ Public Sub Timer1_Timer()
 End
 
 Public Sub Stopp()
-  
+  Dim bar As Object
   Try timer1.stop
   buffer.clear
+  
+  For Each bar In bars
+    bar.delete
+  Next 'bar
+  
   Debug "meters timer stopped"
   Debug
 End

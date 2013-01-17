@@ -2882,7 +2882,7 @@ End
 
 Private currentfile_cover As String = ""
 Private previousfile_cover As String = ""
-Public mymeters As New Meters
+Public mymeters As Meters
 
 Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
   If Show And (Not TagEditMode) Then
@@ -2914,6 +2914,7 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
     'OuterBox.visible = False 'OuterBox.Reparent(zzzfake)
     If GeneralOptions.ShowVmeterCHK.value = True Then
       Try mymeters.stopp
+      mymeters = New Meters As "mymeters"
       mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 4, GeneralOptions.fpsspinbox.value)
       mymeters.startt
     Endif
@@ -4324,7 +4325,6 @@ Public Sub Apply()
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
-
 End
 
 Public Sub SubTitlesMenu_Click()

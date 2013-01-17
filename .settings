@@ -844,6 +844,9 @@ Geometry=[1280,0,210,210]
 [DebugWindow/mouse]
 Geometry=[0,0,344,344]
 
+[DebugWindow/mparent]
+Geometry=[47,0,210,210]
+
 [DebugWindow/mplayer]
 Geometry=[0,0,344,344]
 
@@ -996,6 +999,9 @@ Geometry=[0,41,344,344]
 
 [DebugWindow/pointsto]
 Geometry=[0,41,344,344]
+
+[DebugWindow/pparent]
+Geometry=[47,0,475,640]
 
 [DebugWindow/pps]
 Geometry=[0,404,301,301]
@@ -1175,31 +1181,32 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:0.0"
-File[5]=".src/Form/FMain.class:1059.2"
+File[5]=".src/Form/FMain.class:9918.2"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
+Active=8
 File[8]=".src/0_Moduli/Global.module:341.2"
-Active=9
-File[9]="CHANGELOG_GIT:18.0"
-File[10]=".src/Classi/MplayerClass.class:747.35"
+File[9]="CHANGELOG_GIT:3.10"
+File[10]=".src/Classi/MplayerClass.class:1309.27"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
-File[13]=".src/Classi/PlaylistClass.class:527.0"
+File[13]=".src/Classi/PlaylistClass.class:1069.44"
 File[14]=".src/Form/HotKeys.class:248.14"
 File[15]=".src/Form/AudioForm.form"
 File[16]=".src/Form/AudioForm.class:83.29"
 File[17]=".src/Classi/DynaGuiClass.class:222.13"
 File[18]=".src/Form/CoverManager.class:933.20"
 File[19]=".src/Form/GeneralOptions.class:198.6"
-File[20]=".src/Classi/Meters.class:24.22"
-File[21]="AA_ToDo:659.25"
+File[20]=".src/Classi/Meters.class:97.55"
+File[21]="AA_ToDo:638.0"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
 File[24]=".src/Classi/YoutubeClass.class:470.86"
 File[25]="xt7-player.desktop:13.0"
 File[26]=".src/Classi/StartClass.class:20.15"
 File[27]=".src/Form/zzzFake.class:58.19"
-Count=27
+File[28]=".src/Classi/TagLib.class:71.15"
+Count=28
 
 [Watches]
 Count=4

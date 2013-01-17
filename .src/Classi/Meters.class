@@ -1,5 +1,7 @@
 ' Gambas class file
 
+
+
 Private timer1 As Timer
 Private barsdone As Boolean = False
 Public bars As New Object[]
@@ -23,6 +25,15 @@ Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pe
   mparent = pparent
   exportfile = pexportfile
   spacingg = pspacingg
+  
+  Try hFile = Open exportfile For Input
+  If Error Then Return
+  Try channels = Read #hfile As Integer
+  Try bufsize = Read #hfile As Integer
+  Try SamplesPerChannel = (bufsize Div channels) Div 2
+  If Error Then Return
+  scaledspacing = spacingg Div channels
+  
   Try Object.Detach(timer1)
   'If Not AlreadyInit Then 
     Debug "Made new meters timer"
@@ -40,21 +51,19 @@ Public Function ChangeFps(fps As Integer)
 End
 
 
+Private hfile As File
+Private bufsize As Integer 
+
+
 Public Sub Timer1_Timer()
-  Dim hFile As File
-  Dim bufsize, sync, meter As Integer
+  Dim sync, meter As Integer
   Dim samples As New Integer[]
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
   If Error Then Return
   hFile.ByteOrder = gb.LittleEndian
-  Try channels = Read #hfile As Integer
-  Try bufsize = Read #hfile As Integer
   Try sync = Read #hfile As Long
-  Try SamplesPerChannel = (bufsize Div channels) Div 2
   If Error Then Return
-  
-  
   While Not Eof(hfile)
     Try meter = Read #hFile As Short
     samples.Add(Abs(meter)) 'write new element at the beginning of the array
@@ -85,6 +94,7 @@ Public Sub Startt()
   Try timer1.start
   
 End
+Private scaledspacing As Integer
 
 Private Sub updatebars(ByRef samples As Integer[])
   'prepare n progressbars an n channels
@@ -92,12 +102,10 @@ Private Sub updatebars(ByRef samples As Integer[])
   Dim i, c, s, total, avg, start, sstop As Integer 
   Dim bar As Picturebox
   Dim widt As Integer
-  Dim scaledspacing As Integer = spacingg Div channels
-  
+
   If Not barsdone Then
     'widt = (mparent.w Div channels) - ((channels - 1) * spacingg)
     widt = CInt((mparent.w / channels) - scaledspacing)
-    Debug channels
     For i = 1 To channels
       bar = New Picturebox(mparent) As "mbar" & i
       bar.alignment = Align.Bottom
@@ -109,11 +117,10 @@ Private Sub updatebars(ByRef samples As Integer[])
       bar.w = Widt ' - (channels * spacingg) 'Widthh
       bar.x = (i - 1) * (Widt + scaledspacing)
       bars.Add(bar)
-      
     Next
     barsdone = True
   Endif
-  
+
   'for every channel,make an average
   'of sampled values and assign them to the
   'respective bar
@@ -122,15 +129,12 @@ Private Sub updatebars(ByRef samples As Integer[])
     total = 0
     start = (c * SamplesPerChannel) - SamplesPerChannel 
     sstop = start + SamplesPerChannel
-    For s = start To sstop - 1
-     Try total = total + samples[s]
+    For s = start To (sstop - 1)
+      Try total = total + samples[s] 
     Next
-    Try avg = total Div SamplesPerChannel
-    'bars[c - 1].value = avg / 15000 '32768 'write value into Vmeter
-     bars[c - 1].h = (avg * maxh) Div 15000 '32768  '32768 'write value into Vmeter
-     'Print avg
-     bars[c - 1].y = maxh - bars[c - 1].h ' + mparent.h  'avg Div 100
-     'Debug bars[c - 1].y
+    Try avg = (total Div SamplesPerChannel) 
+     bars[c - 1].h = (avg * maxh) Div 15000 
+     bars[c - 1].y = maxh - bars[c - 1].h '
   Next
 End
 

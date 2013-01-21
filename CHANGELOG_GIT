@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Jan 21 2013
+  FIX:    Composite mouse hotkeys (eg: right+wheel) where lost when moving the mouse
+
 Jan 16 2013
   FIX:    Slightly optimized meters calculation code
   FIX:    Don't use taglib for wav files as it fails to parse channel number (https://github.com/taglib/taglib/issues/92)

@@ -4635,12 +4635,34 @@ End
 Public Sub VideoAreaGroup_MouseWheel()
   
   Dim HotKey As String
-  
   HotKey = HotKeyGrab.GetMouse(True)
   IgnoreMouse = True
   HotKeyToMplayer(HotKey)
   
 End
+
+' Private lastkey As String
+' Private lastmousewheel As String
+' Private lastmod As String
+' Private lastmousebutton As String
+
+' Public Function GetMouse(CheckWheel As Boolean) As String
+'    lastkey = ""
+'    LastMouseWheel = "NONE"
+'    LastMod = ""
+'  '  LastMod = GetMouseModifiers()
+'    If CheckWheel Then
+'      If Mouse.delta > 0 Then
+'        LastMouseWheel = "UP"
+'          Else
+'        If Mouse.delta < 0 Then LastMouseWheel = "DOWN"
+'      Endif
+'    Endif
+' 
+'    LastMouseButton = Mouse.Button
+'    Return AllGrabbedData()
+' End
+
 
 '/HotKeys Handling *******************************************
 

@@ -127,25 +127,26 @@ Public Function GetKey() As String
 End
 
 Public Function GetMouse(CheckWheel As Boolean) As String
-   Dim mbh As Integer = 0
-   Me.hide
-   lastkey = ""
-   LastMouseWheel = "NONE"
-   LastMod = ""
-   LastMod = GetMouseModifiers()
-   If CheckWheel Then
-     If Mouse.delta > 0 Then
-       LastMouseWheel = "UP"
-         Else
-       If Mouse.delta < 0 Then LastMouseWheel = "DOWN"
-     Endif
-   Endif
-   'LastMouseButton = Mouse.Button
-   lastmousebutton = 0
-   If mouse.left Then lastmousebutton += 1
-   If mouse.right Then lastmousebutton += 2
-   If mouse.middle Then lastmousebutton += 4
-   Return AllGrabbedData()
+  Dim mbh As Integer = 0
+  Me.hide
+  lastkey = ""
+  LastMouseWheel = "NONE"
+  LastMod = ""
+  LastMod = GetMouseModifiers()
+  If CheckWheel Then
+    If Mouse.delta > 0 Then
+      LastMouseWheel = "UP"
+        Else
+      If Mouse.delta < 0 Then LastMouseWheel = "DOWN"
+    Endif
+  Endif
+  LastMouseButton = Mouse.Button
+  If LastMouseButton = 0 Then
+    If mouse.left Then lastmousebutton += 1
+    If mouse.right Then lastmousebutton += 2
+    If mouse.middle Then lastmousebutton += 4
+  Endif
+  Return AllGrabbedData()
 End
 
 

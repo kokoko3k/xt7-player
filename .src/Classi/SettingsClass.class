@@ -285,6 +285,7 @@ Public Sub Load(TheForm As Object, Filename As String)
       ' Endif
       Subsettings = NameAndProperties(myobj.name, settings)
       Try Reconfigure(myobj, Subsettings, TheForm)
+      Debug myobj.name
     Endif 
   Next
   

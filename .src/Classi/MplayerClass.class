@@ -1136,7 +1136,7 @@ End
 
 Public Sub ShowText(message As String, Optional myTime As Integer = 3000)
 
-  send("osd_show_property_text " & "'" & message & "' " & mytime)
+  send("pausing_keep osd_show_property_text " & "'" & message & "' " & mytime)
 
 End
 
@@ -1172,7 +1172,7 @@ Public Sub SubtitleAdd(SubFilePath As String)
   Debug "TotalSubtitles= " & TotalFileSubtitles
   Debug
   LastSubId = CInt(TotalFileSubtitles) - 1
-  Send("sub_load '" & SubFilePath & "'") 'NOTE THE Triple quotes ( "'subfile'", mplayer bug)
+  Send("pausing_keep sub_load '" & SubFilePath & "'") 'NOTE THE Triple quotes ( "'subfile'", mplayer bug)
   Debug "Send()" & "sub_load \"" & SubFilePath & "\""
   Debug
   ' Send("sub_select " & CStr(LastSubId + 1))

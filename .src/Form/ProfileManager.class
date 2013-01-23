@@ -12,7 +12,7 @@ Public Sub Form_Show()
 End
 
 Public Sub NewBtn_Click()
-  AskName.Text = "New profile name"
+  AskName.Text = ("New profile name")
   AskName.show
 End
 

@@ -442,7 +442,7 @@ Public Sub SlidersFreq_Change()
   If Not presetting Then
     If OkToChangeToCustom Then
       customizing = True
-      PresetsCombobox.text = "Custom"
+      PresetsCombobox.text = ("Custom")
       customizing = False
     Endif
   Endif

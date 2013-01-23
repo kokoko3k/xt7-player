@@ -1286,7 +1286,7 @@ Public Sub FillPropertiesGrid()
     If Trim(PropertiesGrid[2, 1].text) <> "" Then 
       audioform.label20.text = PropertiesGrid[2, 1].text & "KB"
     Else
-      audioform.label20.text = "Unknown" 
+      audioform.label20.text = ("Unknown")
     Endif
     audioform.RadioLabel.text = ""
     
@@ -7159,7 +7159,7 @@ Public Sub UpdateMenuTabVisibility()
   
   HideShowTabsMenu = New Menu(menutabs)
   HideShowTabsMenu.name = "HideShowTabsMenu"
-  HideShowTabsMenu.Text = "Hide/Show tabs"
+  HideShowTabsMenu.Text = ("Hide/Show tabs")
   HideShowTabsMenu.Picture = picture["icon:/16/watch"]
   
   For i = 0 To Leftsidetabs.count - 1

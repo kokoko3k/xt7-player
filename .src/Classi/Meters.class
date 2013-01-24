@@ -55,7 +55,7 @@ Private hfile As File
 Private bufsize As Integer 
 
 
-Public Sub Timer1_Timer()
+Public Sub Timer1_Timer_OLD()
   Dim sync, meter As Integer
   Dim samples As New Integer[]
   If FMain.mplayer.Paused Then Return
@@ -69,7 +69,28 @@ Public Sub Timer1_Timer()
     samples.Add(Abs(meter)) 'write new element at the beginning of the array
   Wend
   buffer.Add(samples, 0)
-  
+  If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency
+    updatebars(buffer[buffer.count - 1])
+    buffer.Remove(buffer.Length - 1)
+  Endif
+End
+
+Public Sub Timer1_Timer()
+  Dim sync, meter As Integer
+  Dim samples As New Integer[] 'Short[]
+  If FMain.mplayer.Paused Then Return
+  Try hFile = Open exportfile For Input
+  If Error Then Return
+  hFile.ByteOrder = gb.LittleEndian
+  Try sync = Read #hfile As Long
+  If Error Then Return
+  ' While Not Eof(hfile)
+  '   Try meter = Read #hFile As Short
+  '   samples.Add(Abs(meter)) 'write new element at the beginning of the array
+  ' Wend
+  samples.resize((Lof(hfile) Div 4) - 8)
+  samples.Read(hfile)
+  buffer.Add(samples, 0)
   If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency
     updatebars(buffer[buffer.count - 1])
     buffer.Remove(buffer.Length - 1)
@@ -130,11 +151,10 @@ Private Sub updatebars(ByRef samples As Integer[])
     start = (c * SamplesPerChannel) - SamplesPerChannel 
     sstop = start + SamplesPerChannel
     For s = start To (sstop - 1)
-      Try total = total + samples[s] 
+      Try total = total + Abs(samples[s])
     Next
     Try avg = (total Div SamplesPerChannel) 
      bars[c - 1].h = (avg * maxh) Div 15000 
      bars[c - 1].y = maxh - bars[c - 1].h '
   Next
 End
-

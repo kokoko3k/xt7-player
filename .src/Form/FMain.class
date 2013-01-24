@@ -322,10 +322,12 @@ End
 
 '--------------------------------------------------
 
+
+
 Public Sub TagEditorBtn_click()
-
+  
   EditTagModeSwitch1_Click()
-
+  
 End
 
 Public Sub InitLibrary(MyLibrary As PlaylistClass, LibraryGrid As Gridview, WithMplayer As Boolean)
@@ -5299,6 +5301,8 @@ Public Sub Hsplit1_MyRefresh()
 
   Dim RightPanel As Integer = 0
   
+  cachebar.Move(0, outerbox.h - cachebar.h, 0)
+  
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
 
@@ -5334,7 +5338,7 @@ Public Sub Hsplit1_MyRefresh()
   
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
-  cachebar.Move(0, outerbox.h - cachebar.h, 0)
+  
 End
 
 Public Sub LibraryGrid_Menu()

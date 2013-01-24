@@ -77,7 +77,7 @@ End
 
 Public Sub Timer1_Timer()
   Dim sync, meter As Integer
-  Dim samples As New Integer[] 'Short[]
+  Dim samples As New Short[]
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
   If Error Then Return
@@ -88,7 +88,7 @@ Public Sub Timer1_Timer()
   '   Try meter = Read #hFile As Short
   '   samples.Add(Abs(meter)) 'write new element at the beginning of the array
   ' Wend
-  samples.resize((Lof(hfile) Div 4) - 8)
+  samples.resize((Lof(hfile) Div 2) - 8)
   samples.Read(hfile)
   buffer.Add(samples, 0)
   If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency

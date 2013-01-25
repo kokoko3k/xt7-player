@@ -75,6 +75,8 @@ Public Sub Timer1_Timer_OLD()
   Endif
 End
 
+Private longsize As Integer = SizeOf(gb.long)
+
 Public Sub Timer1_Timer()
   Dim sync, meter As Integer
   Dim samples As New Short[]
@@ -88,7 +90,12 @@ Public Sub Timer1_Timer()
   '   Try meter = Read #hFile As Short
   '   samples.Add(Abs(meter)) 'write new element at the beginning of the array
   ' Wend
-  samples.resize((Lof(hfile) Div 2) - 8)
+  'samples.resize((Lof(hfile) Div 2) - longsize
+
+  'lof(hfile) returns the stream size in bytes
+  'and since samples array is short[](2 bytes) we divide by short/byte = 2
+  'then we subtract what we already read -sync-, which is long.
+  samples.resize((Lof(hfile) Div 2) - longsize)
   samples.Read(hfile)
   buffer.Add(samples, 0)
   If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency

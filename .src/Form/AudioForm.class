@@ -133,6 +133,5 @@ End
 
 
 Public Sub BarBox_MouseDown()
-
-
+  Try FMain.mymeters.nextvis()
 End

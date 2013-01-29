@@ -92,9 +92,8 @@
         Margin = True
         Padding = 6
         { Panel3 Panel
-          MoveScaled(1,1,52,23)
+          MoveScaled(0,1,52,21)
           Arrangement = Arrange.Vertical
-          AutoResize = True
           Spacing = True
           Margin = True
           Padding = 8
@@ -103,9 +102,20 @@
             MoveScaled(0,0,50,4)
             Spacing = True
             { ShowVmeterCHK CheckBox
-              MoveScaled(1,0,42,4)
+              MoveScaled(1,0,19,4)
               Expand = True
-              Text = ("Show Vmeters")
+              Text = ("Visualization")
+            }
+            { VBox8 VBox
+              MoveScaled(19,0,3,3)
+              Expand = True
+            }
+            { NoParseVisType ComboBox
+              MoveScaled(23,0,26,4)
+              Expand = True
+              ReadOnly = True
+              List = [("vmeters - Audio meters"), ("DFT - Spectrum analyzer")]
+              Text = ("vmeters - Audio meters")
             }
           }
           { NoParse42 HBox
@@ -138,7 +148,7 @@
             { NoParseLabel17 Label
               MoveScaled(1,1,14,3)
               AutoResize = True
-              Text = ("Update Vmeters at")
+              Text = ("Update at")
             }
             { fpsspinbox SpinBox
               MoveScaled(18,0,11,4)
@@ -166,7 +176,7 @@
             { RmsSizeSpinBox SpinBox
               MoveScaled(18,0,11,4)
               MinValue = 1
-              MaxValue = 2048
+              MaxValue = 1024
               Step = 128
               Value = 512
             }

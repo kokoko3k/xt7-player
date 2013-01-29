@@ -670,6 +670,9 @@ Geometry=[794,22,315,922]
 [DebugWindow/bottomvbox.parent.Parent]
 Geometry=[1280,0,467,521]
 
+[DebugWindow/bpoints]
+Geometry=[47,0,210,210]
+
 [DebugWindow/brother]
 Geometry=[1280,0,210,210]
 
@@ -1054,6 +1057,9 @@ Geometry=[51,0,210,210]
 [DebugWindow/shadowpic.Image.DrawImage(src.image, shadowoffsetpaint + offset, shadowoffsetpaint + offset).picture]
 Geometry=[47,-3,210,210]
 
+[DebugWindow/signal]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/splitted]
 Geometry=[0,0,210,210]
 
@@ -1182,15 +1188,14 @@ SearchString=True
 [OpenFile]
 File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
-Active=3
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:719.31"
-File[5]=".src/Form/FMain.class:332.1"
+File[5]=".src/Form/FMain.class:3263.1"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:341.36"
 File[9]="CHANGELOG_GIT:3.10"
-File[10]=".src/Classi/MplayerClass.class:761.16"
+File[10]=".src/Classi/MplayerClass.class:308.16"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
 File[13]=".src/Classi/PlaylistClass.class:1069.44"
@@ -1200,7 +1205,8 @@ File[16]=".src/Form/AudioForm.class:83.29"
 File[17]=".src/Classi/DynaGuiClass.class:222.13"
 File[18]=".src/Form/CoverManager.class:933.20"
 File[19]=".src/Form/GeneralOptions.class:726.24"
-File[20]=".src/Classi/Meters.class:90.34"
+File[20]=".src/Classi/Meters.class:80.0"
+Fold[20]=[57,200,324]
 File[21]="AA_ToDo:638.0"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
@@ -1219,7 +1225,11 @@ File[35]="MoreResults.png"
 File[36]=".src/Classi/AlbumView.class:282.48"
 File[37]=".src/Form/ProfileManager.class:14.37"
 File[38]=".src/Form/TranslationNeeded.class:11.20"
-Count=38
+File[39]=".src/Form/prova.form"
+Active=40
+File[40]=".src/Form/prova.class:25.12"
+File[41]=".src/Form/ProfileManager.form"
+Count=41
 
 [Watches]
 Count=4

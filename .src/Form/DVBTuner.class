@@ -407,6 +407,7 @@ Public Sub Button4_Click()
       FMain.MyDVBTList.AddFile(FMain.DVBTGrid, channeluri, True, True, channelname)
     Endif
   Next 'i
+  FMain.GridRefreshWorkaround(FMain.dvbtgrid)
   FMain.UpdateSearchResults(FMain.MyDVBTList, FMain.DVBTGrid, True, FMain.Searchfielddvb.text)
   Fmain.MyDVBTList.Save(Fmain.dvbtgrid, global.confpath)
   'PRINT filedata

@@ -6414,7 +6414,7 @@ Public Sub ExecuteRemote(command As String)
     Debug
     MyPlaylist.AddFile(playlistgrid, parameter, MyPlaylist.ISURI(parameter), MyPlaylist.ISURI(parameter))
     MyPlaylist.AutoSizeColumns(playlistgrid)
-    
+    GridRefreshWorkaround(playlistgrid)
   Else If command Like "play *" Then
     parameter = NoQuotes(parameter)
     Debug "URI= " & parameter
@@ -8086,6 +8086,7 @@ Public Sub PodCastMenuAddLibrary_Click()
       Endif
     Endif
   Until podcasttree.MoveBelow()
+  GridRefreshWorkaround(librarygrid)
   
 End
 
@@ -8100,6 +8101,7 @@ Public Sub PodCastMenuAddPlaylist_Click()
       Endif
     Endif
   Until podcasttree.MoveBelow()
+  GridRefreshWorkaround(playlistgrid)
   
 End
 
@@ -8384,7 +8386,8 @@ Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, 
         If MyQuestion.Ask(("Are you sure you want to recursively add this directory?\n") & selecteditem, "Add", "Cancel") = 1 Then
           thegrid.enabled = False
           Fileview1.enabled = False
-          theplaylist.AddDir(librarygrid, selecteditem, nulllistbox)
+          'theplaylist.AddDir(librarygrid, selecteditem, nulllistbox)
+          theplaylist.AddDir(thegrid, selecteditem, nulllistbox)
           Fileview1.enabled = True
           thegrid.enabled = True
           UpdateSearchResults(theplaylist, thegrid, filterstring)
@@ -9562,6 +9565,7 @@ Private Sub StopDumping(destfile As String)
   buttoncapture.visible = buttoncapture.enabled
   ArrangeCpl()
   Try myplaylist.AddFile(playlistgrid, destfile, False)
+  GridRefreshWorkaround(playlistgrid)
 End
 
 Public Sub ButtonCapture_Click()
@@ -9658,7 +9662,7 @@ Public Sub AlbumGridView_Activate()
       myplaylist.AddFile(playlistgrid, track, False)
       Wait
     Next
-
+    GridRefreshWorkaround(playlistgrid)
     TogglePls.value = 1
     If answer = 2 Then 
       playlistgrid.UnSelectAll()

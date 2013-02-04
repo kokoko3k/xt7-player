@@ -1,5 +1,6 @@
 [Breakpoints]
-Count=0
+Breakpoint[1]="FMain.8389"
+Count=1
 
 [DebugWindow]
 Count=0
@@ -1194,14 +1195,14 @@ SearchString=True
 [OpenFile]
 File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
+Active=3
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:719.31"
-File[5]=".src/Form/FMain.class:2532.22"
+File[5]=".src/Form/FMain.class:332.24"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
-Active=8
-File[8]=".src/0_Moduli/Global.module:341.6"
-File[9]="CHANGELOG_GIT:3.10"
+File[8]=".src/0_Moduli/Global.module:341.35"
+File[9]="CHANGELOG_GIT:14.61"
 File[10]=".src/Classi/MplayerClass.class:1007.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1227,14 +1228,17 @@ File[30]=".src/Form/HotKeyGrab.form"
 File[31]=".src/Form/Chains.class:76.0"
 File[32]=".src/Form/VFiltersCfg.class:531.0"
 File[33]=".src/Classi/SettingsClass.class:4.6"
-File[34]=".src/Form/AFiltersCfg.class:444.39"
+File[34]=".src/Form/AFiltersCfg.class:209.39"
 File[35]="MoreResults.png"
 File[36]=".src/Classi/AlbumView.class:272.31"
 File[37]=".src/Form/ProfileManager.class:14.37"
 File[38]=".src/Form/TranslationNeeded.class:11.20"
 File[39]=".src/Form/ProfileManager.form"
 File[40]="meterpt.png"
-Count=40
+File[41]=".src/Form/AddUriForm.class:45.29"
+File[42]=".src/Form/DVBTuner.class:409.8"
+File[43]="emptycover.png"
+Count=43
 
 [Watches]
 Count=4

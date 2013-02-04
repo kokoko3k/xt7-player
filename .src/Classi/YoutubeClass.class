@@ -220,6 +220,7 @@ Wait
         needpicture = True
         Select Case nodename
           Case "title"
+            value = Replace(value, "&amp;", "&")
             streaminfo.Add(value, "title")
             feedinfo.Add(value, "title")
           Case "content"

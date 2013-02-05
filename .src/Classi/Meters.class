@@ -158,7 +158,7 @@ Private Sub updatebars(ByRef samples As Integer[])
         fft = getpower(frband[i], samples, 0, (SamplesPerChannel Div 3), (timer1.delay / 1000), o) * (i * (i / (bars.count / 2)) + 1) '/ 10000
         fft = (Log2(fft + 0.00000001) * 10) - 100 
         bars[i].h = Abs(CInt((fft * maxh) / 110))
-        bars[i].y = maxh - bars[i].h '
+        bars[i].y = maxh - bars[i].h 
       Next
 
   End Select

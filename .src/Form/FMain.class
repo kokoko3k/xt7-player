@@ -8515,7 +8515,7 @@ Public Sub youtubeTree_Activate()
       Endif
       needytcookie = True
       fmain.Play(RealYTVideoUrl)
-      Try customtitle = youtubetree.Current.Text
+      Try customtitle = Replace(youtubetree.Current.Text, "\n", " ")
     Endif
   Else
     If (youtubeTree.Current.Children = 0) Then

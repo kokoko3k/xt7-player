@@ -320,7 +320,7 @@ Public Sub addstream(streaminfo As Collection, tree As Treeview, feed As String)
   Tree.Item.Expanded = True
 
   ' Tree.current.Expanded = TRUE
-  tree.Add(mykey, streaminfo["title"] & " [" & FormatTime(streaminfo["yt:durationseconds"]) & "]", thumb, feed)
+  tree.Add(mykey, streaminfo["title"] & "\n" & FormatTime(streaminfo["yt:durationseconds"]), thumb, feed)
   tree.Refresh
   Wait 0.01
 

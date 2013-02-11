@@ -1,5 +1,5 @@
 [Breakpoints]
-Breakpoint[1]="FMain.8389"
+Breakpoint[1]="FMain.8391"
 Count=1
 
 [DebugWindow]
@@ -1079,6 +1079,9 @@ Geometry=[0,0,210,210]
 [DebugWindow/stderrlines]
 Geometry=[0,0,344,344]
 
+[DebugWindow/streaminfo]
+Geometry=[47,0,561,246]
+
 [DebugWindow/subdir]
 Geometry=[0,326,242,262]
 
@@ -1197,12 +1200,12 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:719.31"
-File[5]=".src/Form/FMain.class:332.24"
+Active=5
+File[5]=".src/Form/FMain.class:332.6"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
-Active=8
-File[8]=".src/0_Moduli/Global.module:354.0"
-File[9]="CHANGELOG_GIT:3.7"
+File[8]=".src/0_Moduli/Global.module:339.0"
+File[9]="CHANGELOG_GIT:3.10"
 File[10]=".src/Classi/MplayerClass.class:1007.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1211,17 +1214,17 @@ File[14]=".src/Form/HotKeys.class:171.38"
 File[15]=".src/Form/AudioForm.form"
 File[16]=".src/Form/AudioForm.class:135.30"
 File[17]=".src/Classi/DynaGuiClass.class:222.13"
-File[18]=".src/Form/CoverManager.class:891.20"
+File[18]=".src/Form/CoverManager.class:67.17"
 File[19]=".src/Form/GeneralOptions.class:899.0"
-File[20]=".src/Classi/Meters.class:160.37"
-Fold[20]=[54,91]
+File[20]=".src/Classi/Meters.class:52.3"
+Fold[20]=[55,92]
 File[21]="AA_ToDo:638.0"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
-File[24]=".src/Classi/YoutubeClass.class:222.41"
+File[24]=".src/Classi/YoutubeClass.class:322.93"
 File[25]="xt7-player.desktop:13.0"
-File[26]=".src/Classi/StartClass.class:19.15"
-File[27]=".src/Form/zzzFake.class:58.19"
+File[26]=".src/Classi/StartClass.class:18.1"
+File[27]=".src/Form/zzzFake.class:8.0"
 File[28]=".src/Classi/TagLib.class:71.15"
 File[29]=".src/Form/HotKeyGrab.class:147.7"
 File[30]=".src/Form/HotKeyGrab.form"
@@ -1238,7 +1241,8 @@ File[40]="meterpt.png"
 File[41]=".src/Form/AddUriForm.class:45.29"
 File[42]=".src/Form/DVBTuner.class:409.8"
 File[43]="emptycover.png"
-Count=43
+File[44]=".src/Classi/OpenSubtitlesAPI.class:12.30"
+Count=44
 
 [Watches]
 Count=4

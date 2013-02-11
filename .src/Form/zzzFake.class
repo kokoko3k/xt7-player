@@ -5,6 +5,7 @@
 
 Public Sub Start()
   Dim i As Integer
+  
   Print ""
   Print Application.name & " " & Application.version
   Print "Usage: " & Application.name & ".gambas [Mediafile] [options]"

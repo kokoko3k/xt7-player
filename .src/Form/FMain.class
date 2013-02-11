@@ -374,7 +374,6 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
 End
 
 Public Sub AllInit_Pre()
-
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
   MakeScreenshotsPath()
@@ -438,7 +437,6 @@ End
 Public Sub AllInit_Post()
   
   Dim savefileview1path As String
-
   Hsplit1ResizeDelayed = New Timer As "Hsplit1ResizeDelayed" 'used to delay the hsplit resize and better performance
   Hsplit1ResizeDelayed.delay = 300
   Hsplit1ResizeDelayed.Enabled = False
@@ -1049,6 +1047,8 @@ Public Sub MainInit()
   Dim cachedfile As File
   Dim MySettings As New SettingsClass
   'Disable Shutdown feature at start.
+  
+
   
   FirstTimeXt7 = Not (Exist(global.ConfPath))
   ShutOff_Click()
@@ -2887,6 +2887,7 @@ Private previousfile_cover As String = ""
 Public mymeters As Meters
 
 Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False)
+  Dim vis As String = ""
   If Show And (Not TagEditMode) Then
     audioform.BarBox.visible = GeneralOptions.ShowVmeterCHK.value
    ' If audioform.AudioPanel.parent = Rightsidepanel Then Return
@@ -2917,7 +2918,8 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
     If GeneralOptions.ShowVmeterCHK.value = True Then
       Try mymeters.stopp
       mymeters = New Meters As "mymeters"
-      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 6, GeneralOptions.fpsspinbox.value, Split(generaloptions.NoParseVisType.text, " ")[0])
+      Try vis = Split(generaloptions.NoParseVisType.text, " ")[0]
+      mymeters.init(audioform.barbox, GeneralOptions.latencyspinbox.value, audioform.BarBox.h, mplayer.exportfile, 6, GeneralOptions.fpsspinbox.value, vis)
       mymeters.startt
     Endif
   Else
@@ -9924,13 +9926,15 @@ End
 
 Public Sub GetLastVersion()
   Dim httpclient1 As Httpclient
+  httpclient1 = New Httpclient As "httpclientlastversion"
   If User.Id <> 0 Then
-    httpclient1 = New Httpclient As "httpclientlastversion"
     HttpClient1.url = "http://xt7-player.sourceforge.net/xt7forum/checkupdates.php"
-    HttpClient1.Async = True
-    HttpClient1.timeout = 10 
-    Try HttpClient1.Get()
+      Else  
+    HttpClient1.url = "http://xt7-player.sourceforge.net/xt7forum/index.php"
   Endif
+  HttpClient1.Async = True
+  HttpClient1.timeout = 10 
+  Try HttpClient1.Get()
 End
 
 

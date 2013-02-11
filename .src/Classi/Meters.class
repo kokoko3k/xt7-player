@@ -20,6 +20,7 @@ Private scaledspacing As Integer
 Private gvis As String
 
 Public Sub init(pparent As Object, platency As Integer, Maxheight As Integer, pexportfile As String, pspacingg As Integer, fps As Integer, Optional vis As String = "vmeters")
+  If vis = "" Then vis = "vmeters"
   If bars.count > 0 Then Try stopp()
   latency = platency
   MaxH = MaxHeight

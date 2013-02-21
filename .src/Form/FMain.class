@@ -2667,7 +2667,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Endif
   '''''OneSecTimer.start
   If (Trim(Youtube.Cookiesfile) <> "") Then cookieopts = "-cookies -cookies-file " & Youtube.Cookiesfile & " "
-  
+
   ' Debug "TTTTTTT:"
   ' Debug "TTTTTTT: Calling mplayer at: " & Timer
   ' Debug "TTTTTTT:"
@@ -3841,10 +3841,22 @@ Public Sub FullScreenSwitch()
   SwitchingFullScreen = True
   If fsform.fullscreen Then
     SwitchToWindow()
+    Wait 0.1
+    If GeneralOptions.NoEffectsCheckbox.value Then
+      If KdeEffectsWereActive Then EnableKDECompositing()
+    Endif
   Else
     SwitchToFS()
+    Wait 0.1
+    'Disable kde effects?
+      If GeneralOptions.NoEffectsCheckbox.value Then
+        Try KdeEffectsWereActive = DisableKDECompositing()
+        If Error Then
+          Debug "Unable to disable kde effects, are you sure use kwin window manager?"
+          KdeEffectsWereActive = False
+        Endif
+      Endif
   Endif
-  Wait 0.1
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
   SwitchingFullScreen = False

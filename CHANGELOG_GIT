@@ -2,7 +2,8 @@ Git changes:
 --------------------------------------
 Feb 21 2013
   FIX:    Option to disable kde effects when in fullscreen works again
-  FIX:    default filename to download youtube streams fixed (includes duration and extension)
+  FIX:    Default filename to download youtube streams fixed (includes duration and extension)
+  FIX:    Youtube videos whose VideoID begins with "-" didn't play; fixed
 
 Feb 11 2013
   FIX:    Workarund for crash on exit with new libcurl 7.29.0

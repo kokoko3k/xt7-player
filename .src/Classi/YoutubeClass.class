@@ -468,8 +468,8 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
       luckyformat = Split(fmt, ",")[1]
     Endif
   Next
-
-  ytdlprocess = Shell "youtube-dl " & videoid & " --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
+  'the space is intentional to play videoid(s) which begins with a "-"
+  ytdlprocess = Shell "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
 
   Repeat
     Wait 0.02

@@ -173,10 +173,6 @@ Public Sub Append(PodCastUrl As String, PodcastTree As Treeview)
       desc = Split(newitem, ts)[1]
       podlink = Split(newitem, ts)[2]
       Try PodcastTree.Add(podlink, title, picture["rss.png"], PodcastUrl)
-      'Try PodcastTree.Add(podlink, title, picture["filetypeuri.png"], PodcastUrl)
-      ' TRY PodcastTree.expanded = TRUE
-      ' PodcastTree.Refresh
-      ' WAIT 0.1
     Next 'newitem
   Endif
 End

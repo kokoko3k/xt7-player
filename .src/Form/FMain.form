@@ -759,10 +759,10 @@
             ToolTip = ("Drag'n drop files, folders or media links to add them,")
             Drop = True
             Expand = True
+            Border = False
             Mode = Select.Multiple
             Grid = False
             Header = GridView.Horizontal
-            Border = False
           }
           { shadeup PictureBox shadeuplow
             Name = "shadeup"
@@ -809,9 +809,9 @@
             MoveScaled(2,8,29,35)
             Tracking = True
             Expand = True
+            Border = False
             Grid = False
             ScrollBar = Scroll.Vertical
-            Border = False
           }
         }
         Index = 2
@@ -864,10 +864,10 @@
             ToolTip = ("Drag'n drop files or media links to add them,")
             Drop = True
             Expand = True
+            Border = False
             Mode = Select.Multiple
             Grid = False
             Header = GridView.Horizontal
-            Border = False
           }
         }
         { WaitPanel2 TextLabel
@@ -1023,10 +1023,10 @@
             ToolTip = ("Double click on an item to start playing")
             Drop = True
             Expand = True
+            Border = False
             Mode = Select.Multiple
             Grid = False
             Header = GridView.Horizontal
-            Border = False
           }
         }
         { ScanBtn Button
@@ -1053,9 +1053,9 @@
             MoveScaled(0,0,29,36)
             ToolTip = ("Double click on an item to start playing")
             Expand = True
+            Border = False
             Mode = Select.Single
             Grid = False
-            Border = False
           }
         }
         Index = 6
@@ -1100,10 +1100,10 @@
             ToolTip = ("This list will be populated by temporary flash files\nwhen you play them into a web browser.")
             Drop = True
             Expand = True
+            Border = False
             Mode = Select.Single
             Grid = False
             Header = GridView.Horizontal
-            Border = False
           }
         }
         { FlashCHK CheckBox
@@ -1131,6 +1131,10 @@
           { youtubetree TreeView
             MoveScaled(0,0,35,12)
             Expand = True
+          }
+          { TimerTreeDelayExpand #Timer
+            #MoveScaled(24,2)
+            Delay = 50
           }
           { scrollviewyt ScrollView
             MoveScaled(0,13,35,13)
@@ -1354,9 +1358,9 @@
             { ShutResultGrid GridView
               MoveScaled(0,0,24,8)
               Expand = True
+              Border = False
               Mode = Select.Multiple
               Grid = False
-              Border = False
             }
           }
         }
@@ -1752,18 +1756,20 @@
           Expand = True
         }
       }
-      { OuterBox DrawingArea VideoAreaGroup
+      { OuterBox Panel VideoAreaGroup
         Name = "OuterBox"
         MoveScaled(1,8,26,35)
         Background = &H000000&
         Drop = True
         Expand = True
+        Margin = True
         { VideoBox DrawingArea VideoAreaGroup
           Name = "VideoBox"
           MoveScaled(1,6,24,14)
           Background = &H000000&
           Tracking = True
           Drop = True
+          Margin = True
         }
       }
       { BottomVbox VBox

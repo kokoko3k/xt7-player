@@ -31,8 +31,8 @@ End
 
 Public Sub clearlogs()
   
-  logarea.Clear
-  errorarea.clear
+  Try logarea.Clear
+  Try errorarea.clear
   
 End
 

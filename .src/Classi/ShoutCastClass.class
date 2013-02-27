@@ -172,15 +172,8 @@ End
 Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
   'returns podcast title,link,description,icon
   Dim t, j As Integer
-
-
   Dim title, br, mt, id, MyLink As String = ""
-
-
-
-
   Dim channelfound As Boolean = False
-
   Dim LastRow As Integer = 0
   Dim tunein_base As String = ""
   Dim TuneinAttribute As XmlNode

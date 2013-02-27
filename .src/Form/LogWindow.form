@@ -48,11 +48,9 @@
       }
     }
     { LogArea TextEdit
-      MoveScaled(1,8,60,17)
+      MoveScaled(1,9,51,16)
       Font = Font["Monospace"]
       Expand = True
-      ReadOnly = True
-      Wrap = True
     }
     Index = 1
     Text = ("Errors")
@@ -72,10 +70,9 @@
       }
     }
     { ErrorArea TextEdit
-      MoveScaled(1,9,60,17)
+      MoveScaled(1,9,51,16)
       Font = Font["Monospace"]
       Expand = True
-      ReadOnly = True
     }
     Index = 0
   }

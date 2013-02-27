@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,105.7143,71)
+  MoveScaled(0,0,106,70)
   Tag = "reparents"
   Text = ("Configure Video Driver")
   Icon = Picture["video-television.png"]
@@ -852,8 +852,10 @@
     }
   }
   { Label6 Label
-    MoveScaled(1,58,68,4)
+    MoveScaled(1,59,68,3)
     Foreground = &H646464&
+    Padding = 6
+    AutoResize = True
     Text = ("Drivers are choosed from top to bottom, drag'n drop them to choose priority.")
     Alignment = Align.Left
   }

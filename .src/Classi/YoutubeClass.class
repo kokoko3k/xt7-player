@@ -73,7 +73,8 @@ Public Sub FeedSearch(searchterm As String, thread As String, tree As Treeview, 
   'fill the current thread
   DownloadAndParse(AskUrl, Tree, thread, resizew, myappend)
   tree.MoveTo(thread)
-  Tree.Item.Expanded = True
+  If Not Global.NeedTreeViewWorkaround() Then tree.Item.expanded = True
+  
 End
 
 Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As String, Optional maxresults As Integer = 20, Optional resizew As Integer = 0, Optional otheropts As String = "", Optional myappend As Boolean = False)
@@ -108,7 +109,7 @@ Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As S
   'fill the current thread
   DownloadAndParse(AskUrl, Tree, "related", resizew, myappend)
   tree.MoveTo("related")
-  Tree.Item.Expanded = True
+  If Not Global.NeedTreeViewWorkaround() Then Tree.Item.Expanded = True
   tree.item.text = "*" & ("Related to: ") & relatedtotext
 End
 
@@ -317,9 +318,7 @@ Public Sub addstream(streaminfo As Collection, tree As Treeview, feed As String)
   Wend
 
   tree.MoveTo(feed)
-  Tree.Item.Expanded = True
-
-  ' Tree.current.Expanded = TRUE
+  Try Tree.current.Expanded = True
   tree.Add(mykey, streaminfo["title"] & "\n" & FormatTime(streaminfo["yt:durationseconds"]), thumb, feed)
   tree.Refresh
   Wait 0.01

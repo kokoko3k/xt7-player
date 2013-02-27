@@ -6292,9 +6292,8 @@ Public Sub Form_Leave()
 End
 
 Public Sub Form_Enter()
-  
+
   MouseOnFmain = True
-  
 End
 
 Public Sub Statusbar1_DblClick()
@@ -7587,7 +7586,7 @@ Public Sub GenresTree_Activate()
   
   Dim IsChild As Boolean = False
   Dim genre As String
-  
+
   GenresTree.MoveCurrent
   IsChild = Not (GenresTree.moveparent())
   If IsChild Then
@@ -7596,12 +7595,21 @@ Public Sub GenresTree_Activate()
   Else
     Last.mouse = mouse.wait
     Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
+    If Not Global.NeedTreeViewWorkaround() Then GenresTree.Current.Expanded = True
+    Wait
     MyRadio.GetStationsFromGenre(Genre, GenresTree)
-    If (GenresTree.Current.Children > 0) Then GenresTree.Current.Expanded = True
-    Last.mouse = mouse.normal
+    If (GenresTree.Current.Children > 0) Then 
+    If Not Global.NeedTreeViewWorkaround() Then GenresTree.Current.expanded = True 'gambas 3.4.0 bug
+    Endif
+   Last.mouse = mouse.normal
   Endif
-  
 End
+
+
+
+
+
+
 
 Public Sub TextBox1_KeyPress()
   
@@ -7980,7 +7988,9 @@ Public Sub PodcastTree_Activate()
         Message.Error(("Error refreshing the feed"))
         Last.mouse = mouse.default
       Endif
-      If (PodcastTree.Current.Children > 0) Then PodcastTree.Current.Expanded = True
+      If (PodcastTree.Current.Children > 0) Then 
+        If Not Global.NeedTreeViewWorkaround() Then PodcastTree.Current.Expanded = True
+      Endif
     Endif
   Endif
   
@@ -8506,18 +8516,22 @@ Public Function YoutubeParseOpts() As String
 End
 
 Public Sub youtubeTree_Activate()
-  
+   TimerTreeDelayExpand.Start()
+End
+
+
+Public Sub TimerTreeDelayExpand_Timer()
   Dim IsChild As Boolean = False
   Dim RealYTVideoUrl As String = ""
   Dim msgrelated As String
+
   'if the item has no parent then refresh it, else play it
   fmain.mouse = mouse.wait
   youtubeTree.MoveCurrent
   If youtubetree.Current.Key Like "__MORERESULTS__*" Then 
     youtubeappendmenu_Click()
-    Return
+    Goto returnlabel
   Endif
-  
   IsChild = Not (youtubeTree.moveparent())
   If IsChild Then
     If global.IsNetworkURI(youtubeTree.current.key) Then
@@ -8525,7 +8539,7 @@ Public Sub youtubeTree_Activate()
       If Error Then
         Message.error(("Unable to get the real stream url"))
         fmain.mouse = mouse.Default
-        Return
+        Goto returnlabel
       Endif
       needytcookie = True
       fmain.Play(RealYTVideoUrl)
@@ -8541,15 +8555,15 @@ Public Sub youtubeTree_Activate()
         Message.info(msgrelated, "Ok")
       Else
         If Trim(ComboBoxRegion.text) = "" Then ComboBoxRegion.Index = 0 'ComboBoxRegion.text = "Any:"
-        
         Youtube.CollapseAll(youtubetree)
         Youtube.GetFeed(youtubeTree.Current.key, youtubeTree, (Desktop.h Div 12), Split(ComboBoxRegion.text, ":", "", False)[1], SpinBoxmaxresults.value)
       Endif
       If (youtubeTree.Current.Children > 0) Then youtubeTree.Current.Expanded = True
     Endif
   Endif
+  ReturnLabel:
+  TimerTreeDelayExpand.stop
   fmain.mouse = mouse.normal
-  
 End
 
 Public Sub youtubetree_Select()
@@ -9999,6 +10013,12 @@ Public Sub SeekBar_MouseDrag()
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
   statusbar1.text = msg
   mplayer.ShowText(msg, 1000)
+End
+
+
+
+Public Sub Form_Show()
+  HSplit1_Resize()
 End
 
 

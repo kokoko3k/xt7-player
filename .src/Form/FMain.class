@@ -10046,7 +10046,7 @@ Public Sub FileView1_Arrange()
     If achild Is Columnview Then
       If achild.proxy Is Gridview Then
         'Stop
-        shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y)
+        shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y - 1)
       Endif
     Endif
   Next

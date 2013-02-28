@@ -520,7 +520,7 @@ Public Sub AllInit_Post()
     global.currentprofile = "default"
   Endif
   shadeup.visible = True
-  shadelow.visible = True
+
   
   Try GetLastVersion()
   
@@ -847,7 +847,7 @@ Public Sub SetStyle_early()
   
   ' 
   shadeup.visible = False
-  shadelow.visible = False
+
   
   cachebar.w = 0
   cachebar.h = (fmain.font.textHeight("iJ") Div 4)
@@ -1612,15 +1612,11 @@ Public Sub LoadFormGeometry()
 End
 
 Public Sub Form_Resize()
-  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
   CostrainFormSizes()
   CorrectAreaAspect()
-  
   Try fmain.Picture = fmain.Picture.Image.Stretch(fmain.w, fmain.h).picture
-  Debug Me.ScreenX
-  Debug Me.screeny
-
+  HSplit1_Resize()
 End
 
 Public Sub ButtonOpen_Click()
@@ -1816,7 +1812,11 @@ Public Function GetOptionsFromGui() As String
 End
 
 Public Sub ButtonPlay_Click()
-
+' If outerbox.background = Color.red Then 
+'     outerbox.background = Color.White 
+'       Else
+'     outerbox.background = Color.red
+' Endif
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       OneSecTimer.start
@@ -3837,7 +3837,6 @@ Private Sub CostrainFormSizes()
 End
 
 Public Sub FullScreenSwitch()
-
   SwitchingFullScreen = True
   If fsform.fullscreen Then
     SwitchToWindow()
@@ -3870,7 +3869,8 @@ Private winmax As Boolean
 
 Public Sub SwitchToFS()
   'save the windowed information
-
+  videobox.hide
+  Wait 0.1
   OuterBox.Mouse = mouse.blank
   VideoBox.Mouse = mouse.blank
   Object.Lock(hsplit1)
@@ -3886,12 +3886,15 @@ Public Sub SwitchToFS()
   
   FsForm.FullScreen = True
   Repeat
-    Wait
+    Wait 0.05
   Until fsform.w >= Screenbypos(fmain.screenx, fmain.screeny).Width
+
   FsForm.Background = color.Default
   
   Maintoolbar.Reparent(FsForm)
+  Wait
   Showbuttonmenu()
+  Wait
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
   
@@ -3902,6 +3905,7 @@ Public Sub SwitchToFS()
   'populate the New VSplit1 With controls
   Leftsidepanel.Reparent(zzzFake.vsplit1)
   rightsidepanel.Reparent(zzzFake.VSplit1)
+
   'restore the form position
   LeftsideWasVisible = LeftsidePanel.Visible 
   
@@ -3943,8 +3947,10 @@ Public Sub SwitchToFS()
   bottomvbox.w = Screenbypos(fmain.screenx, fmain.screeny).Width
   controlframe.w = bottomvbox.W
   Wait
-  CostrainFormSizes() 
-
+  CostrainFormSizes()
+  ' outerbox.background = Color.red
+  Wait 0.1
+  videobox.show
 End
 
 Public Sub SwitchToWindow()
@@ -4011,6 +4017,7 @@ Public Sub SwitchToWindow()
   cachebar.Move(0, outerbox.h - cachebar.h, 0)
   cachebar.raise
   cachebar.show
+  'timerhideshowvideo.start
   'fsform.Background = color.Default
   'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
 End
@@ -5320,14 +5327,6 @@ Public Sub Hsplit1_MyRefresh()
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
 
-  
-  If (rightsidepanel.width < (ControlPanel.w + 64)) Then
-    If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
-  Else
-    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then
-        BottomVbox.Reparent(RightSidePanel)
-    Endif
-  Endif
   CostrainFormSizes()
   Try RightPanel = HSplit1.layout[1]
   If RightPanel = 0 Then
@@ -5753,7 +5752,6 @@ Public Sub EnableDisableTagBtn()
 End
 
 Public Sub LeftSideTabs_Click()
-
   EnableDisableTagBtn()
   resizerows(librarygrid)
   resizerows(playlistgrid)
@@ -5764,8 +5762,15 @@ Public Sub LeftSideTabs_Click()
       MyAlbumsLib.Init(mylibrary, AlbumGridView, SearchFieldAlbums.text)
       MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
     Endif
+      Return
   Endif
 
+
+  If tabselectedbrowse() Then
+    Wait 
+    FileView1_beforeArrange()
+    FileView1_Arrange()
+  Endif
 End
 
 Public Sub LeftSideTabs_KeyRelease()
@@ -6499,14 +6504,13 @@ Public VolumeFocused As Boolean = False
 Public Sub VideoAreaGroup_Enter()
   
   If mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus
-  
+  ' fakesplit.hide
   If Lower(mplayer.Media_FullPath_Playing) Like "dvdnav*" Then
     timerdvd.enabled = True
   Else
     timerdvd.enabled = False
   Endif
-  'Fakesplit_Leave()
-  
+  ' Fakesplit_Leave()
 End
 
 Public Sub VideoAreaGroup_GotFocus()
@@ -8327,18 +8331,6 @@ Public Sub ButtonRefresh_Click()
   
 End
 
-Public Sub buttonlistview_Click()
-  
-  FileView1.ShowDetailed = True
-  
-End
-
-Public Sub ButtonIconview_Click()
-  
-  FileView1.ShowDetailed = False
-  
-End
-
 Public Sub ButtonHidden_Click()
   
   FileView1.ShowHidden = Not FileView1.ShowHidden
@@ -8964,33 +8956,54 @@ End
 ' End
 
 Public Sub HSplit1_Resize()
-  'fakesplit.hide
-
-  Hsplit1_MyRefresh
-
+  If Rnd(0, 1) > 0.75 Then
+  Hsplit1_MyRefresh   
+  Endif
+  timerhideshowvideo.stop
+  timerhideshowvideo.start
+  
 End
 
-Public Sub ShadeList(brother As Object)
-
-  shadeup.x = brother.x 
-  shadelow.x = shadeup.X  
-  Try shadeup.y = brother.clienty + brother.Columns.Height
-  If Error Then Try shadeup.y = brother.clienty 
-  
-  If (brother.Scrollbar = Scroll.Both Or brother.Scrollbar = Scroll.Horizontal) Then
-    shadelow.y = brother.clienty + brother.clienth - shadelow.h + 2
+ Public Sub timerhideshowvideo_Timer()
+  Dim prevlayout As Integer[]
+  prevlayout = hsplit1.Layout
+  timerhideshowvideo.stop
+  If (rightsidepanel.width < (ControlPanel.w + 64)) Then
+    If (BottomVbox.Parent.name <> "FMain") Then 
+      BottomVbox.Reparent(fmain)
+    Endif
   Else
-    shadelow.y = brother.clienty + brother.h - shadelow.h + 2
+    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then
+        BottomVbox.Reparent(RightSidePanel)
+    Endif
   Endif
-  shadeup.w = brother.clientw + 2
-  shadelow.w = brother.clientw + 2
+  hsplit1.Layout = prevlayout
+  Wait
+  videobox.Hide
+  Wait
+  videobox.show
+  Wait
+  Hsplit1_MyRefresh   
+End
 
+
+Public Sub ShadeList(brother As Object, Optional dltx As Integer = 0, Optional dlty As Integer = 0)
+  shadeup.x = brother.x + dltx 
+  Try shadeup.y = brother.clienty + brother.Columns.Height + dlty
+  If Error Then Try shadeup.y = brother.clienty + dlty
+  ' If (brother.Scrollbar = Scroll.Both Or brother.Scrollbar = Scroll.Horizontal) Then
+  '   shadelow.y = brother.clienty + brother.clienth - shadelow.h + 2 + dlty
+  ' Else
+  '   shadelow.y = brother.clienty + brother.h - shadelow.h + 2 + dlty
+  ' Endif
+  shadeup.w = brother.clientw + 2
+  ' shadelow.w = brother.clientw + 2
 End
 
 Public Sub GridPanels_BeforeArrange()
 
   shadeup.Reparent(Last)
-  shadelow.Reparent(Last)
+  ' shadelow.Reparent(Last)
 
 End
 
@@ -9001,14 +9014,14 @@ Public Sub GridPanels_Arrange()
   
   '  If Not (fmain.fullyloaded) Then Return
   
-  For Each brother In shadelow.Parent.Children 
+  For Each brother In shadeup.Parent.Children 
     If brother Is Gridview Then Break
   Next
   Try newsize = CInt(brother.Rows[1].h / 2) 
   If newsize > 18 Then newsize = 18
   Try shadeup.h = newsize Div 2
   shadelist(brother)
-  
+
 End
 
 ' Public Sub HSplit1_MouseMove()
@@ -9633,7 +9646,7 @@ End
 
 Public Sub AlbumGridView_Data(Row As Integer, Column As Integer)
   shadeup.visible = True
-  shadelow.visible = True
+  ' shadelow.visible = True
   MyAlbumsLib.data(row, column)
 End
 
@@ -9970,6 +9983,7 @@ Public Sub PictureBox1_MouseMove()
 End
 
 Public Sub VideoAreaGroup_MouseMove()
+  ' If Mouse.screenx < (outerbox.screenx + 10) Then UseFakeSplit()
   If global.pluginmode Then
     timerpluginmode.Stop()
     If fsform.fullscreen Then 
@@ -9980,9 +9994,6 @@ Public Sub VideoAreaGroup_MouseMove()
     Endif
   Endif
 End
-
-
-
 
 
 Public Sub timerpluginmode_Timer()
@@ -10023,7 +10034,99 @@ Public Sub Form_Show()
   HSplit1_Resize()
 End
 
+Public Sub FileView1_beforeArrange()
+  shadeup.Reparent(fileview1.parent)
+  ' shadelow.Reparent(Last.parent)
+End
+
+Public Sub FileView1_Arrange()
+  Dim xd, yd As Integer
+  Dim achild As Object
+  For Each achild In FileView1.Children
+    If achild Is Columnview Then
+      If achild.proxy Is Gridview Then
+        'Stop
+        shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y)
+      Endif
+    Endif
+  Next
+End
+
+' Public fakesplit As New Panel(zzzfake) As "Fakesplit"
+' 
+' Public Sub Fakesplit_Enter()
+'   Last.mouse = mouse.SplitH
+' End
+' 
+' Public Sub Fakesplit_Leave()
+'   Last.mouse = mouse.default
+'   fakesplit.hide
+' End
+' 
+' Public Sub Fakesplit_MouseMove()
+'   Dim delta As Integer
+'   delta = fakesplit.screenx - fakesplit.x 
+'   fakesplit.x = mouse.screenx - delta
+' End
+' 
+' Public Sub Fakesplit_DblClick()
+'   Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
+'   Dim tmplayout As Integer[] = hsplit1.layout
+'   If hsplit1.Layout[0] > 20 Then
+'   tmplayout[1] = (hsplit1.w - splitterw)
+'   tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
+'   Else
+'   tmplayout[0] = (fmain.w Div 3)
+'   tmplayout[1] = hsplit1.w - tmplayout[0] - splitterw
+'   Endif
+'   hsplit1.Layout = tmplayout
+'   Hsplit1_MyRefresh()
+'   fakesplit.lower
+'   fakesplit.visible = False
+'   Object.Detach(fakesplit)
+' End
+' 
+' Public Sub UseFakeSplit()
+'   If SwitchingFullScreen Then Return
+'   If (fakesplit.parent.name <> Me.name) Then fakesplit.Reparent(fmain)
+'   Object.Attach(fakesplit, fmain, "fakesplit")
+'   fakesplit.Background = color.selectedbackground
+'   fakesplit.Ignore = True
+'   Try fakesplit.x = Leftsidepanel.w - 5 'Mouse.screenx - fmain.screenx - 5  'hsplit1.Layout[0]
+'   If Error Then Return
+'   fakesplit.border = border.none
+'   fakesplit.w = 10 'hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
+'   If fmain.menus.visible Then
+'     fakesplit.y = hsplit1.screeny - fmain.screeny - fmain.font.TextHeight("|JIq") - desktop.scale
+'       Else
+'     fakesplit.y = hsplit1.screeny - fmain.screeny - 1
+'   Endif
+' 
+'   fakesplit.h = hsplit1.h
+'   fakesplit.raise
+'   fakesplit.visible = True
+'   fakesplit.SetFocus()
+' End
+' 
+' 
+' Public Sub LeftSidePanel_MouseMove()
+'   If Mouse.x > Last.w - 10 Then UseFakeSplit()
+' End
+' Public Sub RightSidePanel_MouseMove()
+'   If Mouse.x < 10 Then UseFakeSplit()
+' End
+' 
+' Public Sub FakeSplitRefresh()
+' Dim splitterw As Integer = hsplit1.w - (hsplit1.Layout[0] + hsplit1.Layout[1])
+' Dim tmplayout As Integer[] = hsplit1.layout
+'   tmplayout[1] = (hsplit1.w - fakesplit.x - splitterw)
+'   tmplayout[0] = (hsplit1.w - tmplayout[1] - splitterw)
+'   hsplit1.Layout = tmplayout
+'   Hsplit1_MyRefresh()
+' End
 
 
 
-
+' Public Sub Fakesplit_MouseUp()
+'    FakeSplitRefresh()
+' End

@@ -713,6 +713,7 @@
     Expand = True
     { LeftSidePanel Panel
       MoveScaled(1,1,41,64)
+      Tracking = True
       Expand = True
       Arrangement = Arrange.Vertical
       Spacing = True
@@ -771,13 +772,6 @@
             Picture = Picture["shadeup.png"]
             Stretch = True
           }
-          { shadelow PictureBox shadeuplow
-            Name = "shadelow"
-            MoveScaled(0,29,31,1.1429)
-            Ignore = True
-            Picture = Picture["shadelow.png"]
-            Stretch = True
-          }
         }
         { LibrarySelInfo Label
           MoveScaled(1,47,36,4)
@@ -801,7 +795,7 @@
         }
         { Panel8 Panel GridPanels
           Name = "Panel8"
-          MoveScaled(0,2,35,54)
+          MoveScaled(0,3,35,54)
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
@@ -940,16 +934,6 @@
           { Separator1 Separator
             MoveScaled(19,1,2,4)
           }
-          { buttonlistview Button
-            MoveScaled(21,0,4,4)
-            ToolTip = ("Show detailed list")
-            Picture = Picture["icon:/16/view-detail"]
-          }
-          { ButtonIconview Button
-            MoveScaled(25,0,4,4)
-            ToolTip = ("Show icons")
-            Picture = Picture["icon:/16/view-icon"]
-          }
           { ButtonHidden Button
             MoveScaled(29,0,4,4)
             ToolTip = ("Show/Hide hidden files")
@@ -957,7 +941,8 @@
           }
         }
         { FileView1 FileView
-          MoveScaled(1,13,35,32)
+          MoveScaled(0,13,35,32)
+          Background = Color.TextBackground
           Expand = True
           Mode = Select.Multiple
           Dir = "/"
@@ -1012,7 +997,8 @@
             Picture = Picture["icon:/16/options"]
           }
         }
-        { Panel3 Panel
+        { Panel3 Panel GridPanels
+          Name = "Panel3"
           MoveScaled(6,19,26,23)
           ToolTip = (" ")
           Expand = True
@@ -1044,7 +1030,8 @@
           Tag = "audio cd"
           Text = ("Label3")
         }
-        { Panel4 Panel
+        { Panel4 Panel GridPanels
+          Name = "Panel4"
           MoveScaled(2,5,30,37)
           Expand = True
           Arrangement = Arrange.Fill
@@ -1090,13 +1077,14 @@
           #MoveScaled(2,2)
           Delay = 2000
         }
-        { Panel5 Panel
+        { Panel5 Panel GridPanels
+          Name = "Panel5"
           MoveScaled(2,10,30,15)
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { FlashGrid GridView
-            MoveScaled(4,0,22,13)
+            MoveScaled(3,1,22,13)
             ToolTip = ("This list will be populated by temporary flash files\nwhen you play them into a web browser.")
             Drop = True
             Expand = True
@@ -1112,7 +1100,7 @@
           Text = ("Catch Flash videos in /tmp folder")
         }
         { FlashCHK2 CheckBox
-          MoveScaled(0,29,37,4)
+          MoveScaled(0,29,37,7)
           ToolTip = ("When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager.")
           Text = ("PopUp window to play new catched videos")
         }
@@ -1350,13 +1338,14 @@
               Expand = True
             }
           }
-          { Panel6 Panel
+          { Panel6 Panel GridPanels
+            Name = "Panel6"
             MoveScaled(3,13,27,10)
             Expand = True
             Arrangement = Arrange.Fill
             Border = Border.Plain
             { ShutResultGrid GridView
-              MoveScaled(0,0,24,8)
+              MoveScaled(-4,0,24,8)
               Expand = True
               Border = False
               Mode = Select.Multiple
@@ -1410,14 +1399,15 @@
           Tag = "media info"
           Text = ("Label3")
         }
-        { Panel7 Panel
+        { Panel7 Panel GridPanels
+          Name = "Panel7"
           MoveScaled(1,6,34,31)
           Background = Color.TextBackground
           Expand = True
           Arrangement = Arrange.Fill
           Border = Border.Plain
           { PropertiesGrid GridView
-            MoveScaled(0,0,33,30)
+            MoveScaled(-5,0,33,30)
             ToolTip = ("Info on playing media\nor on the last played one")
             Expand = True
             Border = False
@@ -1768,7 +1758,10 @@
           Background = &H000000&
           Tracking = True
           Drop = True
-          Margin = True
+          { TimerHideShowVideo #Timer
+            #MoveScaled(2,5)
+            Delay = 100
+          }
         }
       }
       { BottomVbox VBox

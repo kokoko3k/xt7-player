@@ -374,6 +374,7 @@ Public Sub ShowGrid(LibraryGrid As Gridview)
 End
 
 Public Sub AllInit_Pre()
+  shadeup.visible = False
   VersionCheck()
   'MakeProfilePath() <--maininit already did this
   MakeScreenshotsPath()
@@ -519,7 +520,7 @@ Public Sub AllInit_Post()
     ReallySaveAllSettings("default", False, True)
     global.currentprofile = "default"
   Endif
-  shadeup.visible = True
+
 
   
   Try GetLastVersion()
@@ -9001,8 +9002,9 @@ Public Sub ShadeList(brother As Object, Optional dltx As Integer = 0, Optional d
 End
 
 Public Sub GridPanels_BeforeArrange()
-
+  If Not fmain.FullyLoaded Then Return
   shadeup.Reparent(Last)
+  shadeup.visible = True
   ' shadelow.Reparent(Last)
 
 End
@@ -9645,7 +9647,6 @@ End
 
 
 Public Sub AlbumGridView_Data(Row As Integer, Column As Integer)
-  shadeup.visible = True
   ' shadelow.visible = True
   MyAlbumsLib.data(row, column)
 End
@@ -10035,6 +10036,7 @@ Public Sub Form_Show()
 End
 
 Public Sub FileView1_beforeArrange()
+  shadeup.visible = False
   shadeup.Reparent(fileview1.parent)
   ' shadelow.Reparent(Last.parent)
 End
@@ -10047,6 +10049,7 @@ Public Sub FileView1_Arrange()
       If achild.proxy Is Gridview Then
         'Stop
         shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y - 1)
+        shadeup.visible = True
       Endif
     Endif
   Next

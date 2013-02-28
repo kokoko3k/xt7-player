@@ -5324,7 +5324,9 @@ Public Sub Hsplit1_MyRefresh()
   If (rightsidepanel.width < (ControlPanel.w + 64)) Then
     If (BottomVbox.Parent.name <> "FMain") Then BottomVbox.Reparent(fmain)
   Else
-    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then BottomVbox.Reparent(RightSidePanel)
+    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then
+        BottomVbox.Reparent(RightSidePanel)
+    Endif
   Endif
   CostrainFormSizes()
   Try RightPanel = HSplit1.layout[1]
@@ -7253,7 +7255,6 @@ Private Sub TabOrientation()
   Else
     Leftsidetabs.Orientation = 19
   Endif
-  
   If fmain.fullyloaded Then  'force an update
     tmplayout[1] = tmplayout[1] - 1
     tmplayout[0] = tmplayout[0] + 1
@@ -8969,11 +8970,12 @@ Public Sub HSplit1_Resize()
 
 End
 
-Public Sub ShadeList(brother As Gridview)
+Public Sub ShadeList(brother As Object)
 
   shadeup.x = brother.x 
   shadelow.x = shadeup.X  
-  shadeup.y = brother.clienty + brother.Columns.Height
+  Try shadeup.y = brother.clienty + brother.Columns.Height
+  If Error Then Try shadeup.y = brother.clienty 
   
   If (brother.Scrollbar = Scroll.Both Or brother.Scrollbar = Scroll.Horizontal) Then
     shadelow.y = brother.clienty + brother.clienth - shadelow.h + 2
@@ -10020,5 +10022,8 @@ End
 Public Sub Form_Show()
   HSplit1_Resize()
 End
+
+
+
 
 

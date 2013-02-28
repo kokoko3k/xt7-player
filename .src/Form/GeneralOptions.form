@@ -29,7 +29,7 @@
     MoveScaled(0,0,86,69)
     Expand = True
     { VBox1 VBox
-      MoveScaled(1,1,19,67)
+      MoveScaled(1,1,21,67)
       Spacing = True
       { Label1 Label
         MoveScaled(2,1,11,4)
@@ -37,7 +37,7 @@
         Alignment = Align.Justify
       }
       { OptionsList ListView
-        MoveScaled(1,5,15,61)
+        MoveScaled(1,5,19,61)
         Expand = True
       }
     }

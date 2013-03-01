@@ -8964,10 +8964,10 @@ Public Sub HSplit1_Resize()
   If Rnd(0, 1) > 0.75 Then
     Hsplit1_MyRefresh   
   Endif
-  If Not FMain.mplayer.AudioOnly Then
+  'If Not FMain.mplayer.AudioOnly Then
     timerhideshowvideo.stop
     timerhideshowvideo.start
-  Endif
+  'Endif
 End
 
  Public Sub timerhideshowvideo_Timer()
@@ -9002,6 +9002,7 @@ End
     videobox.y = xy
     Wait
   Endif
+
 End
 
 

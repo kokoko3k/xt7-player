@@ -2,7 +2,7 @@
 Global=[110]
 
 [Breakpoints]
-Breakpoint[1]="FMain.8412"
+Breakpoint[1]="FMain.8409"
 Count=1
 
 [DebugWindow]
@@ -79,6 +79,15 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/Color]
 Geometry=[0,0,301,301]
+
+[DebugWindow/ColumnView(FileView1.Children[1]).Columns]
+Geometry=[726,312,564,770]
+
+[DebugWindow/ColumnView(FileView1.Children[1]).Item]
+Geometry=[726,312,564,770]
+
+[DebugWindow/ColumnView(FileView1.Children[1]).Proxy]
+Geometry=[604,227,564,770]
 
 [DebugWindow/Columnindex]
 Geometry=[325,-20,210,210]
@@ -159,10 +168,22 @@ Geometry=[52,0,222,507]
 Geometry=[51,0,344,344]
 
 [DebugWindow/FileView1]
-Geometry=[0,0,564,770]
+Geometry=[155,227,564,770]
 
 [DebugWindow/FileView1.Children]
-Geometry=[642,262,210,210]
+Geometry=[672,191,564,770]
+
+[DebugWindow/FileView1.Children[0]]
+Geometry=[687,205,564,770]
+
+[DebugWindow/FileView1.Children[1]]
+Geometry=[394,227,564,770]
+
+[DebugWindow/FileView1.Children[2]]
+Geometry=[28,28,564,770]
+
+[DebugWindow/FileView1.children[0]]
+Geometry=[1278,-3,620,712]
 
 [DebugWindow/FileView1.filter]
 Geometry=[0,35,1073,466]
@@ -203,6 +224,15 @@ Geometry=[0,0,344,344]
 [DebugWindow/Global]
 Geometry=[187,107,643,768]
 
+[DebugWindow/GridView(ColumnView(FileView1.Children[1]).Proxy).Columns]
+Geometry=[503,151,564,770]
+
+[DebugWindow/GridView(ColumnView(FileView1.Children[1]).Proxy).Rows]
+Geometry=[503,151,564,770]
+
+[DebugWindow/GridView(ColumnView(FileView1.Children[1]).Proxy).Rows.Selection]
+Geometry=[517,165,564,770]
+
 [DebugWindow/HBox]
 Geometry=[0,0,301,301]
 
@@ -217,6 +247,9 @@ Geometry=[0,0,210,210]
 
 [DebugWindow/ICYTagArray]
 Geometry=[0,0,683,353]
+
+[DebugWindow/IconView(FileView1.Children[0]).Proxy]
+Geometry=[752,321,564,770]
 
 [DebugWindow/Image]
 Geometry=[51,0,210,210]
@@ -406,6 +439,15 @@ Geometry=[1280,0,210,210]
 
 [DebugWindow/Screenshot]
 Geometry=[0,0,344,344]
+
+[DebugWindow/ScrollArea(librarygrid.Children[0]).Children]
+Geometry=[1756,321,614,580]
+
+[DebugWindow/ScrollArea(librarygrid.Children[0]).View]
+Geometry=[1803,308,614,580]
+
+[DebugWindow/ScrollArea(librarygrid.Children[0]).View.Children]
+Geometry=[1817,322,614,580]
 
 [DebugWindow/SearchTable]
 Geometry=[0,0,1014,714]
@@ -617,6 +659,18 @@ Geometry=[0,41,344,344]
 [DebugWindow/[ColumnIndex.count]]
 Geometry=[0,0,301,301]
 
+[DebugWindow/achild]
+Geometry=[485,99,526,656]
+
+[DebugWindow/achild.Parent]
+Geometry=[499,113,526,656]
+
+[DebugWindow/achild.Proxy]
+Geometry=[576,220,526,656]
+
+[DebugWindow/achild.proxy]
+Geometry=[1442,202,210,210]
+
 [DebugWindow/albums]
 Geometry=[47,-3,1229,1002]
 
@@ -681,7 +735,13 @@ Geometry=[1280,0,467,521]
 Geometry=[47,0,210,210]
 
 [DebugWindow/brother]
-Geometry=[1280,0,210,210]
+Geometry=[769,213,382,665]
+
+[DebugWindow/brother.Columns]
+Geometry=[1294,14,382,665]
+
+[DebugWindow/brother.Proxy]
+Geometry=[803,146,382,665]
 
 [DebugWindow/brother.proxy]
 Geometry=[1628,198,499,471]
@@ -816,10 +876,13 @@ Geometry=[1280,160,210,210]
 Geometry=[0,0,2550,412]
 
 [DebugWindow/librarygrid]
-Geometry=[51,417,614,580]
+Geometry=[1527,135,614,580]
+
+[DebugWindow/librarygrid.Children]
+Geometry=[1728,293,614,580]
 
 [DebugWindow/librarygrid.Children[0]]
-Geometry=[1280,0,415,708]
+Geometry=[1742,307,614,580]
 
 [DebugWindow/librarygrid.Rows]
 Geometry=[65,417,614,580]
@@ -1204,11 +1267,11 @@ File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:719.31"
 Active=5
-File[5]=".src/Form/FMain.class:10028.0"
+File[5]=".src/Form/FMain.class:4139.4"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:119.3"
-File[9]="CHANGELOG_GIT:3.26"
+File[9]="CHANGELOG_GIT:13.66"
 File[10]=".src/Classi/MplayerClass.class:1007.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1227,12 +1290,12 @@ File[23]=".src/Form/GeneralOptions.form"
 File[24]=".src/Classi/YoutubeClass.class:320.6"
 File[25]="xt7-player.desktop:13.0"
 File[26]=".src/Classi/StartClass.class:18.1"
-File[27]=".src/Form/zzzFake.class:8.0"
+File[27]=".src/Form/zzzFake.class:111.33"
 File[28]=".src/Classi/TagLib.class:71.15"
 File[29]=".src/Form/HotKeyGrab.class:147.7"
 File[30]=".src/Form/HotKeyGrab.form"
 File[31]=".src/Form/Chains.class:76.0"
-File[32]=".src/Form/VFiltersCfg.class:531.0"
+File[32]=".src/Form/VFiltersCfg.class:470.0"
 File[33]=".src/Classi/SettingsClass.class:595.17"
 File[34]=".src/Form/AFiltersCfg.class:209.39"
 File[35]="MoreResults.png"

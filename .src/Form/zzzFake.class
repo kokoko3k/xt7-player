@@ -109,7 +109,10 @@ Public Sub Sock_Play(URI As String)
 End
 
 Public Sub VSplit1_Resize()
-  If Not FMain.mplayer.AudioOnly Then FMain.CorrectAreaAspect()
+  If Not FMain.mplayer.AudioOnly Then
+    FMain.CorrectAreaAspect()
+    fmain.TimerHideShowVideo.start
+  Endif
 End
 
 Public Sub LabelPanel_MouseDown()

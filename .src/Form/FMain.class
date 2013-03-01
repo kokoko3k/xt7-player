@@ -3812,12 +3812,10 @@ Public Sub ArrangeBottmVbox()
   controlframe.x = 0
   controlframe.y = controlframe.Parent.h - controlframe.h
   controlframe.w = controlframe.Parent.w
-  Debug
 
 End
 
 Private Sub CostrainFormSizes()
-  
   If (global.pluginmode) Then
     If Not fsform.fullscreen Then
       ArrangeBottmVbox()
@@ -3834,7 +3832,6 @@ Private Sub CostrainFormSizes()
   Endif
   ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
-
 End
 
 Public Sub FullScreenSwitch()
@@ -4135,17 +4132,24 @@ End
 Public Sub SwitchSidePanelBTN_Click()
   
   If Leftsidepanel.visible Then
-    If Not fsform.FullScreen Then Hsplit1.tag = Hsplit1.layout
+    If Not fsform.FullScreen Then
+      Hsplit1.tag = Hsplit1.layout
+      Leftsidepanel.visible = False
+      Hsplit1_MyRefresh() 'gb 3.4.0 bug
+    Endif
     Leftsidepanel.visible = False
   Else
     Leftsidepanel.visible = True
     'Wait 1
     If Not fsform.FullScreen Then 
+      Hsplit1_MyRefresh() 'gb 3.4.0 bug
+
       If hsplit1.tag = Null Then
         Leftsidepanel.w = 256
         'Wait 1
       Else
         Hsplit1.layout = Hsplit1.tag
+        timerhideshowvideo.start 'gb 3.4.0 bug
       Endif 
     Endif
   Endif
@@ -8958,33 +8962,46 @@ End
 
 Public Sub HSplit1_Resize()
   If Rnd(0, 1) > 0.75 Then
-  Hsplit1_MyRefresh   
+    Hsplit1_MyRefresh   
   Endif
-  timerhideshowvideo.stop
-  timerhideshowvideo.start
-  
+  If Not FMain.mplayer.AudioOnly Then
+    timerhideshowvideo.stop
+    timerhideshowvideo.start
+  Endif
 End
 
  Public Sub timerhideshowvideo_Timer()
   Dim prevlayout As Integer[]
-  prevlayout = hsplit1.Layout
+  Dim xy As Integer
   timerhideshowvideo.stop
-  If (rightsidepanel.width < (ControlPanel.w + 64)) Then
-    If (BottomVbox.Parent.name <> "FMain") Then 
-      BottomVbox.Reparent(fmain)
+  prevlayout = hsplit1.Layout
+  If Not fsform.fullscreen Then
+    If (rightsidepanel.width < (ControlPanel.w + 64)) Then
+      If (BottomVbox.Parent.name <> "FMain") Then 
+        BottomVbox.Reparent(fmain)
+      Endif
+    Else
+      If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then
+          BottomVbox.Reparent(RightSidePanel)
+      Endif
     Endif
-  Else
-    If (BottomVbox.Parent.name <> "RightSidePanel") And (Not (fsform.FullScreen)) Then
-        BottomVbox.Reparent(RightSidePanel)
-    Endif
+    hsplit1.Layout = prevlayout
   Endif
-  hsplit1.Layout = prevlayout
-  Wait
-  videobox.Hide
-  Wait
-  videobox.show
-  Wait
-  Hsplit1_MyRefresh   
+  If Not fsform.fullscreen Then 
+    xy = videobox.x
+    Wait
+    videobox.x = 20
+    Wait
+    videobox.x = xy
+    Wait
+    Hsplit1_MyRefresh  
+      Else
+    xy = videobox.y
+    videobox.y = 20
+    Wait
+    videobox.y = xy
+    Wait
+  Endif
 End
 
 

@@ -8328,7 +8328,7 @@ Public Sub ButtonUp_Click()
   If String.Right(FileView1.dir, 1) = "/" Then FileView1.dir = String.Left(FileView1.dir, Len(FileView1.dir) - 1)
   FileView1.dir = File.dir(FileView1.dir)
   urlbox.text = Replace(FileView1.dir, "//", "/")
-  
+
 End
 
 Public Sub ButtonRefresh_Click()
@@ -10056,7 +10056,7 @@ End
 
 Public Sub FileView1_beforeArrange()
   Dim newsize As Integer = 9
-  Try newsize = CInt(fileview1.Font.TextHeight("|") / 3) 
+  Try newsize = CInt(fileview1.Font.TextHeight("|") / 2.5) 
   If newsize > 9 Then newsize = 9
   Try shadeup.h = newsize
 
@@ -10073,6 +10073,7 @@ Public Sub FileView1_Arrange()
       If achild.proxy Is Gridview Then
         'Stop
         shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y - 1)
+        If fmain.fullyloaded Then shadeup.visible = True
       Endif
     Endif
   Next
@@ -10156,3 +10157,12 @@ End
 ' Public Sub Fakesplit_MouseUp()
 '    FakeSplitRefresh()
 ' End
+
+Public Sub UrlBox_Change()
+  If Not fmain.fullyloaded Then Return
+  fileview1.Refresh()
+  fileview1.mode = Select.single
+  Wait
+  FileView1_Arrange()
+  fileview1.mode = Select.Multiple
+End

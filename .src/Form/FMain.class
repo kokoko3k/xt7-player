@@ -509,6 +509,7 @@ Public Sub AllInit_Post()
   ShowGrid(librarygrid)
   ShowGrid(playlistgrid)
   ShowGrid(DVBTGrid)
+  shadeup.visible = True
   If fmain.havetoshowbrowsetab Then
     fmain.havetoshowbrowsetab = False
     If Exist(Application.Args[1]) Then fmain.ShowBrowseTabTo(Application.Args[1])
@@ -9030,16 +9031,16 @@ End
 Public Sub GridPanels_Arrange()
 
   Dim brother As Gridview
-  Dim newsize As Integer = 18
+  Dim newsize As Integer = 9
   
   '  If Not (fmain.fullyloaded) Then Return
   
   For Each brother In shadeup.Parent.Children 
     If brother Is Gridview Then Break
   Next
-  Try newsize = CInt(brother.Rows[1].h / 2) 
-  If newsize > 18 Then newsize = 18
-  Try shadeup.h = newsize Div 2
+  Try newsize = CInt(brother.Rows[1].h / 4) 
+  If newsize > 9 Then newsize = 9
+  Try shadeup.h = newsize
   shadelist(brother)
 
 End
@@ -10054,6 +10055,11 @@ Public Sub Form_Show()
 End
 
 Public Sub FileView1_beforeArrange()
+  Dim newsize As Integer = 9
+  Try newsize = CInt(fileview1.Font.TextHeight("|") / 3) 
+  If newsize > 9 Then newsize = 9
+  Try shadeup.h = newsize
+
   shadeup.visible = False
   shadeup.Reparent(fileview1.parent)
   ' shadelow.Reparent(Last.parent)
@@ -10067,7 +10073,6 @@ Public Sub FileView1_Arrange()
       If achild.proxy Is Gridview Then
         'Stop
         shadelist(achild.proxy, Object.GetProperty(FileView1.Parent, "padding") + achild.proxy.clientx - 1, FileView1.y - 1)
-        shadeup.visible = True
       Endif
     Endif
   Next

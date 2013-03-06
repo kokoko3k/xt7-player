@@ -767,7 +767,7 @@
           }
           { shadeup PictureBox shadeuplow
             Name = "shadeup"
-            MoveScaled(1,12,31,2)
+            MoveScaled(2,12,31,2)
             Visible = False
             Ignore = True
             Picture = Picture["shadeup.png"]

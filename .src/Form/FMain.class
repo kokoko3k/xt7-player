@@ -509,7 +509,11 @@ Public Sub AllInit_Post()
   ShowGrid(librarygrid)
   ShowGrid(playlistgrid)
   ShowGrid(DVBTGrid)
-  shadeup.visible = True
+  If shadeup.parent = fileview1 Then 
+    FileView1_Arrange()
+      Else
+    shadeup.visible = True
+  Endif
   If fmain.havetoshowbrowsetab Then
     fmain.havetoshowbrowsetab = False
     If Exist(Application.Args[1]) Then fmain.ShowBrowseTabTo(Application.Args[1])

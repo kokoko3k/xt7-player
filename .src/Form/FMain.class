@@ -8738,7 +8738,8 @@ Public Sub youtubeappendmenu_Click()
       lastitemkey = youtubetree.Item.key
       youtubetree.item.selected = True
     Endif
-    tmptmpkey = youtubetree.Item.key
+    Try tmptmpkey = youtubetree.Item.key
+    If Error Then Goto returnlabel
     While youtubetree.item.ParentKey <> Null
       howmanyparents += 1
       Try myparentkey = youtubetree.item.ParentKey
@@ -8756,8 +8757,13 @@ Public Sub youtubeappendmenu_Click()
   fmain.mouse = mouse.wait
   Leftsidetabs.mouse = Mouse.wait
   If howmanyparents >= 2 Then 'myparentkey = "related" Then 'go to child item to see what related items we need
-      relatedlink = youtubetree.Current.ParentKey '.key 'youtubetree.Item.key
+      tmptmpkey = youtubetree.Item.key 'gambas 3.3.4 bug!
+      relatedlink = youtubetree.Current.ParentKey '.key 'youtubetree.Item.key 'why this change item !?!?
+      Try youtubetree.MoveTo(tmptmpkey) 'gambas 3.3.4 bug!
+      If Error Then Goto ReturnLabel
       relatedtotext = Left(youtubetree.item.text, InStr(youtubetree.item.text, "\n"))
+
+
       Youtube.GetRelated(relatedlink, youtubetree, relatedtotext, SpinBoxmaxresults.text, (Desktop.h Div 12),, True)
     Else If myparentkey = "custom_search_results" Then
       SearchYoutube(True)

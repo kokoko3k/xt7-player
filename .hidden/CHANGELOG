@@ -1,3 +1,50 @@
+* Thu Mar 07 2013 Antonio Orefice <xt7player@gmail.com> 3.4.0
+- Mar 07 2013
+- FIX:    Small cosmetic fix for gambas <3.4.0
+- Mar 06 2013
+- FIX:    Change shadeup.png visibility only when the form is fully loaded
+- FIX:    Fileview selection fixes
+- Mar 01 2013
+- FIX:    More workarounds to prevent gui glitches with gambas 3.4.0
+- FIX:    Reparent controlpanel for audiofiles too
+- Feb 28 2012
+- FIX:    Wider icon list column in generaloptions form
+- FIX:    Some workarounds to prevent gui glitches with gambas 3.4.0
+- Feb 27 2013
+- FIX:    Removed a margin
+- FIX:    Specific refresh and treeveiw fixes for gambas 3.4.0
+- Feb 21 2013
+- FIX:    Option to disable kde effects when in fullscreen works again
+- FIX:    Default filename to download youtube streams fixed (includes duration and extension)
+- FIX:    Youtube videos whose VideoID begins with "-" didn't play; fixed
+- Feb 11 2013
+- FIX:    Workarund for crash on exit with new libcurl 7.29.0
+- Feb 05 2013
+- CHANGE: Youtube tree: span title/duration over 2 lines.
+- Feb 04 2013
+- FIX:    More natural Goertzel filter (DFT)
+- FIX:    Replace &amp; with & in youtube titles
+- Jan 31 2013
+- CHANGE: Small shade on meterpt.png
+- FIX:    Sometimes scrollbars didn't show up in grids (again)
+- Jan 29 2013
+- FIX:    Switch visualization by clicking on the blank space too (not just the bar)
+- NEW:    Audio Spectrum visualization (click on the meter bars or set it in generaloptions)
+- Jan 24 2013
+- FIX:    Audio meters display is 4x faster
+- Jan 22 2013
+- CHANGE: A few of new icons (thanks to  Alessandro Bompadre)
+- FIX:    Keep pause state in some circumstances
+- FIX:    Extra mouse buttons (4,5) should be recognized again
+- Jan 21 2013
+- FIX:    Give video area tracking
+- FIX:    Composite mouse hotkeys (eg: right+wheel) where lost when moving the mouse
+- Jan 16 2013
+- FIX:    Slightly optimized meters calculation code
+- FIX:    Don't use taglib for wav files as it fails to parse channel number (https://github.com/taglib/taglib/issues/92)
+- FIX:    Vmeters spacing with channels number >2 was wrong
+- FIX:    Vmeters are instancied objects now
+
 * Wed Dec 19 2012 Antonio Orefice <xt7player@gmail.com> 3.3.5
 - Be compatible with youtube-dl >=2012.12.11
 

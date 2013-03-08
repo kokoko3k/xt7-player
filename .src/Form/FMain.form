@@ -1144,7 +1144,7 @@
           }
         }
         { HBox13 HBox
-          MoveScaled(0,32,38,4)
+          MoveScaled(-8,32,38,4)
           ToolTip = (" ")
           { buttonopts Button
             MoveScaled(0,0,4,4)
@@ -1175,7 +1175,7 @@
             Text = ("Results")
           }
           { SpinBoxmaxresults SpinBox
-            MoveScaled(28,0,7,4)
+            MoveScaled(26,0,7,4)
             ToolTip = ("How many results to get.")
             MinValue = 1
             MaxValue = 49

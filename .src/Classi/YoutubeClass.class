@@ -23,7 +23,7 @@ Public Sub init_tree(tree As Treeview)
   Tree.Add("most_responded", ("Most responded"), picture["youtubeicon.png"])
   Tree.Add("recently_featured", ("Recently featured"), picture["youtubeicon.png"])
   Tree.Add("custom_search_results", ("Custom search results"), picture["youtubeicon.png"])
-  Tree.Add("related", ("*Related Videos"), picture["youtubeicon.png"])
+  'Tree.Add("related", ("*Related Videos"), picture["youtubeicon.png"])
 End
 
 Public Sub GetFeed(feed As String, tree As Treeview, Optional resizew As Integer = 0, Optional region As String = "", Optional maxresults As Integer = 25, Optional myappend As Boolean = False)
@@ -54,9 +54,9 @@ Public Sub FeedSearch(searchterm As String, thread As String, tree As Treeview, 
   '   &v=2
   Dim AskUrl As String
   Dim v As Integer = 1 'api version
-  
+
   maxresults = maxresults + 1
-  
+
   Askurl = "http://gdata.youtube.com/feeds/api/videos"
   Askurl = Askurl & "?q=" & searchterm
   Askurl = Askurl & "&max-results=" & maxresults
@@ -73,8 +73,9 @@ Public Sub FeedSearch(searchterm As String, thread As String, tree As Treeview, 
   'fill the current thread
   DownloadAndParse(AskUrl, Tree, thread, resizew, myappend)
   tree.MoveTo(thread)
-  If Not Global.NeedTreeViewWorkaround() Then tree.Item.expanded = True
-  
+  If Not Global.NeedTreeViewWorkaround() Then 
+    tree.Item.expanded = True
+  Endif
 End
 
 Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As String, Optional maxresults As Integer = 20, Optional resizew As Integer = 0, Optional otheropts As String = "", Optional myappend As Boolean = False)
@@ -99,18 +100,21 @@ Public Sub GetRelated(sourcefeed As String, tree As Treeview, relatedtotext As S
   Askurl = Askurl & "&v=" & v
   Askurl = Askurl & Otheropts
   'clear previous search results
-  If (Not myappend) Then 'delete previous results if not appending
-    Repeat
-      Tree.MoveTo("related")
-      Tree.MoveChild()
-      Try Tree.Item.Delete
-    Until Error
-  Endif
+  ' If (Not myappend) Then 'delete previous results if not appending
+  '   Repeat
+  '     Tree.MoveTo("related")
+  '     Tree.MoveChild()
+  '     Try Tree.Item.Delete
+  '   Until Error
+  ' Endif
   'fill the current thread
-  DownloadAndParse(AskUrl, Tree, "related", resizew, myappend)
-  tree.MoveTo("related")
-  If Not Global.NeedTreeViewWorkaround() Then Tree.Item.Expanded = True
-  tree.item.text = "*" & ("Related to: ") & relatedtotext
+  'DownloadAndParse(AskUrl, Tree, "related", resizew, myappend)
+  DownloadAndParse(AskUrl, Tree, sourcefeed, resizew, myappend) 'try to fill the current subthread
+  'tree.MoveTo("related")
+  tree.item.text = "*" & ("More Related to: ") & Left(relatedtotext, InStr(relatedtotext, "\n") - 1)
+  ' If Not Global.NeedTreeViewWorkaround() Then 
+    Tree.Item.Expanded = True
+'   Endif
 End
 
 Private Function HaveToParseNode(MyXmlreader As Xmlreader) As Boolean
@@ -144,7 +148,12 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
 
 
   
-  If tree.item = Null Then tree.movecurrent
+  If tree.item = Null Then
+    tree.movecurrent
+    If tree.item = Null Then
+      tree.MoveTo(feedname)
+    Endif
+  Endif
   
   If myappend Then url = url & "&start-index=" & CStr(tree.Item.Children + 1)
 
@@ -278,10 +287,12 @@ Wait
     Endif
     Try reader.Read()
     If Error Then Break
-Wait
+    Try tree.MoveParent
+    Try tree.Item.expanded = True
+    Try tree.moveback
+    Wait
   Wend
   AddMoreResultsItem(tree, feedname, resizew)
-  'PRINT out
 End
 
 Public Function downloadpicture(uri As String, Optional resizew As Integer = 0) As Picture
@@ -330,13 +341,20 @@ End
 
 
 Public Sub AddMoreResultsItem(tree As Treeview, feed As String, resizew As Integer)
-  Dim Mykey As String
+  Dim Mykey, tmpkey, parenttext As String
   Dim thumb As Picture
   Dim resizeh As Integer
   resizeh = (resizew * 3) Div 4
   mykey = "__MORERESULTS__" & CStr(Rnd(0, 9999999999999999999))
   thumb = picture.Load("MoreResults.png").Image.Stretch(resizew, resizeh).Picture
-  tree.Add(MyKey, ("More Results..."), thumb, feed)
+  'find parent text
+  Try tmpkey = tree.item.key
+  tree.MoveTo(tree.current.key)
+  tree.moveparent()
+  Try parenttext = tree.Item.text
+  If Error Then parenttext = tree.current.text
+  Try tree.MoveTo(tmpkey)
+  tree.Add(MyKey, (("See more results") & ": " & parenttext), thumb, feed)
   tree.Refresh
   Wait 0.01
 End
@@ -534,6 +552,7 @@ Public Sub Select_NextTreeItem(MyTree As Treeview)
   Endif
   Wait 0.1 'needed for grid select event to fill new mplayer.media_fullpath,maybe tunable
 End
+
 
 Public Sub Select_PrevTreeItem(MyTree As Treeview)
   MyTree.movecurrent

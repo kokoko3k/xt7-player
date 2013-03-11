@@ -6,7 +6,8 @@ Breakpoint[1]="FMain.8414"
 Count=1
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="youtubetree.Item"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -1206,7 +1207,11 @@ Geometry=[0,41,344,344]
 Geometry=[51,0,722,281]
 
 [DebugWindow/tree]
-Geometry=[47,-3,279,770]
+Geometry=[61,11,279,770]
+
+[DebugWindow/tree.Current]
+ShowHidden=True
+Geometry=[529,189,279,770]
 
 [DebugWindow/uncovered]
 Geometry=[664,142,359,803]
@@ -1246,10 +1251,14 @@ Geometry=[116,387,813,653]
 Geometry=[44,-3,490,476]
 
 [DebugWindow/youtubetree]
-Geometry=[0,0,344,344]
+Geometry=[1314,608,344,344]
 
 [DebugWindow/youtubetree.Current]
 Geometry=[0,0,210,503]
+
+[DebugWindow/youtubetree.Item]
+ShowHidden=True
+Geometry=[2186,563,344,344]
 
 [DebugWindow/ytdloutlines]
 Geometry=[129,217,672,607]
@@ -1266,12 +1275,12 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:680.16"
-Active=5
-File[5]=".src/Form/FMain.class:508.13"
+File[5]=".src/Form/FMain.class:8755.32"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:119.3"
-File[9]="CHANGELOG_GIT:3.46"
+Active=9
+File[9]="CHANGELOG_GIT:3.0"
 File[10]=".src/Classi/MplayerClass.class:1007.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
@@ -1287,7 +1296,7 @@ Fold[20]=[55,92]
 File[21]="AA_ToDo:638.0"
 File[22]=".src/Form/EpgForm.form"
 File[23]=".src/Form/GeneralOptions.form"
-File[24]=".src/Classi/YoutubeClass.class:320.6"
+File[24]=".src/Classi/YoutubeClass.class:353.19"
 File[25]="xt7-player.desktop:13.0"
 File[26]=".src/Classi/StartClass.class:18.1"
 File[27]=".src/Form/zzzFake.class:111.33"

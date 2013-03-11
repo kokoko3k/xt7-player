@@ -4747,62 +4747,41 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
 End
 
 Public Sub BrowseSelectNext()
-
-  Dim obj As Object
-  Dim tmpstr As String
-
-  FileView1.mode = Select.Single
-  For Each obj In FileView1.Children
-    Try tmpstr = obj.current.text
-    If Not Error Then
-      Try obj.movecurrent
-      If Error Then 
-        FileView1.mode = Select.Multiple
-        Return
-      Endif
-      If obj.MoveBelow() Then Try obj.movefirst()
-      Try obj.item.selected = True
-      If Error Then 
-        FileView1.mode = Select.Multiple
-        Return
-      Endif
-      mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
-    Endif
-  Next
-  obj.item.EnsureVisible
-  FileView1.mode = Select.Multiple
+  Dim filelist As String[]
+  Dim current As String
+  Dim CurrentIndex, ToSelectIndex As Integer
+  Try current = fileview1.selection[0]
+  fileview1.SelectAll
+  filelist = fileview1.Selection
+  If filelist.count = 0 Then Return
+  CurrentIndex = filelist.Find(current)
+  If currentindex = -1 Then Return
+  If currentindex = filelist.Max Then 
+    ToSelectIndex = 0
+      Else 
+        ToSelectIndex = currentindex + 1
+  Endif
+  fileview1.current = filelist[ToSelectIndex]
 
 End
 
+
 Public Sub BrowseSelectPrev()
-
-  Dim obj As Object
-  Dim tmpstr As String
-
-  FileView1.mode = Select.Single
-  For Each obj In FileView1.Children
-    Try tmpstr = obj.current.text
-    If Not Error Then
-      Try obj.movecurrent
-      If Error Then 
-        FileView1.mode = Select.Multiple
-        Return
-      Endif
-      If obj.MoveAbove() Then Try obj.movelast()
-      If Error Then Return
-      
-      Try obj.item.selected = True
-      If Error Then 
-        FileView1.mode = Select.Multiple
-        Return
-      Endif
-      
-      mplayer.media_fullpath = FileView1.dir & "/" & obj.item.text
-    Endif
-  Next
-  obj.item.EnsureVisible
-  FileView1.mode = Select.Multiple
-
+  Dim filelist As String[]
+  Dim current As String
+  Dim CurrentIndex, ToSelectIndex As Integer
+  Try current = fileview1.selection[0]
+  fileview1.SelectAll
+  filelist = fileview1.Selection
+  If filelist.count = 0 Then Return
+  CurrentIndex = filelist.Find(current)
+  If currentindex = -1 Then Return
+  If currentindex = 0 Then 
+    ToSelectIndex = filelist.Max
+      Else 
+        ToSelectIndex = currentindex - 1
+  Endif
+  fileview1.current = filelist[ToSelectIndex]
 End
 
 Public Sub ButtonPrev_Click()
@@ -8348,24 +8327,23 @@ Public Sub ButtonHidden_Click()
 End
 
 Public Sub ActivateFile(fullpathitem As String)
-  
+  Dim selecteditem As String
+  Try selecteditem = FileView1.Selection[0]
   If IsDir(fullpathitem) Then
     FileView1.dir = fullpathitem
     urlbox.text = Replace(FileView1.dir, "//", "/")
     If String.Right(urlbox.text, 1) = "/" Then urlbox.text = String.Left(urlbox.text, Len(urlbox.text) - 1)
   Else
     ComboHistory.AddHistory(urlbox, FileView1.dir)
+    Try fileview1.current = selecteditem
     Play(fullpathitem)
   Endif
   
 End
 
 Public Sub FileView1_Activate()
-  
   Dim fullpathitem As String = Replace(FileView1.dir & "/" & FileView1.Current, "//", "/")
-  
   ActivateFile(fullpathitem)
-  
 End
 
 Public Sub Urlbox_KeyPress()
@@ -9268,7 +9246,7 @@ End
 
 Public Sub FileView1_Select()
 
-  mplayer.Media_FullPath = FileView1.dir & "/" & FileView1.Current
+  Try mplayer.Media_FullPath = FileView1.dir & "/" & FileView1.Selection[0]
 
 End
 
@@ -10304,10 +10282,8 @@ End
 Public Sub UrlBox_Change()
   If Not fmain.fullyloaded Then Return
   fileview1.Refresh()
-  fileview1.mode = Select.single
-  Wait
+  fileview1.UnselectAll()
   FileView1_Arrange()
-  fileview1.mode = Select.Multiple
 End
 
 

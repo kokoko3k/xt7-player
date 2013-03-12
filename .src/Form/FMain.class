@@ -812,9 +812,11 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
    PaddingOvr = 4 '5
   ' 
   If global.pluginmode Then
-    ButtonWovr = 24
-    buttonhovr = 28
+    ' ButtonWovr = 24
+    ' buttonhovr = 28
     PaddingOvr = 2
+    panel9.padding = 8
+    volumecontainer.visible = True
   Endif
   
   For Each theobject In ControlPanel.Children
@@ -854,7 +856,7 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   If global.pluginmode Then statusbar1.visible = False
 
 
-  SaveVolumeSlider.y = SaveVolumeSlider.Parent.h Div 5
+  SaveVolumeSlider.y = SaveVolumeSlider.Parent.h Div 6
 
   
   '---------------------------------------------------------------------------
@@ -9164,6 +9166,8 @@ End
 
 
 Public Sub ShadeList(brother As Object, Optional dltx As Integer = 0, Optional dlty As Integer = 0)
+  If Not fmain.fullyloaded Then Return
+  If ((brother.x + brother.y) < 0) Then Return
   shadeup.x = brother.x + dltx 
   Try shadeup.y = brother.clienty + brother.Columns.Height + dlty
   If Error Then Try shadeup.y = brother.clienty + dlty

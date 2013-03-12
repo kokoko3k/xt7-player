@@ -2,7 +2,7 @@
 Global=[110]
 
 [Breakpoints]
-Breakpoint[1]="FMain.8392"
+Breakpoint[1]="FMain.8425"
 Count=1
 
 [DebugWindow]
@@ -104,6 +104,9 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/ControlPanel]
 Geometry=[1280,0,210,778]
+
+[DebugWindow/ControlPanelright.Children]
+Geometry=[47,0,210,210]
 
 [DebugWindow/CoverCacheList]
 Geometry=[51,587,660,344]
@@ -780,6 +783,9 @@ Geometry=[1276,-3,342,726]
 [DebugWindow/controlframe.Parent]
 Geometry=[1290,11,342,726]
 
+[DebugWindow/controlpanelright]
+Geometry=[47,-3,273,668]
+
 [DebugWindow/covermanager.coverpicture(CoverManager.coverfile(artist, album), fullpath, rowheight)]
 Geometry=[48,-4,210,210]
 
@@ -1289,22 +1295,22 @@ SearchString=True
 [OpenFile]
 File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
+Active=3
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:680.16"
-File[5]=".src/Form/FMain.class:10252.2"
+File[5]=".src/Form/FMain.class:856.54"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:119.3"
-Active=9
-File[9]="CHANGELOG_GIT:18.50"
-File[10]=".src/Classi/MplayerClass.class:1007.17"
+File[9]="CHANGELOG_GIT:3.10"
+File[10]=".src/Classi/MplayerClass.class:308.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"
 File[13]=".src/Classi/PlaylistClass.class:1115.14"
 File[14]=".src/Form/HotKeys.class:171.38"
 File[15]=".src/Form/AudioForm.form"
 File[16]=".src/Form/AudioForm.class:135.30"
-File[17]=".src/Classi/DynaGuiClass.class:222.13"
+File[17]=".src/Classi/DynaGuiClass.class:142.14"
 File[18]=".src/Form/CoverManager.class:67.17"
 File[19]=".src/Form/GeneralOptions.class:1096.0"
 File[20]=".src/Classi/Meters.class:52.3"
@@ -1339,7 +1345,9 @@ File[47]=".src/Classi/PodCast.class:175.0"
 File[48]=".src/Form/XConfigureAudioDriver.form"
 File[49]=".src/Form/XConfigureVideoDriver.form"
 File[50]=".src/Form/VideoEqualizer.form"
-Count=50
+File[51]=".src/Form/DVBTuner.form"
+File[52]=".src/Classi/DynaGuiClassBAK.class:111.12"
+Count=52
 
 [Watches]
 Count=4

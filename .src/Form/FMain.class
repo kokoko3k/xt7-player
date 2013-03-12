@@ -796,20 +796,21 @@ Private Sub InitGenresTag()
 
 End
 
+Private paddingovr As Integer 
 Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
 
-  Dim ButtonWovr, ButtonHovr, PaddingOvr As Integer
+  Dim ButtonWovr, ButtonHovr As Integer
   Dim TheObject As Object
-  
+  Dim volumesliderw As Integer = 100
   Dim cX As Integer = 0
 
-  NumButtonsCPL = 0
-  'fix bottom panel for high sized fonts
-  '---------------------------------------------------------------------------
-  ButtonWovr = 36 '36
-  ButtonHovr = 36 '36
-  PaddingOvr = 5 '5
-  
+  ' NumButtonsCPL = 0
+  ' 'fix bottom panel for high sized fonts
+  ' '---------------------------------------------------------------------------
+   ButtonWovr = 36 '36
+   ButtonHovr = 36 '36
+   PaddingOvr = 4 '5
+  ' 
   If global.pluginmode Then
     ButtonWovr = 24
     buttonhovr = 28
@@ -820,20 +821,41 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
     If theobject.visible Then
       theobject.w = ButtonWovr
       theobject.h = ButtonHovr
-      theobject.x = cX 
-      cX = theobject.x + theobject.w + PaddingOvr
-      NumButtonsCPL += 1
+      ' theobject.x = cX 
+      ' cX = theobject.x + theobject.w + PaddingOvr
+      'NumButtonsCPL += 1
     Endif
   Next
-  'NumButtonsCPL -= 1
-  ControlPanel.w = (ButtonWovr + PaddingOvr) * NumButtonsCPL
-  ControlPanel.h = ButtonHovr
-  SliderBox.h = CInt(ButtonHovr / 1.33)
-  ControlPanel.y = SliderBox.y + SliderBox.h - 2 
-  controlframe.h = SliderBox.h + ControlPanel.h + SliderBox.y '(PaddingOvr*2)
+ 
+
+  For Each theobject In ControlPanelright.Children
+    If theobject.visible Then
+      theobject.w = ButtonWovr
+      theobject.h = ButtonHovr
+      ' theobject.x = cX 
+      ' cX = theobject.x + theobject.w + PaddingOvr
+      'NumButtonsCPL += 1
+    Endif
+  Next
+ 
+
+  controlframe.h = ButtonHovr + (paddingovr * 2)
+  ControlPanel.x = controlframe.x + paddingovr
+  ControlPanel.y = 0 + (paddingovr)
+  ControlPanel.h = controlframe.h + (paddingovr * 2)
+  'controlframe.h = ControlPanel.h   '(PaddingOvr*2)
+
+  ControlPanel.w = controlframe.w - controlpanelright.w - (paddingovr * 2)
+  controlpanelright.y = ControlPanel.y
+
+
   Statusbar1.h = Statusbar1.Font.TextHeight("[IJ]") 
-  
+   
   If global.pluginmode Then statusbar1.visible = False
+
+
+  SaveVolumeSlider.y = SaveVolumeSlider.Parent.h Div 5
+
   
   '---------------------------------------------------------------------------
 End
@@ -1618,7 +1640,13 @@ Public Sub LoadFormGeometry()
 End
 
 Public Sub Form_Resize()
+  Dim menuheight As Integer = 0
+  If fmain.Menus.Visible Then menuheight = fmain.Font.textheight("Ij") + 4
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
+
+  If fmain.h < controlframe.h + Maintoolbar.h + statusbar1.h + menuheight Then fmain.h = controlframe.h + Maintoolbar.h + statusbar1.h + menuheight
+  If fmain.w < 500 Then fmain.w = 500
+  
   CostrainFormSizes()
   CorrectAreaAspect()
   Try fmain.Picture = fmain.Picture.Image.Stretch(fmain.w, fmain.h).picture
@@ -2560,10 +2588,11 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
 
   Wait
   OneSecTimer.Stop()
-  
+
   needytcookie = False
   ButtonNowNext.visible = Lower(fullpath) Like "dvb://*"
   ArrangeCpl()
+ 
   generaloptions.Init()
   generaloptions.FirstLoadIfNeeded() 'we need the temporary directory to store captured streams
   dumpfile = generaloptions.dvbtmpdir.text & "/" & "xt7.dumpfile.ts"
@@ -2595,7 +2624,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   TooMuchCache = False
   alreadypaused = True
   LogWindow.clearlogs()
-  
+
   'avoid a graphical glitch when hitting stop after a song and then play again
   'it will be turned on at the end of this play function
   videobox.visible = False
@@ -2647,7 +2676,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     OtherOptions = OtherOptions & " -dvd-device " & "\"" & dvd_device & "\" "
   Endif
   'OtherOptions = otheroptions & " " & GeneralOptions.ParseAdditionalOptions() 'GeneralOptions.NoParseAdditionalOptions.text
-  
+
   firstplay = False
   mplayer.CurrentOptions = OtherOptions
   
@@ -3051,13 +3080,13 @@ Public Sub UpdateSeekSlider()
   Try totaltime = mplayer.Media_Length
   'Try actualtime = mplayer.CurrentTime()
   Try actualtime = mplayer.CurrentTimeFloat()
-  Try SeekBar.value = CInt((actualtime * 1000) / totaltime)
+  Try SeekBar.value = (actualtime / totaltime)
   'workaround a bug with mts files:
   'mplayer is unable to get id_length and reports always 0
   'while mplayer2 reports a wrong length
   If (totaltime = "0") Or (actualtime > totaltime) Then  
     mplayer.Send("get_percent_pos")
-    Seekbar.value = mplayer.Media_percent_pos * 10
+    Seekbar.value = mplayer.Media_percent_pos / 100
   Endif
   SeekBar.tag = "user"
 
@@ -3109,7 +3138,7 @@ Public Sub UpdateStatusBar()
     pretext = Left$(pretext, CInt(((Statusbar1.Width) Div Statusbar1.font.TextWidth("_")) - Len(PostText)) / 1.) & "..."
   Endif
   'If Trim(pretext) <> "" Then
-  
+  If mplayer.maxcache = "" Then Return
   Try cachevalue = CInt(Split(mplayer.currentcache, "%")[0])
   If Not Error Then
     If CInt(mplayer.maxcache) >= 1024 Then 
@@ -3574,7 +3603,7 @@ Public Sub SeekBar_Change()
   If fmain.closing Then Return
   If Not (Seekbar.tag = "timer") Then
     OneSecTimer.Enabled = False
-    percent = SeekBar.value Div 10
+    percent = SeekBar.value * 100
     
     'Restart the stream from a new position on youtube streams instead of seeking.
     If (generaloptions.DoSeekRestartBox.value = True) And (((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*"))) Then
@@ -3638,27 +3667,31 @@ Public Sub MenuAbout_Click()
   
 End
 
+
 Public Sub ShowVolBtn_Click()
-  
-  SaveVolumeSlider.Visible = Not SaveVolumeSlider.Visible
-  
+  controlpanelright.autoresize = False
+  controlpanelright.w = 120
+  'SaveVolumeSlider.Visible = Not SaveVolumeSlider.Visible
+  volumecontainer.Visible = Not volumecontainer.Visible
+  volumecontainer.autoresize = Not volumecontainer.Visible
+  controlpanelright.refresh()
+  controlpanelright.autoresize = True
+  CostrainFormSizes()
 End
 
 Public Sub ShowVolBtn_MouseWheel()
-  
   If Mouse.delta > 0 Then
     SaveVolumeSlider.value = SaveVolumeSlider.value + 1
   Else
     SaveVolumeSlider.value = SaveVolumeSlider.value - 1
   Endif
-  
 End
 
 Public Sub SeekBar_MouseDown()
 
   MousePressed = True
   'Object.Lock(seekbar)
-  seekbar.value = ((seekbar.MaxValue - seekbar.MinValue) * mouse.x) Div seekbar.w
+  
   'Object.unLock(seekbar)
 
 End
@@ -3666,7 +3699,8 @@ End
 Public Sub SeekBar_MouseUp()
 
   MousePressed = False
-
+  seekbar.value = mouse.x / seekbar.w
+  SeekBar_Change()
 End
 
 Public Sub VideoAreaGroup_MouseDrag()
@@ -3808,7 +3842,6 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
 End
 
 Public Sub ArrangeBottmVbox()
-
   bottomvbox.ignore = True
   bottomvbox.x = 0
   bottomvbox.y = bottomvbox.Parent.h - bottomvbox.h
@@ -3817,7 +3850,6 @@ Public Sub ArrangeBottmVbox()
   controlframe.x = 0
   controlframe.y = controlframe.Parent.h - controlframe.h
   controlframe.w = controlframe.Parent.w
-
 End
 
 Private Sub CostrainFormSizes()
@@ -3827,15 +3859,16 @@ Private Sub CostrainFormSizes()
     Endif
   Endif
   
-  SliderBox.left = ControlFrame.left + 16
-  SliderBox.width = ControlFrame.Width - 32
   MainToolbar.width = FMain.clientw - 16
   If statusbar1.visible Then
     BottomVbox.h = controlframe.h + Statusbar1.h ' + cachebar.h 
   Else
     BottomVbox.h = controlframe.h '+ cachebar.h 
   Endif
-  ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+  ' ControlPanel.left = (ControlFrame.width / 2) - (ControlPanel.width / 2)
+  ControlPanel.x = controlframe.x + paddingovr 
+  ControlPanel.w = controlframe.w - controlpanelright.w - (paddingovr * 2)
+  controlpanelright.x = ControlPanel.x + ControlPanel.w
   picturebox1.Move(0, 0, controlframe.w, controlframe.h)
 End
 
@@ -4700,7 +4733,7 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
   OneSecTimer.stop
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
-  fmain.SeekBar.Value = fmain.SeekBar.MinValue
+  fmain.SeekBar.Value = 0
   Object.unLock(fmain.SeekBar)
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectNext(PlaylistGrid, ShufflePls.value)
@@ -4792,7 +4825,7 @@ Public Sub ButtonPrev_Click()
   OneSecTimer.stop
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
-  fmain.SeekBar.Value = fmain.SeekBar.MinValue
+  fmain.SeekBar.Value = 0
   Object.unLock(fmain.SeekBar)
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectPrev(PlaylistGrid) ', ShufflePls.value)
@@ -5318,11 +5351,11 @@ Public Sub Hsplit1_MyRefresh()
 
   CostrainFormSizes()
   Try RightPanel = HSplit1.layout[1]
-  If RightPanel = 0 Then
+  If RightPanel < 10 Then
     OuterBox.Background = Me.Background
     VideoBox.visible = False
     audioform.AudioPanel.visible = False
-    rightsidepanel.Background = Color.Background
+    rightsidepanel.Background = Color.default 'Background
   Else
     If Not TagEditMode Then
       OuterBox.Background = Color.black
@@ -9098,7 +9131,9 @@ End
   timerhideshowvideo.stop
   prevlayout = hsplit1.Layout
   If Not fsform.fullscreen Then
-    If (rightsidepanel.width < (ControlPanel.w + 64)) Then
+    'If (rightsidepanel.width < (ControlPanel.w + 64)) Then
+    'If (seekbar.w < 64) Then
+    If (rightsidepanel.width < 480) Then
       If (BottomVbox.Parent.name <> "FMain") Then 
         BottomVbox.Reparent(fmain)
       Endif
@@ -10030,7 +10065,6 @@ Public Sub PictureBox1_Drop()
   Dim droppedfile As String
   Dim mywget As New Wgetclass
   Dim wgetfile As String
-  
   Try droppedfile = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)[0]
   If Error Then 
     Try droppedfile = Split(Drag.Paste("text/plain"), "\n\r", "", True)[0]
@@ -10165,6 +10199,7 @@ Public Sub SeekBar_MouseDrag()
   Endif
   'Debug relative
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
+   seekbar.value = mouse.x / seekbar.w
   statusbar1.text = msg
   mplayer.ShowText(msg, 1000)
 End
@@ -10287,3 +10322,29 @@ Public Sub UrlBox_Change()
 End
 
 
+
+
+
+Public Sub volumecontainer_Arrange()
+
+  SaveVolumeSlider.w = Last.w
+
+End
+
+Public Sub seekbar_MouseWheel()
+
+  If Mouse.Delta > 0 Then 
+    mplayer.Send("seek +20")
+      Else
+    mplayer.Send("seek -20")
+  Endif
+  UpdateSeekSlider()
+End
+
+Public Sub ControlPanel_Drop()
+   PictureBox1_Drop()
+End
+
+Public Sub ControlPanelRight_Drop()
+   PictureBox1_Drop()
+End

@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,106,77)
+  MoveScaled(0,0,101,77)
   Text = ("Xt7-Player")
   Icon = Picture["xt7-player.png"]
   Persistent = True
@@ -722,7 +722,6 @@
       { Leftsidetabs TabStrip
         MoveScaled(-1,0,39,59)
         Tag = "1"
-        ToolTip = ("Right click to select which tabs to show.")
         Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
@@ -1098,11 +1097,13 @@
         { FlashCHK CheckBox
           MoveScaled(0,26,37,4)
           ToolTip = ("Show flash videos in /tmp folder in the upper list, allowing you to play them.")
+          AutoResize = True
           Text = ("Catch Flash videos in /tmp folder")
         }
         { FlashCHK2 CheckBox
-          MoveScaled(0,29,37,7)
+          MoveScaled(0,29,37,4)
           ToolTip = ("When a new flash video is detected, shows a PopUp window.\nIt may be necessary to disable focus stealing prevention in your window manager.")
+          AutoResize = True
           Text = ("PopUp window to play new catched videos")
         }
         Index = 8
@@ -1780,29 +1781,25 @@
             Stretch = True
           }
           { ControlPanel Panel
-            MoveScaled(9,6,43,4)
+            MoveScaled(0,1,44,4)
             Font = Font["6"]
+            Drop = True
+            Arrangement = Arrange.Horizontal
             AutoResize = True
-            { ButtonOpen ToolButton
-              MoveScaled(2,0,4.4286,4)
-              Font = Font["6"]
-              ToolTip = ("Open a file...")
-              Picture = Picture["icon:/22/open"]
-            }
             { ButtonPrev ToolButton
-              MoveScaled(6,0,4.4286,4)
+              MoveScaled(0,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Previous media")
               Picture = Picture["media-skip-backward.png"]
             }
-            { ButtonRew ToolButton
-              MoveScaled(10,0,4.4286,4)
+            { ButtonNext ToolButton
+              MoveScaled(3,0,4,4)
               Font = Font["6"]
-              ToolTip = ("Slowdown")
-              Picture = Picture["media-seek-backward.png"]
+              ToolTip = ("Next media")
+              Picture = Picture["media-skip-forward.png"]
             }
             { ButtonCapture ToggleButton
-              MoveScaled(14,0,5,4)
+              MoveScaled(5,0,5,4)
               Visible = False
               Enabled = False
               Font = Font["6"]
@@ -1811,75 +1808,87 @@
               Border = False
             }
             { ButtonPlay ToolButton
-              MoveScaled(19,0,5,4)
+              MoveScaled(8,0,5,4)
               Font = Font["6"]
               ToolTip = ("Play/pause")
               Action = "play"
               Picture = Picture["media-playback-start.png"]
             }
             { ButtonStop ToolButton
-              MoveScaled(23,0,4.4286,4)
+              MoveScaled(11,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
+            { Panel9 Panel
+              MoveScaled(15,1,8,2)
+              Expand = True
+              Arrangement = Arrange.Fill
+              Padding = 12
+              { seekbar ProgressBar
+                MoveScaled(1,0,24,2)
+                Font = Font["1"]
+                Tracking = True
+                Expand = True
+                Label = False
+              }
+            }
+            { ButtonRew ToolButton
+              MoveScaled(25,0,4.4286,4)
+              Font = Font["6"]
+              ToolTip = ("Slowdown")
+              Picture = Picture["media-seek-backward.png"]
+            }
             { Buttonfwd ToolButton
-              MoveScaled(27,0,4.4286,4)
+              MoveScaled(28,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
-            { ButtonNext ToolButton
-              MoveScaled(31,0,4,4)
-              Font = Font["6"]
-              ToolTip = ("Next media")
-              Picture = Picture["media-skip-forward.png"]
-            }
-            { ButtonNowNext ToolButton
-              MoveScaled(36,0,4,4)
-              Visible = False
-              Font = Font["6"]
-              ToolTip = ("Show/Hide current and next TV program.")
-              Picture = Picture["icon:/medium/info"]
-            }
             { PanScan Button
-              MoveScaled(39,0,5,4)
+              MoveScaled(31,0,5,4)
               Font = Font["6"]
               ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
               Picture = Picture["icon:/medium/zoom-in"]
               Border = False
             }
-          }
-          { SliderBox HBox
-            MoveScaled(4,2,57,4)
-            Font = Font["6"]
-            { SeekBar Slider
-              MoveScaled(3,0,25,4)
+            { ButtonNowNext ToolButton
+              MoveScaled(35,0,4,4)
+              Visible = False
               Font = Font["6"]
-              Tag = "user"
-              Tracking = False
-              Expand = True
-              MaxValue = 1000
-              Step = 10
+              ToolTip = ("Show/Hide current and next TV program.")
+              Picture = Picture["icon:/medium/info"]
             }
+          }
+          { ControlPanelRight Panel
+            MoveScaled(45,1,17.1429,6)
+            Drop = True
+            Arrangement = Arrange.Horizontal
+            AutoResize = True
             { ShowVolBtn ToolButton
-              MoveScaled(27,0,4,4)
+              MoveScaled(0,0,4,4)
               Font = Font["6"]
               AutoResize = True
               Picture = Picture["icon:/22/volume"]
             }
-            { SaveVolumeSlider Slider
-              MoveScaled(34,0,13,4)
-              Font = Font["6"]
-              Tag = "user"
-              MaxValue = 25
-              PageStep = 5
-              Value = 12
+            { volumecontainer Panel
+              MoveScaled(5,0,8,6)
+              Visible = False
+              Expand = True
+              { SaveVolumeSlider Slider
+                MoveScaled(0,0,7,4)
+                Font = Font["6"]
+                Tag = "user"
+                Expand = True
+                MaxValue = 25
+                PageStep = 5
+                Value = 12
+              }
             }
           }
         }
         { statusbar1 Label
-          MoveScaled(4,12,41,2)
+          MoveScaled(1,12,55,2)
           Font = Font["Bold,-1"]
           Background = &H000000&
           Foreground = &HFFFFFF&

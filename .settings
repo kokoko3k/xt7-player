@@ -2,12 +2,11 @@
 Global=[110]
 
 [Breakpoints]
-Breakpoint[1]="FMain.8414"
+Breakpoint[1]="FMain.8392"
 Count=1
 
 [DebugWindow]
-Count=1
-DebugWindow[1]="youtubetree.Item"
+Count=0
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -89,6 +88,10 @@ Geometry=[726,312,564,770]
 
 [DebugWindow/ColumnView(FileView1.Children[1]).Proxy]
 Geometry=[604,227,564,770]
+
+[DebugWindow/ColumnView(fileview1.Children[1]).Item]
+ShowHidden=True
+Geometry=[596,244,481,686]
 
 [DebugWindow/Columnindex]
 Geometry=[325,-20,210,210]
@@ -172,7 +175,7 @@ Geometry=[51,0,344,344]
 Geometry=[155,227,564,770]
 
 [DebugWindow/FileView1.Children]
-Geometry=[672,191,564,770]
+Geometry=[674,360,563,601]
 
 [DebugWindow/FileView1.Children[0]]
 Geometry=[687,205,564,770]
@@ -822,6 +825,15 @@ Geometry=[0,0,344,344]
 [DebugWindow/filesnotfound]
 Geometry=[1280,0,210,210]
 
+[DebugWindow/fileview1]
+Geometry=[1280,0,486,587]
+
+[DebugWindow/fileview1.Children[1]]
+Geometry=[2005,179,481,686]
+
+[DebugWindow/fileview1.Selection]
+Geometry=[1280,-3,1280,976]
+
 [DebugWindow/findouts]
 Geometry=[0,0,344,344]
 
@@ -1024,7 +1036,11 @@ Geometry=[0,0,344,344]
 Geometry=[0,64,301,301]
 
 [DebugWindow/obj]
-Geometry=[1799,355,301,301]
+Geometry=[2189,550,301,301]
+
+[DebugWindow/obj.Item]
+ShowHidden=True
+Geometry=[1813,369,301,301]
 
 [DebugWindow/objs]
 Geometry=[0,0,301,301]
@@ -1275,12 +1291,12 @@ File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:680.16"
-File[5]=".src/Form/FMain.class:8755.32"
+File[5]=".src/Form/FMain.class:10252.2"
 File[6]=".src/Form/FsForm.form"
 File[7]=".src/Form/FsForm.class:0.0"
 File[8]=".src/0_Moduli/Global.module:119.3"
 Active=9
-File[9]="CHANGELOG_GIT:3.0"
+File[9]="CHANGELOG_GIT:18.50"
 File[10]=".src/Classi/MplayerClass.class:1007.17"
 File[11]=".src/Form/Chains.form"
 File[12]=".src/Form/MyQuestion.form"

@@ -1643,6 +1643,7 @@ End
 
 Public Sub Form_Resize()
   Dim menuheight As Integer = 0
+  
   If fmain.Menus.Visible Then menuheight = fmain.Font.textheight("Ij") + 4
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
 
@@ -2941,8 +2942,12 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
         audioform.AudioPanel.Reparent(outerbox)
         BottomVbox.raise() ' Reparent(rightsidepanel)
         bottomvbox.show
-        cachebar.Reparent(audioform.AudioPanel)
-        cachebar.Move(0, audioform.AudioPanel.h - cachebar.h, 0)
+        cachebar.Reparent(rightsidepanel)
+        If fsform.visible Then 
+          cachebar.Move(0, audioform.AudioPanel.h - cachebar.h, 0)
+            Else
+          cachebar.Move(0, audioform.AudioPanel.h + toolbarbackground.h - cachebar.h, 0)
+        Endif
         'cachebar.raise
       Endif
     Endif
@@ -2962,12 +2967,16 @@ Public Sub ShowAudioPanel(Show As Boolean, Optional samecover As Boolean = False
   Else
     fmain.OuterBox.Arrangement = Arrange.none
     Try mymeters.stopp
-    If Not tageditmode Then rightsidepanel.Background = audioform.AudioPanel.Background
+    'If Not tageditmode Then rightsidepanel.Background = audioform.AudioPanel.Background
     fmain.OuterBox.ignore = False
     OuterBox.visible = True 'OuterBox.Reparent(Rightsidepanel)
     audioform.AudioPanel.Reparent(audioform)
     cachebar.Reparent(rightsidepanel)
-    cachebar.Move(0, outerbox.h - cachebar.h, 0)
+    If fsform.visible Then 
+      cachebar.Move(0, outerbox.h - cachebar.h, 0)
+        Else
+      cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h, 0)
+    Endif
     audioform.refresh
   Endif
 End
@@ -3956,6 +3965,7 @@ Public Sub SwitchToFS()
   bottomvbox.Hide
   BottomVbox.Reparent(rightsidepanel)
   Maintoolbar.hide
+  toolbarbackground.hide
   cachebar.hide
   cachebar.raise
   Wait '<-this wait has to come just after ConstrainFormSizes()
@@ -4015,7 +4025,7 @@ Public Sub SwitchToWindow()
   'show the menu
   AllmenuVisible(True)
   Maintoolbar.visible = True
-  
+  toolbarbackground.show
   'restore the form position
   LeftsidePanel.Visible = LeftsideWasVisible
   
@@ -4052,7 +4062,7 @@ Public Sub SwitchToWindow()
   fmain.show  
   
   cachebar.Reparent(rightsidepanel)
-  cachebar.Move(0, outerbox.h - cachebar.h, 0)
+  cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h, 0)
   cachebar.raise
   cachebar.show
   'timerhideshowvideo.start
@@ -4151,6 +4161,7 @@ Public Sub TimerFullScreen_Timer()
   
   If AttachZone2 Then
     MainToolBar.visible = True
+    toolbarbackground.show
     AllmenuVisible(True)
   Endif
   
@@ -4163,6 +4174,7 @@ Public Sub TimerFullScreen_Timer()
   
   If ReleaseZone2 And (Not AttachZone1) And (MainToolBar.Visible) Then
     MainToolBar.Visible = False
+    toolbarbackground.hide
     AllmenuVisible(False)
     If (Not BottomVbox.visible) Then CorrectAreaAspect
   Endif
@@ -5345,9 +5357,12 @@ End
 Public Sub Hsplit1_MyRefresh()
 
   Dim RightPanel As Integer = 0
-  
-  cachebar.Move(0, outerbox.h - cachebar.h, 0)
-  
+  If fsform.visible Then 
+    cachebar.Move(0, outerbox.h - cachebar.h, 0)
+      Else
+    cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h, 0)
+  Endif
+  Debug cachebar.parent.name
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
 
@@ -5355,6 +5370,7 @@ Public Sub Hsplit1_MyRefresh()
   Try RightPanel = HSplit1.layout[1]
   If RightPanel < 10 Then
     OuterBox.Background = Me.Background
+    toolbarbackground.hide
     VideoBox.visible = False
     audioform.AudioPanel.visible = False
     rightsidepanel.Background = Color.default 'Background
@@ -5366,6 +5382,7 @@ Public Sub Hsplit1_MyRefresh()
     If Not VideoBox.visible Then videobox.show
     rightsidepanel.visible = True
     audioform.AudioPanel.visible = True
+    toolbarbackground.show
   Endif
   YouVideoInfo.w = scrollviewyt.w - 64
   Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
@@ -5377,6 +5394,8 @@ Public Sub Hsplit1_MyRefresh()
   
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
+  
+
   
 End
 
@@ -9118,6 +9137,7 @@ End
 ' End
 
 Public Sub HSplit1_Resize()
+MainToolBar_Arrange()
   If Rnd(0, 1) > 0.75 Then
     Hsplit1_MyRefresh   
   Endif
@@ -10351,4 +10371,11 @@ End
 
 Public Sub ControlPanelRight_Drop()
    PictureBox1_Drop()
+End
+
+Public Sub MainToolBar_Arrange()
+  ' toolbarbackground.stretch = (hsplit1.Layout[1] < toolbarbackground.Picture.w)
+  ' toolbarbackground.Move(hsplit1.Layout[0], Maintoolbar.y + (Maintoolbar.h - (Maintoolbar.h Div 3)), toolbarbackground.Picture.w, Maintoolbar.h Div 3)
+  ' toolbarbackground.Lower
+
 End

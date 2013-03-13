@@ -573,7 +573,7 @@
     }
   }
   { MainToolBar Panel
-    MoveScaled(1,0,92,4.5714)
+    MoveScaled(1,-1,95,5)
     Arrangement = Arrange.Horizontal
     { ButtonmenuBTN MenuButton
       MoveScaled(0,0,8,4)
@@ -1544,7 +1544,6 @@
     { RightSidePanel Panel VideoAreaGroup
       Name = "RightSidePanel"
       MoveScaled(42,5,60,65)
-      Background = Color.Background
       Tracking = True
       Arrangement = Arrange.Vertical
       { timerpluginmode #Timer
@@ -1748,9 +1747,17 @@
           Expand = True
         }
       }
+      { ToolbarBackground PictureBox
+        MoveScaled(6,4,19,0.8571)
+        #Translate = False
+        NoTabFocus = True
+        Picture = Picture["toolbarshade.png"]
+        Stretch = True
+        Alignment = Align.Left
+      }
       { OuterBox Panel VideoAreaGroup
         Name = "OuterBox"
-        MoveScaled(1,8,26,35)
+        MoveScaled(1,10,26,33)
         Background = &H000000&
         Drop = True
         Expand = True

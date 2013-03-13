@@ -704,11 +704,8 @@
       Picture = Picture["icon:/22/quit"]
     }
   }
-  { TimerUpdateNowNext #Timer
-    #MoveScaled(43,6)
-  }
   { HSplit1 HSplit
-    MoveScaled(0,6,103,68)
+    MoveScaled(0,5,103,68)
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
@@ -1879,7 +1876,7 @@
               Picture = Picture["icon:/22/volume"]
             }
             { volumecontainer Panel
-              MoveScaled(5,0,8,6)
+              MoveScaled(7,0,8,6)
               Visible = False
               Expand = True
               { SaveVolumeSlider Slider
@@ -1937,6 +1934,9 @@
       #MoveScaled(93,0)
       Port = 4856
     }
+  }
+  { TimerUpdateNowNext #Timer
+    #MoveScaled(43,6)
   }
 }
 

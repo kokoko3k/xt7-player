@@ -3308,7 +3308,7 @@ End
 Public Sub OneSecTimer_Timer()
   
   Dim PlaylistFinished As Boolean
-  
+
   If mplayer.ProcessRunningOvr() Then
     
     If mplayer.Paused Then
@@ -5362,7 +5362,6 @@ Public Sub Hsplit1_MyRefresh()
       Else
     cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h, 0)
   Endif
-  Debug cachebar.parent.name
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
 
@@ -9717,12 +9716,7 @@ Public Sub RenameGridItem(mygrid As Gridview, myrow As Integer, myplaylist As Pl
   'find pRow to update ptable too (other than searchtable)
   imax = myplaylist.PTable.count - 1
   For i = 0 To imax
-    If myplaylist.AreEquivalentRows(myplaylist.PTable[i], myplaylist.SearchTable[myrow]) Then
-      Break
-    Else
-      Debug "source", myplaylist.SearchTable[myrow] 
-      Debug "destin", myplaylist.PTable[i]
-    Endif
+    If myplaylist.AreEquivalentRows(myplaylist.PTable[i], myplaylist.SearchTable[myrow]) Then Break
   Next
   If i > imax Then 
     Debug "cannot rename, couldn't find searchtable element into ptable (!?)"
@@ -10355,7 +10349,7 @@ Public Sub volumecontainer_Arrange()
 
 End
 
-Public Sub seekbar_MouseWheel()
+Public Sub textlabel1_MouseWheel()
 
   If Mouse.Delta > 0 Then 
     mplayer.Send("seek +20")

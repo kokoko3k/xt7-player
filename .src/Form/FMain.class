@@ -3443,9 +3443,10 @@ Private Sub UpdateVolumeTooltip()
   Dim tipw As Integer
   Dim volume As Integer
   Dim underw As Integer
+  OverlayTip.TextLabel1.Reparent(bottomvbox)
 
   volume = CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))
-  tip = "   Volume: " & CStr(volume) & "%    "
+  tip = "   Volume: " & CStr(volume) & "% "
   If volume > 100 Then 
     OverlayTip.TextLabel1.Foreground = color.red
   Else
@@ -3454,13 +3455,14 @@ Private Sub UpdateVolumeTooltip()
   OverlayTip.TextLabel1.Background = color.black
   OverlayTip.TextLabel1.font = Statusbar1.font
   OverlayTip.TextLabel1.font.bold = Statusbar1.font.bold
-  Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip)
-  underw = OverlayTip.TextLabel1.Font.TextWidth(" 00:00:00 / 00:00:00 ")
+  OverlayTip.TextLabel1.alignment = Align.TopRight
+  Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip) 
+
+  underw = OverlayTip.TextLabel1.Font.TextWidth("000:00:00/00:00:000")
   OverlayTip.Textlabel1.text = tip
-  OverlayTip.TextLabel1.Reparent(bottomvbox)
+
   If tipw < underw Then tipw = underw + 2
-  
-  OverlayTip.TextLabel1.Move(bottomvbox.w - OverlayTip.Textlabel1.w, statusbar1.y, tipw, statusbar1.h)
+  OverlayTip.TextLabel1.Move(bottomvbox.w - tipw, statusbar1.y, tipw, statusbar1.h)
   
 End
 
@@ -4715,10 +4717,15 @@ End
 Public Sub VideoAreaGroup_MouseWheel()
   
   Dim HotKey As String
+  If Not mplayer.ProcessRunningOvr() Then Return
   HotKey = HotKeyGrab.GetMouse(True)
   IgnoreMouse = True
   HotKeyToMplayer(HotKey)
   
+
+    UpdateVolumeTooltip()
+    Wait 0.5
+    OverlayTip.TextLabel1.reparent(OverlayTip)
 End
 
 '/HotKeys Handling *******************************************

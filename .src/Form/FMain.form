@@ -114,6 +114,38 @@
       Text = ("Open containing folder")
       Picture = Picture["icon:/16/open"]
     }
+    { Separator4832940 Menu
+    }
+    { MenuLibrarySearchAlbum Menu
+      Text = ("This album tracks")
+      Picture = Picture["icon:/small/watch"]
+      { MenuLibraryReplaceAlbumTracks Menu
+        Text = ("Replace tracks in")
+        Picture = Picture["icon:/small/replace"]
+        { MenuLibraryAlbumTracksReplaceLibrary Menu
+          Text = ("Library view")
+          Picture = Picture["icon:/small/book"]
+        }
+        { MenuLibraryAlbumTracksReplacePlaylist Menu
+          Text = ("Playlist view")
+          Picture = Picture["icon:/small/view-detail"]
+        }
+      }
+      { MenuLibraryAppendAlbumTracks Menu
+        Text = ("Append tracks to")
+        Picture = Picture["icon:/small/add"]
+        { MenuLibraryAlbumTracksAppendLibrary Menu
+          Text = ("Library view")
+          Picture = Picture["icon:/small/book"]
+        }
+        { MenuLibraryAlbumTracksAppendPlaylist Menu
+          Text = ("Playlist view")
+          Picture = Picture["icon:/small/view-detail"]
+        }
+      }
+    }
+    { separator005843 Menu
+    }
     { MenuSortLibraryPopup Menu
       Text = ("Sort by")
       Picture = Picture["icon:/16/sort-ascent"]

@@ -1289,7 +1289,7 @@ End
 
 
 
-Public Sub DoSort(Field As String, Optional table As String[] = ptable)
+Public Sub DoSort(Field As String, Optional ByRef table As String[] = ptable)
   Dim i As Integer
   Dim Startpos, MidPos, EndPos As Integer
   Dim MyValue As String
@@ -1454,6 +1454,41 @@ Dim rowheight As Integer
   LibraryGrid.moveto(RowToSelect, ColToSelect)
   librarygrid.Rows.h = rowheight
 End
+
+
+Public Function PtableFromSearch(searchexp As String, Optional fields As String[], Optional CaseSensitive As Boolean = False) As String[]
+  Dim SearchTerms As String[] 
+  Dim i As Integer
+  Dim searchterm, cline, fline, field As String
+  Dim outlist As New String[]
+  If Not casesensitive Then searchexp = Upper(searchexp)
+  SearchTerms = Split(SearchExp, "|")
+
+  For i = 0 To ptable.count - 1
+    If casesensitive Then 
+      cline = ptable[i]
+        Else
+      cline = Upper(ptable[i])
+    Endif
+    For Each searchterm In searchterms
+      If fields.count = 0 Then
+        If cline Like "*" & Searchterm & "*" Then outlist.add(cline)
+          Else
+        For Each field In fields
+          If Not casesensitive Then field = Upper(field)
+          fline = (Trim(GetValue(cline, field))) 
+          If (fline <> "") And (fline Like "*" & searchterm & "*") Then 
+            outlist.add(ptable[i])
+             '  Else
+             ' If (fline <> "") Then Debug searchterm & " <> " & "*" & fline & "*"
+          Endif
+        Next 'field
+      Endif
+    Next 'searchterm
+  Next 'ptable item
+  Return outlist
+End
+
 
 
 Public Sub Search(LibraryGrid As GridView, SearchExp As String)

@@ -5399,15 +5399,91 @@ Public Sub Hsplit1_MyRefresh()
 End
 
 Public Sub LibraryGrid_Menu()
-
+  Dim onlyoneselected As Boolean = False
+  Dim selectedalbum As String = ""
   MenuLibraryZapSelected.Enabled = (LibraryGrid.row >= 0) 'popup removefromdisc menu item only of something is selected
   MenuOpenContainingFolderPopUp.visible = True
   MenuSortLibraryPopup.enabled = True
   MenuSortLibraryPopup.visible = True
-  MenuOpenContainingFolderPopUp.enabled = MyLibrary.OnlyOneSelected(librarygrid)
-  Menupopuplibrary.Popup
 
+  onlyoneselected = MyLibrary.OnlyOneSelected(librarygrid)
+  MenuOpenContainingFolderPopUp.visible = onlyoneselected
+
+  MenuLibrarySearchAlbum.Visible = False
+  If onlyoneselected Then
+      selectedalbum = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
+      If Trim(selectedalbum) <> "" Then
+        MenuLibrarySearchAlbum.visible = True
+        MenuLibrarySearchAlbum.text = selectedalbum
+        MenuLibrarySearchAlbum.picture = librarygrid.Current.Picture
+      Endif
+  Endif
+  Menupopuplibrary.Popup
 End
+
+Private Sub CurrentLibraryItemToLibrary(myappend As Boolean)
+  Dim selectedalbum As String 
+  selectedalbum = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
+  If myappend Then 
+    Searchfield.text &= "|" & selectedalbum
+      Else
+    Searchfield.text = selectedalbum
+  Endif
+  SearchField_Click()
+End
+
+
+Public Sub MenuLibraryAlbumTracksAppendLibrary_Click()
+  Try CurrentLibraryItemToLibrary(True)
+  If Error Then Message.Error("An error occurred")
+End
+
+Public Sub MenuLibraryAlbumTracksReplaceLibrary_Click()
+ Try CurrentLibraryItemToLibrary(False)
+ If Error Then Message.Error("An error occurred")
+End
+
+
+Public Sub MenuLibraryAlbumTracksAppendPlaylist_Click()
+  Dim selectedalbum As String = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
+  Dim results As String[]
+  
+  Try results = mylibrary.PtableFromSearch(selectedalbum, ["Album"])
+  If Error Then Goto ErrorLabel
+  Try myplaylist.DoSort("Track", ByRef results)
+  If Error Then Goto ErrorLabel
+  Try myplaylist.ptable = myplaylist.ptable.Insert(results, True)
+  If Error Then Goto ErrorLabel
+  
+  Searchfieldpls.text &= "|" & selectedalbum
+  SearchFieldPLS_Click()
+  Return
+
+  ErrorLabel:
+  Message.Error("An error occurred")
+End
+
+Public Sub MenuLibraryAlbumTracksReplacePlaylist_click()
+  Dim selectedalbum As String = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
+  Dim results As String[]
+  
+  Try results = mylibrary.PtableFromSearch(selectedalbum, ["Album"])
+  If Error Then Goto ErrorLabel
+  Try results = myplaylist.DoSort("Album", ByRef results)
+  If Error Then Goto ErrorLabel
+  Try myplaylist.ptable = myplaylist.ptable.Insert(results, True)
+  If Error Then Goto ErrorLabel
+  
+  Searchfieldpls.text = selectedalbum
+  SearchFieldPLS_Click()
+  Return
+  
+  ErrorLabel:
+  Message.Error("An error occurred")
+End
+
+
+
 
 Public Sub MenuOpenContainingFolderPopUp_Click()
   
@@ -8237,6 +8313,13 @@ Public Sub ShufflePls_Click()
   
 End
 
+Public Sub MenuLibrarySearchAlbum_Click()
+  
+  
+  
+End
+
+
 Public Sub MenuLibrarySetCover_click()
 
   Dim artist, album, filepath As String
@@ -10373,3 +10456,5 @@ Public Sub MainToolBar_Arrange()
   ' toolbarbackground.Lower
 
 End
+
+

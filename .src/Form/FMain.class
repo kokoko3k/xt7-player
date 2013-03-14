@@ -9932,7 +9932,6 @@ Public Sub AlbumGridView_change()
   If Not fmain.FullyLoaded Then Return
   If AlbumGridView.row < 0 Then Return
   If AlbumGridView.column < 0 Then Return
-  
   MyAlbumsLib.SelectCell(AlbumGridView.row, AlbumGridView.Column)
 End
 
@@ -10000,6 +9999,8 @@ Public Sub AlbumGridView_Activate()
 End
 
 Public Sub AlbumGridView_Menu()
+  AlbumGridView.row = AlbumGridView.rowat(Mouse.screeny - AlbumGridView.screeny)
+  AlbumGridView.column = AlbumGridView.columnat(Mouse.screenx - AlbumGridView.screenx)
   MyAlbumsLib.SelectCell(AlbumGridView.row, AlbumGridView.Column)
   menupopupalbumview.Popup()
 End
@@ -10009,7 +10010,6 @@ Public Sub MenuSetACover_Click()
   Dim r, c As Integer
   r = AlbumGridView.Row
   c = AlbumGridView.Column
-  
   album = MyAlbumsLib.AlbumFromCoordinates(r, c)
   artist = MyAlbumsLib.ArtistFromCoordinates(r, c)
   filepath = MyAlbumsLib.pathFromCoordinates(r, c)

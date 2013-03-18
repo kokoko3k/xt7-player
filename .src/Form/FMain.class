@@ -887,6 +887,7 @@ Public Sub SetStyle_early()
   'Set font size AND stile OF the whole form; beware the AudioForm!
   If global.pluginmode Then 
     Maintoolbar.h = 0
+    toolbarbackground.hide
     'cachebar.h = 6
   Else
     If desktop.Height > 600 Then
@@ -4008,7 +4009,7 @@ Public Sub SwitchToWindow()
   'show the menu
   AllmenuVisible(True)
   Maintoolbar.visible = True
-  toolbarbackground.show
+  If Not global.pluginmode Then toolbarbackground.show
   'restore the form position
   LeftsidePanel.Visible = LeftsideWasVisible
   
@@ -4144,7 +4145,7 @@ Public Sub TimerFullScreen_Timer()
   
   If AttachZone2 Then
     MainToolBar.visible = True
-    toolbarbackground.show
+    If Not global.pluginmode Then toolbarbackground.show
     AllmenuVisible(True)
   Endif
   
@@ -5367,7 +5368,7 @@ Public Sub Hsplit1_MyRefresh()
     If Not VideoBox.visible Then videobox.show
     rightsidepanel.visible = True
     audioform.AudioPanel.visible = True
-    toolbarbackground.show
+    If Not global.pluginmode Then toolbarbackground.show
   Endif
   YouVideoInfo.w = scrollviewyt.w - 64
   Try MyAlbumsLib.Arrange(generaloptions.IconWidthAlbums.text, albumviewtexlen)
@@ -5379,9 +5380,7 @@ Public Sub Hsplit1_MyRefresh()
   
   zzzfake.cachingbox.x = (outerbox.w Div 2) - 33
   zzzfake.cachingbox.y = (outerbox.h Div 2) - 33
-  
 
-  
 End
 
 Public Sub LibraryGrid_Menu()

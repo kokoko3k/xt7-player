@@ -1885,15 +1885,15 @@
               MoveScaled(31,0,5,4)
               Font = Font["6"]
               ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
-              Picture = Picture["icon:/medium/zoom-in"]
+              Picture = Picture["zoom-in.png"]
               Border = False
             }
             { ButtonNowNext ToolButton
-              MoveScaled(35,0,4,4)
+              MoveScaled(37,0,4,4)
               Visible = False
               Font = Font["6"]
               ToolTip = ("Show/Hide current and next TV program.")
-              Picture = Picture["icon:/medium/info"]
+              Picture = Picture["media-info.png"]
             }
           }
           { ControlPanelRight Panel
@@ -1905,7 +1905,7 @@
               MoveScaled(0,0,4,4)
               Font = Font["6"]
               AutoResize = True
-              Picture = Picture["icon:/22/volume"]
+              Picture = Picture["volume-faenza.png"]
             }
             { volumecontainer Panel
               MoveScaled(7,0,8,6)

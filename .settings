@@ -1,8 +1,9 @@
 [Bookmarks]
 Global=[110]
+FMain=[]
 
 [Breakpoints]
-Breakpoint[1]="FMain.8445"
+Breakpoint[1]="FMain.8535"
 Count=1
 
 [DebugWindow]
@@ -13,6 +14,9 @@ Geometry=[928,154,344,344]
 
 [DebugWindow/AFiltersCfg]
 Geometry=[52,0,210,920]
+
+[DebugWindow/AlbumGridView]
+Geometry=[47,0,349,788]
 
 [DebugWindow/AlbumGridView.Current]
 Geometry=[51,0,508,410]
@@ -460,7 +464,7 @@ Geometry=[1817,322,614,580]
 Geometry=[0,0,1014,714]
 
 [DebugWindow/SearchTerms]
-Geometry=[40,224,301,301]
+Geometry=[47,224,301,301]
 
 [DebugWindow/Settings]
 Geometry=[539,0,422,351]
@@ -984,6 +988,9 @@ Geometry=[1276,-3,210,210]
 [DebugWindow/mylibrary]
 Geometry=[0,41,344,344]
 
+[DebugWindow/mylibrary.PtableFromSearch(selectedalbum, ["Album"])]
+Geometry=[47,0,210,210]
+
 [DebugWindow/myobj]
 Geometry=[0,0,344,344]
 
@@ -1060,6 +1067,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/outarray.Sort()]
 Geometry=[0,0,259,330]
 
+[DebugWindow/outlist]
+Geometry=[2011,236,712,566]
+
 [DebugWindow/p.PTable]
 Geometry=[51,0,210,210]
 
@@ -1126,8 +1136,14 @@ Geometry=[48,-4,406,660]
 [DebugWindow/quickcheckbox]
 Geometry=[0,0,301,301]
 
+[DebugWindow/result]
+Geometry=[255,559,672,590]
+
 [DebugWindow/resultlines]
 Geometry=[1364,265,993,778]
+
+[DebugWindow/results]
+Geometry=[47,0,210,210]
 
 [DebugWindow/returnvalue]
 Geometry=[0,41,344,344]
@@ -1190,7 +1206,7 @@ Geometry=[0,0,210,210]
 Geometry=[48,-4,210,210]
 
 [DebugWindow/table]
-Geometry=[1505,409,448,340]
+Geometry=[1505,409,795,340]
 
 [DebugWindow/tabstrip1]
 Geometry=[-4,-3,210,210]
@@ -1301,17 +1317,17 @@ SearchString=True
 [OpenFile]
 File[1]="caching.gif"
 File[2]=".src/Form/zzzFake.form"
-Active=3
 File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:680.16"
 File[5]=".src/Form/FsForm.form"
 File[6]=".src/Form/FsForm.class:0.0"
 File[7]=".src/0_Moduli/Global.module:119.3"
-File[8]="CHANGELOG_GIT:3.10"
+Active=8
+File[8]="CHANGELOG_GIT:29.46"
 File[9]=".src/Classi/MplayerClass.class:308.17"
 File[10]=".src/Form/Chains.form"
 File[11]=".src/Form/MyQuestion.form"
-File[12]=".src/Classi/PlaylistClass.class:1115.14"
+File[12]=".src/Classi/PlaylistClass.class:1318.3"
 File[13]=".src/Form/HotKeys.class:171.38"
 File[14]=".src/Form/AudioForm.form"
 File[15]=".src/Form/AudioForm.class:135.30"
@@ -1335,7 +1351,7 @@ File[31]=".src/Form/VFiltersCfg.class:470.0"
 File[32]=".src/Classi/SettingsClass.class:595.17"
 File[33]=".src/Form/AFiltersCfg.class:209.39"
 File[34]="MoreResults.png"
-File[35]=".src/Classi/AlbumView.class:272.31"
+File[35]=".src/Classi/AlbumView.class:328.8"
 File[36]=".src/Form/ProfileManager.class:14.37"
 File[37]=".src/Form/TranslationNeeded.class:11.20"
 File[38]=".src/Form/ProfileManager.form"
@@ -1352,8 +1368,11 @@ File[48]=".src/Form/XConfigureVideoDriver.form"
 File[49]=".src/Form/VideoEqualizer.form"
 File[50]=".src/Form/DVBTuner.form"
 File[51]=".src/Classi/DynaGuiClassBAK.class:111.12"
-File[52]=".src/Form/FMain.class:9721.60"
-Count=52
+File[52]=".src/Form/FMain.class:4726.12"
+File[53]=".src/Form/MyAskName.form"
+File[54]=".src/Form/MyAskName.class:17.39"
+File[55]=".src/Form/OverlayTip.form"
+Count=55
 
 [Watches]
 Count=4

@@ -875,6 +875,8 @@ Public Sub SetStyle_early()
     If Error Then Debug "sorry, couldn't load the image " & generaloptions.BottomPanelImage.text
   Endif
   
+  StatusLabelLeft.text = ""
+  StatusLabelright.text = ""
   ' 
   shadeup.visible = False
 
@@ -1017,9 +1019,6 @@ Public Sub SetStyle_later()
   SetSubControlsStyles(CoverManager)
   SetSubControlsStyles(HotkeyGrab)
   SetSubControlsStyles(HotKeys)
-  SetSubControlsStyles(OverLayTip)
-  ' OverlayTip.Textlabel1.Background = GeneralOptions.backcolorChooseBTN3.background
-  ' OverlayTip.Textlabel1.Foreground = GeneralOptions.ColorChooseBTN4.background
   SetSubControlsStyles(SearchFields)
   SetSubControlsStyles(TextDialog)
   SetSubControlsStyles(VfiltersCfg)
@@ -1394,7 +1393,6 @@ Public Sub Form_Close()
   Try LogWindow.hide
   Try MyAskName.hide
   Try MyQuestion.hide
-  Try OverlayTip.hide
   Try OverlayTrayTip.hide
   Try ProfileManager.hide
   Try Searchfields.hide
@@ -1490,7 +1488,6 @@ Public Sub Form_Close()
   Try LogWindow.close
   Try MyAskName.close
   Try MyQuestion.close
-  Try OverlayTip.close
   Try OverlayTrayTip.close
   Try ProfileManager.close
   Try Searchfields.close
@@ -2717,6 +2714,14 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     '''''OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
+    OneSecTimer.Trigger
+    
+    If Not StatusLabelLeft.visible Then
+      StatusLabelLeft.Show
+      StatusLabelright.show
+    Endif
+
+    
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     FillStreamsMenu()
     
@@ -3167,15 +3172,10 @@ Public Sub UpdateStatusBar()
     cachebar.w = (cachevalue / 100) * Rightsidepanel.w
   Endif
   
-  'Debug mplayer.currentcache
-  StatusTextWidth = Statusbar1.Font.TextWidth(PreText & PostText)
-  FreeSpace = Statusbar1.width - StatusTextWidth
-  NeededSpaces = Freespace / SpaceWidth
-  Try LotOfSpaces = Space(NeededSpaces - 2)
-  Statusbar1.text = " " & PreText & LotOfSpaces & PostText
+  StatusLabelLeft.text = " " & Pretext
+  If (Not volumefocused) Then StatusLabelRight.text = Posttext & " "
   AudioForm.UpdateLength(PostText)
   If fsform.FullScreen Then statusbar1.w = statusbar1.Parent.w
-
 End
 
 Private lastvolume As String = -2 'remember the exit volume so that we can set it when opening new medias
@@ -3430,83 +3430,57 @@ Public Sub OneSecTimer_Timer()
         If ((Not TogglePls.value) And fsform.FullScreen) Then FullScreenSwitch()
       Endif
     Endif
-    Try Statusbar1.text = (" Stopped")
+    StatusLabelLeft.text = (" Stopped")
+    StatusLabelRight.text = ""
+    
     SeekBar.value = 0
     Fmain.caption = global.AppName
   Endif
 
 End
 
+
 Private Sub UpdateVolumeTooltip()
-  
   Dim tip As String
   Dim tipw As Integer
   Dim volume As Integer
   Dim underw As Integer
-  OverlayTip.TextLabel1.Reparent(bottomvbox)
-
+  If Not mplayer.ProcessRunningOvr() Then Return
   volume = CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))
   tip = "   Volume: " & CStr(volume) & "% "
   If volume > 100 Then 
-    OverlayTip.TextLabel1.Foreground = color.red
+    StatusLabelright.Foreground = color.red
   Else
-    OverlayTip.TextLabel1.Foreground = color.white
+    StatusLabelright.Foreground = color.white
   Endif
-  OverlayTip.TextLabel1.Background = color.black
-  OverlayTip.TextLabel1.font = Statusbar1.font
-  OverlayTip.TextLabel1.font.bold = Statusbar1.font.bold
-  OverlayTip.TextLabel1.alignment = Align.TopRight
-  Tipw = OverlayTip.TextLabel1.Font.TextWidth(tip) 
-
-  underw = OverlayTip.TextLabel1.Font.TextWidth("000:00:00/00:00:000")
-  OverlayTip.Textlabel1.text = tip
-
-  If tipw < underw Then tipw = underw + 2
-  OverlayTip.TextLabel1.Move(bottomvbox.w - tipw, statusbar1.y, tipw, statusbar1.h)
-  
+  StatusLabelright.text = tip
 End
 
 Public Sub ShowVolBtn_enter()
-  
   VolumeFocused = True
   UpdateVolumeTooltip()
-  UpdateVolumeTooltip()
-  'OverlayTip.raise
-  UpdateVolumeTooltip()
-  
 End
 
 Public Sub ShowVolBtn_leave()
-
   VolumeFocused = False
-  OverlayTip.TextLabel1.reparent(OverlayTip)
-
 End
 
 Public Sub SaveVolumeSlider_enter()
-
   If Global.MouseInside(SaveVolumeSlider) Then
     VolumeFocused = True
-    UpdateVolumeTooltip()
     UpdateVolumeTooltip()
   Endif
 
 End
 
 Public Sub SaveVolumeSlider_leave()
-
   VolumeFocused = False
-  OverlayTip.TextLabel1.reparent(OverlayTip)
-
 End
 
 Public Sub SaveVolumeSlider_MouseUp()
-  
   If Not (Global.MouseInside(SaveVolumeSlider) Or Global.MouseInside(ShowVolBtn)) Then 'check needed due to a gambas bug with gtk
     VolumeFocused = False
-    OverlayTip.hide
   Endif
-  
 End
 
 Public Function makeN(number As String, digits As Integer) As String
@@ -4722,10 +4696,8 @@ Public Sub VideoAreaGroup_MouseWheel()
   IgnoreMouse = True
   HotKeyToMplayer(HotKey)
   
-
-    UpdateVolumeTooltip()
-    Wait 0.5
-    OverlayTip.TextLabel1.reparent(OverlayTip)
+  UpdateVolumeTooltip()
+  Wait 0.5
 End
 
 '/HotKeys Handling *******************************************
@@ -10308,7 +10280,7 @@ Public Sub SeekBar_MouseDrag()
   'Debug relative
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
    seekbar.value = mouse.x / seekbar.w
-  statusbar1.text = msg
+  StatusLabelLeft.text = msg
   mplayer.ShowText(msg, 1000)
 End
 

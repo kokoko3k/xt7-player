@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,101,77)
+  MoveScaled(0,0,101,80)
   Text = ("Xt7-Player")
   Icon = Picture["xt7-player.png"]
   Persistent = True
@@ -1923,12 +1923,27 @@
             }
           }
         }
-        { statusbar1 Label
-          MoveScaled(1,12,55,2)
-          Font = Font["Bold,-1"]
+        { Statusbar1 Panel
+          MoveScaled(1,12,56,2)
           Background = &H000000&
-          Foreground = &HFFFFFF&
-          Alignment = Align.Left
+          Arrangement = Arrange.Horizontal
+          { StatusLabelLeft Label
+            MoveScaled(0,0,12,2)
+            Font = Font["Bold,-1"]
+            Foreground = &HFFFFFF&
+            Expand = True
+            AutoResize = True
+            Text = ("LeftText")
+            Alignment = Align.Left
+          }
+          { StatusLabelRight Label
+            MoveScaled(45,0,10,2)
+            Font = Font["Bold,-1"]
+            Foreground = &HFFFFFF&
+            AutoResize = True
+            Text = ("Right Text")
+            Alignment = Align.Right
+          }
         }
       }
       { cachebar PictureBox

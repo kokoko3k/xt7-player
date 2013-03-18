@@ -2652,7 +2652,6 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     SyncCachedOpts()
     otheroptions = cachedopts
   Endif
-  
   mplayer.Media_FullPath = fullpath
   If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
     Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
@@ -3083,7 +3082,7 @@ Public Sub VideoAreaGroup_Drop()
     Try myplaylist.row = myplaylist.FindRowByPath(playlistgrid, droppedfile)
     Try playlistgrid.rows[playlistgrid.row].Selected = True
   Endif
-  
+
 End
 
 Public Sub UpdateSeekSlider()

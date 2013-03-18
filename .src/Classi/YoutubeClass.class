@@ -380,7 +380,7 @@ Public Sub FormatTime(seconds As String) As String
     Return Shh & ":" & Smm & ":" & Sss
 End
 
-Public Function getvideoid(url As String) As String
+Public Function getvideoidOLD(url As String) As String
   Dim videoid As String
   Dim tmpsplit As String[]
   If url Like "*youtube*/watch?v=*" Then
@@ -394,6 +394,19 @@ Public Function getvideoid(url As String) As String
   Return videoid
 End
 
+Public Function getvideoid(url As String) As String
+  Dim videoid As String
+  Dim tmpsplit As String[]
+  If url Like "*youtube*/watch?v=*" Then
+    videoid = Split(url, "=", "", True)[1]
+    If videoid Like "*&*" Then videoid = Split(videoid, "&")[0]
+      Else
+    'cut from v= to EOL or "&"
+    videoid = Mid(url, InStr(url, "v=", InStr(url, "/") + 1) + 2)
+    If InStr(videoid, "&") <> 0 Then videoid = Left(videoid, InStr(videoid, "&") - 1)
+  Endif
+  Return videoid
+End
 
 Public currentvideoid As String = ""
 
@@ -450,7 +463,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim ytdlprocess As Process
   Dim ytdloutlines As String[]
   Dim UrlAndFormats As New Collection
-  
+
   If Not YoutubeDlInstalled() Then Return
 
   videoid = getvideoid(sourceurl)

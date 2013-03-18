@@ -3335,7 +3335,6 @@ Public Sub OneSecTimer_Timer()
           Endif
         Endif
         UpdateStatusBar()      '1%
-        UpdateSeekSlider()     '0%
         
         'Load youtube subtitles...
         
@@ -3686,6 +3685,10 @@ End
 Public Sub SeekBar_MouseUp()
 
   MousePressed = False
+  If mplayer.Media_Seekable = 0 Then 
+    CantSeekMessage()
+    Return
+  Endif
   seekbar.value = mouse.x / seekbar.w
   SeekBar_Change()
 End
@@ -10265,11 +10268,21 @@ Public Sub ControlFrame_Leave()
   timerpluginmode.enabled = timerpluginmodenabled
 End
 
+Private Sub CantSeekMessage()
+  mplayer.ShowText(("Stream is not seekable, try with arrow keys"), 1000)
+End
+
 
 Public Sub SeekBar_MouseDrag()
   Dim relative As Float
   Dim msg As String
   If Not mplayer.ProcessRunningOvr() Then Return
+  
+  If mplayer.Media_Seekable = 0 Then
+    CantSeekMessage()
+    Return
+  Endif
+  
   relative = (mouse.x / seekbar.w)
   
   If relative <= 0 Then 

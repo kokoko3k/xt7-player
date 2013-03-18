@@ -27,6 +27,7 @@ Private LastSplittedOutput As String = ""
 Private stopping As Boolean = False
 
 
+
 Private Takingscreenshot As Boolean = False
 Private lastscreenshot As String = ""
 
@@ -103,6 +104,8 @@ Public Media_Comment As String
 Public Media_Comments As String
 Public Media_Year As String
 Public Media_CreationDate As String
+Public Media_Seekable As String = 1
+
 Public audiotracks As New String[]
 Public subtitletracks As New String[]
 Public cddbtracks As New String[]
@@ -182,7 +185,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
   cddbtracks.clear()
   AudioOnly = Media_AudioOnly()
 
-
+  Try Media_Seekable = FindTagValue("ID_SEEKABLE")
 
   Try Media_Size = (Stat(Media_FullPath, True).Size Div 1024) 
   Try Media_Type = FindTagValue("ID_DEMUXER")

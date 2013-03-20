@@ -10481,13 +10481,28 @@ End
 
 Public mthumbler As Mplayerclass
 Public Sub ActivateThumbler()
-  Dim opts As String
+  Dim opts As String = "-noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -loop 0 -speed 0.5"
+  Dim HQopts As String = " -lavdopts fast:skiploopfilter=all "
+  Dim LQopts As String = " -lavdopts skipframe=bidir:fast:skiploopfilter=all "
+  If mplayer.Media_FullPath_Playing Like "*ttp://*youtube*" Then
+    If generaloptions.SeekThumbsYoutubeLowFpsCheckbox.value = True Then
+      opts &= LQopts
+        Else
+      opts &= HQopts
+    Endif
+          Else
+    If generaloptions.SeekThumbsLowFpsCheckbox.value = True Then
+      opts &= LQopts
+        Else
+      opts &= HQopts
+    Endif      
+  Endif
   If Not mplayer.ProcessRunningOvr() Then Return
   ThumblerActive = True
   mthumbler = New Mplayerclass
   mthumbler.wid = thumblevideo.handle
   mthumbler.VoDriver = "-vo gl,xv,x11"
-  opts = "-noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -lavdopts skipframe=bidir:fast:skiploopfilter=all -loop 0 -speed 0.5"
+
   mthumbler.do_play(mplayer.Media_FullPath_Playing, opts)
   thumblebox.h = (Screen.Height Div 12) 
   thumblebox.w = ((mplayer.VideoOut_Width / mplayer.VideoOut_Height) * thumblebox.h)

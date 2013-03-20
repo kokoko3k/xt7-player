@@ -281,13 +281,11 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
   
 End
 
-Public Sub Renice(nice As Integer)
-
+Public Sub Renice(nice As Integer, Optional JustThePlayer As Boolean = False)
   Debug "nice=" & nice
   Debug
-  RenicerProcess = Shell "renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
-  RenicerProcess = Shell "renice " & (nice - 1) & " -p " & playerprocess.id  'renice the whole application to 'nice'-1
-
+  If (Not JustThePlayer) Then RenicerProcess = Shell "renice " & nice & " -p " & Application.id  'renice the whole application to 'nice'
+  RenicerProcess = Shell "renice " & (nice - 1) & " -p " & playerprocess.id 
 End
 
 Public CurrentCache As String = ""

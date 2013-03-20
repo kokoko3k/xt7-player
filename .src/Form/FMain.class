@@ -10503,10 +10503,11 @@ Public Sub ActivateThumbler()
   mthumbler = New Mplayerclass
   mthumbler.wid = thumblevideo.handle
   mthumbler.VoDriver = "-vo gl,xv,x11"
-
   mthumbler.do_play(mplayer.Media_FullPath_Playing, opts)
   thumblebox.h = (Screen.Height Div 12) 
   thumblebox.w = ((mplayer.VideoOut_Width / mplayer.VideoOut_Height) * thumblebox.h)
+  Wait 0.5
+  mthumbler.Renice(GeneralOptions.NiceLevelSpinBox.value + 5, True)
   'TimerMoveThumble.start
 End
 

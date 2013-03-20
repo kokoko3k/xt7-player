@@ -1346,7 +1346,7 @@ End
 Public Sub Form_Close()
 
   Dim MySettings As New SettingsClass
-  
+  Try Shell "rm -R " & global.ConfPath & "/" & "thumbcontainer.* &>/dev/null"
   StartClass.ProcessSignals(False)
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   
@@ -1756,6 +1756,7 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
+  thumbleractive = False
   previousfile_cover = ""
   videobox.cached = False
   mplayer.CurrentCache = 0
@@ -1768,6 +1769,7 @@ Public Sub ButtonStop_Click()
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
   UserStopped = True
   mplayer.do_stop
+  Try mthumbler.do_stop
   VideoBox.Refresh
   ShowAudioPanel(False)
   OneSecTimer_Timer()
@@ -2588,6 +2590,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim ismp3 As Boolean = False
 
   Wait
+  thumbleractive = False
   OneSecTimer.Stop()
 
   needytcookie = False
@@ -3380,6 +3383,7 @@ Public Sub OneSecTimer_Timer()
     'cachebar.visible = False
     Fmain.caption = global.AppName
     OneSecTimer.stop
+    thumbleractive = False
     cachebar.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]
     If PlayStarted Then 'we've reached the end of the media or stopped it.
@@ -3676,13 +3680,14 @@ Public Sub SeekBar_MouseDown()
 
   MousePressed = True
   'Object.Lock(seekbar)
-  
+
   'Object.unLock(seekbar)
 
 End
 
 Public Sub SeekBar_MouseUp()
   MousePressed = False
+  HideThumbler()
   If mplayer.Media_Seekable = 0 Then 
     CantSeekMessage()
     Return
@@ -4627,7 +4632,6 @@ Public Sub VideoAreaGroup_MouseDown()
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False
   'PanelNowNextShow()
-
 End
 
 Public Sub PanelNowNextShow()
@@ -4732,6 +4736,7 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
+  thumbleractive = False
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
@@ -4824,6 +4829,7 @@ Public Sub ButtonPrev_Click()
 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
   OneSecTimer.stop
+  thumbleractive = False
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
@@ -5351,6 +5357,7 @@ Public Sub Hsplit1_MyRefresh()
   Endif
   If (Not mplayer.audioonly) Then CorrectAreaAspect()  
   If mplayer.ProcessRunningOvr() Then UpdateStatusBar()
+
 
   CostrainFormSizes()
   Try RightPanel = HSplit1.layout[1]
@@ -7656,6 +7663,7 @@ Public Sub Button3_Click()
     Return
   Endif
   OneSecTimer.Stop
+  thumbleractive = False
   Wait
   mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
   Wait
@@ -9204,6 +9212,7 @@ End
 ' End
 
 Public Sub HSplit1_Resize()
+thumblebox.hide
 MainToolBar_Arrange()
   If Rnd(0, 1) > 0.75 Then
     Hsplit1_MyRefresh   
@@ -10277,6 +10286,7 @@ Private Sub CantSeekMessage()
   StatusLabelLeft.foreground = Color.green
   StatusLabelLeft.text = " " & ("Stream is not seekable!, use arrow keys or doubleclick to override")
   OneSecTimer.stop
+  thumbleractive = False
   Wait 1
   OneSecTimer.Trigger
   Wait
@@ -10284,10 +10294,20 @@ Private Sub CantSeekMessage()
   OneSecTimer.start
 End
 
-
+Public ThumblerActive As Boolean = False
 Public Sub SeekBar_MouseDrag()
   Dim relative As Float
   Dim msg As String
+  If CanUseThumbler() Then
+    If Not thumbleractive Then 
+      activatethumbler()
+        Else
+      TimerMoveThumble.start
+    Endif
+    thumblebox.x = Mouse.screenx - (thumblebox.h Div 2) - outerbox.screenx
+    thumblebox.y = controlframe.screeny - outerbox.screeny - thumblebox.h - 1 'outerbox.screeny + outerbox.h - thumblebox.h - 1
+  Endif
+  
   If Not mplayer.ProcessRunningOvr() Then Return
   
   If mplayer.Media_Seekable = 0 Then
@@ -10455,11 +10475,68 @@ Public Sub ControlPanelRight_Drop()
 End
 
 Public Sub MainToolBar_Arrange()
-  ' toolbarbackground.stretch = (hsplit1.Layout[1] < toolbarbackground.Picture.w)
-  ' toolbarbackground.Move(hsplit1.Layout[0], Maintoolbar.y + (Maintoolbar.h - (Maintoolbar.h Div 3)), toolbarbackground.Picture.w, Maintoolbar.h Div 3)
-  ' toolbarbackground.Lower
-
 End
 
 
+
+Public mthumbler As Mplayerclass
+Public Sub ActivateThumbler()
+  Dim opts As String
+  If Not mplayer.ProcessRunningOvr() Then Return
+  ThumblerActive = True
+  mthumbler = New Mplayerclass
+  mthumbler.wid = thumblevideo.handle
+  mthumbler.VoDriver = "-vo gl,xv,x11"
+  opts = "-noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -lavdopts skipframe=bidir:fast:skiploopfilter=all -loop 0 -speed 0.5"
+  mthumbler.do_play(mplayer.Media_FullPath_Playing, opts)
+  thumblebox.h = (Screen.Height Div 12) 
+  thumblebox.w = ((mplayer.VideoOut_Width / mplayer.VideoOut_Height) * thumblebox.h)
+  'TimerMoveThumble.start
+End
+
+Public Sub HideThumbler()
+  If Not thumbleractive Then Return
+  If Not mthumbler.paused Then mthumbler.do_pause()
+  TimerMoveThumble.stop
+  thumblebox.hide
+  Wait 0.1
+  thumblebox.hide
+End
+
+
+Public Sub seekbar_Leave()
+  HideThumbler()
+End
+
+
+Private previoustimerseek As Integer = 0
+Public Sub TimerMoveThumble_Timer()
+  Dim newseek As Integer
+  thumblebox.show()
+  If mthumbler.Paused Then 
+    mthumbler.do_leave_pause()
+  Endif
+  newseek = (seekbar.value * 100) 
+  If newseek > 99 Then newseek = 99
+  If newseek <> previoustimerseek Then
+    mthumbler.do_seek(newseek)
+    previoustimerseek = newseek
+  Endif
+End
+
+Private Function CanUseThumbler() As Boolean
+  If mplayer.AudioOnly Then Return False
+  If Not mplayer.Media_Seekable Then Return False
+  If mplayer.Media_FullPath_Playing Like "*ttp://*youtube*" Then
+    If (generaloptions.SeekThumbsYoutubeCheckbox.value = True) Then 
+      Return True
+        Else
+      Return False
+    Endif
+  Endif
+  If global.IsNetworkURI(mplayer.Media_FullPath_Playing) Then Return False
+  If (generaloptions.SeekThumbsCheckbox.value = True) Then Return True
+  
+  Return False
+End
 

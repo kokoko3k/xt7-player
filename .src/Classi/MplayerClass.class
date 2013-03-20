@@ -412,8 +412,8 @@ Public Sub playerprocess_read()
         If playeroutput Like "*%*" Then
           tmp = Trim(playeroutput)
           currentcache = Trim(Right(playeroutput, 4))
-          Debug "currentcache=" & currentcache
-          Debug
+          ' Debug "currentcache=" & currentcache
+          ' Debug
         Endif
       Endif
     Endif
@@ -1032,10 +1032,14 @@ End
 Public Function do_seek(Percentual As String) As Boolean
 
   If paused Then
-    send("osd 0")
+    If Not (commandline Like "*osdlevel*") Then send("osd 0")
     send("seek " & Percentual & " 1")
     send("pause")
-    send("pausing_keep osd 1")
+    If Not (commandline Like "*osdlevel*") Then 
+      send("pausing_keep osd 1")
+        Else
+      send("pausing_keep")
+    Endif
     Wait 0.1
     paused = True
   Else
@@ -1475,6 +1479,7 @@ Private rowpriv As Integer
 Private gridpriv As Gridview
 
 
+
 Public Sub savethumb(fullpath As String, newfilename As String, Optional width As Integer = 256, Optional seconds As Integer = 300, mygrid As Gridview, row As Integer, column As Integer) 
   Dim outdir As String = Shell(Temp()) & Rnd(0, 99999)
   Dim cmdline As String = ""
@@ -1491,7 +1496,6 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   cmdline &= " -frames 1 -nosound -vo jpeg:quality=80:outdir=" & outdir
   cmdline &= " -noconfig all -slave -quiet"
 
-  'Debug cmdline
   
   newfilenamepriv = newfilename
   outdirpriv = outdir
@@ -1524,5 +1528,88 @@ Public Sub thumbprocess_kill()
     Endif
   Endif
 End
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+' ' ' '------------------------------------ - - - - - - - - - - - - - - - - - - - - -
+' ' ' Public ScrollThumbsPath As String = ""
+' ' ' Public ContainerThumbler As Process
+' ' ' Public thumblercontainertimer As Timer
+' ' ' Public Thumblercontainer As New Picture[]
+' ' ' 
+' ' ' Public Sub fillthumbs()
+' ' '   Dim cmdline As String
+' ' '   'Dim playingfile As String = "/mnt/disco2/torrent/Film/Molto.Forte.Incredibilmente.Vicino.2011.720p.BluRay.x264.Ita.Eng.Ac3.Lejo.mkv"
+' ' '   Dim playingfile As String = Media_FullPath_Playing
+' ' '   'Dim stopseconds As String = 7000
+' ' '   Dim stopseconds As Integer 
+' ' '   Dim mystep As Integer 
+' ' '   Dim mypicture As Picturebox
+' ' '   Try stopseconds = CInt(Media_Length) - 10
+' ' '   Try mystep = CInt(stopseconds) Div 50
+' ' '   If Error Then mystep = 60
+' ' '   
+' ' '   ScrollThumbsPath = global.ConfPath & "/" & "thumbcontainer." & Application.id
+' ' '   Shell "rm -R " & ScrollThumbsPath & " &>/dev/null" Wait
+' ' '   If Not Exist(ScrollThumbsPath) Then Try Mkdir ScrollThumbsPath
+' ' '   If Error Then 
+' ' '     Debug "Error: could not create " & ScrollThumbsPath
+' ' '     Return
+' ' '   Endif
+' ' '   cmdline = "mplayer -slave '" & playingfile & "' -vf scale=-2:" & 64 & " -nosound -nocache "
+' ' '   cmdline &= " -sstep " & mystep & " -endpos " & stopseconds & " -vo jpeg:quality=80:outdir=" & ScrollThumbsPath
+' ' '   cmdline &= " </dev/null"
+' ' '   ContainerThumbler = Shell cmdline As "ContainerThumbler"
+' ' ' 
+' ' '   thumblercontainer.Clear()
+' ' ' 
+' ' ' 
+' ' '   thumblercontainertimer = New Timer As "thumblercontainertimer"
+' ' '   thumblercontainertimer.delay = 100
+' ' '   emptytimes = 0
+' ' '   thumblercontainertimer.start
+' ' ' End
+' ' ' 
+' ' ' Private EmptyTimes As Integer = 0
+' ' ' 
+' ' ' Public Sub thumblercontainertimer_timer()
+' ' '   Dim thumbfile As String
+' ' '   Dim somefile As Boolean = False
+' ' '   If Not Exist(ScrollThumbsPath) Then
+' ' '     thumblercontainertimer.Stop
+' ' '     Return
+' ' '   Endif
+' ' '   For Each thumbfile In Dir(ScrollThumbsPath).sort()
+' ' '     Try thumblercontainer.Add(Picture.Load(ScrollThumbsPath & "/" & thumbfile))
+' ' '     If Error Then
+' ' '       Wait 0.1
+' ' '       Try thumblercontainer.Add(Picture.Load(ScrollThumbsPath & "/" & thumbfile))
+' ' '     Endif
+' ' '     Try Kill (ScrollThumbsPath & "/" & thumbfile)
+' ' '     somefile = True
+' ' '     Wait
+' ' '   Next
+' ' '   If Not somefile Then emptytimes += 1
+' ' ' End
+' ' ' 
+' ' ' 
+' ' ' 
+' ' ' Public Sub ContainerThumbler_kill()
+' ' '   emptytimes = 999
+' ' '   thumblercontainertimer.stop
+' ' ' End
+
 
 

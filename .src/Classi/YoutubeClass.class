@@ -400,10 +400,14 @@ Public Function getvideoid(url As String) As String
   If url Like "*youtube*/watch?v=*" Then
     videoid = Split(url, "=", "", True)[1]
     If videoid Like "*&*" Then videoid = Split(videoid, "&")[0]
-      Else
+      Else If videoid Like "*&*" Then
     'cut from v= to EOL or "&"
-    videoid = Mid(url, InStr(url, "v=", InStr(url, "/") + 1) + 2)
-    If InStr(videoid, "&") <> 0 Then videoid = Left(videoid, InStr(videoid, "&") - 1)
+        videoid = Mid(url, InStr(url, "v=", InStr(url, "/") + 1) + 2)
+        If InStr(videoid, "&") <> 0 Then videoid = Left(videoid, InStr(videoid, "&") - 1)
+      Else
+        tmpsplit = Split(url, "/", "", True)
+        videoid = tmpsplit[tmpsplit.count - 1]
+        videoid = Split(videoid, "?")[0]
   Endif
   Return videoid
 End
@@ -500,7 +504,7 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Next
   'the space is intentional to play videoid(s) which begins with a "-"
   ytdlprocess = Shell "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
-
+Debug videoid
   Repeat
     Wait 0.02
   Until ytdlprocess.State <> Process.Running

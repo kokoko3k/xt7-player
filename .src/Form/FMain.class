@@ -10496,7 +10496,7 @@ Public Sub ActivateThumbler()
         Else
       opts &= HQopts
     Endif    
-    opts &= " " & mplayer.cookieopts & " "
+    opts &= " " & mplayer.cookieoptsG & " "
   Endif
   If Not mplayer.ProcessRunningOvr() Then Return
   ThumblerActive = True

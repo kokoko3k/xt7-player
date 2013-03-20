@@ -641,7 +641,9 @@ Public Function DvbChannelToNumber(C As String) As Integer
   Return 0
 End
 
+Public cookieoptsG As String = ""
 Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg") As Boolean
+  cookieoptsG = cookieopts
   AudioSwitched = False
   CurrentCache = "0"
   mplayeroptions = options

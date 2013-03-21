@@ -1,5 +1,7 @@
 [Bookmarks]
 Global=[110]
+MplayerClass=[]
+FMain=[]
 
 [Breakpoints]
 Count=0
@@ -148,6 +150,12 @@ Geometry=[0,35,344,344]
 
 [DebugWindow/Dir(Directory, "*.MP3")]
 Geometry=[1280,0,210,210]
+
+[DebugWindow/Dir(ScrollThumbsPath)]
+Geometry=[47,0,210,210]
+
+[DebugWindow/Dir(ScrollThumbsPath).sort()]
+Geometry=[47,0,210,210]
 
 [DebugWindow/Dir(devdir, cdpattern).Insert(Dir(devdir, dvdpattern))]
 Geometry=[0,41,344,344]
@@ -458,6 +466,9 @@ Geometry=[1803,308,614,580]
 [DebugWindow/ScrollArea(librarygrid.Children[0]).View.Children]
 Geometry=[1817,322,614,580]
 
+[DebugWindow/Scrollarea]
+Geometry=[47,0,210,210]
+
 [DebugWindow/SearchTable]
 Geometry=[0,0,1014,714]
 
@@ -607,6 +618,10 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/TheobJect]
 Geometry=[0,0,344,344]
+
+[DebugWindow/Thumblercontainer]
+ShowHidden=True
+Geometry=[311,0,210,210]
 
 [DebugWindow/TmpOut]
 Geometry=[-102,327,301,301]
@@ -781,6 +796,10 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/chans]
 Geometry=[0,0,210,837]
+
+[DebugWindow/container]
+ShowHidden=True
+Geometry=[47,0,210,210]
 
 [DebugWindow/control]
 Geometry=[0,0,301,301]
@@ -1221,6 +1240,9 @@ Geometry=[0,0,301,301]
 [DebugWindow/theview]
 Geometry=[51,0,210,210]
 
+[DebugWindow/thumblebox]
+Geometry=[81,140,350,692]
+
 [DebugWindow/tl]
 Geometry=[0,0,210,210]
 
@@ -1319,24 +1341,25 @@ File[3]=".src/Form/FMain.form"
 File[4]=".src/Form/EpgForm.class:680.16"
 File[5]=".src/Form/FsForm.form"
 File[6]=".src/Form/FsForm.class:0.0"
-File[7]=".src/0_Moduli/Global.module:119.3"
-File[8]="CHANGELOG_GIT:23.0"
-File[9]=".src/Classi/MplayerClass.class:387.16"
+File[7]=".src/0_Moduli/Global.module:103.11"
+Active=8
+File[8]="CHANGELOG_GIT:5.10"
+File[9]=".src/Classi/MplayerClass.class:287.20"
 File[10]=".src/Form/Chains.form"
 File[11]=".src/Form/MyQuestion.form"
-File[12]=".src/Classi/PlaylistClass.class:1318.3"
+File[12]=".src/Classi/PlaylistClass.class:1069.0"
 File[13]=".src/Form/HotKeys.class:171.38"
 File[14]=".src/Form/AudioForm.form"
 File[15]=".src/Form/AudioForm.class:135.30"
 File[16]=".src/Classi/DynaGuiClass.class:142.14"
-File[17]=".src/Form/CoverManager.class:67.17"
-File[18]=".src/Form/GeneralOptions.class:1096.0"
+File[17]=".src/Form/CoverManager.class:1235.24"
+File[18]=".src/Form/GeneralOptions.class:68.2"
 File[19]=".src/Classi/Meters.class:204.3"
 Fold[19]=[55,92]
 File[20]="AA_ToDo:638.0"
 File[21]=".src/Form/EpgForm.form"
 File[22]=".src/Form/GeneralOptions.form"
-File[23]=".src/Classi/YoutubeClass.class:468.33"
+File[23]=".src/Classi/YoutubeClass.class:507.0"
 File[24]="xt7-player.desktop:13.0"
 File[25]=".src/Classi/StartClass.class:18.1"
 File[26]=".src/Form/zzzFake.class:111.33"
@@ -1345,7 +1368,7 @@ File[28]=".src/Form/HotKeyGrab.class:147.7"
 File[29]=".src/Form/HotKeyGrab.form"
 File[30]=".src/Form/Chains.class:76.0"
 File[31]=".src/Form/VFiltersCfg.class:470.0"
-File[32]=".src/Classi/SettingsClass.class:595.17"
+File[32]=".src/Classi/SettingsClass.class:15.0"
 File[33]=".src/Form/AFiltersCfg.class:209.39"
 File[34]="MoreResults.png"
 File[35]=".src/Classi/AlbumView.class:328.8"
@@ -1365,14 +1388,14 @@ File[48]=".src/Form/XConfigureVideoDriver.form"
 File[49]=".src/Form/VideoEqualizer.form"
 File[50]=".src/Form/DVBTuner.form"
 File[51]=".src/Classi/DynaGuiClassBAK.class:111.12"
-Active=52
-File[52]=".src/Form/FMain.class:888.21"
+File[52]=".src/Form/FMain.class:10508.10"
 File[53]=".src/Form/MyAskName.form"
 File[54]=".src/Form/MyAskName.class:17.39"
 File[55]="roundmask.png"
 File[56]=".src/Form/OverlayTrayTip.form"
 File[57]=".src/Form/Searchfields.form"
-Count=57
+File[58]=".src/0_Moduli/ComboHistory.module:0.0"
+Count=58
 
 [Watches]
 Count=4

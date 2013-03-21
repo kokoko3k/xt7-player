@@ -1332,7 +1332,7 @@ Public Sub FindTagValue(mytag As String) As String
   Else
     Media_FullPath_Playing = ""
   Endif
-  Debug mytag; " "; value
+  'Debug mytag; " "; value
   Return value
 
 End

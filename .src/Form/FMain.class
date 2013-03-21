@@ -1756,7 +1756,7 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
-  thumbleractive = False
+  Stopmthumbler()
   previousfile_cover = ""
   videobox.cached = False
   mplayer.CurrentCache = 0
@@ -1769,7 +1769,6 @@ Public Sub ButtonStop_Click()
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
   UserStopped = True
   mplayer.do_stop
-  Try mthumbler.do_stop
   VideoBox.Refresh
   ShowAudioPanel(False)
   OneSecTimer_Timer()
@@ -1786,7 +1785,7 @@ End
 
 Public Sub Buttonfwd_Click()
 
-  mplayer.do_ffwd
+  mplayer.do_ffwd()
 
 End
 
@@ -2590,7 +2589,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim ismp3 As Boolean = False
 
   Wait
-  thumbleractive = False
+  Stopmthumbler()
   OneSecTimer.Stop()
 
   needytcookie = False
@@ -3383,7 +3382,7 @@ Public Sub OneSecTimer_Timer()
     'cachebar.visible = False
     Fmain.caption = global.AppName
     OneSecTimer.stop
-    thumbleractive = False
+    Stopmthumbler()
     cachebar.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]
     If PlayStarted Then 'we've reached the end of the media or stopped it.
@@ -4736,7 +4735,7 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
-  thumbleractive = False
+  Stopmthumbler()
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
@@ -4829,7 +4828,7 @@ Public Sub ButtonPrev_Click()
 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr()
   OneSecTimer.stop
-  thumbleractive = False
+  Stopmthumbler()
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
@@ -7663,7 +7662,7 @@ Public Sub Button3_Click()
     Return
   Endif
   OneSecTimer.Stop
-  thumbleractive = False
+  Stopmthumbler()
   Wait
   mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
   Wait
@@ -10286,7 +10285,7 @@ Private Sub CantSeekMessage()
   StatusLabelLeft.foreground = Color.green
   StatusLabelLeft.text = " " & ("Stream is not seekable!, use arrow keys or doubleclick to override")
   OneSecTimer.stop
-  thumbleractive = False
+  Stopmthumbler()
   Wait 1
   OneSecTimer.Trigger
   Wait
@@ -10298,16 +10297,11 @@ Public ThumblerActive As Boolean = False
 Public Sub SeekBar_MouseDrag()
   Dim relative As Float
   Dim msg As String
-  If CanUseThumbler() Then
-    If Not thumbleractive Then 
-      activatethumbler()
-        Else
-      TimerMoveThumble.start
-    Endif
-    thumblebox.x = Mouse.screenx - (thumblebox.h Div 2) - outerbox.screenx
-    thumblebox.y = controlframe.screeny - outerbox.screeny - thumblebox.h - 1 'outerbox.screeny + outerbox.h - thumblebox.h - 1
+  If CanUseThumbler() Then 
+    TimerSeekThumble.start
+    movethumble()
   Endif
-  
+
   If Not mplayer.ProcessRunningOvr() Then Return
   
   If mplayer.Media_Seekable = 0 Then
@@ -10504,17 +10498,16 @@ Public Sub ActivateThumbler()
   mthumbler.wid = thumblevideo.handle
   mthumbler.VoDriver = "-vo gl,xv,x11"
   mthumbler.do_play(mplayer.Media_FullPath_Playing, opts)
-  thumblebox.h = (Screen.Height Div 12) 
-  thumblebox.w = ((mplayer.VideoOut_Width / mplayer.VideoOut_Height) * thumblebox.h)
-  Wait 0.5
+  While Not mthumbler.ProcessRunningOvr()
+    Wait 0.1
+  Wend
   mthumbler.Renice(GeneralOptions.NiceLevelSpinBox.value + 5, True)
-  'TimerMoveThumble.start
 End
 
 Public Sub HideThumbler()
   If Not thumbleractive Then Return
   If Not mthumbler.paused Then mthumbler.do_pause()
-  TimerMoveThumble.stop
+  TimerSeekThumble.stop
   thumblebox.hide
   Wait 0.1
   thumblebox.hide
@@ -10527,9 +10520,10 @@ End
 
 
 Private previoustimerseek As Integer = 0
-Public Sub TimerMoveThumble_Timer()
+Public Sub TimerSeekThumble_Timer()
   Dim newseek As Integer
-  thumblebox.show()
+  If Not thumbleractive Then activatethumbler()
+  If Not thumblebox.visible Then thumblebox.show()
   If mthumbler.Paused Then 
     mthumbler.do_leave_pause()
   Endif
@@ -10540,6 +10534,17 @@ Public Sub TimerMoveThumble_Timer()
     previoustimerseek = newseek
   Endif
 End
+
+Private Sub movethumble()
+  Dim x, y, w, h As Integer
+  w = (Screen.width Div 12)
+  h = ((mplayer.VideoOut_Height / mplayer.VideoOut_Width) * w) 
+  x = Mouse.screenx - (thumblebox.h Div 2) - outerbox.screenx
+  y = controlframe.screeny - outerbox.screeny - thumblebox.h - cachebar.h  'outerbox.screeny + outerbox.h - thumblebox.h - 1
+  thumblebox.Move(x, y, w, h)
+End
+
+
 
 Private Function CanUseThumbler() As Boolean
   If mplayer.AudioOnly Then Return False
@@ -10557,3 +10562,9 @@ Private Function CanUseThumbler() As Boolean
   Return False
 End
 
+Private Sub Stopmthumbler()
+  TimerSeekThumble.stop
+  Try mthumbler.do_stop()
+  thumblebox.Hide()
+  thumbleractive = False
+End

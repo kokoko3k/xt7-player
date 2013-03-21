@@ -1812,7 +1812,7 @@
           }
         }
       }
-      { TimerMoveThumble #Timer
+      { TimerSeekThumble #Timer
         #MoveScaled(17,43)
         Delay = 100
       }
@@ -1961,7 +1961,7 @@
         }
       }
       { cachebar PictureBox
-        MoveScaled(0,49,58,1)
+        MoveScaled(1,49,58,1)
         Background = Color.Background
         Ignore = True
         Picture = Picture["cachebar.png"]

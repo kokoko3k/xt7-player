@@ -3312,7 +3312,7 @@ Public Sub OneSecTimer_Timer()
   Dim PlaylistFinished As Boolean
 
   If mplayer.ProcessRunningOvr() Then
-    
+
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
       If Not alreadypaused Then
@@ -3325,10 +3325,11 @@ Public Sub OneSecTimer_Timer()
         alreadypaused = False
       Endif
     Endif
+
     If (Not mplayer.Paused) Then
       If (Not MousePressed) Then
-        
         UpdateVolumeSlider()  '12% --> ok 3-4%
+        mplayer.Send("get_property osdlevel")
         If Not (mplayer.Media_FullPath_Playing Like ("dvb://*")) Then 
           If Not (mplayer.Media_FullPath_Playing Like ("http://*shoutcast*")) Then
             'mplayer.Send("get_property length") '12% --> ok 3-4%
@@ -3580,24 +3581,17 @@ Public Sub SeekOrSeekAndRestart(Action As String)
 End
 
 Public Sub SeekBar_Change()
-  '"if" is needed, because seekbar position is changed by mplayer itself through sec_timer
-
   Dim percent As Integer
   Dim newpos As Integer
-  Object.Lock(seekbar)
-  Wait
-  Object.unLock(seekbar)
-
   If fmain.closing Then Return
   If Not (Seekbar.tag = "timer") Then
     OneSecTimer.Enabled = False
     percent = SeekBar.value * 100
-    
+
     'Restart the stream from a new position on youtube streams instead of seeking.
     If (generaloptions.DoSeekRestartBox.value = True) And (((mplayer.Media_FullPath_Playing Like "http://*.youtube.*/*") Or (mplayer.Media_FullPath_Playing Like "https://*.youtube.*/*"))) Then
       seekbar.enabled = False
       If SeekingRestarting Then Return
-      
       fmain.mouse = mouse.wait
       Try newpos = CInt(mplayer.Media_Length / (100 / percent))
       If Error Then newpos = 0
@@ -3608,14 +3602,9 @@ Public Sub SeekBar_Change()
       seekbar.enabled = True
     Else
       mplayer.do_seek(percent)
-      
     Endif
-    
     OneSecTimer.Enabled = True
-    
   Endif
-  'Seekbar.enabled = True
-
 End
 
 Public Sub SeekRestart(newpos As Integer)
@@ -4626,7 +4615,7 @@ Public Function SnapToBorders(adding As Float) As Float
 End
 
 Public Sub VideoAreaGroup_MouseDown()
-
+mplayer.Send("run /bin/ls /")
   mouseleft = mouse.left
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False

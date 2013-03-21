@@ -114,6 +114,7 @@ Public cddbtracks As New String[]
 Public currentvolume As String = "0"
 Public CurrentAudioStream As String = "0"
 Public CurrentSubStream As String = ""
+Public osdlevel As String = ""
 
 
 Public Function FillMultitracks()
@@ -347,6 +348,8 @@ Public Sub playerprocess_read()
           Media_Length = Split(Mid(tmpout, InStr(tmpout, "=") + 1), ".")[0]
         Else If tmpout Like "*ANS_PERCENT_POS*=*" Then
           Media_percent_pos = Split(Mid(tmpout, InStr(tmpout, "=") + 1), ".")[0]
+        Else If tmpout Like "*ANS_OSDLEVEL*=*" Then
+          osdlevel = Mid(tmpout, InStr(tmpout, "=") + 1)
         Endif
       Next
       'Debug "return from 1"
@@ -1030,7 +1033,7 @@ Public Function do_slow() As Boolean
 End
 
 Public Function do_seek(Percentual As String) As Boolean
-
+  Dim prevosdlevel As String = osdlevel 'this is updated from onesectimer asking mplayer to store osdlevel property.
   If paused Then
     If Not (commandline Like "*osdlevel*") Then send("osd 0")
     send("seek " & Percentual & " 1")
@@ -1043,7 +1046,10 @@ Public Function do_seek(Percentual As String) As Boolean
     Wait 0.1
     paused = True
   Else
+    send("osd 0")
     send("seek " & Percentual & " 1")
+    If prevosdlevel = "" Then prevosdlevel = "0"
+    send("osd " & prevosdlevel)
   Endif
 
 End

@@ -3676,6 +3676,7 @@ End
 Public Sub SeekBar_MouseUp()
   MousePressed = False
   HideThumbler()
+  If Not Mouse.left Then Return
   If mplayer.Media_Seekable = 0 Then 
     CantSeekMessage()
     Return
@@ -10286,6 +10287,7 @@ Public ThumblerActive As Boolean = False
 Public Sub SeekBar_MouseDrag()
   Dim relative As Float
   Dim msg As String
+  If Not mplayer.ProcessRunningOvr() Then Return
   If CanUseThumbler() Then 
     TimerSeekThumble.start
     movethumble()
@@ -10526,11 +10528,13 @@ End
 
 Private Sub movethumble()
   Dim x, y, w, h As Integer
-  w = (Screen.width Div 12)
-  h = ((mplayer.VideoOut_Height / mplayer.VideoOut_Width) * w) 
+  If Not mplayer.ProcessRunningOvr() Then Return
+  w = (Screen.width Div 6)
+  Try h = ((mplayer.VideoOut_Height / mplayer.VideoOut_Width) * w) 
+  If Error Then Return
   x = Mouse.screenx - (thumblebox.h Div 2) - outerbox.screenx
   y = controlframe.screeny - outerbox.screeny - thumblebox.h - cachebar.h  'outerbox.screeny + outerbox.h - thumblebox.h - 1
-  thumblebox.Move(x, y, w, h)
+  Try thumblebox.Move(x, y, w, h)
 End
 
 
@@ -10538,6 +10542,7 @@ End
 Private Function CanUseThumbler() As Boolean
   If mplayer.AudioOnly Then Return False
   If Not mplayer.Media_Seekable Then Return False
+  If Not mplayer.ProcessRunningOvr() Then Return False
   If mplayer.Media_FullPath_Playing Like "*ttp://*youtube*" Then
     If (generaloptions.SeekThumbsYoutubeCheckbox.value = True) Then 
       Return True
@@ -10556,4 +10561,15 @@ Private Sub Stopmthumbler()
   Try mthumbler.do_stop()
   thumblebox.Hide()
   thumbleractive = False
+End
+
+Public Sub seekbar_MouseWheel()
+  If mplayer.ProcessRunningOvr() Then
+    If Mouse.delta > 0 Then
+      seekbar.value += 0.01
+        Else
+      seekbar.value -= 0.01
+    Endif
+  Endif
+  SeekBar_Change()
 End

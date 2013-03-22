@@ -82,12 +82,12 @@
         }
         { NoParse54 HBox
           MoveScaled(3,12,48,5)
-          ToolTip = ("Enable the animated video preview\nwhen you drag the seekbar with the mouse.\n\nRequires more cpu power.")
+          ToolTip = ("Enable the animated video preview\nwhen you drag the seekbar with the mouse.\n\n* Requires more cpu power.\n\n* If you drag with mouse buttons other than left, then no seek is made.")
           Spacing = True
           { SeekThumbsCheckbox CheckBox
             MoveScaled(0,0,49,4)
             Expand = True
-            Text = ("Show animated preview when seeking")
+            Text = ("Live preview when seeking")
             Value = CheckBox.True
           }
         }
@@ -716,13 +716,13 @@
         }
         { NoParse53 HBox
           MoveScaled(1,40,51,5)
-          ToolTip = ("Enable the animated video preview\nwhen you drag the seekbar with the mouse.\n\n* Requires a fast network connection and more cpu power.")
+          ToolTip = ("Enable the animated video preview\nwhen you drag the seekbar with the mouse.\n\n* Requires a fast network connection and more cpu power.\n\n* If you drag with mouse buttons other than left, then no seek is made.")
           AutoResize = True
           Spacing = True
           { SeekThumbsYoutubeCheckbox CheckBox
             MoveScaled(0,0,49,4)
             Expand = True
-            Text = ("Show animated preview when seeking")
+            Text = ("Live preview when seeking")
           }
         }
         { NoParse56 HBox

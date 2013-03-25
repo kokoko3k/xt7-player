@@ -3382,7 +3382,7 @@ Public Sub OneSecTimer_Timer()
   Else  'Mplayer Not running
     'cachebar.visible = False
     Fmain.caption = global.AppName
-    OneSecTimer.stop
+    ' OneSecTimer.stop
     Stopmthumbler()
     cachebar.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]
@@ -4616,7 +4616,6 @@ Public Function SnapToBorders(adding As Float) As Float
 End
 
 Public Sub VideoAreaGroup_MouseDown()
-mplayer.Send("run /bin/ls /")
   mouseleft = mouse.left
   If FMain.mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus 'needed to get keypress events
   IgnoreMouse = False
@@ -10573,3 +10572,5 @@ Public Sub seekbar_MouseWheel()
   Endif
   SeekBar_Change()
 End
+
+

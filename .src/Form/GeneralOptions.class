@@ -314,7 +314,7 @@ Public Function Parse(Optional WithDVD As Boolean = False) As String
                       Else If Option.next Is StringFileReqClass Then 'file/dir Name, insert double quotes around
                         AllOptions = AllOptions & " -" & Replace(Split(Option.name, ".")[0], "000", "-") & " " & "\"" & Option.next.value & "\""
                         Else
-                      AllOptions = AllOptions & " -" & Replace(Split(Option.name, ".")[0], "000", "-") & " " & Option.next.value
+                      Try AllOptions = AllOptions & " -" & Replace(Split(Option.name, ".")[0], "000", "-") & " " & Option.next.value
                     Endif
 
                   Endif
@@ -1111,4 +1111,11 @@ End
 
 Public Sub SeekThumbsYoutubeCheckbox_Click()
   noparse56.visible = (SeekThumbsYoutubeCheckbox.value = True)
+End
+
+Public Sub ScrollView5_BeforeArrange()
+  'this will be visible in the video driver window that will reparent the box for itself
+  'wi put it here so that it is loaded at startup (other forms are only loaded on demand)
+  vdpauoverlaybox.visible = False 
+
 End

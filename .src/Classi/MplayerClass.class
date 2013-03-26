@@ -40,7 +40,9 @@ Public Function executable() As String
   Dim timeout As Integer = 600
   Dim out As String
   out &= out & GeneralOptions.MplayerEnvVars.text & " " 'user specified environment variables
-  
+  If GeneralOptions.vdpauooverlaycheck.value = True Then
+    out &= " " & "VDPAU_NVIDIA_NO_OVERLAY=1" & " "
+  Endif
   'user specified http proxy
   If (GeneralOptions.HttpProxyCHK.value) And (Trim(GeneralOptions.ProxyTextBox.text) <> "") Then
     out &= "http_proxy=" & GeneralOptions.ProxyTextBox.text & " "

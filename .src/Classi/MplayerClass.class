@@ -955,18 +955,21 @@ End
 Public Function do_pause() As Boolean
   Dim MaxWait As Integer = 1000 'act as a timeout in case mplayer got stuck
   If (Not ProcessRunningOvr()) Then Return
-
+  
   send("pause")
-  Repeat 
+  While (Not paused) And (Maxwait > 0) 
     Wait 0.001
     MaxWait = MaxWait - 1
-  Until paused Or (MaxWait = 0)
+    Debug CurrentTime()
+  Wend
 End
 
 Public Function do_leave_pause() As Boolean
   Dim MaxWait As Integer = 1000 'act as a timeout in case mplayer got stuck
+  Dim ccurrenttime As String = CurrentTime()
   WaitForHeaders()
   send("pause")
+  If (ccurrenttime = 0) Then maxwait = 100
   Repeat 
     Wait 0.0001
     MaxWait = MaxWait - 1

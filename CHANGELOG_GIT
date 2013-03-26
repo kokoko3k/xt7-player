@@ -2,7 +2,7 @@ Git changes:
 --------------------------------------
 Mar 26 2013
   FIX:    shorter pause timeout when currenttime=0
-
+  FIX:    Don't seek on mouseup if mouse is outside seekbar 
 
 Mar 25 2013
   FIX:    Remove a debug line that interfree with pause/play

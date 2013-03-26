@@ -3676,12 +3676,16 @@ End
 Public Sub SeekBar_MouseUp()
   MousePressed = False
   HideThumbler()
-  If Not Mouse.left Then Return
+  If thumbleractive Then
+    If Not Mouse.left Then Return
+    If Not global.MouseInside(seekbar) Then Return
+  Endif
   If mplayer.Media_Seekable = 0 Then 
     CantSeekMessage()
     Return
   Endif
   seekbar.value = mouse.x / seekbar.w
+  Debug "seeking"
   SeekBar_Change()
 End
 
@@ -4091,21 +4095,17 @@ Public Function MouseInsideFsFormByCoords() As Boolean
 
 End
 
-Public Function MouseInside(obj As Object) As Boolean
-  'reports if the cursor is inside obj
-
-  If mouse.ScreenX >= obj.screenx Then
-    If mouse.ScreenX <= obj.screenx + fsform.W Then
-      If mouse.ScreenY >= obj.ScreenY Then
-        If mouse.ScreenY <= obj.ScreenY + fsform.h Then
-          Return True
-        Endif
-      Endif
-    Endif
-  Endif
-  Return False 
-
-End
+' Public Function MouseInside(obj As Object) As Boolean
+'   If mouse.ScreenX >= obj.screenx Then
+'     If mouse.ScreenX <= obj.screenx + obj.w Then
+'       If mouse.ScreenY >= obj.ScreenY Then
+'         If mouse.ScreenY <= obj.ScreenY + obj.h Then
+'           Return True
+'         Endif
+'       Endif
+'     Endif
+'   Endif
+' End
 
 Public Sub TimerFullScreen_Timer()
   

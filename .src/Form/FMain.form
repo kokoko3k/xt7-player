@@ -1788,6 +1788,7 @@
         Name = "OuterBox"
         MoveScaled(1,10,26,33)
         Background = &H000000&
+        Tracking = True
         Drop = True
         Expand = True
         { VideoBox DrawingArea VideoAreaGroup

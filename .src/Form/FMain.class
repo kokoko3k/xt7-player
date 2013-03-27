@@ -10436,7 +10436,7 @@ End
 
 Public mthumbler As Mplayerclass
 Public Sub ActivateThumbler()
-  Dim opts As String = "--noconfig-all -noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -loop 0 -speed 0.5"
+  Dim opts As String = "-noconfig all -noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -loop 0 -speed 0.5"
   Dim HQopts As String = " -lavdopts fast:skiploopfilter=all "
   Dim LQopts As String = " -lavdopts skipframe=bidir:fast:skiploopfilter=all "
   If Not mplayer.ProcessRunningOvr() Then Return
@@ -10491,7 +10491,6 @@ End
 Private previoustimerseek As Integer = 0
 Public Sub TimerSeekThumble_Timer()
   Dim newseek As Integer
-  Stop
   If Not thumbleractive Then activatethumbler()
   If Not thumblebox.visible Then thumblebox.show()
   If mthumbler.Paused Then 

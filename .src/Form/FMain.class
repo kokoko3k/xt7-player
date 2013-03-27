@@ -10457,9 +10457,16 @@ End
 
 Public mthumbler As Mplayerclass
 Public Sub ActivateThumbler()
-  Dim opts As String = "-noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -loop 0 -speed 0.5"
+  Dim opts As String = "-noconfig-all -noautosub -nosub -osdlevel 0 -nocache -nosound -zoom -loop 0 -speed 0.5"
   Dim HQopts As String = " -lavdopts fast:skiploopfilter=all "
   Dim LQopts As String = " -lavdopts skipframe=bidir:fast:skiploopfilter=all "
+  If Not mplayer.ProcessRunningOvr() Then Return
+  
+  If mplayer.commandline Like "* -prefer-ipv4 *" Then 
+    opts &= " -prefer-ipv4 "
+      Else If mplayer.commandline Like "* -prefer-ipv6 *" Then 
+        opts &= " -prefer-ipv6 "
+  Endif
   If mplayer.Media_FullPath_Playing Like "*ttp://*youtube*" Then
     If generaloptions.SeekThumbsYoutubeLowFpsCheckbox.value = True Then
       opts &= LQopts
@@ -10474,7 +10481,7 @@ Public Sub ActivateThumbler()
     Endif    
     opts &= " " & mplayer.cookieoptsG & " "
   Endif
-  If Not mplayer.ProcessRunningOvr() Then Return
+  
   ThumblerActive = True
   mthumbler = New Mplayerclass
   mthumbler.wid = thumblevideo.handle
@@ -10488,6 +10495,7 @@ End
 
 Public Sub HideThumbler()
   If Not thumbleractive Then Return
+  If Not thumblebox.visible Then Return
   If Not mthumbler.paused Then mthumbler.do_pause()
   TimerSeekThumble.stop
   thumblebox.hide

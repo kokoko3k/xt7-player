@@ -127,7 +127,6 @@ Public Function GetKey() As String
 End
 
 Public Function GetMouse(CheckWheel As Boolean) As String
-  Dim mbh As Integer = 0
   Me.hide
   lastkey = ""
   LastMouseWheel = "NONE"

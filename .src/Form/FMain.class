@@ -801,8 +801,6 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
 
   Dim ButtonWovr, ButtonHovr As Integer
   Dim TheObject As Object
-  Dim volumesliderw As Integer = 100
-  Dim cX As Integer = 0
 
   ' NumButtonsCPL = 0
   ' 'fix bottom panel for high sized fonts
@@ -3115,15 +3113,10 @@ Public customtitle As String = ""
 Public Sub UpdateStatusBar()
   'Print the current filename and playing time on the status bar
   
-  Dim SpaceWidth As Integer = Statusbar1.Font.TextWidth(" ")
   Dim RemainingTime, maxcachehuman As String
   Dim PreText As String = ""
   Dim PostText As String
   Dim SmallWindow As Boolean = False
-  Dim StatusTextWidth As Integer
-  Dim FreeSpace As Integer
-  Dim NeededSpaces As Integer
-  Dim LotOfSpaces As String = ""
   Dim cachevalue As Integer = 0
   
   pretext = file.BaseName(mplayer.Media_FullPath_Playing)
@@ -3445,9 +3438,7 @@ End
 
 Private Sub UpdateVolumeTooltip()
   Dim tip As String
-  Dim tipw As Integer
   Dim volume As Integer
-  Dim underw As Integer
   If Not mplayer.ProcessRunningOvr() Then Return
   volume = CInt(SaveVolumeSlider.value * (overboost / SaveVolumeSlider.MaxValue))
   tip = "   Volume: " & CStr(volume) & "% "
@@ -8630,7 +8621,6 @@ End
 Public Sub TimerTreeDelayExpand_Timer()
   Dim IsChild As Boolean = False
   Dim RealYTVideoUrl As String = ""
-  Dim msgrelated As String
 
   'if the item has no parent then refresh it, else play it
   fmain.mouse = mouse.wait
@@ -9467,16 +9457,6 @@ Public Sub PanScan_Menu()
 
 End
 
-Public Function WantThumbs(fullpath As String) As Boolean
-
-  Return True
-  '  If Not global.IsVideoFile(fullpath) Then
-  '   Return True
-  '     Else
-  '   Return GeneralOptions.ShowThumbsCHK.Value
-  ' Endif
-
-End
 
 Public Sub NewThumbReadyFor(fullpath As String)
 
@@ -10323,7 +10303,6 @@ Public Sub FileView1_beforeArrange()
 End
 
 Public Sub FileView1_Arrange()
-  Dim xd, yd As Integer
   Dim achild As Object
   For Each achild In FileView1.Children
     If achild Is Columnview Then

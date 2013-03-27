@@ -58,7 +58,7 @@ Public Function ChangeFps(fps As Integer)
 End
 
 Public Sub Timer1_Timer()
-  Dim sync, meter As Integer
+  Dim sync As Integer
   Dim samples As New Short[]
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
@@ -102,14 +102,8 @@ Private Sub updatebars(ByRef samples As Integer[])
   Dim fft As Float
   Dim bar As Picturebox
   Dim widt As Integer
-  Dim arr As New Integer[]
   Dim numbars As Integer 
-  Dim cursample As Integer
-  Dim wsample As Integer
-  Dim freqband As Integer
   Dim o As Float 
-  Dim f As Integer
-  Dim bpoints As New Integer[]
 
   If Not barsdone Then
     Select Case Lower(gvis)
@@ -186,12 +180,6 @@ Public Sub switchvis(vis As String)
   Startt()
 End
 
-
-
-
-Private hamming As New Float[]
-Private rw As Float
-Private iw As Float
 
 Public Function getpower(f As Float, signal As Short[], start As Integer, sstop As Integer, scale As Float, o As Float) As Float
   Dim i As Integer

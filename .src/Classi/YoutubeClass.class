@@ -349,7 +349,8 @@ Public Sub AddMoreResultsItem(tree As Treeview, feed As String, resizew As Integ
   thumb = picture.Load("MoreResults.png").Image.Stretch(resizew, resizeh).Picture
   'find parent text
   Try tmpkey = tree.item.key
-  tree.MoveTo(tree.current.key)
+  Try tree.MoveTo(tree.current.key)
+  If Error Then Return
   tree.moveparent()
   Try parenttext = tree.Item.text
   If Error Then parenttext = tree.current.text

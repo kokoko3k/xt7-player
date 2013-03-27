@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Mar 27 2013
+  CHANGE: Be a bit more permissive on where to catch mouseup to seek after a drag
+
 Mar 26 2013
   FIX:    shorter pause timeout when currenttime=0
   FIX:    Don't seek on mouseup if mouse is outside seekbar 

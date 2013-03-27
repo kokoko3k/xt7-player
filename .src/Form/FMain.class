@@ -3678,7 +3678,7 @@ Public Sub SeekBar_MouseUp()
   HideThumbler()
   If thumbleractive Then
     If Not Mouse.left Then Return
-    If Not global.MouseInside(seekbar) Then Return
+    If Not global.MouseInside(bottomvbox) Then Return
   Endif
   If mplayer.Media_Seekable = 0 Then 
     CantSeekMessage()

@@ -196,13 +196,13 @@ Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = 
                    'station found
                    For Each StationAttribute In Rootnode.Children[j].Attributes
                      If StationAttribute.name = "name" Then
-                         title = StationAttribute.value
+                         title = Replace(StationAttribute.value, "&amp;", "&")
                        Else If StationAttribute.name = "mt" Then
-                         mt = StationAttribute.value
+                         mt = Replace(StationAttribute.value, "&amp;", "&")
                        Else If StationAttribute.name = "id" Then
-                         id = StationAttribute.value
+                         id = Replace(StationAttribute.value, "&amp;", "&")
                        Else If StationAttribute.name = "br" Then
-                         br = StationAttribute.value
+                         br = Replace(StationAttribute.value, "&amp;", "&")
                      Endif
                    Next 'attribute
                    If ((id <> "") And (title <> "")) Then

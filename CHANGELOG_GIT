@@ -4,7 +4,9 @@ Mar 28 20113
   FIX:    Give Autoresize property to some buttons
   CHANGE: Shrink some guy elements
   FIX:    Modal dialog size was wrong simetimes
-  
+  FIX:    Replace &amp; with & in shoutcast titles
+
+
 Mar 27 2013
   CHANGE: Be a bit more permissive on where to catch mouseup to seek after a drag
   FIX:    Browse Tab (fileview) fixes for gambas 3.4
@@ -100,7 +102,7 @@ Jan 31 2013
   FIX:    Sometimes scrollbars didn't show up in grids (again)
 
 Jan 29 2013
-  FIX:    Switch visualization by clicking on the blank space too (not just the bar)
+  FIX:    Switch visual<ization by clicking on the blank space too (not just the bar)
   NEW:    Audio Spectrum visualization (click on the meter bars or set it in generaloptions)
 
 Jan 24 2013

@@ -320,6 +320,7 @@ End
 
 Public Sub Form_Open()
   Global.Center(Fmain, Me)
+  Try hsplit1.Layout = [160, hsplit1.w - 160]
   CoverManager.Show
   combobox1.readonly = True
   combobox1.index = 0
@@ -1327,5 +1328,6 @@ End
 Public Sub Button1_Click()
   Try Search()
 End
+
 
 

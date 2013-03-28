@@ -461,18 +461,21 @@
     { TestBTN Button
       MoveScaled(19,0,12,4)
       ToolTip = ("Test the new configuration in the preview box.")
+      AutoResize = True
       Text = ("Retest")
       Picture = Picture["icon:/16/refresh"]
     }
     { ApplyBTN Button
       MoveScaled(33,0,12,4)
       ToolTip = ("Use new settings without save.\nTo save settings, use menu item.")
+      AutoResize = True
       Text = ("Use ")
       Picture = Picture["icon:/16/redo"]
     }
     { OkBTN Button
       MoveScaled(45,0,12,4)
       ToolTip = ("Close the window")
+      AutoResize = True
       Text = ("Close")
       Picture = Picture["icon:/16/cancel"]
     }

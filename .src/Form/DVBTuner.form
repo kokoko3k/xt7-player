@@ -88,18 +88,21 @@
     { Button2 Button
       MoveScaled(1,0,17,4)
       Expand = True
+      AutoResize = True
       Text = ("Select All")
       Picture = Picture["icon:/16/wizard"]
     }
     { Button3 Button
       MoveScaled(20,0,17,4)
       Expand = True
+      AutoResize = True
       Text = ("Select none")
       Picture = Picture["icon:/16/clear"]
     }
     { Button4 Button
       MoveScaled(39,0,17,4)
       Expand = True
+      AutoResize = True
       Text = ("Use Selected")
       Picture = Picture["icon:/16/add"]
     }

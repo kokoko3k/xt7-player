@@ -40,9 +40,9 @@
       { HotKeysGrid GridView
         MoveScaled(0,0,45,31)
         Expand = True
+        Border = False
         Mode = Select.Single
         Header = GridView.Both
-        Border = False
       }
     }
     { HBox1 HBox
@@ -53,6 +53,7 @@
       { Button3 Button
         MoveScaled(0,1,19,4)
         Visible = False
+        AutoResize = True
         Text = ("Print grid code to console")
       }
       { VBox1 VBox
@@ -61,17 +62,20 @@
       }
       { Button2 Button
         MoveScaled(17,1,13.5714,4)
+        AutoResize = True
         Text = ("Clear")
         Picture = Picture["icon:/16/clear"]
       }
       { Button1 Button
         MoveScaled(32,1,13.5714,4)
+        AutoResize = True
         Text = ("Defaults")
         Picture = Picture["icon:/16/undo"]
       }
       { SaveBTN Button
         MoveScaled(45,1,13.5714,4)
         ToolTip = ("Save and use new settings")
+        AutoResize = True
         Text = ("Save")
         Picture = Picture["icon:/16/save"]
       }
@@ -87,10 +91,10 @@
       { GlobalHotKeysGrid GridView
         MoveScaled(0,0,44,27)
         Expand = True
+        Border = False
         Mode = Select.Single
         ShowCursor = True
         Header = GridView.Both
-        Border = False
       }
     }
     { HBox2 HBox

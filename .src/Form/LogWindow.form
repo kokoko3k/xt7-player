@@ -91,11 +91,13 @@
     }
     { RefreshBTN Button
       MoveScaled(22,0,13.5714,4)
+      AutoResize = True
       Text = ("Refresh")
       Picture = Picture["icon:/16/redo"]
     }
     { OkBTN Button
       MoveScaled(37,0,13.5714,4)
+      AutoResize = True
       Text = ("Close")
       Picture = Picture["icon:/16/cancel"]
     }

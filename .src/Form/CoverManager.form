@@ -103,11 +103,13 @@
       Spacing = True
       { ButtonUnset Button
         MoveScaled(1,0,15,4)
+        AutoResize = True
         Text = ("Unset Cover")
         Picture = Picture["icon:/16/delete"]
       }
       { ButtonLoad Button
         MoveScaled(16,0,17,4)
+        AutoResize = True
         Text = ("Load cover")
         Picture = Picture["icon:/16/open"]
       }
@@ -122,11 +124,13 @@
       }
       { ButtonAccept Button
         MoveScaled(58,0,15,4)
+        AutoResize = True
         Text = ("Set Cover")
         Picture = Picture["icon:/16/apply"]
       }
       { ButtonCancel Button
         MoveScaled(74,0,14,4)
+        AutoResize = True
         Text = ("Close")
         Picture = Picture["icon:/16/cancel"]
       }

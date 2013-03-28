@@ -97,6 +97,7 @@
     { btnPlay Button
       MoveScaled(2,1,14,4)
       ToolTip = ("Play the selected URI")
+      AutoResize = True
       Text = ("Play")
       Picture = Picture["icon:/16/play"]
       Default = True
@@ -108,11 +109,13 @@
     { btnOK Button
       MoveScaled(30,1,14,4)
       ToolTip = ("Add the selected URI to Collection and/or Playlist")
+      AutoResize = True
       Text = ("Add")
       Picture = Picture["icon:/16/add"]
     }
     { btnCancel Button
       MoveScaled(46,1,14,4)
+      AutoResize = True
       Text = ("Close")
       Picture = Picture["icon:/16/cancel"]
       Cancel = True

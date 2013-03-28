@@ -47,6 +47,7 @@
     }
     { Button1 Button
       MoveScaled(39,1,13,4)
+      AutoResize = True
       Text = ("Ok")
       Picture = Picture["icon:/16/ok"]
     }

@@ -45,10 +45,12 @@
     }
     { Button1 Button
       MoveScaled(2,1,13,4)
+      AutoResize = True
       Text = ("Button1")
     }
     { Button2 Button
       MoveScaled(16,1,14,4)
+      AutoResize = True
       Text = ("Button2")
     }
     { VBox2 VBox

@@ -349,18 +349,21 @@
     { SaveBTN Button
       MoveScaled(29,0,13.4286,3.5714)
       ToolTip = ("Save and use new settings")
+      AutoResize = True
       Text = ("Save")
       Picture = Picture["icon:/16/save"]
     }
     { ApplyBTN Button
       MoveScaled(44,0,14,4)
       ToolTip = ("Use new settings without save")
+      AutoResize = True
       Text = ("Use ")
       Picture = Picture["icon:/16/redo"]
     }
     { OkBTN Button
       MoveScaled(60,0,14,4)
       ToolTip = ("Close the window")
+      AutoResize = True
       Text = ("Close")
       Picture = Picture["icon:/16/cancel"]
     }

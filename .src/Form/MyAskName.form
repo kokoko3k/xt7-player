@@ -1,19 +1,19 @@
 # Gambas Form File 3.0
 
-{ Form Form 
+{ Form Form
   MoveScaled(0,0,40,11)
   Resizable = False
   Stacking = Window.Above
-  { ProfileNameBox TextBox 
+  { ProfileNameBox TextBox
     MoveScaled(1,1,38,4)
   }
-  { CancelBtn Button 
-    MoveScaled(1,6,13,4)
+  { CancelBtn Button
+    MoveScaled(1,6,15,4)
     Text = ("Cancel")
     Picture = Picture["icon:/16/cancel"]
   }
-  { OkBtn Button 
-    MoveScaled(26,6,13,4)
+  { OkBtn Button
+    MoveScaled(24,6,15,4)
     Text = ("Ok")
     Picture = Picture["icon:/16/ok"]
   }

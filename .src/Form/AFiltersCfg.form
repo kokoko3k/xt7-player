@@ -2,7 +2,6 @@
 
 { Form Form
   MoveScaled(0,0,105.7143,79)
-  Background = Color.Background
   Expand = True
   Text = ("Audio Filters configuration")
   Icon = Picture["speaker.png"]
@@ -10,7 +9,6 @@
   Arrangement = Arrange.Vertical
   Spacing = True
   Margin = True
-  Padding = 4
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu

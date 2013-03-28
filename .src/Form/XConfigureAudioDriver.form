@@ -9,7 +9,6 @@
   Arrangement = Arrange.Vertical
   Spacing = True
   Margin = True
-  Padding = 6
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu
@@ -330,21 +329,17 @@
       }
     }
   }
-  { Label6 Label
-    MoveScaled(1,58,68,3)
-    Foreground = &H646464&
-    Padding = 6
-    AutoResize = True
-    Text = ("Drivers are choosed from top to bottom, drag'n drop them to choose priority.")
-    Alignment = Align.Left
-  }
   { HBox1 HBox
     MoveScaled(0,61,76,4)
     Spacing = True
     Padding = 4
-    { HBox3 HBox
-      MoveScaled(6,0,5,4)
+    { Label6 Label
+      MoveScaled(0,0,28,4)
+      Foreground = &H646464&
       Expand = True
+      Padding = 6
+      Text = ("Drivers are choosed from top to bottom, drag'n drop them to choose priority.")
+      Alignment = Align.Left
     }
     { SaveBTN Button
       MoveScaled(29,0,13.4286,3.5714)

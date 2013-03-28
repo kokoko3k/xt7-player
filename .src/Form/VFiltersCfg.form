@@ -2,14 +2,12 @@
 
 { Form Form
   MoveScaled(0,0,105.7143,69)
-  Background = Color.Background
   Text = ("Video Filters configuration")
   Icon = Picture["video-television.png"]
   Persistent = True
   Arrangement = Arrange.Vertical
   Spacing = True
   Margin = True
-  Padding = 4
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu

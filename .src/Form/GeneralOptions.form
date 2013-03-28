@@ -9,7 +9,6 @@
   Arrangement = Arrange.Vertical
   Spacing = True
   Margin = True
-  Padding = 7
   { MenuProfile Menu
     Text = ("Profile")
     { MenuLoadDefault Menu
@@ -29,15 +28,14 @@
     MoveScaled(0,0,86,69)
     Expand = True
     { VBox1 VBox
-      MoveScaled(1,1,21,67)
-      Spacing = True
+      MoveScaled(1,1,22,67)
       { Label1 Label
         MoveScaled(2,1,11,4)
         Text = ("General Options")
         Alignment = Align.Justify
       }
       { OptionsList ListView
-        MoveScaled(1,5,19,61)
+        MoveScaled(1,5,20,61)
         Expand = True
       }
     }
@@ -50,7 +48,7 @@
       Index = 0
       Text = ("Video")
       { ScrollView1 ScrollView
-        MoveScaled(3,4,52,44)
+        MoveScaled(3,5,52,44)
         Tag = "video"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -1719,7 +1717,6 @@
   { HBox2 HBox
     MoveScaled(1,70,76,4)
     Spacing = True
-    Padding = 4
     { HBox3 HBox
       MoveScaled(6,0,5,4)
       Expand = True

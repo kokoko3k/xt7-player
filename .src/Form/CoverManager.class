@@ -239,7 +239,8 @@ Public Sub GetCoversFromGoogle(query As String)
   
   If imgurls.count > 0 Then
     For Each imgurl In imgurls
-      HttpClient1.Async = True
+      Try HttpClient1.Async = True
+      If Error Then Return
       HttpClient1.url = imgurl
       HttpClient1.timeout = 10
       timeout = 1000

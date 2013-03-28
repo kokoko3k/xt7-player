@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,34,22)
+  MoveScaled(0,0,36,22)
   Visible = False
   Icon = Picture["icon:/16/question"]
   Persistent = True
@@ -9,12 +9,11 @@
   Stacking = Window.Above
   SkipTaskbar = True
   Arrangement = Arrange.Vertical
-  AutoResize = True
-  Spacing = True
   Margin = True
   Padding = 8
-  { HBox1 HBox
-    MoveScaled(1,1,31,8)
+  { HBox1 Panel
+    MoveScaled(1,1,31,5)
+    Arrangement = Arrange.Horizontal
     AutoResize = True
     Padding = 4
     { MyIcon PictureBox
@@ -38,7 +37,6 @@
     MoveScaled(0,16,33,6)
     AutoResize = True
     Spacing = True
-    Padding = 6
     { VBox1 VBox
       MoveScaled(0,0,3,4)
       Expand = True

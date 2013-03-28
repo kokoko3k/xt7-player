@@ -58,29 +58,12 @@ Public Function Ask(TheQuestionString As String, TheButton1String As String, The
       Checkbox1.value = Checkboxobject.value
       Checkbox1.Width = Checkbox1.Font.TextWidth(Checkbox1.text) + 32
     Endif
-    'Me.show
-    ' Me.autoresize = True
-    ' Me.padding = 4
-    ' Me.spacing = True
-    ' 
-    ' Wait
-    '   If (thebutton2string <> "") Then
-    '     If Me.w < (Button2.x + button2.w + 50) Then
-    '       Me.autoresize = False
-    '       Me.w = Button2.x + button2.w + (Button1.x * 3)
-    '       VBox2.Reparent(zzzFake)
-    '         Else
-    '       Me.autoresize = True
-    '       VBox2.Reparent(buttoncontainer)
-    '     Endif
-    '       Else
-    '     Me.autoresize = True
-    '     VBox2.Reparent(buttoncontainer)
-    '   Endif
-    ' Wait
+    Wait
     Me.Show()
-    Me.w = Max((QuestionLabel.w), (Button1.w + Button2.w))
-    Me.h = ButtonContainer.h + hbox1.H
+    Me.Refresh()
+    Wait
+    Me.w = Max((QuestionLabel.w + MyIcon.w), (Button1.W + Button2.W + vbox2.w + vbox1.w)) + (Me.padding * 3)
+    Me.h = Button1.h + Max(questionlabel.Font.TextHeight("|"), MyIcon.h) + (Me.padding * 3)
     If Checkbox1.visible Then Me.h += Checkbox1.h
     Me.Hide()
     Me.ShowModal()
@@ -120,4 +103,10 @@ End
 
 Public Sub Form_Show()
     Me.SkipTaskbar = True
+End
+
+Public Sub ButtonContainer_MouseDown()
+
+  
+
 End

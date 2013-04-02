@@ -3144,6 +3144,7 @@ Public Sub UpdateStatusBar()
   Endif
   
   smallwindow = (Statusbar1.Font.TextWidth(PreText & PostText) > Statusbar1.Width)
+  pretext = Replace(pretext, "\n", " ")
   If SmallWindow Then
     pretext = Left$(pretext, CInt(((Statusbar1.Width) Div Statusbar1.font.TextWidth("_")) - Len(PostText)) / 1.) & "..."
   Endif

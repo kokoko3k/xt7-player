@@ -6,7 +6,6 @@ Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings f
 Private exportfilespath As String
 Public cachedopts As String = ""
 Public albumviewtexlen As Integer = 30
-
 Public mouseonfsform As Boolean = False
 
 Public Struct EventInfo
@@ -3407,7 +3406,7 @@ Public Sub OneSecTimer_Timer()
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
-        ButtonNext_Click(True)
+        SelectNext(True, GetActivePlayQueue())
         PlaylistFinished = Not global.IsNextSelected
         If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
         
@@ -4700,8 +4699,11 @@ Public Sub GeneralOptionsMenu_Click()
   
 End
 
-Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
+Public Sub ButtonNext_Click()
+  SelectNext(False, GetActivePlayQueue())
+End
 
+Public Sub SelectNext(Optional forcerunning As Boolean = False, Optional CurrentQueue As String = "")
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
   OneSecTimer.stop
@@ -4710,27 +4712,38 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
   Object.unLock(fmain.SeekBar)
-  If TabSelectedPlaylist() Then
+  
+  If (TabSelectedPlaylist() And CurrentQueue = "") Or CurrentQueue = "playlistgrid" Then
     MyPlaylist.SelectNext(PlaylistGrid, ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-  Else If TabSelectedLibrary() Then
+  
+  
+  Else If (TabSelectedLibrary() And CurrentQueue = "") Or CurrentQueue = "librarygrid" Then
     MyLibrary.SelectNext(LibraryGrid, ShufflePls.value)
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-  Else If TabSelectedDVB() Then
+  
+  
+  Else If TabSelectedDVB() And CurrentQueue = "" Then
     MyDVBTList.SelectNext(dvbtGrid, False)
     Wait 0.025
     If mplayerwasrunning Then playselecteddvb()
-  Else If TabSelectedBrowse() Then
+  
+  
+  Else If (TabSelectedBrowse() And CurrentQueue = "") Or CurrentQueue = "browse" Then
     Try BrowseSelectNext()
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-  Else If TabSelectedCDDA() Then
+  
+  
+  Else If (TabSelectedCDDA() And CurrentQueue = "") Or CurrentQueue = "cdda" Then
     CDDANext()
     Wait 0.025
     If mplayerwasrunning Then Play(mplayer.Media_FullPath)
-  Else If TabSelectedYoutube() Then
+  
+  
+  Else If (TabSelectedYoutube() And CurrentQueue = "") Or CurrentQueue = "youtube" Then
     Youtube.Select_NextTreeItem(youtubetree)
     Wait 0.025
     If mplayerwasrunning Then 'Or (TogglePls.value) Then
@@ -4739,7 +4752,9 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
       Debug
       Play(mplayer.Media_FullPath)
     Endif
-  Else If TabSelectedShoutcast() Then
+  
+  
+  Else If TabSelectedShoutcast() And CurrentQueue = "" Then
     If NOSAVEVBox3.visible Then  'shoutcastTree
       MyRadio.Select_NextTreeItem(genresTree)
       Wait 0.025
@@ -4751,8 +4766,10 @@ Public Sub ButtonNext_Click(Optional forcerunning As Boolean = False)
     Endif
   Endif
   fmain.mouse = mouse.normal
-
 End
+
+
+
 
 Public Sub BrowseSelectNext()
   Dim filelist As String[]
@@ -4989,6 +5006,7 @@ Public Sub PlayListGrid_DblClick()
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If global.IsPlaylist(selectedpath) Then myradiolabel = PlaylistGrid[Playlistgrid.row, MyPlaylist.Columnindex["Filename"]].text
     Try Play(SelectedPath,, myradiolabel)
+    SetActivePlayQueue("playlistgrid")
   Endif
   Last.mouse = mouse.Default
   
@@ -5009,6 +5027,7 @@ Public Sub LibraryGrid_DblClick()
     If (selectedpath Like "*dvd://*") Then dvd_device = GeneralOptions.DvdDeviceText.text
     If global.IsPlaylist(selectedpath) Then myradiolabel = LibraryGrid[librarygrid.row, MyLibrary.Columnindex["Filename"]].text
     Try Play(SelectedPath,, myradiolabel)
+    SetActivePlayQueue("librarygrid")
   Endif
   Try Last.mouse = mouse.Default
   
@@ -5245,6 +5264,7 @@ Public Sub SearchField_Activate()
 
   Try customtitle = librarygrid[librarygrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(LibraryGrid[Librarygrid.row, MyLibrary.Columnindex["Full Path"]].text)
+  SetActivePlayQueue("librarygrid")
   ComboHistory.AddHistory(Searchfield, Searchfield.text)
 
 End
@@ -5253,6 +5273,7 @@ Public Sub SearchFieldPLS_Activate()
 
   Try customtitle = PlayListGrid[PlayListGrid.row, myplaylist.ColumnIndex["Filename"]].text
   Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
+  SetActivePlayQueue("playlistgrid")
   ComboHistory.AddHistory(SearchfieldPLS, SearchfieldPLS.text)
 
 End
@@ -8033,6 +8054,7 @@ Public Sub CDDAGrid_DblClick()
   
   Try mplayer.Media_FullPath = CDDAGrid[CDDAGrid.row, 0].text
   Play(mplayer.Media_FullPath)
+  SetActivePlayQueue("cdda")
   
 End
 
@@ -8438,6 +8460,7 @@ Public Sub ActivateFile(fullpathitem As String)
     ComboHistory.AddHistory(urlbox, FileView1.dir)
     Try fileview1.current = selecteditem
     Play(fullpathitem)
+    SetActivePlayQueue("browse")
   Endif
   
 End
@@ -8641,6 +8664,7 @@ Public Sub TimerTreeDelayExpand_Timer()
       Endif
       needytcookie = True
       fmain.Play(RealYTVideoUrl)
+      SetActivePlayQueue("youtube")
       Try customtitle = Replace(youtubetree.Current.Text, "\n", " ")
     Endif
   Else
@@ -10562,6 +10586,7 @@ Public Sub FileView1_KeyPress()
         UrlBox_Click
           Else 'isfile
         Play(fileview1.dir & "/" & fileview1.current)
+        SetActivePlayQueue("browse")
       Endif
     Endif
     Return
@@ -10600,3 +10625,18 @@ Private Function SelectFileviewFromKey(akey As String) As Boolean
   Endif
 End
 
+
+Private PlayQueueIs As String 'remember where the Last played item is from
+  Public Sub SetActivePlayQueue(Queue As String)
+    Dim i As Integer
+    For i = 0 To Leftsidetabs.count - 1
+      If Leftsidetabs[i].text Like "< * >" Then Leftsidetabs[i].text = Replace(Replace(Leftsidetabs.text, " >", ""), "< ", "")
+    Next
+  
+    PlayQueueIs = queue
+    If Right(Leftsidetabs.Current.text) <> " >" Then Leftsidetabs.Current.text = "< " & Leftsidetabs.Current.text & " >"
+  End
+  
+  Public Function GetActivePlayQueue() As String
+    Return PlayQueueIs
+  End

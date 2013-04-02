@@ -14,7 +14,7 @@ Public Sub doTogglePause()
 End
 
 Public Sub doNext()
-  FMain.ButtonNext_click()
+  FMain.SelectNext(False, FMain.GetActivePlayQueue())
 End
 
 Public Sub doPrevious()

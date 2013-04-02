@@ -168,7 +168,7 @@ End
 
 
 Public Function org_mpris_MediaPlayer2_Player_Next()
-  FMain.ButtonNext_Click()
+  FMain.SelectNext(False, FMain.GetActivePlayQueue())
 End
 
 Public Function org_mpris_MediaPlayer2_Player_Previous()

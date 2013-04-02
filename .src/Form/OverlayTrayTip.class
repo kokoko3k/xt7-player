@@ -160,7 +160,7 @@ Public Sub btnstop_MouseDown()
 End
 
 Public Sub btnnext_MouseDown()
-  FMain.ButtonNext_click()
+  FMain.SelectNext(False, FMain.GetActivePlayQueue())
 End
 
 Public Sub Form_MouseWheel()

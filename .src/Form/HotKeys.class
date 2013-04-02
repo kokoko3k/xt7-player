@@ -21,7 +21,7 @@ Public Sub xbindkeys_read()
       Case "Stop"
         FMain.ButtonStop_Click()
       Case "Next Track"
-        FMain.ButtonNext_Click()
+        FMain.SelectNext(False, FMain.GetActivePlayQueue())
       Case "Previous Track"
         FMain.ButtonPrev_Click()
       Case "Seek +10sec"

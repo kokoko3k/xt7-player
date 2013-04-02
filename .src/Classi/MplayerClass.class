@@ -888,6 +888,7 @@ Public AudioSwitched As Boolean = False
 
 Public Function Send(command As String) As Boolean
   Dim mystream As File
+  Debug "Sending " & command
   If ProcessRunningOvr() And (Exist(inputpipe)) Then
     If Stat(inputpipe).type = gb.pipe Then
       mystream = Open inputpipe For Write

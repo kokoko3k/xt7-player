@@ -4442,7 +4442,7 @@ Public Sub HotKeyToMplayer(HotKey As String)
       mplayer.DoDeinterlace()
     Case "Pause"
       If mplayer.Paused Then
-        OneSecTimer.start
+        'OneSecTimer.start
         ButtonPlay.picture = Picture["media-playback-pause.png"]
       Else
         'OneSecTimer.stop

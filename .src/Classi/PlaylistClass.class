@@ -1133,6 +1133,8 @@ End
 
   If Trim(filetoadd) = "" Then Return True
 
+  forcename = Replace(forcename, "\n", " ")
+
   If quickmode Then
     makenewrow(librarygrid, forcename, filetoadd, length, type, acodec, abitrate, arate, channels, vcodec, vbitrate, fps, w, h, artist, album, myyear, track, title, genre, comment)
     Return True

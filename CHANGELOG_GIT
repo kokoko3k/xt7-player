@@ -3,6 +3,7 @@ Git changes:
 Apr 02 2013
   FIX:    Engage play queue shutdown for browse and youtube tabs too.
   CHANGE: Auto-Select the next stream from the tab containing the previous one
+  FIX:    Lock onesectimer before playing the next stream, unlock it later.
 
 Mar 28 2013
   FIX:    Give Autoresize property to some buttons

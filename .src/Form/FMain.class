@@ -3406,6 +3406,7 @@ Public Sub OneSecTimer_Timer()
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
+        Object.Lock(onesectimer)
         SelectNext(True, GetActivePlayQueue())
         PlaylistFinished = Not global.IsNextSelected
         If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
@@ -3418,6 +3419,7 @@ Public Sub OneSecTimer_Timer()
           Debug "Not hitting PLay from here because ButtonNext did it first"
           Debug
         Endif
+        Object.unLock(onesectimer)
       Else
         Playstarted = False
         UserStopped = False

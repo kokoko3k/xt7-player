@@ -6,6 +6,7 @@ Apr 02 2013
   FIX:    Lock onesectimer before playing the next stream, unlock it later. (fixes endless selectnext() )
   FIX:    Replace "\n" with " " in pretext
   FIX:    Replace "\n" with " " in forcename (when adding items to playlist or library)
+  FIX:    Do not send anything to mplayer while it is pausing
 
 Mar 28 2013
   FIX:    Give Autoresize property to some buttons

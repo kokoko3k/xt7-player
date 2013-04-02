@@ -4448,7 +4448,8 @@ Public Sub HotKeyToMplayer(HotKey As String)
         'OneSecTimer.stop
         ButtonPlay.picture = Picture["media-playback-start.png"]
       Endif
-      mplayer.Send(Action)
+      'mplayer.Send(Action)
+      mplayer.do_pause()
     Case "Exit"
       mplayer.Send(Action)
       If fsform.visible Then FullScreenSwitch()

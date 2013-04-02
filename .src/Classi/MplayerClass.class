@@ -26,6 +26,7 @@ Public GotHeaders As Boolean = False
 Private LastSplittedOutput As String = ""
 Private stopping As Boolean = False
 
+Public pausing As Boolean = False
 
 
 Private Takingscreenshot As Boolean = False
@@ -888,7 +889,11 @@ Public AudioSwitched As Boolean = False
 
 Public Function Send(command As String) As Boolean
   Dim mystream As File
-  Debug "Sending " & command
+  If pausing Then 
+    Debug "Not sending " & command & " because Of pausing."  
+    Debug
+    Return
+  Endif
   If ProcessRunningOvr() And (Exist(inputpipe)) Then
     If Stat(inputpipe).type = gb.pipe Then
       mystream = Open inputpipe For Write
@@ -959,10 +964,12 @@ Public Function do_pause() As Boolean
   Dim MaxWait As Integer = 1000 'act as a timeout in case mplayer got stuck
   If (Not ProcessRunningOvr()) Then Return
   send("pause")
+  pausing = True
   While (Not paused) And (Maxwait > 0) 
     Wait 0.001
     MaxWait = MaxWait - 1
-    Wend
+  Wend
+  pausing = False
 End
 
 Public Function do_leave_pause() As Boolean

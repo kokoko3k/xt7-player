@@ -4766,11 +4766,12 @@ Public Sub BrowseSelectNext()
   If currentindex = -1 Then Return
   If currentindex = filelist.Max Then 
     ToSelectIndex = 0
-      Else 
+    global.isnextselected = False
+      Else
         ToSelectIndex = currentindex + 1
+        global.isnextselected = True
   Endif
   fileview1.current = filelist[ToSelectIndex]
-
 End
 
 

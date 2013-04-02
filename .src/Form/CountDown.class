@@ -1,6 +1,7 @@
 ' Gambas class file
 
 Public Sub Engage()
+  FMain.TogglePls.value = False
   CountDown.Show()
   Global.Center(Fmain, Me)
   SecondsLabel.text = 10

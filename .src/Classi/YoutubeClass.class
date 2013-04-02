@@ -562,8 +562,13 @@ Public Function IsYoutubeLink(url As String) As Boolean
 End
 
 Public Sub Select_NextTreeItem(MyTree As Treeview)
+  Global.IsNextSelected = True
   MyTree.movecurrent
-  If MyTree.MoveBelow() Then Try MyTree.MoveFirst()
+  If MyTree.MoveBelow() Then 
+    Global.IsNextSelected = False
+    Try MyTree.MoveFirst()
+  Endif
+    
   
   If Not Error Then
     Try MyTree.Item.selected = True

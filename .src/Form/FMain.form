@@ -455,7 +455,7 @@
       Text = ("Shutdown at the end of media")
     }
     { ShutPls Menu
-      Text = ("ShutDown at the end of playlist")
+      Text = ("ShutDown at the end of the play queue")
     }
     { Shutcfg Menu
       Text = ("Configure shutdown command")
@@ -749,7 +749,7 @@
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(-1,0,39,59)
+        MoveScaled(0,0,39,59)
         Tag = "1"
         Expand = True
         Arrangement = Arrange.Vertical

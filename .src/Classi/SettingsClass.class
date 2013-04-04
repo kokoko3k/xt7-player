@@ -504,16 +504,18 @@ Public Sub SaveCachefiles()
 End
 
 
+
 Public Sub Save(TheForm As Object, FileName As String)
-  
+  Dim ContentOld As String = ""
+  Dim ContentNew As String = ""
   Dim ConfFile As File
   Dim TheObject As Object
-
   Dim MyValue As String = 0
   Dim SaveColor As Boolean = False
   Dim i As Integer
   Dim layout As String
   Dim objvalid As Boolean = False
+  Stop
   FMain.cachedopts = ""
   Debug "Cached options unvalidated"
   If TheForm.name = "#1" Then 
@@ -529,6 +531,8 @@ Public Sub Save(TheForm As Object, FileName As String)
     Try Mkdir File.Dir(File.Dir(filename))
     Try Mkdir File.Dir(filename)
   Endif
+  
+  Try ContentOld = File.Load(Filename) 'store the previous content to compare later with the new one
   ConfFile = Open FileName For Write Create
   
   If Lower(TheForm.name) = "fmain" Then
@@ -612,6 +616,16 @@ Public Sub Save(TheForm As Object, FileName As String)
     Endif
   Next
   Close #ConfFile
-  FMain.mouse = Mouse.Default
   
+  'keep track of saved forms; if nothing important has been saved, then regenerating cachedopts is useless.
+  Try ContentNew = File.Load(Filename) 'Load the current profile to see if something changed
+  If ContentOld <> ContentNew Then
+    If global.ChangedForms.Find(TheForm.name) = -1 Then
+      global.ChangedForms.Add(TheForm.name)
+    Endif
+  Endif
+
+  FMain.mouse = Mouse.Default
+
+Stop
 End

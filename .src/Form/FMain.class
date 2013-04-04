@@ -1333,7 +1333,6 @@ End
 
 Public Sub SyncCachedOptsPlus()
   'reload the current profile and save cached options
-
   global.ReallyLoadAllSettings()
   SyncCachedOpts()
   global.SaveCachedOpts(global.currentprofile, cachedopts)
@@ -1341,8 +1340,8 @@ Public Sub SyncCachedOptsPlus()
 End
 
 Public Sub Form_Close()
-
   Dim MySettings As New SettingsClass
+  Dim t0 As Float = Timer()
   Try Shell "rm -R " & global.ConfPath & "/" & "thumbcontainer.* &>/dev/null"
   StartClass.ProcessSignals(False)
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
@@ -1433,7 +1432,7 @@ Public Sub Form_Close()
   Debug
   Try HotKeys.xbindkeys.kill
   Print "xbindkeys killed"
-  
+  Stop
   If Not fastquit Then
     
     If GeneralOptions.SaveOnExitCHK.value = True Then
@@ -1449,7 +1448,7 @@ Public Sub Form_Close()
       global.SaveMandatorySettings(global.CurrentProfile)
     Endif
   Endif
-  SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
+  If Global.SavedProfileChanged() Then SyncCachedOptsPlus() 'sync current profile to the cached one by reloading the current profile and resave it
   If Not (fastquit Or global.pluginmode) Then
     MySettings.WriteLastProfile(Global.confpath, global.CurrentProfile)
     Debug "wrote last profile"
@@ -1503,6 +1502,7 @@ Public Sub Form_Close()
   Try epgform.close
   Try ButtonMenu.close
   Try fsform.close
+  Debug "time to close = " & CStr(Timer() - t0)
   Print "Bye"
   Wait 0.5
   Quit

@@ -396,7 +396,8 @@ End
 Public Sub Save(mygrid As Gridview, ConfDir As String)
   Dim pTableFile As String = ConfDir & "/" & mygrid.name & ".txt"
   Dim sTableFile As String = ConfDir & "/" & mygrid.name & ".sTable.txt"
-  CheckAndFixBloat()
+  Randomize
+  If Rnd(0, 11) > 10 Then CheckAndFixBloat() 'do this one out of 10 times
   If ptable.count = searchtable.count Then
     SaveTable(searchtable, pTableFile, mygrid)
     Try Kill sTableFile
@@ -1182,7 +1183,6 @@ Public Sub CheckAndFixBloat()
   'Check for duplicates fields (is possible due to a (now fixed) xt7 bug
   Dim fields As New String[]
   Dim field As String
-  
   fields.add("Filename")
   fields.add("Length")
   fields.add("Artist")
@@ -1219,7 +1219,6 @@ Public Sub CheckAndFixBloat()
       Endif
     Next
   Endif
-
 End
 
 

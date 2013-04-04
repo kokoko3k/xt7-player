@@ -3,7 +3,7 @@
 'Copyright (C) 2007, 2008 Antonio Orefice
 ' Gambas module file
 
-
+Public ChangedForms As New String[]
 Public UncommonVideoFilters As String 
 Public Videofilter As String
 Public videofiltername As String 
@@ -109,6 +109,14 @@ Public Sub init()
   MaxHistory = 15
   DelayLoadStates = New Timer As "DelayLoadStates"
 End
+
+Public Function SavedProfileChanged() As Boolean
+  'return if one of the forms has been saved with some exclusions
+  Try ChangedForms.Remove(ChangedForms.Find("FMain"))
+  Try ChangedForms.Remove(ChangedForms.Find("Searchfields"))
+  Return ChangedForms.count > 0
+End
+
 
 Public Sub FixFormNames()
   Try AFiltersCfg.name = "AFiltersCfg"
@@ -376,7 +384,7 @@ Public Sub SaveCachedOpts(ProfileName As String, cachedopts As String)
 End
 
 
-Public Sub SaveMandatorySettings(Profilename As String)
+Public Sub SaveMandatorySettings(Profilename As String) 
   Dim MySettings As New SettingsClass
   MySettings.Save(Fmain, global.confpath & "/" & Profilename)
   MySettings.Save(SearchFields, global.confpath & "/" & Profilename)
@@ -408,6 +416,7 @@ Public Sub SaveMandatorySettings(Profilename As String)
   Debug "Mandatory settings saved"
   Debug
 End
+
 
 
 Public Sub SaveAllSettings(ProfileName As String, Optional WithLibraryAndPls As Boolean = True, Optional cachedopts As String = "")

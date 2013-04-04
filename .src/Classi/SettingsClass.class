@@ -515,14 +515,17 @@ Public Sub Save(TheForm As Object, FileName As String)
   Dim i As Integer
   Dim layout As String
   Dim objvalid As Boolean = False
-  Stop
+  Dim TheFormIsAlreadyLoaded As Boolean = True
+
   FMain.cachedopts = ""
   Debug "Cached options unvalidated"
   If TheForm.name = "#1" Then 
     Message.Error("Not going to save a form named #1 \nPlease Report the issue to the developer. \nThanks.")
   Endif
   FMain.mouse = Mouse.wait
-  FMain.GetOptionsFromGui()
+  Try TheFormIsAlreadyLoaded = Theform.Alreadyloaded
+  If (Not TheFormIsAlreadyLoaded) Then Return 'why save a form that hasn't been even loaded?
+  'FMain.GetOptionsFromGui()
   FileName = Filename & ".profile/" & TheForm.name
   If Not Exist(file.Dir(filename), True) Then
     Try Mkdir File.dir(File.Dir(File.dir(File.Dir(File.Dir(filename)))))
@@ -627,5 +630,5 @@ Public Sub Save(TheForm As Object, FileName As String)
 
   FMain.mouse = Mouse.Default
 
-Stop
+
 End

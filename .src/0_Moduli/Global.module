@@ -386,6 +386,7 @@ End
 
 Public Sub SaveMandatorySettings(Profilename As String) 
   Dim MySettings As New SettingsClass
+
   MySettings.Save(Fmain, global.confpath & "/" & Profilename)
   MySettings.Save(SearchFields, global.confpath & "/" & Profilename)
   GeneralOptions.SaveWatchDir(global.confpath & "/" & Profilename)

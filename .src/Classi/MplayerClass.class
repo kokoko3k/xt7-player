@@ -1449,14 +1449,11 @@ Public Function GetListOf(TheType As String) As String[]
   'thetype can be ao,vo,af,vf
   Dim list, mpline As String
   Dim outlist As New String[]
-  Debug Timer
-  Debug Thetype
   Shell executable() & "  -noconfig all -" & TheType & " help" To List
   Debug Timer
   For Each mpline In Split(list, "\n", "", True)
     outlist.Add(Lower(Split(mpline, " \t", "", True)[0]))
   Next 'mpline
-  Debug Timer
   Return outlist
 End
 

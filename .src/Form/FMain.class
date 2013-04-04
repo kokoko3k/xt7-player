@@ -10585,11 +10585,11 @@ End
 Public Sub FileView1_KeyPress()
   If (Key.code = Key.enter) Or (Key.code = Key.return) Then
     If fileview1.Selection.count > 0 Then
-      If IsDir(fileview1.dir & "/" & fileview1.current) Then
-        urlbox.text = fileview1.dir & "/" & fileview1.current
+      If IsDir(fileview1.dir & "/" & fileview1.selection[0]) Then
+        urlbox.text = fileview1.dir & "/" & fileview1.selection[0]
         UrlBox_Click
           Else 'isfile
-        Play(fileview1.dir & "/" & fileview1.current)
+        Play(fileview1.dir & "/" & fileview1.selection[0])
         SetActivePlayQueue("browse")
       Endif
     Endif
@@ -10616,7 +10616,7 @@ Private Function SelectFileviewFromKey(akey As String) As Boolean
   If currentstring <> "" Then 
     currentindex = fileview1.Selection.Find(currentstring)
       Else
-    currentindex = 0
+    currentindex = -1
   Endif
   Debug currentindex
   toselect = fileview1.Selection.Find(aKey & "*", gb.like, currentindex + 1)

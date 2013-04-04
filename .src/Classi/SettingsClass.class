@@ -516,7 +516,9 @@ Public Sub Save(TheForm As Object, FileName As String)
   Dim objvalid As Boolean = False
   FMain.cachedopts = ""
   Debug "Cached options unvalidated"
-
+  If TheForm.name = "#1" Then 
+    Message.Error("Not going to save a form named #1 \nPlease Report the issue to the developer. \nThanks.")
+  Endif
   FMain.mouse = Mouse.wait
   FMain.GetOptionsFromGui()
   FileName = Filename & ".profile/" & TheForm.name

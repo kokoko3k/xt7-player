@@ -136,6 +136,9 @@ Public Sub buttonepg_MouseDown()
   epgform.ScrollToChannel(Replace(fmain.mplayer.Media_FullPath_Playing, "dvb://", ""))
 End
 
+
+
+
 Public Sub ShowHidePinfo()
   LabelNowInfo.visible = Not LabelNowInfo.visible  
   LabelNextInfo.visible = Not LabelNextInfo.visible

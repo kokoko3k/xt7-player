@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Apr 05 2013
   FIX:    Explicitely call updateprofilestablist after changing default profile
+  FIX:    Tabstrip captions names could be messed up, fixed
 
 Apr 04 2013
   CHANGE: Manually assign form names at startup for gambas 3.4.1
@@ -18,7 +19,7 @@ Apr 02 2013
 
 Mar 28 2013
   FIX:    Give Autoresize property to some buttons
-  CHANGE: Shrink some guy elements
+  CHANGE: Shrink some gui elements
   FIX:    Modal dialog size was wrong simetimes
   FIX:    Replace &amp; with & in shoutcast titles
   FIX:    Set covermanager hsplit layout explicitely (gambas 3.4)

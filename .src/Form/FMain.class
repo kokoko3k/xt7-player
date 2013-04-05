@@ -10541,6 +10541,7 @@ Private Sub movethumble()
   If Error Then Return
   x = Mouse.screenx - (thumblebox.h Div 2) - outerbox.screenx
   y = controlframe.screeny - outerbox.screeny - thumblebox.h - cachebar.h  'outerbox.screeny + outerbox.h - thumblebox.h - 1
+  Try thumblebox.Raise()
   Try thumblebox.Move(x, y, w, h)
 End
 
@@ -10634,7 +10635,7 @@ Private PlayQueueIs As String 'remember where the Last played item is from
   Public Sub SetActivePlayQueue(Queue As String)
     Dim i As Integer
     For i = 0 To Leftsidetabs.count - 1
-      If Leftsidetabs[i].text Like "< * >" Then Leftsidetabs[i].text = Replace(Replace(Leftsidetabs.text, " >", ""), "< ", "")
+      If Leftsidetabs[i].text Like "< * >" Then Leftsidetabs[i].text = Replace(Replace(Leftsidetabs[i].text, " >", ""), "< ", "")
     Next
   
     PlayQueueIs = queue
@@ -10644,3 +10645,4 @@ Private PlayQueueIs As String 'remember where the Last played item is from
   Public Function GetActivePlayQueue() As String
     Return PlayQueueIs
   End
+

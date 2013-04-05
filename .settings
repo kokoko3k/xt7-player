@@ -158,6 +158,9 @@ Geometry=[47,0,210,210]
 [DebugWindow/Dir(devdir, cdpattern).Insert(Dir(devdir, dvdpattern))]
 Geometry=[0,41,344,344]
 
+[DebugWindow/Dir(global.confpath & "|", "*.profile")]
+Geometry=[47,-3,210,210]
+
 [DebugWindow/Drag]
 Geometry=[1276,-3,210,210]
 
@@ -439,6 +442,9 @@ Geometry=[0,0,301,301]
 
 [DebugWindow/PodcastTree]
 Geometry=[1698,60,636,782]
+
+[DebugWindow/ProfilesListBox[i]]
+Geometry=[47,0,210,210]
 
 [DebugWindow/Ptable]
 Geometry=[0,0,682,577]
@@ -1357,14 +1363,14 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/0_Moduli/Global.module:388.0"
+File[1]=".src/0_Moduli/Global.module:120.25"
 Fold[1]=[191,197,205,235,247,256,264,267,270,274,289,301,313,325,337,345,355,378,443,458,473,509,553,595,611,617,647,874,885,894,898,913,923,929,945,955,968,979,990,1001,1012]
 File[2]=".src/Classi/StartClass.class:31.0"
+Active=3
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:10618.21"
-File[5]=".src/Classi/SettingsClass.class:518.0"
-Active=6
-File[6]="CHANGELOG_GIT:23.11"
+File[4]=".src/Form/FMain.class:7425.24"
+File[5]=".src/Classi/SettingsClass.class:424.0"
+File[6]="CHANGELOG_GIT:14.16"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
 File[9]=".src/Classi/PlaylistClass.class:400.8"
@@ -1376,7 +1382,9 @@ File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
 File[17]=".src/Classi/MplayerClass.class:1455.14"
-Count=17
+File[18]=".src/Form/ProfileManager.class:37.12"
+File[19]=".src/Form/AskName.class:17.14"
+Count=19
 
 [Watches]
 Count=4

@@ -491,7 +491,7 @@ Public Sub AllInit_Post()
   SetStyle_later()
   HotKeys.init()
   Try HotKeys.LoadHotKeys(global.confpath & "/" & global.CurrentProfile)
-  UpdateProfilesTabList()
+  Try UpdateProfilesTabList()
   UpdateMenuTabVisibility()
   If GeneralOptions.TrayCHK1.value Then Try InitTrayIcon()
   If TabSelectedShoutcast() Then
@@ -523,6 +523,7 @@ Public Sub AllInit_Post()
   If FirstTimeXt7 Then 
     ReallySaveAllSettings("default", False, True)
     global.currentprofile = "default"
+    Try UpdateProfilesTabList()
   Endif
 
 
@@ -1101,7 +1102,7 @@ Public Sub MainInit()
   Else
     global.currentprofile = "pluginmode"
   Endif
-  
+  Try UpdateProfilesTabList()
   If Exist(global.confpath & "/" & global.currentprofile & ".profile.cache") Then
     cachedfile = Open (global.confpath & "/" & global.currentprofile & ".profile.cache") For Input
     Line Input #cachedfile, cachedopts
@@ -4277,6 +4278,7 @@ Public Sub MenuSaveDefault_Click()
   If Lower(global.CurrentProfile) = "factory_defaults" Then
     If MyQuestion.Ask(("You can't modify the current profile\nbecause it is the Factory defaults one"), ("Switch to ''default'' profile and save"), ("Don't save")) = 1 Then
       global.CurrentProfile = "default"
+      Try UpdateProfilesTabList()
     Else
       Return
     Endif
@@ -4285,7 +4287,7 @@ Public Sub MenuSaveDefault_Click()
   Try ReallySaveAllSettings(global.CurrentProfile, True, True)
   'GetOptionsFromGui() 'commented because it is called by reallysaveallsettings
   If Error Then Message.Error(("Error while saving default settings"))
-  UpdateProfilesTabList()
+  Try UpdateProfilesTabList()
 
 End
 
@@ -7350,7 +7352,7 @@ Public Sub menuprofileselect_Click()
 
   Global.CurrentProfile = Last.tag
   ReLoadCurrentProfile()
-  UpdateProfilesTabList()
+  Try UpdateProfilesTabList()
 
 End
 
@@ -7416,10 +7418,8 @@ Public Function IsTabVisible(tabname As String) As Boolean
 End
 
 Public Sub UpdateProfilesTabList()
-  
   Dim profilename As String
   Dim i As Integer
-  
   ProfilesListBox.clear
   For Each profilename In Dir(global.confpath & "/", "*.profile")
     If Exist(global.confpath & "/" & profilename, True) Then
@@ -7616,7 +7616,7 @@ Public Function MakeNewProfile() As String
     If Trim(DestinationAnswer) <> "" Then
       Try Mkdir global.confpath & "/" & (Replace(DestinationAnswer, ".", "_")) & ".profile"
       If Not Error Then
-        UpdateProfilesTabList()
+        Try UpdateProfilesTabList()
         Return DestinationAnswer
       Else
         Return ""

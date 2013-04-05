@@ -7,7 +7,7 @@
 Public Sub Form_Show()
   'ME.center
   Global.Center(Fmain, Me)
-  UpdateProfileList()
+  Try UpdateProfileList()
   CurrentProfilelabel.text = "Current profile: " & Global.CurrentProfile & ".profile"
 End
 
@@ -37,7 +37,7 @@ Dim profilename As String
     'IF Message.Question(("Are you sure you want to delete ") & ProfilesList.Current.Text & "?", ("Yes, Delete"), ("Don't delete")) = 1 THEN
     If MyQuestion.ask(("Are you sure you want to delete ") & ProfilesList.Current.Text & "?", ("Yes, Delete"), ("Don't delete")) = 1 Then
       RDelete(global.confpath & "/" & ProfilesList.Current.Text)
-      UpdateProfileList()
+      Try UpdateProfileList()
     Endif
   Endif
 End

@@ -14,7 +14,8 @@ Public Sub OkBtn_Click()
   profilename = profilenamebox.text & ".profile"
   If Trim(profilename) <> "" Then
     Try Mkdir global.confpath & "/" & profilename
-    ProfileManager.UpdateProfileList()
+    Try ProfileManager.UpdateProfileList()
+    Try FMain.UpdateProfileList()
   Endif
   MyQuestion.ask(("To use new profile, switch to it, then restart xt7"), "Ok", "")
   Me.Hide

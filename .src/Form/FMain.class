@@ -1209,7 +1209,7 @@ Public Sub InitPropertiesGrid()
   Dim i As Integer
 
   PropertiesGrid.Columns.count = 2
-  PropertiesGrid.Rows.count = 20
+  PropertiesGrid.Rows.count = 21
   PropertiesGrid[0, 0].text = "FileName"
   PropertiesGrid[1, 0].text = "Path"
   PropertiesGrid[2, 0].text = "FileSize"
@@ -1230,6 +1230,7 @@ Public Sub InitPropertiesGrid()
   PropertiesGrid[17, 0].text = "Video Fps"
   PropertiesGrid[18, 0].text = "Video Codec"
   PropertiesGrid[19, 0].text = "Video Bitrate"
+  PropertiesGrid[20, 0].text = "Total Bitrate"
   
   For i = 0 To PropertiesGrid.Rows.count - 1
     PropertiesGrid[i, 0].Font.bold = True
@@ -1271,13 +1272,13 @@ Public Sub FillPropertiesGrid()
   PropertiesGrid[12, 1].text = mplayer.Media_Channels
   PropertiesGrid[13, 1].text = mplayer.Media_AudioRate
   PropertiesGrid[14, 1].text = mplayer.Media_AudioCodec
-  PropertiesGrid[15, 1].text = mplayer.Media_AudioBitrate
+  PropertiesGrid[15, 1].text = (CInt(mplayer.Media_AudioBitrate) Div 1000) & "Kbps"
   
   If Not mplayer.Media_AudioOnly() Then
     PropertiesGrid[16, 1].text = mplayer.Media_Width & "x" & mplayer.Media_Height
     PropertiesGrid[17, 1].text = mplayer.Media_VideoFps
     PropertiesGrid[18, 1].text = mplayer.Media_VideoCodec
-    PropertiesGrid[19, 1].text = mplayer.Media_VideoBitrate
+    PropertiesGrid[19, 1].text = (CInt(mplayer.Media_VideoBitrate) Div 1000) & "Kbps"
   Else
     If Upper(mplayer.Media_FullPath) Like "*.FLAC" Then 'mplayer bug with flac files,use audiotag instead
       If tl.Init(mplayer.Media_FullPath) Then
@@ -1300,6 +1301,8 @@ Public Sub FillPropertiesGrid()
       PropertiesGrid[11, 1].text = OneOf(mplayer.Media_Comment, mplayer.Media_Comments)
     Endif
   Endif
+  PropertiesGrid[20, 1].text = CStr((CInt(mplayer.media_size) * 8) Div CInt(mplayer.Media_Length)) & "Kbps"
+  
   
   PropertiesGrid.Columns[1].Width = "-1"      'Autosize Columns
   

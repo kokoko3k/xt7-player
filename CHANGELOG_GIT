@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Apr 16 2013
   FIX:    keep pause state (limited to mplayer ability) when changing volume
+  FIX:    Prevent xt7 from going crazy when autoadvance is selectd but several unplayable media are in the play queue
 
 Apr 05 2013
   FIX:    Explicitely call updateprofilestablist after changing default profile

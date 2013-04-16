@@ -1753,6 +1753,7 @@ Public Sub GridRefreshWorkaround(librarygrid As Gridview)
 End
 
 Public Sub ButtonStop_Click()
+  UserStopped = True
   Stopmthumbler()
   previousfile_cover = ""
   videobox.cached = False
@@ -1764,7 +1765,6 @@ Public Sub ButtonStop_Click()
   ArrangeCpl()
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
-  UserStopped = True
   mplayer.do_stop
   VideoBox.Refresh
   ShowAudioPanel(False)
@@ -2585,6 +2585,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
 
+  UserStopped = False
   Wait
   Stopmthumbler()
   OneSecTimer.Stop()
@@ -3407,11 +3408,13 @@ Public Sub OneSecTimer_Timer()
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
         Debug "end of media reached, playing next video..."
         Debug
+        Debug mplayer.ProcessRunningOvr()
+
         Object.Lock(onesectimer)
         SelectNext(True, GetActivePlayQueue())
         PlaylistFinished = Not global.IsNextSelected
         If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
-        
+
         Debug "Mplayer was off, so hit PLAY from here"
         Debug
         If Not (mplayer.ProcessRunningOvr()) Then
@@ -3423,7 +3426,7 @@ Public Sub OneSecTimer_Timer()
         Object.unLock(onesectimer)
       Else
         Playstarted = False
-        UserStopped = False
+        'UserStopped = False
         FirstPlay = False
         If ((Not TogglePls.value) And fsform.FullScreen) Then FullScreenSwitch()
       Endif
@@ -3434,7 +3437,6 @@ Public Sub OneSecTimer_Timer()
     SeekBar.value = 0
     Fmain.caption = global.AppName
   Endif
-
 End
 
 

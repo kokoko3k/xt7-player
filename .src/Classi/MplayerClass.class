@@ -1066,7 +1066,7 @@ Public Function do_seek(Percentual As String) As Boolean
 End
 
 Public Function do_SetVolume(Percentual As String) As Boolean
-  send("volume " & Percentual & " 1")
+  send("pausing_keep volume " & Percentual & " 1")
 End
 
 Public Function do_fullscreen() As Boolean

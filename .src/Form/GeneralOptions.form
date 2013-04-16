@@ -1591,7 +1591,7 @@
           { BackColorChooseBTN1 Button ColorChoose
             Name = "BackColorChooseBTN1"
             MoveScaled(46,0,4,4)
-            Background = &HF0F0F0&
+            Background = &HFFFFFF&
             Picture = Picture["icon:/16/color"]
           }
         }
@@ -1615,7 +1615,7 @@
           { BackColorChooseBTN2 Button ColorChoose
             Name = "BackColorChooseBTN2"
             MoveScaled(46,0,4,4)
-            Background = &HE6E6E6&
+            Background = &HF5F5F5&
             Picture = Picture["icon:/16/color"]
           }
         }

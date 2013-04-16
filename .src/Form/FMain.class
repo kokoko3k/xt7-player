@@ -1077,7 +1077,6 @@ Public Sub MainInit()
   'Disable Shutdown feature at start.
   
 
-  
   FirstTimeXt7 = Not (Exist(global.ConfPath))
   ShutOff_Click()
   MakeProfilePath()
@@ -10639,7 +10638,7 @@ Private PlayQueueIs As String 'remember where the Last played item is from
     Next
   
     PlayQueueIs = queue
-    If Right(Leftsidetabs.Current.text) <> " >" Then Leftsidetabs.Current.text = "< " & Leftsidetabs.Current.text & " >"
+    If Right(Leftsidetabs.Current.text) <> " >" Then Leftsidetabs.Current.text = "<< " & Leftsidetabs.Current.text & " >>"
   End
   
   Public Function GetActivePlayQueue() As String

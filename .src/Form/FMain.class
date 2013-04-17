@@ -3822,6 +3822,7 @@ End
 Public Function Screenbypos(x As Integer, y As Integer) As Screen
 
   Dim s As Screen
+  Stop
   For Each s In Screens
     If (x >= s.x) And x <= (s.x + s.W) Then
       If (y >= s.y) And y <= (s.y + s.h) Then
@@ -3829,6 +3830,19 @@ Public Function Screenbypos(x As Integer, y As Integer) As Screen
       Endif
     Endif
   Next
+  
+  'no screen found !? repeat with more tolerance:
+  For Each s In Screens
+    If (x + 50 >= s.x) And x <= (s.x + s.W + 50) Then
+      If (y + 50 >= s.y) And y <= (s.y + s.h + 50) Then
+        Return s
+      Endif
+    Endif
+  Next
+
+  'still no screen found? return the first.
+  Debug "Couldn 't get the matching screen (!)"
+  Return Screens[0]
   
 End
 

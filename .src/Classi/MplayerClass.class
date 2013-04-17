@@ -52,7 +52,8 @@ Public Function executable() As String
   'stop idle mplayer after 10 minutes
   If ImIdlePlaying Then 
     If global.pluginmode Then timeout = 10
-    out &= "timeout " & timeout & " "
+    out &= ""
+     " & timeout -s 9 & " ""
       Else
     'add c locale to workaround somw buggy ladspa filters which calls setlocale
     out &= "LC_ALL=C "
@@ -1505,10 +1506,10 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   gridpriv = mygrid
 
   'Create the thumb, but exit after 30 seconds 
-  cmdline = "timeout 30 mplayer" & " " & Shell(fullpath) & " -nocache "
+  cmdline = "timeout -s 9 5 mplayer" & " " & Shell(fullpath) & " -nocache "
   cmdline &= "-vf scale=" & width & ":-2" & ",expand=:::::1/1" & " -ss " & seconds 
   cmdline &= " -frames 1 -nosound -vo jpeg:quality=80:outdir=" & outdir
-  cmdline &= " -noconfig all -slave -quiet"
+  cmdline &= " -noconfig all -slave -quiet &>/dev/null"
 
   
   newfilenamepriv = newfilename
@@ -1538,7 +1539,7 @@ Public Sub thumbprocess_kill()
       Debug "Couldn't get a thumb, retrying with an earlier time"
       Debug
       ShortMovieChecked = True
-      savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, 5)
+      savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, gridpriv, rowpriv, columnpriv)
     Endif
   Endif
 End

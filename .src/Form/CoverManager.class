@@ -449,7 +449,7 @@ End
 
 Private Uncovered As New String[]
 Private UncoveredInitialized As Boolean = False
-Private uncoveredfile As String = (global.confpath & "/covers/uncovered.txt") 
+Private uncoveredfile As String
 
 Public Sub flushUncoveredFile()
   Dim tmp, myitem As String
@@ -463,6 +463,7 @@ End
 
 
 Private Sub UncoveredInit()
+  uncoveredfile = (global.confpath & "/covers/uncovered.txt") 
   Try uncovered = Split(file.Load(uncoveredfile), "\n", "", True)
   UncoveredInitialized = True
 End
@@ -1235,19 +1236,29 @@ Public Sub makevideothumb(fullpath As String, coverfilepath As String, mygrid As
   If Exist(coverfilepath) Then Return
   mplayerthumb = New Mplayerclass As "thumbnailer"
   runningthumblers += 1
+  Debug runningthumblers
   mplayerthumb.savethumb(fullpath, coverfilepath,,, mygrid, row, column)
 End
 
 Public Sub thumbnailer_ThumbAvailableFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
+  runningthumblers -= 1
   Try g[r, c].text = ""
   Try g[r, c].clear
+   g.refresh
+   Wait
   'FMain.NewThumbReadyFor(fullpath)
-  runningthumblers -= 1
+  
+  Debug runningthumblers
 End
 
 Public Sub thumbnailer_ThumbErrorFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
-  MarkUncovered(fullpath)
   runningthumblers -= 1
+  Try g[r, c].text = ""
+  Try g[r, c].clear
+   g.Refresh
+   Wait
+  MarkUncovered(fullpath)
+
 End
 
 

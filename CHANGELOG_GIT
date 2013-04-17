@@ -1,5 +1,11 @@
 Git changes:
 --------------------------------------
+Apr 17 2013
+  FIX:    thumbnailer: timeout with sig 9
+  FIX:    thumbnailer: update grid on new thumbs
+  FIX:    regression, uncovered.txt wasn't found
+  FIX:    thumbnailer: Redirect thumbnailer output to dev null to avoid pipe stalls
+
 Apr 16 2013
   FIX:    keep pause state (limited to mplayer ability) when changing volume
   FIX:    Prevent xt7 from going crazy when autoadvance is selectd but several unplayable media are in the play queue

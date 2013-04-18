@@ -1301,7 +1301,10 @@ Public Sub FillPropertiesGrid()
       PropertiesGrid[11, 1].text = OneOf(mplayer.Media_Comment, mplayer.Media_Comments)
     Endif
   Endif
-  PropertiesGrid[20, 1].text = CStr((CInt(mplayer.media_size) * 8) Div CInt(mplayer.Media_Length)) & "Kbps"
+  Try PropertiesGrid[20, 1].text = CStr((CInt(mplayer.media_size) * 8) Div CInt(mplayer.Media_Length)) & "Kbps"
+  If Error Then 
+    Try PropertiesGrid[20, 1].text = CStr((CInt(mplayer.Media_AudioBitrate) Div 1000) + (CInt(mplayer.Media_VideoBitrate) Div 1000)) & "Kbps"
+  Endif
   
   
   PropertiesGrid.Columns[1].Width = "-1"      'Autosize Columns
@@ -10657,7 +10660,7 @@ Private PlayQueueIs As String 'remember where the Last played item is from
     Next
   
     PlayQueueIs = queue
-    If Right(Leftsidetabs.Current.text) <> " >" Then Leftsidetabs.Current.text = "<< " & Leftsidetabs.Current.text & " >>"
+    If Right(Leftsidetabs.Current.text) <> " >" Then Leftsidetabs.Current.text = "< " & Leftsidetabs.Current.text & " >"
   End
   
   Public Function GetActivePlayQueue() As String

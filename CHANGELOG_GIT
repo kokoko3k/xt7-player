@@ -1,10 +1,14 @@
 Git changes:
 --------------------------------------
+Apr 18 2013
+  FIX:    Prevent a crash when fill properties grid for network streams with unknown size.
+
 Apr 17 2013
   FIX:    thumbnailer: timeout with sig 9
   FIX:    thumbnailer: update grid on new thumbs
   FIX:    regression, uncovered.txt wasn't found
   FIX:    thumbnailer: Redirect thumbnailer output to dev null to avoid pipe stalls
+  FIX:    Prevent a runtime error on fullscreen switch
 
 Apr 16 2013
   FIX:    keep pause state (limited to mplayer ability) when changing volume

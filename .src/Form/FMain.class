@@ -1272,13 +1272,13 @@ Public Sub FillPropertiesGrid()
   PropertiesGrid[12, 1].text = mplayer.Media_Channels
   PropertiesGrid[13, 1].text = mplayer.Media_AudioRate
   PropertiesGrid[14, 1].text = mplayer.Media_AudioCodec
-  PropertiesGrid[15, 1].text = (CInt(mplayer.Media_AudioBitrate) Div 1000) & "Kbps"
+  Try PropertiesGrid[15, 1].text = (CInt(mplayer.Media_AudioBitrate) Div 1000) & "Kbps"
   
   If Not mplayer.Media_AudioOnly() Then
     PropertiesGrid[16, 1].text = mplayer.Media_Width & "x" & mplayer.Media_Height
     PropertiesGrid[17, 1].text = mplayer.Media_VideoFps
     PropertiesGrid[18, 1].text = mplayer.Media_VideoCodec
-    PropertiesGrid[19, 1].text = (CInt(mplayer.Media_VideoBitrate) Div 1000) & "Kbps"
+    Try PropertiesGrid[19, 1].text = (CInt(mplayer.Media_VideoBitrate) Div 1000) & "Kbps"
   Else
     If Upper(mplayer.Media_FullPath) Like "*.FLAC" Then 'mplayer bug with flac files,use audiotag instead
       If tl.Init(mplayer.Media_FullPath) Then
@@ -1326,7 +1326,7 @@ Public Sub FillPropertiesGrid()
     audioform.RadioLabel.text = ""
     
     If (Trim(PropertiesGrid[14, 1].text) <> "") Then audioform.label21.text = PropertiesGrid[14, 1].Text
-    If (Trim(PropertiesGrid[15, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[15, 1].text & "bps"
+    If (Trim(PropertiesGrid[15, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[15, 1].text
     If (Trim(PropertiesGrid[12, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & ", " & PropertiesGrid[12, 1].text & (" channels")
     If (Trim(PropertiesGrid[13, 1].text) <> "") Then audioform.label21.text = audioform.label21.text & "@" & PropertiesGrid[13, 1].text & "Hz"
   Endif

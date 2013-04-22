@@ -532,7 +532,7 @@ Public Sub FromB64(B64Str As String) As String
   Return B64Decoded
 End
 
-Public Sub LookForJpgB64(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
+Public Function LookForJpgB64(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
   Dim mystream As File
   Dim myjpg As String
   Dim m1 As String = "METADATA_BLOCK_PICTURE=" ' or "COVERART="
@@ -591,8 +591,8 @@ Public Sub LookForJpgB64(filename As String, Optional saveto As String = "", Opt
     myjpg = FromB64(myjpg)
     'make sure myjpg starts with "FF D8"
     jpgstart = InStr(myjpg, Chr(255) & Chr(216))
-    myjpg = Mid(myjpg, jpgstart, Len(myjpg) - jpgstart)
-    'If Error Then Return False
+    Try myjpg = Mid(myjpg, jpgstart, Len(myjpg) - jpgstart)
+    If Error Then Return False
     file.Save(tmpfile, myjpg)
     'Try tmppic = picture.Load(tmpfile)
     Try tmppic = image.Load(tmpfile).picture
@@ -640,7 +640,7 @@ Public Function FindAndSeek2(mystream As File, myblock As Long, mypattern1 As St
   Endif
 End
 
-Public Sub LookForJpg(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
+Public Function LookForJpg(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
    Dim mystream As File
    Dim myjpg As String = ""
    Dim m1 As String = "image/"
@@ -718,7 +718,7 @@ Public Sub LookForJpg(filename As String, Optional saveto As String = "", Option
 End
 
 
-Public Sub LookForJpgHeuristic(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
+Public Function LookForJpgHeuristic(filename As String, Optional saveto As String = "", Optional ByRef fileerror As Boolean = False) As Boolean
    Dim mystream As File
    Dim myjpg As String = ""
    Dim m1 As String
@@ -1188,15 +1188,17 @@ Public Sub EmbeddedToCoverCache(artist As String, album As String, fullpath As S
       Try mygrid[row, column].clear
       Return
     Case "ogg"
-      LookForJpgb64(fullpath, coverfilename)
-      Try mygrid[row, column].text = ""
-      Try mygrid[row, column].clea
-      Return
+      If LookForJpgb64(fullpath, coverfilename) Then 
+        Try mygrid[row, column].text = ""
+        Try mygrid[row, column].clea
+        Return
+      Endif
     Case "flac"
-      LookForJpg(fullpath, coverfilename)
-      Try mygrid[row, column].text = ""
-      Try mygrid[row, column].clear
-      Return
+      If LookForJpg(fullpath, coverfilename) Then 
+        Try mygrid[row, column].text = ""
+        Try mygrid[row, column].clear
+        Return
+      Endif
     Case "mp4"
       If LookForJpgHeuristic(fullpath, coverfilename) Then 
         Try mygrid[row, column].text = ""

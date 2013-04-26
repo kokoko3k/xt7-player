@@ -1539,7 +1539,7 @@ Public Sub thumbprocess_kill()
       Debug "Couldn't get a thumb, retrying with an earlier time"
       Debug
       ShortMovieChecked = True
-      savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, gridpriv, rowpriv, columnpriv)
+      savethumb(Thumbfullpathpriv, newfilenamepriv, widthpriv, 150, gridpriv, rowpriv, columnpriv)
     Endif
   Endif
 End

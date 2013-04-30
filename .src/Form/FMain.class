@@ -8570,14 +8570,13 @@ Public Sub menubrowseaddtoplaylist_Click()
 End
 
 Public Sub FileView1_Menu()
-  
   Dim selecteditem As String
-  SelectedItem = Replace(FileView1.dir & "/" & FileView1.current, "//", "/")
+  Wait 'needed to allow the item to be selected on right click
+  Try SelectedItem = Replace(FileView1.dir & "/" & FileView1.selection[0], "//", "/")
   MenuAddToHistory.Enabled = IsDir(selecteditem)
   MenuBrowseDelete.Enabled = Not (IsDir(selecteditem))
   Debug selecteditem
   Menubrowse.popup
-  
 End
 
 Public Sub MenuBrowseOpenContaining_Click()

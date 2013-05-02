@@ -3825,7 +3825,6 @@ End
 Public Function Screenbypos(x As Integer, y As Integer) As Screen
 
   Dim s As Screen
-  Stop
   For Each s In Screens
     If (x >= s.x) And x <= (s.x + s.W) Then
       If (y >= s.y) And y <= (s.y + s.h) Then
@@ -4713,7 +4712,11 @@ Public Sub VideoAreaGroup_DblClick()
 
   Dim timenow As Float = Timer
   If mouseleft And Not TagEditMode Then 
-    If (timenow - LastClickTime) < 0.25 Then mplayer.Send("pause") ' keep the pausing state when switching fullscreen mode
+    If (timenow - LastClickTime) < 0.25 Then 
+      Wait 0.1
+      mplayer.Send("pause") ' keep the pausing state when switching fullscreen mode
+      Debug timenow - LastClickTime
+    Endif
     FullScreenSwitch()
   Endif
 
@@ -8529,7 +8532,7 @@ Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, 
   Dim nulllistbox As New ListBox(zzzfake)
   Dim selecteditem As String
   Dim StatType As Integer
-  
+
   For Each selecteditem In FileView1.Selection
     SelectedItem = Replace(FileView1.dir & "/" & selecteditem, "//", "/")
     If Exist(selecteditem, True) Then
@@ -8550,7 +8553,6 @@ Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, 
       Endif
     Endif
   Next 'selecteditem
-
 End
 
 Public Sub menubrowseaddtolibrary_Click()
@@ -8575,7 +8577,6 @@ Public Sub FileView1_Menu()
   Try SelectedItem = Replace(FileView1.dir & "/" & FileView1.selection[0], "//", "/")
   MenuAddToHistory.Enabled = IsDir(selecteditem)
   MenuBrowseDelete.Enabled = Not (IsDir(selecteditem))
-  Debug selecteditem
   Menubrowse.popup
 End
 
@@ -10682,4 +10683,5 @@ Private PlayQueueIs As String 'remember where the Last played item is from
   Public Function GetActivePlayQueue() As String
     Return PlayQueueIs
   End
+
 

@@ -1137,6 +1137,7 @@ Public Sub MainInit()
       If Not (Application.Args[1] Like "-*") Then 
         mplayer.Media_FullPath = DConv(Application.Args[1])
         PlayFromCommandline = True 
+        SetActivePlayQueue("browse")
         Play(DConv(Application.Args[1]), cachedopts)
       Endif
       Me.Mouse = mouse.Default
@@ -4736,6 +4737,7 @@ End
 Public Sub SelectNext(Optional forcerunning As Boolean = False, Optional CurrentQueue As String = "")
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
+
   OneSecTimer.stop
   Stopmthumbler()
   fmain.mouse = mouse.wait
@@ -4818,6 +4820,8 @@ Public Sub BrowseSelectNext()
         ToSelectIndex = currentindex + 1
         global.isnextselected = True
   Endif
+  Try mplayer.Media_FullPath = fileview1.dir & "/" & filelist[ToSelectIndex]
+  Try mplayer.Media_FullPath = Replace(mplayer.MediaFileFullPath, "//", "/")
   fileview1.current = filelist[ToSelectIndex]
 End
 

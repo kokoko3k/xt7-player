@@ -1,3 +1,91 @@
+* Fri May 03 2013 Antonio Orefice <xt7player@gmail.com> 3.4.2
+
+* Fri May 03 2013 Antonio Orefice <xt7player@gmail.com> 3.4.1
+- May 02 2013
+- FIX:    Following "browse" playqueue didnt work when starting xt7 with a mediafile argument (gb 3.4.1 bug)
+- FIX:    Try harder to keep pause state while switching fullscreen via dbl click.
+- Apr 30 2013
+- FIX:    Fix item selection in fileview with right click. (gb3.4 workaround)
+- Apr 26 2013
+- FIX:    Exception when taking another thumb on an early time
+- Apr 20 2013
+- FIX:    Correct text wrote into audioproperties panel
+- FIX:    Prevent blank column on embedded picture errors
+- NEW:    F5 and canc implemented in fileview; refresh clears selection.
+- Apr 18 2013
+- FIX:    Prevent a crash when fill properties grid for network streams with unknown size.
+- Apr 17 2013
+- FIX:    thumbnailer: timeout with sig 9
+- FIX:    thumbnailer: update grid on new thumbs
+- FIX:    regression, uncovered.txt wasn't found
+- FIX:    thumbnailer: Redirect thumbnailer output to dev null to avoid pipe stalls
+- FIX:    Prevent a runtime error on fullscreen switch
+- Apr 16 2013
+- FIX:    keep pause state (limited to mplayer ability) when changing volume
+- FIX:    Prevent xt7 from going crazy when autoadvance is selectd but several unplayable media are in the play queue
+- NEW:    Show total bitrate in mediaproperties tab (useful for mkv files)
+- Apr 05 2013
+- FIX:    Explicitely call updateprofilestablist after changing default profile
+- FIX:    Tabstrip captions names could be messed up, fixed
+- Apr 04 2013
+- CHANGE: Manually assign form names at startup for gambas 3.4.1
+- FIX:    Quit 40% faster if no setting has been saved.
+- FIX:    Fix on key events in fileview
+- Apr 02 2013
+- FIX:    Engage play queue shutdown for browse and youtube tabs too.
+- CHANGE: Auto-Select the next stream from the tab containing the previous one
+- FIX:    Lock onesectimer before playing the next stream, unlock it later. (fixes endless selectnext() )
+- FIX:    Replace "\n" with " " in pretext
+- FIX:    Replace "\n" with " " in forcename (when adding items to playlist or library)
+- FIX:    Do not send anything to mplayer while it is pausing
+- Mar 28 2013
+- FIX:    Give Autoresize property to some buttons
+- CHANGE: Shrink some gui elements
+- FIX:    Modal dialog size was wrong simetimes
+- FIX:    Replace &amp; with & in shoutcast titles
+- FIX:    Set covermanager hsplit layout explicitely (gambas 3.4)
+- Mar 27 2013
+- CHANGE: Be a bit more permissive on where to catch mouseup to seek after a drag
+- FIX:    Browse Tab (fileview) fixes for gambas 3.4
+- FIX:    Use -noconfig-all and -prefer-ipv{4|6} for thumbler
+- FIX:    Cleaned up some unused vars and functions
+- FIX:    "-noconfig-all" -> "-noconfig all"
+- Mar 26 2013
+- FIX:    shorter pause timeout when currenttime=0
+- FIX:    Don't seek on mouseup if mouse is outside seekbar
+- FIX:    Use global.mouseinside(obj)
+- NEW:    Disable vdpau overlay surface by default (new option in vdpau driver window)
+- Mar 25 2013
+- FIX:    Remove a debug line that interfree with pause/play
+- FIX:    Updated Russian translation (thanks to victorr2007)
+- Mar 22 2013
+- CHANGE: On seekbar drag, do a seek only when using left mouse button.
+- CHANGE: Bigger live previews
+- Mar 21 2013
+- FIX:    Some mthumbler graphic fixes, push :P
+- FIX:    Keep track of osdlevel
+- Mar 20 2013
+- FIX:    Last commit broke youtube play from tree, fixed.
+- NEW:    Optionally display animated video preview on seek
+- FIX:    Give thumbler a lower priority (+5) over main player
+- Mar 18 2013
+- FIX:    Use 2 labels into a panel for the statusbar
+- CHANGE: Use included volume,info and zoom icons
+- FIX:    Do not try to seek into unseekable streams via seek bar
+- CHANGE: Warn user when he can't seek into the stream
+- FIX:    Support for live youtube streams
+- Mar 14 2013
+- NEW:    New library popup menu to search for album tracks
+- FIX:    Highlight the album under the mouse before trying to set a cover on menu popup
+- Mar 13 2013
+- CHANGE: Add a small shade between the toolbar and the right side panel
+- Mar 12 2013
+- FIX:    Taller button panel
+- FIX:    pluginmode visual fixes
+- FIX:    shadeup was misplaced when starting the first time
+- Mar 11 2013
+- FIX:    Rewrote fileview selection code to be compatible with gambas 3.4.0
+
 * Fri Mar 08 2013 Antonio Orefice <xt7player@gmail.com> 3.4.1
 - CHANGE: Browse youtube tree by using subthreads
 - FIX: some youtube tree fixes

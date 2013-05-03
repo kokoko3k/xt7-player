@@ -4841,6 +4841,8 @@ Public Sub BrowseSelectPrev()
       Else 
         ToSelectIndex = currentindex - 1
   Endif
+  Try mplayer.Media_FullPath = fileview1.dir & "/" & filelist[ToSelectIndex]
+  Try mplayer.Media_FullPath = Replace(mplayer.MediaFileFullPath, "//", "/")
   fileview1.current = filelist[ToSelectIndex]
 End
 

@@ -1761,6 +1761,7 @@ End
 
 Public Sub ButtonStop_Click()
   UserStopped = True
+  InitABLoop()
   Stopmthumbler()
   previousfile_cover = ""
   videobox.cached = False
@@ -1769,6 +1770,7 @@ Public Sub ButtonStop_Click()
   If buttoncapture.value Then StopDumping(generaloptions.dvbfinaldir.text)
   buttoncapture.enabled = False
   buttoncapture.visible = buttoncapture.enabled
+  ABLoopButton.visible = False
   ArrangeCpl()
   Try LibraryGrid.Columns[0].Refresh
   myopensubs.clear 'needed to avoid hammering opensubtitles.org
@@ -1852,11 +1854,6 @@ Public Function GetOptionsFromGui() As String
 End
 
 Public Sub ButtonPlay_Click()
-' If outerbox.background = Color.red Then 
-'     outerbox.background = Color.White 
-'       Else
-'     outerbox.background = Color.red
-' Endif
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       OneSecTimer.start
@@ -2591,7 +2588,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cookieopts As String = ""
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
-
+  InitABLoop()
   UserStopped = False
   Wait
   Stopmthumbler()
@@ -2800,6 +2797,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   buttoncapture.enabled = buttoncapture.enabled Or (Lower(mplayer.Media_FullPath_Playing) Like "*dvb*://*") 'all dvb channels
   buttoncapture.enabled = buttoncapture.enabled Or (mplayer.AudioOnly And ismp3) 'all audio only mp3s
   buttoncapture.visible = buttoncapture.enabled
+  ABLoopButton.visible = (mplayer.Media_Seekable = 1)
   ArrangeCpl()
   If GeneralOptions.ToolTipsCHKDBUS.value Then Try ExportDbusProperties()
   zzzfake.cachingbox.Hide
@@ -3112,7 +3110,6 @@ Public Sub UpdateSeekSlider()
     Seekbar.value = mplayer.Media_percent_pos / 100
   Endif
   SeekBar.tag = "user"
-
 End
 
 Public customtitle As String = ""
@@ -9314,7 +9311,7 @@ End
 
 Public Sub GridPanels_Arrange()
 
-  Dim brother As Gridview
+  Dim brother As Object
   Dim newsize As Integer = 9
   
   '  If Not (fmain.fullyloaded) Then Return
@@ -10689,5 +10686,100 @@ Private PlayQueueIs As String 'remember where the Last played item is from
   Public Function GetActivePlayQueue() As String
     Return PlayQueueIs
   End
+
+
+Private ABLoopInitValue As Float = 99999.99999
+Private ABLoopInitText As String = "(AB)-A"
+Private ABLoopA As Float = ABLoopInitValue
+Private ABLoopB As Float = ABLoopInitValue
+
+Private Sub InitABLoop()
+  ABLoopA = ABLoopInitValue
+  ABLoopB = ABLoopInitValue
+  ABLoopButton.text = ""
+  ABLoopButton.picture = Picture["media-loop-off.png"]
+  ABLoopButton.value = False
+  ABLoopButton.tooltip = ("No loop set")
+  ABLoopTimer.stop
+End
+
+
+Public Sub ABLoopButton_mouseup()
+  Dim StartTime As Float = Timer()
+  Dim timeout As Integer = 100
+  
+  'mplayer not running or cancel loop -> init and return
+  If Not mplayer.ProcessRunningOvr() Or (ABLoopB <> ABLoopInitValue) Or Mouse.Right Then 
+    InitABLoop()
+    Return
+  Endif
+
+  If ABLoopA = ABLoopInitValue Then 'A loop not set -> get loop point A
+    Repeat
+      Try ABLoopA = mplayer.CurrentTimeFloat()
+      If ABLoopA = ABLoopInitValue Then 
+        Wait 0.1
+        timeout -= 1
+      Endif
+    Until (ABLoopA <> ABLoopInitValue) Or timeout = 0
+    If timeout <> 0 Then
+      ABLoopA -= Round((Timer() - starttime), 1)
+      ABLoopButton.picture = Picture["media-loop-a.png"]
+      ABLoopButton.tooltip = CStr(AbLoopA) & "<->"
+    Endif
+    Return
+      
+      Else 'B loop not set -> get loop point B and start the loop
+    
+    Repeat
+      Try ABLoopB = mplayer.CurrentTimeFloat()
+      If ABLoopB = ABLoopInitValue Then 
+        Wait 0.1
+        timeout -= 1
+      Endif
+    Until (ABLoopB <> ABLoopInitValue) Or timeout = 0
+    If timeout <> 0 Then
+      ABLoopB -= Round((Timer() - starttime), 1)
+      If ABLoopA >= ABLoopB Then
+        Debug
+        Debug "Loop Point A >= Loop Point B, and cannot loop backwards, please retry."
+        ABLoopB = ABLoopInitValue
+        Return
+      Endif
+      ABLoopButton.picture = Picture["media-loop-ab.png"]
+      ABLoopButton.tooltip = CStr(AbLoopA) & "<->" & CStr(AbLoopB)
+      ABLoopTimer.delay = CInt((ABloopB - ABLoopA) * 100 / 4) 'be light on this
+      ABLoopTimer.start
+      ABLoopTimer.trigger
+    Endif    
+  Endif
+End
+
+Public Sub ABLoopTimer_Timer()
+  Dim mptime As Float = 99999.99999
+  Dim timeout As Integer = 100 'centisecs
+  Dim newdelay As Integer
+  Repeat
+    mptime = mplayer.CurrentTimeFloat()
+  Until mptime <> 99999.99999 Or (timeout = 0)
+  If timeout = 0 Then
+    Debug
+    Debug "Couldn't get current time -> cannot loop!"
+     ABLoopTimer.delay = 1000 'safe value
+    Return
+  Endif
+
+  If mptime >= ABLoopB Then 
+
+    mplayer.Send("seek " & CStr(ABLoopA) & " 2")
+    CInt((ABloopB - ABLoopA) * 100 / 4) 'be light on this
+    Return
+  Endif
+  
+  newdelay = CInt(((ABloopB - mptime) * 1000) / 2)
+  If newdelay < 50 Then newdelay = 50
+  ABLoopTimer.delay = newdelay
+
+End
 
 

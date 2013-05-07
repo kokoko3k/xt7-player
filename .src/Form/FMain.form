@@ -623,7 +623,7 @@
     }
     { ShowVolBtn2 ToolButton DynaGuiToolbar
       Name = "ShowVolBtn2"
-      MoveScaled(15,0,4.5714,4.5714)
+      MoveScaled(12,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Open a file")
       AutoResize = True
@@ -631,7 +631,7 @@
     }
     { OpenNetworkBTN ToolButton DynaGuiToolbar
       Name = "OpenNetworkBTN"
-      MoveScaled(21,0,4.5714,4.5714)
+      MoveScaled(17,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Open an URI/Network stream")
       AutoResize = True
@@ -639,7 +639,7 @@
     }
     { ConfigureChainsBTN ToolButton DynaGuiToolbar
       Name = "ConfigureChainsBTN"
-      MoveScaled(26,0,4.5714,4.5714)
+      MoveScaled(22,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Show/hide chains window")
       AutoResize = True
@@ -647,7 +647,7 @@
     }
     { ConfigureBTN ToolButton DynaGuiToolbar
       Name = "ConfigureBTN"
-      MoveScaled(30,0,4.5714,4.5714)
+      MoveScaled(28,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Configuration toolbox")
       AutoResize = True
@@ -655,7 +655,7 @@
     }
     { TagEditorBtn ToolButton DynaGuiToolbar
       Name = "TagEditorBtn"
-      MoveScaled(36,0,4.5714,4.5714)
+      MoveScaled(33,0,4.5714,4.5714)
       Enabled = False
       Font = Font["1"]
       ToolTip = ("Show/Hide AudioTag editor")
@@ -663,13 +663,13 @@
       Picture = Picture["icon:/22/edit"]
     }
     { FlexSpace PictureBox
-      MoveScaled(42,0,10,4)
+      MoveScaled(38,0,7,4)
       Font = Font["1"]
       Expand = True
     }
     { ShowAudioEq ToolButton DynaGuiToolbar
       Name = "ShowAudioEq"
-      MoveScaled(54,0,4.5714,4.5714)
+      MoveScaled(46,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Video Equalizer")
       AutoResize = True
@@ -677,7 +677,7 @@
     }
     { ShowVideoEq ToolButton DynaGuiToolbar
       Name = "ShowVideoEq"
-      MoveScaled(58,0,4.5714,4.5714)
+      MoveScaled(51,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Video Equalizer")
       AutoResize = True
@@ -685,7 +685,7 @@
     }
     { SwitchSubBtn ToolButton DynaGuiToolbar
       Name = "SwitchSubBtn"
-      MoveScaled(62,0,4.5714,4.5714)
+      MoveScaled(56,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Switch subtitle track")
       AutoResize = True
@@ -693,7 +693,7 @@
     }
     { SwitchAudioBTN ToolButton DynaGuiToolbar
       Name = "SwitchAudioBTN"
-      MoveScaled(67,0,4.5714,4.5714)
+      MoveScaled(61,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Switch audio track")
       AutoResize = True
@@ -701,14 +701,14 @@
     }
     { RealtimeBTN ToolButton DynaGuiToolbar
       Name = "RealtimeBTN"
-      MoveScaled(72,0,4.5714,4.5714)
+      MoveScaled(65,0,4.5714,4.5714)
       Font = Font["1"]
       ToolTip = ("Other realtime commands")
       AutoResize = True
       Picture = Picture["icon:/22/clock"]
     }
     { Separator2 Separator
-      MoveScaled(76,0,2,4)
+      MoveScaled(77,0,2,4)
       Font = Font["1"]
     }
     { SwitchSidePanelBTN ToolButton DynaGuiToolbar
@@ -741,7 +741,7 @@
     Tracking = True
     Expand = True
     { LeftSidePanel Panel
-      MoveScaled(1,1,41,64)
+      MoveScaled(1,1,41,66)
       Tracking = True
       Expand = True
       Arrangement = Arrange.Vertical
@@ -1578,6 +1578,10 @@
       { timerpluginmode #Timer
         #MoveScaled(0,1)
       }
+      { ABLoopTimer #Timer
+        #MoveScaled(8,2)
+        Delay = 75
+      }
       { TagPanel ScrollView
         MoveScaled(27,3,30,45)
         Expand = True
@@ -1814,7 +1818,7 @@
         }
       }
       { TimerSeekThumble #Timer
-        #MoveScaled(17,43)
+        #MoveScaled(16,20)
         Delay = 100
       }
       { BottomVbox VBox
@@ -1877,34 +1881,39 @@
               Arrangement = Arrange.Fill
               Padding = 8
               { seekbar ProgressBar
-                MoveScaled(0,0,24,2)
+                MoveScaled(0,1,24,2)
                 Font = Font["1"]
                 Tracking = True
                 Expand = True
                 Label = False
               }
             }
+            { ABLoopButton ToolButton
+              MoveScaled(24,0,5,4)
+              Font = Font["Bold,-1"]
+              Picture = Picture["media-loop-off.png"]
+            }
             { ButtonRew ToolButton
-              MoveScaled(25,0,4.4286,4)
+              MoveScaled(29,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Slowdown")
               Picture = Picture["media-seek-backward.png"]
             }
             { Buttonfwd ToolButton
-              MoveScaled(28,0,4.4286,4)
+              MoveScaled(33,0,4.4286,4)
               Font = Font["6"]
               ToolTip = ("Speedup")
               Picture = Picture["media-seek-forward.png"]
             }
             { PanScan Button
-              MoveScaled(31,0,5,4)
+              MoveScaled(37,0,5,4)
               Font = Font["6"]
               ToolTip = ("Hover the mouse over this button then\n* Zoom the video with mouse wheel.\n* Cycle through zoom with right mouse button.")
               Picture = Picture["zoom-in.png"]
               Border = False
             }
             { ButtonNowNext ToolButton
-              MoveScaled(37,0,4,4)
+              MoveScaled(40,0,4,4)
               Visible = False
               Font = Font["6"]
               ToolTip = ("Show/Hide current and next TV program.")

@@ -18,18 +18,6 @@ Public Sub Start()
   Debug "Start at: " & Timer
   Debug
   global.init()
-  ' If (Application.Args.count = 3) And (Application.Args[1] = "-append") Then
-  '     Sock_Append(Application.Args[2])
-  '     Me.close
-  '   Else
-  '      Try Global.Center(Fmain, Me)
-  '      FMain.maininit()
-  ' Endif
-
-  
-  
-  
-
 
   If (Application.Args.count > 1) Then
       For i = 1 To Application.Args.Count - 1

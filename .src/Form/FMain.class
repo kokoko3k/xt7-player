@@ -483,9 +483,11 @@ Public Sub AllInit_Post()
   'Prepare our xbindkeys link, we'll need it to ensure only one at time.
   Shell ("ln -s $(which xbindkeys) " & global.confpath & "/Xt7BindKeys") For Read
   'start to listen for remote commands, one connection is ok.
-  Mysocket.type = Net.Unix
-  Mysocket.path = global.confpath & "/.localsocket"
-  Mysocket.Listen(1)
+  If Not global.pluginmode Then
+    Mysocket.type = Net.Unix
+    Mysocket.path = global.confpath & "/.localsocket"
+    Mysocket.Listen(1)
+  Endif
   InitGenresTag()
   Wait 0.5
   SetStyle_later()

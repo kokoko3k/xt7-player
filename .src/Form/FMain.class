@@ -1375,8 +1375,8 @@ Public Sub Form_Close()
         AddHistory(mplayer.Media_FullPath_Playing, mplayer.CurrentTime())
       Endif
     Endif
-    ButtonStop_Click() 'don't remove me.
   Endif
+  ButtonStop_Click() 'don't remove me.
   
   Try AFiltersCfg.hide
   Try AddUriForm.hide

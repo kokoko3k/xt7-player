@@ -4058,7 +4058,7 @@ Public Sub SwitchToWindow()
   fmain.show  
   
   cachebar.Reparent(rightsidepanel)
-  cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h, 0)
+  cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h)
   cachebar.raise
   cachebar.show
   'timerhideshowvideo.start
@@ -4119,7 +4119,7 @@ Public Sub TimerFullScreen_Timer()
   Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
   Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
   Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
-  
+  Debug
   If MouseonFsForm Then 
     MouseHide()
   Else
@@ -10276,7 +10276,10 @@ Public Sub VideoAreaGroup_MouseMove()
     If fsform.fullscreen Then 
       Return
         Else
+      cachebar.Move(0, bottomvbox.y - cachebar.h)
       bottomvbox.visible = True
+      cachebar.raise
+      cachebar.Show
       timerpluginmode.Start()
     Endif
   Endif
@@ -10285,6 +10288,7 @@ End
 
 Public Sub timerpluginmode_Timer()
     bottomvbox.visible = False
+    cachebar.visible = False
 End
 
 

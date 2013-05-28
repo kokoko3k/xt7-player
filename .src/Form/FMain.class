@@ -3165,8 +3165,10 @@ Public Sub UpdateStatusBar()
       MaxCacheHuman = mplayer.maxcache & "KB"
     Endif
     If maxcachehuman <> "0KB" Then 
+      Debug
       fmain.caption = pretext & " [ cache: " & cachevalue & "%" & (" of: ") & MaxCacheHuman & " ]"
     Else
+      Debug
       fmain.caption = pretext & " [ cache: " & cachevalue & "% (Auto) ]"
     Endif
     'cachebar.value = cachevalue / 100

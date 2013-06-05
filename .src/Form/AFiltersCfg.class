@@ -23,6 +23,7 @@ End
 
 Private pre As String = Global.pre
 
+
 Public Sub FillFilters()
 Dim MyFilters As New String[]
 Dim Filter As String
@@ -99,22 +100,12 @@ End
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Private Sub DrawFiltersGui()
   Dim AllParams As New Variant[]
   Dim NotSwitchable As Boolean = False
   Dim Switchable As Boolean = True
+  Dim ladspacompiledin As Boolean = False
+  ladspacompiledin = FMain.mplayer.supportsladspa()
   
   AllParams.Clear
   'volnorm[=method:target]
@@ -165,17 +156,36 @@ Private Sub DrawFiltersGui()
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom13", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom14", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom15", ("E.g.:resample=44100:1:2,hrtf=s")])
-    Global.DrawGui(AllParams, "CustomAudio1", Tabstrip1, Switchable)
+    If ladspacompiledin Then
+      Global.DrawGui(AllParams, "CustomAudio1", Tabstrip1, Switchable,, ButtonLadspaHelper)
+        Else
+      Print "WARNING:----------------------------------------------"
+      Print "        Your mplayer has not been compiled with ladspa support"
+      Print "        You will not be able to use any ladspa filter"
+      Print "        and ladspahelper window will be unavaileble in xt7."
+      Print "        Recompile mplayer with ladspa support or ask your"
+      Print "        distribution to fix it."
+      Print ""
+      Global.DrawGui(AllParams, "CustomAudio1", Tabstrip1, Switchable)
+      
+    Endif
     AllParams.Clear
-    
+  
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom21", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom22", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom23", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom24", ("E.g.:resample=44100:1:2,hrtf=s")])
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom25", ("E.g.:resample=44100:1:2,hrtf=s")])
-    Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable)
+    If ladspacompiledin Then
+      Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable,, ButtonLadspaHelper)
+        Else
+      Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable)
+    Endif
+
     AllParams.Clear
 End
+
+
 
 
 Public Sub Init()
@@ -547,3 +557,20 @@ End
 '-----------------------------------------------
 
 
+
+Public Sub ButtonLadspaHelper_Click()
+  Dim ptext As String
+  Dim ladspatools As String
+  If Not global.which("analyseplugin") Then
+    If MyQuestion.ask(("Even if your mplayer has ladspa support compiled in,\nyou seem to miss the ladspa package.\nbecause 'analyseplugin' executable is not found"), ("Continue anyway"), ("Abort")) = 2 Then Return
+  Endif
+  
+  Try ptext = Last.previous.text
+  If ptext Like "ladspa=*" Then
+    ladspahelper.TextBox1.text = ptext
+    ladspahelper.button2_click()
+  Endif
+  global.Center(Me, Ladspahelper)
+  ladspahelper.parentcontainer = Last.previous
+  ladspahelper.show
+End

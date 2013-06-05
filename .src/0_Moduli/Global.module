@@ -645,7 +645,7 @@ Dim theobject As Object
 End
 
 
-Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip As Tabstrip, Switchable As Boolean, Optional TheTooltip As String = "")
+Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip As Tabstrip, Switchable As Boolean, Optional TheTooltip As String = "", Optional helper As Button)
   
   ' TabstripS
   '     Tabstrip
@@ -666,6 +666,7 @@ Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip
   Dim ACheckBox As CheckBox
   Dim ATextBox As Textbox
   Dim ATextLabel As TextLabel
+  Dim AButton As Button
   Dim ALabel, AComment As Label
   Dim i As Integer
   Dim f As Float
@@ -853,6 +854,18 @@ Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip
         ResetDefault.tag = CurrentParams[3]
 
 
+    Endif
+    
+    
+    If (helper <> Null) Then
+      Abutton = New Button(anHbox)
+      Object.Attach(abutton, helper.window, helper.name)
+      AButton.visible = True
+      abutton.w = helper.w
+      abutton.h = helper.h
+      abutton.picture = helper.Picture
+      abutton.tooltip = helper.Tooltip
+      abutton.text = helper.text
     Endif
     
     'Write the comment

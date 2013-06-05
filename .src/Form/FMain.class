@@ -1415,6 +1415,7 @@ Public Sub Form_Close()
   Try realtimeform.hide
   Try EpgForm.hide
   Try ButtonMenu.hide
+  Try ladspahelper.hide
   Debug "hidden all forms"
   Debug
   
@@ -1511,6 +1512,7 @@ Public Sub Form_Close()
   Try epgform.close
   Try ButtonMenu.close
   Try fsform.close
+  Try ladspahelper.close
   Debug "time to close = " & CStr(Timer() - t0)
   Print "Bye"
   Wait 0.5
@@ -2584,6 +2586,14 @@ Public needytcookie As Boolean = False
 
 Private dumpfile As String
 
+Public Function SetInitialvolume() As String
+  'initialvolume
+  If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
+  If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0 '
+  Return " -volume " & lastvolume & " "
+End
+
+
 Public Function Play(fullpath As String, Optional OtherOptions As String = cachedopts, Optional theradiolabel As String = "") As Boolean 
   
   Dim MkvSubsWorkaround As Boolean
@@ -2673,10 +2683,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'If global.initlatelyformsdone Then otheroptions = otheroptions & " " & SetRightCache()
   otheroptions = otheroptions & " " & SetRightCache()
   OtherOptions = OtherOptions & " " & VmetersOptionsAndInitIfNeeded()
-  'initialvolume
-  If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
-  If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0
-  OtherOptions = otheroptions & " " & " -volume " & lastvolume & " "
+  OtherOptions = otheroptions & " " & SetInitialvolume()
   
   If mplayer.Media_FullPath Like "dvd://*" Or mplayer.Media_FullPath Like "dvdnav://*" Then
     OtherOptions = OtherOptions & " -dvd-device " & "\"" & dvd_device & "\" "
@@ -3165,10 +3172,8 @@ Public Sub UpdateStatusBar()
       MaxCacheHuman = mplayer.maxcache & "KB"
     Endif
     If maxcachehuman <> "0KB" Then 
-      Debug
       fmain.caption = pretext & " [ cache: " & cachevalue & "%" & (" of: ") & MaxCacheHuman & " ]"
     Else
-      Debug
       fmain.caption = pretext & " [ cache: " & cachevalue & "% (Auto) ]"
     Endif
     'cachebar.value = cachevalue / 100
@@ -3182,7 +3187,7 @@ Public Sub UpdateStatusBar()
   If fsform.FullScreen Then statusbar1.w = statusbar1.Parent.w
 End
 
-Private lastvolume As String = -2 'remember the exit volume so that we can set it when opening new medias
+Private LASTVOLUME As String = -2 'remember the exit volume so that we can set it when opening new medias
 
 Public Sub UpdateVolumeSlider()
 
@@ -4382,7 +4387,7 @@ Public Sub Apply()
   VEqHasBeenSet = False
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
-    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded())
+    mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & SetInitialvolume())
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect

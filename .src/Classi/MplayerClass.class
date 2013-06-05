@@ -554,6 +554,13 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
 
 End
 
+Public Function SupportsLadspa() As Boolean
+  Dim out As String
+  Shell executable() & " -af help | grep 'ladspa '" To out
+  Return Trim(out) <> ""
+End
+
+
 Private Sub SetUpInputPipe()
 
   Dim Random1 As Integer = 0

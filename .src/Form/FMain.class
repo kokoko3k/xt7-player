@@ -10795,3 +10795,60 @@ Public Sub ABLoopTimer_Timer()
 End
 
 
+
+Public Sub ButtonStop_MouseDown()
+   flipbutton(Last)
+End
+Public Sub ButtonStop_Mouseup()
+  flipbutton(Last)
+End
+Public Sub Buttonplay_MouseDown()
+   flipbutton(Last)
+End
+Public Sub Buttonplay_Mouseup()
+  flipbutton(Last)
+End
+Public Sub Buttonprev_MouseDown()
+   flipbutton(Last)
+End
+Public Sub Buttonprev_Mouseup()
+  flipbutton(Last)
+End
+Public Sub Buttonnext_MouseDown()
+   flipbutton(Last)
+End
+Public Sub Buttonnext_Mouseup()
+  flipbutton(Last)
+End
+Public Sub Buttonrew_MouseDown()
+   flipbutton(Last)
+End
+Public Sub Buttonrew_Mouseup()
+  flipbutton(Last)
+End
+Public Sub Buttonfwd_MouseDown()
+   flipbutton(Last)
+End
+Public Sub Buttonfwd_Mouseup()
+  flipbutton(Last)
+End
+Public Sub buttoncapture_MouseDown()
+   flipbutton(Last)
+End
+Public Sub buttoncapture_Mouseup()
+  flipbutton(Last)
+End
+Public Sub ButtonNowNext_MouseDown()
+   flipbutton(Last)
+End
+Public Sub buttonnownext_Mouseup()
+  flipbutton(Last)
+End
+
+
+Private Sub flipbutton(thebutton As Object)
+   If fmain.fullyloaded Then theButton.picture = theButton.Picture.Image.Mirror(False, True).picture
+   
+End
+
+ 

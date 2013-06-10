@@ -81,33 +81,39 @@ Public Sub DrawPlugin()
   Dim myhbox As Hbox
   Dim mylabel1 As Label
   Dim mylabel2 As Label
-  Dim myinput As Textbox
+  'Dim myinput As Textbox
+  Dim myinput As FloatSpinBox
   Dim maxw, m As Integer
   Dim s As String
-  
+  Dim mmin, mmax As String
   cleardraw()  
   
   For Each pcontrol In PCONTROLS
-    m = fmain.Font.Textwidth("[" & Split(pcontrol, "£", "", True)[0] & "]")
+    m = fmain.Font.Textwidth(Split(pcontrol, "£", "", True)[0])
     If m > maxw Then maxw = m
   Next
-  
   For Each pcontrol In PCONTROLS
     myhbox = New HBox(panel1)
     myhbox.h = CInt(myhbox.Font.TextHeight("|") * 2)
     myhbox.spacing = True
     mylabel1 = New Label(myhbox)
-    myinput = New Textbox(myhbox)
+    'myinput = New Textbox(myhbox)
+    myinput = New FloatSpinBox(myhbox)
     mylabel2 = New Label(myhbox)
+    mmin = Split(pcontrol, "£", "", True)[1]
+    mmax = Split(pcontrol, "£", "", True)[2]
+    Try myinput.MaxValue = CFloat(mmax)
+    Try myinput.MinValue = CFloat(mmin)
     mylabel1.text = "[" & Split(pcontrol, "£", "", True)[0] & "] "
-    mylabel2.text = "[" & Split(pcontrol, "£", "", True)[1] & ".."
-    mylabel2.text &= Split(pcontrol, "£", "", True)[2] & "]"
+    mylabel2.text = "[" & mmin & ".."
+    mylabel2.text &= mmax & "]"
     Repeat 
       mylabel2.text &= " "
     Until fmain.Font.Textwidth(mylabel2.Text) >= fmain.Font.Textwidth("[200000..200000]")
     mylabel2.text &= Chr(9) 
     mylabel2.text &= "Default: " & Split(pcontrol, "£", "", True)[3] 
-    myinput.text = Split(Split(pcontrol, "£", "", True)[3], "*", "", True)[0] 
+    'myinput.text = Split(Split(pcontrol, "£", "", True)[3], "*", "", True)[0] 
+    Try myinput.value = CFloat(Split(Split(pcontrol, "£", "", True)[3], "*", "", True)[0])
     mylabel1.w = maxw
     mylabel2.expand = True
     myinput.w = 100
@@ -128,8 +134,8 @@ Public Sub Button1_Click()
   Dim outstr As String
   For Each myhbox In panel1.Children
     For Each myobj In myhbox.Children
-      If myobj Is Textbox Then
-        outstr &= myobj.text & ":"
+      If myobj Is Floatspinbox Then
+        outstr &= myobj.value & ":"
       Endif
     Next
   Next
@@ -169,8 +175,8 @@ Public Sub Button2_Click()
   
   For Each myhbox In panel1.Children
    For Each myobj In myhbox.Children
-     If myobj Is Textbox Then
-       Try myobj.text = lparams[i]
+     If myobj Is Floatspinbox Then
+       Try myobj.value = CFloat(lparams[i])
        i += 1
      Endif
    Next 'myobj

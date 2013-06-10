@@ -1,8 +1,9 @@
 Git changes:
 --------------------------------------
 June 10 2013
-  FIX:  Changing audio filters parameters in realtime was broken
-  FIX:  Do not quote ladspa plugin labels
+  CHANGE: Use a floatspinbox to change ladspa parameters.
+  FIX:    Changing audio filters parameters in realtime was broken
+  FIX:    Do not quote ladspa plugin labels
 
 June 5 2013
   NEW:  Helper window to compile ladspa audio plugin parameters.

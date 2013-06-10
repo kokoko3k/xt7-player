@@ -165,7 +165,6 @@ End
 
 
 Public Sub MyValueBox_Change()
-  Debug
  Try CheckMinMax()
  Raise Change()
 End

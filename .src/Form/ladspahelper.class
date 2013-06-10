@@ -119,17 +119,22 @@ Public Sub DrawPlugin()
     mylabel1.w = maxw
     mylabel2.expand = True
     myinput.w = 100
+    myhbox.w = panel1.w 'myinput.w + mylabel1.w + myinput.w + mylabel2.w
+
   Next
   
 
 End
 
+
+
 Public Sub paramwidget_Change()
-  
-  Debug
-  
+  If LOADING Then Return
+  applytimer.stop
+  applytimer.start
 End
 
+Public LOADING As Boolean = True
 
 Public Sub ComboLabel_Click()
   Try LADSPA_LABEL = ComboLabel.Text
@@ -202,13 +207,18 @@ Public Sub TestBTN_Click()
    Button1_Click()
    parentcontainer.text = TextBox1.text
    AFiltersCfg.ApplyBTN_Click()
-   Wait 1
-   parentcontainer.text = prevfilter
+   'Wait 1
+   parentcontainer.text = prevfilter 'restore the previous value
  Endif
 End
 
 Public Sub CloseBTN_Click()
-
   Me.close
+End
 
+
+
+Public Sub applytimer_Timer()
+  TestBTN_Click()
+  Last.stop
 End

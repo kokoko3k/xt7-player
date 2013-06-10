@@ -44,9 +44,12 @@
     MoveScaled(0,16,88,47)
     Background = Color.ButtonBackground
     Expand = True
-    Arrangement = Arrange.Vertical
+    Arrangement = Arrange.Column
     Spacing = True
     Margin = True
+    { applytimer #Timer
+      Delay = 500
+    }
   }
   { Panel4 Panel
     MoveScaled(0,64,89,4)

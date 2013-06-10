@@ -562,7 +562,7 @@ Public Sub ButtonLadspaHelper_Click()
   If Not global.which("analyseplugin") Then
     If MyQuestion.ask(("Even if your mplayer has ladspa support compiled in,\nyou seem to miss the ladspa package.\nbecause 'analyseplugin' executable is not found"), ("Continue anyway"), ("Abort")) = 2 Then Return
   Endif
-  
+  ladspahelper.LOADING = True
   Try ptext = Last.previous.text
   If ptext Like "ladspa=*" Then
     ladspahelper.TextBox1.text = ptext
@@ -571,4 +571,5 @@ Public Sub ButtonLadspaHelper_Click()
   global.Center(Me, Ladspahelper)
   ladspahelper.parentcontainer = Last.previous
   ladspahelper.show
+  ladspahelper.LOADING = False
 End

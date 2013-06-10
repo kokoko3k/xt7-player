@@ -929,7 +929,7 @@ Public Sub afclr()
   Endif
   
   For Each filter In SUPPORTEDAUDIOFILTERS
-    send("af_del " & filter)
+    If commandline Like "*" & filter & "*" Then send("af_del " & filter)
   Next 'filter
 
   'send("af_del ladspa")

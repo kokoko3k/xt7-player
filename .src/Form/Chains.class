@@ -238,6 +238,7 @@ Private previousaudiofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
 
 Public Sub ApplyBTN_Click()
   Dim CurrentvideoFilters, CurrentAudioFilters As String = ""
+  If Not FMain.mplayer.ProcessRunningOvr() Then Return
   global.ResetApplyBtnColor()
   currentvideofilters = ParsedChain("VIDEO")
   currentaudiofilters = ParsedChain("AUDIO")

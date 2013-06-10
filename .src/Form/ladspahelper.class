@@ -5,9 +5,6 @@ Public LADSPA_FILE As String = ""
 Public LADSPA_LABEL As String = ""
 
 Public Sub ButtonBox1_click()
-  Dim labels As String[]
-  Dim pout As String
-  Dim label As String
   If myDialog.Path = "" Then myDialog.path = Env["LADSPA_PATH"]
   If myDialog.Path = "" Then myDialog.path = "/usr/lib/ladspa/"
   myDialog.filter = ["*.so;", "Ladspa plugins"]
@@ -38,7 +35,7 @@ Dim pout As String
 Dim lcontrol As String
 Dim controlname, minrange, maxrange, dvalue As String
 Shell "LC_ALL=C analyseplugin " & LADSPA_FILE & " " & LADSPA_LABEL & " |grep 'input, control'" To pout
-Debug pout
+'Debug pout
 PCONTROLS.Clear
 For Each lcontrol In Split(pout, "\n", "", True)
   Try controlname = Split(lcontrol, "\"")[1]
@@ -58,7 +55,7 @@ For Each lcontrol In Split(pout, "\n", "", True)
     If Error Then dvalue = "Unknown"
     
     StoreValues:
-    Debug "name "; controlname; " min "; minrange; " max "; maxrange; " default "; dvalue
+    'Debug "name "; controlname; " min "; minrange; " max "; maxrange; " default "; dvalue
     PCONTROLS.Add(controlname & "£" & minrange & "£" & maxrange & "£" & dvalue)
 Next 'lcontrol
   DrawPlugin()
@@ -86,7 +83,6 @@ Public Sub DrawPlugin()
   'Dim myinput As Textbox
   'Dim myinput As FloatSpinBox
   Dim maxw, m As Integer
-  Dim s As String
   Dim mmin, mmax As String
   cleardraw()  
   
@@ -106,7 +102,7 @@ Public Sub DrawPlugin()
     mmax = Split(pcontrol, "£", "", True)[2]
     Try myinput.MaxValue = CFloat(mmax)
     Try myinput.MinValue = CFloat(mmin)
-    mylabel1.text = "[" & Split(pcontrol, "£", "", True)[0] & "] "
+    mylabel1.text = Split(pcontrol, "£", "", True)[0] 
     mylabel2.text = "[" & mmin & ".."
     mylabel2.text &= mmax & "]"
     Repeat 

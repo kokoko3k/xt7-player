@@ -29,6 +29,7 @@ Public DecimalSeparator As String = ","
 End
 '
 
+Private hobs As Observer
 
 
 Public Sub _NEW()
@@ -39,6 +40,9 @@ Public Sub _NEW()
   Super.Border = Border.None
   MyValueBox = New ValueBox(Me) As "MyValueBox"
   MyValueBox.expand = True
+  
+  hObs = New Observer(MyValueBox.Children[0]) As "MyValueBox" 
+  
   MySpinButton = New Button(Me) As "MySpinButton"
   MySpinButton.width = SpinButtonWidth
   
@@ -158,7 +162,10 @@ Public Sub MyValueBox_MouseWheel()
  MySpinButton_MouseWheel()
 End
 
+
+
 Public Sub MyValueBox_Change()
+  Debug
  Try CheckMinMax()
  Raise Change()
 End

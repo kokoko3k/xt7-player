@@ -802,6 +802,10 @@
             Stretch = True
           }
         }
+        { ValueBox1 ValueBox
+          MoveScaled(3,36,24,4)
+          Text = ("ValueBox1")
+        }
         { LibrarySelInfo Label
           MoveScaled(1,47,36,4)
           Visible = False

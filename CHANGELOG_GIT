@@ -1,6 +1,7 @@
 Git changes:
 --------------------------------------
 June 10 2013
+  FIX:    floatspinbox was broken since the switch from gambas2 to 3
   CHANGE: Use a floatspinbox to change ladspa parameters.
   FIX:    Changing audio filters parameters in realtime was broken
   FIX:    Do not quote ladspa plugin labels

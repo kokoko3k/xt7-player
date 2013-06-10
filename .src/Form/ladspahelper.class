@@ -76,13 +76,15 @@ Public Sub cleardraw()
   Next
 End
 
+Public myinput As Floatspinbox
+
 Public Sub DrawPlugin()
   Dim pcontrol As String
   Dim myhbox As Hbox
   Dim mylabel1 As Label
   Dim mylabel2 As Label
   'Dim myinput As Textbox
-  Dim myinput As FloatSpinBox
+  'Dim myinput As FloatSpinBox
   Dim maxw, m As Integer
   Dim s As String
   Dim mmin, mmax As String
@@ -98,7 +100,7 @@ Public Sub DrawPlugin()
     myhbox.spacing = True
     mylabel1 = New Label(myhbox)
     'myinput = New Textbox(myhbox)
-    myinput = New FloatSpinBox(myhbox)
+    myinput = New FloatSpinBox(myhbox) As "paramwidget"
     mylabel2 = New Label(myhbox)
     mmin = Split(pcontrol, "£", "", True)[1]
     mmax = Split(pcontrol, "£", "", True)[2]
@@ -121,6 +123,13 @@ Public Sub DrawPlugin()
   
 
 End
+
+Public Sub paramwidget_Change()
+  
+  Debug
+  
+End
+
 
 Public Sub ComboLabel_Click()
   Try LADSPA_LABEL = ComboLabel.Text

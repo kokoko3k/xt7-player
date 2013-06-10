@@ -3319,7 +3319,6 @@ Public Sub OneSecTimer_Timer()
   Dim PlaylistFinished As Boolean
 
   If mplayer.ProcessRunningOvr() Then
-
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
       If Not alreadypaused Then

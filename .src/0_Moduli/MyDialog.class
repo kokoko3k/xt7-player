@@ -35,7 +35,6 @@ Private Sub Getsync()
   Try Dialog.showhidden = showhidden
   Try Dialog.title = title
   Try Dialog.autoext = autoext
-
 End
 
 Public Function SelectColor() As Boolean

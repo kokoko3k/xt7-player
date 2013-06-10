@@ -239,13 +239,16 @@ Private previousaudiofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
 Public Sub ApplyBTN_Click()
   Dim CurrentvideoFilters, CurrentAudioFilters As String = ""
   global.ResetApplyBtnColor()
-    currentvideofilters = ParsedChain("VIDEO")
-    currentaudiofilters = ParsedChain("AUDIO")
+  currentvideofilters = ParsedChain("VIDEO")
+  currentaudiofilters = ParsedChain("AUDIO")
   'se l'audio è cambiato, ma il video è rimasto identico, fai in real time
   If (previousvideofilters = currentvideofilters) And (previousaudiofilters <> currentaudiofilters) Then
     'fai in real time
+    Debug FMain.mplayer.InputPipe
     FMain.mplayer.Send("af_clr")
+    Debug "af_clr"
     FMain.mplayer.Send("af_add " & Trim(Replace(currentaudiofilters, "-af", "")))
+    Debug "af_add " & Trim(Replace(currentaudiofilters, "-af", ""))
     'FMain.mplayer.Send("af_switch " & Trim(Replace(currentaudiofilters, "-af", "")))
     previousvideofilters = currentvideofilters
     previousaudiofilters = currentaudiofilters
@@ -255,6 +258,15 @@ Public Sub ApplyBTN_Click()
     previousaudiofilters = currentaudiofilters
   Endif
 End
+' 
+' Public Sub ApplyBTN_Click()
+'   'se i filtri video sono gli stessi
+'   
+'   
+' End
+' 
+
+
 
 Public Sub Form_Resize()
   If (Me.w < 600) And (Me.parent = Null) Then

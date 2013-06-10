@@ -353,7 +353,6 @@ Public Sub ApplyBTN_Click()
   OkToChangeToCustom = False
   Chains.ApplyBTN_Click()
   OkToChangeToCustom = True
-
 End
 
 Public Function GetCurrentTabIndex() As Integer
@@ -472,7 +471,6 @@ Public Sub SlidersFreq_Change()
   NewEq = "equalizer=" & params
    Try FMain.mplayer.send("pausing_keep af_cmdline equalizer " & params)
    If Lower(PresetsCombobox.text) = "custom" Then SaveCustomEqSettings(params)
-  
 End
 
 Private presetting As Boolean = False

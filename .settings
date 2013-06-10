@@ -1015,6 +1015,9 @@ Geometry=[51,0,210,210]
 [DebugWindow/localtable]
 Geometry=[1280,0,845,633]
 
+[DebugWindow/lparams]
+Geometry=[1280,-3,210,210]
+
 [DebugWindow/mediaheaders]
 Geometry=[0,41,816,458]
 
@@ -1408,14 +1411,14 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/0_Moduli/Global.module:864.20"
+File[1]=".src/0_Moduli/Global.module:1030.13"
 Fold[1]=[191,197,205,235,247,256,264,267,270,274,289,301,313,325,337,345,355,378,443,458,473,509,553,595,611,617,887,898,907,911,926,936,942,958,968,981,992,1003,1014]
 File[2]=".src/Classi/StartClass.class:20.15"
+Active=3
 File[3]=".src/Form/FMain.form"
-Active=4
-File[4]=".src/Form/FMain.class:3417.13"
+File[4]=".src/Form/FMain.class:4380.0"
 File[5]=".src/Classi/SettingsClass.class:424.0"
-File[6]="CHANGELOG_GIT:5.0"
+File[6]="CHANGELOG_GIT:3.2"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
 File[9]=".src/Classi/PlaylistClass.class:743.3"
@@ -1426,11 +1429,11 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:192.20"
+File[17]=".src/Classi/MplayerClass.class:558.43"
 File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
-File[21]=".src/Form/GeneralOptions.class:750.38"
+File[21]=".src/Form/GeneralOptions.class:385.13"
 File[22]=".src/Form/CoverManager.class:1241.51"
 File[23]=".src/Form/EpgForm.class:604.24"
 File[24]=".src/Classi/AlbumView.class:252.31"
@@ -1441,15 +1444,18 @@ File[28]=".src/Form/FsForm.form"
 File[29]=".src/Form/zzzFake.class:120.25"
 File[30]=".src/Classi/Meters.class:0.0"
 File[31]="xt7-player.desktop:12.20"
-File[32]=".src/Form/MyQuestion.class:65.68"
+File[32]=".src/Form/MyQuestion.class:38.68"
 File[33]=".src/Form/MyQuestion.form"
 File[34]=".src/Form/ladspahelper.form"
 File[35]=".src/Form/AFiltersCfg.form"
-File[36]=".src/Form/AFiltersCfg.class:331.27"
-File[37]=".src/Form/ladspahelper.class:185.28"
+File[36]=".src/Form/AFiltersCfg.class:564.154"
+File[37]=".src/Form/ladspahelper.class:10.18"
 File[38]=".src/Form/LogWindow.class:0.0"
 File[39]=".src/Form/Chains.form"
-Count=39
+File[40]=".src/Classi/mpris.class:131.20"
+File[41]=".src/Form/Chains.class:252.17"
+File[42]=".src/0_Moduli/MyDialog.class:55.0"
+Count=42
 
 [Watches]
 Count=4

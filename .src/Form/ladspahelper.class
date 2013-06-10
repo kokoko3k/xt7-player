@@ -8,11 +8,11 @@ Public Sub ButtonBox1_click()
   Dim labels As String[]
   Dim pout As String
   Dim label As String
-  If Dialog.Path = "" Then Dialog.path = Env["LADSPA_PATH"]
-  If Dialog.Path = "" Then Dialog.path = "/usr/lib/ladspa/"
-  Dialog.filter = ["*.so;", "Ladspa plugins"]
-  If Dialog.OpenFile(False) Then Return
-  LADSPA_FILE = Dialog.Path
+  If myDialog.Path = "" Then myDialog.path = Env["LADSPA_PATH"]
+  If myDialog.Path = "" Then myDialog.path = "/usr/lib/ladspa/"
+  myDialog.filter = ["*.so;", "Ladspa plugins"]
+  If myDialog.OpenFile() Then Return
+  LADSPA_FILE = myDialog.Path
   Last.text = LADSPA_FILE
   GetLabels()
   ComboLabel_Activate()
@@ -133,8 +133,8 @@ Public Sub Button1_Click()
       Endif
     Next
   Next
-  TextBox1.text = "ladspa=" & LADSPA_FILE & ":" & "\"" & LADSPA_LABEL & "\"" & ":" & Left(outstr, Len(outstr) - 1)
-
+  'TextBox1.text = "ladspa=" & LADSPA_FILE & ":" & "\"" & LADSPA_LABEL & "\"" & ":" & Left(outstr, Len(outstr) - 1)
+  TextBox1.text = "ladspa=" & LADSPA_FILE & ":" & LADSPA_LABEL & ":" & Left(outstr, Len(outstr) - 1)
 End
 
 Public Sub CopyBTN_Click()
@@ -170,7 +170,7 @@ Public Sub Button2_Click()
   For Each myhbox In panel1.Children
    For Each myobj In myhbox.Children
      If myobj Is Textbox Then
-       myobj.text = lparams[i]
+       Try myobj.text = lparams[i]
        i += 1
      Endif
    Next 'myobj

@@ -60,7 +60,6 @@ End
 Public Sub Timer1_Timer()
   Dim sync As Integer
   Dim samples As New Short[]
-  'Dim i As Integer
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
   If Error Then Return
@@ -70,9 +69,6 @@ Public Sub Timer1_Timer()
   samples.resize((Lof(hfile) Div 2) - longsize)
   Try samples.Read(hfile)
   If Error Then Return
-  ' For i = 0 To samples.Max
-  '   Debug samples[i]
-  ' Next
   buffer.Add(samples, 0)
   If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency
     updatebars(buffer[buffer.count - 1])
@@ -98,7 +94,7 @@ Public Sub Startt()
   Try timer1.start
 End
 
-
+'Private PREVAVG As Integer = 0
 Private Sub updatebars(ByRef samples As Integer[])
   'prepare n progressbars an n channels
   'and refer to them using an array of objects
@@ -146,7 +142,9 @@ Private Sub updatebars(ByRef samples As Integer[])
         For s = start To (sstop - 1)
           Try total = total + Abs(samples[s])
         Next
-        Try avg = (total Div SamplesPerChannel) 
+         Try avg = (total Div SamplesPerChannel) 
+         'try avg = (CInt(total / SamplesPerChannel) + PREVAVG) Div 2
+         'PREVAVG = avg
          bars[c - 1].h = (avg * maxh) Div 15000 
          bars[c - 1].y = maxh - bars[c - 1].h '
       Next

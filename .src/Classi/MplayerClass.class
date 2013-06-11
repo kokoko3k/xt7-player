@@ -300,7 +300,11 @@ Public CurrentCache As String = ""
 
 Public Sub playerprocess_error(stderr As String)
   'Debug stderr
-  silences = 0 'so that Stimer (as stucktimer) will be fine...
+  If ((stderr Like "A:*") Or (stderr Like "V:*")) Then
+    playerprocess_read(stderr) 'mplayer2 workaround
+    Return
+  Endif
+    silences = 0 'so that Stimer (as stucktimer) will be fine...
   FMain.mplayererroravailable(stderr)
 End
 
@@ -308,7 +312,7 @@ End
 
 
 
-Public Sub playerprocess_read()
+Public Sub playerprocess_read(Optional injected As String = "")
 
   Dim Splitted As String[]
   Dim VideoOut_dimensions As String
@@ -320,7 +324,12 @@ Public Sub playerprocess_read()
    
     silences = 0 'so that Stimer (as stucktimer) will be fine...
     'Line Input #playerprocess, Playeroutput
-    Try Read #playerprocess, playeroutput, -2048
+    
+    If injected = "" Then  'as mplayer2 print statusline to stderr, we inject it here so that we can read anyway.
+      Try Read #playerprocess, playeroutput, -2048
+        Else
+      playeroutput = injected
+    Endif
     
     
     'fill Requested Video window height AND width

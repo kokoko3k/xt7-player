@@ -60,6 +60,7 @@ End
 Public Sub Timer1_Timer()
   Dim sync As Integer
   Dim samples As New Short[]
+  'Dim i As Integer
   If FMain.mplayer.Paused Then Return
   Try hFile = Open exportfile For Input
   If Error Then Return
@@ -69,6 +70,9 @@ Public Sub Timer1_Timer()
   samples.resize((Lof(hfile) Div 2) - longsize)
   Try samples.Read(hfile)
   If Error Then Return
+  ' For i = 0 To samples.Max
+  '   Debug samples[i]
+  ' Next
   buffer.Add(samples, 0)
   If buffer.Length >= (latency Div Timer1.Delay) Then 'let the user set the latency
     updatebars(buffer[buffer.count - 1])

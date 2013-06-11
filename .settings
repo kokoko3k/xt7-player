@@ -470,6 +470,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/Rootnode.Children[t].Attributes]
 Geometry=[0,0,344,344]
 
+[DebugWindow/SUPPORTEDAUDIOFILTERS]
+Geometry=[1280,-3,246,726]
+
 [DebugWindow/SavedForms]
 Geometry=[47,-3,210,210]
 
@@ -547,6 +550,9 @@ Geometry=[0,0,344,344]
 
 [DebugWindow/Split(out, ",", "", TRUE)]
 Geometry=[0,0,1199,344]
+
+[DebugWindow/Split(out, "\n", "", True)]
+Geometry=[1280,0,679,689]
 
 [DebugWindow/Split(out, "fmt_url_map")]
 Geometry=[0,0,344,344]
@@ -1166,6 +1172,9 @@ Geometry=[1280,0,210,210]
 [DebugWindow/panel2]
 Geometry=[0,0,301,301]
 
+[DebugWindow/parentcontainer]
+Geometry=[1280,-3,308,830]
+
 [DebugWindow/parentmenu]
 Geometry=[1280,0,210,210]
 
@@ -1411,14 +1420,14 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/0_Moduli/Global.module:1030.13"
+File[1]=".src/0_Moduli/Global.module:673.19"
 Fold[1]=[191,197,205,235,247,256,264,267,270,274,289,301,313,325,337,345,355,378,443,458,473,509,553,595,611,617,887,898,907,911,926,936,942,958,968,981,992,1003,1014]
 File[2]=".src/Classi/StartClass.class:20.15"
-Active=3
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:4380.0"
+File[4]=".src/Form/FMain.class:10846.0"
 File[5]=".src/Classi/SettingsClass.class:424.0"
-File[6]="CHANGELOG_GIT:3.2"
+Active=6
+File[6]="CHANGELOG_GIT:3.10"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
 File[9]=".src/Classi/PlaylistClass.class:743.3"
@@ -1429,7 +1438,7 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:558.43"
+File[17]=".src/Classi/MplayerClass.class:931.0"
 File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
@@ -1448,14 +1457,19 @@ File[32]=".src/Form/MyQuestion.class:38.68"
 File[33]=".src/Form/MyQuestion.form"
 File[34]=".src/Form/ladspahelper.form"
 File[35]=".src/Form/AFiltersCfg.form"
-File[36]=".src/Form/AFiltersCfg.class:564.154"
-File[37]=".src/Form/ladspahelper.class:10.18"
+File[36]=".src/Form/AFiltersCfg.class:353.23"
+File[37]=".src/Form/ladspahelper.class:204.29"
 File[38]=".src/Form/LogWindow.class:0.0"
 File[39]=".src/Form/Chains.form"
 File[40]=".src/Classi/mpris.class:131.20"
-File[41]=".src/Form/Chains.class:252.17"
+File[41]=".src/Form/Chains.class:240.42"
 File[42]=".src/0_Moduli/MyDialog.class:55.0"
-Count=42
+File[43]=".src/Form/ButtonMenu.form"
+File[44]=".src/Classi/FloatSpinBox.class:166.30"
+File[45]=".src/Form/SubAndOsd.class:62.0"
+File[46]=".src/Form/OverlayTrayTip.class:18.0"
+File[47]=".src/Form/OpenSubtitesForm.class:93.0"
+Count=47
 
 [Watches]
 Count=4

@@ -936,13 +936,12 @@ Public Sub afclr()
       SUPPORTEDAUDIOFILTERS.add(Split(Trim(filter), " ", "", True)[0])
     Next 'filter
   Endif
-  
   For Each filter In SUPPORTEDAUDIOFILTERS
-    If commandline Like "*" & filter & "*" Then send("af_del " & filter)
+    send("af_del " & filter) 'do it four times to be sure multiple instances
+    send("af_del " & filter) 'of the same filter are removed as well
+    send("af_del " & filter)
+    send("af_del " & filter)
   Next 'filter
-
-  'send("af_del ladspa")
-  
 End
 
 

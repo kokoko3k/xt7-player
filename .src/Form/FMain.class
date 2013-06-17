@@ -4125,7 +4125,7 @@ Public Sub TimerFullScreen_Timer()
   Dim AttachZone2 As Boolean = (Mouse.screeny < TopThreshold) 'top
   Dim ReleaseZone1 As Boolean = (Mouse.screeny < ControlFrame.screeny - BottomThreshold) 'bottom vbox
   Dim ReleaseZone2 As Boolean = (Mouse.screeny > MainToolbar.Height + TopThreshold)  'top
-  Debug
+
   If MouseonFsForm Then 
     MouseHide()
   Else
@@ -10848,7 +10848,6 @@ End
 
 Private Sub flipbutton(thebutton As Object)
    If fmain.fullyloaded Then theButton.picture = theButton.Picture.Image.Mirror(False, True).picture
-   
 End
 
  

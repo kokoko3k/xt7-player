@@ -238,6 +238,7 @@ Private previousaudiofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
 
 Public Sub ApplyBTN_Click()
   Dim CurrentvideoFilters, CurrentAudioFilters As String = ""
+  Dim curvol As String
   If Not FMain.mplayer.ProcessRunningOvr() Then Return
   global.ResetApplyBtnColor()
   currentvideofilters = ParsedChain("VIDEO")
@@ -248,12 +249,14 @@ Public Sub ApplyBTN_Click()
     Debug FMain.mplayer.InputPipe
     'FMain.mplayer.Send("af_clr")
     'Debug "af_clr"
+    curvol = FMain.mplayer.currentvolume
     FMain.mplayer.afclr()
     FMain.mplayer.Send("af_add " & Trim(Replace(currentaudiofilters, "-af", "")))
     Debug "af_add " & Trim(Replace(currentaudiofilters, "-af", ""))
     'FMain.mplayer.Send("af_switch " & Trim(Replace(currentaudiofilters, "-af", "")))
     previousvideofilters = currentvideofilters
     previousaudiofilters = currentaudiofilters
+    FMain.mplayer.do_SetVolume(curvol)
       Else 'in tutti gli altri casi, forza il riavvio di mplayer
     FMain.Apply()
     previousvideofilters = currentvideofilters

@@ -1531,7 +1531,9 @@ Public Sub CorrectAreaAspect()
   Dim Aspect As Float = 1.333
   Dim TmpX, TmpY, TmpW, TmpH As Integer
   
+  If Not mplayer.ProcessRunningOvr() Then Return
   If fmain.closing Then Return
+  
   
   Try VideoW = mplayer.VideoOut_Width
   Try VideoH = mplayer.VideoOut_Height
@@ -1551,7 +1553,7 @@ Public Sub CorrectAreaAspect()
       TmpH = (OuterBox.Height) '* ResizeFactor
       TmpW = (OuterBox.Height * Aspect) '* ResizeFactor
     Endif
-    
+
     'apply the zoom factor:
     Select Case ForcedZoomRT
       Case "NOBARS"
@@ -1561,7 +1563,9 @@ Public Sub CorrectAreaAspect()
         ResizeFactor = 1 + (((aspect / (outerbox.w / outerbox.h)) - 1) / 2)
         If ResizeFactor < 1 Then resizefactor = 1 / ResizeFactor
     End Select
+    Object.Lock(realtimeform.PanscanSlider)
     realtimeform.PanscanSlider.value = resizefactor * 10000
+    Object.unLock(realtimeform.PanscanSlider)
     TmpW = TmpW * resizefactor
     TmpH = TmpH * resizefactor
     
@@ -2702,6 +2706,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Endif
   
   ForcedAspectRT = "default"
+  ResizeFactor = 1
   LogWindow.streamtextbox.text = mplayer.Media_FullPath
   If Youtube.IsYoutubeLink(mplayer.Media_FullPath) Then
     Try mplayer.Media_FullPath = Youtube.realvideourl(mplayer.Media_FullPath, GeneralOptions.Youtubeformat.text)
@@ -4577,8 +4582,7 @@ Public Sub PanScanCorrect(delta As Float)
 
   Dim MaxRFactor As Float = 20
   Dim MinRFactor As Float = 0.1
-
-  ForcedZoomRT = ""
+  forcedzoomrt = ""
   If delta > 0 Then
     ResizeFactor = Resizefactor + SnapToBorders(delta)
     If ResizeFactor > MaxRFactor Then resizefactor = MaxRFactor
@@ -5392,6 +5396,7 @@ Public Sub Hsplit1_MyRefresh()
 
 
   CostrainFormSizes()
+  CorrectAreaAspect()
   Try RightPanel = HSplit1.layout[1]
   If RightPanel < 10 Then
     OuterBox.Background = Me.Background

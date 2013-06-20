@@ -444,7 +444,7 @@ Public Sub AllInit_Post()
   FileView1.dir = "non/esistent/dir/i/am/very/sure/of/this/1234432100/don/t/you"
   FileView1.visible = True
   FileView1.dir = savefileview1path
-  FileView1.Reload
+  fileview1Myreload()
   Leftsidepanel.mouse = mouse.wait
   InitLibrary(MyLibrary, LibraryGrid, True)
   InitLibrary(MyPlaylist, PlayListGrid, True)
@@ -4458,7 +4458,7 @@ End
 Public Sub HotKeyToMplayer(HotKey As String)
   'will send the action to the running mplayer
   'Some actions such as fullscreen and panscan are treated internally
-  
+  Dim currentfile As String
   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
 
   'PRINT Action
@@ -4516,14 +4516,16 @@ Public Sub HotKeyToMplayer(HotKey As String)
       VideoEqualizer.slider5.value -= 1
     Case "delete current file"
       If mplayer.ProcessRunningOvr() Then
+        currentfile = Replace(mplayer.Media_FullPath_Playing, "//", "/")
+        currentfile = Replace(mplayer.Media_FullPath_Playing, "//", "/")
+        currentfile = Replace(mplayer.Media_FullPath_Playing, "//", "/")
         If Not mplayer.IsNetworkURI Then
-          If MyQuestion.Ask(("Are you sure you want to delete:\n" & mplayer.Media_FullPath_Playing), ("Delete"), ("Don't delete")) = 1 Then
-            Try Kill mplayer.Media_FullPath
-            If Error Then 
-              Dialog.Error(("Couldn't delete the file"))
+          If MyQuestion.Ask(("Are you sure you want to delete:") & "\n" & currentfile & "\n" & ("from disc?"), ("Delete"), ("Don't delete")) = 1 Then
+            If DeleteFromActiveQueue(currentfile) Then
+              Play(mplayer.Media_FullPath)
+              Debug
                 Else
-              ButtonNext_Click()
-              refreshactiveview()
+              message.Error(("Couldn't delete the file"))
             Endif
           Endif
         Endif
@@ -4534,10 +4536,59 @@ Public Sub HotKeyToMplayer(HotKey As String)
   
 End
 
+Public Sub fileview1Myreload()
+  'refresh fileview keeping the scroll position
+  Dim achild As Object
+  Dim sx, sy As Integer
+  For Each achild In FileView1.Children
+    If achild Is Columnview Then
+      Try sx = achild.scrollx
+      If Not Error Then
+        Try sy = achild.scrolly
+        fileview1.Reload()
+        Try achild.scrollx = sx
+        If Not Error Then achild.scrolly = sy
+      Endif
+    Endif
+  Next 'child
+End
 
-Public Sub refreshactiveview()
-  'stub
-  'will update the content of the active leftside tab
+
+Public Function DeleteFromActiveQueue(item As String) As Boolean
+  'will delete a file from disk and update the local view
+  'will return 1 in case of successfull delete, 0 otherwise.
+  Try Kill item
+  If Error Then Return 0 
+
+  
+ ' Stop
+  If fileview1.dir = File.Dir(item) & "/" Then 
+    fileview1Myreload()
+      Else If fileview1.dir = File.Dir(item) Then 
+        fileview1Myreload()
+  Endif
+
+  myplaylist.DeleteFromPath(item, playlistgrid)
+  mylibrary.DeleteFromPath(item, librarygrid)
+  
+  Wait
+  Select Case GetActivePlayQueue()
+    Case "browse"
+      BrowseSelectPrev()
+      BrowseSelectNext()
+    Case "playlistgrid"
+      myplaylist.SelectPrev(playlistgrid)
+      Wait 
+      myplaylist.Selectnext(playlistgrid)
+      Wait 
+    Case "librarygrid"
+      mylibrary.SelectPrev(librarygrid)
+      Wait
+      mylibrary.Selectnext(librarygrid)
+      Wait
+  End Select
+  
+  Return 1
 End
 
 
@@ -4775,7 +4826,7 @@ End
 
 
 
-
+Private TRIESBROWSESELECTNEXT As Integer = 0
 Public Sub BrowseSelectNext()
   Dim filelist As String[]
   Dim current As String
@@ -4798,9 +4849,13 @@ Public Sub BrowseSelectNext()
   If IsDir(nextfile) Then 
     fileview1.current = filelist[ToSelectIndex]
     Wait
-    BrowseSelectNext()
-    Return
+    If TRIESBROWSESELECTNEXT < 10 Then  'stack overflow prevention
+      TRIESBROWSESELECTNEXT += 1
+      BrowseSelectNext()
+      Return
+    Endif
       Else
+    TRIESBROWSESELECTNEXT = 0
     Try mplayer.Media_FullPath = fileview1.dir & "/" & filelist[ToSelectIndex]
     Try mplayer.Media_FullPath = Replace(mplayer.MediaFileFullPath, "//", "/")
     fileview1.current = filelist[ToSelectIndex]
@@ -8458,7 +8513,7 @@ End
 Public Sub ButtonRefresh_Click()
   fileview1.UnselectAll()
   Debug fileview1.dir
-  FileView1.Reload
+  fileview1Myreload()
 End
 
 Public Sub ButtonHidden_Click()
@@ -8611,8 +8666,8 @@ Public Sub MenuBrowseDelete_Click()
       If Not (IsDir(selecteditem)) Then        
         Try Kill selecteditem
         If Not Error Then
-          myplaylist.DeleteFromPath(selecteditem)
-          mylibrary.DeleteFromPath(selecteditem)
+          myplaylist.DeleteFromPath(selecteditem, playlistgrid)
+          mylibrary.DeleteFromPath(selecteditem, librarygrid)
         Else
           therewasanerror = True
         Endif
@@ -8620,9 +8675,8 @@ Public Sub MenuBrowseDelete_Click()
     Endif
   Next 'selecteditem
   fileview1.UnselectAll()
-  FileView1.Reload
+  fileview1Myreload()
   If therewasanerror Then Message.Error(("There was an error while trying to delete the item"), ("Ok"))
-
 End
 
 ' 'Some hackish code due to gambas 3.4.0 and new treeview

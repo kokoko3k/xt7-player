@@ -614,6 +614,61 @@ Public Function OnlyOneSelected(MyPlaylist As Gridview) As Boolean
   Return True
 End
 
+Public Sub ZapFromPath(MyGrid As GridView, itempath As String)
+'   'will delete the item from the grid and from the disk
+'   'will delete any thumb associated
+'   'then will update the view
+'   Dim PrevScrollX, PrevScrollY As Integer
+'   Dim ColToSelect As Integer = 0
+'   Dim RowToSelect As Integer = 0
+' 
+'   Dim i As Integer
+'   Dim thumbstodelete As New String[]
+'   Dim thumbtodelete As String
+' 
+'   Try Kill itempath
+'   If Error Then 
+'   
+'   Try ColToSelect = MyGrid.Column
+'   Try RowToSelect = MyGrid.row
+'   Try PrevScrollX = MyGrid.scrollx
+'   Try PrevScrollY = MyGrid.scrollY
+'   Try MyGrid.Window.mouse = mouse.wait
+' 
+'   'Remove item from PTable
+'       If (Not ISURI(itempath)) Then
+'         PTable.Remove(PTable.Find(Searchtable[r]))
+'         SearchTable.Remove(SearchTable.Find(Searchtable[r]))
+'         Searchtable.Remove(r)
+'         'find the ptable row to delete
+'         For i = 0 To ptable.Max
+'           If GetValue(ptable[i], "Full Path") = itempath Then
+'             If MyGrid.name = "LibraryGrid" Then thumbstodelete.Add(ptable[i])
+'             ptable.Remove(i)
+'             Break
+'           Endif
+'         Next 'i
+'         RowToSelect = r
+'       Endif
+' 
+' 
+' '  rowheight = MyGrid.Rows.h
+'   SyncGrid(MyGrid, SearchTable, rowtoselect, ColToSelect)
+' '  MyGrid.Rows.h = rowheight
+'    ' [GB2:FNTH] MyGrid.Rows.h = MyGrid.Font.Textheight("^_") + global.rowpadding '<<--
+'    'MyGrid.Rows.h = MyGrid.Font.TextHeight("^_") + global.rowpadding '<<--
+'   Try MyGrid.scrollx = PrevScrollX
+'   Try MyGrid.scrollY = PrevScrollY
+'   
+'   If MyGrid.name = "LibraryGrid" Then
+'     For Each thumbtodelete In thumbstodelete
+'       DeleteThumbsOf(thumbtodelete)
+'     Next
+'   Endif
+'   
+'   Try MyGrid.Window.mouse = mouse.default
+End
+
 
 Public Sub DeleteSelected(MyPlaylist As GridView, Optional DeleteURIes As Boolean = True)
   Dim r As Integer
@@ -942,23 +997,38 @@ Public Function RemoveNonExistingOld28062010() As String[]
   Return ReturnString
 End
 
-Public Sub DeleteFromPath(fullpath As String)
+Public Sub DeleteFromPath(fullpath As String, grid As Gridview)
   'will scan ptable (field FullPath)
   'and remove the item associated with fullpath
   Dim i, startpos, midpos, endpos As Integer
   Dim FullPathName As String
+  'from ptable
   i = ptable.count - 1
   While i >= 0
-    Startpos = InStr(Ptable[i], TableSeparator & "Full Path")
-    MidPos = InStr(Ptable[i], TableSeparator, StartPos + 1)
-    EndPos = InStr(Ptable[i], TableSeparator, Midpos + 1)
-    FullPathName = Mid(Ptable[i], MidPos + 1, endpos - midpos - 1)
+    Startpos = InStr(ptable[i], TableSeparator & "Full Path")
+    MidPos = InStr(ptable[i], TableSeparator, StartPos + 1)
+    EndPos = InStr(ptable[i], TableSeparator, Midpos + 1)
+    FullPathName = Mid(ptable[i], MidPos + 1, endpos - midpos - 1)
     If fullpathname = fullpath Then
       ptable.Remove(i)
       Debug "PlaylistClass: Deletefrompath(): Deleted: " & FullPathName
     Endif
     i = i - 1
   Wend
+  'from searchtable
+  i = SearchTable.count - 1
+  While i >= 0
+    Startpos = InStr(SearchTable[i], TableSeparator & "Full Path")
+    MidPos = InStr(SearchTable[i], TableSeparator, StartPos + 1)
+    EndPos = InStr(SearchTable[i], TableSeparator, Midpos + 1)
+    FullPathName = Mid(SearchTable[i], MidPos + 1, endpos - midpos - 1)
+    If fullpathname = fullpath Then
+      SearchTable.Remove(i)
+      Debug "PlaylistClass: Deletefrompath(): Deleted: " & FullPathName
+    Endif
+    i = i - 1
+  Wend
+  SyncGrid(grid, SearchTable, grid.row, grid.column, grid.scrollx, grid.scrolly)
 End
   
 Public Sub FormatTime(seconds As String) As String
@@ -1440,7 +1510,7 @@ Public Sub AutoSizeColumns(MyGrid As GridView)
 End
 
 
-Public Sub SyncGrid(LibraryGrid As Gridview, SearchTable As String[], RowToSelect As Integer, ColToSelect As Integer)
+Public Sub SyncGrid(LibraryGrid As Gridview, SearchTable As String[], RowToSelect As Integer, ColToSelect As Integer, Optional scrolx As Integer = 0, Optional scroly As Integer = 0)
 Dim c As Integer
 Dim rowheight As Integer
   Try rowheight = librarygrid.Rows[RowToSelect].h
@@ -1454,6 +1524,8 @@ Dim rowheight As Integer
   LibraryGrid.rows.count = SearchTable.Count
   LibraryGrid.moveto(RowToSelect, ColToSelect)
   librarygrid.Rows.h = rowheight
+  librarygrid.scrollx = scrolx
+  librarygrid.scrolly = scroly
 End
 
 

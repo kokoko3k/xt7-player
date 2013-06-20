@@ -112,3 +112,10 @@ Public Sub ButtonContainer_MouseDown()
   
 
 End
+
+Public Sub Button1_KeyPress()
+  If (Key.code = Key.return) Or (Key.code = Key.enter) Then Button1_Click()
+End
+Public Sub Button2_KeyPress()
+  If (Key.code = Key.return) Or (Key.code = Key.enter) Then Button2_Click()
+End

@@ -4780,6 +4780,7 @@ Public Sub BrowseSelectNext()
   Dim filelist As String[]
   Dim current As String
   Dim CurrentIndex, ToSelectIndex As Integer
+  Dim nextfile As String
   Try current = fileview1.selection[0]
   fileview1.SelectAll
   filelist = fileview1.Selection
@@ -4793,9 +4794,17 @@ Public Sub BrowseSelectNext()
         ToSelectIndex = currentindex + 1
         global.isnextselected = True
   Endif
-  Try mplayer.Media_FullPath = fileview1.dir & "/" & filelist[ToSelectIndex]
-  Try mplayer.Media_FullPath = Replace(mplayer.MediaFileFullPath, "//", "/")
-  fileview1.current = filelist[ToSelectIndex]
+  Try nextfile = fileview1.dir & "/" & filelist[ToSelectIndex]
+  If IsDir(nextfile) Then 
+    fileview1.current = filelist[ToSelectIndex]
+    Wait
+    BrowseSelectNext()
+    Return
+      Else
+    Try mplayer.Media_FullPath = fileview1.dir & "/" & filelist[ToSelectIndex]
+    Try mplayer.Media_FullPath = Replace(mplayer.MediaFileFullPath, "//", "/")
+    fileview1.current = filelist[ToSelectIndex]
+  Endif
 End
 
 

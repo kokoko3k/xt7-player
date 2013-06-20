@@ -4003,9 +4003,19 @@ Public Sub SwitchToFS()
   controlframe.w = bottomvbox.W
   Wait
   CostrainFormSizes()
-  ' outerbox.background = Color.red
+
+
   Wait 0.1
-  videobox.show
+  videobox.Show
+
+  'workaround for missing picture when unredirecting fs windows is enabled and mplayer is paused
+  If mplayer.Paused Then
+    Wait 0.3
+    videobox.cached = Not videobox.cached
+    Wait
+    videobox.cached = Not videobox.cached
+  Endif
+
 End
 
 Public Sub SwitchToWindow()

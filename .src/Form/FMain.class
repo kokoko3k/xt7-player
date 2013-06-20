@@ -4460,7 +4460,7 @@ Public Sub HotKeyToMplayer(HotKey As String)
   'Some actions such as fullscreen and panscan are treated internally
   
   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
-  
+
   'PRINT Action
   Select Case Action
       ' Case Like "*Seek *"
@@ -4514,69 +4514,33 @@ Public Sub HotKeyToMplayer(HotKey As String)
       VideoEqualizer.slider5.value += 1
     Case "Saturation -1"
       VideoEqualizer.slider5.value -= 1
+    Case "delete current file"
+      If mplayer.ProcessRunningOvr() Then
+        If Not mplayer.IsNetworkURI Then
+          If MyQuestion.Ask(("Are you sure you want to delete:\n" & mplayer.Media_FullPath_Playing), ("Delete"), ("Don't delete")) = 1 Then
+            Try Kill mplayer.Media_FullPath
+            If Error Then 
+              Dialog.Error(("Couldn't delete the file"))
+                Else
+              ButtonNext_Click()
+              refreshactiveview()
+            Endif
+          Endif
+        Endif
+      Endif
     Case Else
       mplayer.Send(Action)
   End Select
   
 End
-' 
-' Public Sub HotKeyToMplayer(HotKey As String)
-'   'will send the action to the running mplayer
-'   'Some actions such as fullscreen and panscan are treated internally
-'   
-'   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
-' 
-' 
-'   'PRINT Action
-'   Select Case Action
-'     ' Case Like "*Seek *"
-'     '   SeekOrSeekAndRestart(Action)
-'     Case "Vo_fullscreen"
-'       FullScreenBtn_Click()
-'     Case "Panscan +0.05"
-'       PanScanCorrect(+0.05)
-'     Case "Panscan -0.05"
-'       PanScanCorrect(-0.05)
-'     Case "deinterlace"
-'       mplayer.DoDeinterlace()
-'     Case "Pause"
-'       HandlePause()
-'     Case "Exit"
-'       mplayer.Send(Action)
-'       If fsform.visible Then FullScreenSwitch()
-'     Case "quit"
-'       'mplayer.Send(Action)
-'       ButtonStop_Click()
-'       If fsform.FullScreen Then FullScreenSwitch()
-'     Case "Volume +0.5"
-'       SaveVolumeSlider.value = SaveVolumeSlider.value + 1
-'     Case "Volume -0.5"
-'       SaveVolumeSlider.value = SaveVolumeSlider.value - 1
-'     Case "Brightness +1"
-'       VideoEqualizer.slider1.value += 1
-'     Case "Brightness -1"
-'       VideoEqualizer.slider1.value -= 1
-'     Case "Contrast +1"
-'       VideoEqualizer.slider2.value += 1
-'     Case "Contrast -1"
-'       VideoEqualizer.slider2.value -= 1
-'     Case "Gamma +1"
-'       VideoEqualizer.slider3.value += 1
-'     Case "Gamma -1"  
-'       VideoEqualizer.slider3.value -= 1
-'     Case "Hue +1"
-'       VideoEqualizer.slider4.value += 1
-'     Case "Hue -1"  
-'       VideoEqualizer.slider4.value -= 1
-'     Case "Saturation +1"
-'       VideoEqualizer.slider5.value += 1
-'     Case "Saturation -1"
-'       VideoEqualizer.slider5.value -= 1
-'     Case Else
-'       mplayer.Send(Action)
-'   End Select
-'   
-' End
+
+
+Public Sub refreshactiveview()
+  'stub
+  'will update the content of the active leftside tab
+End
+
+
 
 Public Sub PanScanCorrect(delta As Float)
 

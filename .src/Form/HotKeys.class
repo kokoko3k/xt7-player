@@ -131,9 +131,10 @@ Private Sub FillGridHeaders()
   HotKeysGrid.Rows[79].text = "dvdnav prev"
   HotKeysGrid.Rows[80].text = "dvdnav mouse"
   HotKeysGrid.Rows[81].text = "deinterlace"
+  HotKeysGrid.Rows[82].text = "delete current file"
 
 
-  For r = 82 To HotKeysGrid.Rows.count - 1
+  For r = 83 To HotKeysGrid.Rows.count - 1
     HotKeysGrid.Rows[r].text = "For future use"
   Next 'r
   
@@ -230,7 +231,7 @@ Private Sub DefaultFill()
     HotKeysGrid[79, 0].text = "Mouse=0 Wheel=NONE Key=1"
     HotKeysGrid[80, 0].text = "Mouse=0 Wheel=NONE Key=3"
     HotKeysGrid[81, 0].text = "Mouse=0 Wheel=NONE Mod=Shift Key=d"
-    
+    HotKeysGrid[82, 0].text = "Mouse=0 Wheel=NONE Key=del"
     
 End
 

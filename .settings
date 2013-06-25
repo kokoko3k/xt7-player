@@ -186,16 +186,16 @@ Geometry=[52,0,222,507]
 Geometry=[51,0,344,344]
 
 [DebugWindow/FileView1]
-Geometry=[155,227,564,770]
+Geometry=[422,179,564,770]
 
 [DebugWindow/FileView1.Children]
-Geometry=[674,360,563,601]
+Geometry=[436,193,564,770]
 
 [DebugWindow/FileView1.Children[0]]
 Geometry=[687,205,564,770]
 
 [DebugWindow/FileView1.Children[1]]
-Geometry=[394,227,564,770]
+Geometry=[656,535,564,770]
 
 [DebugWindow/FileView1.Children[2]]
 Geometry=[28,28,564,770]
@@ -317,6 +317,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/LibraryGrid]
 Geometry=[351,394,725,473]
 
+[DebugWindow/LibraryGrid.Rows]
+Geometry=[228,442,725,486]
+
 [DebugWindow/Librarygrid]
 Geometry=[0,0,210,210]
 
@@ -422,6 +425,15 @@ Geometry=[0,0,1014,714]
 [DebugWindow/PTableFile]
 Geometry=[0,0,975,310]
 
+[DebugWindow/Panel(VSplit(fsform.Children[1]).Children[1]).Children]
+Geometry=[1350,70,427,781]
+
+[DebugWindow/Panel(VSplit(fsform.Children[1]).Children[1]).Children[0]]
+Geometry=[1364,84,427,781]
+
+[DebugWindow/Panel(VSplit(fsform.Children[1]).Children[1]).Children[1]]
+Geometry=[1364,84,427,781]
+
 [DebugWindow/Panel2]
 Geometry=[700,269,292,618]
 
@@ -498,7 +510,7 @@ Geometry=[1817,322,614,580]
 Geometry=[47,0,210,210]
 
 [DebugWindow/SearchTable]
-Geometry=[0,0,1014,714]
+Geometry=[-919,572,2931,544]
 
 [DebugWindow/SearchTerms]
 Geometry=[47,224,301,301]
@@ -686,6 +698,15 @@ Geometry=[1280,0,210,210]
 
 [DebugWindow/VSplit(bottomvbox.parent.Parent).Parent]
 Geometry=[1294,14,467,521]
+
+[DebugWindow/VSplit(fsform.Children[1]).Children]
+Geometry=[1322,42,427,781]
+
+[DebugWindow/VSplit(fsform.Children[1]).Children[0]]
+Geometry=[1336,56,427,781]
+
+[DebugWindow/VSplit(fsform.Children[1]).Children[1]]
+Geometry=[1336,56,427,781]
 
 [DebugWindow/VideoChainBox]
 Geometry=[52,0,210,831]
@@ -911,10 +932,10 @@ Geometry=[1280,0,486,587]
 Geometry=[2005,179,481,686]
 
 [DebugWindow/fileview1.Selection]
-Geometry=[150,188,853,637]
+Geometry=[1294,14,486,587]
 
 [DebugWindow/fileview1.selection]
-Geometry=[47,-3,210,210]
+Geometry=[267,583,210,210]
 
 [DebugWindow/findouts]
 Geometry=[0,0,344,344]
@@ -929,7 +950,16 @@ Geometry=[-4,-4,561,728]
 Geometry=[0,0,344,344]
 
 [DebugWindow/fsform]
-Geometry=[49,-4,210,210]
+Geometry=[1280,0,427,781]
+
+[DebugWindow/fsform.Children]
+Geometry=[1294,14,427,781]
+
+[DebugWindow/fsform.Children[0]]
+Geometry=[1308,28,427,781]
+
+[DebugWindow/fsform.Children[1]]
+Geometry=[1308,28,427,781]
 
 [DebugWindow/fsorted]
 Geometry=[856,570,339,451]
@@ -1199,6 +1229,12 @@ Geometry=[588,61,301,301]
 [DebugWindow/playerprocess.lines]
 Geometry=[48,-4,210,210]
 
+[DebugWindow/playlistgrid]
+Geometry=[1504,310,426,742]
+
+[DebugWindow/playlistgrid.Rows]
+Geometry=[1035,227,426,742]
+
 [DebugWindow/pmts]
 Geometry=[0,0,344,344]
 
@@ -1221,7 +1257,7 @@ Geometry=[1280,0,210,210]
 Geometry=[1280,0,225,445]
 
 [DebugWindow/ptable]
-Geometry=[51,0,857,540]
+Geometry=[-339,430,1234,435]
 
 [DebugWindow/querymp.MediaHeaders]
 Geometry=[48,-4,749,827]
@@ -1424,12 +1460,13 @@ File[1]=".src/0_Moduli/Global.module:673.19"
 Fold[1]=[191,197,205,235,247,256,264,267,270,274,289,301,313,325,337,345,355,378,443,458,473,509,553,595,611,617,887,898,907,911,926,936,942,958,968,981,992,1003,1014]
 File[2]=".src/Classi/StartClass.class:20.15"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:3541.2"
+File[4]=".src/Form/FMain.class:4010.96"
 File[5]=".src/Classi/SettingsClass.class:424.0"
-File[6]="CHANGELOG_GIT:3.10"
+Active=6
+File[6]="CHANGELOG_GIT:6.103"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
-File[9]=".src/Classi/PlaylistClass.class:743.3"
+File[9]=".src/Classi/PlaylistClass.class:559.3"
 File[10]=".src/Form/EpgForm.form"
 File[11]=".src/Form/XConfigureAudioDriver.class:15.25"
 File[12]=".src/Form/AllOptions.form"
@@ -1437,7 +1474,7 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:1104.9"
+File[17]=".src/Classi/MplayerClass.class:318.9"
 File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
@@ -1452,12 +1489,11 @@ File[28]=".src/Form/FsForm.form"
 File[29]=".src/Form/zzzFake.class:120.25"
 File[30]=".src/Classi/Meters.class:0.0"
 File[31]="xt7-player.desktop:12.20"
-File[32]=".src/Form/MyQuestion.class:38.68"
+File[32]=".src/Form/MyQuestion.class:107.3"
 File[33]=".src/Form/MyQuestion.form"
 File[34]=".src/Form/ladspahelper.form"
 File[35]=".src/Form/AFiltersCfg.form"
 File[36]=".src/Form/AFiltersCfg.class:353.23"
-Active=37
 File[37]=".src/Form/ladspahelper.class:204.32"
 File[38]=".src/Form/LogWindow.class:0.0"
 File[39]=".src/Form/Chains.form"
@@ -1469,12 +1505,25 @@ File[44]=".src/Classi/FloatSpinBox.class:166.30"
 File[45]=".src/Form/SubAndOsd.class:62.0"
 File[46]=".src/Form/OverlayTrayTip.class:18.0"
 File[47]=".src/Form/OpenSubtitesForm.class:93.0"
-Count=47
+File[48]=".src/Form/HotKeys.form"
+File[49]=".src/Form/HotKeys.class:233.57"
+Count=49
 
 [Watches]
-Count=4
+Count=15
 Watch[1]="mylibrary.searchtable.count"
 Watch[2]="fmain.librarygrid.rows.count"
 Watch[3]="url"
 Watch[4]="node1.Children[t].name"
+Watch[5]="left(fullpathname)"
+Watch[6]="right(fullpathname)"
+Watch[7]="len(fullpath) = len(fullpathname)"
+Watch[8]="len(fullpath)"
+Watch[9]="len(fullpathname)"
+Watch[10]="mid(fullpath,2)"
+Watch[11]="mid(fullpath,50)"
+Watch[12]="mid(fullpath,51)"
+Watch[13]="mid(fullpathname,50)"
+Watch[14]="fullpath"
+Watch[15]="fullpathname"
 

@@ -10,6 +10,7 @@ Public videofiltername As String
 Public UncommonAudiofilters As String
 Public Audiofilter As String
 Public audiofiltername As String
+Public imgfilters As String
 Public Slowmedia As String 
 Public NonTaggableMedia As String
 Public NetworkURI As String 
@@ -66,6 +67,7 @@ Public Sub init()
   UncommonAudiofilters = "*.wma;*.ram;*.ac3;*.wav;*.aiff;*.aiffc;*.aac;*.8svx;*.pls;*.dts;"
   Audiofilter = "*.mp3;*.ogg;*.aac;*.flac;*.mpc;*.ac3;"
   audiofiltername = ("Common Audio Files")
+  imgfilters = ("*.jpg;*.jpeg;*.bmp;*.png;")
   Slowmedia = "cddb:// cdda:// mms:// http:// http_proxy:// rtp:// rtsp:// ftp:// udp:// smb:// "  'we'll get tag information on user prefs
   NonTaggableMedia = "tv:// radio:// cdda:// cddb:// mf:// pvr:// dvb:// unsv:// sdp:// mpst:// tivo://"
   NetworkURI = " mms:// http:// http_proxy:// rtp:// rtsp:// ftp:// udp:// "
@@ -322,7 +324,17 @@ Public Function IsAudioFile(filename As String) As Boolean
     Return False
   Endif
 End
-
+Public Function IsImgFile(filename As String) As Boolean
+'will return true if filename extension is in audio one
+  Dim fileExt As String = "." & File.Ext(filename)
+  Dim FilterList As String = imgfilters
+  If fileext = "." Then Return False
+  If (InStr(Upper(FilterList), Upper(fileExt & ";")) > 0) Then
+    Return True
+      Else
+    Return False
+  Endif
+End
 Public Function IsVideoFile(filename As String) As Boolean
 'will return true if filename extension is in audiofilter or videofilter
   Dim fileExt As String = "." & File.Ext(filename)

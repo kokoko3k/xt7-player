@@ -1524,17 +1524,15 @@ Public ForcedZoomRT As String = "" 'leave "NOBARS" "HALFBARS" or empty
 
 Public Sub CorrectAreaAspect()
   'this sets the draweing area of the form to the aspect of the video
-  
   Dim VideoW As Integer = 4
   Dim VideoH As Integer = 3
-  
   Dim Aspect As Float = 1.333
   Dim TmpX, TmpY, TmpW, TmpH As Integer
   
   If Not mplayer.ProcessRunningOvr() Then Return
   If fmain.closing Then Return
-  
-  
+  If global.IsImgFile(mplayer.Media_FullPath_Playing) Then mplayer.do_seek(0)
+
   Try VideoW = mplayer.VideoOut_Width
   Try VideoH = mplayer.VideoOut_Height
   If (VideoW > 0) And (VideoH > 0) Then
@@ -1572,6 +1570,7 @@ Public Sub CorrectAreaAspect()
     'finally, resize and center VideoBox in Outerbox 
     TmpX = (OuterBox.Width / 2) - (TmpW / 2)
     TmpY = (OuterBox.Height / 2) - (TmpH / 2)
+
     If (tmpw > 64) Then VideoBox.Move(TmpX, TmpY, TmpW + 1, TmpH + 1) 'don't touch (tmpw>64) or else heavy swap will occour!
   Endif
   
@@ -2605,6 +2604,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   InitABLoop()
+  DOHACKIMAGE = True
   UserStopped = False
   Wait
   Stopmthumbler()
@@ -3319,6 +3319,7 @@ Public Function Make2(n As String) As String
 
 End
 
+Private DOHACKIMAGE As Boolean = True
 Public Sub OneSecTimer_Timer()
   
   Dim PlaylistFinished As Boolean
@@ -3334,6 +3335,10 @@ Public Sub OneSecTimer_Timer()
       If alreadypaused Then
         ButtonPlay.picture = Picture["media-playback-pause.png"]
         alreadypaused = False
+      Endif
+      If DOHACKIMAGE Then 
+        DOHACKIMAGE = False 'mplayer doesn't display anything here's an hack:
+        If global.IsImgFile(mplayer.Media_FullPath_playing) Then mplayer.do_seek(0)
       Endif
     Endif
 
@@ -3711,21 +3716,22 @@ End
 Public Sub VideoAreaGroup_MouseDrag()
   
   Dim NewX, NewY As Integer
+  Dim isimgfile As Boolean = global.IsImgFile(mplayer.Media_FullPath_Playing) 
   
-  If (Not fsform.FullScreen) Then
+  If (Not fsform.FullScreen) And (Not isimgfile) Then
     If SwitchingFullScreen Then Return
     If mouse.left Then
       GuiDragging = True
       fmain.Move(fmain.screenx + (mouse.x - mouse.StartX), fmain.screeny + (mouse.y - mouse.Starty))
     Endif
-    
   Else
-    If GeneralOptions.PanTagCHK.value = True Then
+    If GeneralOptions.PanTagCHK.value Or isimgfile Then
+      If isimgfile Then mplayer.do_seek(0)
       'Allow Dragging image if it is panned:
       If mouse.left And (ResizeFactor > 1) Then
         GuiDragging = True
-        NewX = VideoBox.screenx + (mouse.x - mouse.StartX)
-        NewY = VideoBox.screeny + (mouse.y - mouse.Starty)
+        NewX = VideoBox.screenx + (mouse.x - mouse.StartX) - outerbox.screenx
+        NewY = VideoBox.screeny + (mouse.y - mouse.Starty) - outerbox.screeny
         If (NewX < (Desktop.w Div 2)) And (NewY < (Desktop.h Div 2)) Then
           If (NewX + VideoBox.w) > (Desktop.w Div 2) And (Newy + VideoBox.h) > (Desktop.h Div 2) Then
             VideoBox.Move(NewX, NewY)
@@ -3894,12 +3900,14 @@ Public Sub FullScreenSwitch()
   SwitchingFullScreen = True
   If fsform.fullscreen Then
     SwitchToWindow()
+    If global.IsImgFile(mplayer.Media_FullPath_Playing) Then mplayer.do_seek(0)
     Wait 0.1
     If GeneralOptions.NoEffectsCheckbox.value Then
       If KdeEffectsWereActive Then EnableKDECompositing()
     Endif
   Else
     SwitchToFS()
+    If global.IsImgFile(mplayer.Media_FullPath_Playing) Then mplayer.do_seek(0)
     Wait 0.1
     'Disable kde effects?
       If GeneralOptions.NoEffectsCheckbox.value Then
@@ -4173,6 +4181,8 @@ Public Sub TimerFullScreen_Timer()
     BottomVbox.visible = False
     cachebar.hide
     Audioform.AudioPanel.ignore = False
+    Wait
+    If global.IsImgFile(mplayer.Media_FullPath_Playing) Then mplayer.do_seek(0)
   Endif
   
   If ReleaseZone2 And (Not AttachZone1) And (MainToolBar.Visible) Then
@@ -4470,8 +4480,17 @@ Public Sub HotKeyToMplayer(HotKey As String)
   'Some actions such as fullscreen and panscan are treated internally
   Dim currentfile As String
   Dim Action As String = HotKeys.ActionRelatedTo(Hotkey)
-
-  'PRINT Action
+  
+  If Action Like "Seek*" Then
+    If global.IsImgFile(mplayer.Media_FullPath_Playing) Then
+      If action Like "Seek +*" Then
+        buttonNext_click()
+          Else
+        ButtonPrev_Click()
+      Endif
+    Endif
+  Endif    
+  
   Select Case Action
       ' Case Like "*Seek *"
       ' SeekOrSeekAndRestart(Action)
@@ -4771,7 +4790,6 @@ End
 Public Sub SelectNext(Optional forcerunning As Boolean = False, Optional CurrentQueue As String = "")
   Dim mplayerwasrunning As Boolean 
   Try mplayerwasrunning = mplayer.ProcessRunningOvr() Or forcerunning
-
   OneSecTimer.stop
   Stopmthumbler()
   fmain.mouse = mouse.wait

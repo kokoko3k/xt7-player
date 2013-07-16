@@ -135,3 +135,24 @@ End
 Public Sub BarBox_MouseDown()
   Try FMain.mymeters.nextvis()
 End
+
+Public Sub PictureBox2_Enter()
+  Last.border = Border.plain
+End
+Public Sub PictureBox2_leave()
+  Last.border = False
+End
+
+Public Sub PictureBox2_MouseDown()
+  If Trim(FMain.mplayer.Media_Artist) = "" Or Trim(FMain.mplayer.media_title) = "" Then
+    Message.Error(("Missing Artist and/or Song information"))
+    Return
+  Endif
+  FormLyrics.Searchlyrics(FMain.mplayer.Media_Artist, FMain.mplayer.media_title)
+End
+
+
+
+Public Sub Label17_MouseDown()
+  PictureBox2_MouseDown()
+End

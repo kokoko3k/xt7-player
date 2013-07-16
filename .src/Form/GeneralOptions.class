@@ -733,7 +733,7 @@ Public Sub ResetButton_Click()
     ' [GB2:BCOL] Try Last.next.NEXT.next.background = color.White
     Try Last.next.NEXT.next.Background = color.White
     Try Last.next.NEXT.font = ""
-    Try Last.next.NEXT.font.size = 13
+    Try Last.next.NEXT.font.size = 12
     Try Last.next.NEXT.font.bold = True
   Endif
   If Upper(Last.name) = "RESETBUTTON4" Then

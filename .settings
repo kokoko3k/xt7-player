@@ -1,8 +1,12 @@
+[Bookmarks]
+FormLyrics=[]
+
 [Breakpoints]
 Count=0
 
 [DebugWindow]
-Count=0
+Count=1
+DebugWindow[1]="resultlines"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -864,6 +868,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/chans]
 Geometry=[0,0,210,837]
 
+[DebugWindow/combourls]
+Geometry=[46,0,210,210]
+
 [DebugWindow/container]
 ShowHidden=True
 Geometry=[47,0,210,210]
@@ -1272,7 +1279,7 @@ Geometry=[0,0,301,301]
 Geometry=[255,559,672,590]
 
 [DebugWindow/resultlines]
-Geometry=[1364,265,993,778]
+Geometry=[2074,411,959,679]
 
 [DebugWindow/results]
 Geometry=[47,0,210,210]
@@ -1460,9 +1467,9 @@ File[1]=".src/0_Moduli/Global.module:659.2"
 Fold[1]=[174,193,199,207,237,249,258,266,269,272,276,291,303,315,337,349,367,434,455,470,485,521,565,607,659,899,910,923,938,954,980,993,1004]
 File[2]=".src/Classi/StartClass.class:20.15"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:2956.15"
+File[4]=".src/Form/FMain.class:2963.12"
 File[5]=".src/Classi/SettingsClass.class:424.0"
-File[6]="CHANGELOG_GIT:6.93"
+File[6]="CHANGELOG_GIT:13.2"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
 File[9]=".src/Classi/PlaylistClass.class:559.3"
@@ -1478,16 +1485,15 @@ File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
 File[21]=".src/Form/GeneralOptions.class:735.37"
-Active=22
-File[22]=".src/Form/CoverManager.class:271.3"
+File[22]=".src/Form/CoverManager.class:11.0"
 File[23]=".src/Form/EpgForm.class:604.24"
 File[24]=".src/Classi/AlbumView.class:252.31"
 File[25]=".src/Form/CoverManager.form"
 File[26]=".src/Form/AudioForm.form"
-File[27]=".src/Form/AudioForm.class:146.77"
+File[27]=".src/Form/AudioForm.class:155.30"
 File[28]=".src/Form/FsForm.form"
 File[29]=".src/Form/zzzFake.class:120.25"
-File[30]=".src/Classi/Meters.class:0.0"
+File[30]=".src/Classi/Meters.class:61.19"
 File[31]="xt7-player.desktop:12.20"
 File[32]=".src/Form/MyQuestion.class:107.3"
 File[33]=".src/Form/MyQuestion.form"
@@ -1507,13 +1513,15 @@ File[46]=".src/Form/OverlayTrayTip.class:18.0"
 File[47]=".src/Form/OpenSubtitesForm.class:93.0"
 File[48]=".src/Form/HotKeys.form"
 File[49]=".src/Form/HotKeys.class:233.57"
+Active=50
 File[50]=".src/Form/FormLyrics.form"
-File[51]=".src/Form/FormLyrics.class:13.3"
-File[52]=".src/Classi/WgetClass.class:4.0"
-Count=52
+File[51]=".src/Form/FormLyrics.class:46.19"
+File[52]=".src/Classi/WgetClass.class:87.0"
+File[53]=".src/Form/AudioVideoCodecs.form"
+Count=53
 
 [Watches]
-Count=15
+Count=16
 Watch[1]="mylibrary.searchtable.count"
 Watch[2]="fmain.librarygrid.rows.count"
 Watch[3]="url"
@@ -1529,4 +1537,5 @@ Watch[12]="mid(fullpath,51)"
 Watch[13]="mid(fullpathname,50)"
 Watch[14]="fullpath"
 Watch[15]="fullpathname"
+Watch[16]="cgi.decode(myline)"
 

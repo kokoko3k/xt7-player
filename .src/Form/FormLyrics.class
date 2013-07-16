@@ -247,3 +247,11 @@ Public Sub TextArea1_Change()
   textlabel1.text = textarea1.text
   TextLabel1.adjust
 End
+
+Public Sub ButtonZoomIn_Click()
+  Try textlabel1.Font.size += 1
+End
+
+Public Sub ButtonZoomOut_Click()
+  Try textlabel1.Font.size -= 1
+End

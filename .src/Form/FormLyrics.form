@@ -20,8 +20,16 @@
       MoveScaled(11,0,2,4)
     }
     { ComboUrls ComboBox
-      MoveScaled(15,0,71,4)
+      MoveScaled(13,0,57,4)
       Expand = True
+    }
+    { ButtonZoomOut Button
+      MoveScaled(72,0,4,3.1429)
+      Picture = Picture["icon:/22/zoom-out"]
+    }
+    { ButtonZoomIn Button
+      MoveScaled(79,0,4,3.1429)
+      Picture = Picture["icon:/22/zoom-in"]
     }
   }
   { Panel1 ScrollView

@@ -40,6 +40,7 @@ Public exportfile As String = ""
 Public Function executable() As String
   Dim timeout As Integer = 600
   Dim out As String
+  Dim proxy As String
   out &= out & GeneralOptions.MplayerEnvVars.text & " " 'user specified environment variables
   If GeneralOptions.vdpauooverlaycheck.value = True Then
     out &= " " & "VDPAU_NVIDIA_NO_OVERLAY=1" & " "
@@ -55,7 +56,8 @@ Public Function executable() As String
     'add c locale to workaround somw buggy ladspa filters which calls setlocale
     out &= "LC_ALL=C "
   Endif
-
+  proxy = global.proxyfromenv()
+  If proxy <> "" Then out &= "http_proxy=" & proxy & " "
   out &= GeneralOptions.MplayerExeText.Text & " "
   Return out
 End

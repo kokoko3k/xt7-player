@@ -112,6 +112,15 @@ Public Sub init()
   DelayLoadStates = New Timer As "DelayLoadStates"
 End
 
+
+Public Function proxyfromenv() As String
+  Dim key As String
+  Dim httpproxy, httpsproxy As String
+  If Application.Env["https_proxy"] <> "" Then Return Application.Env["https_proxy"]
+  If Application.Env["http_proxy"] <> "" Then Return Application.Env["http_proxy"]
+  Return ""
+End
+
 Public Function SavedProfileChanged() As Boolean
   'return if one of the forms has been saved with some exclusions
   Try ChangedForms.Remove(ChangedForms.Find("FMain"))

@@ -6,6 +6,18 @@ Private SEARCHING As Boolean = True
 Private blackdomains As String = "lyrics007.com;cityguideny.com;youtube.com;google.com;bing.com;yahoo.com;google.com;twitter.com;facebook.com;amazon.com"
 Private baddomains As String = "sweetslyrics.com;lyricsfreak.com;lyricsondemand.com;lyricsbox.com;lyricsreg.com;lyricsty.com;lyrics007.com;mp3lyrics.org;lyrster.com;nl.visit-it.com;supermusic.cz;songmeanings.net;loglar.com;lyyyrics.blogas.lt;lyrics007.com"
 
+
+Private Function proxyfromenv() As String
+  Dim key As String
+  Dim httpproxy, httpsproxy As String
+  Try Return Application.Env["https_proxy"]
+  Try Return Application.Env["http_proxy"]
+  Return ""
+End
+
+
+
+
 Private Function httpget(url As String) As String
   Dim httpclient1 As New Httpclient
   Dim hastimedout As Boolean = True
@@ -14,7 +26,7 @@ Private Function httpget(url As String) As String
   HttpClient1.UserAgent = "Links (2.7; Linux 3.7.9-2-ARCH x86_64; GNU C 4.7.1; text)" '"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"
   HttpClient1.timeout = 10
   HttpClient1.url = url
-  httpclient1.Proxy.Host = "http://proxy.unina.it:3128"
+  Try httpclient1.Proxy.Host = proxyfromenv()
   HttpClient1.Get
 
   hastimedout = waitforhttp(HttpClient1, 1000)

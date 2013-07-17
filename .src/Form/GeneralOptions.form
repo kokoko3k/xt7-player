@@ -675,22 +675,6 @@
             Value = CheckBox.True
           }
         }
-        { NoParse15 HBox
-          MoveScaled(1,23,50,4)
-          ToolTip = ("Use a proxy for http connections.\nEg: http://myproxy.mynetwork:myport\nNote that proxy authentication is not (yet?) supported by mplayer.")
-          AutoResize = True
-          Spacing = True
-          { HttpProxyCHK CheckBox notifyobj
-            Name = "HttpProxyCHK"
-            MoveScaled(1,0,17,3)
-            Text = ("Http proxy")
-          }
-          { ProxyTextBox TextBox notifyobj
-            Name = "ProxyTextBox"
-            MoveScaled(18,0,23,4)
-            Expand = True
-          }
-        }
         { NoParse33 HBox
           MoveScaled(1,28,50,4)
           ToolTip = ("When playing youtube videos, \nprefer this format if available.")

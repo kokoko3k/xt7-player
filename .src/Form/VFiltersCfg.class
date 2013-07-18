@@ -91,6 +91,7 @@ Dim AScrollview As ScrollView
     MyFilters.Add("GradFun")
     MyFilters.add("CustomVideo1")
     MyFilters.add("CustomVideo2")
+    MyFilters.add("CustomVideo3")
   
   
   For Each Filter In MyFilters
@@ -397,6 +398,13 @@ Private Sub DrawFiltersGui()
   Global.DrawGui(AllParams, "CustomVideo2", Tabstrip1, Switchable)
   AllParams.Clear
 
+  AllParams.Add(["FREE", ("Custom video filter(s):"), "", "VCustom26", ("E.g.:mirror,smartblur=0.4:0.5:10")])
+  AllParams.Add(["FREE", ("Custom video filter(s):"), "", "VCustom27", ("E.g.:mirror,smartblur=0.4:0.5:10")])
+  AllParams.Add(["FREE", ("Custom video filter(s):"), "", "VCustom28", ("E.g.:mirror,smartblur=0.4:0.5:10")])
+  AllParams.Add(["FREE", ("Custom video filter(s):"), "", "VCustom29", ("E.g.:mirror,smartblur=0.4:0.5:10")])
+  AllParams.Add(["FREE", ("Custom video filter(s):"), "", "VCustom30", ("E.g.:mirror,smartblur=0.4:0.5:10")])
+  Global.DrawGui(AllParams, "CustomVideo3", Tabstrip1, Switchable)
+  AllParams.Clear
       
   'eq2[=gamma:contrast:brightness:saturation:rg:gg:bg:weight]
   AllParams.add(["RANGEFLOAT", ("Gamma"), "0.1", "1.0", "10", "Eq21", ("Initial gamma value(default: 1.0)")])

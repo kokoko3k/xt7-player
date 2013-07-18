@@ -391,3 +391,11 @@ End
 Public Sub AudioFilterObj_MouseDown()
   Try Last.mouse = 18 'missing mouse constant
 End
+
+Public Sub AudioFilterObj_Menu()
+  If Last.name Like "Custom*" Then Last.text = MyAskName.Ask(("Rename the current filter:"), Last.text, False)
+End
+
+Public Sub VideoFilterObj_Menu()
+  If Last.name Like "Custom*" Then Last.text = MyAskName.Ask(("Rename the current filter:"), Last.text, False)
+End

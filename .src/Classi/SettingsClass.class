@@ -88,9 +88,12 @@ Private Sub Reconfigure(theObject As Object, TheSettings As String[], TheForm As
         If (MyValue <> TheObject.value) Then TheObject.value = MyValue
         'TheObject.value = MyValue
         
-      Else If ((MyProperty = ".text") And Not ((theobject Is CheckBox) Or (theobject Is Button) Or (theobject Is Textarea) Or (theobject Is Togglebutton))) Then
-        If (theobject.text <> MyValue) Then
-          Try TheObject.text = MyValue
+      'Else If ((MyProperty = ".text") And Not ((theobject Is CheckBox) Or (theobject Is Button) Or (theobject Is Textarea) Or (theobject Is Togglebutton))) Then
+      Else If (MyProperty = ".text") Then
+        If Not ((theobject Is CheckBox) Or (theobject Is Button) Or (theobject Is Textarea) Or (theobject Is Togglebutton)) Or (theobject.name Like "Custom*") Then
+          If (theobject.text <> MyValue) Then
+            Try TheObject.text = MyValue
+          Endif
         Endif
         
       Else If MyProperty = ".visible" Then
@@ -560,7 +563,9 @@ Public Sub Save(TheForm As Object, FileName As String)
           Endif
         Endif
         
-
+        If (theobject.name Like "custom*") Then
+           Try Print #ConfFile, ".text=" & TheObject.text
+        Endif
         
         If ((Lower(TheObject.name) Like "*fontstring*") Or (Lower(TheObject.name) Like "*fontchoose*btn*")) Then
           Try Print #ConfFile, ".font.name=" & TheObject.Font.name

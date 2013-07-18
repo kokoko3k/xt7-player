@@ -219,15 +219,26 @@
             MoveScaled(1,94,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
             Text = ("Custom 1")
             Picture = Picture["icon:/16/next"]
           }
           { CustomVideo2 Button VideoFilterObj
             Name = "CustomVideo2"
-            MoveScaled(1,99,16,4)
+            MoveScaled(1,98,16,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
             Text = ("Custom 2")
+            Picture = Picture["icon:/16/next"]
+          }
+          { CustomVideo3 Button VideoFilterObj
+            Name = "CustomVideo3"
+            MoveScaled(1,103,16,4)
+            Background = &HFF5B5B&
+            Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
+            Text = ("Custom 3")
             Picture = Picture["icon:/16/next"]
           }
         }
@@ -362,7 +373,7 @@
           }
           { Volume Button AudioFilterObj
             Name = "Volume"
-            MoveScaled(2,26,16.4286,4)
+            MoveScaled(2,25,16.4286,4)
             Background = &HDAFFA2&
             Tag = "       volume[=v[:sc]]\n              Implements software volume control.  Use this filter with cau-\n              tion  since  it  can  reduce  the signal to noise ratio of the\n              sound.  In most cases it is best to set the level for the  PCM\n              sound  to  max,  leave  this filter out and control the output\n              level to your speakers with the master volume control  of  the\n              mixer.   In  case  your sound card has a digital PCM mixer in-\n              stead of an analog one, and you hear distortion, use the  MAS-\n              TER mixer instead.  If there is an external amplifier connect-\n              ed to the computer (this is almost always the case), the noise\n              level  can  be minimized by adjusting the master level and the\n              volume knob on the amplifier until the hissing  noise  in  the\n              background is gone.\n              This filter has a second feature: It measures the overall max-\n              imum sound level and prints out that level when MPlayer exits.\n              This  volume  estimate can be used for setting the sound level\n              in MEncoder such that the maximum dynamic range is utilized.\n              NOTE: This filter is not reentrant and can therefore  only  be\n              enabled once for every audio stream.\n                 <v>\n                      Sets  the  desired  gain in dB for all channels in the\n                      stream from -200dB to +60dB, where  -200dB  mutes  the\n                      sound  completely and +60dB equals a gain of 1000 (de-\n                      fault: 0).\n                 <sc>\n                      Turns soft clipping on (1) or off (0).   Soft-clipping\n                      can  make  the  sound  more smooth if very high volume\n                      levels are used.  Enable this option  if  the  dynamic\n                      range of the loudspeakers is very low.\n                      WARNING: This feature creates distortion and should be\n                      considered a last resort.\n\n              EXAMPLE:\n                 mplayer -af volume=10.1:0 media.avi\n                      Would amplify the sound by 10.1dB and hard-clip if the\n                      sound level is too high.\n"
             Text = ("Volume ")
@@ -370,7 +381,7 @@
           }
           { scaletempo Button AudioFilterObj
             Name = "scaletempo"
-            MoveScaled(2,31,16.4286,4)
+            MoveScaled(2,30,16.4286,4)
             Background = &HDAFFA2&
             Tag = "          scaletempo[=option1:option2:...]\n              Scales  audio tempo without altering pitch, optionally synced to\n              playback speed (default).\n              This works by playing 'stride' ms of audio at normal speed  then\n              consuming  'stride*scale'  ms  of  input  audio.   It pieces the\n              strides together by blending 'overlap'%  of  stride  with  audio\n              following  the  previous stride.  It optionally performs a short\n              statistical analysis on the next 'search' ms of audio to  deter-\n              mine the best overlap position.\n                 scale=<amount>\n                      Nominal  amount  to  scale tempo.  Scales this amount in\n                      addition to speed.  (default: 1.0)\n                 stride=<amount>\n                      Length in milliseconds to output each stride.  Too  high\n                      of  value  will  cause  noticable  skips  at  high scale\n                      amounts and an echo at low scale amounts.  Very low val-\n                      ues  will alter pitch.  Increasing improves performance.\n                      (default: 60)\n                 overlap=<percent>\n                      Percentage of stride to  overlap.   Decreasing  improves\n                      performance.  (default: .20)\n                 search=<amount>\n                      Length  in milliseconds to search for best overlap posi-\n                      tion.  Decreasing improves performance greatly.  On slow\n                      systems,  you  will  probably want to set this very low.\n                      (default: 14)\n                 speed=<tempo|pitch|both|none>\n                      Set response to speed change.\n                         tempo\n                              Scale tempo in sync with speed (default)\n                         pitch\n                              Reverses effect of filter.  Scales pitch without\n                              altering     tempo.      Add    '[    speed_mult\n                              0.9438743126816935'    and     ']     speed_mult\n                              1.059463094352953' to your input.conf to step by\n                              musical semi-tones.  WARNING: Looses synch  with\n                              video.\n                         both Scale both tempo and pitch\n                         none Ignore speed changes\n\n              EXAMPLE:\n                 mplayer -af scaletempo -speed 1.2 media.ogg\n                      Would playback media at 1.2x normal speed, with audio at\n                      normal pitch.  Changing playback speed, would change au-\n                      dio tempo to match.\n                 mplayer  -af  scaletempo=scale=1.2:speed=none  -speed 1.2 me-\n                 dia.ogg\n                      Would playback media at 1.2x normal speed, with audio at\n                      normal pitch, but changing playback speed has no  effect\n                      on audio tempo.\n                 mplayer  -af  scaletempo=stride=30:overlap=.50:search=10  me-\n                 dia.ogg\n                      Would tweak the quality and performace parameters.\n                 mplayer -af format=floatne,scaletempo media.ogg\n                      Would  make  scaletempo use float code.  Maybe faster on\n                      some platforms.\n                 mplayer -af scaletempo=scale=1.2:speed=pitch audio.ogg\n                      Would playback audio file at 1.2x normal speed, with au-\n                      dio  at  normal  pitch.   Changing playback speed, would\n                      change pitch, leaving audio tempo at 1.2x.\n\n"
             Text = ("ScaleTempo")
@@ -378,7 +389,7 @@
           }
           { pan Button AudioFilterObj
             Name = "pan"
-            MoveScaled(2,38,16.4286,4)
+            MoveScaled(2,34,16.4286,4)
             Background = &HFFFF9F&
             Tag = "Metafilter to downmix 6 channels audio (5.1) to 2 channels (stereo)\nUses the pan filter with those parameters:\n\npan=2:0.5:0:0:0.5:0.5:0:0:0.5:1:1:0.5:0.5"
             Text = ("Downmix")
@@ -386,18 +397,29 @@
           }
           { CustomAudio1 Button AudioFilterObj
             Name = "CustomAudio1"
-            MoveScaled(2,44,16.4286,4)
+            MoveScaled(2,38,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
             Text = ("Custom 1")
             Picture = Picture["icon:/16/next"]
           }
           { CustomAudio2 Button AudioFilterObj
             Name = "CustomAudio2"
-            MoveScaled(2,48,16.4286,4)
+            MoveScaled(2,42,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
             Text = ("Custom 2")
+            Picture = Picture["icon:/16/next"]
+          }
+          { CustomAudio3 Button AudioFilterObj
+            Name = "CustomAudio3"
+            MoveScaled(2,46,16.4286,4)
+            Background = &HFF5B5B&
+            Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
+            ToolTip = ("Right click to rename")
+            Text = ("Custom 3")
             Picture = Picture["icon:/16/next"]
           }
         }

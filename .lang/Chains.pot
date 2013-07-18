@@ -14,195 +14,203 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Chains.form:67
+#: Chains.form:69
 msgid "Chains Editor"
 msgstr ""
 
-#: Chains.form:75
+#: Chains.form:77
 msgid "Profile"
 msgstr ""
 
-#: Chains.form:78
+#: Chains.form:80
 msgid "Reload current profile"
 msgstr ""
 
-#: Chains.form:83
+#: Chains.form:85
 msgid "Save to current profile"
 msgstr ""
 
-#: Chains.form:107
+#: Chains.form:109
 msgid "Available video filters.\nDrag them into the video chain to use them.\nClick on a filter to bring up his configuration window."
 msgstr ""
 
-#: Chains.form:113
+#: Chains.form:115
 msgid "Video Filters Toolbox"
 msgstr ""
 
-#: Chains.form:132
+#: Chains.form:134
 msgid "Yadif"
 msgstr ""
 
-#: Chains.form:141
+#: Chains.form:143
 msgid "Unsharp"
 msgstr ""
 
-#: Chains.form:150
+#: Chains.form:152
 msgid "ppHADeblock"
 msgstr ""
 
-#: Chains.form:159
+#: Chains.form:161
 msgid "ppVDeblock"
 msgstr ""
 
-#: Chains.form:168
+#: Chains.form:170
 msgid "ppHDeblock"
 msgstr ""
 
-#: Chains.form:177
+#: Chains.form:179
 msgid "ppVADeblock"
 msgstr ""
 
-#: Chains.form:186
+#: Chains.form:188
 msgid "ppDering"
 msgstr ""
 
-#: Chains.form:195
+#: Chains.form:197
 msgid "ppAutoLevels"
 msgstr ""
 
-#: Chains.form:204
+#: Chains.form:206
 msgid "ppDeinterlace"
 msgstr ""
 
-#: Chains.form:213
+#: Chains.form:215
 msgid "FSpp Denoiser"
 msgstr ""
 
-#: Chains.form:223
+#: Chains.form:225
 msgid "USpp Denoiser"
 msgstr ""
 
-#: Chains.form:232
+#: Chains.form:234
 msgid "Spp Denoiser"
 msgstr ""
 
-#: Chains.form:241
+#: Chains.form:243
 msgid "Denoise3D"
 msgstr ""
 
-#: Chains.form:250
+#: Chains.form:252
 msgid "HQDenoise3D"
 msgstr ""
 
-#: Chains.form:259
+#: Chains.form:261
 msgid "GradFun"
 msgstr ""
 
-#: Chains.form:268
+#: Chains.form:270
 msgid "Scale"
 msgstr ""
 
-#: Chains.form:277
+#: Chains.form:279
 msgid "Expand"
 msgstr ""
 
-#: Chains.form:286
+#: Chains.form:288
 msgid "DeLogo"
 msgstr ""
 
-#: Chains.form:295
+#: Chains.form:297
 msgid "Eq2"
 msgstr ""
 
-#: Chains.form:304
+#: Chains.form:306
 msgid "Hue"
 msgstr ""
 
-#: Chains.form:313
+#: Chains.form:315
+msgid "Right click to rename"
+msgstr ""
+
+#: Chains.form:316
 msgid "Custom 1"
 msgstr ""
 
-#: Chains.form:322
+#: Chains.form:326
 msgid "Custom 2"
 msgstr ""
 
-#: Chains.form:331
+#: Chains.form:336
+msgid "Custom 3"
+msgstr ""
+
+#: Chains.form:345
 msgid "Filters are processed from up to down\ntill the Audio/Video driver."
 msgstr ""
 
-#: Chains.form:346
+#: Chains.form:360
 msgid "VideoChain"
 msgstr ""
 
-#: Chains.form:364
+#: Chains.form:378
 msgid "No driver Defined"
 msgstr ""
 
-#: Chains.form:365
+#: Chains.form:379
 msgid "VideoDriver"
 msgstr ""
 
-#: Chains.form:378
+#: Chains.form:392
 msgid "AudioChain"
 msgstr ""
 
-#: Chains.form:397
+#: Chains.form:411
 msgid "AudioDriver"
 msgstr ""
 
-#: Chains.form:410
+#: Chains.form:424
 msgid "Available audio filters.\nDrag them into the audio chain to use them.\nClick on a filter to bring up his configuration window."
 msgstr ""
 
-#: Chains.form:415
+#: Chains.form:429
 msgid "Audio Filters Toolbox"
 msgstr ""
 
-#: Chains.form:434
+#: Chains.form:448
 msgid "VolNorm"
 msgstr ""
 
-#: Chains.form:443
+#: Chains.form:457
 msgid "Extra Stereo"
 msgstr ""
 
-#: Chains.form:452
+#: Chains.form:466
 msgid "Delay"
 msgstr ""
 
-#: Chains.form:461
+#: Chains.form:475
 msgid "Karaoke"
 msgstr ""
 
-#: Chains.form:470
+#: Chains.form:484
 msgid "Equalizer "
 msgstr ""
 
-#: Chains.form:479
+#: Chains.form:493
 msgid "Volume "
 msgstr ""
 
-#: Chains.form:488
+#: Chains.form:502
 msgid "ScaleTempo"
 msgstr ""
 
-#: Chains.form:497
+#: Chains.form:511
 msgid "Downmix"
 msgstr ""
 
-#: Chains.form:536
+#: Chains.form:562
 msgid "Save and use new settings"
 msgstr ""
 
-#: Chains.form:538
+#: Chains.form:564
 msgid "Save"
 msgstr ""
 
-#: Chains.form:546
+#: Chains.form:572
 msgid "Use "
 msgstr ""
 
-#: Chains.form:554
+#: Chains.form:580
 msgid "Close"
 msgstr ""
 
@@ -236,5 +244,9 @@ msgstr ""
 
 #: Chains.class:309
 msgid "Don't"
+msgstr ""
+
+#: Chains.class:396
+msgid "Rename the current filter:"
 msgstr ""
 

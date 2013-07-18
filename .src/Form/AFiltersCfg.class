@@ -57,6 +57,7 @@ Dim AScrollview As ScrollView
   MyFilters.add("scaletempo")
   MyFilters.add("CustomAudio1")
   MyFilters.add("CustomAudio2")
+  MyFilters.add("CustomAudio3")
   
   For Each Filter In MyFilters
     FilterList.Add(Filter)
@@ -187,6 +188,19 @@ Private Sub DrawFiltersGui()
       Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable,, ButtonLadspaHelper)
         Else
       Global.DrawGui(AllParams, "CustomAudio2", Tabstrip1, Switchable)
+    Endif
+
+    AllParams.Clear
+    
+    AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom26", ("E.g.:resample=44100:1:2,hrtf=s")])
+    AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom27", ("E.g.:resample=44100:1:2,hrtf=s")])
+    AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom28", ("E.g.:resample=44100:1:2,hrtf=s")])
+    AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom29", ("E.g.:resample=44100:1:2,hrtf=s")])
+    AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom30", ("E.g.:resample=44100:1:2,hrtf=s")])
+    If ladspacompiledin Then
+      Global.DrawGui(AllParams, "CustomAudio3", Tabstrip1, Switchable,, ButtonLadspaHelper)
+        Else
+      Global.DrawGui(AllParams, "CustomAudio3", Tabstrip1, Switchable)
     Endif
 
     AllParams.Clear

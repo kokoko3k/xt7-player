@@ -376,9 +376,17 @@
             Text = ("ScaleTempo")
             Picture = Picture["icon:/16/next"]
           }
+          { pan Button AudioFilterObj
+            Name = "pan"
+            MoveScaled(2,38,16.4286,4)
+            Background = &HFFFF9F&
+            Tag = "Metafilter to downmix 6 channels audio (5.1) to 2 channels (stereo)\nUses the pan filter with those parameters:\n\npan=2:0.5:0:0:0.5:0.5:0:0:0.5:1:1:0.5:0.5"
+            Text = ("Downmix")
+            Picture = Picture["icon:/16/next"]
+          }
           { CustomAudio1 Button AudioFilterObj
             Name = "CustomAudio1"
-            MoveScaled(2,36,16.4286,4)
+            MoveScaled(2,44,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
             Text = ("Custom 1")
@@ -386,7 +394,7 @@
           }
           { CustomAudio2 Button AudioFilterObj
             Name = "CustomAudio2"
-            MoveScaled(2,41,16.4286,4)
+            MoveScaled(2,48,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
             Text = ("Custom 2")

@@ -757,6 +757,16 @@ Public Sub DrawGui(TheParameters As Variant[], TabCaption As String, TheTabstrip
       ATextBox.expand = True
       ATextBox.refresh
 
+
+    Else If CurrentParams[0] = "ROSTRING" Then 'Let's Draw a readonly TextBox
+      'AnHBOX.padding = 3
+      ATextBox = New TextBox(AnHBox) As "dynaobj"
+      ATextBox.name = CurrentParams[CurrentParams.count - 2] & ".TextBox"
+      ATextBox.text = CurrentParams[2]
+      ATextBox.ReadOnly = True
+      ATextBox.expand = True
+      ATextBox.refresh
+
     'Syntax for TheParameters is:["SUBLABEL", caption(SubFilterName), TextLabel name ,comment]
     Else If CurrentParams[0] = "SUBLABEL" Then 'Let's Draw a Textlabel
       'AnHBOX.padding = 3

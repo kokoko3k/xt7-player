@@ -53,6 +53,7 @@ Dim AScrollview As ScrollView
   'MyFilters.add("center")
   'MyFilters.add("sinesuppress")
   MyFilters.add("karaoke")
+  MyFilters.add("pan")
   MyFilters.add("scaletempo")
   MyFilters.add("CustomAudio1")
   MyFilters.add("CustomAudio2")
@@ -149,6 +150,12 @@ Private Sub DrawFiltersGui()
     AllParams.add(["RANGE", "search=", "1", "14", "100", "scaletempo4", "ms"])
     AllParams.add(["CHOOSE", "speed=", "both", "tempo", "pitch", "scaletempo1", ("Runtime responce to speed change")])
     Global.DrawGui(AllParams, "scaletempo", Tabstrip1, Switchable)
+    AllParams.Clear
+    
+    'Downmix to stereo
+    'AllParams.Add(["ROSTRING", ("5.1 -> 2.0 Downmix"), "pan=2:0.5:0:0:0.5:0.5:0:0:0.5:1:1:0.5:0.5", "ADownmix6to2", ("")])
+    AllParams.add(["CHOOSE", "pan=", "2:0.5:0:0:0.5:0.5:0:0:0.5:1:1:0.5:0.5    [5.1->2.0]", "Adownmix6to2", ("")])
+    Global.DrawGui(AllParams, "pan", Tabstrip1, False)
     AllParams.Clear
     
     AllParams.Add(["FREE", ("Custom audio filter(s):"), "", "ACustom11", ("E.g.:resample=44100:1:2,hrtf=s")])

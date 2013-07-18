@@ -360,7 +360,9 @@ Public Sub Form_Show()
     If obj Is Button Then
       objname = Lower(obj.name)
       If Not ((objname) Like "*custom*") Then 
-         obj.enabled = (AvailableListAF.Find(objname) >= 0)
+        If Not ((objname) Like "*DownmixToStereo*") Then
+          obj.enabled = (AvailableListAF.Find(objname) >= 0)
+        Endif
       Endif
     Endif
   Next
@@ -369,7 +371,9 @@ Public Sub Form_Show()
     If obj Is Button Then
       objname = Lower(obj.name)
       If Not ((objname) Like "*custom*") Then 
-         obj.enabled = (AvailableListAF.Find(objname) >= 0)
+        If Not ((objname) Like "*DownmixToStereo*") Then
+          obj.enabled = (AvailableListAF.Find(objname) >= 0)
+        Endif
       Endif
     Endif
   Next

@@ -393,7 +393,7 @@ If Exist(coverfile) Then
   If Error Then 'Se non esiste l 'immagine in memoria, allora
     If Exist(cachefile) Then  'Se esiste una cache su disco allora
       Try CoverCacheList.Add(cachefile, "", cornice(Shadowed(picture.Load(cachefile)), neww)) 'mettila IN memoria **************************************
-      Return CoverCacheList[cachefile].picture 'ritornala
+      If Not Error Then Return CoverCacheList[cachefile].picture 'ritornala
         Else 'Altrimenti(non esiste cache su disco)
       If Exist(coverfile) 'se esiste la cover su disco, ma non la cache
         tmpimage = image.Load(coverfile)

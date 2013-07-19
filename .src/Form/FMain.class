@@ -5551,20 +5551,31 @@ Public Sub MenuLibraryAlbumTracksAppendPlaylist_Click()
 End
 
 Public Sub MenuLibraryAlbumTracksReplacePlaylist_click()
-  Dim selectedalbum As String = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
-  Dim results As String[]
-  
-  Try results = mylibrary.PtableFromSearch(selectedalbum, ["Album"])
-  If Error Then Goto ErrorLabel
-  Try results = myplaylist.DoSort("Album", ByRef results)
-  If Error Then Goto ErrorLabel
-  Try myplaylist.ptable = myplaylist.ptable.Insert(results, True)
+
+Stop
+
+  Try myplaylist.clear(playlistgrid)
   If Error Then Goto ErrorLabel
   
-  Searchfieldpls.text = selectedalbum
-  SearchFieldPLS_Click()
+  Try MenuLibraryAlbumTracksAppendPlaylist_Click()
+  If Error Then Goto ErrorLabel
+  ' 
+  ' 
+  ' Dim selectedalbum As String = mylibrary.CellValue(librarygrid, librarygrid.row, mylibrary.ColumnIndex["Album"])
+  ' Dim results As String[]
+  ' Stop
+  ' Try results = mylibrary.PtableFromSearch(selectedalbum, ["Album"])
+  ' If Error Then Goto ErrorLabel
+  ' Try myplaylist.DoSort("Album", ByRef results)
+  ' If Error Then Goto ErrorLabel
+  ' Try myplaylist.ptable = myplaylist.ptable.Insert(results, True)
+  ' If Error Then Goto ErrorLabel
+  ' 
+  ' Searchfieldpls.text = selectedalbum
+  ' SearchFieldPLS_Click()
+  ' Return
+  
   Return
-  
   ErrorLabel:
   Message.Error("An error occurred")
 End

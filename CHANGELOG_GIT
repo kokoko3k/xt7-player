@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 July 18 2013
   FIX:  Error when replacing playlists by an album tracks
+  FIX:  Avoid out of range values in ladspahelper (by setting value=minvalue)
 
 July 17 2013
   FIX:  Explicitely pass proxy to mplayer if environment variable is defined

@@ -112,6 +112,7 @@ Public Sub DrawPlugin()
     mylabel2.text &= "Default: " & Split(pcontrol, "£", "", True)[3] 
     'myinput.text = Split(Split(pcontrol, "£", "", True)[3], "*", "", True)[0] 
     Try myinput.value = CFloat(Split(Split(pcontrol, "£", "", True)[3], "*", "", True)[0])
+    If Error Then Try myinput.value = CFloat(mmin)
     mylabel1.w = maxw
     mylabel2.expand = True
     myinput.w = 100

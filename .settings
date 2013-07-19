@@ -1135,6 +1135,9 @@ Geometry=[683,84,344,344]
 [DebugWindow/myplaylist.SearchTable]
 Geometry=[125,290,1047,316]
 
+[DebugWindow/myplaylist.ptable.Insert(results, True)]
+Geometry=[46,0,210,210]
+
 [DebugWindow/myplaylist[r, c]]
 Geometry=[0,0,301,301]
 
@@ -1463,13 +1466,13 @@ File[1]=".src/0_Moduli/Global.module:517.19"
 Fold[1]=[183,202,208,216,246,258,267,275,278,281,285,300,312,324,346,358,376,464,530,574,616,668,918,929,942,957,989,999,1012]
 File[2]=".src/Classi/StartClass.class:20.15"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:10437.21"
+File[4]=".src/Form/FMain.class:5554.2"
 File[5]=".src/Classi/SettingsClass.class:93.45"
 Active=6
-File[6]="CHANGELOG_GIT:5.98"
+File[6]="CHANGELOG_GIT:6.44"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
-File[9]=".src/Classi/PlaylistClass.class:559.3"
+File[9]=".src/Classi/PlaylistClass.class:1370.3"
 File[10]=".src/Form/EpgForm.form"
 File[11]=".src/Form/XConfigureAudioDriver.class:15.25"
 File[12]=".src/Form/AllOptions.form"

@@ -1,3 +1,33 @@
+* Fri Jul 19 2013 Antonio Orefice <xt7player@gmail.com> 3.4.3
+- CHANGE: Every change to a ladspa filter is applied/tested in realtime
+- CHANGE: Workaround to keep volume level after applying audio filter parameters change without restarting mplayer
+- CHANGE: Workaround to make xt7 recognize mplayer2 >20130219 statusline in the stderr stream
+- NEW:    Ability to rename custom audio and video filters (buttons) and added 2 more custom filters
+- NEW:    Lyrics finder via duckduckgo (click on the microphone icon when a music is playing).
+- NEW:    Display jpg,png,bmp pictures by using mf:// protocol, panning and zooming are supported
+- NEW:    New default hotkey: "del" will delete the playing file from disk after confirmation.
+- NEW:    Helper window to compile ladspa audio plugin parameters.
+- NEW:    A<->B loop button available on seekable media (works best with audio only files)
+- FIX:  Error when replacing playlists by an album tracks
+- FIX:  Possible runtime error on album browse
+- FIX:  Explicitely pass proxy to mplayer if environment variable is defined
+- FIX:  Use http_proxy (or https_proxy) environment variable and drop http_proxy option.
+- FIX:  Don't try to play directories
+- FIX:  Update/sync views on file deletion
+- FIX:  workaround for missing picture when unredirecting fs windows is enabled and mplayer is paused
+- FIX:  Keep forced zoom mode across media
+- FIX:  Following "browse" playqueue didnt work when starting xt7 with a mediafile argument (gb 3.4.1 bug)
+- FIX:  Try harder to keep pause state while switching fullscreen via dbl click.
+- FIX:  Volume level was resetted after every apply.
+- FIX:  fixed desktop file (thanks symbianflo)
+- FIX:  some msgboxes growed in size when opened multiple times
+- FIX:  Always stop mplayer at quit time
+- FIX:  Do not start a listening socket on pluginmode
+- FIX:  Corrected cachebar geometry in plugin mode
+- FIX:  Changing audio filters parameters in realtime was broken
+- FIX:  floatspinbox was broken since the switch from gambas2 to 3
+- FIX:  Try to clear only the audio filters currently loaded
+
 * Fri May 03 2013 Antonio Orefice <xt7player@gmail.com> 3.4.2
 
 * Fri May 03 2013 Antonio Orefice <xt7player@gmail.com> 3.4.2

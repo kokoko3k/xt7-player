@@ -761,8 +761,10 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Else
       MaxHeaders = MaxHeadersFile
     Endif
- 
-    If global.IsImgFile(filename) Then commandline &= " -fps 0.1 -nocache"
+    
+    If Not (filename Like "*SubBackImage*.bmp*") Then 'do not apply limit to subtitles window!
+      If global.IsImgFile(filename) Then commandline &= " -fps 0.1 -nocache"
+    Endif
  
     Debug "Starting mplayer now:"
     Debug "commandline=" & commandline

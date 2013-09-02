@@ -109,7 +109,6 @@
             MoveScaled(1,1,43,4)
             ToolTip = ("Using vdpau overlay surface may lead to instability problems under some circumstances \nlike heavy cpu load or switching to/from fullscreen.\n\nNOT using vdpau overlay may cause tearing.\n\nIf you experience tearing, try to disable this option, if you experience instability,\ntry to check it.\n\nThis option disable the overlay surface by setting the environment variable:\nVDPAU_NVIDIA_NO_OVERLAY=1")
             Text = ("Disable VDPAU overlay surface")
-            Value = CheckBox.True
           }
         }
       }

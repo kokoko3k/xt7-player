@@ -30,7 +30,6 @@ Public Function ReadedConfFile(FileName As String) As String[]
     splitted.Add("")
     Return splitted
   Endif
-  
 End
 
 
@@ -262,7 +261,7 @@ End
 Public Sub Load(TheForm As Object, Filename As String)
   
   Dim myobj As Object
-  Dim Settings, SubSettings As String[]
+  Dim theSettings, SubSettings As String[]
   
   'Filename is the form setting file
   '/home/user/.config/gambas/Xt7-Player/default.profile/FMain
@@ -276,17 +275,20 @@ Public Sub Load(TheForm As Object, Filename As String)
   ' .text =
   ' .visible = T
   ' .Value =
-  Settings = ReadedConfFile(Filename)
+  theSettings = ReadedConfFile(Filename)
   
   For Each myobj In TheForm.controls
+    ' If Lower(myobj.name) Like "*vdpauooverlaycheck*" Then
+    '   Stop
+    ' Endif
     'If we find the object definition in the settings file:
-    If Settings.Find(myobj.name) <> -1 Then
+    If theSettings.Find(myobj.name) <> -1 Then
       'then we load it's properties:
       'extract name and properties from Settings array and pass them to reconfigure sub
       ' If myobj.name Like "*extrastereo*" Then
       '   Debug
       ' Endif
-      Subsettings = NameAndProperties(myobj.name, settings)
+      Subsettings = NameAndProperties(myobj.name, thesettings)
       Try Reconfigure(myobj, Subsettings, TheForm)
     Endif 
   Next
@@ -295,7 +297,7 @@ Public Sub Load(TheForm As Object, Filename As String)
   If TheForm.tag = "reparents" Then
     Debug "Timer = " & Timer
     Debug
-    ReparentAndSort(Theform, settings)
+    ReparentAndSort(Theform, thesettings)
     Debug "Timer = " & Timer
     Debug
   Endif
@@ -527,7 +529,7 @@ Public Sub Save(TheForm As Object, FileName As String)
   Endif
   FMain.mouse = Mouse.wait
   Try TheFormIsAlreadyLoaded = Theform.Alreadyloaded
-  If (Not TheFormIsAlreadyLoaded) Then Return 'why save a form that hasn't been even loaded?
+  If (Not TheFormIsAlreadyLoaded) Then Goto returnlabel 'why save a form that hasn't been even loaded?
   'FMain.GetOptionsFromGui()
   FileName = Filename & ".profile/" & TheForm.name
   If Not Exist(file.Dir(filename), True) Then
@@ -549,7 +551,7 @@ Public Sub Save(TheForm As Object, FileName As String)
   
   For Each TheObject In TheForm.controls
     Try objvalid = (theobject.name <> "")
-    If Error Then Return
+    If Error Then Goto returnlabel
     If (Not (Object.Type(TheObject) = "Menu")) And (Not Match(TheObject.name, ExcludedValues)) And (Not (theobject Is Separator)) Then
       'Don't descend in floatspinbox,Vslider and StringFileReq classes
       If Not ((Object.Type(TheObject.parent) = "FloatSpinBox") Or (Object.Type(TheObject.parent) = "VSlider") Or (Object.Type(TheObject.parent) = "StringFileReqClass")) Then
@@ -635,5 +637,7 @@ Public Sub Save(TheForm As Object, FileName As String)
 
   FMain.mouse = Mouse.Default
 
+  Returnlabel:
+  Return
 
 End

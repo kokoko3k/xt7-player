@@ -316,9 +316,5 @@ Public Sub DriversPanel_MouseDown()
 
 End
 
-Public Sub VdPauScrollView_BeforeArrange()
-  GeneralOptions.vdpauoverlaybox.Reparent(vdpauHBox6)
-  GeneralOptions.vdpauoverlaybox.show
-End
 
 

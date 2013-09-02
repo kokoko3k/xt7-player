@@ -102,6 +102,16 @@
             Value = CheckBox.True
           }
         }
+        { vdpauoverlayboxnew HBox
+          MoveScaled(2,25,45,6)
+          ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
+          { vdpauooverlaycheck CheckBox
+            MoveScaled(1,1,43,4)
+            ToolTip = ("Using vdpau overlay surface may lead to instability problems under some circumstances \nlike heavy cpu load or switching to/from fullscreen.\n\nNOT using vdpau overlay may cause tearing.\n\nIf you experience tearing, try to disable this option, if you experience instability,\ntry to check it.\n\nThis option disable the overlay surface by setting the environment variable:\nVDPAU_NVIDIA_NO_OVERLAY=1")
+            Text = ("Disable VDPAU overlay surface")
+            Value = CheckBox.True
+          }
+        }
       }
       Index = 1
       Text = ("Audio")
@@ -416,17 +426,6 @@
             ToolTip = ("Use dbus (need dbus-send command) to disable kwin effects\nand avoid glitches in fullscreen mode.")
             AutoResize = True
             Text = ("Disable Kde Effects in fullscreen mode")
-          }
-        }
-        { vdpauoverlaybox HBox
-          MoveScaled(2,21,45,6)
-          Visible = False
-          ToolTip = ("vdpau need some codecs to be loaded,\nchecking this will auto add: \nffmpeg12vdpau, ffh264vdpau, ffwmv3vdpau, ffvc1vdpau")
-          { vdpauooverlaycheck CheckBox
-            MoveScaled(1,1,43,4)
-            ToolTip = ("Using vdpau overlay surface may lead to instability problems under some circumstances \nlike heavy cpu load or switching to/from fullscreen.\n\nNOT using vdpau overlay may cause tearing.\n\nIf you experience tearing, try to disable this option, if you experience instability,\ntry to check it.\n\nThis option disable the overlay surface by setting the environment variable:\nVDPAU_NVIDIA_NO_OVERLAY=1")
-            Text = ("Disable VDPAU overlay surface")
-            Value = CheckBox.True
           }
         }
       }

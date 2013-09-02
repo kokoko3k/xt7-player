@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Sep 02  2013 
+  FIX:  Vdpau overlay surface was always disabled (not saved), now it is under generaloptions->video amd get saved.
+
 Aug 06 2013
   FIX:  Typo in executable() which prevent idle mplayer to timeout
 

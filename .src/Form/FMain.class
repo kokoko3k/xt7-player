@@ -5552,7 +5552,7 @@ End
 
 Public Sub MenuLibraryAlbumTracksReplacePlaylist_click()
 
-Stop
+
 
   Try myplaylist.clear(playlistgrid)
   If Error Then Goto ErrorLabel

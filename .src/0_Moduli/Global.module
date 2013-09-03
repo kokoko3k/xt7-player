@@ -114,8 +114,7 @@ End
 
 
 Public Function proxyfromenv() As String
-  Dim key As String
-  Dim httpproxy, httpsproxy As String
+
   If Application.Env["https_proxy"] <> "" Then Return Application.Env["https_proxy"]
   If Application.Env["http_proxy"] <> "" Then Return Application.Env["http_proxy"]
   Return ""
@@ -557,6 +556,7 @@ Public Sub DelayLoadStates_Timer()
   If Not VideoEqualizer.AlreadyLoaded Then MyForms.Add(VideoEqualizer)
   If Not VFiltersCfg.AlreadyLoaded Then MyForms.Add(VFiltersCfg)
   If Not AFiltersCfg.AlreadyLoaded Then MyForms.Add(AFiltersCfg)
+
   For Each TheForm In MyForms
     WasVisible = TheForm.visible
     TheForm.hide

@@ -293,7 +293,7 @@ Public Sub MenuLoadDefault_Click()
 End
 
 Public Sub MenuSaveDefault_Click()
-   SaveCurrentTo(Global.CurrentProfile)
+  SaveCurrentTo(Global.CurrentProfile)
 End
 Public Sub SaveBTN_Click()
   SaveCurrentTo(Global.CurrentProfile)

@@ -1,0 +1,67 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,81,71)
+  Text = ("Convert Audio")
+  Icon = Picture["icon:/22/audio"]
+  Persistent = True
+  Arrangement = Arrange.Vertical
+  Spacing = True
+  Margin = True
+  { Panel1 Panel
+    MoveScaled(0,1,81,8)
+    Arrangement = Arrange.Vertical
+    { Label1 Label
+      MoveScaled(0,1,16,3)
+      Text = ("Save to")
+    }
+    { ButtonBox1 ButtonBox
+      MoveScaled(0,4,80,4)
+    }
+  }
+  { Panel2 Panel
+    MoveScaled(0,10,81,4)
+    Arrangement = Arrange.Horizontal
+    Spacing = True
+    { Label2 Label
+      MoveScaled(0,0,16,4)
+      Text = ("Format")
+    }
+    { ComboBox1 ComboBox
+      MoveScaled(17,0,24,4)
+      Expand = True
+      ReadOnly = True
+      List = [("mp3 (requires ffmpeg)"), ("ogg (requires ffmpeg)"), ("PCM wav")]
+      Text = ("mp3 (requires ffmpeg)")
+    }
+  }
+  { Panel3 Panel
+    MoveScaled(0,15,42,4)
+    Arrangement = Arrange.Horizontal
+    Spacing = True
+    { Label3 Label
+      MoveScaled(0,0,16,4)
+      Text = ("Quality (Kbps)")
+    }
+    { ComboBox2 ComboBox
+      MoveScaled(17,0,24,4)
+      #Translate = False
+      Expand = True
+      ReadOnly = True
+      List = ["64k", "96k", "112k", "128k", "160k", "192k", "224k", "272k", "320k"]
+      Text = "128k"
+    }
+  }
+  { TextArea1 TextArea
+    MoveScaled(0,21,81,31)
+    Expand = True
+  }
+  { ProgressBar1 ProgressBar
+    MoveScaled(1,56,79,3)
+  }
+  { Button1 Button
+    MoveScaled(64,66,16,4)
+    Text = ("Start")
+    Picture = Picture["icon:/small/ok"]
+  }
+}

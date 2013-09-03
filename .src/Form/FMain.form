@@ -206,6 +206,12 @@
       Text = ("Delete selected from disk")
       Picture = Picture["icon:/16/erase"]
     }
+    { Separator10355 Menu
+    }
+    { ExtractAudioLibrarymenu Menu
+      Text = ("Extract audio")
+      Picture = Picture["icon:/22/audio"]
+    }
   }
   { MenuPlaylist Menu MainMenu
     Name = "MenuPlaylist"

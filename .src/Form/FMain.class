@@ -1417,6 +1417,7 @@ Public Sub Form_Close()
   Try ButtonMenu.hide
   Try ladspahelper.hide
   Try FormLyrics.hide
+  Try AudioConvert.hide
   Debug "hidden all forms"
   Debug
   
@@ -1515,6 +1516,8 @@ Public Sub Form_Close()
   Try fsform.close
   Try ladspahelper.close
   Try FormLyrics.close
+  Try AudioConvert.close 
+  
   Debug "time to close = " & CStr(Timer() - t0)
   Print "Bye"
   Wait 0.5
@@ -10923,4 +10926,22 @@ Private Sub flipbutton(thebutton As Object)
    If fmain.fullyloaded Then theButton.picture = theButton.Picture.Image.Mirror(False, True).picture
 End
 
- 
+Public Sub ExtractAudioLibrarymenu_Click()
+  Dim selecteditems As New String[]
+  Dim i As Integer
+  For i = 0 To librarygrid.Rows.max
+    If librarygrid.Rows[i].Selected Then selecteditems.Add(librarygrid[i, mylibrary.Columnindex["Full Path"]].text)
+  Next
+  ExtractAudio(selecteditems)
+End
+
+Public Sub ExtractAudio(selecteditems As String[])
+  If audioconvert.converting Then
+    Message.Error("Sorry, another conversion is in progress")
+      Else
+    audioconvert.items = selecteditems
+  Endif
+  global.Center(fmain, audioconvert)
+  audioconvert.show()
+End
+

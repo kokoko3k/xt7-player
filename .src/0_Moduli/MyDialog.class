@@ -38,39 +38,49 @@ Private Sub Getsync()
 End
 
 Public Function SelectColor() As Boolean
+  Dim ret As Boolean
   Getsync()
-  Try Dialog.SelectColor()
-  If Error Then Try Dialog.SelectColor()
-  If Error Then Try Dialog.SelectColor()
+  Try ret = Dialog.SelectColor()
+  If Error Then Try ret = Dialog.SelectColor()
+  If Error Then Try ret = Dialog.SelectColor()
   sync()
+  Return ret
 End
 Public Function SelectFont() As Boolean
+  Dim ret As Boolean
   Getsync()
-  Try Dialog.SelectFont()
-  If Error Then Try Dialog.SelectFont()
-  If Error Then Try Dialog.SelectFont()
+  Try ret = Dialog.SelectFont()
+  If Error Then Try ret = Dialog.SelectFont()
+  If Error Then Try ret = Dialog.SelectFont()
   sync()
+  Return ret
 End
 Public Function OpenFile() As Boolean
+  Dim ret As Boolean
   Getsync()
-  Try Dialog.OpenFile()
-  If Error Then Try Dialog.OpenFile()
-  If Error Then Try Dialog.OpenFile()
+  Try ret = Dialog.OpenFile()
+  If Error Then Try ret = Dialog.OpenFile()
+  If Error Then Try ret = Dialog.OpenFile()
   sync()
+  Return ret
 End
 
 Public Function SelectDate() As Boolean
+  Dim ret As Boolean
   Getsync()
-  Try Dialog.SelectDate()
-  If Error Then Try Dialog.SelectDate()
-  If Error Then Try Dialog.SelectDate()
+  Try ret = Dialog.SelectDate()
+  If Error Then Try ret = Dialog.SelectDate()
+  If Error Then Try ret = Dialog.SelectDate()
   sync()
+  Return ret
 End
 Public Function SelectDirectory() As Boolean
+  Dim ret As Boolean
   Getsync()
-  Try Dialog.SelectDirectory()
-  If Error Then Try Dialog.SelectDirectory()
-  If Error Then Try Dialog.SelectDirectory()
+  Try ret = Dialog.SelectDirectory()
+  If Error Then Try ret = Dialog.SelectDirectory()
+  If Error Then Try ret = Dialog.SelectDirectory()
   sync()
+  Return ret
 End
 

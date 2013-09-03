@@ -579,7 +579,7 @@ End
 
 Public Sub ButtonLadspaHelper_Click()
   Dim ptext As String
-  Dim ladspatools As String
+
   If Not global.which("analyseplugin") Then
     If MyQuestion.ask(("Even if your mplayer has ladspa support compiled in,\nyou seem to miss the ladspa package.\nbecause 'analyseplugin' executable is not found"), ("Continue anyway"), ("Abort")) = 2 Then Return
   Endif

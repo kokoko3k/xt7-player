@@ -56,22 +56,22 @@ End
 
 
 Private Sub GetAndShow(artist As String, song As String)
-  Dim wikiaurl As String 
+
   Dim googleurl As String
   'Dim artist As String = "coldplay"
   'Dim song As String = "charlie broWn"
   Dim plainsong As String
-  Dim outfile As String = Temp()
+
   Dim snippet As String
   Dim gresults As String
   Dim resultlines As New String[]
   Dim myline As String
   Dim mystart, myend, mylen As Integer
-  Dim wtext As String
+
   Dim blackfound As Boolean = False
   Dim blackdomain As String
-  Dim mywebline As String
-  Dim tmpwebline As String
+
+
   Dim i As Integer
   Dim urls As New String[]
 
@@ -183,8 +183,8 @@ End
 Public Sub NextBTN_MouseDown()
     Dim webcontent As String
     Dim myurl As String
-    Dim myhline As String
-    Dim tmpcontent As String
+
+
     If SEARCHING Then Return
     Me.mouse = Mouse.wait
     If combourls.Count = 0 Then Return

@@ -1,5 +1,11 @@
 Git changes:
 --------------------------------------
+Sep 04 2013
+  CHANGE: Audio extraction/transcode capabilities for youtube, browse and playlist tabs
+
+Sep 03 2013 
+  NEW: Initial work for audio extracting/transcoding, only works for library items now.
+
 Sep 02  2013 
   FIX:  Vdpau overlay surface was always disabled (not saved), now it is under generaloptions->video amd get saved.
   CHANGE: defaults to "NOT" disabling vdpau overlay surface, if you need, please manually check it and save the profile.

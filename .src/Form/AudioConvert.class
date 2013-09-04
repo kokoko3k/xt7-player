@@ -20,6 +20,7 @@ Public ffproc As Process
   
 Public Sub ConvertandSaveAudio()
   Dim i, j As Integer
+  Dim youtube As New Youtubeclass
   Dim currentstream As String
   Dim outputfolder As String
   Dim outfmt, q As String
@@ -36,6 +37,7 @@ Public Sub ConvertandSaveAudio()
   Dim audiotempfolder As String = global.confpath & "/audiotemp/"
   Dim kbps As String
   Dim finalfile As String
+  Dim yttitle As String
 
   Dim MySettings As New SettingsClass
 
@@ -47,6 +49,7 @@ Public Sub ConvertandSaveAudio()
   Endif
   converting = True
   Progressbar1.value = 0
+  Progressbar2.value = 0
   
   Try outfmt = Split(combobox1.text, " ")[0]
   Try q = Split(combobox2.text, " ")[0]
@@ -63,13 +66,7 @@ Public Sub ConvertandSaveAudio()
     Goto returnlabel
   Endif
 
-  MySettings.save(Me, global.confpath & "/" & global.currentprofile)
 
-  If buttonbox1.text = "" Then Form_Show()
-  outputfolder = buttonbox1.text 
-  For i = 0 To items.max
-    currentstream = items[i]
-    
     Me.mouse = Mouse.Wait
     TextArea1.mouse = Me.mouse
     combobox1.enabled = False
@@ -77,22 +74,43 @@ Public Sub ConvertandSaveAudio()
     combobox2.enabled = combobox1.Enabled
     buttonbox1.enabled = combobox1.Enabled
     button1.enabled = combobox1.Enabled
-      
+
+
+  MySettings.save(Me, global.confpath & "/" & global.currentprofile)
+
+  If buttonbox1.text = "" Then Form_Show()
+  outputfolder = buttonbox1.text 
+  For i = 0 To items.max
+    currentstream = items[i]
     TextArea1.text &= items[i] & "\n"
-    TextArea1.text &= ("Extracting audio to PCM data...") & "\n"
+    yttitle = ""
+    If Youtube.IsYoutubeLink(currentstream) Then
+      TextArea1.text &= ("Seems a youtube link, getting real stream url and title...") & "\n"
+      Try yttitle = Youtube.GetTitle(currentstream)
+      TextArea1.text &= ("Title") & ":\n" & yttitle & "\n"
+      Try currentstream = Youtube.realvideourl(currentstream, GeneralOptions.Youtubeformat.text)
+      If Error Then
+        Message.error(("Unable to get the real stream url"))
+        Goto nextlabel 'skip item
+      Endif
+    Endif
     
+  
     tmpout = audiotempfolder & "/" & Rnd(0, 9999) & "." & i & ".wav"
-    
+    TextArea1.text &= ("Extracting audio to PCM data...") & "\n"     
     mymplayer.ExtractAudioTo(currentstream, tmpout)
     While mymplayer.ProcessRunningOvr()
       mymplayer.Send("get_percent_pos")
       Wait 0.5
       'TextArea1.text &= mymplayer.Media_percent_pos & "% " & "\n"
       Try Progressbar1.value = mymplayer.Media_percent_pos / 200
+      'Try Progressbar2.value = (Progressbar1.value / items.max) + (i / (items.max + 1))
       If mymplayer.Media_percent_pos = 100 Then mptimeout -= 1
       If mptimeout = 0 Then Break
     Wend
     mymplayer.do_stop()
+    Progressbar1.value = 0.5
+    Try Progressbar2.value = (Progressbar1.value / (items.max + 1)) + (i / (items.max + 1))
     length = mymplayer.media_length
 
     TextArea1.text &= ("Done.") & "\n"
@@ -102,18 +120,30 @@ Public Sub ConvertandSaveAudio()
     'ffmpeg -i /tmp/tmp.0.wav -y -b:a 192k -vn /tmp/out.mp3
     'ffmpeg -i /tmp/tmp.0.wav -y  -acodec libvorbis -b:a 192k /tmp/out.ogg
 
+      If yttitle = "" Then 
+        finalfile = Shell$(outputfolder & "/" & File.Name(currentstream))
+          Else
+        finalfile = Shell$(outputfolder & "/" & yttitle)
+      Endif
+
     kbps = combobox2.text
     ffcmdline = "ffmpeg -i " & tmpout & " -progress " & ffprogressfile & " -y "
 
     If combobox1.text Like "*mp3*" Then
-      finalfile = Shell$(outputfolder & "/" & File.Name(currentstream) & ".mp3")
-      ffproc = Shell ffcmdline & " -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+      finalfile = finalfile & ".mp3"
+      ffcmdline = ffcmdline & " -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+      ffproc = Shell ffcmdline
+      Debug ffcmdline
         Else If combobox1.text Like "*ogg*" Then 
-          finalfile = Shell$(outputfolder & "/" & File.Name(currentstream) & ".ogg")
-          ffproc = Shell ffcmdline & "-acodec libvorbis -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+          finalfile = finalfile & ".ogg"
+          ffcmdline = ffcmdline & "-acodec libvorbis -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+          ffproc = Shell ffcmdline
+          Debug ffcmdline
       Else
+          finalfile = finalfile & ".wav"
           Progressbar1.value = 1
-          Try Move tmpout To outputfolder & "/" & File.Name(currentstream) & ".wav"
+          Try Progressbar2.value = (Progressbar1.value / (items.max + 1)) + (i / (items.max + 1))
+          Try Move tmpout To finalfile
     Endif
     Wait 1
     Try TextArea1.text &= File.Load(ffout) & "\n"
@@ -128,18 +158,21 @@ Public Sub ConvertandSaveAudio()
            Try ffcurtime = mymplayer.DeFormatTime(ffcurtime)
            'TextArea1.text &= Split(CStr((CInt(ffcurtime) / CInt(length)) * 100), ".")[0] & "%" "\n"
            Try Progressbar1.value = 0.5 + (ffcurtime / length / 2)
+           Try Progressbar2.value = (Progressbar1.value / (items.max + 1)) + (i / (items.max + 1))
            Break
          Endif
        Next
 
     Wend
-  
-
 
     TextArea1.text &= ("Done.") & "\n"
     TextArea1.text &= "\n"
     Debug outstr
+    
+    nextlabel:
   Next
+  
+  
   returnlabel:
   Try Kill tmpout
   converting = False

@@ -1,9 +1,9 @@
 [Breakpoints]
-Count=0
+Breakpoint[1]="AudioConvert.85"
+Count=1
 
 [DebugWindow]
-Count=1
-DebugWindow[1]="myobj"
+Count=0
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -772,6 +772,9 @@ Geometry=[51,0,632,651]
 [DebugWindow/answer]
 Geometry=[1280,0,210,210]
 
+[DebugWindow/audioform]
+Geometry=[45,-3,210,210]
+
 [DebugWindow/audioform.AudioPanel]
 Geometry=[0,0,344,344]
 
@@ -1023,7 +1026,7 @@ Geometry=[0,0,344,344]
 Geometry=[1280,160,210,210]
 
 [DebugWindow/items]
-Geometry=[0,0,2550,412]
+Geometry=[-309,307,1235,412]
 
 [DebugWindow/librarygrid]
 Geometry=[1527,135,614,580]
@@ -1114,6 +1117,21 @@ Geometry=[0,41,344,344]
 
 [DebugWindow/mylibrary.PtableFromSearch(selectedalbum, ["Album"])]
 Geometry=[47,0,210,210]
+
+[DebugWindow/mymplayer]
+Geometry=[45,0,744,752]
+
+[DebugWindow/mymplayer.SUPPORTEDAUDIOFILTERS]
+Geometry=[59,14,744,752]
+
+[DebugWindow/mymplayer.audiotracks]
+Geometry=[59,14,744,752]
+
+[DebugWindow/mymplayer.cddbtracks]
+Geometry=[59,14,744,752]
+
+[DebugWindow/mymplayer.subtitletracks]
+Geometry=[59,14,744,752]
 
 [DebugWindow/myobj]
 Geometry=[1549,535,953,571]
@@ -1357,7 +1375,7 @@ Geometry=[1505,409,795,340]
 Geometry=[-4,-3,210,210]
 
 [DebugWindow/theSettings]
-Geometry=[45,461,308,552]
+Geometry=[45,445,308,552]
 
 [DebugWindow/theform.Controls]
 Geometry=[-4,-3,210,655]
@@ -1394,6 +1412,9 @@ Geometry=[51,0,210,210]
 
 [DebugWindow/tmppicture]
 Geometry=[0,0,344,344]
+
+[DebugWindow/tmpprogress]
+Geometry=[45,0,270,428]
 
 [DebugWindow/toSaveImg]
 Geometry=[0,41,344,344]
@@ -1466,17 +1487,16 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/0_Moduli/Global.module:517.19"
-Fold[1]=[183,202,208,216,246,258,267,275,278,281,285,300,312,324,346,358,376,464,530,574,616,668,918,929,942,957,989,999,1012]
+File[1]=".src/0_Moduli/Global.module:268.0"
+Fold[1]=[182,201,207,215,257,274,277,280,284,299,311,323,345,357,375,463,574,616,668,918,929,942,957,989,999,1012]
 File[2]=".src/Classi/StartClass.class:20.15"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:5565.8"
-File[5]=".src/Classi/SettingsClass.class:640.0"
-Active=6
-File[6]="CHANGELOG_GIT:4.10"
+File[4]=".src/Form/FMain.class:9132.12"
+File[5]=".src/Classi/SettingsClass.class:589.6"
+File[6]="CHANGELOG_GIT:3.8"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
-File[9]=".src/Classi/PlaylistClass.class:1370.3"
+File[9]=".src/Classi/PlaylistClass.class:1210.3"
 File[10]=".src/Form/EpgForm.form"
 File[11]=".src/Form/XConfigureAudioDriver.class:15.25"
 File[12]=".src/Form/AllOptions.form"
@@ -1484,12 +1504,13 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:51.77"
+Active=17
+File[17]=".src/Classi/MplayerClass.class:769.4"
 File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
 File[21]=".src/Form/GeneralOptions.class:1115.0"
-File[22]=".src/Form/CoverManager.class:396.51"
+File[22]=".src/Form/CoverManager.class:110.77"
 File[23]=".src/Form/EpgForm.class:604.24"
 File[24]=".src/Classi/AlbumView.class:252.31"
 File[25]=".src/Form/CoverManager.form"
@@ -1503,13 +1524,13 @@ File[32]=".src/Form/MyQuestion.class:107.3"
 File[33]=".src/Form/MyQuestion.form"
 File[34]=".src/Form/ladspahelper.form"
 File[35]=".src/Form/AFiltersCfg.form"
-File[36]=".src/Form/AFiltersCfg.class:58.30"
+File[36]=".src/Form/AFiltersCfg.class:5.0"
 File[37]=".src/Form/ladspahelper.class:113.50"
 File[38]=".src/Form/LogWindow.class:0.0"
 File[39]=".src/Form/Chains.form"
 File[40]=".src/Classi/mpris.class:131.20"
-File[41]=".src/Form/Chains.class:399.4"
-File[42]=".src/0_Moduli/MyDialog.class:31.18"
+File[41]=".src/Form/Chains.class:301.0"
+File[42]=".src/0_Moduli/MyDialog.class:46.2"
 File[43]=".src/Form/ButtonMenu.form"
 File[44]=".src/Classi/FloatSpinBox.class:12.17"
 File[45]=".src/Form/SubAndOsd.class:200.24"
@@ -1518,7 +1539,7 @@ File[47]=".src/Form/OpenSubtitesForm.class:93.0"
 File[48]=".src/Form/HotKeys.form"
 File[49]=".src/Form/HotKeys.class:233.57"
 File[50]=".src/Form/FormLyrics.form"
-File[51]=".src/Form/FormLyrics.class:27.21"
+File[51]=".src/Form/FormLyrics.class:186.0"
 File[52]=".src/Classi/WgetClass.class:87.0"
 File[53]=".src/Form/AudioVideoCodecs.form"
 File[54]="AA_ToDo:523.23"
@@ -1531,7 +1552,10 @@ File[60]=".src/Form/SubAndOsd.form"
 File[61]="xt7-player.png"
 File[62]=".src/Form/AudioVideoCodecs.class:0.0"
 File[63]=".src/Form/XConfigureVideoDriver.class:318.0"
-Count=63
+File[64]=".src/Form/AudioConvert.form"
+File[65]=".src/Form/AudioConvert.class:93.8"
+File[66]=".src/Form/AskName.form"
+Count=66
 
 [Watches]
 Count=16

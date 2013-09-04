@@ -456,6 +456,15 @@ End
 
 Private ytdlout As String = Temp(Rnd(0, 1000) & "youtubedl-out")
 
+Public Function GetTitle(sourceurl As String) As String
+    Dim videoid As String
+    Dim title As String
+    videoid = getvideoid(sourceurl)
+    Shell "youtube-dl " & videoid & " -e" To title
+    Return Trim(title)
+End
+
+
 Public Function realvideourl(sourceurl As String, maxformat As String) As String
   Dim videoid As String
   Dim fmtcode As Integer

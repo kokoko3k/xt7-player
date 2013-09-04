@@ -9124,7 +9124,7 @@ End
 Public Sub YoutubetreeTreeaddtoLibrary_Click()
   
   Dim QuickMode As Boolean
-
+Stop
   QuickMode = True
   Try MyLibrary.AddFile(librarygrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
@@ -10934,6 +10934,36 @@ Public Sub ExtractAudioLibrarymenu_Click()
   Next
   ExtractAudio(selecteditems)
 End
+
+Public Sub ExtractAudioPlaylistmenu_Click()
+  Dim selecteditems As New String[]
+  Dim i As Integer
+  For i = 0 To playlistgrid.Rows.max
+    If playlistgrid.Rows[i].Selected Then selecteditems.Add(playlistgrid[i, myplaylist.Columnindex["Full Path"]].text)
+  Next
+  ExtractAudio(selecteditems)
+End
+
+Public Sub youtubetreeextractaudio_Click()
+  Dim selecteditems As New String[]
+  Try selecteditems.Add(youtubetree.Current.Key)
+  If Not Error Then
+    Try ExtractAudio(selecteditems)
+      Else
+    Message.Error(("Error while getting selection"))
+  Endif
+End
+
+Public Sub MenuBrowseExtractAudio_Click()
+  Dim selecteditems As New String[]
+  Dim item As String
+  For Each item In fileview1.selection
+    selecteditems.Add(fileview1.Dir & "/" & item)
+  Next
+  
+  Try ExtractAudio(selecteditems)
+End
+
 
 Public Sub ExtractAudio(selecteditems As String[])
   If audioconvert.converting Then

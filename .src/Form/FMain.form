@@ -295,6 +295,12 @@
         Picture = Picture["icon:/16/erase"]
       }
     }
+    { Separator430414 Menu
+    }
+    { ExtractAudioPlaylistmenu Menu
+      Text = ("Extract Audio")
+      Picture = Picture["icon:/small/audio"]
+    }
   }
   { MenuConfigure Menu MainMenu
     Name = "MenuConfigure"
@@ -561,6 +567,10 @@
       Text = ("Download")
       Picture = Picture["icon:/16/save-as"]
     }
+    { youtubetreeextractaudio Menu
+      Text = ("Extract Audio")
+      Picture = Picture["icon:/small/audio"]
+    }
     { YoutubetreeTreeaddtoLibrary Menu
       Text = ("Add selected items to library")
       Picture = Picture["icon:/16/add"]
@@ -577,6 +587,8 @@
       Text = ("Open containing folder")
       Picture = Picture["icon:/16/open"]
     }
+    { Separator548907 Menu
+    }
     { MenuAddToHistory Menu
       Text = ("Add this folder to history")
       Picture = Picture["icon:/16/bookmark"]
@@ -589,9 +601,17 @@
       Text = ("Add selected items to playlist")
       Picture = Picture["icon:/16/add"]
     }
+    { Separator248027 Menu
+    }
     { MenuBrowseDelete Menu
       Text = ("Delete selected from disk")
       Picture = Picture["icon:/16/erase"]
+    }
+    { Separator10238 Menu
+    }
+    { MenuBrowseExtractAudio Menu
+      Text = ("Extract Audio")
+      Picture = Picture["icon:/small/audio"]
     }
   }
   { MenuDvbt Menu

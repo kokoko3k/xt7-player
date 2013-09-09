@@ -3984,7 +3984,6 @@ Public Sub SwitchToFS()
   CostrainFormSizes()
   bottomvbox.Hide
   BottomVbox.Reparent(rightsidepanel)
-  Maintoolbar.hide
   toolbarbackground.hide
   cachebar.hide
   cachebar.raise
@@ -4021,14 +4020,11 @@ Public Sub SwitchToFS()
   Wait 0.1
   videobox.Show
 
-  'workaround for missing picture when unredirecting fs windows is enabled and mplayer is paused
-  If mplayer.Paused Then
-    Wait 0.3
-    videobox.cached = Not videobox.cached
-    Wait
-    videobox.cached = Not videobox.cached
-  Endif
+  'workaround for missing picture when switching 
+  Wait 0.2
+  Maintoolbar.hide
 
+  
 End
 
 Public Sub SwitchToWindow()
@@ -4041,7 +4037,6 @@ Public Sub SwitchToWindow()
   
   If Not (buttonmenuwasvisible) Then Hidebuttonmenu()
   Maintoolbar.Reparent(fmain)
-  
   'invert the VSplit with a HSplit
   zzzFake.VSplit1.Reparent(zzzFake)
   Hsplit1.Reparent(Fmain)
@@ -4054,7 +4049,6 @@ Public Sub SwitchToWindow()
   
   'show the menu
   AllmenuVisible(True)
-  Maintoolbar.visible = True
   If Not global.pluginmode Then toolbarbackground.show
   'restore the form position
   LeftsidePanel.Visible = LeftsideWasVisible
@@ -4090,14 +4084,13 @@ Public Sub SwitchToWindow()
   FsForm.FullScreen = False
   fmain.Maximized = winmax
   fmain.show  
-  
   cachebar.Reparent(rightsidepanel)
   cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h)
   cachebar.raise
   cachebar.show
-  'timerhideshowvideo.start
-  'fsform.Background = color.Default
-  'Try Shell "xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2 ; xrefresh -black &>/dev/null ; sleep 0.2"
+  Maintoolbar.hide 'workaround for missing picture at fs switch
+  Wait 0.2
+  Maintoolbar.show
 End
 
 Public Sub AllmenuVisible(AreVisible As Boolean)

@@ -491,7 +491,7 @@ msgstr ""
 msgid "Add the selected URI to Collection and/or Playlist"
 msgstr ""
 
-#: AddUriForm.form:152 GeneralOptions.form:645
+#: AddUriForm.form:152 FMain.class:8625 GeneralOptions.form:645
 msgid "Add"
 msgstr ""
 
@@ -569,93 +569,105 @@ msgstr ""
 msgid "To use new profile, switch to it, then restart xt7"
 msgstr ""
 
-#: AudioConvert.form:27
+#: AudioConvert.form:31
 msgid "Convert Audio"
 msgstr ""
 
-#: AudioConvert.form:40
+#: AudioConvert.form:44
 msgid "Save to"
 msgstr ""
 
-#: AudioConvert.form:55
+#: AudioConvert.form:59
 msgid "Format"
 msgstr ""
 
-#: AudioConvert.form:62
+#: AudioConvert.form:66
 msgid "mp3 (requires ffmpeg)"
 msgstr ""
 
-#: AudioConvert.form:62
+#: AudioConvert.form:66
 msgid "ogg (requires ffmpeg)"
 msgstr ""
 
-#: AudioConvert.form:62
+#: AudioConvert.form:66
 msgid "PCM wav"
 msgstr ""
 
-#: AudioConvert.form:74
+#: AudioConvert.form:78
 msgid "Quality (Kbps)"
 msgstr ""
 
-#: AudioConvert.form:98
+#: AudioConvert.form:97
+msgid "Add to Current Playlist"
+msgstr ""
+
+#: AudioConvert.form:108
+msgid "Add to Library"
+msgstr ""
+
+#: AudioConvert.form:124
 msgid "Total"
 msgstr ""
 
-#: AudioConvert.form:114
+#: AudioConvert.form:140
 msgid "Current stream"
 msgstr ""
 
-#: AudioConvert.form:132
+#: AudioConvert.form:158
 msgid "Stop All"
 msgstr ""
 
-#: AudioConvert.form:140
+#: AudioConvert.form:166
 msgid "Skip current"
 msgstr ""
 
-#: AudioConvert.form:148 DVBTuner.form:78
+#: AudioConvert.form:174 DVBTuner.form:78
 msgid "Start"
 msgstr ""
 
-#: AudioConvert.class:15
+#: AudioConvert.class:16
 msgid "Choose output folder"
 msgstr ""
 
-#: AudioConvert.class:59
+#: AudioConvert.class:63
 msgid "Choose output format."
 msgstr ""
 
-#: AudioConvert.class:63
+#: AudioConvert.class:67
 msgid "Nothing to convert"
 msgstr ""
 
-#: AudioConvert.class:67
+#: AudioConvert.class:71
 msgid "Choose quality level."
 msgstr ""
 
-#: AudioConvert.class:93
+#: AudioConvert.class:97
 msgid "Seems a youtube link, getting real stream url and title..."
 msgstr ""
 
-#: AudioConvert.class:95 AudioForm.form:221 FMain.form:2414
+#: AudioConvert.class:99 AudioForm.form:221 FMain.form:2414
 #: FormLyrics.form:106 Searchfields.form:74
 msgid "Title"
 msgstr ""
 
-#: AudioConvert.class:98 FMain.class:2685
+#: AudioConvert.class:102 FMain.class:2685
 msgid "Unable to get the real stream url"
 msgstr ""
 
-#: AudioConvert.class:105
+#: AudioConvert.class:109
 msgid "Extracting audio to PCM data..."
 msgstr ""
 
-#: AudioConvert.class:123
+#: AudioConvert.class:127
 msgid "Done."
 msgstr ""
 
-#: AudioConvert.class:125
+#: AudioConvert.class:129
 msgid "Encoding..."
+msgstr ""
+
+#: AudioConvert.class:207
+msgid "Updating Library/Playlist"
 msgstr ""
 
 #: AudioForm.form:139

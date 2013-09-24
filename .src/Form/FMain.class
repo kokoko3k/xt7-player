@@ -8622,7 +8622,7 @@ Public Sub ItemsFromBrowseTo(theplaylist As Playlistclass, thegrid As Gridview, 
         theplaylist.AddFile(thegrid, SelectedItem, False, False)
         UpdateSearchResults(theplaylist, thegrid, filterstring)
       Else If StatType = gb.Directory Then
-        If MyQuestion.Ask(("Are you sure you want to recursively add this directory?\n") & selecteditem, "Add", "Cancel") = 1 Then
+        If MyQuestion.Ask(("Are you sure you want to recursively add this directory?\n") & selecteditem, ("Add"), ("Cancel")) = 1 Then
           thegrid.enabled = False
           Fileview1.enabled = False
           'theplaylist.AddDir(librarygrid, selecteditem, nulllistbox)

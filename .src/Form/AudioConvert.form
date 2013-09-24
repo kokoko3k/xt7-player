@@ -52,12 +52,30 @@
       Text = "128k"
     }
   }
+  { Panel7 Panel
+    MoveScaled(0,21,79,4)
+    Arrangement = Arrange.Horizontal
+    { CheckPLS CheckBox
+      MoveScaled(1,0,24,4)
+      AutoResize = True
+      Text = ("Add to Current Playlist")
+    }
+    { VBox1 VBox
+      MoveScaled(36,1,3,3)
+    }
+    { CheckLIB CheckBox
+      MoveScaled(42,0,24,4)
+      Expand = True
+      AutoResize = True
+      Text = ("Add to Library")
+    }
+  }
   { TextArea1 TextArea
-    MoveScaled(0,21,81,31)
+    MoveScaled(0,26,81,31)
     Expand = True
   }
   { Panel5 Panel
-    MoveScaled(1,53,80,3)
+    MoveScaled(1,57,80,3)
     Arrangement = Arrange.Horizontal
     Spacing = True
     { Label5 Label
@@ -70,7 +88,7 @@
     }
   }
   { Panel4 Panel
-    MoveScaled(1,57,80,3)
+    MoveScaled(1,61,80,3)
     Arrangement = Arrange.Horizontal
     Spacing = True
     { Label4 Label

@@ -4,6 +4,7 @@ Public items As New String[]
 Private RequestStopALL As Boolean = False
 Private RequestSkip As Boolean = False
 Public converting As Boolean = False
+Private converteditems As New String[]
 
 Public Sub Form_Show()
   Dim MySettings As New SettingsClass
@@ -41,6 +42,9 @@ Public Sub ConvertandSaveAudio()
   Dim yttitle As String
   Dim MySettings As New SettingsClass
   Dim fcaption As String = Me.text
+  Dim finalitem As String
+  
+  converteditems.Clear()
   
   Try Shell "mkdir -p " & audiotempfolder & " >/dev/null 2>&1" Wait
   
@@ -128,9 +132,11 @@ Public Sub ConvertandSaveAudio()
     'ffmpeg -i /tmp/tmp.0.wav -y  -acodec libvorbis -b:a 192k /tmp/out.ogg
 
       If yttitle = "" Then 
-        finalfile = Shell$(outputfolder & "/" & File.Name(currentstream))
+        'finalfile = Shell$(outputfolder & "/" & File.Name(currentstream))
+        finalfile = (outputfolder & "/" & File.Name(currentstream))
           Else
-        finalfile = Shell$(outputfolder & "/" & yttitle)
+        'finalfile = Shell$(outputfolder & "/" & yttitle)
+        finalfile = (outputfolder & "/" & yttitle) 
       Endif
 
     kbps = combobox2.text
@@ -138,19 +144,19 @@ Public Sub ConvertandSaveAudio()
 
     If combobox1.text Like "*mp3*" Then
       finalfile = finalfile & ".mp3"
-      ffcmdline = ffcmdline & " -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+      ffcmdline = ffcmdline & " -b:a " & combobox2.text & " -vn " & "'" & finalfile & "'" & " -v warning &>" & ffout
       ffproc = Shell ffcmdline
       Debug ffcmdline
         Else If combobox1.text Like "*ogg*" Then 
           finalfile = finalfile & ".ogg"
-          ffcmdline = ffcmdline & "-acodec libvorbis -b:a " & combobox2.text & " -vn " & finalfile & " -v warning &>" & ffout
+          ffcmdline = ffcmdline & "-acodec libvorbis -b:a " & combobox2.text & " -vn " & "'" & finalfile & "'" & " -v warning &>" & ffout
           ffproc = Shell ffcmdline
           Debug ffcmdline
       Else
           finalfile = finalfile & ".wav"
           Progressbar1.value = 1
           Try Progressbar2.value = (Progressbar1.value / (items.max + 1)) + (i / (items.max + 1))
-          Try Move tmpout To finalfile
+          Try Shell "mv " & tmpout & " " & "'" & finalfile & "'"
     Endif
     Wait 1
     Try TextArea1.text &= File.Load(ffout) & "\n"
@@ -181,6 +187,7 @@ Public Sub ConvertandSaveAudio()
     nextlabel:
     mymplayer.do_stop()
     Try ffkill()
+    If RequestSkip = False Then ConvertedItems.Add(finalfile)
     RequestSkip = False
     RequestStopALL = False
     i += 1
@@ -192,10 +199,18 @@ Public Sub ConvertandSaveAudio()
   mymplayer.do_stop()
   RequestSkip = False
   RequestStopALL = False
-  Me.text = fcaption
+
   items.Clear()
   Try Kill tmpout
+  
   converting = False
+  Me.text = ("Updating Library/Playlist")
+  Wait
+  For Each finalitem In converteditems
+    If CheckLIB.Value Then FMain.MyPlaylist.AddFile(FMain.librarygrid, finalitem, False)
+    If CheckPLS.Value Then FMain.MyLibrary.AddFile(FMain.playlistgrid, finalitem, False)
+  Next 'finalitem
+  Me.text = fcaption
   Me.mouse = Mouse.normal
   TextArea1.mouse = Me.mouse
   combobox1.enabled = True
@@ -203,6 +218,7 @@ Public Sub ConvertandSaveAudio()
   combobox2.enabled = combobox1.Enabled
   buttonbox1.enabled = combobox1.Enabled
   button1.enabled = combobox1.Enabled
+  Me.text = fcaption
   Return
 End
 

@@ -8,7 +8,7 @@
 
 'Public Audiofilter As String = "*.mp3;*.ogg;*.aac;*.flac;*.mpc;*.ac3;"
 Public ImIdlePlaying As Boolean = False 'setted by do_idle_play or from outside
-
+Public wantlog As Boolean = True
 Public IsNetworkURI As Boolean = False
 Public ICY As String
 Public ICYStreamTitle As String = ""
@@ -303,7 +303,7 @@ Public Sub playerprocess_error(stderr As String)
     Return
   Endif
     silences = 0 'so that Stimer (as stucktimer) will be fine...
-  FMain.mplayererroravailable(stderr)
+  If WantLog Then FMain.mplayererroravailable(stderr)
 End
 
 
@@ -471,7 +471,7 @@ Public Sub playerprocess_read(Optional injected As String = "")
       Endif
     Endif
 
-    FMain.mplayeroutputavailable(Playeroutput)
+    If WantLog Then FMain.mplayeroutputavailable(Playeroutput)
   Endif
 End
 

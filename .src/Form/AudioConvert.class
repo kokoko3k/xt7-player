@@ -41,9 +41,10 @@ Public Sub ConvertandSaveAudio()
   Dim yttitle As String
   Dim MySettings As New SettingsClass
   Dim fcaption As String = Me.text
-
+  
   Try Shell "mkdir -p " & audiotempfolder & " >/dev/null 2>&1" Wait
   
+  mymplayer.wantlog = False
   If converting Then
     Message.Error("Sorry, another conversion is in progress")
     Return

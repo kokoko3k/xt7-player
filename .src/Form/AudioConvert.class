@@ -183,6 +183,7 @@ Public Sub ConvertandSaveAudio()
     RequestSkip = False
     RequestStopALL = False
     i += 1
+    Try Kill tmpout
   Wend
   
   returnlabel:

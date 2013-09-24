@@ -10959,12 +10959,14 @@ End
 
 
 Public Sub ExtractAudio(selecteditems As String[])
-  If audioconvert.converting Then
-    Message.Error("Sorry, another conversion is in progress")
-      Else
-    audioconvert.items = selecteditems
-  Endif
-  global.Center(fmain, audioconvert)
+  ' If audioconvert.converting Then
+  '   Message.Error("Sorry, another conversion is in progress")
+  '     Else
+  '   audioconvert.items = selecteditems
+  ' Endif
+  audioconvert.items.Insert(selecteditems)
+  If (Not audioconvert.visible) Then global.Center(fmain, audioconvert)
+
   audioconvert.show()
 End
 

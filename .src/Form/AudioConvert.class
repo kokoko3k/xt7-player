@@ -1,7 +1,8 @@
 ' Gambas class file
 
-Public items As String[]
-
+Public items As New String[]
+Private RequestStopALL As Boolean = False
+Private RequestSkip As Boolean = False
 Public converting As Boolean = False
 
 Public Sub Form_Show()
@@ -38,8 +39,8 @@ Public Sub ConvertandSaveAudio()
   Dim kbps As String
   Dim finalfile As String
   Dim yttitle As String
-
   Dim MySettings As New SettingsClass
+  Dim fcaption As String = Me.text
 
   Try Shell "mkdir -p " & audiotempfolder & " >/dev/null 2>&1" Wait
   
@@ -54,15 +55,15 @@ Public Sub ConvertandSaveAudio()
   Try outfmt = Split(combobox1.text, " ")[0]
   Try q = Split(combobox2.text, " ")[0]
   If outfmt = "" Then
-    Message.error("Choose output format.")
+    Message.error(("Choose output format."))
     Goto returnlabel
   Endif
   If items.count = 0 Then 
-    Message.error("Nothing to convert")
+    Message.error(("Nothing to convert"))
     Goto returnlabel
   Endif
   If q = "" Then
-    Message.error("Choose quality level.")
+    Message.error(("Choose quality level."))
     Goto returnlabel
   Endif
 
@@ -80,7 +81,10 @@ Public Sub ConvertandSaveAudio()
 
   If buttonbox1.text = "" Then Form_Show()
   outputfolder = buttonbox1.text 
-  For i = 0 To items.max
+  'For i = 0 To items.max
+  i = 0
+  While i <= items.max
+    Me.text = fcaption & " - " & CStr(i + 1) & "/" & CStr(items.max + 1)
     currentstream = items[i]
     TextArea1.text &= items[i] & "\n"
     yttitle = ""
@@ -107,6 +111,8 @@ Public Sub ConvertandSaveAudio()
       'Try Progressbar2.value = (Progressbar1.value / items.max) + (i / (items.max + 1))
       If mymplayer.Media_percent_pos = 100 Then mptimeout -= 1
       If mptimeout = 0 Then Break
+      If RequestStopALL Then Goto returnlabel
+      If RequestSkip Then Goto nextlabel
     Wend
     mymplayer.do_stop()
     Progressbar1.value = 0.5
@@ -149,6 +155,8 @@ Public Sub ConvertandSaveAudio()
     Try TextArea1.text &= File.Load(ffout) & "\n"
     While ffProcessRunningOvr()
       Wait 0.5
+       If RequestStopALL Then Goto returnlabel
+       If RequestSkip Then Goto nextlabel
        tmpprogress = Split(File.Load(ffprogressfile), "\n")
 
        'find the progress line
@@ -170,10 +178,20 @@ Public Sub ConvertandSaveAudio()
     Debug outstr
     
     nextlabel:
-  Next
-  
+    mymplayer.do_stop()
+    Try ffkill()
+    RequestSkip = False
+    RequestStopALL = False
+    i += 1
+  Wend
   
   returnlabel:
+  Try ffkill()
+  mymplayer.do_stop()
+  RequestSkip = False
+  RequestStopALL = False
+  Me.text = fcaption
+  items.Clear()
   Try Kill tmpout
   converting = False
   Me.mouse = Mouse.normal
@@ -196,6 +214,16 @@ Public Function ffProcessRunningOvr() As Boolean
 
 End
 
+Private Sub ffkill() 
+  
+  While ffProcessRunningOvr()
+    Try ffproc.Kill
+    If ffProcessRunningOvr() Then Wait 0.1
+  Wend
+  
+End
+
+
 Public Sub ButtonBox1_Click()
   selectfolder()
 End
@@ -204,3 +232,15 @@ Public Sub Button1_Click()
   ConvertandSaveAudio()
 End
 
+
+Public Sub ButtonStop_Click()
+
+  RequestStopALL = True
+
+End
+
+Public Sub ButtonSkip_Click()
+
+  RequestSkip = True
+
+End

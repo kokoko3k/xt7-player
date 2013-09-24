@@ -569,72 +569,92 @@ msgstr ""
 msgid "To use new profile, switch to it, then restart xt7"
 msgstr ""
 
-#: AudioConvert.form:24
+#: AudioConvert.form:27
 msgid "Convert Audio"
 msgstr ""
 
-#: AudioConvert.form:37
+#: AudioConvert.form:40
 msgid "Save to"
 msgstr ""
 
-#: AudioConvert.form:52
+#: AudioConvert.form:55
 msgid "Format"
 msgstr ""
 
-#: AudioConvert.form:59
+#: AudioConvert.form:62
 msgid "mp3 (requires ffmpeg)"
 msgstr ""
 
-#: AudioConvert.form:59
+#: AudioConvert.form:62
 msgid "ogg (requires ffmpeg)"
 msgstr ""
 
-#: AudioConvert.form:59
+#: AudioConvert.form:62
 msgid "PCM wav"
 msgstr ""
 
-#: AudioConvert.form:71
+#: AudioConvert.form:74
 msgid "Quality (Kbps)"
 msgstr ""
 
-#: AudioConvert.form:95
+#: AudioConvert.form:98
 msgid "Total"
 msgstr ""
 
-#: AudioConvert.form:111
+#: AudioConvert.form:114
 msgid "Current stream"
 msgstr ""
 
-#: AudioConvert.form:122 DVBTuner.form:78
+#: AudioConvert.form:132
+msgid "Stop All"
+msgstr ""
+
+#: AudioConvert.form:140
+msgid "Skip current"
+msgstr ""
+
+#: AudioConvert.form:148 DVBTuner.form:78
 msgid "Start"
 msgstr ""
 
-#: AudioConvert.class:14
+#: AudioConvert.class:15
 msgid "Choose output folder"
 msgstr ""
 
-#: AudioConvert.class:88
+#: AudioConvert.class:58
+msgid "Choose output format."
+msgstr ""
+
+#: AudioConvert.class:62
+msgid "Nothing to convert"
+msgstr ""
+
+#: AudioConvert.class:66
+msgid "Choose quality level."
+msgstr ""
+
+#: AudioConvert.class:92
 msgid "Seems a youtube link, getting real stream url and title..."
 msgstr ""
 
-#: AudioConvert.class:90 AudioForm.form:221 FMain.form:2414
+#: AudioConvert.class:94 AudioForm.form:221 FMain.form:2414
 #: FormLyrics.form:106 Searchfields.form:74
 msgid "Title"
 msgstr ""
 
-#: AudioConvert.class:93 FMain.class:2685
+#: AudioConvert.class:97 FMain.class:2685
 msgid "Unable to get the real stream url"
 msgstr ""
 
-#: AudioConvert.class:100
+#: AudioConvert.class:104
 msgid "Extracting audio to PCM data..."
 msgstr ""
 
-#: AudioConvert.class:116
+#: AudioConvert.class:122
 msgid "Done."
 msgstr ""
 
-#: AudioConvert.class:118
+#: AudioConvert.class:124
 msgid "Encoding..."
 msgstr ""
 

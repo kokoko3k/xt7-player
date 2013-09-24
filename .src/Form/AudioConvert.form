@@ -82,9 +82,30 @@
       Expand = True
     }
   }
-  { Button1 Button
-    MoveScaled(64,66,16,4)
-    Text = ("Start")
-    Picture = Picture["icon:/small/ok"]
+  { Panel6 Panel
+    MoveScaled(1,66,80,4)
+    Arrangement = Arrange.Horizontal
+    Spacing = True
+    { ButtonStop Button
+      MoveScaled(0,0,16,4)
+      Expand = True
+      AutoResize = True
+      Text = ("Stop All")
+      Picture = Picture["icon:/small/cancel"]
+    }
+    { ButtonSkip Button
+      MoveScaled(30,0,16,4)
+      Expand = True
+      AutoResize = True
+      Text = ("Skip current")
+      Picture = Picture["icon:/small/delete"]
+    }
+    { Button1 Button
+      MoveScaled(63,0,16,4)
+      Expand = True
+      AutoResize = True
+      Text = ("Start")
+      Picture = Picture["icon:/small/ok"]
+    }
   }
 }

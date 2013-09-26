@@ -4084,13 +4084,13 @@ Public Sub SwitchToWindow()
   FsForm.FullScreen = False
   fmain.Maximized = winmax
   fmain.show  
+  Maintoolbar.hide 'workaround for missing picture at fs switch
+  Wait 0.2
+  Maintoolbar.show
   cachebar.Reparent(rightsidepanel)
   cachebar.Move(0, outerbox.h - cachebar.h + toolbarbackground.h)
   cachebar.raise
   cachebar.show
-  Maintoolbar.hide 'workaround for missing picture at fs switch
-  Wait 0.2
-  Maintoolbar.show
 End
 
 Public Sub AllmenuVisible(AreVisible As Boolean)

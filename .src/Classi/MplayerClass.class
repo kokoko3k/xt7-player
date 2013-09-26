@@ -310,6 +310,7 @@ End
 
 
 
+
 Public Sub playerprocess_read(Optional injected As String = "")
 
   Dim Splitted As String[]
@@ -660,6 +661,8 @@ Public Function DvbChannelToNumber(C As String) As Integer
   Return 0
 End
 
+Public MyKillCancelled As Boolean = False
+
 Public cookieoptsG As String = ""
 Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg") As Boolean
   cookieoptsG = cookieopts
@@ -668,7 +671,11 @@ Public Function do_play(filename As String, options As String, Optional restart 
   mplayeroptions = options
 
   IsNetworkURI = Global.IsNetworkURI(filename) ' on network streams we'll try to guess "ICY:" information (webradios tag)
-  If ProcessRunningOvr() Then do_stop() '(will also delete previous inputpipe)
+  If ProcessRunningOvr() Then 
+    MyKillCancelled = True
+    do_stop() '(will also delete previous inputpipe)
+    MyKillCancelled = False
+  Endif
   
   If (Trim(filename) <> "") Or restart Then 'restart is used mainly to raise a dead mplayer in idleplay
     'generate a new inputpipe
@@ -1565,6 +1572,11 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
 End
 
 
+Public Sub playerprocess_kill()
+  If (Not MyKillCancelled) Then Raise mykill()
+End
+
+Event mykill()
 Event ThumbAvailableFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
 Event ThumbErrorFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
 

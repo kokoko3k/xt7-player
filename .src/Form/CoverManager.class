@@ -1242,6 +1242,8 @@ Public Sub makevideothumb(fullpath As String, coverfilepath As String, mygrid As
   mplayerthumb.savethumb(fullpath, coverfilepath,,, mygrid, row, column)
 End
 
+
+
 Public Sub thumbnailer_ThumbAvailableFor(fullpath As String, g As Gridview, r As Integer, c As Integer)
   runningthumblers -= 1
   Try g[r, c].text = ""

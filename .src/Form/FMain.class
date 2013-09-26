@@ -148,7 +148,7 @@ Public mypodcast As New Podcast
 Public MyRadio As New ShoutCastClass
 Public Youtube As New Youtubeclass
 
-Public mplayer As New MplayerClass
+Public mplayer As New MplayerClass 
 Public MyFlash As FlashClass
 
 Public MyLibrary As New PlaylistClass
@@ -2608,6 +2608,9 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim cookieopts As String = ""
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
+  
+  Object.Attach(mplayer, Me, "mplayer")
+  
   InitABLoop()
   DOHACKIMAGE = True
   UserStopped = False
@@ -3431,26 +3434,22 @@ Public Sub OneSecTimer_Timer()
       videobox.cached = False
       'delete export file
       Try Kill mplayer.exportfile
-      
       If TogglePls.value And (Not UserStopped) And (Not FirstPlay) And (Not (Lower(mplayer.Media_FullPath) Like "dvb://*")) Then
-        Debug "end of media reached, playing next video..."
-        Debug
-        Debug mplayer.ProcessRunningOvr()
-
-        Object.Lock(onesectimer)
-        SelectNext(True, GetActivePlayQueue())
-        PlaylistFinished = Not global.IsNextSelected
-        If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
-
-        Debug "Mplayer was off, so hit PLAY from here"
-        Debug
-        If Not (mplayer.ProcessRunningOvr()) Then
-          Play(mplayer.Media_FullPath)
-        Else
-          Debug "Not hitting PLay from here because ButtonNext did it first"
+          Debug "end of media reached, playing next video..."
           Debug
-        Endif
-        Object.unLock(onesectimer)
+          Object.Lock(onesectimer)
+          SelectNext(True, GetActivePlayQueue())
+          PlaylistFinished = Not global.IsNextSelected
+          If (Shutdown = "PLS") And PlaylistFinished And (Not ShufflePls.value) Then CountDown.engage
+          Debug "Mplayer was off, so hit PLAY from here"
+          Debug
+          If Not (mplayer.ProcessRunningOvr()) Then
+            Play(mplayer.Media_FullPath)
+              Else
+            Debug "Not hitting PLay from here because ButtonNext did it first"
+            Debug
+          Endif
+          Object.unLock(onesectimer)
       Else
         Playstarted = False
         'UserStopped = False
@@ -3465,6 +3464,11 @@ Public Sub OneSecTimer_Timer()
     Fmain.caption = global.AppName
   Endif
 End
+
+Public Sub Mplayer_mykill()
+  OneSecTimer_Timer()
+End
+
 
 
 Private Sub UpdateVolumeTooltip()

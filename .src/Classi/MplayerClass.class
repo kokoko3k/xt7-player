@@ -552,8 +552,9 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
         Else
       NewOptions = Options & " -ss " & seekto
     Endif
-    
+    MyKillCancelled = True 
     do_stop()
+    MyKillCancelled = False
     do_play(filename, NewOptions, False, bugid1870)
     Break
     timeout = timeout - 1

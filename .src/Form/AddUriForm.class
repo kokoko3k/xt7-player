@@ -16,7 +16,7 @@ Public Sub btnOK_Click()
   Dim URItoadd As String = Trim(global.FormatDrag(UriInsCombobox.text))
   Dim AddToBoth As Boolean = (PlaylistCheckbox.value And collectioncheckbox.value)
   Dim quickmode As Boolean = (quickcheckbox.value Or Global.IsNonTaggableMedia(URItoadd))
-
+Stop
   btnOK.Enabled = False
   AddUriForm.mouse = Mouse.Wait
   With Fmain

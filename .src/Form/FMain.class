@@ -3947,7 +3947,7 @@ Public Sub SwitchToFS()
   Object.Lock(hsplit1)
   winmax = fmain.Maximized
   fmain.hide
-  
+  cachebar.hide
   If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
   buttonmenuwasvisible = ButtonmenuBTN.Visible
   FsForm.Background = color.black
@@ -3989,7 +3989,6 @@ Public Sub SwitchToFS()
   bottomvbox.Hide
   BottomVbox.Reparent(rightsidepanel)
   toolbarbackground.hide
-  cachebar.hide
   cachebar.raise
   Wait '<-this wait has to come just after ConstrainFormSizes()
   

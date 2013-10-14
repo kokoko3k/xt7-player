@@ -366,7 +366,6 @@
         }
         { NoParse27 HBox
           MoveScaled(1,4,48,4)
-          ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
           Spacing = True
           { CacheCheckbox CheckBox notifyobj
             Name = "CacheCheckbox"
@@ -524,7 +523,7 @@
         }
         { NoParse24 HBox
           MoveScaled(1,6,48,4)
-          ToolTip = ("Player nice level.\nThe lower the value, the higher the priority\nthe player will get against other processes.")
+          ToolTip = ("Set the cache for DVD playback.\nNote that enabling it may lead to problems.")
           Spacing = True
           { DvdCacheCheckbox CheckBox notifyobj
             Name = "DvdCacheCheckbox"

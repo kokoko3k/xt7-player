@@ -134,7 +134,19 @@ Private Function HaveToParseNode(MyXmlreader As Xmlreader) As Boolean
   Endif
 End
 
-Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
+Static Public Function MidC(s As String, a As String, Optional b As String) As String
+  'return the first occurrence of the string between a and b
+  'if b is omitted then all the string starting from a is returned
+  Dim mmid As String
+  mMid = Mid(s, InStr(s, a) + 1)
+  If b <> "" Then 
+    Return Left(mmid, InStr(mmid, b) - 1)
+      Else
+    Return mMid
+  Endif
+End
+
+Public Sub DownloadAndParseOLD(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
   Dim feedfile As String
   Dim reader As Xmlreader
   Dim nodename, out, attribute, value As String
@@ -142,7 +154,6 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   'DIM streaminfo AS 
    ' [linkhref,title,duration]
   Dim streaminfo As New Collection
-  Dim needpicture As Boolean = True
   Dim lastlink As String = ""
   Dim wget As New Wgetclass
 
@@ -178,7 +189,9 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     If Error Then Break
     'IF nodename LIKE "*thumbnail*" THEN out = out & "*********************************\n" 
     'elemento con attributi
+
     If reader.Node.Attributes.count > 0 Then
+       Debug "nodename=  " & nodename
       out = out & "nome nodo = " & nodename & "\n"
       For Each reader.Node.Attributes
         attribute = reader.Node.name
@@ -187,6 +200,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
         If entryfound
           Select Case Lower(nodename & attribute)
           Case "categorylabel"
+            Stop
             'PRINT "Categoria= " & value
             feedinfo.Add(value, "categorylabel")
           Case "yt:durationseconds"
@@ -203,11 +217,9 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
               'feedsinfo.Add(feedinfo, value)
             lastlink = value 'remember this to add more infos to feedinfo[lastlink]
           Case "media:thumbnailurl"
-            'If needpicture Then
             If streaminfo["thumb"] = Null Then
               'TRY streaminfo.Add(downloadpicture(value, resizew), "thumb")
               streaminfo.Add(downloadpicture(value, resizew), "thumb")
-              'If (Not Error ) Then needpicture = False
             Endif
           End Select
 
@@ -226,7 +238,7 @@ Wait
       If Error Then Break
       If Trim(value) <> "" Then out = out & nodename & " has value " & value & "\n"
       If entryfound Then
-        needpicture = True
+        Debug "nodename=  " & nodename
         Select Case nodename
           Case "title"
             value = Replace(value, "&amp;", "&")
@@ -294,6 +306,106 @@ Wait
   Wend
   AddMoreResultsItem(tree, feedname, resizew)
 End
+
+
+Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String, Optional resizew As Integer = 0, Optional myappend As Boolean = False)
+  Dim feed As String[]
+  Dim aline, value, lastlink As String
+  Dim wget As New Wgetclass
+  Dim streaminfo As New Collection
+  If tree.item = Null Then
+    tree.movecurrent
+    If tree.item = Null Then
+      tree.MoveTo(feedname)
+    Endif
+  Endif
+  
+  'Download the feed
+  If myappend Then url = url & "&start-index=" & CStr(tree.Item.Children + 1)
+  url = "'" & url & "'"
+  Debug url
+  feed = Split(wget.DownloadAsync(url), "<", "", True)
+  If feed.count = 0 Then 
+    Message.Error("Could not download the feed")
+    Return
+  Endif
+
+  'Parse the feed, simple way ahead...
+  For Each aLine In feed
+    'stop
+    Select Case aline
+      Case Like "id>http" & "*"
+        'Debug "----------------------------------------"
+        ItemInfoComplete(ByRef streaminfo, ByRef tree, lastlink, feedname)
+      Case Like "published>" & "*"
+        'Debug "Published=" & MidC(aLine, ">", "T")
+        feedinfo.Add(MidC(aLine, ">", "T"), "published")
+
+      Case Like "updated>" & "*"
+        'Debug "Updated=" & MidC(aLine, ">", "T")
+        feedinfo.Add(MidC(aLine, ">", "T"), "updated")
+
+      Case Like "title type='text'>" & "*"
+        'Debug "Title=" & MidC(aLine, ">")
+
+      Case Like "media:title type='plain'>" & "*"
+        'Debug "Title=" & MidC(aLine, ">")
+        value = Replace(MidC(aLine, ">"), "&amp;", "&")
+        streaminfo.Add(value, "title")
+        feedinfo.Add(value, "title")
+
+      Case Like "name>" & "*"
+        feedinfo.Add(MidC(aLine, ">"), "author")
+        
+      Case Like "media:category label='" & "*"
+        'Debug "Category=" & Split(aline, "'")[1]
+        feedinfo.Add(Split(aline, "'")[1], "categorylabel")
+
+      Case Like "media:description type='plain'>" & "*"
+        'Debug "Description=" & MidC(aLine, ">")
+        feedinfo.Add(MidC(aLine, ">"), "media:description")
+
+      Case Like "media:thumbnail url='" & "*"
+        'Debug "Thumb=" & MidC(aLine, "'", "'")
+        If streaminfo["thumb"] = Null Then Try streaminfo.Add(downloadpicture(MidC(aLine, "'", "'"), resizew), "thumb")
+
+      Case Like "yt:duration seconds='" & "*"
+        value = MidC(aline, "'", "'")
+        'Debug "Duration=" & value
+        feedinfo.Add(value, "yt:durationseconds")
+        streaminfo.Add(value, "yt:durationseconds")
+
+      Case Like "media:player url='" & "*"
+        value = MidC(aline, "'", "'")
+        'Debug "Url=" & value
+        streaminfo.Add(MidC(aline, "'", "'"), "linkhref")
+        feedinfo.Add(MidC(aline, "'", "'"), "linkhref")
+        lastlink = value 'remember this to add more infos to feedinfo[lastlink]
+    End Select
+  Next
+  AddMoreResultsItem(tree, feedname, resizew)
+End
+
+Public Sub ItemInfoComplete(ByRef streaminfo As Collection, ByRef tree As TreeView, lastlink As String, feedname As String)
+  If streaminfo.count > 0 Then 
+      addstream(streaminfo, tree, feedname)
+      feedsinfo.Add(feedinfo["title"], lastlink & "." & "title")
+      feedsinfo.Add(feedinfo["categorylabel"], lastlink & "." & "categorylabel")
+      feedsinfo.Add(feedinfo["yt:durationseconds"], lastlink & "." & "yt:durationseconds")
+      'feedsinfo.Add(feedinfo["content"], lastlink & "." & "content")
+      feedsinfo.Add(feedinfo["media:description"], lastlink & "." & "media:description")
+      feedsinfo.Add(feedinfo["published"], lastlink & "." & "published")
+      feedsinfo.Add(feedinfo["updated"], lastlink & "." & "updated")
+      feedsinfo.Add(feedinfo["author"], lastlink & "." & "author")  
+      lastlink = ""
+      feedinfo.Clear
+    Endif
+    streaminfo.Clear
+    Try tree.MoveParent
+    Try tree.Item.expanded = True
+    Try tree.moveback
+End
+
 
 Public Function downloadpicture(uri As String, Optional resizew As Integer = 0) As Picture
   Dim wget As New Wgetclass

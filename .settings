@@ -1,3 +1,6 @@
+[Bookmarks]
+YoutubeClass=[]
+
 [Breakpoints]
 Count=0
 
@@ -577,6 +580,9 @@ Geometry=[43,253,210,210]
 
 [DebugWindow/Split(sline, ":", "", TRUE)]
 Geometry=[0,0,344,344]
+
+[DebugWindow/Split(url, "|", "", True)]
+Geometry=[47,-3,403,363]
 
 [DebugWindow/Splitted]
 Geometry=[0,0,301,301]
@@ -1292,6 +1298,9 @@ Geometry=[48,-4,406,660]
 [DebugWindow/quickcheckbox]
 Geometry=[0,0,301,301]
 
+[DebugWindow/reader.Node]
+Geometry=[47,-3,572,385]
+
 [DebugWindow/result]
 Geometry=[255,559,672,590]
 
@@ -1353,7 +1362,7 @@ Geometry=[0,0,210,210]
 Geometry=[0,0,344,344]
 
 [DebugWindow/streaminfo]
-Geometry=[47,0,561,246]
+Geometry=[1588,497,607,262]
 
 [DebugWindow/subdir]
 Geometry=[0,326,242,262]
@@ -1488,14 +1497,14 @@ SearchString=True
 [OpenFile]
 File[1]=".src/0_Moduli/Global.module:261.0"
 Fold[1]=[182,201,207,215,274,277,280,284,299,311,323,345,357,375,463,574,616,668,918,929,942,957,989,999,1012]
-File[2]=".src/Classi/StartClass.class:20.15"
+File[2]=".src/Classi/StartClass.class:39.31"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:2686.8"
+File[4]=".src/Form/FMain.class:9224.2"
 File[5]=".src/Classi/SettingsClass.class:589.6"
-File[6]="CHANGELOG_GIT:3.16"
+File[6]="CHANGELOG_GIT:4.42"
 File[7]=".src/Classi/ShoutCastClass.class:0.0"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:0.0"
-File[9]=".src/Classi/PlaylistClass.class:1213.0"
+File[9]=".src/Classi/PlaylistClass.class:1693.11"
 File[10]=".src/Form/EpgForm.form"
 File[11]=".src/Form/XConfigureAudioDriver.class:15.25"
 File[12]=".src/Form/AllOptions.form"
@@ -1503,10 +1512,9 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:551.12"
+File[17]=".src/Classi/MplayerClass.class:1349.10"
 File[18]=".src/Form/ProfileManager.class:37.12"
 File[19]=".src/Form/AskName.class:17.14"
-Active=20
 File[20]=".src/Form/GeneralOptions.form"
 File[21]=".src/Form/GeneralOptions.class:1115.0"
 File[22]=".src/Form/CoverManager.class:1238.45"
@@ -1554,7 +1562,8 @@ File[63]=".src/Form/XConfigureVideoDriver.class:318.0"
 File[64]=".src/Form/AudioConvert.form"
 File[65]=".src/Form/AudioConvert.class:144.0"
 File[66]=".src/Form/AskName.form"
-File[67]=".src/Classi/YoutubeClass.class:550.0"
+Active=67
+File[67]=".src/Classi/YoutubeClass.class:286.9"
 File[68]=".src/Form/AddUriForm.form"
 Count=68
 

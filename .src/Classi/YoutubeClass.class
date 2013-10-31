@@ -146,8 +146,6 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
   Dim lastlink As String = ""
   Dim wget As New Wgetclass
 
-
-  
   If tree.item = Null Then
     tree.movecurrent
     If tree.item = Null Then
@@ -176,7 +174,7 @@ Public Sub DownloadAndParse(url As String, tree As Treeview, feedname As String,
     If reader.Node.type = XmlReaderNodeType.endelement Then Try reader.Read() 'skip end elements like </ID>
     If Error Then Break
     Try nodename = reader.node.name
-Wait
+    Wait
     If Error Then Break
     'IF nodename LIKE "*thumbnail*" THEN out = out & "*********************************\n" 
     'elemento con attributi
@@ -198,17 +196,18 @@ Wait
           Case "gd:ratingaverage"
             'PRINT "Voto= " & value
           Case "linkhref"
-            'PRINT "link al video= " & value
+            Print "link al video= " & value
             streaminfo.Add(value, "linkhref")
             'collection of collection :)
               feedinfo.Add(value, "linkhref")
               'feedsinfo.Add(feedinfo, value)
             lastlink = value 'remember this to add more infos to feedinfo[lastlink]
           Case "media:thumbnailurl"
-            If needpicture Then
+            'If needpicture Then
+            If streaminfo["thumb"] = Null Then
               'TRY streaminfo.Add(downloadpicture(value, resizew), "thumb")
               streaminfo.Add(downloadpicture(value, resizew), "thumb")
-              If (Not Error ) Then needpicture = False
+              'If (Not Error ) Then needpicture = False
             Endif
           End Select
 
@@ -237,6 +236,7 @@ Wait
             'PRINT "content: " & value
             'feedinfo.Add(value, "content")
           Case "media:description"
+            Stop
             'PRINT "media:description: " & value
             feedinfo.Add(value, "media:description")
             'PRINT value
@@ -398,7 +398,7 @@ End
 Public Function getvideoid(url As String) As String
   Dim videoid As String
   Dim tmpsplit As String[]
-  If url Like "*youtube*/watch?v=*" Then
+  If url Like "*youtube*/*?v=*" Then
     videoid = Split(url, "=", "", True)[1]
     If videoid Like "*&*" Then videoid = Split(videoid, "&")[0]
       Else If videoid Like "*&*" Then

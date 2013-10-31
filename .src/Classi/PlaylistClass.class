@@ -1676,10 +1676,10 @@ Public Sub Exclude(Librarygrid As Gridview, ExcludeList As Listbox)
   Dim i, k, startpos, midpos, endpos As Integer
   Dim FullPathName As String
   Dim ReturnString As New String[]
-  Dim Match As Boolean = False
+  Dim myMatch As Boolean = False
   i = ptable.count - 1
   While i > 0
-    Match = False
+    myMatch = False
     i = i - 1
     Startpos = InStr(Ptable[i], TableSeparator & "Full Path")
     MidPos = InStr(Ptable[i], TableSeparator, StartPos + 1)
@@ -1689,13 +1689,13 @@ Public Sub Exclude(Librarygrid As Gridview, ExcludeList As Listbox)
     'Will filename match any excluded path?
     For k = 0 To ExcludeList.count - 1
       If (FullPathName Like (ExcludeList[k].text & "*")) Then
-        Match = True
+        myMatch = True
         Break
       Endif
     Next 'k
     
     
-    If Match Then
+    If myMatch Then
       ptable.Remove(i)
       ReturnString.Add(FullPathName)
       'PRINT "Debug: PlaylistClass: Exlcude(): Removed: " & FullPathName

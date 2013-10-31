@@ -775,7 +775,7 @@
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(0,0,39,59)
+        MoveScaled(0,-2,39,59)
         Tag = "1"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -1189,7 +1189,7 @@
             ToolTip = ("Click to open video page")
             Expand = True
             { YouVideoInfo TextLabel
-              MoveScaled(1,1,27,11)
+              MoveScaled(1,1,30,10)
               Visible = False
               Background = &H000000&
               Foreground = &HFFFFFF&
@@ -1200,7 +1200,7 @@
           }
         }
         { HBox13 HBox
-          MoveScaled(-8,32,38,4)
+          MoveScaled(2,32,38,4)
           ToolTip = (" ")
           { buttonopts Button
             MoveScaled(0,0,4,4)

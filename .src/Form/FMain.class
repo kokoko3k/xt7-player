@@ -8841,7 +8841,6 @@ Public Sub fillyoutubeinfo(url As String)
   Dim title, category, seconds, description, published, updated, author, authorlink As String
   Dim outtext As String = ""
   Dim ytsite As String = "http://www.youtube.com/watch?v="
-  
   ytsite = ytsite & Youtube.getvideoid(url)
   Try title = Youtube.feedsinfo[url & ".title"]
   Try category = Youtube.feedsinfo[url & ".categorylabel"]
@@ -9227,9 +9226,8 @@ Public Sub buttonopts_MouseDown()
 End
 
 Public Sub buttondetail_Click()
-  
   scrollviewyt.visible = Not scrollviewyt.visible
-  
+  YouVideoInfo.w = scrollviewyt.w - 64
 End
 
 Public Sub youtubetree_KeyPress()

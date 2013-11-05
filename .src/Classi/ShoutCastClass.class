@@ -1,7 +1,7 @@
 ' Gambas class file
 
  
-Public Ts As String = "\r"
+'Public Ts As String = ""
 Public channelinfo As String
 Public items As New String[]
 Public Alternate As Boolean = False
@@ -127,9 +127,37 @@ Public Function GetStationsFromGenre(Genre As String, GenresTree As Treeview)
 End
 
 
-
-
 Private Function DownloadAndParse(AskUrl As String, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null) As String
+  Dim buffer As String
+  Dim wget As New Wgetclass
+  'ts = Chr(0)
+  channelinfo = ""
+  'SHELL "wget '" & AskUrl & "' --timeout=4 --tries=3 --output-document=" & tmpfile WAIT
+  'TRY buffer = File.Load(tmpfile)
+  buffer = wget.DownloadAsync(AskUrl)
+  If Error Then Return ""
+   If Trim(buffer) = "" Then Return ""
+    If Error Then Return ""
+     items.clear
+   If (GenresTree <> Null) Then
+      parsechannel(buffer, GenresTree, Null)
+    Else If (ShutResultGrid <> Null) Then
+      ShutResultGrid.enabled = False
+      ShutResultGrid.Columns.count = 4
+      ShutResultGrid.rows.count = MAXRESULTS 'max results to show ?
+      ShutResultGrid.Header = GridView.Horizontal
+      ShutResultGrid.Columns[0].text = ("Name")
+      ShutResultGrid.Columns[1].text = ("Media Type")
+      ShutResultGrid.Columns[2].text = ("BitRate")
+      ShutResultGrid.Columns[3].text = ("Link")
+      parsechannel(buffer, Null, ShutResultGrid)
+      Alternatecolor(ShutResultGrid)
+      ShutResultGrid.enabled = True
+   Endif
+   Return "OK"
+End
+
+Private Function DownloadAndParseOLD(AskUrl As String, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null) As String
   Dim buffer As String
   Dim xml As New Xmldocument
   Dim node As Xmlnode
@@ -166,10 +194,73 @@ Private Function DownloadAndParse(AskUrl As String, Optional GenresTree As Treev
    Return "OK"
 End
 
+Static Public Function MidC(s As String, a As String, Optional b As String) As String
+  'return the first occurrence of the string between a and b
+  'if b is omitted then all the string starting from a is returned
+  Dim mmid As String
+  mMid = Mid(s, InStr(s, a) + Len(a))
+  If b <> "" Then 
+    Return Left(mmid, InStr(mmid, b) - 1)
+      Else
+    Return mMid
+  Endif
+End
+
+Private Sub ParseChannel(xmlbuffer As String, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
+  Dim title, br, mt, id, MyLink As String = ""
+  Dim tunein_base As String = ""
+  Dim aline, attrs As String
+  Dim LastRow As Integer = 0
+  Dim feed As String[]
+  Try feed = Split(xmlbuffer, "<", "", True)
+  If feed.count = 0 Then 
+    Message.Error(("Could not parse the feed"))
+    Return
+  Endif
+   'Parse the feed, simple way ahead...
+  For Each aLine In feed
+    Select Case aline
+      Case Like "tunein base=*"
+         tunein_base = MidC(aline, "tunein base=\"", "\"")
+      Case Like "station name=*"
+
+        title = MidC(aline, "name=\"", "\"")
+        mt = MidC(aline, "mt=\"", "\"")
+        id = MidC(aline, "id=\"", "\"")
+        br = MidC(aline, "br=\"", "\"")
+        If ((id <> "") And (title <> "")) Then
+          MyLink = "http://yp.shoutcast.com/" & tunein_base & "?id=" & id
+          If (GenresTree <> Null) Then
+
+            Try GenresTree.add(MyLink, title & " " & " Type: " & mt & " " & " Bitrate: " & br, picture["filetypeuri.png"], GenresTree.Current.key)
+              Else
+            If (ShutResultGrid <> Null) Then
+              'ShutResultGrid.Rows.count = ShutResultGrid.Rows.count + 1
+              'LastRow = ShutResultGrid.Rows.count - 1
+              If Lastrow < ShutResultGrid.Rows.count Then
+                ShutResultGrid[LastRow, 0].Picture = picture["filetypeuri.png"]
+                ShutResultGrid[LastRow, 0].text = title
+                ShutResultGrid[LastRow, 1].text = mt
+                ShutResultGrid[LastRow, 2].text = br
+                ShutResultGrid[LastRow, 3].text = MyLink
+                LastRow = LastRow + 1
+              Endif
+            Endif
+          Endif
+        Endif
+        id = ""
+        title = ""        
+        mt = ""
+        br = ""
+        mylink = ""
+    End Select
+  Next 'aline
+  Try ShutResultGrid.rows.count = lastrow
+End
 
 
 
-Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
+Private Sub ParseChannelOLD(Rootnode As XmlNode, Optional GenresTree As Treeview = Null, Optional ShutResultGrid As Gridview = Null)
   'returns podcast title,link,description,icon
   Dim t, j As Integer
   Dim title, br, mt, id, MyLink As String = ""
@@ -179,7 +270,7 @@ Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = 
   Dim TuneinAttribute As XmlNode
   Dim StationAttribute As XmlNode
   'find channel
-
+  Stop
   For t = 0 To Rootnode.Children.Count - 1
     If Rootnode.Children[t].name = "tunein" Then
       For Each TuneinAttribute In Rootnode.Children[t].Attributes
@@ -209,7 +300,7 @@ Private Sub ParseChannel(Rootnode As XmlNode, Optional GenresTree As Treeview = 
                    If ((id <> "") And (title <> "")) Then
                       MyLink = "http://yp.shoutcast.com/" & tunein_base & "?id=" & id
                       If (GenresTree <> Null) Then
-                        Try GenresTree.add(MyLink, title & ts & " Type: " & mt & ts & " Bitrate: " & br, picture["filetypeuri.png"], GenresTree.Current.key)
+                        Try GenresTree.add(MyLink, title & " " & " Type: " & mt & " " & " Bitrate: " & br, picture["filetypeuri.png"], GenresTree.Current.key)
                           Else
                         If (ShutResultGrid <> Null) Then
                           'ShutResultGrid.Rows.count = ShutResultGrid.Rows.count + 1

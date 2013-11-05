@@ -192,6 +192,12 @@
       Text = ("Add selected items to playlist")
       Picture = Picture["icon:/16/add"]
     }
+    { separator392 Menu
+    }
+    { ExtractAudioLibrarymenu Menu
+      Text = ("Extract audio")
+      Picture = Picture["icon:/22/audio"]
+    }
     { Separator10 Menu
     }
     { MenuLibraryDeleteSelected Menu
@@ -207,10 +213,6 @@
       Picture = Picture["icon:/16/erase"]
     }
     { Separator10355 Menu
-    }
-    { ExtractAudioLibrarymenu Menu
-      Text = ("Extract audio")
-      Picture = Picture["icon:/22/audio"]
     }
   }
   { MenuPlaylist Menu MainMenu
@@ -277,6 +279,12 @@
       Text = ("Paste after selected")
       Picture = Picture["icon:/16/paste"]
     }
+    { separator48349 Menu
+    }
+    { ExtractAudioPlaylistmenu Menu
+      Text = ("Extract Audio")
+      Picture = Picture["icon:/small/audio"]
+    }
     { Separator12 Menu
     }
     { MenuRemovePls Menu
@@ -296,10 +304,6 @@
       }
     }
     { Separator430414 Menu
-    }
-    { ExtractAudioPlaylistmenu Menu
-      Text = ("Extract Audio")
-      Picture = Picture["icon:/small/audio"]
     }
   }
   { MenuConfigure Menu MainMenu

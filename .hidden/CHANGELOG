@@ -1,3 +1,37 @@
+* Tue Nov 05 2013 Antonio Orefice <xt7player@gmail.com> 3.5.1
+
+* Tue Nov 05 2013 Antonio Orefice <xt7player@gmail.com> 3.5.1
+- FIX: fixed ans simplified parsing of shoutcast feeds
+
+* Tue Nov 05 2013 Antonio Orefice <xt7player@gmail.com> 3.5.0
+- FIX:    Missing links on some youtube streams
+- FIX:    Do not download thumbnails twice
+- FIX:    Simplified (and speedup) parsing of youtube feeds
+- FIX:    Removed deprecated (and not working anymore) youtube feeds from the tree
+- CHANGE: Reduced the lag at track change.
+- CHANGE: Ability to queue items to extract audio from and new skip/stop button
+- FIX:    Better workaround for missing picture on fullscreen switch
+- FIX:    xt7-player.png -> xt7-player in .desktop file (10x symbianflo)
+- CHANGE: Audio extraction/transcode capabilities for youtube, browse and playlist tabs
+- FIX:    Vdpau overlay surface was always disabled (not saved), now it is under generaloptions->video amd get saved.
+- CHANGE: defaults to "NOT" disabling vdpau overlay surface, if you need, please manually check it and save the profile.
+- FIX:    Typo in executable() which prevented idle mplayer from timeout
+- FIX:    Removed the icon path from .desktop file (10x symbianflo)
+- CHANGE: Updated Russian translation from VictoR
+- FIX:    Error when replacing playlists by an album tracks
+- FIX:    Avoid out of range values in ladspahelper (by setting value=minvalue)
+- FIX:    Possible runtime error on album browse
+- FIX:    Explicitely pass proxy to mplayer if environment variable is defined
+- FIX:    Use http_proxy (or https_proxy) environment variable and drop http_proxy option.
+- NEW:    Ability to rename custom audio and video filters (buttons) and added 2 more custom filters
+- NEW:    Lyrics finder via duckduckgo (click on the microphone icon when a music is playing).
+- NEW:    Display jpg,png,bmp pictures by using mf:// protocol, panning and zooming are supported
+- NEW:    New default hotkey: "del" will delete the playing file from disk after confirmtion.
+- FIX:    Don't try to play directories
+- FIX:    Update/sync views on file deletion
+- FIX:    workaround for missing picture when unredirecting fs windows is enabled and mplayer is paused
+- FIX:    Keep forced zoom mode across media
+
 * Mon Jul 22 2013 Antonio Orefice <xt7player@gmail.com> 3.4.4
 - Updated Russian translation from VictoR
 - Removed unneeded webkit dep

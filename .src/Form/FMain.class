@@ -7814,7 +7814,8 @@ Public Sub GenresTree_Activate()
     Play(GenresTree.Current.key,, GenresTree.Current.text)
   Else
     Last.mouse = mouse.wait
-    Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
+    Genre = GenresTree.Current.Text
+    'Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
     If Not Global.NeedTreeViewWorkaround() Then GenresTree.Current.Expanded = True
     Wait
     MyRadio.GetStationsFromGenre(Genre, GenresTree)

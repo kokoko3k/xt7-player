@@ -52,6 +52,7 @@ Public FormMaximized As Boolean = False
 Private SettingsFileName As String 
 Public DelayLoadStates As Timer 
 Public MaxHistory As Integer 'how many played files to remember
+Public YPCacheFile As String 
 
 Public NOsoftvolmessagefile As String
 
@@ -100,6 +101,7 @@ Public Sub init()
   Pre = "* "
   StartFolder = User.home  'fixme: allow to choose
   ScreenshotFolder = settings.defaultdir & "/" & Appname & "/" & ".xt7-screenshots/"
+  YPCacheFile = settings.defaultdir & "/" & Appname & "/" & ".ypcachefile"
   HistoryFile = settings.defaultdir & "/" & Appname & "/" & ".history.txt"
   CurrentProfile = ""
   FormW = 400      'As gambas does not update form dimesions on fullscreen switch

@@ -779,11 +779,10 @@
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(0,-2,39,59)
+        MoveScaled(-2,-2,39,59)
         Tag = "1"
         Expand = True
         Arrangement = Arrange.Vertical
-        Spacing = True
         Margin = True
         Padding = 4
         Count = 13
@@ -1336,19 +1335,39 @@
           }
         }
         Index = 9
-        Text = ("ShoutCast")
-        Picture = Picture["shoutcast16.png"]
+        Text = ("Radio")
+        Picture = Picture["iradio.png"]
         { NOPARSETABSHOUTCAST Label
           MoveScaled(2,0,8,3)
           Visible = False
           Tag = "shoutcast"
           Text = ("Label3")
         }
+        { HBox21 HBox
+          MoveScaled(1,4,33,4)
+          { ButtonIcecast ToggleButton ButtonRadios
+            Name = "ButtonIcecast"
+            MoveScaled(0,0,14,4)
+            Expand = True
+            Text = ("Icecast")
+            Picture = Picture["icecast.png"]
+            Radio = True
+          }
+          { ButtonShoutcast ToggleButton ButtonRadios
+            Name = "ButtonShoutcast"
+            MoveScaled(17,0,14,4)
+            Expand = True
+            Text = ("ShoutCast")
+            Picture = Picture["shoutcast16.png"]
+            Radio = True
+          }
+        }
         { NOSAVEVBox3 VBox
-          MoveScaled(1,6,36,15)
+          MoveScaled(1,11,36,15)
           Expand = True
           { GenresTree TreeView
             MoveScaled(1,0,35,9)
+            Tag = "shoutcast"
             Expand = True
           }
           { ButtonGetGenres Button
@@ -1359,7 +1378,7 @@
           }
         }
         { NOSAVEVBox2 VBox
-          MoveScaled(1,22,35,25)
+          MoveScaled(1,27,35,25)
           Visible = False
           ToolTip = ("Double click on an item to start playing")
           Expand = True
@@ -1415,7 +1434,7 @@
           }
         }
         { NOSAVEHBox10 HBox
-          MoveScaled(2,50,32,4)
+          MoveScaled(1,53,32,4)
           Spacing = True
           { TextBox1 ButtonBox
             MoveScaled(7,0,19,4)

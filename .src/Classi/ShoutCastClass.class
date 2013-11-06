@@ -367,6 +367,7 @@ Public Sub Select_NextGridItem(mygrid As Gridview)
 End
 
 Public Sub FillCachedGenres(GenresTree As TreeView)
+  GenresTree.clear
   GenresTree.Add("24h", "24h", picture["shoutcast16.png"])
   GenresTree.Add("24hs", "24hs", picture["shoutcast16.png"])
   GenresTree.Add("4alga", "4alga", picture["shoutcast16.png"])

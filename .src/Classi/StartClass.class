@@ -44,51 +44,11 @@ End
 
 
 Static Public Sub quicktest()
-  Dim feed As String[] = Split(file.Load("/tmp/yt.txt"), "<", "", True)
-  Dim aline As String
+  Dim IceRadio As New IceCastClass
+  Global.init
+  IceRadio.FillGenresTree(FMain.genrestree)
   
   
-  For Each aLine In feed
-    Select Case aline
-      Case Like "id>http" & "*"
-        Debug "----------------------------------------"
-
-      Case Like "id>http" & "*"
-        Debug aline
-
-      Case Like "published>" & "*"
-        Debug "Published=" & MidC(aLine, ">", "T")
-
-      Case Like "updated>" & "*"
-        Debug "Updated=" & MidC(aLine, ">", "T")
-
-      Case Like "title type='text'>" & "*"
-        Debug "Title=" & MidC(aLine, ">")
-
-      Case Like "media:title type='plain'>" & "*"
-         Debug "Title=" & MidC(aLine, ">")
-
-      Case Like "name>" & "*"
-        Debug "Author=" & MidC(aLine, ">")
-
-      Case Like "media:category label='" & "*"
-        Debug "Category=" & Split(aline, "'")[1]
-
-      Case Like "media:description type='plain'>" & "*"
-        Debug "Description=" & MidC(aLine, ">")
-
-      Case Like "media:thumbnail url='" & "*"
-        Debug "Thumb=" & MidC(aLine, "'", "'")
-
-      Case Like "yt:duration seconds='" & "*"
-        Debug "Duration=" & MidC(aline, "'", "'")
-
-      Case Like "media:player url='" & "*"
-        Debug "Url=" & MidC(aline, "'", "'")
-
-    End Select
-  Next
-  
-  Quit
+ ' Quit
   
 End

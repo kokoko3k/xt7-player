@@ -1,0 +1,98 @@
+' Gambas class file
+
+Public YPurl As String = "http://dir.xiph.org/yp.xml"
+
+
+Static Public Function MidC(s As String, a As String, Optional b As String) As String
+  'return the first occurrence of the string between a and b
+  'if b is omitted then all the string starting from a is returned
+  Dim mmid As String
+  mMid = Mid(s, InStr(s, a) + Len(a))
+  If b <> "" Then 
+    Return Left(mmid, InStr(mmid, b) - 1)
+      Else
+    Return mMid
+  Endif
+End
+
+'Fill a treeview with genres and streams; optionally use a previously cached YP file
+Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = True)
+  Dim mywget As Wgetclass
+  Dim YPdata, YPLine, tmp As String
+  Dim YPLines, genres, genresu As New String[]
+  Dim title, myurl, audiotype, bitrate, genre As String
+  Dim i, count As Integer 
+  'update YP cache
+  If Not Exist(Global.YPCacheFile, True) Or UseCache = False Then
+
+    If UseCache = True Then 
+      Debug "Missing icecast cache file, downloading yellow pages now..."
+    Else
+      Debug "Downloading yellow pages now..."
+    Endif
+    
+    mywget = New Wgetclass
+    YPData = mywget.DownloadAsync(YPurl, False)
+    Try file.Save(Global.YPCacheFile, YPData)
+    If Error Then 
+      message.Error(("Could not download the Yellow pages"))
+      Return
+    Endif
+    yplines = Split(YPData, "\n")
+  Else
+    YPlines = Split(file.Load(Global.YPCacheFile), "\n")
+  Endif
+  mytree.clear
+  'parse YP Cache
+  'fill genres first so that we can sort quicker
+  For Each ypline In yplines
+     Select Case ypline
+       Case Like "*<genre>*"
+         genres.add(MidC(ypline, ">", "<"))
+     End Select
+  Next
+  genres.Sort(gb.ascent + gb.Natural)
+  count = 0
+  For i = 0 To genres.max
+    If count = 0 Then genresu.Add(genres[i])
+    If genresu[genresu.max] = genres[i] Then 
+      count += 1
+        Else
+      genresu[genresu.max] = genres[i - 1] & Chr((8)) & " [" & count & "]"
+      count = 0
+    Endif
+  Next
+  genresu[genresu.max] = genres[i - 1] & Chr((8)) & " [" & count & "]"
+  For Each genre In genresu
+    Try mytree.Add(Split(genre, Chr(8))[0], Replace(genre, Chr(8), ""), picture["shoutcast16.png"])
+  Next
+  For Each ypline In yplines
+    'Try GenresTree.Add(MyLink, GenreName, picture["shoutcast16.png"]) 
+    Select Case ypline
+      Case Like "*<server_name>*"
+        title = MidC(ypline, ">", "<")
+      Case Like "*<listen_url>*"
+        myurl = MidC(ypline, ">", "<")
+      Case Like "*<server_type>*"
+        audiotype = MidC(ypline, ">", "<")
+      Case Like "*<bitrate>*"
+        bitrate = MidC(ypline, ">", "<")
+      Case Like "*<genre>*"
+        genre = MidC(ypline, ">", "<")
+      Case Like "*</entry>*"
+        'add genre
+        If genre <> "" Then 
+          'Try mytree.Add(genre, genre, picture["shoutcast16.png"])
+          'add Link
+          If title <> "" And myurl <> "" Then 
+            Try mytree.Add(myurl, title & " " & audiotype & " " & bitrate & "Kbps", picture["shoutcast16.png"], genre)
+            title = ""
+            myurl = ""
+            audiotype = ""
+            bitrate = ""
+            genre = ""
+          Endif
+        Endif
+    End Select
+  Next 'ypline
+End

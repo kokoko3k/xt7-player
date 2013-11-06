@@ -7,6 +7,7 @@ Private exportfilespath As String
 Public cachedopts As String = ""
 Public albumviewtexlen As Integer = 30
 Public mouseonfsform As Boolean = False
+Public IceRadio As New IceCastClass
 
 Public Struct EventInfo
   Start_time_date As Date
@@ -5981,12 +5982,12 @@ Public Sub LeftSideTabs_Click()
       Return
   Endif
 
-
   If tabselectedbrowse() Then
     Wait 
     FileView1_beforeArrange()
     FileView1_Arrange()
   Endif
+
 End
 
 Public Sub LeftSideTabs_KeyRelease()
@@ -7785,7 +7786,11 @@ End
 Public Sub ButtonGetGenres_Click()
   
   Leftsidepanel.mouse = mouse.wait
-  Try MyRadio.GetGenres(GenresTree)
+  If buttonshoutcast.value Then
+    Try MyRadio.GetGenres(GenresTree)
+  Else
+    Try IceRadio.FillGenresTree(Genrestree, False)
+  Endif
   Leftsidepanel.mouse = mouse.normal
   
 End
@@ -7802,8 +7807,8 @@ Public Sub GenresTree_Click()
   
 End
 
+
 Public Sub GenresTree_Activate()
-  
   Dim IsChild As Boolean = False
   Dim genre As String
 
@@ -7813,6 +7818,7 @@ Public Sub GenresTree_Activate()
     TogglePls.value = False
     Play(GenresTree.Current.key,, GenresTree.Current.text)
   Else
+    If buttonicecast.value Then Return
     Last.mouse = mouse.wait
     Genre = GenresTree.Current.Text
     'Genre = Split(GenresTree.Current.Text, MyRadio.ts)[0]
@@ -7825,11 +7831,6 @@ Public Sub GenresTree_Activate()
    Last.mouse = mouse.normal
   Endif
 End
-
-
-
-
-
 
 
 Public Sub TextBox1_KeyPress()
@@ -7964,11 +7965,13 @@ Public Sub Highlight_shout_results()
 End
 
 Public Sub ShoutCast_Select()
-  
   If NOSAVEVBox3.visible And GenresTree.count = 0 Then 
-    MyRadio.FillCachedGenres(GenresTree)
+    If buttonshoutcast.value = True Then
+      MyRadio.FillCachedGenres(GenresTree)
+    Else
+      IceRadio.FillGenresTree(genrestree, True)
+    Endif
   Endif
-  
 End
 
 Public Sub Youtube_Select()
@@ -10971,5 +10974,16 @@ Public Sub ExtractAudio(selecteditems As String[])
   If (Not audioconvert.visible) Then global.Center(fmain, audioconvert)
 
   audioconvert.show()
+End
+
+
+Public Sub ButtonRadios_click()
+  Last.mouse = mouse.Wait
+  If buttonicecast.value Then
+    IceRadio.FillGenresTree(genrestree, True)
+  Else
+    MyRadio.FillCachedGenres(genrestree)
+  Endif
+  Last.mouse = mouse.Normal
 End
 

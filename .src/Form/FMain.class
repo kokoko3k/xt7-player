@@ -7784,15 +7784,14 @@ Public Sub TimerDVD_Timer()
 End
 
 Public Sub ButtonGetGenres_Click()
-  
   Leftsidepanel.mouse = mouse.wait
   If buttonshoutcast.value Then
     Try MyRadio.GetGenres(GenresTree)
   Else
+    If Not fmain.fullyloaded Then Return
     Try IceRadio.FillGenresTree(Genrestree, False)
   Endif
   Leftsidepanel.mouse = mouse.normal
-  
 End
 
 Public Sub GenresTree_Click()
@@ -7969,6 +7968,7 @@ Public Sub ShoutCast_Select()
     If buttonshoutcast.value = True Then
       MyRadio.FillCachedGenres(GenresTree)
     Else
+      If Not fmain.fullyloaded Then Return
       IceRadio.FillGenresTree(genrestree, True)
     Endif
   Endif
@@ -10980,6 +10980,7 @@ End
 Public Sub ButtonRadios_click()
   Last.mouse = mouse.Wait
   If buttonicecast.value Then
+    If Not fmain.fullyloaded Then Return
     IceRadio.FillGenresTree(genrestree, True)
   Else
     MyRadio.FillCachedGenres(genrestree)

@@ -779,7 +779,7 @@
       Margin = True
       Padding = 4
       { Leftsidetabs TabStrip
-        MoveScaled(-2,-2,39,59)
+        MoveScaled(0,-1,39,59)
         Tag = "1"
         Expand = True
         Arrangement = Arrange.Vertical
@@ -1392,7 +1392,7 @@
               MoveScaled(0,0,23,3)
               Font = Font["Bold"]
               AutoResize = True
-              Text = ("ShoutCast Radio search results:")
+              Text = ("Search results:")
               Alignment = Align.Left
             }
             { VBox4 VBox

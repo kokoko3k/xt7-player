@@ -379,11 +379,11 @@ msgstr ""
 msgid "mf://"
 msgstr ""
 
-#: AddUriForm.form:51 FMain.class:8145
+#: AddUriForm.form:51 FMain.class:8170
 msgid "cdda://"
 msgstr ""
 
-#: AddUriForm.form:51 FMain.class:8141
+#: AddUriForm.form:51 FMain.class:8166
 msgid "cddb://"
 msgstr ""
 
@@ -491,7 +491,7 @@ msgstr ""
 msgid "Add the selected URI to Collection and/or Playlist"
 msgstr ""
 
-#: AddUriForm.form:152 FMain.class:8633 GeneralOptions.form:645
+#: AddUriForm.form:152 FMain.class:8658 GeneralOptions.form:645
 msgid "Add"
 msgstr ""
 
@@ -698,12 +698,12 @@ msgstr ""
 msgid "Radio"
 msgstr ""
 
-#: AudioForm.form:364 FMain.class:8133 ShoutCastClass.class:149
-#: XConfigureAudioDriver.form:244
+#: AudioForm.form:364 FMain.class:8158 IceCastClass.class:120
+#: ShoutCastClass.class:149 XConfigureAudioDriver.form:244
 msgid "Name"
 msgstr ""
 
-#: AudioForm.form:374 FMain.class:8134 Searchfields.form:104
+#: AudioForm.form:374 FMain.class:8159 Searchfields.form:104
 msgid "Length"
 msgstr ""
 
@@ -2101,7 +2101,7 @@ msgid "Refresh Genres list"
 msgstr ""
 
 #: FMain.form:2081
-msgid "ShoutCast Radio search results:"
+msgid "Search results:"
 msgstr ""
 
 #: FMain.form:2103
@@ -2665,305 +2665,305 @@ msgid ""
 "Please configure dvdnav hotkeys first."
 msgstr ""
 
-#: FMain.class:7847
+#: FMain.class:7857
 msgid "Error reading from shoutcast server"
 msgstr ""
 
-#: FMain.class:7895
+#: FMain.class:7905
 msgid "How do you want to add?"
 msgstr ""
 
-#: FMain.class:7895
+#: FMain.class:7905
 msgid "Add quickly"
 msgstr ""
 
-#: FMain.class:7895
+#: FMain.class:7905
 msgid "Get Stream info"
 msgstr ""
 
-#: FMain.class:7903
+#: FMain.class:7913
 msgid "Error while adding one or more items"
 msgstr ""
 
-#: FMain.class:7903
+#: FMain.class:7913
 msgid "Damn!"
 msgstr ""
 
-#: FMain.class:8088
+#: FMain.class:8113
 msgid "Cannot access a valid cd audio or Cd device"
 msgstr ""
 
-#: FMain.class:8117
+#: FMain.class:8142
 msgid "Please, wait while getting disc information"
 msgstr ""
 
-#: FMain.class:8132 Searchfields.form:97
+#: FMain.class:8157 Searchfields.form:97
 msgid "Track"
 msgstr ""
 
-#: FMain.class:8143 MplayerClass.class:244
+#: FMain.class:8168 MplayerClass.class:244
 msgid "Unknown entry (connection problem?)"
 msgstr ""
 
-#: FMain.class:8153
+#: FMain.class:8178
 msgid "Error, failed to get disc information"
 msgstr ""
 
-#: FMain.class:8213
+#: FMain.class:8238
 msgid "Error refreshing the feed"
 msgstr ""
 
-#: FMain.class:8260
+#: FMain.class:8285
 msgid "Enter a new podcast url"
 msgstr ""
 
-#: FMain.class:8264
+#: FMain.class:8289
 msgid "Error adding new feed"
 msgstr ""
 
-#: FMain.class:8294
+#: FMain.class:8319
 msgid "Cannot delete child items!"
 msgstr ""
 
-#: FMain.class:8319
+#: FMain.class:8344
 msgid "Error: Cannot get current item"
 msgstr ""
 
-#: FMain.class:8410
+#: FMain.class:8435
 msgid "Please, disable playlist shutdown option first!"
 msgstr ""
 
-#: FMain.class:8467
+#: FMain.class:8492
 msgid ""
 "Xt7 will try to find and update embedded covers,\n"
 "Beware that covers explicitely set without album/artist information will be "
 "lost."
 msgstr ""
 
-#: FMain.class:8633
+#: FMain.class:8658
 msgid "Are you sure you want to recursively add this directory?\n"
 msgstr ""
 
-#: FMain.class:8724
+#: FMain.class:8749
 msgid "There was an error while trying to delete the item"
 msgstr ""
 
-#: FMain.class:8910
+#: FMain.class:8935
 msgid "Would you like to go to the video homepage?"
 msgstr ""
 
-#: FMain.class:8910
+#: FMain.class:8935
 msgid "Yes, Go to Youtube"
 msgstr ""
 
-#: FMain.class:8910
+#: FMain.class:8935
 msgid "No, thanks"
 msgstr ""
 
-#: FMain.class:9484
+#: FMain.class:9509
 msgid ""
 "Thank you,\n"
 "you will be taken to the \n"
 "bug reporting web page."
 msgstr ""
 
-#: FMain.class:9484
+#: FMain.class:9509
 msgid "Submit the bug"
 msgstr ""
 
-#: FMain.class:9484
+#: FMain.class:9509
 msgid "Not now"
 msgstr ""
 
-#: FMain.class:9507
+#: FMain.class:9532
 msgid ""
 "Roll Your mouse wheel over the button\n"
 "to change panscan or Setup some hotkeys."
 msgstr ""
 
-#: FMain.class:9508
+#: FMain.class:9533
 msgid "Right click over the button will cycle through zoom modes"
 msgstr ""
 
-#: FMain.class:9552
+#: FMain.class:9577
 msgid "SubTitle files"
 msgstr ""
 
-#: FMain.class:9581
+#: FMain.class:9606
 msgid "Zoom mode: cut half bars"
 msgstr ""
 
-#: FMain.class:9584
+#: FMain.class:9609
 msgid "Zoom mode: cut bars"
 msgstr ""
 
-#: FMain.class:9588
+#: FMain.class:9613
 msgid "Zoom mode: 1:1"
 msgstr ""
 
-#: FMain.class:9662
+#: FMain.class:9687
 msgid "Filename: "
 msgstr ""
 
-#: FMain.class:9663
+#: FMain.class:9688
 msgid "In: "
 msgstr ""
 
-#: FMain.class:9669
+#: FMain.class:9694
 msgid "Album: "
 msgstr ""
 
-#: FMain.class:9669
+#: FMain.class:9694
 msgid "Year: "
 msgstr ""
 
-#: FMain.class:9669
+#: FMain.class:9694
 msgid "Genre: "
 msgstr ""
 
-#: FMain.class:9672
+#: FMain.class:9697
 msgid "Artist: "
 msgstr ""
 
-#: FMain.class:9676
+#: FMain.class:9701
 msgid "Title: "
 msgstr ""
 
-#: FMain.class:9676
+#: FMain.class:9701
 msgid ", Track No.: "
 msgstr ""
 
-#: FMain.class:9678
+#: FMain.class:9703
 msgid "Length: "
 msgstr ""
 
-#: FMain.class:9686
+#: FMain.class:9711
 msgid "Video: "
 msgstr ""
 
-#: FMain.class:9693
+#: FMain.class:9718
 msgid "Audio: "
 msgstr ""
 
-#: FMain.class:9693
+#: FMain.class:9718
 msgid "channels"
 msgstr ""
 
-#: FMain.class:9695
+#: FMain.class:9720
 msgid "Comment: "
 msgstr ""
 
-#: FMain.class:9934
+#: FMain.class:9959
 msgid "Rename to:"
 msgstr ""
 
-#: FMain.class:9972
+#: FMain.class:9997
 msgid ""
 "Moving $(dumpfile) \n"
 "To: \n"
 "$(destfile)"
 msgstr ""
 
-#: FMain.class:9975
+#: FMain.class:10000
 msgid ""
 "\n"
 "\n"
 "You can configure the paths in Generaloptions -> dvb-t"
 msgstr ""
 
-#: FMain.class:10061
+#: FMain.class:10086
 msgid "What do you want to do with this album tracks?"
 msgstr ""
 
-#: FMain.class:10061
+#: FMain.class:10086
 msgid "Append to playlist"
 msgstr ""
 
-#: FMain.class:10061
+#: FMain.class:10086
 msgid "Append and play"
 msgstr ""
 
-#: FMain.class:10064
+#: FMain.class:10089
 msgid "Append more than 50 tracks?"
 msgstr ""
 
-#: FMain.class:10064
+#: FMain.class:10089
 msgid "yes"
 msgstr ""
 
-#: FMain.class:10064
+#: FMain.class:10089
 msgid "no"
 msgstr ""
 
-#: FMain.class:10183
+#: FMain.class:10208
 msgid "Please, first enter a playlist name to save"
 msgstr ""
 
-#: FMain.class:10189
+#: FMain.class:10214
 msgid "Couldn't make the user playlist directory\n"
 msgstr ""
 
-#: FMain.class:10194
+#: FMain.class:10219
 msgid "exists."
 msgstr ""
 
-#: FMain.class:10194
+#: FMain.class:10219
 msgid "Overwrite"
 msgstr ""
 
-#: FMain.class:10194
+#: FMain.class:10219
 msgid "Never mind"
 msgstr ""
 
-#: FMain.class:10198
+#: FMain.class:10223
 msgid "There was an error saving the playlist:\n"
 msgstr ""
 
-#: FMain.class:10200
+#: FMain.class:10225
 msgid "Playlist saved:\n"
 msgstr ""
 
-#: FMain.class:10226
+#: FMain.class:10251
 msgid "Playlist:"
 msgstr ""
 
-#: FMain.class:10228
+#: FMain.class:10253
 msgid "Couldn't delete"
 msgstr ""
 
-#: FMain.class:10238
+#: FMain.class:10263
 msgid "Loading the playlist:"
 msgstr ""
 
-#: FMain.class:10238
+#: FMain.class:10263
 msgid "Load/Replace"
 msgstr ""
 
-#: FMain.class:10238
+#: FMain.class:10263
 msgid "Append"
 msgstr ""
 
-#: FMain.class:10276
+#: FMain.class:10301
 msgid "Would you like to save the current profile?"
 msgstr ""
 
-#: FMain.class:10387
+#: FMain.class:10412
 msgid "Stream is not seekable, use arrow keys or doubleclick"
 msgstr ""
 
-#: FMain.class:10389
+#: FMain.class:10414
 msgid "Stream is not seekable!, use arrow keys or doubleclick to override"
 msgstr ""
 
-#: FMain.class:10424
+#: FMain.class:10449
 msgid "Seek to:"
 msgstr ""
 
-#: FMain.class:10789
+#: FMain.class:10814
 msgid "No loop set"
 msgstr ""
 
-#: FMain.class:10952
+#: FMain.class:10977
 msgid "Error while getting selection"
 msgstr ""
 
@@ -4661,8 +4661,20 @@ msgstr ""
 msgid "Assign nevertheless"
 msgstr ""
 
-#: IceCastClass.class:39
+#: IceCastClass.class:41
 msgid "Could not download the Yellow pages"
+msgstr ""
+
+#: IceCastClass.class:121 ShoutCastClass.class:150
+msgid "Media Type"
+msgstr ""
+
+#: IceCastClass.class:122 ShoutCastClass.class:151
+msgid "BitRate"
+msgstr ""
+
+#: IceCastClass.class:123 ShoutCastClass.class:152
+msgid "Link"
 msgstr ""
 
 #: LogWindow.form:24
@@ -4931,18 +4943,6 @@ msgstr ""
 
 #: ServiceForm.form:12
 msgid "Output Language strings:"
-msgstr ""
-
-#: ShoutCastClass.class:150
-msgid "Media Type"
-msgstr ""
-
-#: ShoutCastClass.class:151
-msgid "BitRate"
-msgstr ""
-
-#: ShoutCastClass.class:152
-msgid "Link"
 msgstr ""
 
 #: ShoutCastClass.class:217

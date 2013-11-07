@@ -7788,7 +7788,7 @@ Public Sub ButtonGetGenres_Click()
   If buttonshoutcast.value Then
     Try MyRadio.GetGenres(GenresTree)
   Else
-    If Not fmain.fullyloaded Then Return
+    'If Not fmain.fullyloaded Then Return
     Try IceRadio.FillGenresTree(Genrestree, False)
   Endif
   Leftsidepanel.mouse = mouse.normal
@@ -7831,19 +7831,29 @@ Public Sub GenresTree_Activate()
   Endif
 End
 
+Public Sub starticesearch()
+  Leftsidepanel.mouse = mouse.wait
+  NOSAVEHBox10.mouse = mouse.wait
+  TextBox1.enabled = False
 
-Public Sub TextBox1_KeyPress()
-  
-  If (KEY.code = Key.return Or KEY.code = Key.enter) Then startshoutSearch()
-  
+  IceRadio.search(TextBox1.text, ShutResultGrid)
+
+  NOSAVEVBox2.visible = True
+  NOSAVEVBox3.visible = False
+  Highlight_shout_results()
+  Leftsidepanel.mouse = mouse.normal
+  NOSAVEHBox10.mouse = mouse.normal
+  TextBox1.enabled = True
+  ShutResultGrid.Rows.h = ShutResultGrid.Font.TextHeight("^_") + global.rowpadding
 End
+
 
 Public Sub startshoutSearch()
   
   Leftsidepanel.mouse = mouse.wait
   NOSAVEHBox10.mouse = mouse.wait
   TextBox1.enabled = False
-  If MyRadio.GetStationsFromSearch(TextBox1.text, ShutResultGrid) = 0 Then
+  If MyRadio.GetStationsFromSearch(TextBox1.text, ShutResultGrid) <> False Then
     Message.Error(("Error reading from shoutcast server"))
   Endif
   NOSAVEVBox2.visible = True
@@ -7968,7 +7978,7 @@ Public Sub ShoutCast_Select()
     If buttonshoutcast.value = True Then
       MyRadio.FillCachedGenres(GenresTree)
     Else
-      If Not fmain.fullyloaded Then Return
+      'If Not fmain.fullyloaded Then Return
       IceRadio.FillGenresTree(genrestree, True)
     Endif
   Endif
@@ -7981,10 +7991,25 @@ Public Sub Youtube_Select()
 End
 
 Public Sub TextBox1_Click()
-  
-  If Trim(TextBox1.text) <> "" Then startshoutSearch()
-  
+  If Trim(TextBox1.text) <> "" Then 
+    If buttonshoutcast.value Then 
+      startshoutSearch()
+    Else
+      starticesearch()
+    Endif
+  Endif
 End
+
+Public Sub TextBox1_KeyPress()
+  If (KEY.code = Key.return Or KEY.code = Key.enter) Then
+    If buttonshoutcast.value Then 
+      startshoutSearch()
+    Else
+      starticesearch()
+    Endif
+  Endif
+End
+
 
 Public Sub ShutResultGrid_Select()
   

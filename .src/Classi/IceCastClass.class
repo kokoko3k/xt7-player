@@ -1,7 +1,8 @@
 ' Gambas class file
 
 Public YPurl As String = "http://dir.xiph.org/yp.xml"
-
+Private yplines As New String[]
+Private alternate As Boolean = False
 
 Static Public Function MidC(s As String, a As String, Optional b As String) As String
   'return the first occurrence of the string between a and b
@@ -19,10 +20,11 @@ End
 Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = True)
   Dim mywget As Wgetclass
   Dim YPdata, YPLine, tmp As String
-  Dim YPLines, genres, genresu As New String[]
+  Dim genres, genresu As New String[]
   Dim title, myurl, audiotype, bitrate, genre As String
   Dim i, count As Integer 
   mytree.Enabled = False
+  yplines.clear
   'update YP cache
   If Not Exist(Global.YPCacheFile, True) Or UseCache = False Then
 
@@ -66,7 +68,7 @@ Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = Tru
   Next
   genresu[genresu.max] = genres[i - 1] & Chr((8)) & " [" & count & "]"
   For Each genre In genresu
-    Try mytree.Add(Split(genre, Chr(8))[0], Replace(genre, Chr(8), ""), picture["shoutcast16.png"])
+    Try mytree.Add(Split(genre, Chr(8))[0], Replace(genre, Chr(8), ""), stock["small/directory"]) ' picture["small/folder"])
   Next
   For Each ypline In yplines
     'Try GenresTree.Add(MyLink, GenreName, picture["shoutcast16.png"]) 
@@ -87,7 +89,7 @@ Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = Tru
           'Try mytree.Add(genre, genre, picture["shoutcast16.png"])
           'add Link
           If title <> "" And myurl <> "" Then 
-            Try mytree.Add(myurl, title & " " & audiotype & " " & bitrate & "Kbps", picture["shoutcast16.png"], genre)
+            Try mytree.Add(myurl, title & " " & audiotype & " " & bitrate & "Kbps", stock["small/audio"], genre)
             title = ""
             myurl = ""
             audiotype = ""
@@ -98,4 +100,97 @@ Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = Tru
     End Select
   Next 'ypline
   mytree.Enabled = True
+End
+
+
+
+Public Sub search(SearchTerm As String, MyGrid As Gridview)
+  Dim ypline As String
+  Dim title, myurl, audiotype, bitrate, genre As String
+  Dim i As Integer 
+ 
+  MyGrid.clear
+  MyGrid.Rows.count = 0
+  
+  If (MyGrid <> Null) Then
+    MyGrid.enabled = False
+    MyGrid.Columns.count = 4
+    'MyGrid.rows.count = MAXRESULTS 'max results to show ?
+    MyGrid.Header = GridView.Horizontal
+    MyGrid.Columns[0].text = ("Name")
+    MyGrid.Columns[1].text = ("Media Type")
+    MyGrid.Columns[2].text = ("BitRate")
+    MyGrid.Columns[3].text = ("Link")
+  Else
+    message.Error("Null grid !")
+    Return
+  Endif
+
+
+  For Each ypline In yplines
+    'Try GenresTree.Add(MyLink, GenreName, picture["shoutcast16.png"]) 
+    Select Case ypline
+      Case Like "*<server_name>*"
+        title = MidC(ypline, ">", "<")
+      Case Like "*<listen_url>*"
+        myurl = MidC(ypline, ">", "<")
+      Case Like "*<server_type>*"
+        audiotype = MidC(ypline, ">", "<")
+      Case Like "*<bitrate>*"
+        bitrate = MidC(ypline, ">", "<")
+      Case Like "*<genre>*"
+        genre = MidC(ypline, ">", "<")
+      Case Like "*</entry>*"
+        'add genre
+        If genre <> "" Then 
+
+          If title <> "" And myurl <> "" Then 
+            If title & genre & audiotype Like "*" & searchterm & "*" Then
+              MyGrid.rows.count += 1
+                MyGrid[MyGrid.Rows.Max, 0].Picture = picture["filetypeuri.png"]
+                MyGrid[MyGrid.Rows.Max, 0].text = title
+                MyGrid[MyGrid.Rows.Max, 1].text = audiotype
+                MyGrid[MyGrid.Rows.Max, 2].text = bitrate
+                MyGrid[MyGrid.Rows.Max, 3].text = myurl
+            Endif
+           
+            title = ""
+            myurl = ""
+            audiotype = ""
+            bitrate = ""
+            genre = ""
+          Endif
+        Endif
+    End Select
+  Next 'ypline
+  
+  
+  Alternatecolor(MyGrid)
+  MyGrid.enabled = True
+  For i = 0 To 3
+  Try MyGrid.Columns[0].w = -1
+  Next 'i
+  
+End
+
+
+
+Public Sub Alternatecolor(myplaylist As GridView)
+ Dim r, c As Integer
+ Alternate = True
+     For r = 0 To myplaylist.Rows.count - 1
+       If Not Alternate Then
+         For c = 0 To MyPlaylist.Columns.count - 1
+           MyPlaylist[r, c].text = MyPlaylist[r, c].text
+           MyPlaylist[r, c].background = Global.Alternatecolor
+         Next 'c
+           Else
+         For c = 0 To MyPlaylist.Columns.count - 1
+           MyPlaylist[r, c].text = MyPlaylist[r, c].text
+           MyPlaylist[r, c].background = MyPlaylist.Background
+         Next 'c
+       Endif
+       Alternate = Not (alternate)
+   Next 'r
+
 End

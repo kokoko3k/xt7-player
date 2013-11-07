@@ -44,11 +44,6 @@ End
 
 
 Static Public Sub quicktest()
-  Dim IceRadio As New IceCastClass
-  Global.init
-  IceRadio.FillGenresTree(FMain.genrestree)
-  
-  
- ' Quit
+  Quit
   
 End

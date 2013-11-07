@@ -92,7 +92,7 @@ Public Function GetGenres(GenresTree As TreeView)
     myLINK = Mid(lines[i], Len("<link>") + 1, Len(lines[i]) - (Len("<link>") + 1) * 2)
     i = i + 1
     'GenresTree.Add(MyLink, GenreName & ts & " - [" & numstations & "]", picture["shoutcast16.png"])
-    Try GenresTree.Add(MyLink, GenreName, picture["shoutcast16.png"])
+    Try GenresTree.Add(MyLink, GenreName, stock["small/directory"]) 'picture["shoutcast16.png"])
     Until (i + 3) >= lines.count
 End
 
@@ -105,7 +105,7 @@ Public Function GetStationsFromSearch(SearchTerm As String, ShutResultGrid As Gr
   'AskUrl = "http://yp.shoutcast.com/sbin/newxml.phtml?search='" & SearchTerm & "'" & "&limit=" & MAXRESULTS
   AskUrl = "'http://api.shoutcast.com/legacy/stationsearch?k=sh17tOUi_ezL61_A&search=" & SearchTerm & "&limit=" & MAXRESULTS & "'"
   'http://api.shoutcast.com/legacy/stationsearch?k=[Your Dev ID]&search=ambient+beats
-  MyError = DownloadAndParse(AskUrl, Null, ShutResultGrid) <> ""
+  MyError = DownloadAndParse(AskUrl, Null, ShutResultGrid) = ""
   For i = 0 To 3
     Try ShutResultGrid.Columns[0].w = -1
   Next 'i
@@ -232,7 +232,7 @@ Private Sub ParseChannel(xmlbuffer As String, Optional GenresTree As Treeview = 
           MyLink = "http://yp.shoutcast.com/" & tunein_base & "?id=" & id
           If (GenresTree <> Null) Then
 
-            Try GenresTree.add(MyLink, title & " " & " Type: " & mt & " " & " Bitrate: " & br, picture["filetypeuri.png"], GenresTree.Current.key)
+            Try GenresTree.add(MyLink, title & " " & " Type: " & mt & " " & " Bitrate: " & br, stock["small/audio"], GenresTree.Current.key)
               Else
             If (ShutResultGrid <> Null) Then
               'ShutResultGrid.Rows.count = ShutResultGrid.Rows.count + 1

@@ -10104,7 +10104,8 @@ Public Sub AlbumGridView_Activate()
       playlistgrid.UnSelectAll()
       playlistgrid.row = firstrow
       playlistgrid.Rows[playlistgrid.row].selected = True
-      Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
+      Try Play(PlayListGrid[Playlistgrid.row, MyPlayList.Columnindex["Full Path"]].text)
+      If Error Then message.Error(("Something went wrong; does the file exists?"))
       Leftsidetabs.index = Global.TabIndexByName("playlist", Leftsidetabs)
       Leftsidetabs.Refresh
         Else

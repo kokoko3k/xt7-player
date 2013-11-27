@@ -2,7 +2,10 @@
 Count=0
 
 [DebugWindow]
-Count=0
+Count=3
+DebugWindow[1]="node1.Children[t]"
+DebugWindow[2]="XmlElement(node1.Children[t]).Attributes"
+DebugWindow[3]="node1.Children[t].Attributes"
 
 [DebugWindow/AC3s]
 Geometry=[928,154,344,344]
@@ -735,6 +738,9 @@ Geometry=[62,14,344,344]
 [DebugWindow/XmlElement(node.Children[t]).Children[6]]
 Geometry=[76,28,344,344]
 
+[DebugWindow/XmlElement(node1.Children[t]).Attributes]
+Geometry=[14,14,344,344]
+
 [DebugWindow/XmlFields]
 Geometry=[51,0,210,210]
 
@@ -1207,6 +1213,9 @@ Geometry=[0,0,344,344]
 [DebugWindow/node1.Children[t]]
 Geometry=[0,0,344,344]
 
+[DebugWindow/node1.Children[t].Attributes]
+Geometry=[1280,-3,210,210]
+
 [DebugWindow/nopps]
 Geometry=[0,64,301,301]
 
@@ -1505,10 +1514,10 @@ File[1]=".src/0_Moduli/Global.module:104.62"
 Fold[1]=[184,203,209,217,276,279,282,286,301,313,325,347,359,377,465,576,618,670,920,931,944,959,991,1001,1014]
 File[2]=".src/Classi/StartClass.class:46.1"
 File[3]=".src/Form/FMain.form"
-File[4]=".src/Form/FMain.class:7838.17"
+File[4]=".src/Form/FMain.class:8250.22"
 File[5]=".src/Classi/SettingsClass.class:12.35"
 Active=6
-File[6]="CHANGELOG_GIT:18.11"
+File[6]="CHANGELOG_GIT:4.10"
 File[7]=".src/Classi/ShoutCastClass.class:246.19"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:100.10"
 File[9]=".src/Classi/PlaylistClass.class:1213.0"
@@ -1571,7 +1580,7 @@ File[65]=".src/Form/AudioConvert.class:144.0"
 File[66]=".src/Form/AskName.form"
 File[67]=".src/Classi/YoutubeClass.class:354.29"
 File[68]=".src/Form/AddUriForm.form"
-File[69]=".src/Classi/PodCast.class:13.9"
+File[69]=".src/Classi/PodCast.class:35.0"
 File[70]=".src/Classi/IceCastClass.class:113.2"
 Count=70
 

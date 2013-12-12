@@ -12,7 +12,7 @@ Private baddomains As String = "sweetslyrics.com;lyricsfreak.com;lyricsondemand.
 
 
 
-Private Function httpget(url As String) As String
+Private Function httpget(url As String, Optional dumpfile As String = "") As String
   Dim httpclient1 As New Httpclient
   Dim hastimedout As Boolean = True
   Dim wdata As String
@@ -29,6 +29,7 @@ Private Function httpget(url As String) As String
     Return
   Endif
   If Lof(HttpClient1) Then Read #HttpClient1, wdata, Lof(HttpClient1)
+  If dumpfile <> "" Then Try File.Save(dumpfile, wdata)
   Return wdata
 End
 
@@ -123,7 +124,7 @@ Private Sub GetAndShow(artist As String, song As String)
   snippet = Replace(snippet, " ", "%20") 
     
   googleurl = "https://duckduckgo.com/html/?q=" & snippet
-  gresults &= httpget(googleurl)
+  gresults &= httpget(googleurl, "/tmp/debug")
   Debug googleurl
   Try resultlines = Split(gresults, "<", "", True)
   If Error Then
@@ -131,12 +132,14 @@ Private Sub GetAndShow(artist As String, song As String)
     Me.mouse = Mouse.Normal
     Return
   Endif
-  blackfound = False
   For Each myline In resultlines
+    blackfound = False
     If myline Like "*href*http://*" Then
       For Each blackdomain In Split(blackdomains, ";") 'strip out black domains
         If myline Like "*" & blackdomain & "*" Then
           blackfound = True
+          ' Debug "blackdomain found: " & blackdomain
+          ' Debug "Into this line: " & myline
           Break
         Endif
       Next 'blackdomain

@@ -176,7 +176,12 @@ Dim EpgButton As Button
   BlinkTimer.delay = 1
   BlinkTimer.start
   
-  moffset = DateDiff(StartDate, MyEventInfo.Start_time_date, gb.Minute)
+  Try moffset = DateDiff(StartDate, MyEventInfo.Start_time_date, gb.Minute)
+  If Error Then 
+    Debug "could not make datediff:"
+    Debug "DateDiff(" & StartDate & "," & MyEventInfo.Start_time_date & "," & gb.Minute & ")"
+    Debug "dropping Event!"
+  Endif
   If moffset < 0 Then
     Debug "Event scheduled for the past, dropping"
     Return

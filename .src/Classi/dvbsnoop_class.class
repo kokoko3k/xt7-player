@@ -276,7 +276,17 @@ Private Sub ParseEvent(e As String[], ChannelName As String, EventID As String, 
     Try s = Split(duration, ":")[2]
       If Error Then Goto DateSplitError
   Endif
-  Duration_date = Date(0, 0, 0, h, m, s)
+  Try Duration_date = Date(0, 0, 0, h, m, s)
+  If Error Then
+    If h = 24 Then
+      h = 23
+      m = 59
+      s = 59
+      Try Duration_date = Date(0, 0, 0, h, m, s)
+      Debug "cant determine duration, setting, arbitrary 1h)"
+        Duration_date = Date(0, 0, 0, 1, 0, 0)
+    Endif
+  Endif
 
  
 

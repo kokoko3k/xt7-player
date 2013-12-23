@@ -492,7 +492,7 @@ Public Sub ScrollToEvent(e As String) 'fixme quando evendb si abboffa datehandle
   If Error Then Return
   oy = Split(DateHandle[lastIndex], "|")[2]
   If Error Then Return
-  o = epgview.Find(ox, oy)
+  o = epgview.FindChild(ox, oy)
   ShowPanelInfo(o.tag)
   
   If lastindex >= DateHandle.max Then
@@ -573,6 +573,7 @@ Public Sub ButtonRefreshAll_Click()
   Dim i As Integer = 1
   Dim prevcount, t, t1 As Integer
   Dim tunercmd As String
+  Dim tunerpid As Integer = -1
   
   wantstop = False
   Last.hide()
@@ -609,6 +610,7 @@ Public Sub ButtonRefreshAll_Click()
     dvbsnoop.Startit()
     'tunercmd = "timeout " & TimePerChannel & " mplayer -tsprobe 1 \"dvb://" & uchannel & "\" -dumpstream -dumpfile /dev/null " & "< /dev/null &>/dev/null"
     tunercmd = "mplayer -tsprobe 1 \"dvb://" & uchannel & "\" -dumpstream -dumpfile /dev/null " & "< /dev/null &>/dev/null"
+    
     tunerprocess = Shell tunercmd '"sh -c '" & tunercmd & "'"
     'tunerprocess = Shell "mplayer -tsprobe 1 \"dvb://" & uchannel & "\" -dumpstream -dumpfile /dev/null " & "< /dev/null &>/dev/null"
 
@@ -627,9 +629,15 @@ Public Sub ButtonRefreshAll_Click()
       If t1 > NoEventsTimeout Then
         Debug "No new events received in " & NoEventsTimeout & " seconds, going next..."
         t1 = 0
-        Repeat 
+        Repeat
           Try tunerprocess.Kill()
           Wait 0.1
+          tunerpid = -1
+          Try tunerpid = tunerprocess.Handle
+          If tunerpid > 0 Then
+            Shell "kill -9 " & tunerpid
+            Wait 0.1
+          Endif
           If wantstop Then Goto ButtonStopPressed
         Until tunerprocess.state <> Process.Running
         Break

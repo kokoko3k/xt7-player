@@ -122,6 +122,12 @@ Public Sub Stopit()
 
   Wait 0.01
 
+  pid1 = -1
+  pid2 = -1
+  Try pid1 = dvbsnoop.handle
+  Try pid2 = dvbsnoopcMap.handle
+  
+
   If pid1 > 0 Then Shell "kill -9 " & pid1
   If pid2 > 0 Then Shell "kill -9 " & pid2
 

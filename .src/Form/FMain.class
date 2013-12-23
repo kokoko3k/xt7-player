@@ -1797,6 +1797,7 @@ Public Sub ButtonStop_Click()
   aspectmenu.visible = False
   videobox.clear
   Try ClearStreamsMenu()
+  Stop
   Try epgform.dvbsnoop.Stopit()
   ButtonNowNext.Hide()
   ArrangeCpl()

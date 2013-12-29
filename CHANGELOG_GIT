@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Dec 29 2013
   WORKAROUND: Use an http youtube url instead of https due to mplayer not supporting https.
+  FIX:  Detect *.googlevideo.* as youtube urls too
 
 Dec 23 2013
   FIX:    Workaround for date calculation on dvbt.

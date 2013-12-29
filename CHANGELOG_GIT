@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Dec 29 2013
+  WORKAROUND: Use an http youtube url instead of https due to mplayer not supporting https.
+
 Dec 23 2013
   FIX:    Workaround for date calculation on dvbt.
   FIX:    Drop dvbt event on wrong datediff

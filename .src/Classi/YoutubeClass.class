@@ -689,7 +689,7 @@ Stop
     If Not Error Then
       If fmtresult Like "*http*" Then
         Debug fmtresult
-        Return Trim(Replace(fmtresult, "https://", "http://")) 'mplayer doesn't support https.
+        Return Trim(fmtresult)
       Endif
     Endif
   Next

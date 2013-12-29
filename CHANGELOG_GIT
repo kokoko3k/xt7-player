@@ -1,7 +1,7 @@
 Git changes:
 --------------------------------------
 Dec 29 2013
-  WORKAROUND: Use an http youtube url instead of https due to mplayer not supporting https.
+  WORKAROUND: Replace https urls with http ones due to mplayer limitation
   FIX:  Detect *.googlevideo.* as youtube urls too
 
 Dec 23 2013

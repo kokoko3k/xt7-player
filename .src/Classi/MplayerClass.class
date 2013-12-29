@@ -671,6 +671,14 @@ Public Function do_play(filename As String, options As String, Optional restart 
   CurrentCache = "0"
   mplayeroptions = options
 
+  If filename Like "https://*" Then
+    filename = Replace(filename, "https://", "http://")
+    Debug "Warning: Using http instead of https!"
+      Else If filename Like "HTTPS://*" Then 
+        filename = Replace(filename, "HTTPS://", "http://")
+        Debug "Warning: Using http instead of https!"
+  Endif
+
   IsNetworkURI = Global.IsNetworkURI(filename) ' on network streams we'll try to guess "ICY:" information (webradios tag)
   If ProcessRunningOvr() Then 
     MyKillCancelled = True

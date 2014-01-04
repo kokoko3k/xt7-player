@@ -607,28 +607,28 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   ' fSorted.Add("240,5,flv")
 'http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
   fSorted.Add("3072,38,mp4")
-  fSorted.Add("1080,137,mp4")
+ ' fSorted.Add("1080,137,mp4")'DASH
   fSorted.Add("1080,37,mp4")
-  fSorted.Add("720,136,mp4")
+ ' fSorted.Add("720,136,mp4")'DASH
   fSorted.Add("720,84,mp4")
   fSorted.Add("720,22,mp4")
   fSorted.Add("520,85,mp4")
-  fSorted.Add("480,135,mp4")
-  fSorted.Add("360,141,mp4")
-  fSorted.Add("360,140,mp4")
-  fSorted.Add("360,139,mp4")
-  fSorted.Add("360,134,mp4")
+ ' fSorted.Add("480,135,mp4")'DASH
+ ' fSorted.Add("360,141,mp4")'DASH
+ ' fSorted.Add("360,140,mp4")'DASH
+ ' fSorted.Add("360,139,mp4")'DASH
+ ' fSorted.Add("360,134,mp4")'DASH
   fSorted.Add("360,82,mp4")
   fSorted.Add("360,18,mp4")
-  fSorted.Add("240,133,mp4")
+ ' fSorted.Add("240,133,mp4")'DASH
   fSorted.Add("240,83,mp4")
-  fSorted.Add("144,160,mp4")
+ ' fSorted.Add("144,160,mp4")'DASH
   fSorted.Add("1080,46,webm")
   fSorted.Add("720,102,webm")
   fSorted.Add("720,45,webm")
   fSorted.Add("480,44,webm")
-  fSorted.Add("360,172,webm")
-  fSorted.Add("360,171,webm")
+'  fSorted.Add("360,172,webm")'DASH
+ ' fSorted.Add("360,171,webm") 'DASH
   fSorted.Add("360,101,webm")
   fSorted.Add("360,100,webm")
   fSorted.Add("360,43,webm")
@@ -663,7 +663,6 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   ytdlprocess = Shell "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
   Debug "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
 Debug videoid
-Stop
   Repeat
     Wait 0.02
   Until ytdlprocess.State <> Process.Running

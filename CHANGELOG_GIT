@@ -1,5 +1,8 @@
 Git changes:
 --------------------------------------
+Jan 04 2014
+  FIX:  Skip DASH (audio only or video only) youtube formats (youtube works again in git)
+
 Dec 29 2013
   WORKAROUND: Replace https urls with http ones due to mplayer limitation
   FIX:  Detect *.googlevideo.* as youtube urls too

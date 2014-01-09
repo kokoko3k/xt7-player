@@ -1577,7 +1577,7 @@ Public Sub savethumb(fullpath As String, newfilename As String, Optional width A
   widthpriv = width
   Debug cmdline
   Debug
-  thumbprocess = Shell cmdline For Read As "thumbprocess" 
+  thumbprocess = Shell cmdline For Input As "thumbprocess" 
 End
 
 

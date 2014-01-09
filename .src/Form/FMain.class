@@ -6586,7 +6586,7 @@ Public Sub MenuPlaylistZapSelected_Click()
 
   playlistgrid.enabled = False
   If (PlaylistGrid.row >= 0) Then
-    If Not (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
+    If (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 2) Then
       MyPlaylist.EraseSelected(PlaylistGrid)
       MyPlaylist.DeleteSelected(Playlistgrid, True)
       Try playlistgrid.Current.EnsureVisible()
@@ -6600,7 +6600,7 @@ Public Sub MenuLibraryZapSelected_Click()
 
   librarygrid.enabled = False
   If (LibraryGrid.row >= 0) Then
-    If Not (MyQuestion.Ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then
+    If (MyQuestion.Ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 2) Then
       MyLibrary.EraseSelected(Librarygrid)
       MyLibrary.DeleteSelected(Librarygrid, True)
       Try LibraryGrid.Current.EnsureVisible()
@@ -8726,9 +8726,8 @@ Public Sub MenuBrowseDelete_Click()
 
   Dim selecteditem As String
   Dim therewasanerror As Boolean = False
+  If (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) <> 2) Then Return
 
-  If (MyQuestion.ask(("Are you sure you want to delete selected item(s) from disk?"), ("Don't Delete"), ("Yes, Delete")) = 1) Then Return
-  
   For Each selecteditem In FileView1.Selection 
     selectedItem = Replace(FileView1.dir & "/" & selecteditem, "//", "/")
     If Exist(selecteditem, True) Then

@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Jan 09 2014
   FIX:    Avoid 100% cpu use by replacing "FOR READ" with "FOR INPUT" in thumbprocess
+  FIX:    Do not delete files if the user closes the window asking for confirmation!
 
 Jan 07 2014
   CHANGE: Updated Russian Translation thanks to VictoR

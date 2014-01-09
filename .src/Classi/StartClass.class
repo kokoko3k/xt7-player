@@ -18,6 +18,7 @@ End
 
 Static Public Sub main()
   'quicktest()
+
   ProcessSignals(True)
   zzzFake.Start()
 End

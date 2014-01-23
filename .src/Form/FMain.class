@@ -3376,7 +3376,6 @@ Public Sub OneSecTimer_Timer()
             Endif
           Endif
         Endif
-        
         If (Not VEqHasBeenSet) Then
           If VideoEqualizer.ApplyEqCheckbox.value Then
             VideoEqualizer.ApplyEqSettings()
@@ -4405,12 +4404,13 @@ Public Sub MenuConfigureAudioFilters_Click()
 End
 
 Public Sub Apply()
-
+  onesectimer.stop
   Debug "Cached Options unvalidated"
   Debug
   global.ResetApplyBtnColor()
   fmain.cachedopts = ""
   VEqHasBeenSet = False
+  subnotset = True
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & SetInitialvolume())
@@ -4421,6 +4421,7 @@ Public Sub Apply()
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
+  onesectimer.start
 End
 
 Public Sub SubTitlesMenu_Click()

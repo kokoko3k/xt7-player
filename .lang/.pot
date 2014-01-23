@@ -24,28 +24,28 @@ msgstr ""
 
 #: AFiltersCfg.form:72 AudioVideoCodecs.form:42 Chains.form:77 FMain.form:938
 #: GeneralOptions.form:341 HotKeys.form:34 SubAndOsd.form:99
-#: VFiltersCfg.form:31 VideoEqualizer.form:49 XConfigureAudioDriver.form:84
+#: VFiltersCfg.form:31 VideoEqualizer.form:52 XConfigureAudioDriver.form:84
 #: XConfigureVideoDriver.form:190
 msgid "Profile"
 msgstr ""
 
 #: AFiltersCfg.form:75 AudioVideoCodecs.form:45 Chains.form:80 FMain.form:942
 #: GeneralOptions.form:344 HotKeys.form:37 SubAndOsd.form:102
-#: VFiltersCfg.form:34 VideoEqualizer.form:52 XConfigureAudioDriver.form:87
+#: VFiltersCfg.form:34 VideoEqualizer.form:55 XConfigureAudioDriver.form:87
 #: XConfigureVideoDriver.form:193
 msgid "Reload current profile"
 msgstr ""
 
 #: AFiltersCfg.form:80 AudioVideoCodecs.form:50 Chains.form:85
 #: GeneralOptions.form:349 HotKeys.form:42 SubAndOsd.form:107
-#: VFiltersCfg.form:39 VideoEqualizer.form:57 XConfigureAudioDriver.form:92
+#: VFiltersCfg.form:39 VideoEqualizer.form:60 XConfigureAudioDriver.form:92
 #: XConfigureVideoDriver.form:198
 msgid "Save to current profile"
 msgstr ""
 
 #: AFiltersCfg.form:85 AudioVideoCodecs.form:55 GeneralOptions.form:354
 #: HotKeys.form:47 SubAndOsd.form:112 VFiltersCfg.form:44
-#: VideoEqualizer.form:62 XConfigureAudioDriver.form:97
+#: VideoEqualizer.form:65 XConfigureAudioDriver.form:97
 #: XConfigureVideoDriver.form:203
 msgid "Save these settings to all profiles"
 msgstr ""
@@ -876,7 +876,7 @@ msgstr ""
 msgid "Eq2"
 msgstr ""
 
-#: Chains.form:306 VFiltersCfg.class:422 VideoEqualizer.form:183
+#: Chains.form:306 VFiltersCfg.class:422 VideoEqualizer.form:202
 msgid "Hue"
 msgstr ""
 
@@ -1564,7 +1564,7 @@ msgstr ""
 msgid "Profile Manager"
 msgstr ""
 
-#: FMain.form:961 VideoEqualizer.form:68
+#: FMain.form:961 VideoEqualizer.form:71
 msgid "?"
 msgstr ""
 
@@ -1700,7 +1700,7 @@ msgstr ""
 msgid "Show/Hide AudioTag editor"
 msgstr ""
 
-#: FMain.form:1283 VideoEqualizer.form:39
+#: FMain.form:1283 VideoEqualizer.form:41
 msgid "Video Equalizer"
 msgstr ""
 
@@ -6512,7 +6512,7 @@ msgstr ""
 msgid "E.g.:mirror,smartblur=0.4:0.5:10"
 msgstr ""
 
-#: VFiltersCfg.class:410 VideoEqualizer.form:150
+#: VFiltersCfg.class:410 VideoEqualizer.form:169
 msgid "Gamma"
 msgstr ""
 
@@ -6520,7 +6520,7 @@ msgstr ""
 msgid "Initial gamma value(default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:411 VideoEqualizer.form:117
+#: VFiltersCfg.class:411 VideoEqualizer.form:136
 msgid "Contrast"
 msgstr ""
 
@@ -6528,7 +6528,7 @@ msgstr ""
 msgid "Initial contrast (-x = negative image)"
 msgstr ""
 
-#: VFiltersCfg.class:412 VideoEqualizer.form:84
+#: VFiltersCfg.class:412 VideoEqualizer.form:103
 msgid "Brightness"
 msgstr ""
 
@@ -6536,7 +6536,7 @@ msgstr ""
 msgid "Initial brightness (default: 0.0)"
 msgstr ""
 
-#: VFiltersCfg.class:413 VideoEqualizer.form:216
+#: VFiltersCfg.class:413 VideoEqualizer.form:235
 msgid "Saturation"
 msgstr ""
 
@@ -6633,16 +6633,24 @@ msgstr ""
 msgid "1 - bottom field first"
 msgstr ""
 
-#: VideoEqualizer.form:71
+#: VideoEqualizer.form:74
 msgid "help"
 msgstr ""
 
-#: VideoEqualizer.form:78
+#: VideoEqualizer.form:87
 msgid "Note that this can conflicts with Eq2 and hue filter settings"
 msgstr ""
 
-#: VideoEqualizer.form:79
+#: VideoEqualizer.form:89
 msgid "Auto apply those values"
+msgstr ""
+
+#: VideoEqualizer.form:94
+msgid "Restore default settings"
+msgstr ""
+
+#: VideoEqualizer.form:96
+msgid "Restore all"
 msgstr ""
 
 #: VideoEqualizer.class:101

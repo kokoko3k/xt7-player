@@ -2357,6 +2357,8 @@ Public Sub MenuswitchChapter_click()
   
 End
 
+
+Public LASTAUDIOID As Integer = -1
 'we have to know if the audio has been switched because this crashes mplayer:
 'play rai1, switch audio to eng, play rai2 via dvb_set_channel and you get no audio at all, try to choose the audio -> mplayer crash.
 'i suspect that when you play rai2 mplayer tries to find the previous audio_id into the new channel.
@@ -2371,8 +2373,11 @@ Public Sub Menuswitchaudio_click()
   Next
   Last.checked = True
   Try ID = Split(Last.caption, " ")[0] 
-  mplayer.Send("switch_audio " & ID)
-
+  If Not Error Then 
+    mplayer.Send("switch_audio " & ID)
+    LASTAUDIOID = ID
+  Endif
+  
 End
 
 Public Sub PowerffBTN_click()
@@ -2382,7 +2387,7 @@ Public Sub PowerffBTN_click()
 End
 
 Public nosub As Boolean = False
-Public lastsubid As Integer = -1
+Public lastsubid As Integer = 99999
 
 Public Sub Menuswitchsub_click()
   
@@ -2397,6 +2402,7 @@ Public Sub Menuswitchsub_click()
     Last.checked = nosub
     If Last.checked Then 
       mplayer.Send("sub_select -1")
+      lastsubid = -1
     Else
       If lastsubID <> -1 Then 
         mplayer.Send("sub_select " & lastsubid) 
@@ -2633,7 +2639,8 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     Debug
     Return
   Endif
-  lastsubid = -1
+  lastsubid = 99999
+  LASTAUDIOID = -1
   global.ResetApplyBtnColor()
   
   If audioform.AudioPanel.parent <> outerbox Then
@@ -4421,6 +4428,9 @@ Public Sub Apply()
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
+  If LASTAUDIOID <> -1 Then mplayer.Send("switch_audio " & LASTAUDIOID)
+  If LASTSUBID <> 99999 Then mplayer.Send("sub_select " & lastsubid)
+  
   onesectimer.start
 End
 
@@ -11012,4 +11022,5 @@ Public Sub ButtonRadios_click()
   Endif
   Last.mouse = mouse.Normal
 End
+
 

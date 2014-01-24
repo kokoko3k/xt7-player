@@ -3135,7 +3135,7 @@ Public Sub UpdateSeekSlider()
   'while mplayer2 reports a wrong length
   If (totaltime = "0") Or (actualtime > totaltime) Then  
     mplayer.Send("get_percent_pos")
-    Seekbar.value = mplayer.Media_percent_pos / 100
+    Try Seekbar.value = mplayer.Media_percent_pos / 100
   Endif
   SeekBar.tag = "user"
 End

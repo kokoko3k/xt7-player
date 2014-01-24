@@ -3332,7 +3332,11 @@ msgstr ""
 #: GeneralOptions.form:1150
 msgid ""
 "If available, 3D videos will be displayed instead of 2D ones.\n"
-"Disabling this option will completely discard 3D videos."
+"Disabling this option will completely discard 3D videos.\n"
+"\n"
+"NOTES:\n"
+" It may be necessary to use the stereo3d video filter\n"
+"Using the stereo3d video disables GPU decoding."
 msgstr ""
 
 #: GeneralOptions.form:1152

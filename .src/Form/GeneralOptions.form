@@ -692,7 +692,7 @@
           Spacing = True
           { Get3dYT CheckBox
             MoveScaled(0,0,49,4)
-            ToolTip = ("If available, 3D videos will be displayed instead of 2D ones.\nDisabling this option will completely discard 3D videos.")
+            ToolTip = ("If available, 3D videos will be displayed instead of 2D ones.\nDisabling this option will completely discard 3D videos.\n\nNOTES:\n It may be necessary to use the stereo3d video filter\nUsing the stereo3d video disables GPU decoding.")
             Expand = True
             Text = ("Prefer 3D videos from Youtube")
           }

@@ -3335,9 +3335,7 @@ End
 
 Private DOHACKIMAGE As Boolean = True
 Public Sub OneSecTimer_Timer()
-  
   Dim PlaylistFinished As Boolean
-Debug onesectimer.Delay
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%
@@ -3411,7 +3409,7 @@ Debug onesectimer.Delay
   Else  'Mplayer Not running
     'cachebar.visible = False
     Fmain.caption = global.AppName
-    ' OneSecTimer.stop
+    OneSecTimer.stop
     Stopmthumbler()
     cachebar.w = 0
     ButtonPlay.picture = Picture["media-playback-start.png"]

@@ -4,6 +4,7 @@ Jan 24 2014
   NEW:    New stereo3d video filter available
   NEW:    New option in Generaloptions->Network to prefer (or discard) 3D videos from youtube
   FIX:    Workaround for 100% cpu use with gambas 3.5.1 when mplayer ends by its own
+  FIX:    Stop a timer left active when mplayer terminates without the user pressed the stop button.
 
 Lan 23 2014
   FIX:    Try to keep the previously selected sub and audio stream across applies/mplayer restarts

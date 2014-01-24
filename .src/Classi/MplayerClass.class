@@ -308,9 +308,6 @@ End
 
 
 
-
-
-
 Public Sub playerprocess_read(Optional injected As String = "")
 
   Dim Splitted As String[]
@@ -329,9 +326,7 @@ Public Sub playerprocess_read(Optional injected As String = "")
         Else
       playeroutput = injected
     Endif
-    
     'Debug playeroutput
-    
     'fill Requested Video window height AND width
     If Playeroutput Like "*VO:*" Then
       Splitted = Split(playeroutput, "\n\r")
@@ -786,6 +781,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
     Debug "commandline=" & commandline
     Debug
     playerprocess = Shell commandline For Read As "playerprocess"
+    'playerprocess = Shell commandline For Input As "playerprocess"
     MaxCache = parsecacheparam(commandline)
 
     stopping = False
@@ -1051,16 +1047,15 @@ End
 Public Function ProcessRunningOvr() As Boolean
   'As gambas returns runtime error if process is not ready,
   'we'll catch it here
-
   Dim running As Boolean = False
   Try running = (Playerprocess.state = 1)
   Return running
-
 End
 
 Public Function do_stop() As Boolean
   Dim maxtimeout As Integer = 11
   Dim timeout As Integer 
+
   AudioSwitched = False
   Try STimer.stop
   stopping = True
@@ -1074,9 +1069,9 @@ Public Function do_stop() As Boolean
     timeout = timeout - 1
   Until ((timeout <= 0) Or (Not ProcessRunningOvr()))
   timeout = maxtimeout
-  Repeat 'con le cattive...
+  Repeat 'con le cattive..
     Try Playerprocess.Kill
-     Wait 0.1
+    Wait 0.1
     timeout = timeout - 1
     Until ((timeout <= 0) Or (Not ProcessRunningOvr()))
   'delete previous pipe
@@ -1088,9 +1083,17 @@ Public Function do_stop() As Boolean
   LastSplittedOutput = ""
   Media_FullPath_Playing = ""
   Audioonly = False
+   GBXBUGCloseStream()
   Return True
-
 End
+
+Public Function GBXBUGCloseStream()
+  Object.Lock(Me)
+  playerprocess = Shell "/dev/null/FakeCommand &>/dev/null" 'needed to (luckily) workaround a bug in gb when the process stream is closed and gb expects data...
+  Object.unLock(Me)
+  'http://code.google.com/p/gambas/issues/detail?id=494Stop
+End
+
 
 Public Function do_ffwd() As Boolean
 
@@ -1583,6 +1586,7 @@ End
 
 
 Public Sub playerprocess_kill()
+  GBXBUGCloseStream()
   If (Not MyKillCancelled) Then Raise mykill()
 End
 

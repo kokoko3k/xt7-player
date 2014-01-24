@@ -3337,7 +3337,7 @@ Private DOHACKIMAGE As Boolean = True
 Public Sub OneSecTimer_Timer()
   
   Dim PlaylistFinished As Boolean
-
+Debug onesectimer.Delay
   If mplayer.ProcessRunningOvr() Then
     If mplayer.Paused Then
       If CacheChanged() Then UpdateStatusBar()      '1%

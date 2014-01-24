@@ -660,38 +660,49 @@
         { NOPARSESEP6 Separator
           MoveScaled(5,16,43,1)
         }
-        { NoParse7 HBox
-          MoveScaled(0,18,51,4)
-          ToolTip = ("Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://")
-          AutoResize = True
-          Spacing = True
-          { SlowTagsCHK CheckBox
-            MoveScaled(-1,0,49,4)
-            Expand = True
-            Text = ("Skip tags on network streams.")
-            Value = CheckBox.True
-          }
-        }
         { NoParse33 HBox
-          MoveScaled(1,28,50,4)
+          MoveScaled(1,23,50,4)
           ToolTip = ("When playing youtube videos, \nprefer this format if available.")
           AutoResize = True
           Spacing = True
           { Label10 Label labelcheck
             Name = "Label10"
-            MoveScaled(2,1,22,3)
+            MoveScaled(1,1,22,3)
             AutoResize = True
             Text = ("Preferred youtube resolution")
           }
           { Youtubeformat ComboBox
-            MoveScaled(27,0,13,3)
+            MoveScaled(24,0,13,3)
             ReadOnly = True
             List = [("360p"), ("480p"), ("720p"), ("1080p")]
             Text = ("360p")
           }
+          { PictureBox1 PictureBox
+            MoveScaled(44,0,5,4)
+            Expand = True
+            Picture = Picture["youtubeicon.png"]
+            AutoResize = True
+            Alignment = Align.Right
+          }
         }
-        { NOPARSESEP7 Separator
-          MoveScaled(2,32,45,2)
+        { NoParse15 HBox
+          MoveScaled(1,28,50,4)
+          ToolTip = ("When playing youtube videos, \nprefer this format if available.")
+          AutoResize = True
+          Spacing = True
+          { Get3dYT CheckBox
+            MoveScaled(0,0,49,4)
+            ToolTip = ("If available, 3D videos will be displayed instead of 2D ones.\nDisabling this option will completely discard 3D videos.")
+            Expand = True
+            Text = ("Prefer 3D videos from Youtube")
+          }
+          { PictureBox2 PictureBox
+            MoveScaled(44,0,5,4)
+            Expand = True
+            Picture = Picture["3dglassess.png"]
+            AutoResize = True
+            Alignment = Align.Right
+          }
         }
         { NoParse52 HBox
           MoveScaled(0,34,51,5)
@@ -704,8 +715,23 @@
             Text = ("Restart youtube stream instead of seeking")
           }
         }
+        { NOPARSESEP7 Separator
+          MoveScaled(2,39,45,2)
+        }
+        { NoParse7 HBox
+          MoveScaled(2,40,51,4)
+          ToolTip = ("Skip parsing media tags on network streams: \nuse it to add network media to library/playlist faster.\nThis will apply to the following uries: \nmms:// ; http:// ; http_proxy:// ; rtp:// ; rtsp:// ;\nftp:// ; udp:// ; smb:// ; mpst:// ; unsv://")
+          AutoResize = True
+          Spacing = True
+          { SlowTagsCHK CheckBox
+            MoveScaled(-1,0,49,4)
+            Expand = True
+            Text = ("Skip tags on network streams.")
+            Value = CheckBox.True
+          }
+        }
         { NoParse53 HBox
-          MoveScaled(1,40,51,5)
+          MoveScaled(2,46,51,5)
           ToolTip = ("Enable the animated video preview\nwhen you drag the seekbar with the mouse.\n\n* Requires a fast network connection and more cpu power.\n\n* If you drag with mouse buttons other than left, then no seek is made.")
           AutoResize = True
           Spacing = True
@@ -716,7 +742,7 @@
           }
         }
         { NoParse56 HBox
-          MoveScaled(2,45,48,5)
+          MoveScaled(2,51,48,5)
           Visible = False
           ToolTip = ("Use some tweaks to reduce cpu use.")
           Spacing = True
@@ -729,7 +755,7 @@
           }
         }
         { NoParse35 HBox
-          MoveScaled(1,51,50,4)
+          MoveScaled(2,56,50,4)
           ToolTip = ("Choose how to download network streams\nsuch as youtube video and podcasts.\nkde4 - choose kioclient ; \nkde3 - choose kfmclient ; \nIf you wish to write your own downloader, \nremember that\n%url is the stream to download\n%destdir is the destination directory\n%destfile is the destination file (without the path)\n\nNote then kioclient and kfmclient do not work with youtubeì streams.")
           AutoResize = True
           Spacing = True

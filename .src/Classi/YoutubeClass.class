@@ -542,28 +542,28 @@ Public Function YoutubeDlInstalled() As Boolean
   Return True
 End
 
-Public Function fHeight(fmt As Integer) As Integer
-  Dim FormatsBySize As New String[]
-  Dim i As Integer
-  'resolution,code,container
-  FormatsBySize.Add("1080,37,mp4")
-  FormatsBySize.Add("720,22,mp4")
-  FormatsBySize.Add("720,45,webm")
-  FormatsBySize.Add("480,35,flv")
-  FormatsBySize.Add("480,44,webm")
-  FormatsBySize.Add("360,34,flv")
-  FormatsBySize.Add("360,18,mp4")
-  FormatsBySize.Add("360,43,webm")
-  FormatsBySize.Add("240,5,flv")
-  FormatsBySize.Add("144,17,mp4")
-  
-  For i = 0 To FormatsBySize.Max
-    If Split(FormatsBySize[i], ",")[1] = fmt Then 
-      Return Split(FormatsBySize[i], ",")[0]
-    Endif
-  Next
-  Return -1
-End
+' Public Function fHeight(fmt As Integer) As Integer
+'   Dim FormatsBySize As New String[]
+'   Dim i As Integer
+'   'resolution,code,container
+'   FormatsBySize.Add("1080,37,mp4")
+'   FormatsBySize.Add("720,22,mp4")
+'   FormatsBySize.Add("720,45,webm")
+'   FormatsBySize.Add("480,35,flv")
+'   FormatsBySize.Add("480,44,webm")
+'   FormatsBySize.Add("360,34,flv")
+'   FormatsBySize.Add("360,18,mp4")
+'   FormatsBySize.Add("360,43,webm")
+'   FormatsBySize.Add("240,5,flv")
+'   FormatsBySize.Add("144,17,mp4")
+'   
+'   For i = 0 To FormatsBySize.Max
+'     If Split(FormatsBySize[i], ",")[1] = fmt Then 
+'       Return Split(FormatsBySize[i], ",")[0]
+'     Endif
+'   Next
+'   Return -1
+' End
 
 
 Private ytdlout As String = Temp(Rnd(0, 1000) & "youtubedl-out")
@@ -595,7 +595,16 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
   videoid = getvideoid(sourceurl)
   currentvideoid = videoid
   Debug videoid
-  
+
+If GeneralOptions.Get3dYT.value = True Then
+  fSorted.Add("720,84,mp4")
+  fSorted.Add("520,85,mp4")
+  fSorted.Add("360,82,mp4")
+  fSorted.Add("240,83,mp4")
+  fSorted.Add("720,102,webm")
+  fSorted.Add("360,101,webm")
+  fSorted.Add("360,100,webm")
+Endif
   ' fSorted.Add("1080,37,mp4")
   ' fSorted.Add("360,18,mp4")
   ' fSorted.Add("1080,46,webm")
@@ -610,27 +619,25 @@ Public Function realvideourl(sourceurl As String, maxformat As String) As String
  ' fSorted.Add("1080,137,mp4")'DASH
   fSorted.Add("1080,37,mp4")
  ' fSorted.Add("720,136,mp4")'DASH
-  fSorted.Add("720,84,mp4")
+ 
   fSorted.Add("720,22,mp4")
-  fSorted.Add("520,85,mp4")
+  
  ' fSorted.Add("480,135,mp4")'DASH
  ' fSorted.Add("360,141,mp4")'DASH
  ' fSorted.Add("360,140,mp4")'DASH
  ' fSorted.Add("360,139,mp4")'DASH
  ' fSorted.Add("360,134,mp4")'DASH
-  fSorted.Add("360,82,mp4")
+  
   fSorted.Add("360,18,mp4")
  ' fSorted.Add("240,133,mp4")'DASH
-  fSorted.Add("240,83,mp4")
+             '3D
  ' fSorted.Add("144,160,mp4")'DASH
   fSorted.Add("1080,46,webm")
-  fSorted.Add("720,102,webm")
+
   fSorted.Add("720,45,webm")
   fSorted.Add("480,44,webm")
 '  fSorted.Add("360,172,webm")'DASH
  ' fSorted.Add("360,171,webm") 'DASH
-  fSorted.Add("360,101,webm")
-  fSorted.Add("360,100,webm")
   fSorted.Add("360,43,webm")
   fSorted.Add("720,120,flv")
   fSorted.Add("480,35,flv")

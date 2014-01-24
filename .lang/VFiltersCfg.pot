@@ -86,591 +86,591 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: VFiltersCfg.class:250
+#: VFiltersCfg.class:249
 msgid "Luminance Matrix"
 msgstr ""
 
-#: VFiltersCfg.class:250
+#: VFiltersCfg.class:249
 msgid "The higher, the slower"
 msgstr ""
 
-#: VFiltersCfg.class:251
+#: VFiltersCfg.class:250
 msgid "Luma amount"
 msgstr ""
 
-#: VFiltersCfg.class:251
+#: VFiltersCfg.class:250
 msgid "Negative means blur"
 msgstr ""
 
-#: VFiltersCfg.class:252
+#: VFiltersCfg.class:251
 msgid "Chrominance Matrix"
 msgstr ""
 
-#: VFiltersCfg.class:253
+#: VFiltersCfg.class:252
 msgid "Chroma amount"
 msgstr ""
 
-#: VFiltersCfg.class:258
+#: VFiltersCfg.class:257
 msgid "Width"
 msgstr ""
 
-#: VFiltersCfg.class:258
+#: VFiltersCfg.class:257
 msgid "0 to Disable; Negative as offset to original value"
 msgstr ""
 
-#: VFiltersCfg.class:259
+#: VFiltersCfg.class:258
 msgid "Height"
 msgstr ""
 
-#: VFiltersCfg.class:260
+#: VFiltersCfg.class:259
 msgid "X Position"
 msgstr ""
 
-#: VFiltersCfg.class:260
+#: VFiltersCfg.class:259
 msgid "Original image position; -1 to center"
 msgstr ""
 
-#: VFiltersCfg.class:261
+#: VFiltersCfg.class:260
 msgid "Y Position"
 msgstr ""
 
-#: VFiltersCfg.class:262
+#: VFiltersCfg.class:261
 msgid "Osd/SubTitle Rendering"
 msgstr ""
 
-#: VFiltersCfg.class:263
+#: VFiltersCfg.class:262
 msgid "Fit an aspect instead of a resolution"
 msgstr ""
 
-#: VFiltersCfg.class:264
+#: VFiltersCfg.class:263
 msgid "Make Width and Height divisible by"
 msgstr ""
 
-#: VFiltersCfg.class:269
+#: VFiltersCfg.class:268
 msgid "Spatial luma strength"
 msgstr ""
 
-#: VFiltersCfg.class:270
+#: VFiltersCfg.class:269
 msgid "Spatial chroma strength"
 msgstr ""
 
-#: VFiltersCfg.class:271
+#: VFiltersCfg.class:270
 msgid "Temporal luma strength"
 msgstr ""
 
-#: VFiltersCfg.class:272
+#: VFiltersCfg.class:271
 msgid "Temporal chroma strength"
 msgstr ""
 
-#: VFiltersCfg.class:285
+#: VFiltersCfg.class:284
 msgid "0 disables scaling,see man below"
 msgstr ""
 
-#: VFiltersCfg.class:287
+#: VFiltersCfg.class:286
 msgid "Interlaced Scaling"
 msgstr ""
 
-#: VFiltersCfg.class:287
+#: VFiltersCfg.class:286
 msgid "Enable for interlaced contents"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "Chroma skipping"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "0 - Use all available input lines for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "1 - Use only every 2. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "2 - Use only every 4. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "3 - Use only every 8. input line for chroma"
 msgstr ""
 
-#: VFiltersCfg.class:288
+#: VFiltersCfg.class:287
 msgid "lower=slower"
 msgstr ""
 
-#: VFiltersCfg.class:289
+#: VFiltersCfg.class:288
 msgid "Scaling Parameters"
 msgstr ""
 
-#: VFiltersCfg.class:289
+#: VFiltersCfg.class:288
 msgid "Depends on sws, leave blank if unsure"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "Scale to Preset Size"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "qntsc - 352x240 (NTSC quarter screen)"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "qpal - 352x288 (PAL quarter screen)"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "ntsc - 720x480 (standard NTSC)"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "pal - 720x576 (standard PAL)"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "sntsc - 640x480 (square pixel NTSC)"
 msgstr ""
 
-#: VFiltersCfg.class:291
+#: VFiltersCfg.class:290
 msgid "spal - 768x576 (square pixel PAL)"
 msgstr ""
 
-#: VFiltersCfg.class:292
+#: VFiltersCfg.class:291
 msgid "Disable Upscaling"
 msgstr ""
 
-#: VFiltersCfg.class:292
+#: VFiltersCfg.class:291
 msgid "0 - Allow Upscaling"
 msgstr ""
 
-#: VFiltersCfg.class:292
+#: VFiltersCfg.class:291
 msgid "1 - Disallow if one dimensions exceeds its original value"
 msgstr ""
 
-#: VFiltersCfg.class:292
+#: VFiltersCfg.class:291
 msgid "2 - Disallow if both dimensions exceed their original values"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:292
 msgid "Accurate Rounding"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:292
 msgid "0 - Disable Accurate rounding"
 msgstr ""
 
-#: VFiltersCfg.class:293
+#: VFiltersCfg.class:292
 msgid "1 - Enable Accurate rounding"
 msgstr ""
 
-#: VFiltersCfg.class:298
+#: VFiltersCfg.class:297
 msgid "topLeft Corner"
 msgstr ""
 
-#: VFiltersCfg.class:299
+#: VFiltersCfg.class:298
 msgid "TopLeft Corner"
 msgstr ""
 
-#: VFiltersCfg.class:302
+#: VFiltersCfg.class:301
 msgid "Tickness"
 msgstr ""
 
-#: VFiltersCfg.class:302
+#: VFiltersCfg.class:301
 msgid "-1 draws a green border"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "Deinterlace method:"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "linblenddeint - Linear blend"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "linipoldeint - Linear interpolation"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "cubicipoldeint - Cubic interpolation"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "mediandeint - Median filter"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "ffmpegdeint - FFmpeg"
 msgstr ""
 
-#: VFiltersCfg.class:307
+#: VFiltersCfg.class:306
 msgid "lowpass5 - FIR lowpass"
 msgstr ""
 
-#: VFiltersCfg.class:312
+#: VFiltersCfg.class:311
 msgid "Horizontal deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:313
+#: VFiltersCfg.class:312
 msgid "Difference"
 msgstr ""
 
-#: VFiltersCfg.class:313
+#: VFiltersCfg.class:312
 msgid "higher values mean more deblocking"
 msgstr ""
 
-#: VFiltersCfg.class:314
+#: VFiltersCfg.class:313
 msgid "Flatness"
 msgstr ""
 
-#: VFiltersCfg.class:314
+#: VFiltersCfg.class:313
 msgid "lower values mean more deblocking"
 msgstr ""
 
-#: VFiltersCfg.class:315
+#: VFiltersCfg.class:314
 msgid "Luminance/chrominance"
 msgstr ""
 
-#: VFiltersCfg.class:316
+#: VFiltersCfg.class:315
 msgid "Automatically switch the subfilter off if the CPU is too slow"
 msgstr ""
 
-#: VFiltersCfg.class:321
+#: VFiltersCfg.class:320
 msgid "Accurate Horizontal deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:324
+#: VFiltersCfg.class:323
 msgid "c - Denoise both"
 msgstr ""
 
-#: VFiltersCfg.class:324
+#: VFiltersCfg.class:323
 msgid "y - Just denoise Luma"
 msgstr ""
 
-#: VFiltersCfg.class:324
+#: VFiltersCfg.class:323
 msgid "n - Just denoise Chroma"
 msgstr ""
 
-#: VFiltersCfg.class:330
+#: VFiltersCfg.class:329
 msgid "Vertical deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:339
+#: VFiltersCfg.class:338
 msgid "Accurate Vertical deblocking filter:"
 msgstr ""
 
-#: VFiltersCfg.class:356
+#: VFiltersCfg.class:355
 msgid "Ring noise remover"
 msgstr ""
 
-#: VFiltersCfg.class:363
+#: VFiltersCfg.class:362
 msgid "automatic brightness / contrast correction"
 msgstr ""
 
-#: VFiltersCfg.class:364
+#: VFiltersCfg.class:363
 msgid "Stretch luminance to (0-255)."
 msgstr ""
 
-#: VFiltersCfg.class:371
+#: VFiltersCfg.class:370
 msgid "Quality"
 msgstr ""
 
-#: VFiltersCfg.class:371
+#: VFiltersCfg.class:370
 msgid "The Higher, the slower"
 msgstr ""
 
-#: VFiltersCfg.class:372
+#: VFiltersCfg.class:371
 msgid "Quantization parameter (qp)"
 msgstr ""
 
-#: VFiltersCfg.class:372
+#: VFiltersCfg.class:371
 msgid "Leave to 0 to get qp from video"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:372
 msgid "Mode"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:372
 msgid "0 - hard thresholding"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:372
 msgid "1 - soft thresholding"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:372
 msgid "4 - like 0, but also use B-frames"
 msgstr ""
 
-#: VFiltersCfg.class:373
+#: VFiltersCfg.class:372
 msgid "5 - like 1, but also use B-frames"
 msgstr ""
 
-#: VFiltersCfg.class:384
+#: VFiltersCfg.class:383
 msgid " The Higher, the slower "
 msgstr ""
 
-#: VFiltersCfg.class:386
+#: VFiltersCfg.class:385
 msgid "Strength"
 msgstr ""
 
-#: VFiltersCfg.class:386
+#: VFiltersCfg.class:385
 msgid "The Higher, the blurrier (0=PSNR optimal)"
 msgstr ""
 
-#: VFiltersCfg.class:387
+#: VFiltersCfg.class:386
 msgid "bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:387
+#: VFiltersCfg.class:386
 msgid "0 - Dont use QP from bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:387
+#: VFiltersCfg.class:386
 msgid "1 - use QP from bFrames"
 msgstr ""
 
-#: VFiltersCfg.class:387
+#: VFiltersCfg.class:386
 msgid "default 0"
 msgstr ""
 
-#: VFiltersCfg.class:391
+#: VFiltersCfg.class:390
 msgid "Custom video filter(s):"
 msgstr ""
 
-#: VFiltersCfg.class:391
+#: VFiltersCfg.class:390
 msgid "E.g.:mirror,smartblur=0.4:0.5:10"
 msgstr ""
 
-#: VFiltersCfg.class:416
+#: VFiltersCfg.class:415
 msgid "Gamma"
 msgstr ""
 
-#: VFiltersCfg.class:416
+#: VFiltersCfg.class:415
 msgid "Initial gamma value(default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:417
+#: VFiltersCfg.class:416
 msgid "Contrast"
 msgstr ""
 
-#: VFiltersCfg.class:417
+#: VFiltersCfg.class:416
 msgid "Initial contrast (-x = negative image)"
 msgstr ""
 
-#: VFiltersCfg.class:418
+#: VFiltersCfg.class:417
 msgid "Brightness"
 msgstr ""
 
-#: VFiltersCfg.class:418
+#: VFiltersCfg.class:417
 msgid "Initial brightness (default: 0.0)"
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:418
 msgid "Saturation"
 msgstr ""
 
-#: VFiltersCfg.class:419
+#: VFiltersCfg.class:418
 msgid "Initial Saturation (default: 0.0)"
 msgstr ""
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:419
 msgid "Gamma Red"
 msgstr ""
 
-#: VFiltersCfg.class:420
+#: VFiltersCfg.class:419
 msgid "gamma for the red component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:421
+#: VFiltersCfg.class:420
 msgid "Gamma Green"
 msgstr ""
 
-#: VFiltersCfg.class:421
+#: VFiltersCfg.class:420
 msgid "gamma for the green component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:422
+#: VFiltersCfg.class:421
 msgid "Gamma Blue"
 msgstr ""
 
-#: VFiltersCfg.class:422
+#: VFiltersCfg.class:421
 msgid "gamma for the blue component (default: 1.0)"
 msgstr ""
 
-#: VFiltersCfg.class:423
+#: VFiltersCfg.class:422
 msgid "Weight"
 msgstr ""
 
-#: VFiltersCfg.class:423
+#: VFiltersCfg.class:422
 msgid "Reduce effect of gamma correction"
 msgstr ""
 
-#: VFiltersCfg.class:428
+#: VFiltersCfg.class:427
 msgid "Hue"
 msgstr ""
 
-#: VFiltersCfg.class:428
+#: VFiltersCfg.class:427
 msgid "Initial hue (default: 0)"
 msgstr ""
 
-#: VFiltersCfg.class:429
+#: VFiltersCfg.class:428
 msgid "Initial saturation (default: 1)"
 msgstr ""
 
-#: VFiltersCfg.class:434
+#: VFiltersCfg.class:433
 msgid "Maximum amount by which the filter will change any one pixel.  Also the threshold for detecting nearly flat regions (default: 1.2)."
 msgstr ""
 
-#: VFiltersCfg.class:435
+#: VFiltersCfg.class:434
 msgid "Radius"
 msgstr ""
 
-#: VFiltersCfg.class:435
+#: VFiltersCfg.class:434
 msgid "Neighborhood to fit the gradient to.  Larger radius makes for smoother gradients, but also prevents the filter from modifying pixels near detailed regions (default: 16)."
 msgstr ""
 
-#: VFiltersCfg.class:440
+#: VFiltersCfg.class:439
 msgid "Deinterlace mode"
 msgstr ""
 
-#: VFiltersCfg.class:440
+#: VFiltersCfg.class:439
 msgid "0 - Output 1 frame for each frame."
 msgstr ""
 
-#: VFiltersCfg.class:440
+#: VFiltersCfg.class:439
 msgid "1 - Output 1 frame for each field."
 msgstr ""
 
-#: VFiltersCfg.class:440
+#: VFiltersCfg.class:439
 msgid "2 - Like 0 but skips spatial interlacing check."
 msgstr ""
 
-#: VFiltersCfg.class:440
+#: VFiltersCfg.class:439
 msgid "3 - Like 1 but skips spatial interlacing check"
 msgstr ""
 
-#: VFiltersCfg.class:441
+#: VFiltersCfg.class:440
 msgid "Field dominance"
 msgstr ""
 
-#: VFiltersCfg.class:441
+#: VFiltersCfg.class:440
 msgid "-1 - auto, need codec support"
 msgstr ""
 
-#: VFiltersCfg.class:441
+#: VFiltersCfg.class:440
 msgid "0 - top field first"
 msgstr ""
 
-#: VFiltersCfg.class:441
+#: VFiltersCfg.class:440
 msgid "1 - bottom field first"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "Input format"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "sbsl - side by side parallel (left eye left, right eye right)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "sbsr - side by side crosseye (right eye left, left eye right)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "sbs2l - side by side with half width resolution (left eye left, right eye right)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "sbs2r - side by side with half width resolution (right eye left, left eye right)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "abl - above-below (left eye above, right eye below)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "abr - above-below (right eye above, left eye below)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "ab2l - above-below with half height resolution (left eye above, right eye below)"
 msgstr ""
 
-#: VFiltersCfg.class:447
+#: VFiltersCfg.class:446
 msgid "ab2r - above-below with half height resolution (right eye above, left eye below)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "Output format"
 msgstr ""
 
-#: VFiltersCfg.class:448
-msgid "arch - anaglyph red/cyan half colored (red filter on left eye, cyan filter on right eye)"
-msgstr ""
-
-#: VFiltersCfg.class:448
-msgid "arcc - anaglyph red/cyan color (red filter on left eye, cyan filter on right eye)"
-msgstr ""
-
-#: VFiltersCfg.class:448
-msgid "arcg - anaglyph red/cyan gray (red filter on left eye, cyan filter on right eye)"
-msgstr ""
-
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "arcd - anaglyph red/cyan color optimized with the least squares projection of dubois (red filter on left eye, cyan filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
+msgid "arch - anaglyph red/cyan half colored (red filter on left eye, cyan filter on right eye)"
+msgstr ""
+
+#: VFiltersCfg.class:447
+msgid "arcc - anaglyph red/cyan color (red filter on left eye, cyan filter on right eye)"
+msgstr ""
+
+#: VFiltersCfg.class:447
+msgid "arcg - anaglyph red/cyan gray (red filter on left eye, cyan filter on right eye)"
+msgstr ""
+
+#: VFiltersCfg.class:447
 msgid "agmg - anaglyph green/magenta gray (green filter on left eye, magenta filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "agmh - anaglyph green/magenta half colored (green filter on left eye, magenta filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "agmc - anaglyph green/magenta colored (green filter on left eye, magenta filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "aybg - anaglyph yellow/blue gray (yellow filter on left eye, blue filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "aybh - anaglyph yellow/blue half colored (yellow filter on left eye, blue filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "aybc - anaglyph yellow/blue colored (yellow filter on left eye, blue filter on right eye)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "irl - Interleaved rows (left eye has top row, right eye starts on next row)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "irr - Interleaved rows (right eye has top row, left eye starts on next row)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "ml - mono output (left eye only)"
 msgstr ""
 
-#: VFiltersCfg.class:448
+#: VFiltersCfg.class:447
 msgid "mr - mono output (right eye only)"
 msgstr ""
 
-#: VFiltersCfg.class:569
+#: VFiltersCfg.class:568
 msgid "This will save this window settings\n to all profiles found but the 'Factory_defaults' one"
 msgstr ""
 
-#: VFiltersCfg.class:569
+#: VFiltersCfg.class:568
 msgid "Proceed"
 msgstr ""
 
-#: VFiltersCfg.class:569
+#: VFiltersCfg.class:568
 msgid "Don't"
 msgstr ""
 

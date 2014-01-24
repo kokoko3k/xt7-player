@@ -744,6 +744,7 @@ Public Function do_play(filename As String, options As String, Optional restart 
       Debug
     Endif
     
+    
     If (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
       Debug ("found xvmc output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
       commandline = commandline & " -vf-clr "

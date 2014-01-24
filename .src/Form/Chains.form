@@ -214,9 +214,17 @@
             Text = ("Hue")
             Picture = Picture["icon:/16/next"]
           }
+          { Stereo3D Button VideoFilterObj
+            Name = "Stereo3D"
+            MoveScaled(1,93,16.4286,4)
+            Background = &H9FFF9F&
+            Tag = "stereo3d[=in:out]\n\nStereo3d converts between different stereoscopic image formats.\n\n  <in> (Stereoscopic image format of input.) Possible values:\n    sbsl or side_by_side_left_first\n      side by side parallel (left eye left, right eye right)\n    sbsr or side_by_side_right_first\n      side by side crosseye (right eye left, left eye right)\n    sbs2l or side_by_side_half_width_left_first\n      side by side with half width resolution (left eye left, right eye right)\n    sbs2r or side_by_side_half_width_right_first\n      side by side with half width resolution (right eye left, left eye right)\n    abl or above_below_left_first\n      above-below (left eye above, right eye below)\n    abl or above_below_right_first\n      above-below (right eye above, left eye below)\n    ab2l or above_below_half_height_left_first\n      above-below with half height resolution (left eye above, right eye below)\n    ab2r or above_below_half_height_right_first\n      above-below with half height resolution (right eye above, left eye below)\n\n  <out> Stereoscopic image format of output. Possible values are all the input formats as well as:\n    arcg or anaglyph_red_cyan_gray\n      anaglyph red/cyan gray (red filter on left eye, cyan filter on right eye)\n    arch or anaglyph_red_cyan_half_color\n      anaglyph red/cyan half colored (red filter on left eye, cyan filter on right eye)\n    arcc or anaglyph_red_cyan_color\n      anaglyph red/cyan color (red filter on left eye, cyan filter on right eye)\n    arcd or anaglyph_red_cyan_dubois\n      anaglyph red/cyan color optimized with the least squares projection of dubois (red filter on left eye, cyan filter on right eye)\n    agmg or anaglyph_green_magenta_gray\n      anaglyph green/magenta gray (green filter on left eye, magenta filter on right eye)\n    agmh or anaglyph_green_magenta_half_color\n      anaglyph green/magenta half colored (green filter on left eye, magenta filter on right eye)\n    agmc or anaglyph_green_magenta_color\n      anaglyph green/magenta colored (green filter on left eye, magenta filter on right eye)\n    aybg or anaglyph_yellow_blue_gray\n      anaglyph yellow/blue gray (yellow filter on left eye, blue filter on right eye)\n    aybh or anaglyph_yellow_blue_half_color\n      anaglyph yellow/blue half colored (yellow filter on left eye, blue filter on right eye)\n    aybc or anaglyph_yellow_blue_color\n      anaglyph yellow/blue colored (yellow filter on left eye, blue filter on right eye)\n    irl or interleave_rows_left_first\n      Interleaved rows (left eye has top row, right eye starts on next row)\n    irr or interleave_rows_right_first\n      Interleaved rows (right eye has top row, left eye starts on next row)\n    ml or mono_left\n      mono output (left eye only)\n    mr or mono_right\n      mono output (right eye only)\n\nNOTE: To use either of the interleaved-rows output formats to display full-screen on a row-interleaved 3D display,\nyou will need to scale the video to the correct height first using the \"scale\" filter,\nif it is not already the right height. \nTypically, that is 1080 rows\n(so use e.g. \"-vf scale=1440:1080,stereo3d=sbsl:irl\" for a 720p side-by-side encoded movie)."
+            Text = ("Stereo3D")
+            Picture = Picture["icon:/16/next"]
+          }
           { CustomVideo1 Button VideoFilterObj
             Name = "CustomVideo1"
-            MoveScaled(1,94,16.4286,4)
+            MoveScaled(1,98,16.4286,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
             ToolTip = ("Right click to rename")
@@ -225,7 +233,7 @@
           }
           { CustomVideo2 Button VideoFilterObj
             Name = "CustomVideo2"
-            MoveScaled(1,98,16,4)
+            MoveScaled(1,102,16,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
             ToolTip = ("Right click to rename")
@@ -234,7 +242,7 @@
           }
           { CustomVideo3 Button VideoFilterObj
             Name = "CustomVideo3"
-            MoveScaled(1,103,16,4)
+            MoveScaled(1,106,16,4)
             Background = &HFF5B5B&
             Tag = "Here you can manually type your filters and parameters.\nOmit -af or -vf and separe multiple filters with commas or use a different slot."
             ToolTip = ("Right click to rename")

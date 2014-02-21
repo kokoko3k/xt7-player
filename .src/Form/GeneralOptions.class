@@ -247,6 +247,12 @@ Private Sub DrawFiltersGui()
     AllParams.add(["RANGE", ("Limit Drive Speed to"), "0", "0", "32", "cdda00998Aspeed=", ("X")])
     Global.DrawGui(AllParams, ("Audio CD"), Tabstrip1, Switchable, ("Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"))
     AllParams.Clear
+
+  '-hr-mp3-seek
+    AllParams.add(["SWITCH", ("High resolution seek for mp3 streams"), "ENABLED", "hr-mp3-seek", ("Hi-res MP3 seeking")])
+    Global.DrawGui(AllParams, ("Audio"), Tabstrip1, Switchable, ("Seek into mp3s at higher resolution\nMay be slower\nMplayer Option: -hr-mp3-seek"))
+    AllParams.Clear
+  
   
 End
 

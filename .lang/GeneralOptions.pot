@@ -1406,31 +1406,43 @@ msgstr ""
 msgid "Try to limit cdrom speed. 0 means no change.\nNote that you need write access to dvd device\n Mplayer Option: -cdda speed=x"
 msgstr ""
 
-#: GeneralOptions.class:497
+#: GeneralOptions.class:252
+msgid "High resolution seek for mp3 streams"
+msgstr ""
+
+#: GeneralOptions.class:252
+msgid "Hi-res MP3 seeking"
+msgstr ""
+
+#: GeneralOptions.class:253
+msgid "Seek into mp3s at higher resolution\nMay be slower\nMplayer Option: -hr-mp3-seek"
+msgstr ""
+
+#: GeneralOptions.class:503
 msgid "Are you sure you want to delete selected items?"
 msgstr ""
 
-#: GeneralOptions.class:497
+#: GeneralOptions.class:503
 msgid "Yes, Delete"
 msgstr ""
 
-#: GeneralOptions.class:497
+#: GeneralOptions.class:503
 msgid "Don't delete"
 msgstr ""
 
-#: GeneralOptions.class:878
+#: GeneralOptions.class:884
 msgid "This will save this window settings\n to all profiles found but the 'Factory_defaults' one"
 msgstr ""
 
-#: GeneralOptions.class:878
+#: GeneralOptions.class:884
 msgid "Proceed"
 msgstr ""
 
-#: GeneralOptions.class:878
+#: GeneralOptions.class:884
 msgid "Don't"
 msgstr ""
 
-#: GeneralOptions.class:1084
+#: GeneralOptions.class:1090
 msgid "Couldn't load the picture"
 msgstr ""
 

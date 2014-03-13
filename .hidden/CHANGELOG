@@ -1,3 +1,30 @@
+* Thu Mar 13 2014 Antonio Orefice <xt7player@gmail.com> 3.5.2
+- NEW:    Hungarian Translation (thanks to Toroka)
+- NEW:    Initial Icecast support
+- NEW:    New Option (Generaloptions->Audio) to precise seek into mp3 streams. Enabled by default
+- NEW:    New stereo3d video filter available
+- NEW:    New option in Generaloptions->Network to prefer (or discard) 3D videos from youtube
+- NEW:    New reset button in video equalizer window to restore default values
+- FIX:    Try to keep the previously selected sub and audio stream across applies/mplayer restarts
+- FIX:    "Related videos" wasn't needed/used since youtube tree navigation for related videos was introduced months ago.
+- FIX:    Apply video equalizer settings (if auto apply is checked) and search for yt subtitles on apply/restart
+- FIX:    Do not delete files if the user closes the window asking for confirmation!
+- FIX:    Skip DASH (audio only or video only) youtube formats (youtube works again in git)
+- FIX:    Detect *.googlevideo.* as youtube urls too
+- FIX:    Workaround for date calculation on dvbt.
+- FIX:    Drop dvbt event on wrong datediff
+- FIX     epg search was broken, fixed
+- FIX:    Lyrics finder didn't work, fixed
+- FIX:    Do not crash when trying to play non existing files right from the album tab.
+- FIX:    Dropped gb.xml and replaced bu gb.libxml; packagers should update deps.
+- FIX:    fixed Simplified (and speedup) parsing of shoutcast feeds
+- CHANGE: Updated Russian Translation thanks to VictoR
+- CHANGE: Italian translation updates
+- CHANGE: Updated Russian Translation thanks to VictoR
+- CHANGE: Subtitles and audio stream choose buttons are now menu buttons.
+- WORKAROUND: Replace https urls with http ones due to mplayer limitation
+- WORKAROUND: Avoid 100% cpu use by replacing "FOR READ" with "FOR INPUT"
+
 * Tue Nov 05 2013 Antonio Orefice <xt7player@gmail.com> 3.5.1
 
 * Tue Nov 05 2013 Antonio Orefice <xt7player@gmail.com> 3.5.1

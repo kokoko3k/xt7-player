@@ -10,172 +10,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: AddUriForm.form:26
-msgid "Add/Play a generic URI"
+#: .project:1
+msgid "xt7-player"
 msgstr ""
 
-#: AddUriForm.form:43
-msgid "[Optional] Browse for protocols:"
-msgstr ""
-
-#: AddUriForm.form:48
-msgid "Click for a list of URI prefixes"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "file://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "dvd://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "dvdnav://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "tv://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "radio://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "pvr://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "dvb://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "mf://"
-msgstr ""
-
-#: AddUriForm.form:51 FMain.class:8177
-msgid "cdda://"
-msgstr ""
-
-#: AddUriForm.form:51 FMain.class:8173
-msgid "cddb://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "cue://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "mms://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "http://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "http_proxy://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "rtp://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "rtsp://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "ftp://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "udp://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "unsv://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "smb://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "sdp://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "mpst://"
-msgstr ""
-
-#: AddUriForm.form:51
-msgid "tivo://"
-msgstr ""
-
-#: AddUriForm.form:52 XConfigureVideoDriver.form:265
-msgid "ComboBox1"
-msgstr ""
-
-#: AddUriForm.form:64
-msgid "Enter a valid URI:"
-msgstr ""
-
-#: AddUriForm.form:75 FMain.form:1215
-msgid "Open a file"
-msgstr ""
-
-#: AddUriForm.form:82
-msgid ""
-"Enter a name for the new playlist/library item, or leave blank for default."
-msgstr ""
-
-#: AddUriForm.form:88
-msgid "[Optional] Give item a name:"
-msgstr ""
-
-#: AddUriForm.form:107
-msgid ""
-"Don't get informations (like ID3 tags) when adding it to your Collection/"
-"Playlist.\n"
-"You may prefer this method on slow media such as network streams.\n"
-msgstr ""
-
-#: AddUriForm.form:109
-msgid "Quick add mode"
-msgstr ""
-
-#: AddUriForm.form:116
-msgid "Add to collection"
-msgstr ""
-
-#: AddUriForm.form:123
-msgid "Add to playlist"
-msgstr ""
-
-#: AddUriForm.form:136
-msgid "Play the selected URI"
-msgstr ""
-
-#: AddUriForm.form:138
-msgid "Play"
-msgstr ""
-
-#: AddUriForm.form:150
-msgid "Add the selected URI to Collection and/or Playlist"
-msgstr ""
-
-#: AddUriForm.form:152 FMain.class:8665 GeneralOptions.form:649
-msgid "Add"
-msgstr ""
-
-#: AddUriForm.form:159 AFiltersCfg.form:419 AudioVideoCodecs.form:221
-#: Chains.form:590 CoverManager.form:191 GeneralOptions.form:2407
-#: ladspahelper.form:137 LogWindow.form:137 SubAndOsd.form:647
-#: VFiltersCfg.form:129 XConfigureAudioDriver.form:500
-#: XConfigureVideoDriver.form:1234
-msgid "Close"
+#: .project:2
+msgid "Xt7-Player, an (almost) complete mplayer gui"
 msgstr ""
 
 #: AFiltersCfg.form:64
@@ -393,6 +233,14 @@ msgstr ""
 msgid "Close the window"
 msgstr ""
 
+#: AFiltersCfg.form:419 AddUriForm.form:159 AudioVideoCodecs.form:221
+#: Chains.form:590 CoverManager.form:191 GeneralOptions.form:2407
+#: LogWindow.form:137 SubAndOsd.form:647 VFiltersCfg.form:129
+#: XConfigureAudioDriver.form:500 XConfigureVideoDriver.form:1234
+#: ladspahelper.form:137
+msgid "Close"
+msgstr ""
+
 #: AFiltersCfg.class:114
 msgid "Method"
 msgstr ""
@@ -485,6 +333,166 @@ msgstr ""
 
 #: AFiltersCfg.class:584 CountDown.form:17
 msgid "Abort"
+msgstr ""
+
+#: AddUriForm.form:26
+msgid "Add/Play a generic URI"
+msgstr ""
+
+#: AddUriForm.form:43
+msgid "[Optional] Browse for protocols:"
+msgstr ""
+
+#: AddUriForm.form:48
+msgid "Click for a list of URI prefixes"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "file://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "dvd://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "dvdnav://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "tv://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "radio://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "pvr://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "dvb://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "mf://"
+msgstr ""
+
+#: AddUriForm.form:51 FMain.class:8177
+msgid "cdda://"
+msgstr ""
+
+#: AddUriForm.form:51 FMain.class:8173
+msgid "cddb://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "cue://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "mms://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "http://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "http_proxy://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "rtp://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "rtsp://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "ftp://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "udp://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "unsv://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "smb://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "sdp://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "mpst://"
+msgstr ""
+
+#: AddUriForm.form:51
+msgid "tivo://"
+msgstr ""
+
+#: AddUriForm.form:52 XConfigureVideoDriver.form:265
+msgid "ComboBox1"
+msgstr ""
+
+#: AddUriForm.form:64
+msgid "Enter a valid URI:"
+msgstr ""
+
+#: AddUriForm.form:75 FMain.form:1215
+msgid "Open a file"
+msgstr ""
+
+#: AddUriForm.form:82
+msgid ""
+"Enter a name for the new playlist/library item, or leave blank for default."
+msgstr ""
+
+#: AddUriForm.form:88
+msgid "[Optional] Give item a name:"
+msgstr ""
+
+#: AddUriForm.form:107
+msgid ""
+"Don't get informations (like ID3 tags) when adding it to your Collection/"
+"Playlist.\n"
+"You may prefer this method on slow media such as network streams.\n"
+msgstr ""
+
+#: AddUriForm.form:109
+msgid "Quick add mode"
+msgstr ""
+
+#: AddUriForm.form:116
+msgid "Add to collection"
+msgstr ""
+
+#: AddUriForm.form:123
+msgid "Add to playlist"
+msgstr ""
+
+#: AddUriForm.form:136
+msgid "Play the selected URI"
+msgstr ""
+
+#: AddUriForm.form:138
+msgid "Play"
+msgstr ""
+
+#: AddUriForm.form:150
+msgid "Add the selected URI to Collection and/or Playlist"
+msgstr ""
+
+#: AddUriForm.form:152 FMain.class:8665 GeneralOptions.form:649
+msgid "Add"
 msgstr ""
 
 #: AlbumView.class:92 FMain.class:1328
@@ -1126,306 +1134,6 @@ msgstr ""
 msgid "Artist Or Album tag information are required to set a cover"
 msgstr ""
 
-#: dvbsnoop_class.class:359
-msgid "movie/drama"
-msgstr ""
-
-#: dvbsnoop_class.class:360
-msgid "detective/thriller"
-msgstr ""
-
-#: dvbsnoop_class.class:361
-msgid "adventure/western/war"
-msgstr ""
-
-#: dvbsnoop_class.class:362
-msgid "science fiction/fantasy/horror"
-msgstr ""
-
-#: dvbsnoop_class.class:363
-msgid "comedy"
-msgstr ""
-
-#: dvbsnoop_class.class:364
-msgid "soap/melodrama/folkloric"
-msgstr ""
-
-#: dvbsnoop_class.class:365
-msgid "romance"
-msgstr ""
-
-#: dvbsnoop_class.class:366
-msgid "serious/classical/religious/historical movie/drama"
-msgstr ""
-
-#: dvbsnoop_class.class:367
-msgid "adult movie/drama"
-msgstr ""
-
-#: dvbsnoop_class.class:369
-msgid "news/current affairs"
-msgstr ""
-
-#: dvbsnoop_class.class:370
-msgid "news/weather report"
-msgstr ""
-
-#: dvbsnoop_class.class:371
-msgid "news magazine"
-msgstr ""
-
-#: dvbsnoop_class.class:372
-msgid "documentary"
-msgstr ""
-
-#: dvbsnoop_class.class:373
-msgid "discussion/interview/debate"
-msgstr ""
-
-#: dvbsnoop_class.class:375
-msgid "show/game show"
-msgstr ""
-
-#: dvbsnoop_class.class:376
-msgid "game show/quiz/contest"
-msgstr ""
-
-#: dvbsnoop_class.class:377
-msgid "variety show"
-msgstr ""
-
-#: dvbsnoop_class.class:378
-msgid "talk show"
-msgstr ""
-
-#: dvbsnoop_class.class:380
-msgid "sports"
-msgstr ""
-
-#: dvbsnoop_class.class:381
-msgid "special events"
-msgstr ""
-
-#: dvbsnoop_class.class:382
-msgid "sports magazines"
-msgstr ""
-
-#: dvbsnoop_class.class:383
-msgid "football/soccer"
-msgstr ""
-
-#: dvbsnoop_class.class:384
-msgid "tennis/squash"
-msgstr ""
-
-#: dvbsnoop_class.class:385
-msgid "team sports"
-msgstr ""
-
-#: dvbsnoop_class.class:386
-msgid "athletics"
-msgstr ""
-
-#: dvbsnoop_class.class:387
-msgid "motor sport"
-msgstr ""
-
-#: dvbsnoop_class.class:388
-msgid "water sport"
-msgstr ""
-
-#: dvbsnoop_class.class:389
-msgid "winter sports"
-msgstr ""
-
-#: dvbsnoop_class.class:390
-msgid "equestrian"
-msgstr ""
-
-#: dvbsnoop_class.class:391
-msgid "martial sports"
-msgstr ""
-
-#: dvbsnoop_class.class:393
-msgid "children's/youth programmes"
-msgstr ""
-
-#: dvbsnoop_class.class:394
-msgid "pre-school children's programmes"
-msgstr ""
-
-#: dvbsnoop_class.class:395
-msgid "entertainment programmes for 6 to14"
-msgstr ""
-
-#: dvbsnoop_class.class:396
-msgid "entertainment programmes for 10 to 16"
-msgstr ""
-
-#: dvbsnoop_class.class:397
-msgid "informational/educational/school programmes"
-msgstr ""
-
-#: dvbsnoop_class.class:398
-msgid "cartoons/puppets"
-msgstr ""
-
-#: dvbsnoop_class.class:400
-msgid "music/ballet/dance"
-msgstr ""
-
-#: dvbsnoop_class.class:401
-msgid "rock/pop"
-msgstr ""
-
-#: dvbsnoop_class.class:402
-msgid "serious music/classical music"
-msgstr ""
-
-#: dvbsnoop_class.class:403
-msgid "folk/traditional music"
-msgstr ""
-
-#: dvbsnoop_class.class:404
-msgid "jazz"
-msgstr ""
-
-#: dvbsnoop_class.class:405
-msgid "musical/opera"
-msgstr ""
-
-#: dvbsnoop_class.class:406
-msgid "ballet"
-msgstr ""
-
-#: dvbsnoop_class.class:408
-msgid "arts/culture"
-msgstr ""
-
-#: dvbsnoop_class.class:409
-msgid "performing arts"
-msgstr ""
-
-#: dvbsnoop_class.class:410
-msgid "fine arts"
-msgstr ""
-
-#: dvbsnoop_class.class:411
-msgid "religion"
-msgstr ""
-
-#: dvbsnoop_class.class:412
-msgid "popular culture/traditional arts"
-msgstr ""
-
-#: dvbsnoop_class.class:413
-msgid "literature"
-msgstr ""
-
-#: dvbsnoop_class.class:414
-msgid "film/cinema"
-msgstr ""
-
-#: dvbsnoop_class.class:415
-msgid "experimental film/video"
-msgstr ""
-
-#: dvbsnoop_class.class:416
-msgid "broadcasting/press"
-msgstr ""
-
-#: dvbsnoop_class.class:417
-msgid "new media"
-msgstr ""
-
-#: dvbsnoop_class.class:418
-msgid "arts/culture magazines"
-msgstr ""
-
-#: dvbsnoop_class.class:419
-msgid "fashion"
-msgstr ""
-
-#: dvbsnoop_class.class:421
-msgid "social/political issues/economics"
-msgstr ""
-
-#: dvbsnoop_class.class:422
-msgid "magazines/reports/documentary"
-msgstr ""
-
-#: dvbsnoop_class.class:423
-msgid "economics/social advisory"
-msgstr ""
-
-#: dvbsnoop_class.class:424
-msgid "remarkable people"
-msgstr ""
-
-#: dvbsnoop_class.class:426
-msgid "education/science/factual topics"
-msgstr ""
-
-#: dvbsnoop_class.class:427
-msgid "nature/animals/environment"
-msgstr ""
-
-#: dvbsnoop_class.class:428
-msgid "technology/natural sciences"
-msgstr ""
-
-#: dvbsnoop_class.class:429
-msgid "medicine/physiology/psychology"
-msgstr ""
-
-#: dvbsnoop_class.class:430
-msgid "foreign countries/expeditions"
-msgstr ""
-
-#: dvbsnoop_class.class:431
-msgid "social/spiritual sciences"
-msgstr ""
-
-#: dvbsnoop_class.class:432
-msgid "further education"
-msgstr ""
-
-#: dvbsnoop_class.class:433
-msgid "languages"
-msgstr ""
-
-#: dvbsnoop_class.class:435
-msgid "leisure hobbies"
-msgstr ""
-
-#: dvbsnoop_class.class:436
-msgid "tourism/travel"
-msgstr ""
-
-#: dvbsnoop_class.class:437
-msgid "handicraft"
-msgstr ""
-
-#: dvbsnoop_class.class:438
-msgid "motoring"
-msgstr ""
-
-#: dvbsnoop_class.class:439
-msgid "fitness and health"
-msgstr ""
-
-#: dvbsnoop_class.class:440
-msgid "cooking"
-msgstr ""
-
-#: dvbsnoop_class.class:441
-msgid "advertisement/shopping"
-msgstr ""
-
-#: dvbsnoop_class.class:442
-msgid "gardening"
-msgstr ""
-
 #: DVBTuner.form:34 FMain.form:822
 msgid "Simple Dvb-T Tuner"
 msgstr ""
@@ -1574,31 +1282,6 @@ msgstr ""
 
 #: EpgForm.class:583
 msgid "Try to scan"
-msgstr ""
-
-#: FlashClass.class:20
-msgid "You are going to delete this file from disk, are you sure?"
-msgstr ""
-
-#: FlashClass.class:20 FMain.form:2274
-msgid "Delete"
-msgstr ""
-
-#: FlashClass.class:20 FMain.class:4562 GeneralOptions.class:503
-#: ProfileManager.class:38
-msgid "Don't delete"
-msgstr ""
-
-#: FlashClass.class:56 Searchfields.form:154
-msgid "File Size"
-msgstr ""
-
-#: FlashClass.class:57
-msgid "File name"
-msgstr ""
-
-#: FlashClass.class:58
-msgid "Output File"
 msgstr ""
 
 #: FMain.form:410
@@ -2507,6 +2190,10 @@ msgstr ""
 msgid "Delete the selected profile"
 msgstr ""
 
+#: FMain.form:2274 FlashClass.class:20
+msgid "Delete"
+msgstr ""
+
 #: FMain.form:2280
 msgid "Make a new blank profile"
 msgstr ""
@@ -2809,6 +2496,11 @@ msgstr ""
 
 #: FMain.class:4562
 msgid "from disc?"
+msgstr ""
+
+#: FMain.class:4562 FlashClass.class:20 GeneralOptions.class:503
+#: ProfileManager.class:38
+msgid "Don't delete"
 msgstr ""
 
 #: FMain.class:4567
@@ -3263,24 +2955,40 @@ msgstr ""
 msgid "Would you like to save the current profile?"
 msgstr ""
 
-#: FMain.class:10419
+#: FMain.class:10420
 msgid "Stream is not seekable, use arrow keys or doubleclick"
 msgstr ""
 
-#: FMain.class:10421
+#: FMain.class:10422
 msgid "Stream is not seekable!, use arrow keys or doubleclick to override"
 msgstr ""
 
-#: FMain.class:10456
+#: FMain.class:10457
 msgid "Seek to:"
 msgstr ""
 
-#: FMain.class:10821
+#: FMain.class:10822
 msgid "No loop set"
 msgstr ""
 
-#: FMain.class:10984
+#: FMain.class:10985
 msgid "Error while getting selection"
+msgstr ""
+
+#: FlashClass.class:20
+msgid "You are going to delete this file from disk, are you sure?"
+msgstr ""
+
+#: FlashClass.class:56 Searchfields.form:154
+msgid "File Size"
+msgstr ""
+
+#: FlashClass.class:57
+msgid "File name"
+msgstr ""
+
+#: FlashClass.class:58
+msgid "Output File"
 msgstr ""
 
 #: FormLyrics.form:25
@@ -5006,59 +4714,6 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: ladspahelper.form:36
-msgid "Ladspa file"
-msgstr ""
-
-#: ladspahelper.form:43
-msgid "Ladspa plugin file name"
-msgstr ""
-
-#: ladspahelper.form:53
-msgid "Ladspa plugin label"
-msgstr ""
-
-#: ladspahelper.form:67
-msgid "Plugin controls:"
-msgstr ""
-
-#: ladspahelper.form:90
-msgid ""
-"Show the ladspa commandline for mplayer \n"
-"from the selected plugin"
-msgstr ""
-
-#: ladspahelper.form:91
-msgid "Generate"
-msgstr ""
-
-#: ladspahelper.form:102
-msgid ""
-"Display the plugin controls and values from a valid \n"
-"mplayer ladspa command line in the form:\n"
-"<-af> ladspa=/path/to/ladspaplugin.so:\"ladspalabel\":param1:param2:"
-"param3:..:paramN"
-msgstr ""
-
-#: ladspahelper.form:103
-msgid "Reverse"
-msgstr ""
-
-#: ladspahelper.form:120
-msgid ""
-"Generate the parameters,\n"
-"Copy the string into the previous custom audio filter field,\n"
-"closes the window."
-msgstr ""
-
-#: ladspahelper.form:122
-msgid "Accept"
-msgstr ""
-
-#: ladspahelper.form:135
-msgid "Close the window and discard any change"
-msgstr ""
-
 #: LogWindow.form:24
 msgid "Log Window"
 msgstr ""
@@ -5199,14 +4854,6 @@ msgstr ""
 
 #: ProfileManager.class:67
 msgid "Don't load, just switch"
-msgstr ""
-
-#: .project:1
-msgid "xt7-player"
-msgstr ""
-
-#: .project:2
-msgid "Xt7-Player, an (almost) complete mplayer gui"
 msgstr ""
 
 #: RealtimeForm.form:51
@@ -7803,6 +7450,359 @@ msgstr ""
 msgid ""
 "youtube-dl seems to be missing. \n"
 "Install it to watch youtube videos."
+msgstr ""
+
+#: dvbsnoop_class.class:359
+msgid "movie/drama"
+msgstr ""
+
+#: dvbsnoop_class.class:360
+msgid "detective/thriller"
+msgstr ""
+
+#: dvbsnoop_class.class:361
+msgid "adventure/western/war"
+msgstr ""
+
+#: dvbsnoop_class.class:362
+msgid "science fiction/fantasy/horror"
+msgstr ""
+
+#: dvbsnoop_class.class:363
+msgid "comedy"
+msgstr ""
+
+#: dvbsnoop_class.class:364
+msgid "soap/melodrama/folkloric"
+msgstr ""
+
+#: dvbsnoop_class.class:365
+msgid "romance"
+msgstr ""
+
+#: dvbsnoop_class.class:366
+msgid "serious/classical/religious/historical movie/drama"
+msgstr ""
+
+#: dvbsnoop_class.class:367
+msgid "adult movie/drama"
+msgstr ""
+
+#: dvbsnoop_class.class:369
+msgid "news/current affairs"
+msgstr ""
+
+#: dvbsnoop_class.class:370
+msgid "news/weather report"
+msgstr ""
+
+#: dvbsnoop_class.class:371
+msgid "news magazine"
+msgstr ""
+
+#: dvbsnoop_class.class:372
+msgid "documentary"
+msgstr ""
+
+#: dvbsnoop_class.class:373
+msgid "discussion/interview/debate"
+msgstr ""
+
+#: dvbsnoop_class.class:375
+msgid "show/game show"
+msgstr ""
+
+#: dvbsnoop_class.class:376
+msgid "game show/quiz/contest"
+msgstr ""
+
+#: dvbsnoop_class.class:377
+msgid "variety show"
+msgstr ""
+
+#: dvbsnoop_class.class:378
+msgid "talk show"
+msgstr ""
+
+#: dvbsnoop_class.class:380
+msgid "sports"
+msgstr ""
+
+#: dvbsnoop_class.class:381
+msgid "special events"
+msgstr ""
+
+#: dvbsnoop_class.class:382
+msgid "sports magazines"
+msgstr ""
+
+#: dvbsnoop_class.class:383
+msgid "football/soccer"
+msgstr ""
+
+#: dvbsnoop_class.class:384
+msgid "tennis/squash"
+msgstr ""
+
+#: dvbsnoop_class.class:385
+msgid "team sports"
+msgstr ""
+
+#: dvbsnoop_class.class:386
+msgid "athletics"
+msgstr ""
+
+#: dvbsnoop_class.class:387
+msgid "motor sport"
+msgstr ""
+
+#: dvbsnoop_class.class:388
+msgid "water sport"
+msgstr ""
+
+#: dvbsnoop_class.class:389
+msgid "winter sports"
+msgstr ""
+
+#: dvbsnoop_class.class:390
+msgid "equestrian"
+msgstr ""
+
+#: dvbsnoop_class.class:391
+msgid "martial sports"
+msgstr ""
+
+#: dvbsnoop_class.class:393
+msgid "children's/youth programmes"
+msgstr ""
+
+#: dvbsnoop_class.class:394
+msgid "pre-school children's programmes"
+msgstr ""
+
+#: dvbsnoop_class.class:395
+msgid "entertainment programmes for 6 to14"
+msgstr ""
+
+#: dvbsnoop_class.class:396
+msgid "entertainment programmes for 10 to 16"
+msgstr ""
+
+#: dvbsnoop_class.class:397
+msgid "informational/educational/school programmes"
+msgstr ""
+
+#: dvbsnoop_class.class:398
+msgid "cartoons/puppets"
+msgstr ""
+
+#: dvbsnoop_class.class:400
+msgid "music/ballet/dance"
+msgstr ""
+
+#: dvbsnoop_class.class:401
+msgid "rock/pop"
+msgstr ""
+
+#: dvbsnoop_class.class:402
+msgid "serious music/classical music"
+msgstr ""
+
+#: dvbsnoop_class.class:403
+msgid "folk/traditional music"
+msgstr ""
+
+#: dvbsnoop_class.class:404
+msgid "jazz"
+msgstr ""
+
+#: dvbsnoop_class.class:405
+msgid "musical/opera"
+msgstr ""
+
+#: dvbsnoop_class.class:406
+msgid "ballet"
+msgstr ""
+
+#: dvbsnoop_class.class:408
+msgid "arts/culture"
+msgstr ""
+
+#: dvbsnoop_class.class:409
+msgid "performing arts"
+msgstr ""
+
+#: dvbsnoop_class.class:410
+msgid "fine arts"
+msgstr ""
+
+#: dvbsnoop_class.class:411
+msgid "religion"
+msgstr ""
+
+#: dvbsnoop_class.class:412
+msgid "popular culture/traditional arts"
+msgstr ""
+
+#: dvbsnoop_class.class:413
+msgid "literature"
+msgstr ""
+
+#: dvbsnoop_class.class:414
+msgid "film/cinema"
+msgstr ""
+
+#: dvbsnoop_class.class:415
+msgid "experimental film/video"
+msgstr ""
+
+#: dvbsnoop_class.class:416
+msgid "broadcasting/press"
+msgstr ""
+
+#: dvbsnoop_class.class:417
+msgid "new media"
+msgstr ""
+
+#: dvbsnoop_class.class:418
+msgid "arts/culture magazines"
+msgstr ""
+
+#: dvbsnoop_class.class:419
+msgid "fashion"
+msgstr ""
+
+#: dvbsnoop_class.class:421
+msgid "social/political issues/economics"
+msgstr ""
+
+#: dvbsnoop_class.class:422
+msgid "magazines/reports/documentary"
+msgstr ""
+
+#: dvbsnoop_class.class:423
+msgid "economics/social advisory"
+msgstr ""
+
+#: dvbsnoop_class.class:424
+msgid "remarkable people"
+msgstr ""
+
+#: dvbsnoop_class.class:426
+msgid "education/science/factual topics"
+msgstr ""
+
+#: dvbsnoop_class.class:427
+msgid "nature/animals/environment"
+msgstr ""
+
+#: dvbsnoop_class.class:428
+msgid "technology/natural sciences"
+msgstr ""
+
+#: dvbsnoop_class.class:429
+msgid "medicine/physiology/psychology"
+msgstr ""
+
+#: dvbsnoop_class.class:430
+msgid "foreign countries/expeditions"
+msgstr ""
+
+#: dvbsnoop_class.class:431
+msgid "social/spiritual sciences"
+msgstr ""
+
+#: dvbsnoop_class.class:432
+msgid "further education"
+msgstr ""
+
+#: dvbsnoop_class.class:433
+msgid "languages"
+msgstr ""
+
+#: dvbsnoop_class.class:435
+msgid "leisure hobbies"
+msgstr ""
+
+#: dvbsnoop_class.class:436
+msgid "tourism/travel"
+msgstr ""
+
+#: dvbsnoop_class.class:437
+msgid "handicraft"
+msgstr ""
+
+#: dvbsnoop_class.class:438
+msgid "motoring"
+msgstr ""
+
+#: dvbsnoop_class.class:439
+msgid "fitness and health"
+msgstr ""
+
+#: dvbsnoop_class.class:440
+msgid "cooking"
+msgstr ""
+
+#: dvbsnoop_class.class:441
+msgid "advertisement/shopping"
+msgstr ""
+
+#: dvbsnoop_class.class:442
+msgid "gardening"
+msgstr ""
+
+#: ladspahelper.form:36
+msgid "Ladspa file"
+msgstr ""
+
+#: ladspahelper.form:43
+msgid "Ladspa plugin file name"
+msgstr ""
+
+#: ladspahelper.form:53
+msgid "Ladspa plugin label"
+msgstr ""
+
+#: ladspahelper.form:67
+msgid "Plugin controls:"
+msgstr ""
+
+#: ladspahelper.form:90
+msgid ""
+"Show the ladspa commandline for mplayer \n"
+"from the selected plugin"
+msgstr ""
+
+#: ladspahelper.form:91
+msgid "Generate"
+msgstr ""
+
+#: ladspahelper.form:102
+msgid ""
+"Display the plugin controls and values from a valid \n"
+"mplayer ladspa command line in the form:\n"
+"<-af> ladspa=/path/to/ladspaplugin.so:\"ladspalabel\":param1:param2:"
+"param3:..:paramN"
+msgstr ""
+
+#: ladspahelper.form:103
+msgid "Reverse"
+msgstr ""
+
+#: ladspahelper.form:120
+msgid ""
+"Generate the parameters,\n"
+"Copy the string into the previous custom audio filter field,\n"
+"closes the window."
+msgstr ""
+
+#: ladspahelper.form:122
+msgid "Accept"
+msgstr ""
+
+#: ladspahelper.form:135
+msgid "Close the window and discard any change"
 msgstr ""
 
 #: zzzFake.form:84

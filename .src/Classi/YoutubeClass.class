@@ -667,8 +667,8 @@ Endif
     Endif
   Next
   'the space is intentional to play videoid(s) which begins with a "-"
-  ytdlprocess = Shell "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
-  Debug "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats  --cookies " & Cookiesfile & " >" & ytdlout
+  ytdlprocess = Shell "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats --prefer-insecure  --cookies " & Cookiesfile & " >" & ytdlout
+  Debug "youtube-dl ' " & videoid & "' --get-format --get-url --all-formats --prefer-insecure --cookies " & Cookiesfile & " >" & ytdlout
 Debug videoid
   Repeat
     Wait 0.02

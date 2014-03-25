@@ -10368,7 +10368,8 @@ End
 Public Sub GetLastVersion()
   Dim httpclient1 As Httpclient
   httpclient1 = New Httpclient As "httpclientlastversion"
-  If User.Id <> 0 Then
+  If Not (Exist(global.ConfPath & "/nocheckupdates")) Then
+ ' If User.Id <> 0 Then
     HttpClient1.url = "http://xt7-player.sourceforge.net/xt7forum/checkupdates.php"
       Else  
     HttpClient1.url = "http://xt7-player.sourceforge.net/xt7forum/index.php"

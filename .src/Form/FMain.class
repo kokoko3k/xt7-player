@@ -6064,6 +6064,7 @@ Public Sub MoveUpPlsBTN_Click()
     PasteSelectedRows(i - 1)
     
     'SELECT the items again:
+    playlistgrid.UnSelectAll()
     For j = (i - 1) To (i + HowManySelected - 2)
       playlistgrid.Rows[j].selected = True
     Next 'j
@@ -6077,7 +6078,6 @@ Public Sub MoveDownPlsBTN_Click()
   
   Dim howmanyselected As Integer
   Dim i, j As Integer
-  
   MovingItems = True
   'find the index of the Last selected row:
   i = playlistgrid.Rows.count - 1
@@ -6090,6 +6090,7 @@ Public Sub MoveDownPlsBTN_Click()
     PasteSelectedRows(i - howmanyselected + 2)
     playlistgrid.scrolly = playlistgrid.scrolly + playlistgrid.Rows.H
     'SELECT the items again:
+    playlistgrid.UnSelectAll()
     For j = (i - howmanyselected + 2) To (i + 1)
       playlistgrid.Rows[j].selected = True
     Next 'j

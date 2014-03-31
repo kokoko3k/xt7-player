@@ -1317,7 +1317,7 @@ Geometry=[0,0,301,301]
 Geometry=[255,559,672,590]
 
 [DebugWindow/resultlines]
-Geometry=[1487,295,470,482]
+Geometry=[1280,-3,1280,976]
 
 [DebugWindow/results]
 Geometry=[47,0,210,210]
@@ -1517,10 +1517,9 @@ File[1]=".src/0_Moduli/Global.module:484.106"
 Fold[1]=[184,203,209,217,276,279,282,286,301,313,325,347,359,377,576,618,670,920,931,944,959,991,1001,1014]
 File[2]=".src/Classi/StartClass.class:20.0"
 File[3]=".src/Form/FMain.form"
-Active=4
-File[4]=".src/Form/FMain.class:1800.2"
+File[4]=".src/Form/FMain.class:10370.0"
 File[5]=".src/Classi/SettingsClass.class:12.35"
-File[6]="CHANGELOG_GIT:27.11"
+File[6]="CHANGELOG_GIT:18.0"
 File[7]=".src/Classi/ShoutCastClass.class:246.19"
 File[8]=".src/Classi/OpenSubtitlesAPI.class:100.10"
 File[9]=".src/Classi/PlaylistClass.class:1227.0"
@@ -1536,7 +1535,8 @@ File[18]=".src/Form/ProfileManager.class:37.125"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
 File[21]=".src/Form/GeneralOptions.class:251.69"
-File[22]=".src/Form/CoverManager.class:74.50"
+Active=22
+File[22]=".src/Form/CoverManager.class:213.0"
 File[23]=".src/Form/EpgForm.class:495.22"
 File[24]=".src/Classi/AlbumView.class:88.23"
 File[25]=".src/Form/CoverManager.form"
@@ -1581,7 +1581,7 @@ File[63]=".src/Form/XConfigureVideoDriver.class:318.0"
 File[64]=".src/Form/AudioConvert.form"
 File[65]=".src/Form/AudioConvert.class:144.0"
 File[66]=".src/Form/AskName.form"
-File[67]=".src/Classi/YoutubeClass.class:608.29"
+File[67]=".src/Classi/YoutubeClass.class:269.24"
 File[68]=".src/Form/AddUriForm.form"
 File[69]=".src/Classi/PodCast.class:35.0"
 File[70]=".src/Classi/IceCastClass.class:114.15"
@@ -1591,7 +1591,8 @@ File[73]=".src/Classi/AudiotagClass.class:136.15"
 File[74]=".src/Classi/FlashClass.class:19.110"
 File[75]=".src/Form/VideoEqualizer.form"
 File[76]=".src/Form/VideoEqualizer.class:106.0"
-Count=76
+File[77]=".src/0_Moduli/ComboHistory.module:0.0"
+Count=77
 
 [Watches]
 Count=16

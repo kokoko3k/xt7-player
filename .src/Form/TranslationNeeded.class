@@ -47,10 +47,10 @@ Public Sub Label2_Leave()
 End
 
 Public Sub Label1_MouseDown()
-  Desktop.Open("http://howtotranslate.homelinux.org/")
+  Desktop.Open("http://gambasdoc.org/help/howto/translate?show")
 End
 Public Sub Label2_MouseDown()
-  Desktop.Open("http://translationthread.homelinux.org")
+  Desktop.Open("http://xt7-player.sourceforge.net/xt7forum/viewtopic.php?f=7&t=6")
 End
 
 Public Sub Button1_Click()

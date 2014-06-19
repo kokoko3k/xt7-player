@@ -166,9 +166,7 @@
           Padding = 10
           { PulseDriverChk2 CheckBox
             MoveScaled(1,1,15,4)
-            Enabled = False
             Text = ("Host")
-            Value = CheckBox.True
           }
           { TextBox6 TextBox
             MoveScaled(19,1,22,4)
@@ -179,9 +177,7 @@
           Padding = 10
           { SdlDriverChk3 CheckBox
             MoveScaled(1,1,15,4)
-            Enabled = False
             Text = ("Output Sink")
-            Value = CheckBox.True
           }
           { TextBox7 TextBox
             MoveScaled(19,1,22,4)

@@ -14,68 +14,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: VideoEqualizer.form:41
+#: VideoEqualizer.form:47
 msgid "Video Equalizer"
 msgstr ""
 
-#: VideoEqualizer.form:52
+#: VideoEqualizer.form:58
 msgid "Profile"
 msgstr ""
 
-#: VideoEqualizer.form:55
+#: VideoEqualizer.form:61
 msgid "Reload current profile"
 msgstr ""
 
-#: VideoEqualizer.form:60
+#: VideoEqualizer.form:66
 msgid "Save to current profile"
 msgstr ""
 
-#: VideoEqualizer.form:65
+#: VideoEqualizer.form:71
 msgid "Save these settings to all profiles"
 msgstr ""
 
-#: VideoEqualizer.form:71
+#: VideoEqualizer.form:77
 msgid "?"
 msgstr ""
 
-#: VideoEqualizer.form:74
+#: VideoEqualizer.form:80
 msgid "help"
 msgstr ""
 
-#: VideoEqualizer.form:87
+#: VideoEqualizer.form:93
 msgid "Note that this can conflicts with Eq2 and hue filter settings"
 msgstr ""
 
-#: VideoEqualizer.form:89
+#: VideoEqualizer.form:95
 msgid "Auto apply those values"
 msgstr ""
 
-#: VideoEqualizer.form:94
+#: VideoEqualizer.form:100
 msgid "Restore default settings"
 msgstr ""
 
-#: VideoEqualizer.form:96
+#: VideoEqualizer.form:102
 msgid "Restore all"
 msgstr ""
 
-#: VideoEqualizer.form:103
+#: VideoEqualizer.form:109
 msgid "Brightness"
 msgstr ""
 
-#: VideoEqualizer.form:136
+#: VideoEqualizer.form:142
 msgid "Contrast"
 msgstr ""
 
-#: VideoEqualizer.form:169
+#: VideoEqualizer.form:175
 msgid "Gamma"
 msgstr ""
 
-#: VideoEqualizer.form:202
+#: VideoEqualizer.form:208
 msgid "Hue"
 msgstr ""
 
-#: VideoEqualizer.form:235
+#: VideoEqualizer.form:241
 msgid "Saturation"
+msgstr ""
+
+#: VideoEqualizer.form:278
+msgid "Overbright:\nPush contrast trying to preserve color details.\nUseful for low contrast videos or low contrast displays.\nMay produce clipping/saturation artifacts.\n"
 msgstr ""
 
 #: VideoEqualizer.class:45
@@ -90,7 +94,7 @@ msgstr ""
 msgid "Don't"
 msgstr ""
 
-#: VideoEqualizer.class:101
+#: VideoEqualizer.class:106
 msgid "If equalizer doesn't work, you can try to:\n\n- Change video output driver\n- Enable eq2 and hue filters under General Options\n- Add Eq2 filter in chains window\n- Add Hue filter in chains window"
 msgstr ""
 

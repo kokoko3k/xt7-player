@@ -90,6 +90,11 @@ Public Sub SpinBoxes_Change()
   Endif
 End
 
+
+
+
+
+
 Public Sub Clears_Click()
   If (Last Is Toolbutton) And (Last.next Is Slider) And (Last.next.next Is Spinbox) Then
     Try Last.next.value = 0
@@ -121,9 +126,27 @@ End
 
 
 Public Sub Button1_Click()
+  slider6.value = 0
   slider1.value = 0
   slider2.value = 0
   slider3.value = 0
   slider4.value = 0
   slider5.value = 0
+End
+
+Public Sub Slider6_Change()
+  spinbox6.value = Slider6.value
+End
+
+
+
+Public Sub SpinBox6_Change()
+  Object.Lock(Slider6)
+  Slider6.value = spinbox6.value
+  Object.unLock(Slider6)
+  slider1.value = Slider6.value Div 2
+  slider2.value = Slider6.value
+  slider3.value = Slider6.value Div 4
+  slider4.value = 0
+  slider5.value = Slider6.value 
 End

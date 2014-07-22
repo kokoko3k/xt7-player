@@ -133,7 +133,7 @@ Public Sub ConvertandSaveAudio()
 
       If yttitle = "" Then 
         'finalfile = Shell$(outputfolder & "/" & File.Name(currentstream))
-        finalfile = (outputfolder & "/" & File.Name(currentstream))
+        finalfile = outputfolder & "/" & File.Name(currentstream)
           Else
         'finalfile = Shell$(outputfolder & "/" & yttitle)
         finalfile = (outputfolder & "/" & yttitle) 

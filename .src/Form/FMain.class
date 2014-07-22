@@ -7987,7 +7987,7 @@ Public Sub ShoutCast_Select()
       MyRadio.FillCachedGenres(GenresTree)
     Else
       'If Not fmain.fullyloaded Then Return
-      IceRadio.FillGenresTree(genrestree, True)
+      Try IceRadio.FillGenresTree(genrestree, True)
     Endif
   Endif
 End
@@ -11015,7 +11015,7 @@ Public Sub ButtonRadios_click()
   Last.mouse = mouse.Wait
   If buttonicecast.value Then
     If Not fmain.fullyloaded Then Return
-    IceRadio.FillGenresTree(genrestree, True)
+    Try IceRadio.FillGenresTree(genrestree, True)
   Else
     MyRadio.FillCachedGenres(genrestree)
   Endif

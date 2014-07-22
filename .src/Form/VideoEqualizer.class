@@ -144,7 +144,7 @@ Public Sub SpinBox6_Change()
   Object.Lock(Slider6)
   Slider6.value = spinbox6.value
   Object.unLock(Slider6)
-  slider1.value = Slider6.value Div 2
+  slider1.value = CInt(Slider6.value / 2.66)
   slider2.value = Slider6.value
   slider3.value = Slider6.value Div 4
   slider4.value = 0

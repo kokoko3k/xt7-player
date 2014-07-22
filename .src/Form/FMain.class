@@ -4030,8 +4030,6 @@ Public Sub SwitchToFS()
   'workaround for missing picture when switching 
   Wait 0.2
   Maintoolbar.hide
-
-  
 End
 
 Public Sub SwitchToWindow()

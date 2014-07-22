@@ -197,7 +197,7 @@
   }
   { HBox6 HBox
     MoveScaled(1,26,45,4)
-    ToolTip = ("Overbright:\nPush contrast trying to preserve color details.\nUseful for low contrast videos or low contrast displays.\nMay produce clipping/saturation artifacts.\n")
+    ToolTip = ("Overbright:\nPush contrast trying to preserve color details.\nUseful for low contrast videos or low contrast displays.\nMay produce clipping/saturation artifacts.\n\nWorks best with Xv and GL video drivers.")
     Expand = True
     Spacing = True
     { PictureBox6 PictureBox

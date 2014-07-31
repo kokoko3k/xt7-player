@@ -161,6 +161,9 @@ Geometry=[0,41,344,344]
 [DebugWindow/Dir(global.confpath & "|", "*.profile")]
 Geometry=[47,-3,210,210]
 
+[DebugWindow/Dir(tmpdir, "*.jpg")]
+Geometry=[1280,-3,210,210]
+
 [DebugWindow/Drag]
 Geometry=[1276,-3,210,210]
 
@@ -533,6 +536,9 @@ Geometry=[48,-4,210,210]
 [DebugWindow/Split(Drag.Paste("text|uri-list"), "\n\r", "", True)]
 Geometry=[48,-4,210,210]
 
+[DebugWindow/Split(File.Load("|tmp|temp|mpout"), "\n")]
+Geometry=[550,332,343,445]
+
 [DebugWindow/Split(baddomains, ";")]
 Geometry=[47,-3,259,445]
 
@@ -756,6 +762,12 @@ Geometry=[0,41,344,344]
 [DebugWindow/[ColumnIndex.count]]
 Geometry=[0,0,301,301]
 
+[DebugWindow/aImage]
+Geometry=[1280,-3,210,210]
+
+[DebugWindow/aMp.GetScreenShot(True)]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/abutton]
 Geometry=[1280,0,210,210]
 
@@ -821,6 +833,12 @@ Geometry=[2268,312,210,210]
 
 [DebugWindow/avgs[avgs.count - 1]]
 Geometry=[1280,0,210,210]
+
+[DebugWindow/bArray]
+Geometry=[722,247,392,590]
+
+[DebugWindow/barray]
+Geometry=[1280,-3,210,210]
 
 [DebugWindow/bars]
 Geometry=[1280,0,210,210]
@@ -1011,6 +1029,12 @@ Geometry=[52,0,758,210]
 
 [DebugWindow/hsplit1.Layout]
 Geometry=[47,0,210,210]
+
+[DebugWindow/i]
+Geometry=[1280,-3,210,446]
+
+[DebugWindow/i.Load(tmpdir & Dir(tmpdir, "*.jpg*")[0])]
+Geometry=[1280,-3,210,210]
 
 [DebugWindow/iend]
 Geometry=[1498,160,210,210]
@@ -1234,6 +1258,9 @@ Geometry=[0,0,259,330]
 
 [DebugWindow/outerbox]
 Geometry=[1280,-3,250,669]
+
+[DebugWindow/outfile]
+Geometry=[1280,-3,210,210]
 
 [DebugWindow/outlist]
 Geometry=[2011,236,712,566]
@@ -1513,12 +1540,12 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/0_Moduli/Global.module:484.106"
-Fold[1]=[184,203,209,217,276,279,282,286,301,313,325,347,359,377,576,618,670,920,931,944,959,991,1001,1014]
+File[1]=".src/0_Moduli/Global.module:283.16"
+Fold[1]=[184,203,209,217,276,279,286,301,313,325,347,359,377,576,618,670,931,944,959,991,1001,1014]
 File[2]=".src/Classi/StartClass.class:20.0"
 File[3]=".src/Form/FMain.form"
 Active=4
-File[4]=".src/Form/FMain.class:4032.0"
+File[4]=".src/Form/FMain.class:11011.0"
 File[5]=".src/Classi/SettingsClass.class:12.35"
 File[6]="CHANGELOG_GIT:8.11"
 File[7]=".src/Classi/ShoutCastClass.class:246.19"
@@ -1531,19 +1558,19 @@ File[13]=".src/Form/DVBTuner.form"
 File[14]=".src/Form/OpenSubtitesForm.form"
 File[15]=".src/Form/RealtimeForm.form"
 File[16]=".src/Form/Searchfields.form"
-File[17]=".src/Classi/MplayerClass.class:338.33"
+File[17]=".src/Classi/MplayerClass.class:1722.5"
 File[18]=".src/Form/ProfileManager.class:37.125"
 File[19]=".src/Form/AskName.class:17.14"
 File[20]=".src/Form/GeneralOptions.form"
 File[21]=".src/Form/GeneralOptions.class:251.69"
-File[22]=".src/Form/CoverManager.class:15.16"
+File[22]=".src/Form/CoverManager.class:1246.40"
 File[23]=".src/Form/EpgForm.class:495.22"
 File[24]=".src/Classi/AlbumView.class:88.23"
 File[25]=".src/Form/CoverManager.form"
 File[26]=".src/Form/AudioForm.form"
 File[27]=".src/Form/AudioForm.class:88.3"
 File[28]=".src/Form/FsForm.form"
-File[29]=".src/Form/zzzFake.class:7.0"
+File[29]=".src/Form/zzzFake.class:46.19"
 File[30]=".src/Classi/Meters.class:61.3"
 File[31]="xt7-player.desktop:12.0"
 File[32]=".src/Form/MyQuestion.class:38.3"
@@ -1590,12 +1617,13 @@ File[72]=".src/Form/AddUriForm.class:41.40"
 File[73]=".src/Classi/AudiotagClass.class:136.15"
 File[74]=".src/Classi/FlashClass.class:19.110"
 File[75]=".src/Form/VideoEqualizer.form"
-File[76]=".src/Form/VideoEqualizer.class:121.20"
+File[76]=".src/Form/VideoEqualizer.class:10.24"
 File[77]=".src/0_Moduli/ComboHistory.module:0.0"
 File[78]=".src/Form/TranslationNeeded.class:52.80"
 File[79]=".src/Classi/TagLib.class:287.0"
 File[80]=".src/Form/XConfigureAudioDriver.form"
-Count=80
+File[81]=".src/Form/zzzFake.form"
+Count=81
 
 [Watches]
 Count=16

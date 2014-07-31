@@ -14,87 +14,99 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: VideoEqualizer.form:47
+#: VideoEqualizer.form:53
 msgid "Video Equalizer"
 msgstr ""
 
-#: VideoEqualizer.form:58
+#: VideoEqualizer.form:64
 msgid "Profile"
 msgstr ""
 
-#: VideoEqualizer.form:61
+#: VideoEqualizer.form:67
 msgid "Reload current profile"
 msgstr ""
 
-#: VideoEqualizer.form:66
+#: VideoEqualizer.form:72
 msgid "Save to current profile"
 msgstr ""
 
-#: VideoEqualizer.form:71
+#: VideoEqualizer.form:77
 msgid "Save these settings to all profiles"
 msgstr ""
 
-#: VideoEqualizer.form:77
+#: VideoEqualizer.form:83
 msgid "?"
 msgstr ""
 
-#: VideoEqualizer.form:80
+#: VideoEqualizer.form:86
 msgid "help"
 msgstr ""
 
-#: VideoEqualizer.form:93
+#: VideoEqualizer.form:99
 msgid "Note that this can conflicts with Eq2 and hue filter settings"
 msgstr ""
 
-#: VideoEqualizer.form:95
+#: VideoEqualizer.form:101
 msgid "Auto apply those values"
 msgstr ""
 
-#: VideoEqualizer.form:100
+#: VideoEqualizer.form:106
 msgid "Restore default settings"
 msgstr ""
 
-#: VideoEqualizer.form:102
+#: VideoEqualizer.form:108
 msgid "Restore all"
 msgstr ""
 
-#: VideoEqualizer.form:109
+#: VideoEqualizer.form:115
 msgid "Brightness"
 msgstr ""
 
-#: VideoEqualizer.form:142
+#: VideoEqualizer.form:148
 msgid "Contrast"
 msgstr ""
 
-#: VideoEqualizer.form:175
+#: VideoEqualizer.form:181
 msgid "Gamma"
 msgstr ""
 
-#: VideoEqualizer.form:208
+#: VideoEqualizer.form:214
 msgid "Hue"
 msgstr ""
 
-#: VideoEqualizer.form:241
+#: VideoEqualizer.form:247
 msgid "Saturation"
 msgstr ""
 
-#: VideoEqualizer.form:278
+#: VideoEqualizer.form:285
+msgid "OverBright strength"
+msgstr ""
+
+#: VideoEqualizer.form:291
+msgid "Dynamic overbright strength:\nWhen usinng dynamic overbright, this slider controls\nhow much you want the video to be altered by it."
+msgstr ""
+
+#: VideoEqualizer.form:299
+msgid "Dynamic"
+msgstr ""
+
+#: VideoEqualizer.form:321
 msgid "Overbright:\nPush contrast trying to preserve color details.\nUseful for low contrast videos or low contrast displays.\nMay produce clipping/saturation artifacts.\n\nWorks best with Xv and GL video drivers."
 msgstr ""
 
-#: VideoEqualizer.class:45
+#: VideoEqualizer.class:46
 msgid "This will save this window settings\n to all profiles found but the 'Factory_defaults' one"
 msgstr ""
 
-#: VideoEqualizer.class:45
+#: VideoEqualizer.class:46
 msgid "Proceed"
 msgstr ""
 
-#: VideoEqualizer.class:45
+#: VideoEqualizer.class:46
 msgid "Don't"
 msgstr ""
 
-#: VideoEqualizer.class:106
+#: VideoEqualizer.class:107
 msgid "If equalizer doesn't work, you can try to:\n\n- Change video output driver\n- Enable eq2 and hue filters under General Options\n- Add Eq2 filter in chains window\n- Add Hue filter in chains window"
 msgstr ""
 

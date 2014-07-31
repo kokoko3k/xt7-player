@@ -659,8 +659,11 @@ End
 
 Public MyKillCancelled As Boolean = False
 
+
+
+
 Public cookieoptsG As String = ""
-Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg") As Boolean
+Public Function do_play(filename As String, options As String, Optional restart As Boolean, Optional bugid1870 As Boolean = False, Optional cookieopts As String = "", Optional dumpfile As String = "/tmp/stream.dump.xt7.mpeg", Optional doanalyze As Boolean = False) As Boolean
   cookieoptsG = cookieopts
   AudioSwitched = False
   CurrentCache = "0"
@@ -682,119 +685,127 @@ Public Function do_play(filename As String, options As String, Optional restart 
   Endif
   
   If (Trim(filename) <> "") Or restart Then 'restart is used mainly to raise a dead mplayer in idleplay
-    'generate a new inputpipe
-    SetUpInputPipe()
-    
-    ClearMediaProperties()
-
-  If global.IsImgFile(filename) And Not (filename Like "mf://*") Then
-    filename = "mf://" & filename & "," & filename
-  Endif
-    Media_FullPath = filename
-    
-
-    
-    commandline = executable() & " " & "-identify -slave "
-    If wid <> "" Then commandline = commandline & " -wid " & wid
-    commandline = commandline & " -noconfig all "
-
-    commandline = commandline & " " & VoDriver & " " & AoDriver & " " & VoAdditionalopts & " " & AoAdditionalopts
-    commandline = commandline & " " & AVcodecs
-    
-    commandline = commandline & " " & options
-    
-    If Not (options Like "* -idle *") Then 
-      commandline = commandline & " -mouse-movements "
-      If audiolanguages <> ("\"" & "\"") Then commandline = commandline & " -alang " & AudioLanguages & " "
-      If sublanguages <> ("\"" & "\"") Then commandline = commandline & " -slang " & SubLanguages
-      'commandline = commandline & " " & options
-      If (Trim(subfile) <> "") Then commandline = commandline & " -sub '" & subfile & "'"
-      'http://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870
-      If bugid1870 And (Lower(file.Ext(filename)) = "mkv") Then
-        commandline = commandline & " -subfile " & "\"" & SConv(filename) & "\""
-      Endif
-    Endif
-
-  commandline = commandline & " -input conf=/tmp/FakeInput.conf:file=" & inputpipe
-    If global.isplaylist(filename) Then
-      commandline = commandline & " -playlist "
-    ' Else If (filename Like "*.ogg") And (Not (commandline Like "* -demuxer *")) Then
-    '   commandline = commandline & " -demuxer ogg "
-    Endif
-    'commandline = commandline & " " & "\"" & SConv(filename) & "\""
-    commandline = commandline & " " & Shell(SConv(filename))
-
-    
-    
-    
-    If (commandline Like "*-vo vaapi*") Or (commandline Like "*-vo *,vaapi*") Or (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
-      Debug ("found vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
-      commandline = commandline & " -vf-clr "
-      Debug
-    Endif
-    
-    If (commandline Like "*ffmpeg12vdpau*") Or (commandline Like "*ffwmv3vdpau*") Or (commandline Like "*ffvc1vdpau*") Or (commandline Like "*ffh264vdpau*") Or (commandline Like "*ffodivxvdpau*") Then
-      Debug ("found an ff*vdpau forced codec on enabled video codec list, disabling all video filters by appending -vf-clr")
-      commandline = commandline & " -vf-clr "
-      Debug
-    Endif
-    
-    
-    If (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
-      Debug ("found xvmc output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
-      commandline = commandline & " -vf-clr "
-      Debug
-    Endif
-
-    If commandline Like "*-dumpfile *" Then
-      Debug "-dumpfile option found in the command line, probably you will not be able to dump streams using the rec button"
-      Debug
-        Else
-      If (Not ImIdlePlaying) Then commandline = commandline & " -capture -dumpfile " & dumpfile
-    Endif
-    
-    
-    If (commandline Like "*-ac *hwac3*") Or (commandline Like "*-ac *hwdts*") Or (commandline Like "*-ac *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Then
-      Debug ("found one of (-ac,af) hwac3,hwdts or hwmpa audio passthrough options in the commandline")
-      Debug ("Disabling any audio filters in chain by appending -af-clr")
-        commandline = commandline & " -af-clr "
-      Debug 
-    Endif
-    
-    commandline = commandline & " " & cookieopts
-
-    
-    GotHeaders = False
-    LastSplittedOutput = ""
-    'if we've a dvd, maxheaders need to be larger.
-    If filename Like "*dvd://*" Then
-      MaxHeaders = MaxheadersDVD
-    Else
-      MaxHeaders = MaxHeadersFile
-    Endif
-    
-    If Not (filename Like "*SubBackImage*.bmp*") Then 'do not apply limit to subtitles window!
-      If global.IsImgFile(filename) Then commandline &= " -fps 0.1 -nocache"
-    Endif
- 
-    Debug "Starting mplayer now:"
-    Debug "commandline=" & commandline
-    Debug
-    playerprocess = Shell commandline For Read As "playerprocess"
-    'playerprocess = Shell commandline For Input As "playerprocess"
-    MaxCache = parsecacheparam(commandline)
-
-    stopping = False
-    Media_Length = "0"
-    Media_percent_pos = "0"
-    MediaHeaders.Resize(0) 'fixes an issue when playlisting youtube results
+      'generate a new inputpipe
+      SetUpInputPipe()
+      
+      ClearMediaProperties()
   
-    WaitForHeaders()
-    GetAllTags()
-
-    Return True
+    If global.IsImgFile(filename) And Not (filename Like "mf://*") Then
+      filename = "mf://" & filename & "," & filename
+    Endif
+      Media_FullPath = filename
+      
+  
+      
+      commandline = executable() & " " & "-identify -slave "
+      If wid <> "" Then commandline = commandline & " -wid " & wid
+      commandline = commandline & " -noconfig all "
+  
+      commandline = commandline & " " & VoDriver & " " & AoDriver & " " & VoAdditionalopts & " " & AoAdditionalopts
+      commandline = commandline & " " & AVcodecs
+      
+      commandline = commandline & " " & options
+      
+      If Not (options Like "* -idle *") Then 
+        commandline = commandline & " -mouse-movements "
+        If audiolanguages <> ("\"" & "\"") Then commandline = commandline & " -alang " & AudioLanguages & " "
+        If sublanguages <> ("\"" & "\"") Then commandline = commandline & " -slang " & SubLanguages
+        'commandline = commandline & " " & options
+        If (Trim(subfile) <> "") Then commandline = commandline & " -sub '" & subfile & "'"
+        'http://bugzilla.mplayerhq.hu/show_bug.cgi?id=1870
+        If bugid1870 And (Lower(file.Ext(filename)) = "mkv") Then
+          commandline = commandline & " -subfile " & "\"" & SConv(filename) & "\""
+        Endif
+      Endif
+  
+    commandline = commandline & " -input conf=/tmp/FakeInput.conf:file=" & inputpipe
+      If global.isplaylist(filename) Then
+        commandline = commandline & " -playlist "
+      ' Else If (filename Like "*.ogg") And (Not (commandline Like "* -demuxer *")) Then
+      '   commandline = commandline & " -demuxer ogg "
+      Endif
+      'commandline = commandline & " " & "\"" & SConv(filename) & "\""
+      commandline = commandline & " " & Shell(SConv(filename))
+  
+      
+      
+      
+      If (commandline Like "*-vo vaapi*") Or (commandline Like "*-vo *,vaapi*") Or (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
+        Debug ("found vaapi output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
+        commandline = commandline & " -vf-clr "
+        Debug
+      Endif
+      
+      If (commandline Like "*ffmpeg12vdpau*") Or (commandline Like "*ffwmv3vdpau*") Or (commandline Like "*ffvc1vdpau*") Or (commandline Like "*ffh264vdpau*") Or (commandline Like "*ffodivxvdpau*") Then
+        Debug ("found an ff*vdpau forced codec on enabled video codec list, disabling all video filters by appending -vf-clr")
+        commandline = commandline & " -vf-clr "
+        Debug
+      Endif
+      
+      
+      If (commandline Like "*-vo xvmc*") Or (commandline Like "*-vo *,xvmc*") Then
+        Debug ("found xvmc output driver on enabled video driver list, disabling all video filters by appending -vf-clr")
+        commandline = commandline & " -vf-clr "
+        Debug
+      Endif
+  
+      If commandline Like "*-dumpfile *" Then
+        Debug "-dumpfile option found in the command line, probably you will not be able to dump streams using the rec button"
+        Debug
+          Else
+        If (Not ImIdlePlaying) Then commandline = commandline & " -capture -dumpfile " & dumpfile
+      Endif
+      
+      
+      If (commandline Like "*-ac *hwac3*") Or (commandline Like "*-ac *hwdts*") Or (commandline Like "*-ac *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Or (commandline Like "*-afm *hwmpa*") Then
+        Debug ("found one of (-ac,af) hwac3,hwdts or hwmpa audio passthrough options in the commandline")
+        Debug ("Disabling any audio filters in chain by appending -af-clr")
+          commandline = commandline & " -af-clr "
+        Debug 
+      Endif
+      
+      commandline = commandline & " " & cookieopts
+  
+      
+      GotHeaders = False
+      LastSplittedOutput = ""
+      'if we've a dvd, maxheaders need to be larger.
+      If filename Like "*dvd://*" Then
+        MaxHeaders = MaxheadersDVD
+      Else
+        MaxHeaders = MaxHeadersFile
+      Endif
+      
+      If Not (filename Like "*SubBackImage*.bmp*") Then 'do not apply limit to subtitles window!
+        If global.IsImgFile(filename) Then commandline &= " -fps 0.1 -nocache"
+      Endif
+   
+      Debug "Starting mplayer now:"
+      Debug "commandline=" & commandline
+      Debug
+      playerprocess = Shell commandline For Read As "playerprocess"
+  
+  
+  
+  
+      'playerprocess = Shell commandline For Input As "playerprocess"
+      MaxCache = parsecacheparam(commandline)
+  
+      stopping = False
+      Media_Length = "0"
+      Media_percent_pos = "0"
+      MediaHeaders.Resize(0) 'fixes an issue when playlisting youtube results
+    
+      WaitForHeaders()
+      GetAllTags()
+  
+    If Not ImIdlePlaying Then
+      If doanalyze And (Not audioonly) Then StartOverbrightAnalyze()
+    Endif
   Endif
+  Return True
 End
+
 
 Public maxcache As String
 
@@ -1055,7 +1066,7 @@ End
 Public Function do_stop() As Boolean
   Dim maxtimeout As Integer = 11
   Dim timeout As Integer 
-
+  Try mpAnalyze.kill
   AudioSwitched = False
   Try STimer.stop
   stopping = True
@@ -1620,4 +1631,195 @@ Public Sub ExtractAudioTo(src As String, dest As String)
 End
 
 
+Public Sub StartOverbrightAnalyze()
+  If Not ProcessRunningOvr() Then Return
+  TimerAnalyzePRE = New Timer As "TimerAnalizePRE"
+  TimerAnalyzePRE.Delay = 10
+  TimerAnalyzePRE.start
+End
 
+Private StopOB As Boolean = False
+Public Sub StopOverBrightAnalyze()
+  Try mpanalyze.kill
+  TimerAnalyzePRE.stop
+  TimerAnalyze.stop
+  Try mpanalyze.kill
+  StopOB = True
+End
+
+
+
+
+Private barray As String[]
+Public mpAnalyze As Process
+
+Public Sub Analyze(videofile As String)
+  Dim cmd As String
+  Dim newpos As Integer
+  Dim f, t As String
+  Dim i As New Image
+  Dim bMin, bMax, bAvg As Integer
+  Dim tmpdir As String = "/tmp/temp/"
+  Dim pLine, mpout As String
+  Dim mystream As File
+  Dim cTime As String
+  Dim outfile As String[]
+  Dim lastp As String
+  Dim sFile As String
+  Dim timeout As Integer
+  
+  While ProcessRunningOvr()
+    If stopob Then Goto lEnd
+    barray = New String[80000] 
+    barray.Fill(-1, 0, 80000)
+    Shell "rm -Rf " & tmpdir Wait
+    Shell "mkdir -p " & tmpdir Wait
+    Shell "rm " & tmpdir & "/fifo" Wait
+    Shell "mkfifo " & tmpdir & "/fifo" Wait
+    Try mystream.close
+    mystream = Open tmpdir & "/fifo" For Write
+    Print #mystream, "pause"
+    cmd = "mplayer  -noconfig all -noautosub -nosub -osdlevel 0  -lavdopts fast:skiploopfilter=all -speed 0.01 -slave -input file=" & tmpdir & "/fifo -vf scale=64:64,scale=2:2 -nosound -vo jpeg:quality=100:outdir=" & tmpdir & " " & videofile & " </dev/null &> " & tmpdir & "/mpout"
+    Debug cmd
+    mpanalyze = Shell cmd
+    Repeat
+      If stopob Then Goto lEnd
+      Sleep 0.05
+      Try outfile = Split(File.Load("/tmp/temp/mpout"), "\n")
+    Until (Not Error )
+    Repeat
+      Try outfile = Split(File.Load("/tmp/temp/mpout"), "\n")
+      Sleep 0.05
+    Until (outfile.max > 1)
+    
+    While mpanalyze.state = Process.Running
+      If stopob Then Goto lEnd
+      outfile = Split(File.Load("/tmp/temp/mpout"), "\n\r", "", True)
+      pLine = outfile[outfile.max - 1]
+      For Each sFile In Dir(tmpdir, "*.jpg*")
+        Kill tmpdir & "/" & sFile
+      Next
+      
+      'step ahead
+       newpos = CInt(currenttime()) + 5
+      If Not Error Then 
+        Print #mystream, "pausing_keep seek " & CStr(newpos) & " 2"
+        'Debug "Analize newseek", newpos
+      Endif
+      Repeat
+        If paused Or pausing Then TimerAnalyze.stop
+        Wait 1
+      Until Not (paused Or pausing)
+      TimerAnalyze.start
+      'Print #mystream, "pausing_keep seek +1"
+      
+      'wait for pic
+      timeout = 100
+      While Dir(tmpdir, "*.jpg").count = 0 And (timeout > 0) And mpanalyze.state = Process.Running
+        Wait 0.01
+        timeout -= 1
+      Wend
+      '''''''''''''''''''''If (timeout <= 0) Or (mpanalyze.state <> Process.Running) Then Goto lEnd
+      'Try cTime = Trim(Mid(pLine, 3, InStr(pLine, ".") - 1))
+      Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
+      'Debug "AnalyzeTime ", cTime
+      
+      Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg*")[0])
+      If Not Error Then
+        ImageRange(i, ByRef bMin, ByRef bMax, ByRef bAvg)
+        ' lastp = cTime
+        ' lastp &= "-"
+        ' lastp &= bMin & "-"
+        ' lastp &= bMax & "-"
+        ' lastp &= bAvg
+        ' If bArray.max > -1 Then
+        '   If bArray[bArray.max] = lastp Then Goto lEnd 'sometimes mplayer hangs
+        ' Endif
+        't = ""
+        'Try t = bArray[bArray.max] 
+        Try barray[cTime] = bAvg
+        'If t <> lastp Then barray[cTime] = bAvg 'bArray.Add(lastp)
+        
+      Endif
+    Wend
+  Wend
+  lEnd:
+  stopob = False
+  mpanalyze.kill
+  Shell "rm -Rf " & tmpdir
+End
+
+
+
+Public TimerAnalyzePre As Timer
+Public Sub TimerAnalizePRE_timer()
+  TimerAnalyzePRE.stop
+  TimerAnalyze = New Timer As "TimerAnalize"
+  TimerAnalyze.delay = 250
+  TimerAnalyze.start
+  Analyze(Shell(SConv(Media_FullPath_Playing)))
+End
+
+Public TimerAnalyze As Timer
+
+Event AnalyzerNewValue(bAvg As Integer)
+
+
+Public Sub TimerAnalize_timer()
+  Dim cTime As Integer
+  Dim i As Integer
+  Dim bAvg As String
+  Dim found As Boolean = False
+  Try cTime = CInt(CurrentTime())
+  If Error Then Return
+  bAvg = barray[ctime]
+  If bAvg <> -1 Then
+    TimerAnalyze.Stop
+    'Debug "New value at index", i, bout[3]
+    'ShowText("Tempo media: " & ctime & " media: " & bAvg & " Tempo filmato " & CurrentTime())
+    Try Raise AnalyzerNewValue(bAvg)
+    Wait 1
+    TimerAnalyze.start
+  Endif
+End
+
+
+Public Sub OLDImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
+  Dim ih As ImageHistogram
+  Dim i, b, t, it As Integer
+  'Dim h As New Integer[]
+  bMin = 255
+  bMax = 0
+  iH = aImage.histogram()
+  t = 0
+  it = 0
+  For i = 0 To 255 Step 1
+    b = Max((Max(iH[Image.red, i], iH[Image.green, i])), iH[Image.blue, i])
+    'b = (CInt((iH[Image.red, i] + iH[Image.green, i] + iH[Image.blue, i]) / 3))
+    If b <= 255 Then
+      'h.add(b)
+      If bMin > b Then bMin = b
+      If bMax < b Then bMax = b
+      t += b
+      it += 1
+     ' Debug "b: ", b
+    Endif
+  Next 'i
+  If iT = 0 Then
+    bMin = 0 
+    bMax = 255
+    bAvg = 255
+    Return
+  Endif
+  bAvg = t Div it
+End
+
+Public Sub ImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
+  Dim i, b As Integer
+  'Dim c As Colorinfo
+  b = 0
+  For i = 0 To aImage.Pixels.max Step 1
+    b += Color[aImage.Pixels[i]].value 
+  Next
+  bAvg = b Div (i - 1) 'range -17043521 -> -1
+End

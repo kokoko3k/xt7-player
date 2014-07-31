@@ -4,10 +4,11 @@
 ' Gambas class file
 Public AlreadyLoaded As Boolean = False 'true if the form loaded it's settings from disk at least one time
 
+Public NoOsd As Boolean = False
 'gamma,brightness,contrast...
   Public Sub VideoOsd()
     Dim osdmsg As String
-    
+    If NoOsd Then Return
     osdmsg = "B: " & Make2(slider1.value)
     osdmsg &= "  C: " & Make2(slider2.value)
     osdmsg &= "  G: " & Make2(slider3.value)
@@ -133,20 +134,50 @@ Public Sub Button1_Click()
   slider4.value = 0
   slider5.value = 0
 End
-
+           
 Public Sub Slider6_Change()
-  spinbox6.value = Slider6.value
+  Object.Lock(Spinbox6)
+  spinbox6.value = Slider6.value 
+  Object.unLock(Spinbox6)
+  slider1.value = CInt(Spinbox6.value / 2.66)
+  slider2.value = Spinbox6.value
+  slider3.value = Spinbox6.value Div 4
+  slider4.value = 0
+  slider5.value = Spinbox6.value 
 End
 
-
-
 Public Sub SpinBox6_Change()
-  Object.Lock(Slider6)
-  Slider6.value = spinbox6.value
-  Object.unLock(Slider6)
-  slider1.value = CInt(Slider6.value / 2.66)
-  slider2.value = Slider6.value
-  slider3.value = Slider6.value Div 4
-  slider4.value = 0
-  slider5.value = Slider6.value 
+  Slider6.value = Spinbox6.value
+End
+
+Public Sub Slider7_Change()
+  spinbox7.value = Slider7.value
+End
+
+Public Sub spinbox7_Change()
+  Object.Lock(Slider7)
+  Slider7.value = spinbox7.value
+  Object.unLock(Slider7)
+End
+
+Public Sub Form_Show()
+  EnableDisableControls()
+End
+
+Public Sub EnableDisableControls()
+  Slider7.enabled = CheckDynamicOverbright.value 
+  spinbox7.enabled = CheckDynamicOverbright.value 
+  hbox6.Enabled = Not CheckDynamicOverbright.value 
+End
+
+Public Sub CheckDynamicOverbright_Click()
+  EnableDisableControls()
+  If Not FMain.FullyLoaded Then Return
+  If Not FMain.mplayer.ProcessRunningOvr() Then Return
+  If FMain.mplayer.AudioOnly Then Return
+  If Last.value Then 
+    FMain.mplayer.StartOverbrightAnalyze()
+      Else
+    FMain.mplayer.StopOverbrightAnalyze()
+  Endif
 End

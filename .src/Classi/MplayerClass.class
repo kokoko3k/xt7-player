@@ -1693,6 +1693,7 @@ Public Sub Analyze(videofile As String)
     Until (outfile.max > 1)
     
     While mpanalyze.state = Process.Running
+      Debug
       If stopob Then Goto lEnd
       outfile = Split(File.Load("/tmp/temp/mpout"), "\n\r", "", True)
       pLine = outfile[outfile.max - 1]
@@ -1709,6 +1710,7 @@ Public Sub Analyze(videofile As String)
       Repeat
         If paused Or pausing Then TimerAnalyze.stop
         Wait 1
+        If stopob Then Goto lEnd
       Until Not (paused Or pausing)
       TimerAnalyze.start
       'Print #mystream, "pausing_keep seek +1"
@@ -1772,6 +1774,7 @@ Public Sub TimerAnalize_timer()
   Dim found As Boolean = False
   Try cTime = CInt(CurrentTime())
   If Error Then Return
+  Debug
   bAvg = barray[ctime]
   If bAvg <> -1 Then
     TimerAnalyze.Stop

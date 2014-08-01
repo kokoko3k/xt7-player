@@ -1784,35 +1784,35 @@ Public Sub TimerAnalize_timer()
 End
 
 
-Public Sub OLDImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
-  Dim ih As ImageHistogram
-  Dim i, b, t, it As Integer
-  'Dim h As New Integer[]
-  bMin = 255
-  bMax = 0
-  iH = aImage.histogram()
-  t = 0
-  it = 0
-  For i = 0 To 255 Step 1
-    b = Max((Max(iH[Image.red, i], iH[Image.green, i])), iH[Image.blue, i])
-    'b = (CInt((iH[Image.red, i] + iH[Image.green, i] + iH[Image.blue, i]) / 3))
-    If b <= 255 Then
-      'h.add(b)
-      If bMin > b Then bMin = b
-      If bMax < b Then bMax = b
-      t += b
-      it += 1
-     ' Debug "b: ", b
-    Endif
-  Next 'i
-  If iT = 0 Then
-    bMin = 0 
-    bMax = 255
-    bAvg = 255
-    Return
-  Endif
-  bAvg = t Div it
-End
+' Public Sub OLDImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
+'   Dim ih As ImageHistogram
+'   Dim i, b, t, it As Integer
+'   'Dim h As New Integer[]
+'   bMin = 255
+'   bMax = 0
+'   iH = aImage.histogram()
+'   t = 0
+'   it = 0
+'   For i = 0 To 255 Step 1
+'     b = Max((Max(iH[Image.red, i], iH[Image.green, i])), iH[Image.blue, i])
+'     'b = (CInt((iH[Image.red, i] + iH[Image.green, i] + iH[Image.blue, i]) / 3))
+'     If b <= 255 Then
+'       'h.add(b)
+'       If bMin > b Then bMin = b
+'       If bMax < b Then bMax = b
+'       t += b
+'       it += 1
+'      ' Debug "b: ", b
+'     Endif
+'   Next 'i
+'   If iT = 0 Then
+'     bMin = 0 
+'     bMax = 255
+'     bAvg = 255
+'     Return
+'   Endif
+'   bAvg = t Div it
+' End
 
 Public Sub ImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
   Dim i, b As Integer

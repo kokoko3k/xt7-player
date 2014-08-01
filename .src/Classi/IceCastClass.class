@@ -19,7 +19,7 @@ End
 'Fill a treeview with genres and streams; optionally use a previously cached YP file
 Public Sub FillGenresTree(mytree As Treeview, Optional UseCache As Boolean = True)
   Dim mywget As Wgetclass
-  Dim YPdata, YPLine, tmp As String
+  Dim YPdata, YPLine As String
   Dim genres, genresu As New String[]
   Dim title, myurl, audiotype, bitrate, genre As String
   Dim i, count As Integer 

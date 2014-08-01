@@ -75,11 +75,11 @@ Public Sub Sliders_Change()
     Try Last.Next.value = Last.value
     If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then 
       'FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
-      FMain.mplayer.Send(slider1.tag & " " & slider1.value & " 1")
-      FMain.mplayer.Send(slider2.tag & " " & slider2.value & " 1")
-      FMain.mplayer.Send(slider3.tag & " " & slider3.value & " 1")
-      FMain.mplayer.Send(slider4.tag & " " & slider4.value & " 1")
-      FMain.mplayer.Send(slider5.tag & " " & slider5.value & " 1")
+      FMain.mplayer.Send("pausing_keep " & slider1.tag & " " & slider1.value & " 1")
+      FMain.mplayer.Send("pausing_keep " & slider2.tag & " " & slider2.value & " 1")
+      FMain.mplayer.Send("pausing_keep " & slider3.tag & " " & slider3.value & " 1")
+      FMain.mplayer.Send("pausing_keep " & slider4.tag & " " & slider4.value & " 1")
+      FMain.mplayer.Send("pausing_keep " & slider5.tag & " " & slider5.value & " 1")
       VideoOsd()
     Endif
   Endif
@@ -140,10 +140,14 @@ Public Sub Slider6_Change()
   spinbox6.value = Slider6.value 
   Object.unLock(Spinbox6)
   slider1.value = CInt(Spinbox6.value / 2.66)
+  Wait 0.0055555556
   slider2.value = Spinbox6.value
+  Wait 0.0055555556
   slider3.value = Spinbox6.value Div 4
+  Wait 0.0055555556
   slider4.value = 0
   slider5.value = Spinbox6.value 
+
 End
 
 Public Sub SpinBox6_Change()

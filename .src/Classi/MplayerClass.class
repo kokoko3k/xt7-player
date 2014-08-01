@@ -1094,7 +1094,8 @@ Public Function do_stop() As Boolean
   LastSplittedOutput = ""
   Media_FullPath_Playing = ""
   Audioonly = False
-   GBXBUGCloseStream()
+  GBXBUGCloseStream()
+  StopOverBrightAnalyze()
   Return True
 End
 
@@ -1633,6 +1634,7 @@ End
 
 Public Sub StartOverbrightAnalyze()
   If Not ProcessRunningOvr() Then Return
+  stopob = False
   TimerAnalyzePRE = New Timer As "TimerAnalizePRE"
   TimerAnalyzePRE.Delay = 10
   TimerAnalyzePRE.start
@@ -1641,8 +1643,8 @@ End
 Private StopOB As Boolean = False
 Public Sub StopOverBrightAnalyze()
   Try mpanalyze.kill
-  TimerAnalyzePRE.stop
-  TimerAnalyze.stop
+  Try TimerAnalyzePRE.stop
+  Try TimerAnalyze.stop
   Try mpanalyze.kill
   StopOB = True
 End
@@ -1652,22 +1654,20 @@ End
 
 Private barray As String[]
 Public mpAnalyze As Process
-
+Private PrevCtime As Integer = -1
 Public Sub Analyze(videofile As String)
   Dim cmd As String
   Dim newpos As Integer
-  Dim f, t As String
   Dim i As New Image
-  Dim bMin, bMax, bAvg As Integer
-  Dim tmpdir As String = "/tmp/temp/"
-  Dim pLine, mpout As String
+  Dim bAvg As Integer
+  Dim tmpdir As String = Temp() & "/"
+  Dim pLine, t As String
   Dim mystream As File
   Dim cTime As String
   Dim outfile As String[]
-  Dim lastp As String
   Dim sFile As String
   Dim timeout As Integer
-  
+  lStart:
   While ProcessRunningOvr()
     If stopob Then Goto lEnd
     barray = New String[80000] 
@@ -1679,30 +1679,30 @@ Public Sub Analyze(videofile As String)
     Try mystream.close
     mystream = Open tmpdir & "/fifo" For Write
     Print #mystream, "pause"
-    cmd = "mplayer  -noconfig all -noautosub -nosub -osdlevel 0  -lavdopts fast:skiploopfilter=all -speed 0.01 -slave -input file=" & tmpdir & "/fifo -vf scale=64:64,scale=2:2 -nosound -vo jpeg:quality=100:outdir=" & tmpdir & " " & videofile & " </dev/null &> " & tmpdir & "/mpout"
+    cmd = "mplayer  -noconfig all -noautosub -nosub -osdlevel 0  -lavdopts fast:skiploopfilter=all -speed 0.01 -slave -input file=" & tmpdir & "/fifo  -vf scale=64:64:0:3,scale=16:16:0:3,smartblur=5:1:0,scale -nosound -vo jpeg:quality=100:outdir=" & tmpdir & " " & videofile & " </dev/null &> " & tmpdir & "/mpout"
     Debug cmd
     mpanalyze = Shell cmd
     Repeat
       If stopob Then Goto lEnd
       Sleep 0.05
-      Try outfile = Split(File.Load("/tmp/temp/mpout"), "\n")
+      Try t = File.Load(tmpdir & "/mpout")
     Until (Not Error )
     Repeat
-      Try outfile = Split(File.Load("/tmp/temp/mpout"), "\n")
+      Try outfile = Split(File.Load(tmpdir & "/mpout"), "\n")
       Sleep 0.05
     Until (outfile.max > 1)
     
     While mpanalyze.state = Process.Running
       Debug
       If stopob Then Goto lEnd
-      outfile = Split(File.Load("/tmp/temp/mpout"), "\n\r", "", True)
+      outfile = Split(File.Load(tmpdir & "/mpout"), "\n\r", "", True) '<- this is sloooow over time, watchout!
       pLine = outfile[outfile.max - 1]
       For Each sFile In Dir(tmpdir, "*.jpg*")
         Kill tmpdir & "/" & sFile
       Next
       
       'step ahead
-       newpos = CInt(currenttime()) + 5
+       newpos = CInt(currenttime()) + 4
       If Not Error Then 
         Print #mystream, "pausing_keep seek " & CStr(newpos) & " 2"
         'Debug "Analize newseek", newpos
@@ -1717,31 +1717,27 @@ Public Sub Analyze(videofile As String)
       
       'wait for pic
       timeout = 100
+      If Not Exist(tmpdir) Then Goto lStart
       While Dir(tmpdir, "*.jpg").count = 0 And (timeout > 0) And mpanalyze.state = Process.Running
         Wait 0.01
         timeout -= 1
       Wend
-      '''''''''''''''''''''If (timeout <= 0) Or (mpanalyze.state <> Process.Running) Then Goto lEnd
-      'Try cTime = Trim(Mid(pLine, 3, InStr(pLine, ".") - 1))
-      Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
-      'Debug "AnalyzeTime ", cTime
+      If timeout = 0 Then 
+        Debug "No Pics, restarting analyzer"
+        Goto lStart
+      Endif
       
-      Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg*")[0])
-      If Not Error Then
-        ImageRange(i, ByRef bMin, ByRef bMax, ByRef bAvg)
-        ' lastp = cTime
-        ' lastp &= "-"
-        ' lastp &= bMin & "-"
-        ' lastp &= bMax & "-"
-        ' lastp &= bAvg
-        ' If bArray.max > -1 Then
-        '   If bArray[bArray.max] = lastp Then Goto lEnd 'sometimes mplayer hangs
-        ' Endif
-        't = ""
-        'Try t = bArray[bArray.max] 
-        Try barray[cTime] = bAvg
-        'If t <> lastp Then barray[cTime] = bAvg 'bArray.Add(lastp)
-        
+      '''''''''If (timeout <= 0) Or (mpanalyze.state <> Process.Running) Then Goto lEnd
+      
+      Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
+      t = tmpdir & Dir(tmpdir, "*.jpg")[0]
+      If Exist(t) Then
+        Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg")[0])
+        If Not Error Then 
+          bavg = Color[i.Pixels[0]].value 
+          Debug "time", ctime, "AVG:", bavg
+          Try barray[cTime] = bAvg
+        Endif
       Endif
     Wend
   Wend
@@ -1766,23 +1762,21 @@ Public TimerAnalyze As Timer
 
 Event AnalyzerNewValue(bAvg As Integer)
 
-
 Public Sub TimerAnalize_timer()
   Dim cTime As Integer
-  Dim i As Integer
   Dim bAvg As String
-  Dim found As Boolean = False
   Try cTime = CInt(CurrentTime())
   If Error Then Return
-  Debug
+  If PrevCtime = cTime Then Return
+  prevCtime = cTime
   bAvg = barray[ctime]
   If bAvg <> -1 Then
     TimerAnalyze.Stop
     'Debug "New value at index", i, bout[3]
     'ShowText("Tempo media: " & ctime & " media: " & bAvg & " Tempo filmato " & CurrentTime())
     Try Raise AnalyzerNewValue(bAvg)
-    Wait 1
-    TimerAnalyze.start
+    'Wait 0.4
+    If Not stopob Then TimerAnalyze.start
   Endif
 End
 
@@ -1817,12 +1811,15 @@ End
 '   bAvg = t Div it
 ' End
 
-Public Sub ImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
-  Dim i, b As Integer
-  'Dim c As Colorinfo
-  b = 0
-  For i = 0 To aImage.Pixels.max Step 1
-    b += Color[aImage.Pixels[i]].value 
-  Next
-  bAvg = b Div (i - 1) 'range -17043521 -> -1
-End
+' Public Sub ImageRange(aImage As Image, ByRef bMin As Integer, ByRef bMax As Integer, ByRef bAvg As Integer)
+'   Dim i, b As Integer
+'   'Dim c As Colorinfo
+'   'b = 0
+'   ' For i = 0 To aImage.Pixels.max Step 1
+'   '   b += Color[aImage.Pixels[i]].value 
+'   ' Next
+'   
+'   'bAvg = b Div (i - 1) 'range -17043521 -> -1
+'   bavg = Color[aImage.Pixels[i]].value 
+'   Debug bavg
+' End

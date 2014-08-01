@@ -2748,7 +2748,12 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
     Endif
-    
+    If doanalyze Then
+      Object.Lock(VideoEqualizer)
+      VideoEqualizer.Slider6.value = 0
+      VideoEqualizer.Spinbox6.value = 0
+      Object.unLock(VideoEqualizer)
+    Endif
     '''''OneSecTimer_Timer()
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.FullScreen)
     OneSecTimer.start
@@ -3508,8 +3513,8 @@ Private Sub SlideTo(aSlider As Slider, aTarget As Integer)
   Endif
   bdiff = Abs(aSlider.value - aTarget)
   If bdiff = 0 Then Goto lEnd
-  waittime = 1 / bdiff
-  If waittime > 0.06 Then waittime = 0.06
+  waittime = 1 / bdiff - 0.06
+  'If waittime > 0.06 Then waittime = 0.06
   Debug waittime
   If aSlider.value < aTarget Then
     Repeat

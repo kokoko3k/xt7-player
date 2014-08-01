@@ -161,8 +161,14 @@ Geometry=[0,41,344,344]
 [DebugWindow/Dir(global.confpath & "|", "*.profile")]
 Geometry=[47,-3,210,210]
 
+[DebugWindow/Dir(tmpdir)]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/Dir(tmpdir, "*.jpg")]
-Geometry=[1280,-3,210,210]
+Geometry=[1185,521,853,637]
+
+[DebugWindow/Dir(tmpdir, "*.jpg*")]
+Geometry=[1280,0,210,210]
 
 [DebugWindow/Drag]
 Geometry=[1276,-3,210,210]
@@ -687,6 +693,9 @@ Geometry=[0,0,344,344]
 ShowHidden=True
 Geometry=[311,0,210,210]
 
+[DebugWindow/TimerAnalyze]
+Geometry=[1280,0,210,210]
+
 [DebugWindow/TmpOut]
 Geometry=[-102,327,301,301]
 
@@ -838,7 +847,7 @@ Geometry=[1280,0,210,210]
 Geometry=[722,247,392,590]
 
 [DebugWindow/barray]
-Geometry=[1280,-3,210,210]
+Geometry=[1280,-3,284,632]
 
 [DebugWindow/bars]
 Geometry=[1280,0,210,210]
@@ -1110,6 +1119,9 @@ Geometry=[1280,0,210,210]
 
 [DebugWindow/mouse]
 Geometry=[0,0,344,344]
+
+[DebugWindow/mpanalyze]
+Geometry=[1280,0,490,646]
 
 [DebugWindow/mparent]
 Geometry=[47,0,210,210]
@@ -1540,15 +1552,18 @@ SearchComment=True
 SearchString=True
 
 [OpenFile]
-File[1]=".src/Form/FMain.class:3515.56"
-File[2]=".src/Classi/MplayerClass.class:1680.28"
+File[1]=".src/Form/FMain.class:3474.3"
+Active=2
+File[2]=".src/Classi/MplayerClass.class:1730.6"
 File[3]=".src/Classi/SettingsClass.class:14.73"
 File[4]=".src/Form/VideoEqualizer.form"
-File[5]=".src/Form/VideoEqualizer.class:171.0"
+File[5]=".src/Form/VideoEqualizer.class:136.11"
 File[6]=".src/Form/FMain.form"
-Active=7
-File[7]="CHANGELOG_GIT:3.87"
-Count=7
+File[7]="CHANGELOG_GIT:16.28"
+File[8]=".src/Classi/IceCastClass.class:21.20"
+File[9]=".src/0_Moduli/Global.module:277.0"
+File[10]=".src/Form/AudioForm.class:10.0"
+Count=10
 
 [Watches]
 Count=16

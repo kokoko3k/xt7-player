@@ -4093,6 +4093,7 @@ Public Sub SwitchToFS()
   'workaround for missing picture when switching 
   Wait 0.2
   Maintoolbar.hide
+  CorrectAreaAspect()
 End
 
 Public Sub SwitchToWindow()

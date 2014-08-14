@@ -1655,6 +1655,7 @@ End
 Private barray As String[]
 Public mpAnalyze As Process
 Private PrevCtime As Integer = -1
+
 Public Sub Analyze(videofile As String)
   Dim cmd As String
   Dim newpos As Integer
@@ -1680,6 +1681,7 @@ Public Sub Analyze(videofile As String)
     mystream = Open tmpdir & "/fifo" For Write
     Print #mystream, "pause"
     cmd = "mplayer  -noconfig all -noautosub -nosub -osdlevel 0  -lavdopts fast:skiploopfilter=all -speed 0.01 -slave -input file=" & tmpdir & "/fifo  -vf scale=64:64:0:3,scale=16:16:0:3,smartblur=5:1:0,scale -nosound -vo jpeg:quality=100:outdir=" & tmpdir & " " & videofile & " </dev/null &> " & tmpdir & "/mpout"
+    cmd = "mplayer  -noconfig all -noautosub -nosub -osdlevel 3  -lavdopts fast:skiploopfilter=all -speed 0.01 -slave -input file=" & tmpdir & "/fifo  -nosound -vo jpeg:quality=100:outdir=" & tmpdir & " " & videofile & " </dev/null &> " & tmpdir & "/mpout"
     Debug cmd
     mpanalyze = Shell cmd
     Repeat
@@ -1695,8 +1697,6 @@ Public Sub Analyze(videofile As String)
     While mpanalyze.state = Process.Running
       Debug
       If stopob Then Goto lEnd
-      outfile = Split(File.Load(tmpdir & "/mpout"), "\n\r", "", True) '<- this is sloooow over time, watchout!
-      pLine = outfile[outfile.max - 1]
       For Each sFile In Dir(tmpdir, "*.jpg*")
         Kill tmpdir & "/" & sFile
       Next
@@ -1728,11 +1728,13 @@ Public Sub Analyze(videofile As String)
       Endif
       
       '''''''''If (timeout <= 0) Or (mpanalyze.state <> Process.Running) Then Goto lEnd
-      
+      outfile = Split(File.Load(tmpdir & "/mpout"), "\n\r", "", True) '<- this is sloooow over time, watchout!
+      pLine = outfile[outfile.max - 1]
       Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
       t = tmpdir & Dir(tmpdir, "*.jpg")[0]
       If Exist(t) Then
         Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg")[0])
+        'Shell "mv  " & (tmpdir & Dir(tmpdir, "*.jpg")[0]) & " /tmp/tmp/" & ctime & ".jpg" Wait
         If Not Error Then 
           bavg = Color[i.Pixels[0]].value 
           Debug "time", ctime, "AVG:", bavg

@@ -549,7 +549,7 @@ End
 Public Sub Button2_Click()
   Dim r, c As Integer
   For r = 0 To HotKeysGrid.Rows.Count - 1
-    For c: = 0 To HotKeysGrid.columns.Count - 1
+    For c = 0 To HotKeysGrid.columns.Count - 1
         HotKeysGrid[r, c].text = ""
     Next 'c
   Next 'r

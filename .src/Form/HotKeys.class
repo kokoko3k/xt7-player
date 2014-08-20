@@ -620,7 +620,7 @@ End
 Public Sub Button4_Click()
   Dim r, c As Integer
   For r = 0 To GlobalHotKeysGrid.Rows.Count - 1
-    For c: = 0 To GlobalHotKeysGrid.columns.Count - 1
+    For c = 0 To GlobalHotKeysGrid.columns.Count - 1
         GlobalHotKeysGrid[r, c].text = ""
     Next 'c
   Next 'r

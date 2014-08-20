@@ -237,7 +237,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
           Try Media_Author = FindTagValue("ID_CDDB_INFO_ARTIST")
           Try Media_Genre = FindTagValue("ID_CDDB_INFO_GENRE")
           Try Media_Album = FindTagValue("ID_CDDB_INFO_ALBUM")
-          Try tracks  = FindTagValue("ID_CDDB_INFO_TRACKS")
+          Try tracks = FindTagValue("ID_CDDB_INFO_TRACKS")
           If Not Error Then 
             For i = 1 To tracks
               Try cddbtracks.Add(FindTagValue("ID_CDDB_INFO_TRACK_" & i & "_NAME"))
@@ -1724,6 +1724,7 @@ Public Sub Analyze(videofile As String)
       Wend
       If timeout = 0 Then 
         Debug "No Pics, restarting analyzer"
+        Try mpanalyze.Kill
         Goto lStart
       Endif
       

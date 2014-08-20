@@ -7620,7 +7620,7 @@ Public Sub ProfileDeleteBTN_Click()
   
   Dim profilename As String
 
-  Try ProfileName As String = ProfilesListBox.Current.text & ".profile"
+  Try ProfileName = ProfilesListBox.Current.text & ".profile"
   If Not Error Then
     If ProfileName <> "Factory_Defaults.profile" Then
       If ProfileName = Global.currentprofile & ".profile" Then

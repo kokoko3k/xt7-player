@@ -74,15 +74,15 @@ Public Function Init(AudioFileName As String) As Boolean
   'return false if the file cannot be opened
   'return false if the filetype cannot be determined
   'return false if error
-  Title As = ""
-  Artist As = ""
-  Album As = ""
-  Comment As = ""
-  Genre As = ""
-  MyYear As = 0
-  Track As = 0
-  Length As = 0
-  Bitrate As = 0
+  Title  = ""
+  Artist  = ""
+  Album  = ""
+  Comment  = ""
+  Genre  = ""
+  MyYear  = 0
+  Track  = 0
+  Length  = 0
+  Bitrate  = 0
   Samplerate = 0
   Channels = 0
   Try TagLibFileP = taglib_file_new(AudioFileName)

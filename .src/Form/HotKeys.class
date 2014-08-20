@@ -558,7 +558,7 @@ End
 Public Sub Button3_Click()
   Dim r, c As Integer
   For r = 0 To HotKeysGrid.Rows.Count - 1
-    For c: = 0 To HotKeysGrid.columns.Count - 1
+    For c = 0 To HotKeysGrid.columns.Count - 1
       If Trim(HotKeysGrid[r, c].text) <> "" Then
         Print "HotKeysGrid[" & r & " , " & c & "].text = " & "\"" & HotKeysGrid[r, c].text & "\""
       Endif

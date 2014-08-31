@@ -136,18 +136,19 @@ Public Sub Button1_Click()
 End
            
 Public Sub Slider6_Change()
+  'Dim waittime As Float = 0.0055555556
+  'Dim waittime As Float = 0.002
   Object.Lock(Spinbox6)
   spinbox6.value = Slider6.value 
   Object.unLock(Spinbox6)
   slider1.value = CInt(Spinbox6.value / 2.66)
-  Wait 0.0055555556
+  'Wait waittime
   slider2.value = Spinbox6.value
-  Wait 0.0055555556
+  'Wait waittime
   slider3.value = Spinbox6.value Div 4
-  Wait 0.0055555556
+  'Wait waittime
   slider4.value = 0
   slider5.value = Spinbox6.value 
-
 End
 
 Public Sub SpinBox6_Change()

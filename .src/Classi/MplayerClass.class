@@ -1664,7 +1664,7 @@ Public Sub Analyze(videofile As String)
   Dim tmpdir As String = Temp() & "/"
   Dim pLine, t As String
   Dim mystream As File
-  Dim cTime As String
+  Dim cTime, cTimei, cTimef As String
   Dim outfile As String[]
   Dim sFile As String
   Dim timeout As Integer
@@ -1695,7 +1695,7 @@ Public Sub Analyze(videofile As String)
     Until (outfile.max > 1)
     
     While mpanalyze.state = Process.Running
-      Debug
+      'Debug
       If stopob Then Goto lEnd
       For Each sFile In Dir(tmpdir, "*.jpg*")
         Kill tmpdir & "/" & sFile
@@ -1731,7 +1731,10 @@ Public Sub Analyze(videofile As String)
       '''''''''If (timeout <= 0) Or (mpanalyze.state <> Process.Running) Then Goto lEnd
       outfile = Split(File.Load(tmpdir & "/mpout"), "\n\r", "", True) '<- this is sloooow over time, watchout!
       pLine = outfile[outfile.max - 1]
-      Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
+      'Try cTime = Val(Trim(Mid(pLine, 3, InStr(pLine, ".") - 3)))
+      Try ctime = CFloat(Trim(Mid(pLine, 3, InStr(pLine, ".") - 1))) 'get the current float time
+      Try cTimei = Split(cTime, ".")[0]
+      Try cTimef = Split(cTime, ".")[1]
       t = tmpdir & Dir(tmpdir, "*.jpg")[0]
       If Exist(t) Then
         Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg")[0])
@@ -1739,7 +1742,10 @@ Public Sub Analyze(videofile As String)
         If Not Error Then 
           bavg = Color[i.Pixels[0]].value 
           Debug "time", ctime, "AVG:", bavg
-          Try barray[cTime] = bAvg
+          'barray index represents the integer part of the time, so we store the float part with the average picture brightness value in the array cell
+          'and set a delay afterwards for near pefect timing
+          Try barray[cTimei] = bAvg & ":" & ctimef
+          
         Endif
       Endif
     Wend
@@ -1763,22 +1769,25 @@ End
 
 Public TimerAnalyze As Timer
 
-Event AnalyzerNewValue(bAvg As Integer)
+Event AnalyzerNewValue(bAvg As Integer, delay As Float)
 
 Public Sub TimerAnalize_timer()
   Dim cTime As Integer
   Dim bAvg As String
+  Dim delay As Float
   Try cTime = CInt(CurrentTime())
   If Error Then Return
   If PrevCtime = cTime Then Return
   prevCtime = cTime
-  bAvg = barray[ctime]
+  bAvg = Split(barray[ctime], ":")[0]
   If bAvg <> -1 Then
     TimerAnalyze.Stop
     'Debug "New value at index", i, bout[3]
-    'ShowText("Tempo media: " & ctime & " media: " & bAvg & " Tempo filmato " & CurrentTime())
-    Try Raise AnalyzerNewValue(bAvg)
-    'Wait 0.4
+    'ShowText("Tempo media: " & ctime & " media: " & bAvg & " Tempo filmato " & CurrentTimeFloat())
+    'ShowText("barray: " & ctime & "movie: " & CurrentTimeFloat(), 1000)
+    delay = CFloat("0." & Split(barray[ctime], ":")[1])
+    delay = delay - (CFloat(CurrentTimeFloat()) - cTime)
+    Try Raise AnalyzerNewValue(bAvg, delay)
     If Not stopob Then TimerAnalyze.start
   Endif
 End

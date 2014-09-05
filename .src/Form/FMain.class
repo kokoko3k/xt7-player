@@ -3502,7 +3502,7 @@ Private Sub SlideTo(aSlider As Slider, aTarget As Integer)
   Dim prevosd As String = mplayer.osdlevel
   Dim wasdisabled As Boolean = True
   'Dim bdiff As Integer
-  Dim aThreshold As Integer = 5 'do not move slider under this threshold. If you plan not to use threshold, dont change the code, but set it to 0.
+  Dim aThreshold As Integer = 7 'do not move slider under this threshold. If you plan not to use threshold, dont change the code, but set it to 0.
   'Dim waittime As Float
   
   VideoEqualizer.NoOsd = True

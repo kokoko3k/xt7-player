@@ -1735,7 +1735,7 @@ Public Sub Analyze(videofile As String)
       Try ctime = CFloat(Trim(Mid(pLine, 3, InStr(pLine, ".") - 1))) 'get the current float time
       Try cTimei = Split(cTime, ".")[0]
       Try cTimef = Split(cTime, ".")[1]
-      t = tmpdir & Dir(tmpdir, "*.jpg")[0]
+      Try t = tmpdir & Dir(tmpdir, "*.jpg")[0]
       If Exist(t) Then
         Try i = i.Load(tmpdir & Dir(tmpdir, "*.jpg")[0])
         'Shell "mv  " & (tmpdir & Dir(tmpdir, "*.jpg")[0]) & " /tmp/tmp/" & ctime & ".jpg" Wait

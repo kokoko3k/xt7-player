@@ -121,7 +121,11 @@ Dim outline As String = ""
               outline = outline & child.tag
                 If (child.next <> Null) Then
                   If (object.type(child.next) = "ComboBox") Or (object.type(child.next) = "SpinBox") Or (object.type(child.next) = "TextBox") Then
-                    outline = outline & child.NEXT.text
+                    If child.NEXT.text Like "*" & gb.tab & "*" Then
+                      outline = outline & Split(child.NEXT.text, gb.tab)[0]
+                        Else
+                      outline = outline & child.NEXT.text
+                    Endif
                   Endif
                 Endif
                 outline = outline & ":"
@@ -311,4 +315,59 @@ Public Sub DriversPanel_MouseDown()
 
   Try Last.mouse = 18
 
+End
+
+
+Public Sub GetAlsaDevices() As String[]
+  Dim adevice, acard, acardid, acardname, apcm, apcminfo, apcminfos, apcmid As String
+  Dim adevices As New String[]
+  Dim apcms As New String[]
+  Dim acards As New String[]
+  Dim tabs As String = gb.tab
+
+  adevices.Add("plug=dmix" & tabs & " - [" & ("Default device, software mixing") & "]")
+  adevices.Add("default" & tabs & " - [" & ("Default alsa device") & "]")
+  adevices.Add("spdif" & tabs & " - [" & ("Default S/PDIF device") & "]")
+  adevices.Add("hdmi" & tabs & " - [" & ("Default hdmi device") & "]")
+  Try acards = Dir("/proc/asound/", "card*", gb.directory)
+  If Not Error Then
+    For Each acard In acards
+      Try acardname = Trim(File.Load("/proc/asound/" & acard & "/id"))
+      If Error Then acardname = "Unknown Card"
+      acardid = Replace(acard, "card", "")
+      Try apcms = Dir("/proc/asound/" & acard, "pcm*p").Sort(gb.Ascent)
+      If Not Error Then
+        For Each apcm In apcms
+          Try apcminfos = Trim(File.Load("/proc/asound/" & acard & "/" & apcm & "/info"))
+          If Error Then apcminfos = "name: No pcm info"
+          For Each apcminfo In Split(apcminfos, "\n", "", True)
+            If apcminfo Like "name: *" Then
+              apcminfo = Trim(Split(apcminfo, ":", "", True)[1])
+              apcmid = Replace(apcm, "pcm", "")
+              apcmid = Trim(Replace(apcmid, "p", ""))
+              Break
+            Endif
+          Next
+         ' Debug acardid, apcmid, acardname, apcminfo
+          adevices.add("plughw=" & acardid & "." & apcmid & tabs & " - " & "[" & acardname & ":" & apcminfo & "]")
+        Next
+      Endif
+
+    Next
+  Endif
+  
+ Return adevices
+  
+End
+
+Private GotAlsaDevices As Boolean = False
+Public Sub AlsaDeviceTextBox_Enter()
+  Dim adevice As String 
+  Dim prevtext As String = Last.text
+  If GotAlsaDevices Then Return
+  For Each adevice In GetAlsaDevices()
+    AlsaDeviceTextBox.Add(adevice)
+  Next
+  If AlsaDeviceTextBox.find(prevtext) = -1 Then AlsaDeviceTextBox.Add(prevtext, 0)
+  GotAlsaDevices = True
 End

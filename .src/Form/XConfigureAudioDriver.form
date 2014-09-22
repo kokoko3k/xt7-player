@@ -39,6 +39,7 @@
         Text = ("Alsa")
         { AlsaParseMeHbox1 HBox
           MoveScaled(2,3,45,6)
+          AutoResize = True
           Padding = 6
           { AlsaNoBlock CheckBox
             MoveScaled(1,1,15,4)
@@ -47,15 +48,18 @@
           }
         }
         { AlsaParseMeHbox2 HBox
-          MoveScaled(2,10,45,6)
+          MoveScaled(2,10,46,6)
+          AutoResize = True
           Padding = 6
           { AlsaDeviceChk CheckBox
             MoveScaled(1,1,15,4)
             Tag = "device="
             Text = ("Device")
           }
-          { AlsaDeviceTextBox TextBox
+          { AlsaDeviceTextBox ComboBox
             MoveScaled(18,1,26,4)
+            Font = Font["Monospace"]
+            Expand = True
             Text = ("spdif")
           }
         }
@@ -225,7 +229,7 @@
         Text = ("Custom")
         { Label5 Label
           MoveScaled(2,1,36,4)
-          Text = (" Custom Driver(s) options, \"-vo \" is implicit.")
+          Text = (" Custom Driver(s) options, \"-ao \" is implicit.")
         }
         { HBox2 HBox
           MoveScaled(1,6,55,5)

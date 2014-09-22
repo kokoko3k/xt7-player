@@ -2,6 +2,8 @@ Git changes:
 --------------------------------------
 Sep 22 2014
   CHANGE: Use different overbright values when using vdpau
+  FIX:  Spurious osd messages removed
+  CHANGE: Alsa audio output driver tabstrip now fills a (non exhaustive) list of available alsa pcms
 
 Sep 15 2014
   FIX:  Out of bounds MplayerClass.Analyze.1738

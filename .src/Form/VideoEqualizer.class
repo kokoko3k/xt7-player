@@ -71,9 +71,12 @@ Public Sub Form_Open()
 End
 
 Public Sub Sliders_Change()
+  Dim oldosd As String
   If (Last Is Slider) And (Last.next Is Spinbox) Then
     Try Last.Next.value = Last.value
     If (FMain.FullyLoaded Or ApplyEqCheckbox.value) Then 
+      oldosd = FMain.mplayer.osdlevel
+      FMain.mplayer.Send("osd 0")
       'FMain.mplayer.Send(Last.tag & " " & Last.value & " 1")
       FMain.mplayer.Send("pausing_keep " & slider1.tag & " " & slider1.value & " 1")
       FMain.mplayer.Send("pausing_keep " & slider2.tag & " " & slider2.value & " 1")
@@ -81,6 +84,7 @@ Public Sub Sliders_Change()
       FMain.mplayer.Send("pausing_keep " & slider4.tag & " " & slider4.value & " 1")
       FMain.mplayer.Send("pausing_keep " & slider5.tag & " " & slider5.value & " 1")
       VideoOsd()
+      FMain.mplayer.Send("osd " & oldosd)
     Endif
   Endif
 End

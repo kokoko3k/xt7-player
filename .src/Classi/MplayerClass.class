@@ -95,6 +95,7 @@ Public Media_Width As String
 Public Media_Height As String
 Public VideoOut_Width As String
 Public VideoOut_Height As String
+Public VideoOut_Driver As String 
 Public Media_Author As String
 Public Media_Artist As String
 Public Media_Genre As String
@@ -335,6 +336,7 @@ Public Sub playerprocess_read(Optional injected As String = "")
           Try VideoOut_dimensions = Split(tmpout, " ")[4]
           Try VideoOut_Width = Split(VideoOut_dimensions, "x")[0]
           Try VideoOut_Height = Split(VideoOut_dimensions, "x")[1]
+          Try VideoOut_driver = Split((Split(tmpout, "[")[1]), "]")[0]
           'Wait 0.01
           FMain.CorrectAreaAspect()
           'If GotHeaders Then Return
@@ -1170,6 +1172,7 @@ Private Sub ClearMediaProperties()
   Media_Height = ""
   VideoOut_Width = ""
   VideoOut_Height = ""
+  VideoOut_Driver = ""
   Media_Author = ""
   Media_Artist = ""
   Media_Album = ""

@@ -193,6 +193,7 @@ End
 Public Sub CheckDynamicOverbright_Click()
   EnableDisableControls()
   If Not FMain.FullyLoaded Then Return
+  Button1_Click() 'zero all values
   If Not FMain.mplayer.ProcessRunningOvr() Then Return
   If FMain.mplayer.AudioOnly Then Return
   If Last.value Then 

@@ -2,6 +2,7 @@ Git changes:
 --------------------------------------
 Sep 26 2014
   FIX:  Zero all equalizer values before starting dynamic overbright
+  CHANGE: faster analyze timer (should be timer perfect till 30fps)
 
 Sep 22 2014
   CHANGE: Use different overbright values when using vdpau

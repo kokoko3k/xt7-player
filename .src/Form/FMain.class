@@ -3516,7 +3516,6 @@ Private Sub SlideTo(aSlider As Slider, aTarget As Integer)
   If Abs(aSlider.value - aTarget) < aThreshold Then Goto lEnd
   'If bdiff = 0 Then Goto lEnd
 
-
   'waittime = 1 / bdiff - 0.06 
   'If waittime < 0 Then waittime = 0
   'If waittime > 0.06 Then waittime = 0.06

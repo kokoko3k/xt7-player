@@ -1765,7 +1765,7 @@ Public TimerAnalyzePre As Timer
 Public Sub TimerAnalizePRE_timer()
   TimerAnalyzePRE.stop
   TimerAnalyze = New Timer As "TimerAnalize"
-  TimerAnalyze.delay = 100
+  TimerAnalyze.delay = 33 'should be ok till 30fps source material
   TimerAnalyze.start
   Analyze(Shell(SConv(Media_FullPath_Playing)))
 End

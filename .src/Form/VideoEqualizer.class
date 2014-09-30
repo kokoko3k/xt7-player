@@ -196,7 +196,7 @@ Public Sub CheckDynamicOverbright_Click()
   Button1_Click() 'zero all values
   If Not FMain.mplayer.ProcessRunningOvr() Then Return
   If FMain.mplayer.AudioOnly Then Return
-  If Last.value Then 
+  If CheckDynamicOverbright.value Then 
     FMain.mplayer.StartOverbrightAnalyze()
       Else
     FMain.mplayer.StopOverbrightAnalyze()

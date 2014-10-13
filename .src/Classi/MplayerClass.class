@@ -1706,7 +1706,6 @@ Public Sub Analyze(videofile As String)
       
       'step ahead
        newpos = CInt(currenttime()) + 4
-       Debug "seeking to ", newpos
       If Not Error Then 
         Print #mystream, "pausing_keep seek " & CStr(newpos) & " 2"
         'Debug "Analize newseek", newpos
@@ -1791,7 +1790,7 @@ Public Sub TimerAnalize_timer()
     'ShowText("barray: " & ctime & "movie: " & CurrentTimeFloat(), 1000)
     delay = CFloat("0." & Split(barray[ctime], ":")[1])
     delay = delay - (CFloat(CurrentTimeFloat()) - cTime)
-    Try Raise AnalyzerNewValue(bAvg, delay)
+    Try Raise AnalyzerNewValue(bAvg, delay, cTime)
     Debug "NewValue"
     If Not stopob Then TimerAnalyze.start
       'Else

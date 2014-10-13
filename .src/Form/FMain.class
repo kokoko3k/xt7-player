@@ -2742,11 +2742,13 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   ' 
   
   doanalyze = Not (global.IsNetworkURI(mplayer.Media_FullPath)) And (VideoEqualizer.CheckDynamicOverbright.value)
+  PrevValuecTime = 999999
   If mplayer.do_play(mplayer.Media_FullPath, mplayer.currentoptions, False, MkvSubsWorkaround, cookieopts, dumpfile, doanalyze) Then
     If Not (mplayer.AudioOnly) Then
       ShowAudioPanel(False)
     Endif
     If doanalyze Then
+      PrevValuecTime = 999999
       Object.Lock(VideoEqualizer)
       VideoEqualizer.Slider6.value = 0
       VideoEqualizer.Spinbox6.value = 0
@@ -3481,15 +3483,24 @@ Public Sub Mplayer_mykill()
   OneSecTimer_Timer()
 End
 
-Public Sub Mplayer_AnalyzerNewValue(bAvg As Integer, delay As Float)
+Private PrevValuecTime As Integer = 9999999 'so that the first value will be used
+Public Sub Mplayer_AnalyzerNewValue(bAvg As Integer, delay As Float, Optional NewValuecTime As Integer)
   Dim bAvgAdapted As Integer
+  If (NewValuecTime - PrevValuecTime >= 10) Then
+    If ((NewValuecTime - PrevValuecTime) Mod 5 = 0) Then
+      Debug "Skipping periodic keyframe, diff = " & (NewValuecTime - PrevValuecTime)
+      PrevValuecTime = NewValuecTime
+      Return
+    Endif
+  Endif
+    
+  PrevValuecTime = NewValuecTime
   Wait delay
   'Debug "waiting:", delay
- ' bAvgAdapted = CInt(bAvg * (100 / 255)) 'es: 64 -> 25
+  'bAvgAdapted = CInt(bAvg * (100 / 255)) 'es: 64 -> 25
   bAvgAdapted = CInt(bAvg * (100 / 255)) 'es: 64 -> 25
   bAvgAdapted = 100 - bAvgAdapted 'es: 25 -> 75
   bAvgAdapted = bAvgAdapted Div (11 - VideoEqualizer.Slider7.value) 'es 75 -> 7
-
   ' bAvgAdapted = bAvg + -17043521 'range 0 -> 17043520
   ' bAvgAdapted = CInt(bAvgAdapted * (100 / 17043520)) 'range 0 - > 100
   'Debug "bavg:", bavg, "Adapted:", bAvgAdapted
@@ -4489,6 +4500,7 @@ Public Sub Apply()
   If mplayer.ProcessRunningOvr() Then
     ForcedAspectRT = "default"
     mplayer.do_restart(mplayer.Media_FullPath_Playing, GetOptionsFromGui() & SetRightCache() & VmetersOptionsAndInitIfNeeded() & SetInitialvolume())
+    PrevValuecTime = 999999
     aspectmenu.visible = Not (mplayer.AudioOnly Or fsform.fullscreen)
     mplayer.Renice(GeneralOptions.NiceLevelSpinBox.value)
     CorrectAreaAspect

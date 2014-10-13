@@ -1706,6 +1706,7 @@ Public Sub Analyze(videofile As String)
       
       'step ahead
        newpos = CInt(currenttime()) + 4
+       Debug "seeking to ", newpos
       If Not Error Then 
         Print #mystream, "pausing_keep seek " & CStr(newpos) & " 2"
         'Debug "Analize newseek", newpos

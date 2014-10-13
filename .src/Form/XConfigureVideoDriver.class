@@ -14,6 +14,7 @@ Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
+     DisableUnavailableDrivers()
   Endif  
 End
 
@@ -156,6 +157,7 @@ End
 Public Function ParsedVideoDriver() As String
   Dim driver As Object
   Dim ParsedVoCmdLine As String = ""
+  If Not DisabledUnavailableDrivers Then DisableUnavailableDrivers()
   For Each driver In DriversPanel.children
     If Object.Type(driver) = "CheckBox" Then
       If driver.enabled Then
@@ -233,6 +235,7 @@ End
 Public Sub MenuLoadDefault_Click()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
+  Stop
   Alreadyloaded = True
   Debug "Cached Options unvalidated"
   Debug
@@ -278,8 +281,14 @@ End
 
 
 Private AvailableList As New String[]
+
 Public Sub Form_Show()
-  Dim obj As Object
+  DisableUnavailableDrivers()
+End
+
+Private DisabledUnavailableDrivers As Boolean = False
+Public Sub DisableUnavailableDrivers()
+    Dim obj As Object
   'disable unavailable codecs
    If AvailableList.count < 1 Then 
     AvailableList = FMain.mplayer.GetListOf("vo")
@@ -300,7 +309,9 @@ Public Sub Form_Show()
       Endif
     Endif
   Next
+  DisabledUnavailableDrivers = True
 End
+
 
 
 Public Sub DriversPanel_Enter()

@@ -1831,6 +1831,7 @@ Public Function GetOptionsFromGui() As String
   SubAndOsd.FirstLoadIfNeeded()
   VideoEqualizer.FirstLoadIfNeeded()
   '-----------------------------------------------------
+  Stop
   mplayer.VoDriver = XConfigureVideoDriver.ParsedVideoDriver()
   mplayer.AoDriver = XConfigureAudioDriver.ParsedAudioDriver()
   mplayer.AVcodecs = AudioVideoCodecs.Parse()
@@ -2614,7 +2615,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   'Dim cachingbox As MovieBox 'show an animation while caching...
   Dim ismp3 As Boolean = False
   Dim doanalyze As Boolean = False
-  
+  Stop
   Object.Attach(mplayer, Me, "mplayer")
   
   InitABLoop()
@@ -2685,6 +2686,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   
   If Trim(cachedopts) = "" Then
     If (Not global.FirstTimeSettignsLoaded) Then global.DelayLoadStates_Timer
+    Stop
     SyncCachedOpts()
     otheroptions = cachedopts
   Endif
@@ -4482,6 +4484,7 @@ Public Sub Apply()
   onesectimer.stop
   Debug "Cached Options unvalidated"
   Debug
+  Stop
   global.ResetApplyBtnColor()
   fmain.cachedopts = ""
   VEqHasBeenSet = False

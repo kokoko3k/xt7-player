@@ -15,6 +15,7 @@ Public Sub FirstLoadIfNeeded()
   If Not AlreadyLoaded Then 
      Alreadyloaded = True
      MenuLoadDefault_Click()
+     DisableUnavailableDrivers()
   Endif  
 End
 
@@ -159,6 +160,7 @@ End
 Public Function ParsedAudioDriver() As String
   Dim driver As Object
   Dim ParsedAoCmdLine As String = ""
+  If Not DisabledUnavailableDrivers Then DisableUnavailableDrivers()
   For Each driver In DriversPanel.children
     If Object.Type(driver) = "CheckBox" Then
       If driver.enabled Then
@@ -265,7 +267,12 @@ End
 
 Private AvailableList As New String[]
 Public Sub Form_Show()
-  Dim obj As Object
+  DisableUnavailableDrivers()
+End
+
+Private DisabledUnavailableDrivers As Boolean = False
+Public Sub DisableUnavailableDrivers()
+    Dim obj As Object
   'disable unavailable codecs
   If AvailableList.count < 1 Then 
     AvailableList = FMain.mplayer.GetListOf("ao")
@@ -286,7 +293,9 @@ Public Sub Form_Show()
       Endif
     Endif
   Next
+  DisabledUnavailableDrivers = True
 End
+
 
 '-------------------------------------------------------------------------
 

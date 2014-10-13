@@ -394,6 +394,9 @@ Public Sub MenuLoadDefault_Click()
   If Not InitDone Then Init()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   AlreadyLoaded = True
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
 End
 
 Public Sub MenuSaveDefault_Click()

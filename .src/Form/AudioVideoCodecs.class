@@ -52,6 +52,9 @@ Public Sub MenuLoadDefault_Click()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
   TimesLoaded += 1
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
 End
 
 Public Sub MenuSaveDefault_Click()

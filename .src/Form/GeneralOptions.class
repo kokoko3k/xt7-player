@@ -555,6 +555,9 @@ Public Sub MenuLoadDefault_Click()
   Try LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
   TimesLoaded += 1
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
 End
 
 

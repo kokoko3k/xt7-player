@@ -239,6 +239,9 @@ Private previousaudiofilters As String = "NOPEBECAUSEITSTHEFIRSTTIME"
 Public Sub ApplyBTN_Click()
   Dim CurrentvideoFilters, CurrentAudioFilters As String = ""
   Dim curvol As String
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
   If Not FMain.mplayer.ProcessRunningOvr() Then Return
   global.ResetApplyBtnColor()
   currentvideofilters = ParsedChain("VIDEO")
@@ -290,6 +293,9 @@ Public Sub MenuLoadDefault_Click()
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
   If wasvisible Then Me.show
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
 End
 
 Public Sub MenuSaveDefault_Click()

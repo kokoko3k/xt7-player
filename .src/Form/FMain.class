@@ -4444,9 +4444,10 @@ Public Sub ReallySaveAllSettings(DestinationProfile As String, Optional WithLibr
 End
 
 Public Sub MenuLoadDefault_Click()
-  
   ReLoadCurrentProfile()
-  
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
 End
 
 Public Sub MenuRestoreDefaults_Click()

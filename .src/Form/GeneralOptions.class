@@ -16,7 +16,7 @@ Public UntranslatedTabNames As String[] = ["VIDEO", "AUDIO", "LIBRARY", "TWEAKS"
 Public Sub FirstLoadIfNeeded()
   If Not initdone Then Init()
   If Not AlreadyLoaded Then 
-    MenuLoadDefault_Click()
+    LoadDefault()
     Alreadyloaded = True
     Me.Refresh
     Wait 0.001
@@ -549,16 +549,21 @@ Public Sub NoParseExcludedListbox_Drop()
 End
 
 Public Sub MenuLoadDefault_Click()
+  LoadDefault()
+  Debug "Cached Options unvalidated"
+  Debug
+  fmain.cachedopts = ""
+End
+
+Public Sub LoadDefault()
   Dim MySettings As New SettingsClass
   MySettings.Load(Me, global.confpath & "/" & global.CurrentProfile)
   LoadWatchDir(global.confpath & "/" & global.CurrentProfile)
   Try LoadExcludeDir(global.confpath & "/" & global.CurrentProfile)
   Alreadyloaded = True
   TimesLoaded += 1
-  Debug "Cached Options unvalidated"
-  Debug
-  fmain.cachedopts = ""
 End
+
 
 
 Public Sub SaveBTN_Click()

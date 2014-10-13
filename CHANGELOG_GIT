@@ -7,6 +7,7 @@ Oct 13 2014
   FIX:    Unvalidate cached options on profile load
   FIX:    Zero the brightness value on overbright with vaapi or vdpau too.
   FIX:    Do not update dynamic overbright on periodic keyframes
+  FIX:    Cached options wasn't working due to changes made today
 
 Sep 30 2014
   FIX:  Keep dynamic overbright status across applies

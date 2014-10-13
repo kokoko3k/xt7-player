@@ -2615,7 +2615,6 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Dim ismp3 As Boolean = False
   Dim doanalyze As Boolean = False
   Object.Attach(mplayer, Me, "mplayer")
-  
   InitABLoop()
   DOHACKIMAGE = True
   UserStopped = False

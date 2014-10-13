@@ -134,13 +134,18 @@ End
 
 
 Public Sub Button1_Click()
+  ZeroControls()
+End
+
+Public Sub ZeroControls()
   slider6.value = 0
   slider1.value = 0
   slider2.value = 0
   slider3.value = 0
   slider4.value = 0
-  slider5.value = 0
+  slider5.value = 0  
 End
+
            
 Public Sub Slider6_Change()
   'Dim waittime As Float = 0.0055555556

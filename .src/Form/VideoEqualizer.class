@@ -145,7 +145,7 @@ Public Sub Slider6_Change()
   Object.Lock(Spinbox6)
   spinbox6.value = Slider6.value 
   Object.unLock(Spinbox6)
-  If FMain.mplayer.VideoOut_Driver <> "vdpau" Then
+  If (FMain.mplayer.VideoOut_Driver <> "vaapi") And (FMain.mplayer.VideoOut_Driver <> "vdpau") Then
     slider1.value = CInt(Spinbox6.value / 2.66)
     'Wait waittime
     slider2.value = Spinbox6.value
@@ -155,7 +155,7 @@ Public Sub Slider6_Change()
     slider4.value = 0
     slider5.value = Spinbox6.value 
       Else
-    slider1.value = CInt(Spinbox6.value / 5)
+    'slider1.value = CInt(Spinbox6.value / 5)
     'Wait waittime
     slider2.value = Spinbox6.value
     'Wait waittime

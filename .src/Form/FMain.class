@@ -4493,7 +4493,7 @@ Public Sub Apply()
     LogWindow.ShowLogs()
   Endif
   UpdateOverboostLevel()
-  Stop
+  
   Try VideoEqualizer.CheckDynamicOverbright_Click()
   If LASTAUDIOID <> -1 Then mplayer.Send("switch_audio " & LASTAUDIOID)
   If LASTSUBID <> 99999 Then mplayer.Send("sub_select " & lastsubid)

@@ -1,8 +1,10 @@
 Git changes:
 --------------------------------------
+Oct 13 2014
+  CHANGE: Don't change brightness on overbright change with vaapi and vdpau
+
 Sep 30 2014
   FIX:  Keep dynamic overbright status across applies
-
 
 Sep 26 2014
   FIX:  Zero all equalizer values before starting dynamic overbright

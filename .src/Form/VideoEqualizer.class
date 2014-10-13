@@ -158,7 +158,7 @@ Public Sub Slider6_Change()
     slider4.value = 0
     slider5.value = Spinbox6.value 
       Else
-    'slider1.value = CInt(Spinbox6.value / 5)
+    slider1.value = 0 ' CInt(Spinbox6.value / 5)
     'Wait waittime
     slider2.value = Spinbox6.value
     'Wait waittime
@@ -184,7 +184,7 @@ Public Sub spinbox7_Change()
 End
 
 Public Sub Form_Show()
-  EnableDisableControls()
+  'EnableDisableControls()
 End
 
 Public Sub EnableDisableControls()
@@ -194,7 +194,7 @@ Public Sub EnableDisableControls()
 End
 
 Public Sub CheckDynamicOverbright_Click()
-  EnableDisableControls()
+  'EnableDisableControls()
   If Not FMain.FullyLoaded Then Return
   Button1_Click() 'zero all values
   If Not FMain.mplayer.ProcessRunningOvr() Then Return

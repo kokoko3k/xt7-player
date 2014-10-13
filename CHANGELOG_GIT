@@ -5,6 +5,7 @@ Oct 13 2014
   CHANGE: Tweaked dynamic overbright threshold for vaapi
   FIX:    Do not parse unavailable audio/video output drivers
   FIX:    Unvalidate cached options on profile load
+  FIX:    Zero the brightness value on overbright with vaapi or vdpau too.
 
 Sep 30 2014
   FIX:  Keep dynamic overbright status across applies

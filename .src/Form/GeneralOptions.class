@@ -382,7 +382,9 @@ Public Function Parse(Optional WithDVD As Boolean = False) As String
     Endif
     
     If (XConfigureVideoDriver.vaapiBTN.value = True) And (XConfigureVideoDriver.AddvaapiCHK.value = True) Then 
-      alloptions = " -va vaapi " & alloptions
+      If XConfigureVideoDriver.vaapiBTN.enabled Then 
+        alloptions = " -va vaapi " & alloptions
+      Endif
     Endif
 
     Return AllOptions & " " & tmpstr & " "

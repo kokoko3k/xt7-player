@@ -125,7 +125,8 @@ Public Function Parse() As String
     If Trim(Acodecs) = "-ac" Then Acodecs = ""
   
     'parse Video codecs comboboxes and build commandline
-    If (XConfigureVideoDriver.vdpauBTN2.value = True) And (XConfigureVideoDriver.AddVdpauCHK.value = True) Then Vcodecs = Vcodecs & VdpauCodecs
+    Stop
+    If (XConfigureVideoDriver.vdpauBTN2.enabled) And (XConfigureVideoDriver.vdpauBTN2.value = True) And (XConfigureVideoDriver.AddVdpauCHK.value = True) Then Vcodecs = Vcodecs & VdpauCodecs
 
     For Each MyCombobox In videolist.Children
       If (mycombobox Is ComboBox) And (Trim(mycombobox.text) <> "") Then

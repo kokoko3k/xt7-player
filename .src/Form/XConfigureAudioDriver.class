@@ -161,8 +161,10 @@ Public Function ParsedAudioDriver() As String
   Dim ParsedAoCmdLine As String = ""
   For Each driver In DriversPanel.children
     If Object.Type(driver) = "CheckBox" Then
-      If driver.value Then
-        ParsedAoCmdLine = AddAudioDriver(ParsedAoCmdLine, driver.text)
+      If driver.enabled Then
+        If driver.value Then
+          ParsedAoCmdLine = AddAudioDriver(ParsedAoCmdLine, driver.text)
+        Endif
       Endif
     Endif
   Next

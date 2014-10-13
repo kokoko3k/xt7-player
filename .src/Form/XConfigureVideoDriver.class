@@ -158,8 +158,10 @@ Public Function ParsedVideoDriver() As String
   Dim ParsedVoCmdLine As String = ""
   For Each driver In DriversPanel.children
     If Object.Type(driver) = "CheckBox" Then
-      If driver.value Then
-        ParsedVoCmdLine = AddVideoDriver(ParsedVoCmdLine, driver.text)
+      If driver.enabled Then
+        If driver.value Then
+          ParsedVoCmdLine = AddVideoDriver(ParsedVoCmdLine, driver.text)
+        Endif
       Endif
     Endif
   Next

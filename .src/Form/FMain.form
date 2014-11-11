@@ -649,7 +649,6 @@
       Picture = Picture["icon:/22/menu"]
       Border = False
       Menu = "TopMenu"
-      MenuOnly = True
     }
     { Separator6 Separator
       MoveScaled(10,0,2,4)
@@ -1936,7 +1935,7 @@
               Tracking = True
               Expand = True
               Arrangement = Arrange.Fill
-              Padding = 8
+              Padding = 6
               { seekbar ProgressBar
                 MoveScaled(-4,2,24,2)
                 Font = Font["1"]
@@ -1945,7 +1944,7 @@
                 Label = False
               }
               { panelseek Panel
-                MoveScaled(0,0,24,24)
+                MoveScaled(0,-4,24,24)
                 Tracking = True
                 Ignore = True
               }

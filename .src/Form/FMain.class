@@ -11073,21 +11073,12 @@ Public Sub ButtonRadios_click()
 End
 
 
-' 
-' Public Sub MainToolBar_MouseDown()
-' 
-'   
-' 
-' End
-' 
-' Public Sub ButtonmenuNEWBTN_mousedown()
-' 
-'   topmenu.popup
-' 
-' End
-
 Public Sub Panel9_Arrange()
-Debug
   panelseek.Move(seekbar.x, seekbar.y, seekbar.w, seekbar.h)
+End
+
+Public Sub ButtonmenuNEWBTN_click()
+
+  topmenu.popup
 
 End

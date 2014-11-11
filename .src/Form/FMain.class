@@ -234,12 +234,12 @@ Public Sub InitTrayIcon()
   If Not SystemTray Then Return
   Try trayicon1 = New Trayicon
   If Error Then Debug "Cannot Init Trayicon"
-  trayicon1.Picture = picture.Load("trayicon.png")
-  trayicon1.Picture.Image.Stretch(trayicon1.w, trayicon1.h)
+  'trayicon1.Picture = picture.Load("trayicon.png")
+  trayicon1.Picture = picture.Load("xt7-player.png")
+  'trayicon1.Picture.Image.Stretch(trayicon1.w, trayicon1.h)
   trayicon1.Visible = True
   Try Object.Attach(Trayicon1, Me, "Trayicon1")
   If Error Then Debug "Cannot Init Trayicon"
-  
 End
 
 Public Sub Form_Open()

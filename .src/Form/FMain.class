@@ -243,7 +243,6 @@ Public Sub InitTrayIcon()
 End
 
 Public Sub Form_Open()
-  
   SetFlexSpaceVisibility(False)
   'init dynagui toolbar objects
   DynaGuiTools.AllowedContainers = ["MainToolbar"] ', "SliderBox"]
@@ -1660,10 +1659,9 @@ Public Sub Form_Resize()
 End
 
 Public Sub ButtonOpen_Click()
-  
   If Not fullyloaded Then Return
   With Global
-    myDialog.Path = .StartFolder
+    If MyDialog.path = "" Then myDialog.Path = .StartFolder
     myDialog.filter = [.videofilter, .videofiltername, .audiofilter, .audiofiltername]
   End With
   If myDialog.OpenFile() Then Return

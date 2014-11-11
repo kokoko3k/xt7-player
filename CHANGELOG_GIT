@@ -4,7 +4,8 @@ Nov 11 2014
   CHANGE: get rid of menubar as it is ugly (with gambas 3.6.1)
   CHANGE: Workaround for seekbar not accepting mouse events anymore (gambas 3.6.1)
   FIX:    removed white border around the preview picture (gambas 3.6.1)
-  FIX:    Ugly trayicon due to gmbas 3.6.1; less ugly now...
+  FIX:    Ugly trayicon due to gambas 3.6.1; less ugly now...
+  FIX:    "enhanced" gambas 3.6.1 file dialogs doesn't use "path" as start directory anymore, use "not enhanced" dialogs.
 
 Oct 13 2014
   CHANGE: Don't change brightness on overbright change with vaapi and vdpau

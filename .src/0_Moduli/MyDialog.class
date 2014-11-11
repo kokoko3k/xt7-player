@@ -10,8 +10,8 @@ Public path As String = Dialog.path
 Public paths As String[] = Dialog.paths
 Public showhidden As Boolean = Dialog.showhidden
 Public title As String = Dialog.title
-Public autoext As Boolean = Dialog.autoext
-Public mydate As Date = Dialog.date
+'Public autoext As Boolean = Dialog.autoext
+'Public mydate As Date = Dialog.date
 
 Private Sub sync()
   color = Dialog.color
@@ -21,12 +21,12 @@ Private Sub sync()
   paths = Dialog.paths
   showhidden = Dialog.showhidden
   title = Dialog.title
-  autoext = Dialog.autoext
-  myDate = Dialog.date
+  'autoext = Dialog.autoext
+  'myDate = Dialog.date
 End
 
 Private Sub Getsync()
-  Try Dialog.date = mydate
+  'Try Dialog.date = mydate
   Try Dialog.font = font
   Try Dialog.color = color
   Try Dialog.filter = filter
@@ -34,7 +34,7 @@ Private Sub Getsync()
   Try Dialog.paths = paths
   Try Dialog.showhidden = showhidden
   Try Dialog.title = title
-  Try Dialog.autoext = autoext
+'  Try Dialog.autoext = autoext
 End
 
 Public Function SelectColor() As Boolean

@@ -41,11 +41,12 @@
     { ApplyEqCheckbox CheckBox
       MoveScaled(0,0,25,4)
       ToolTip = ("Note that this can conflicts with Eq2 and hue filter settings")
+      Expand = True
       AutoResize = True
       Text = ("Auto apply those values")
     }
     { Button1 Button
-      MoveScaled(27,0,16,4)
+      MoveScaled(28,0,16,4)
       ToolTip = ("Restore default settings")
       AutoResize = True
       Text = ("Restore all")

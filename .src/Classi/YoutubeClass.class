@@ -200,7 +200,7 @@ Public Sub DownloadAndParseOLD(url As String, tree As Treeview, feedname As Stri
         If entryfound
           Select Case Lower(nodename & attribute)
           Case "categorylabel"
-            Stop
+            
             'PRINT "Categoria= " & value
             feedinfo.Add(value, "categorylabel")
           Case "yt:durationseconds"
@@ -248,7 +248,7 @@ Wait
             'PRINT "content: " & value
             'feedinfo.Add(value, "content")
           Case "media:description"
-            Stop
+            
             'PRINT "media:description: " & value
             feedinfo.Add(value, "media:description")
             'PRINT value

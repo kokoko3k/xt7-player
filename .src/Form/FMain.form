@@ -6,645 +6,650 @@
   Icon = Picture["xt7-player.png"]
   Persistent = True
   Arrangement = Arrange.Vertical
-  { MenuMain Menu MainMenu
-    Name = "MenuMain"
-    Text = ("File")
-    Tag = "000"
-    { MenuOpen Menu MenuOpen
-      Name = "MenuOpen"
-      Text = ("Open local file")
-      Picture = Picture["icon:/16/open"]
-    }
-    { MenuOpenRecent Menu
-      Text = ("Open recent file")
-      Picture = Picture["icon:/medium/recent"]
-    }
-    { MenuCDDA Menu
-      Text = ("Play Audio Cd")
-      Picture = Picture["icon:/small/cdrom"]
-    }
-    { MenuDVD Menu
-      Text = ("Play DVD")
-      Picture = Picture["icon:/small/cdrom"]
-      { MenuDvdDrive Menu
-        Text = ("From DVD drive")
-        Picture = Picture["icon:/16/cdrom"]
+  { TopMenu Menu
+    Text = ("TopMenu")
+    Visible = False
+    { MenuMain Menu MainMenu
+      Name = "MenuMain"
+      Text = ("File")
+      Tag = "000"
+      { MenuOpen Menu MenuOpen
+        Name = "MenuOpen"
+        Text = ("Open local file")
+        Picture = Picture["icon:/16/open"]
       }
-      { MenuDvdFile Menu
-        Text = ("From an ISO")
-        Picture = Picture["icon:/16/harddisk"]
+      { MenuOpenRecent Menu
+        Text = ("Open recent file")
+        Picture = Picture["icon:/medium/recent"]
       }
-      { MenuDvdFolder Menu
-        Text = ("From a folder")
-        Picture = Picture["icon:/16/directory"]
+      { MenuCDDA Menu
+        Text = ("Play Audio Cd")
+        Picture = Picture["icon:/small/cdrom"]
       }
-    }
-    { MenuOpenUri Menu
-      Text = ("Open an Uri/Network stream")
-      Picture = Picture["icon:/16/network"]
-    }
-    { MenuMediaExplorer Menu
-      Text = ("Media Explorer")
-      Picture = Picture["icon:/16/find"]
-      Enabled = False
-      { MenuTitles Menu
-        Text = ("Titles")
-        Picture = Picture["icon:/16/book"]
-      }
-      { StreamsMenu Menu
-        Text = ("Streams")
-        Picture = Picture["icon:/16/watch"]
-        Enabled = False
-        { StreamsAudioMenu Menu
-          Text = ("Audio")
-          Picture = Picture["speaker_small.png"]
-          Enabled = False
+      { MenuDVD Menu
+        Text = ("Play DVD")
+        Picture = Picture["icon:/small/cdrom"]
+        { MenuDvdDrive Menu
+          Text = ("From DVD drive")
+          Picture = Picture["icon:/16/cdrom"]
         }
-        { StreamsSubtitlesMenu Menu
-          Text = ("Subtitles")
-          Picture = Picture["icon:/small/font"]
-          { MenuOpenSubtitlesOrg Menu
-            Text = ("OpenSubtitles.org")
+        { MenuDvdFile Menu
+          Text = ("From an ISO")
+          Picture = Picture["icon:/16/harddisk"]
+        }
+        { MenuDvdFolder Menu
+          Text = ("From a folder")
+          Picture = Picture["icon:/16/directory"]
+        }
+      }
+      { MenuOpenUri Menu
+        Text = ("Open an Uri/Network stream")
+        Picture = Picture["icon:/16/network"]
+      }
+      { MenuMediaExplorer Menu
+        Text = ("Media Explorer")
+        Picture = Picture["icon:/16/find"]
+        Enabled = False
+        { MenuTitles Menu
+          Text = ("Titles")
+          Picture = Picture["icon:/16/book"]
+        }
+        { StreamsMenu Menu
+          Text = ("Streams")
+          Picture = Picture["icon:/16/watch"]
+          Enabled = False
+          { StreamsAudioMenu Menu
+            Text = ("Audio")
+            Picture = Picture["speaker_small.png"]
+            Enabled = False
+          }
+          { StreamsSubtitlesMenu Menu
+            Text = ("Subtitles")
+            Picture = Picture["icon:/small/font"]
+            { MenuOpenSubtitlesOrg Menu
+              Text = ("OpenSubtitles.org")
+            }
           }
         }
       }
-    }
-    { Menu1 Menu
-    }
-    { MenuQuit Menu MenuQuit
-      Name = "MenuQuit"
-      Text = ("Quit")
-      Picture = Picture["icon:/16/quit"]
-    }
-  }
-  { MenuLibrary Menu MainMenu
-    Name = "MenuLibrary"
-    Text = ("Library")
-    Tag = "000"
-    { MenuLibraryUpdate Menu
-      Text = ("Sync library")
-      Picture = Picture["icon:/16/watch"]
-    }
-    { MenuLibraryWatch Menu
-      Text = ("Configure directories")
-      Picture = Picture["icon:/16/tools"]
-    }
-    { MenuSearch Menu
-      Text = ("Search options")
-      Picture = Picture["icon:/16/find"]
-    }
-    { Separator9 Menu
-    }
-    { MenuAddUri Menu
-      Text = ("Add a generic URI...")
-      Picture = Picture["icon:/16/earth"]
-    }
-    { MenuLibraryAddToPlaylist Menu MenuLibraryAddToPlaylist
-      Name = "MenuLibraryAddToPlaylist"
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-    { Separator919 Menu
-    }
-  }
-  { MenuPopUpLibrary Menu
-    Text = ("MenuPopUpLibrary")
-    Visible = False
-    { MenuOpenContainingFolderPopUp Menu
-      Text = ("Open containing folder")
-      Picture = Picture["icon:/16/open"]
-    }
-    { Separator4832940 Menu
-    }
-    { MenuLibrarySearchAlbum Menu
-      Text = ("This album tracks")
-      Picture = Picture["icon:/small/watch"]
-      { MenuLibraryReplaceAlbumTracks Menu
-        Text = ("Replace tracks in")
-        Picture = Picture["icon:/small/replace"]
-        { MenuLibraryAlbumTracksReplaceLibrary Menu
-          Text = ("Library view")
-          Picture = Picture["icon:/small/book"]
-        }
-        { MenuLibraryAlbumTracksReplacePlaylist Menu
-          Text = ("Playlist view")
-          Picture = Picture["icon:/small/view-detail"]
-        }
+      { Menu1 Menu
       }
-      { MenuLibraryAppendAlbumTracks Menu
-        Text = ("Append tracks to")
-        Picture = Picture["icon:/small/add"]
-        { MenuLibraryAlbumTracksAppendLibrary Menu
-          Text = ("Library view")
-          Picture = Picture["icon:/small/book"]
-        }
-        { MenuLibraryAlbumTracksAppendPlaylist Menu
-          Text = ("Playlist view")
-          Picture = Picture["icon:/small/view-detail"]
-        }
+      { MenuQuit Menu MenuQuit
+        Name = "MenuQuit"
+        Text = ("Quit")
+        Picture = Picture["icon:/16/quit"]
       }
     }
-    { separator005843 Menu
-    }
-    { MenuSortLibraryPopup Menu
-      Text = ("Sort by")
-      Picture = Picture["icon:/16/sort-ascent"]
-      { MenuLibrarySortByAlbum Menu
-        Text = ("Album")
+    { MenuLibrary Menu MainMenu
+      Name = "MenuLibrary"
+      Text = ("Library")
+      Tag = "000"
+      { MenuLibraryUpdate Menu
+        Text = ("Sync library")
+        Picture = Picture["icon:/16/watch"]
       }
-      { MenuLibrarySortByArtist Menu
-        Text = ("Artist")
+      { MenuLibraryWatch Menu
+        Text = ("Configure directories")
+        Picture = Picture["icon:/16/tools"]
       }
-      { MenuLibrarySortByPath Menu
-        Text = ("Path")
+      { MenuSearch Menu
+        Text = ("Search options")
+        Picture = Picture["icon:/16/find"]
+      }
+      { Separator9 Menu
+      }
+      { MenuAddUri Menu
+        Text = ("Add a generic URI") & "..."
+        Picture = Picture["icon:/16/earth"]
+      }
+      { MenuLibraryAddToPlaylist Menu MenuLibraryAddToPlaylist
+        Name = "MenuLibraryAddToPlaylist"
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
+      { Separator919 Menu
       }
     }
-    { MenuLibraryUpdate_popup Menu
-      Text = ("Sync library")
-      Picture = Picture["icon:/16/watch"]
-    }
-    { MenuLibraryRename Menu
-      Text = ("Rename items")
-      Picture = Picture["icon:/16/edit"]
-    }
-    { MenuItemsUpdate Menu
-      Text = ("Update Selected")
-      Picture = Picture["icon:/16/refresh"]
-    }
-    { separator005849 Menu
-    }
-    { MenuLibrarySetCover Menu
-      Text = ("Set a cover")
-      Picture = Picture["icon:/16/color"]
-    }
-    { MenuEmbeddedCoversLibrary Menu
-      Text = ("Search for embedded covers")
-      Picture = Picture["icon:/16/attach"]
-    }
-    { Separator43057 Menu
-    }
-    { MenuLibCopyToClipboard Menu
-      Text = ("Copy selected to Clipboard")
-      Picture = Picture["icon:/16/copy"]
-    }
-    { MenuLibraryAddToPlaylistPoPuP Menu MenuLibraryAddToPlaylist
-      Name = "MenuLibraryAddToPlaylistPoPuP"
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-    { separator392 Menu
-    }
-    { ExtractAudioLibrarymenu Menu
-      Text = ("Extract audio")
-      Picture = Picture["icon:/22/audio"]
-    }
-    { Separator10 Menu
-    }
-    { MenuLibraryDeleteSelected Menu
-      Text = ("Clear selected")
-      Picture = Picture["icon:/16/delete"]
-    }
-    { MenuClearLibrary Menu
-      Text = ("Clear All")
-      Picture = Picture["icon:/16/delete"]
-    }
-    { MenuLibraryZapSelected Menu
-      Text = ("Delete selected from disk")
-      Picture = Picture["icon:/16/erase"]
-    }
-    { Separator10355 Menu
-    }
-  }
-  { MenuPlaylist Menu MainMenu
-    Name = "MenuPlaylist"
-    Text = ("Playlist")
-    Tag = "000"
-    { MenuplaylistOpenFolder Menu
-      Text = ("Open containing folder")
-      Picture = Picture["icon:/16/open"]
-      Enabled = False
+    { MenuPopUpLibrary Menu
+      Text = ("MenuPopUpLibrary")
       Visible = False
-    }
-    { MenuSaveLoadPls Menu
-      Text = ("Load/Save")
-      Picture = Picture["icon:/16/directory"]
-      { MenuLoadPls Menu
-        Text = ("Import a playlist")
+      { MenuOpenContainingFolderPopUp Menu
+        Text = ("Open containing folder")
         Picture = Picture["icon:/16/open"]
       }
-      { MenuAppendPls Menu
-        Text = ("Append a playlist")
+      { Separator4832940 Menu
+      }
+      { MenuLibrarySearchAlbum Menu
+        Text = ("This album tracks")
+        Picture = Picture["icon:/small/watch"]
+        { MenuLibraryReplaceAlbumTracks Menu
+          Text = ("Replace tracks in")
+          Picture = Picture["icon:/small/replace"]
+          { MenuLibraryAlbumTracksReplaceLibrary Menu
+            Text = ("Library view")
+            Picture = Picture["icon:/small/book"]
+          }
+          { MenuLibraryAlbumTracksReplacePlaylist Menu
+            Text = ("Playlist view")
+            Picture = Picture["icon:/small/view-detail"]
+          }
+        }
+        { MenuLibraryAppendAlbumTracks Menu
+          Text = ("Append tracks to")
+          Picture = Picture["icon:/small/add"]
+          { MenuLibraryAlbumTracksAppendLibrary Menu
+            Text = ("Library view")
+            Picture = Picture["icon:/small/book"]
+          }
+          { MenuLibraryAlbumTracksAppendPlaylist Menu
+            Text = ("Playlist view")
+            Picture = Picture["icon:/small/view-detail"]
+          }
+        }
+      }
+      { separator005843 Menu
+      }
+      { MenuSortLibraryPopup Menu
+        Text = ("Sort by")
+        Picture = Picture["icon:/16/sort-ascent"]
+        { MenuLibrarySortByAlbum Menu
+          Text = ("Album")
+        }
+        { MenuLibrarySortByArtist Menu
+          Text = ("Artist")
+        }
+        { MenuLibrarySortByPath Menu
+          Text = ("Path")
+        }
+      }
+      { MenuLibraryUpdate_popup Menu
+        Text = ("Sync library")
+        Picture = Picture["icon:/16/watch"]
+      }
+      { MenuLibraryRename Menu
+        Text = ("Rename items")
+        Picture = Picture["icon:/16/edit"]
+      }
+      { MenuItemsUpdate Menu
+        Text = ("Update Selected")
+        Picture = Picture["icon:/16/refresh"]
+      }
+      { separator005849 Menu
+      }
+      { MenuLibrarySetCover Menu
+        Text = ("Set a cover")
+        Picture = Picture["icon:/16/color"]
+      }
+      { MenuEmbeddedCoversLibrary Menu
+        Text = ("Search for embedded covers")
         Picture = Picture["icon:/16/attach"]
       }
-      { MenuSavePls Menu
-        Text = ("Export the playlist")
-        Picture = Picture["icon:/16/save"]
+      { Separator43057 Menu
       }
-    }
-    { Separator3489 Menu
-    }
-    { MenuItemsUpdatePls Menu
-      Text = ("Update Selected")
-      Picture = Picture["icon:/16/refresh"]
-    }
-    { MenuPlaylistRename Menu
-      Text = ("Rename items")
-      Picture = Picture["icon:/16/edit"]
-    }
-    { separator5384058 Menu
-    }
-    { MenuPlsSetCover Menu
-      Text = ("Set a cover")
-      Picture = Picture["icon:/16/color"]
-    }
-    { MenuEmbeddedCoversPls Menu
-      Text = ("Search for embedded covers")
-      Picture = Picture["icon:/16/attach"]
-    }
-    { Separator3849348 Menu
-    }
-    { MenuPlsCopyToClipboard Menu
-      Text = ("Copy selected to Clipboard")
-      Picture = Picture["icon:/16/copy"]
-    }
-    { MenuCut Menu
-      Text = ("Cut selected")
-      Picture = Picture["icon:/16/cut"]
-    }
-    { MenuCopyRows Menu
-      Text = ("Copy selected")
-      Picture = Picture["icon:/16/copy"]
-    }
-    { MenuPaste Menu
-      Text = ("Paste after selected")
-      Picture = Picture["icon:/16/paste"]
-    }
-    { separator48349 Menu
-    }
-    { ExtractAudioPlaylistmenu Menu
-      Text = ("Extract Audio")
-      Picture = Picture["icon:/small/audio"]
-    }
-    { Separator12 Menu
-    }
-    { MenuRemovePls Menu
-      Text = ("Remove...")
-      Picture = Picture["icon:/16/delete"]
-      { MenuPlaylistDelete Menu
+      { MenuLibCopyToClipboard Menu
+        Text = ("Copy selected to Clipboard")
+        Picture = Picture["icon:/16/copy"]
+      }
+      { MenuLibraryAddToPlaylistPoPuP Menu MenuLibraryAddToPlaylist
+        Name = "MenuLibraryAddToPlaylistPoPuP"
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
+      { separator392 Menu
+      }
+      { ExtractAudioLibrarymenu Menu
+        Text = ("Extract audio")
+        Picture = Picture["icon:/22/audio"]
+      }
+      { Separator10 Menu
+      }
+      { MenuLibraryDeleteSelected Menu
         Text = ("Clear selected")
         Picture = Picture["icon:/16/delete"]
       }
-      { MenuPlaylistDeleteAll Menu
+      { MenuClearLibrary Menu
         Text = ("Clear All")
         Picture = Picture["icon:/16/delete"]
       }
-      { MenuPlaylistZapSelected Menu
+      { MenuLibraryZapSelected Menu
         Text = ("Delete selected from disk")
         Picture = Picture["icon:/16/erase"]
       }
+      { Separator10355 Menu
+      }
     }
-    { Separator430414 Menu
+    { MenuPlaylist Menu MainMenu
+      Name = "MenuPlaylist"
+      Text = ("Playlist")
+      Tag = "000"
+      { MenuplaylistOpenFolder Menu
+        Text = ("Open containing folder")
+        Picture = Picture["icon:/16/open"]
+        Enabled = False
+        Visible = False
+      }
+      { MenuSaveLoadPls Menu
+        Text = ("Load/Save")
+        Picture = Picture["icon:/16/directory"]
+        { MenuLoadPls Menu
+          Text = ("Import a playlist")
+          Picture = Picture["icon:/16/open"]
+        }
+        { MenuAppendPls Menu
+          Text = ("Append a playlist")
+          Picture = Picture["icon:/16/attach"]
+        }
+        { MenuSavePls Menu
+          Text = ("Export the playlist")
+          Picture = Picture["icon:/16/save"]
+        }
+      }
+      { Separator3489 Menu
+      }
+      { MenuItemsUpdatePls Menu
+        Text = ("Update Selected")
+        Picture = Picture["icon:/16/refresh"]
+      }
+      { MenuPlaylistRename Menu
+        Text = ("Rename items")
+        Picture = Picture["icon:/16/edit"]
+      }
+      { separator5384058 Menu
+      }
+      { MenuPlsSetCover Menu
+        Text = ("Set a cover")
+        Picture = Picture["icon:/16/color"]
+      }
+      { MenuEmbeddedCoversPls Menu
+        Text = ("Search for embedded covers")
+        Picture = Picture["icon:/16/attach"]
+      }
+      { Separator3849348 Menu
+      }
+      { MenuPlsCopyToClipboard Menu
+        Text = ("Copy selected to Clipboard")
+        Picture = Picture["icon:/16/copy"]
+      }
+      { MenuCut Menu
+        Text = ("Cut selected")
+        Picture = Picture["icon:/16/cut"]
+      }
+      { MenuCopyRows Menu
+        Text = ("Copy selected")
+        Picture = Picture["icon:/16/copy"]
+      }
+      { MenuPaste Menu
+        Text = ("Paste after selected")
+        Picture = Picture["icon:/16/paste"]
+      }
+      { separator48349 Menu
+      }
+      { ExtractAudioPlaylistmenu Menu
+        Text = ("Extract Audio")
+        Picture = Picture["icon:/small/audio"]
+      }
+      { Separator12 Menu
+      }
+      { MenuRemovePls Menu
+        Text = ("Remove") & "..."
+        Picture = Picture["icon:/16/delete"]
+        { MenuPlaylistDelete Menu
+          Text = ("Clear selected")
+          Picture = Picture["icon:/16/delete"]
+        }
+        { MenuPlaylistDeleteAll Menu
+          Text = ("Clear All")
+          Picture = Picture["icon:/16/delete"]
+        }
+        { MenuPlaylistZapSelected Menu
+          Text = ("Delete selected from disk")
+          Picture = Picture["icon:/16/erase"]
+        }
+      }
+      { Separator430414 Menu
+      }
     }
-  }
-  { MenuConfigure Menu MainMenu
-    Name = "MenuConfigure"
-    Text = ("Windows")
-    Tag = "000"
-    { GeneralOptionsMenu Menu
-      Text = ("General Options")
-      Picture = Picture["icon:/16/options"]
-    }
-    { HotkeysMenu Menu
-      Text = ("HotKeys")
-      Picture = Picture["HotKeysSmall.png"]
-    }
-    { SubTitlesMenu Menu
-      Text = ("SubTitles and Osd...")
-      Picture = Picture["icon:/16/font"]
-    }
-    { MenuCodecs Menu
-      Text = ("Codecs and demuxers")
-      Picture = Picture["icon:/16/wizard"]
-    }
-    { MenuShowDVBT Menu
-      Text = ("Simple Dvb-T Tuner")
-      Picture = Picture["video-television.png"]
-    }
-    { Separator4 Menu
-    }
-    { MenuVideoAudioChains Menu MenuVideoAudioChains
-      Name = "MenuVideoAudioChains"
-      Text = ("Video/Audio Chains")
-      Picture = Picture["Smallpipe.png"]
-    }
-    { VideoSubMenu Menu
-      Text = ("Video")
-      Picture = Picture["video-television.png"]
-      { MenuConfigureGeneralVideo Menu
-        Text = ("General Options...")
+    { MenuConfigure Menu MainMenu
+      Name = "MenuConfigure"
+      Text = ("Windows")
+      Tag = "000"
+      { GeneralOptionsMenu Menu
+        Text = ("General Options")
+        Picture = Picture["icon:/16/options"]
+      }
+      { HotkeysMenu Menu
+        Text = ("HotKeys")
+        Picture = Picture["HotKeysSmall.png"]
+      }
+      { SubTitlesMenu Menu
+        Text = ("SubTitles and Osd") & "..."
+        Picture = Picture["icon:/16/font"]
+      }
+      { MenuCodecs Menu
+        Text = ("Codecs and demuxers")
+        Picture = Picture["icon:/16/wizard"]
+      }
+      { MenuShowDVBT Menu
+        Text = ("Simple Dvb-T Tuner")
         Picture = Picture["video-television.png"]
       }
-      { MenuConfigureVideoFilters Menu
-        Text = ("Filters...")
+      { Separator4 Menu
+      }
+      { MenuVideoAudioChains Menu MenuVideoAudioChains
+        Name = "MenuVideoAudioChains"
+        Text = ("Video/Audio Chains")
+        Picture = Picture["Smallpipe.png"]
+      }
+      { VideoSubMenu Menu
+        Text = ("Video")
         Picture = Picture["video-television.png"]
+        { MenuConfigureGeneralVideo Menu
+          Text = ("General Options") & "..."
+          Picture = Picture["video-television.png"]
+        }
+        { MenuConfigureVideoFilters Menu
+          Text = ("Filters") & "..."
+          Picture = Picture["video-television.png"]
+        }
+        { MenuVideoDriver Menu MenuVideoDriver
+          Name = "MenuVideoDriver"
+          Text = ("Driver") & "..."
+          Picture = Picture["video-television.png"]
+        }
       }
-      { MenuVideoDriver Menu MenuVideoDriver
-        Name = "MenuVideoDriver"
-        Text = ("Driver...")
-        Picture = Picture["video-television.png"]
-      }
-    }
-    { AudioSubMenu Menu
-      Text = ("Audio")
-      Picture = Picture["speaker_small.png"]
-      { MenuConfigureGeneralAudio Menu
-        Text = ("General Options...")
+      { AudioSubMenu Menu
+        Text = ("Audio")
         Picture = Picture["speaker_small.png"]
+        { MenuConfigureGeneralAudio Menu
+          Text = ("General Options") & "..."
+          Picture = Picture["speaker_small.png"]
+        }
+        { MenuConfigureAudioFilters Menu
+          Text = ("Filters") & "..."
+          Picture = Picture["speaker_small.png"]
+        }
+        { MenuAudioDriver Menu MenuAudioDriver
+          Name = "MenuAudioDriver"
+          Text = ("Driver") & "..."
+          Picture = Picture["speaker_small.png"]
+        }
       }
-      { MenuConfigureAudioFilters Menu
-        Text = ("Filters...")
-        Picture = Picture["speaker_small.png"]
+      { Separator11 Menu
       }
-      { MenuAudioDriver Menu MenuAudioDriver
-        Name = "MenuAudioDriver"
-        Text = ("Driver...")
-        Picture = Picture["speaker_small.png"]
+      { MenuTabs Menu
+        Text = ("Tabs visibility")
+      }
+      { EditTagModeSwitch1 Menu
+        Text = ("Show Tag editor")
+        Picture = Picture["icon:/16/edit"]
+      }
+      { MenuToolBarLocked Menu
+        Text = ("Lock Toolbar")
+        Picture = Picture["icon:/16/unlock"]
+        Enabled = False
+        Checked = True
+        Visible = False
+      }
+      { ShowHideMenuBarMenu Menu
+        Text = ("Show/Hide Menubar")
+        Picture = Picture["icon:/medium/menu"]
+        Shortcut = "Ctrl+M"
       }
     }
-    { Separator11 Menu
+    { AspectMenu Menu
+      Text = ("Video Aspect")
+      Tag = "000"
+      { Separator7 Menu
+      }
+      { AspectDefaultMenu Menu
+        Text = ("2.35:1")
+      }
+      { Aspect1menu Menu
+        Text = ("16:9")
+      }
+      { Aspect10menu Menu
+        Text = ("16:10")
+      }
+      { Aspect2Menu Menu
+        Text = ("4:3")
+      }
+      { Aspect11menu Menu
+        Text = ("1:1")
+      }
+      { AspectOtherMenu Menu
+        Text = ("Other") & "..."
+      }
     }
-    { MenuTabs Menu
-      Text = ("Tabs visibility")
+    { MenuState Menu MainMenu
+      Name = "MenuState"
+      Text = ("Profile")
+      Tag = "000"
+      { MenuLoadDefault Menu
+        Text = ("Reload current profile")
+        Picture = Picture["icon:/16/open"]
+      }
+      { MenuSaveDefault Menu
+        Text = ("Save all to current profile")
+        Picture = Picture["icon:/16/save"]
+      }
+      { MenuManageProfiles Menu
+        Text = ("Profile Manager")
+        Picture = Picture["icon:/16/properties"]
+        Enabled = False
+        Visible = False
+      }
     }
-    { EditTagModeSwitch1 Menu
-      Text = ("Show Tag editor")
-      Picture = Picture["icon:/16/edit"]
+    { MenuAbout Menu MainMenu
+      Name = "MenuAbout"
+      Text = ("?")
+      Tag = "000"
+      { MenuShowLog Menu
+        Text = ("Show logs")
+        Picture = Picture["icon:/16/text"]
+      }
+      { Separator010 Menu
+      }
+      { MenuBug Menu
+        Text = ("Report a bug")
+        Picture = Picture["icon:/16/important"]
+      }
+      { MenuHomepage Menu
+        Text = ("Home page")
+        Picture = Picture["icon:/16/earth"]
+      }
+      { About Menu MenuAbout
+        Name = "About"
+        Text = ("About")
+        Picture = Picture["icon:/small/info"]
+      }
     }
-    { MenuToolBarLocked Menu
-      Text = ("Lock Toolbar")
-      Picture = Picture["icon:/16/unlock"]
-      Enabled = False
-      Checked = True
+    { ShutdownMenu Menu
+      Text = ("Shutdown menu")
+      Picture = Picture["icon:/16/quit"]
       Visible = False
+      { ShutOff Menu
+        Text = ("Disable shutdown")
+      }
+      { ShutMedia Menu
+        Text = ("Shutdown at the end of media")
+      }
+      { ShutPls Menu
+        Text = ("ShutDown at the end of the play queue")
+      }
+      { Shutcfg Menu
+        Text = ("Configure shutdown command")
+        Picture = Picture["icon:/16/tools"]
+      }
     }
-    { ShowHideMenuBarMenu Menu
-      Text = ("Show/Hide Menubar")
-      Picture = Picture["icon:/medium/menu"]
-      Shortcut = "Ctrl+M"
-    }
-  }
-  { AspectMenu Menu
-    Text = ("Video Aspect")
-    Tag = "000"
-    { Separator7 Menu
-    }
-    { AspectDefaultMenu Menu
-      Text = ("2.35:1")
-    }
-    { Aspect1menu Menu
-      Text = ("16:9")
-    }
-    { Aspect10menu Menu
-      Text = ("16:10")
-    }
-    { Aspect2Menu Menu
-      Text = ("4:3")
-    }
-    { Aspect11menu Menu
-      Text = ("1:1")
-    }
-    { AspectOtherMenu Menu
-      Text = ("Other...")
-    }
-  }
-  { MenuState Menu MainMenu
-    Name = "MenuState"
-    Text = ("Profile")
-    Tag = "000"
-    { MenuLoadDefault Menu
-      Text = ("Reload current profile")
-      Picture = Picture["icon:/16/open"]
-    }
-    { MenuSaveDefault Menu
-      Text = ("Save all to current profile")
-      Picture = Picture["icon:/16/save"]
-    }
-    { MenuManageProfiles Menu
-      Text = ("Profile Manager")
-      Picture = Picture["icon:/16/properties"]
-      Enabled = False
+    { MenuFlash Menu FlashMenuGroup
+      Name = "MenuFlash"
+      Text = ("FlashMenu")
+      Picture = Picture["flashIcon16.png"]
       Visible = False
+      { FlashMenuRecordAs Menu
+        Text = ("Record As") & "..."
+        Picture = Picture["icon:/16/save-as"]
+      }
+      { FlashMenuStopRecording Menu
+        Text = ("Stop Recording")
+        Picture = Picture["icon:/16/stop"]
+        Enabled = False
+      }
+      { FlashMenuDelete Menu
+        Text = ("Delete from disk")
+        Picture = Picture["icon:/16/delete"]
+        Enabled = False
+      }
     }
-  }
-  { MenuAbout Menu MainMenu
-    Name = "MenuAbout"
-    Text = ("?")
-    Tag = "000"
-    { MenuShowLog Menu
-      Text = ("Show logs")
-      Picture = Picture["icon:/16/text"]
-    }
-    { Separator010 Menu
-    }
-    { MenuBug Menu
-      Text = ("Report a bug")
-      Picture = Picture["icon:/16/important"]
-    }
-    { MenuHomepage Menu
-      Text = ("Home page")
-      Picture = Picture["icon:/16/earth"]
-    }
-    { About Menu MenuAbout
-      Name = "About"
-      Text = ("About")
-      Picture = Picture["icon:/small/info"]
-    }
-  }
-  { ShutdownMenu Menu
-    Text = ("Shutdown menu")
-    Picture = Picture["icon:/16/quit"]
-    Visible = False
-    { ShutOff Menu
-      Text = ("Disable shutdown")
-    }
-    { ShutMedia Menu
-      Text = ("Shutdown at the end of media")
-    }
-    { ShutPls Menu
-      Text = ("ShutDown at the end of the play queue")
-    }
-    { Shutcfg Menu
-      Text = ("Configure shutdown command")
-      Picture = Picture["icon:/16/tools"]
-    }
-  }
-  { MenuFlash Menu FlashMenuGroup
-    Name = "MenuFlash"
-    Text = ("FlashMenu")
-    Picture = Picture["flashIcon16.png"]
-    Visible = False
-    { FlashMenuRecordAs Menu
-      Text = ("Record As...")
-      Picture = Picture["icon:/16/save-as"]
-    }
-    { FlashMenuStopRecording Menu
-      Text = ("Stop Recording")
-      Picture = Picture["icon:/16/stop"]
-      Enabled = False
-    }
-    { FlashMenuDelete Menu
-      Text = ("Delete from disk")
-      Picture = Picture["icon:/16/delete"]
-      Enabled = False
-    }
-  }
-  { PodCastMenu Menu
-    Text = ("PodCastMenu")
-    Visible = False
-    { PodCastMenuNew Menu
-      Text = ("New feed")
-      Picture = Picture["icon:/16/new"]
-    }
-    { PodcastMenuRefresh Menu
-      Text = ("Refresh")
-      Picture = Picture["icon:/16/refresh"]
-    }
-    { PodCastMenuDownload Menu
-      Text = ("Download")
-      Picture = Picture["icon:/16/save-as"]
-    }
-    { PodCastMenuAddLibrary Menu
-      Text = ("Add selected items to library")
-      Picture = Picture["icon:/16/add"]
-    }
-    { PodCastMenuAddPlaylist Menu
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-    { PodCastMenuDelete Menu
-      Text = ("Delete selected")
-      Picture = Picture["icon:/16/delete"]
-    }
-  }
-  { ShoutCastGridPopUp Menu
-    Text = ("ShoutCastGridPopUp")
-    Visible = False
-    { ShoutCastGridAddToLibrary Menu
-      Text = ("Add selected items to library")
-      Picture = Picture["icon:/16/add"]
-    }
-    { ShoutCastGridaddtoplaylist Menu
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-  }
-  { ShoutCastTreePopup Menu
-    Text = ("ShoutCastTreePopup")
-    Visible = False
-    { ShoutCastTreeaddtoLibrary Menu
-      Text = ("Add selected items to library")
-      Picture = Picture["icon:/16/add"]
-    }
-    { ShoutCastTreeaddtoplaylist Menu
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-  }
-  { YoutubeTreePopup Menu
-    Text = ("YoutubeTreePopup")
-    Visible = False
-    { youtubeappendmenu Menu
-      Text = ("See more results")
-      Picture = Picture["icon:/16/zoom-in"]
-      Enabled = False
+    { PodCastMenu Menu
+      Text = ("PodCastMenu")
       Visible = False
+      { PodCastMenuNew Menu
+        Text = ("New feed")
+        Picture = Picture["icon:/16/new"]
+      }
+      { PodcastMenuRefresh Menu
+        Text = ("Refresh")
+        Picture = Picture["icon:/16/refresh"]
+      }
+      { PodCastMenuDownload Menu
+        Text = ("Download")
+        Picture = Picture["icon:/16/save-as"]
+      }
+      { PodCastMenuAddLibrary Menu
+        Text = ("Add selected items to library")
+        Picture = Picture["icon:/16/add"]
+      }
+      { PodCastMenuAddPlaylist Menu
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
+      { PodCastMenuDelete Menu
+        Text = ("Delete selected")
+        Picture = Picture["icon:/16/delete"]
+      }
     }
-    { YoutubeTreeTreeGetRelatedMenu Menu
-      Text = ("Get related videos")
-      Picture = Picture["icon:/16/find"]
+    { ShoutCastGridPopUp Menu
+      Text = ("ShoutCastGridPopUp")
+      Visible = False
+      { ShoutCastGridAddToLibrary Menu
+        Text = ("Add selected items to library")
+        Picture = Picture["icon:/16/add"]
+      }
+      { ShoutCastGridaddtoplaylist Menu
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
     }
-    { YtRefresh Menu
-      Text = ("Refresh")
-      Picture = Picture["icon:/16/refresh"]
+    { ShoutCastTreePopup Menu
+      Text = ("ShoutCastTreePopup")
+      Visible = False
+      { ShoutCastTreeaddtoLibrary Menu
+        Text = ("Add selected items to library")
+        Picture = Picture["icon:/16/add"]
+      }
+      { ShoutCastTreeaddtoplaylist Menu
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
     }
-    { youtubetreeDownload Menu
-      Text = ("Download")
-      Picture = Picture["icon:/16/save-as"]
+    { YoutubeTreePopup Menu
+      Text = ("YoutubeTreePopup")
+      Visible = False
+      { youtubeappendmenu Menu
+        Text = ("See more results")
+        Picture = Picture["icon:/16/zoom-in"]
+        Enabled = False
+        Visible = False
+      }
+      { YoutubeTreeTreeGetRelatedMenu Menu
+        Text = ("Get related videos")
+        Picture = Picture["icon:/16/find"]
+      }
+      { YtRefresh Menu
+        Text = ("Refresh")
+        Picture = Picture["icon:/16/refresh"]
+      }
+      { youtubetreeDownload Menu
+        Text = ("Download")
+        Picture = Picture["icon:/16/save-as"]
+      }
+      { youtubetreeextractaudio Menu
+        Text = ("Extract Audio")
+        Picture = Picture["icon:/small/audio"]
+      }
+      { YoutubetreeTreeaddtoLibrary Menu
+        Text = ("Add selected items to library")
+        Picture = Picture["icon:/16/add"]
+      }
+      { YoutubetreeTreeaddtoPlaylist Menu
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
     }
-    { youtubetreeextractaudio Menu
-      Text = ("Extract Audio")
-      Picture = Picture["icon:/small/audio"]
+    { MenuBrowse Menu
+      Text = ("MenuBrowse")
+      Visible = False
+      { MenuBrowseOpenContaining Menu
+        Text = ("Open containing folder")
+        Picture = Picture["icon:/16/open"]
+      }
+      { Separator548907 Menu
+      }
+      { MenuAddToHistory Menu
+        Text = ("Add this folder to history")
+        Picture = Picture["icon:/16/bookmark"]
+      }
+      { menubrowseaddtolibrary Menu
+        Text = ("Add selected items to library")
+        Picture = Picture["icon:/16/add"]
+      }
+      { menubrowseaddtoplaylist Menu
+        Text = ("Add selected items to playlist")
+        Picture = Picture["icon:/16/add"]
+      }
+      { Separator248027 Menu
+      }
+      { MenuBrowseDelete Menu
+        Text = ("Delete selected from disk")
+        Picture = Picture["icon:/16/erase"]
+      }
+      { Separator10238 Menu
+      }
+      { MenuBrowseExtractAudio Menu
+        Text = ("Extract Audio")
+        Picture = Picture["icon:/small/audio"]
+      }
     }
-    { YoutubetreeTreeaddtoLibrary Menu
-      Text = ("Add selected items to library")
-      Picture = Picture["icon:/16/add"]
+    { MenuDvbt Menu
+      Text = ("MenuDvbt")
+      Visible = False
+      { MenuRename Menu
+        Text = ("Rename channel(s)")
+        Picture = Picture["icon:/16/edit"]
+      }
     }
-    { YoutubetreeTreeaddtoPlaylist Menu
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-  }
-  { MenuBrowse Menu
-    Text = ("MenuBrowse")
-    Visible = False
-    { MenuBrowseOpenContaining Menu
-      Text = ("Open containing folder")
-      Picture = Picture["icon:/16/open"]
-    }
-    { Separator548907 Menu
-    }
-    { MenuAddToHistory Menu
-      Text = ("Add this folder to history")
-      Picture = Picture["icon:/16/bookmark"]
-    }
-    { menubrowseaddtolibrary Menu
-      Text = ("Add selected items to library")
-      Picture = Picture["icon:/16/add"]
-    }
-    { menubrowseaddtoplaylist Menu
-      Text = ("Add selected items to playlist")
-      Picture = Picture["icon:/16/add"]
-    }
-    { Separator248027 Menu
-    }
-    { MenuBrowseDelete Menu
-      Text = ("Delete selected from disk")
-      Picture = Picture["icon:/16/erase"]
-    }
-    { Separator10238 Menu
-    }
-    { MenuBrowseExtractAudio Menu
-      Text = ("Extract Audio")
-      Picture = Picture["icon:/small/audio"]
-    }
-  }
-  { MenuDvbt Menu
-    Text = ("MenuDvbt")
-    Visible = False
-    { MenuRename Menu
-      Text = ("Rename channel(s)")
-      Picture = Picture["icon:/16/edit"]
-    }
-  }
-  { MenuPopupAlbumView Menu
-    Text = ("MenuPopupAlbumView")
-    Visible = False
-    { MenuSetACover Menu
-      Text = ("Set a cover")
-      Picture = Picture["icon:/small/color"]
+    { MenuPopupAlbumView Menu
+      Text = ("MenuPopupAlbumView")
+      Visible = False
+      { MenuSetACover Menu
+        Text = ("Set a cover")
+        Picture = Picture["icon:/small/color"]
+      }
     }
   }
   { MainToolBar Panel
     MoveScaled(1,-1,95,5)
     Arrangement = Arrange.Horizontal
-    { ButtonmenuBTN MenuButton
-      MoveScaled(0,0,8,4)
-      Visible = False
+    { ButtonmenuNEWBTN MenuButton
+      MoveScaled(0,1,8,4)
       Font = Font["1"]
       ToolTip = ("Open a file")
       AutoResize = True
       Picture = Picture["icon:/22/menu"]
       Border = False
+      Menu = "TopMenu"
+      MenuOnly = True
     }
     { Separator6 Separator
       MoveScaled(10,0,2,4)
@@ -1927,16 +1932,22 @@
               Picture = Picture["media-playback-stop.png"]
             }
             { Panel9 Panel
-              MoveScaled(15,1,8,2)
+              MoveScaled(15,0,8,4)
+              Tracking = True
               Expand = True
               Arrangement = Arrange.Fill
               Padding = 8
               { seekbar ProgressBar
-                MoveScaled(0,1,24,2)
+                MoveScaled(-4,2,24,2)
                 Font = Font["1"]
                 Tracking = True
                 Expand = True
                 Label = False
+              }
+              { panelseek Panel
+                MoveScaled(0,0,24,24)
+                Tracking = True
+                Ignore = True
               }
             }
             { ABLoopButton ToolButton

@@ -1131,9 +1131,6 @@ Public Sub MainInit()
       Me.mouse = mouse.Wait
       If Not global.pluginmode Then
         FMain.LoadFormGeometry()
-      Else
-        buttonmenubtn.visible = False
-        ShowHideMenuBarMenu_Click()
       Endif
       fmain.Show
       Wait 
@@ -1415,7 +1412,7 @@ Public Sub Form_Close()
   Try zzzFake.hide
   Try realtimeform.hide
   Try EpgForm.hide
-  Try ButtonMenu.hide
+  'Try ButtonMenu.hide
   Try ladspahelper.hide
   Try FormLyrics.hide
   Try AudioConvert.hide
@@ -1513,7 +1510,7 @@ Public Sub Form_Close()
   Try realtimeform.close
   Try DBus.Session.Unregister(mpris)
   Try epgform.close
-  Try ButtonMenu.close
+ 'Try ButtonMenu.close
   Try fsform.close
   Try ladspahelper.close
   Try FormLyrics.close
@@ -1608,7 +1605,6 @@ Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
   
   Dim myfile As File
   Dim myfilename As String = global.confpath & "/" & "fmain.geometry"
-  Dim buttonmenuvisible As String
   Dim maximized As String
   
   If fmain.maximized Then 
@@ -1616,15 +1612,10 @@ Public Sub SubSaveFormGeometry(offsetx As Integer, offsety As Integer)
   Else
     maximized = "F"
   Endif
-  
-  If ButtonmenuBTN.Visible Then 
-    buttonmenuvisible = "T"
-  Else
-    buttonmenuvisible = "F"
-  Endif
+
   
   myfile = Open myfilename For Write Create
-  Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & Maximized & ";" & buttonmenuvisible
+  Print #myfile, CStr(fmain.screenx + offsetx) & ";" & CStr(fmain.screeny + offsety) & ";" & fmain.w & ";" & fmain.h & ";" & Maximized & ";"
   Close #myfile
 
 End
@@ -1645,9 +1636,6 @@ Public Sub LoadFormGeometry()
       Try rw = Split(geometry, ";", "", True)[2]
       Try rh = Split(geometry, ";", "", True)[3]
       Try fmain.maximized = (Split(geometry, ";", "", True)[4] = "T")
-      buttonmenubtn.visible = False
-      Try buttonmenubtn.visible = (Split(geometry, ";", "", False)[5] = "F")
-      ShowHideMenuBarMenu_Click()
       fmain.Move(rx, ry, rw, rh)
     Endif
     Close #myfile
@@ -3098,7 +3086,7 @@ End
 Public Sub VideoAreaGroup_Drop()
   
   Dim droppedfile As String
-Stop
+
   Try droppedfile = Split(Drag.Paste("text/uri-list"), "\n\r", "", True)[0]
   If Error Then 
     Try droppedfile = Split(Drag.Paste("text/plain"), "\n\r", "", True)[0]
@@ -3774,8 +3762,8 @@ Public Sub ShowVolBtn_MouseWheel()
   Endif
 End
 
-Public Sub SeekBar_MouseDown()
-
+Public Sub panelseek_MouseDown()
+Debug
   MousePressed = True
   'Object.Lock(seekbar)
 
@@ -3783,7 +3771,7 @@ Public Sub SeekBar_MouseDown()
 
 End
 
-Public Sub SeekBar_MouseUp()
+Public Sub panelseek_MouseUp()
   MousePressed = False
   HideThumbler()
   If thumbleractive Then
@@ -3799,7 +3787,7 @@ Public Sub SeekBar_MouseUp()
   SeekBar_Change()
 End
 
-Public Sub seekbar_DblClick()
+Public Sub panelseek_DblClick()
   If mplayer.Media_Seekable = 1 Then Return
   seekbar.value = mouse.x / seekbar.w
   SeekBar_Change()
@@ -4018,7 +4006,7 @@ Public Sub FullScreenSwitch()
 
 End
 
-Private buttonmenuwasvisible As Boolean = False
+
 
 Private winmax As Boolean 
 
@@ -4033,7 +4021,6 @@ Public Sub SwitchToFS()
   fmain.hide
   cachebar.hide
   If Not (Hsplit1.Layout[0] = 0) Then SplitterLayout = Hsplit1.Layout
-  buttonmenuwasvisible = ButtonmenuBTN.Visible
   FsForm.Background = color.black
   FsForm.x = fmain.ScreenX
   FsForm.y = fmain.screeny
@@ -4047,8 +4034,7 @@ Public Sub SwitchToFS()
   FsForm.Background = color.Default
   
   Maintoolbar.Reparent(FsForm)
-  Wait
-  Showbuttonmenu()
+
   Wait
   'execute shell commands
   If mplayer.ProcessRunningOvr() And (Not mplayer.AudioOnly) Then FsCommandsExec(True, mplayer.Media_VideoFps)
@@ -4121,7 +4107,6 @@ Public Sub SwitchToWindow()
   'execute shell commands
   FsCommandsExec(False, 60)
   
-  If Not (buttonmenuwasvisible) Then Hidebuttonmenu()
   Maintoolbar.Reparent(fmain)
   'invert the VSplit with a HSplit
   zzzFake.VSplit1.Reparent(zzzFake)
@@ -4491,7 +4476,7 @@ Public Sub Apply()
   onesectimer.stop
   Debug "Cached Options unvalidated"
   Debug
-  Stop
+  
   global.ResetApplyBtnColor()
   fmain.cachedopts = ""
   VEqHasBeenSet = False
@@ -9120,7 +9105,7 @@ Public Sub NEW_OK_youtubeappendmenu_Click()
   Dim relatedlink As String
   Dim relatedtotext As String
   Dim tmpkey, lastitemkey, myparentkey, tmptmpkey As String
-  Stop
+  
   Object.Detach(youtubetree)
   youtubetree.MoveCurrent
   If youtubetree.Current.Key Like "__MORERESULTS__*" Then 
@@ -9134,7 +9119,7 @@ Public Sub NEW_OK_youtubeappendmenu_Click()
       Try myparentkey = youtubetree.item.ParentKey
       youtubetree.moveparent()
     Wend
-    Stop
+    
     If Error Then Goto ReturnLabel
     Try youtubetree.MoveTo(tmptmpkey)
     If Error Then Goto ReturnLabel
@@ -9240,7 +9225,7 @@ End
 Public Sub YoutubetreeTreeaddtoLibrary_Click()
   
   Dim QuickMode As Boolean
-Stop
+
   QuickMode = True
   Try MyLibrary.AddFile(librarygrid, youtubeTree.current.key, QuickMode, True, youtubetree.Current.text)
   If Error Then
@@ -10421,32 +10406,13 @@ Public Sub PictureBox1_Drop()
 
 End
 
-Public Sub ButtonmenuBTN_Click()
-  ButtonMenu.init()
-  Buttonmenu.Move(mouse.screenx, mouse.screeny)
-  Buttonmenu.show  
-End
+' Public Sub ButtonmenuBTN_Click()
+'   ButtonMenu.init()
+'   Buttonmenu.Move(mouse.screenx, mouse.screeny)
+'   Buttonmenu.show  
+' End
 
 
-Public Sub ShowHideMenuBarMenu_Click()
-  If ButtonmenuBTN.Visible Then
-    Hidebuttonmenu()
-      Else
-    Showbuttonmenu()
-  Endif
-End
-
-Public Sub Showbuttonmenu()
-  ButtonmenuBTN.show
-  fmain.menus.hide
-  separator6.show
-End
-
-Public Sub Hidebuttonmenu()
-  ButtonmenuBTN.Hide
-  separator6.hide
-  fmain.menus.Show
-End
 
 
 
@@ -10515,7 +10481,7 @@ Private Sub CantSeekMessage()
 End
 
 Public ThumblerActive As Boolean = False
-Public Sub SeekBar_MouseDrag()
+Public Sub panelseek_MouseDrag()
   Dim relative As Float
   Dim msg As String
   If Not mplayer.ProcessRunningOvr() Then Return
@@ -10743,7 +10709,7 @@ Public Sub HideThumbler()
 End
 
 
-Public Sub seekbar_Leave()
+Public Sub panelseek_Leave()
   HideThumbler()
 End
 
@@ -10801,7 +10767,7 @@ Private Sub Stopmthumbler()
   thumbleractive = False
 End
 
-Public Sub seekbar_MouseWheel()
+Public Sub panelseek_MouseWheel()
   If mplayer.ProcessRunningOvr() Then
     If Mouse.delta > 0 Then
       seekbar.value += 0.01
@@ -11107,3 +11073,21 @@ Public Sub ButtonRadios_click()
 End
 
 
+' 
+' Public Sub MainToolBar_MouseDown()
+' 
+'   
+' 
+' End
+' 
+' Public Sub ButtonmenuNEWBTN_mousedown()
+' 
+'   topmenu.popup
+' 
+' End
+
+Public Sub Panel9_Arrange()
+Debug
+  panelseek.Move(seekbar.x, seekbar.y, seekbar.w, seekbar.h)
+
+End

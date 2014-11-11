@@ -9,7 +9,7 @@ Dim MaxItems As Integer = 15
 Dim i As Integer
 Dim TempList As New String[0]
   For i = 0 To TheComboBox.List.Count - 1
-    TempList.Add(DConv(TheComboBox[i].text))
+    Try TempList.Add(DConv(TheComboBox[i].text))
   Next 'i
   TheComboBox.clear
   TheComboBox.Add(Item, 0)

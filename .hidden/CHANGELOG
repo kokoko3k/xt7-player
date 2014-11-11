@@ -1,3 +1,19 @@
+* Mon Oct 13 2014 Antonio Orefice <xt7player@gmail.com> 3.5.4
+
+* Mon Oct 13 2014 Antonio Orefice <xt7player@gmail.com> 3.5.4
+- FIX:		Spurious osd messages removed
+- CHANGE:	Alsa audio output driver tabstrip now fills a (non exhaustive) list of available alsa pcms
+- FIX:		Out of bounds MplayerClass.Analyze.1738
+- FIX:		Gb.image.effect isn't really needed.
+- New:		*experimental* Dynamic Overbright in videoequalizer (similar to dynamic contrast)
+- New:		"overbright" slider in video equalizer window.
+- FIX:		Do not crash on radio tab select if network is down
+- FIX:		Enable pulse audio driver controls
+- CHANGE:	Do not use dyndns urls anymore
+- FIX:		Playlist items move was broken, fixed.
+- FIX:		Do not parse unavailable audio/video output drivers
+- FIC:		Unvalidate cached options on profile load (??)
+
 * Mon Mar 31 2014 Antonio Orefice <xt7player@gmail.com> 3.5.2
 - FIX: Playlist items move was broken, fixed.
 - CHANGE: REQUIRES youtube-dl >= 2014.03.21 to watch youtube videos.

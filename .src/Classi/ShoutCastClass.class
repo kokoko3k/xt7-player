@@ -270,7 +270,7 @@ Private Sub ParseChannelOLD(Rootnode As XmlNode, Optional GenresTree As Treeview
   Dim TuneinAttribute As XmlNode
   Dim StationAttribute As XmlNode
   'find channel
-  Stop
+  
   For t = 0 To Rootnode.Children.Count - 1
     If Rootnode.Children[t].name = "tunein" Then
       For Each TuneinAttribute In Rootnode.Children[t].Attributes

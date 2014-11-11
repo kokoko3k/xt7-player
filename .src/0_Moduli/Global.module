@@ -137,7 +137,6 @@ Public Sub FixFormNames()
   Try AskName.name = "AskName"
   Try AudioForm.name = "AudioForm"
   Try AudioVideoCodecs.name = "AudioVideoCodecs"
-  Try ButtonMenu.name = "ButtonMenu"
   Try Chains.name = "Chains"
   Try ChooseAspect.name = "ChooseAspect"
   Try CountDown.name = "CountDown"

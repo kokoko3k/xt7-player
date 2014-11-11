@@ -23,12 +23,12 @@
       Move(3,3,78,78)
       Background = &H000000&
       Foreground = &H000000&
+      Padding = 1
       { PictureBox1 PictureBox
-        Move(0,0,77,77)
+        Move(7,0,77,77)
         Background = &H000000&
         Foreground = &H000000&
         Stretch = True
-        Border = Border.Plain
       }
     }
     { PictureBox2 PictureBox
@@ -37,7 +37,7 @@
       Stretch = True
     }
     { Label1 Label
-      Move(88,4,175,91)
+      Move(105,7,175,91)
       Foreground = &HFFFFFF&
       Mouse = Mouse.SizeAll
       Expand = True
@@ -72,7 +72,7 @@
       }
     }
     { Labelshadow Label
-      Move(154,28,84,42)
+      Move(154,42,84,42)
       Foreground = &H000000&
     }
   }

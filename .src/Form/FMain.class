@@ -804,6 +804,8 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
   Dim ButtonWovr, ButtonHovr As Integer
   Dim TheObject As Object
 
+
+
   ' NumButtonsCPL = 0
   ' 'fix bottom panel for high sized fonts
   ' '---------------------------------------------------------------------------
@@ -819,16 +821,23 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
     volumecontainer.visible = True
   Endif
   
+' Object.lock(controlframe)
+' controlframe.visible = False
+
   For Each theobject In ControlPanel.Children
     If theobject.visible Then
-      theobject.w = ButtonWovr
-      theobject.h = ButtonHovr
+      'If Not theobject Is Panel Then
+        If Not (theobject Is Panel) Then theobject.w = ButtonWovr
+        theobject.h = ButtonHovr
       ' theobject.x = cX 
       ' cX = theobject.x + theobject.w + PaddingOvr
       'NumButtonsCPL += 1
+      'Endif
     Endif
   Next
- 
+
+  ' controlframe.visible = True
+  ' Object.Unlock(controlframe)
 
   For Each theobject In ControlPanelright.Children
     If theobject.visible Then
@@ -839,15 +848,16 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
       'NumButtonsCPL += 1
     Endif
   Next
- 
 
   controlframe.h = ButtonHovr + (paddingovr * 2)
   ControlPanel.x = controlframe.x + paddingovr
   ControlPanel.y = 0 + (paddingovr)
-  ControlPanel.h = controlframe.h + (paddingovr * 2)
-  'controlframe.h = ControlPanel.h   '(PaddingOvr*2)
+
+' non credo serva più  ControlPanel.h = controlframe.h + (paddingovr * 2)
+
 
   ControlPanel.w = controlframe.w - controlpanelright.w - (paddingovr * 2)
+
   controlpanelright.y = ControlPanel.y
 
 
@@ -858,7 +868,7 @@ Public Sub ArrangeCpl(Optional NumButtonsCPL As Integer = 9)
 
   SaveVolumeSlider.y = SaveVolumeSlider.Parent.h Div 6
 
-  
+
   '---------------------------------------------------------------------------
 End
 
@@ -1006,7 +1016,7 @@ Public Sub SetStyle_early()
   Label2.Font.bold = True
   PlayListSelInfo.Foreground = Color.black
   LibrarySelInfo.Foreground = Color.black
-  
+  Initprogress()
 End
 
 Public Sub SetStyle_later()
@@ -2781,7 +2791,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
     MenumediaExplorer.Enabled = True
     addhistory(mplayer.Media_FullPath)
   Endif
-  
+
   'find overboost levels (volume)
   UpdateOverboostLevel()
   
@@ -2798,7 +2808,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Else
     audioform.RadioLabel.visible = False
   Endif
-  
+
   VideoBox.Visible = True
   If TabSelectedLibrary() Then 
     Try ComboHistory.AddHistory(Searchfield, (Searchfield.text))
@@ -2816,7 +2826,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_FullPath_Playing) Like "*.mp3") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mpg123*") 
   Ismp3 = Ismp3 Or (Lower(mplayer.Media_AudioCodec) Like "*mp3*") 
-  
+
   buttoncapture.enabled = (Lower(mplayer.Media_Type) Like "*mpeg*")  'all mpeg demuxed files (ts,ps..)
   buttoncapture.enabled = buttoncapture.enabled Or (Lower(mplayer.Media_FullPath_Playing) Like "*dvb*://*") 'all dvb channels
   buttoncapture.enabled = buttoncapture.enabled Or (mplayer.AudioOnly And ismp3) 'all audio only mp3s
@@ -2828,7 +2838,7 @@ Public Function Play(fullpath As String, Optional OtherOptions As String = cache
   zzzfake.cachingbox.playing = False
   global.ResetApplyBtnColor()
   Return True
-  
+
 End
 
 Public Sub addhistory(fullpath As String, Optional Savetime As String = "0")
@@ -3134,6 +3144,7 @@ Public Sub UpdateSeekSlider()
     Try Seekbar.value = mplayer.Media_percent_pos / 100
   Endif
   SeekBar.tag = "user"
+  SetProgress(seekbar.value)
 End
 
 Public customtitle As String = ""
@@ -3460,6 +3471,7 @@ Public Sub OneSecTimer_Timer()
     StatusLabelRight.text = ""
     
     SeekBar.value = 0
+    SetProgress(seekbar.value)
     Fmain.caption = global.AppName
   Endif
 End
@@ -3760,7 +3772,7 @@ Public Sub ShowVolBtn_MouseWheel()
   Endif
 End
 
-Public Sub panelseek_MouseDown()
+Public Sub ProgressFrame_MouseDown()
 Debug
   MousePressed = True
   'Object.Lock(seekbar)
@@ -3769,7 +3781,7 @@ Debug
 
 End
 
-Public Sub panelseek_MouseUp()
+Public Sub ProgressFrame_MouseUp()
   MousePressed = False
   HideThumbler()
   If thumbleractive Then
@@ -3780,15 +3792,19 @@ Public Sub panelseek_MouseUp()
     CantSeekMessage()
     Return
   Endif
-  seekbar.value = mouse.x / seekbar.w
+  'seekbar.value = mouse.x / seekbar.w
+  seekbar.value = mouse.x / Last.w
+  SetProgress(seekbar.value)
   Debug "seeking"
   SeekBar_Change()
 End
 
-Public Sub panelseek_DblClick()
+Public Sub ProgressFrame_DblClick()
   If mplayer.Media_Seekable = 1 Then Return
-  seekbar.value = mouse.x / seekbar.w
+  'seekbar.value = mouse.x / seekbar.w
+  seekbar.value = mouse.x / Last.w
   SeekBar_Change()
+  SetProgress(seekbar.value)
 End
 
 
@@ -4872,6 +4888,7 @@ Public Sub SelectNext(Optional forcerunning As Boolean = False, Optional Current
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
+  SetProgress(seekbar.value)
   Object.unLock(fmain.SeekBar)
   
   If (TabSelectedPlaylist() And CurrentQueue = "") Or CurrentQueue = "playlistgrid" Then
@@ -4998,6 +5015,7 @@ Public Sub ButtonPrev_Click()
   fmain.mouse = mouse.wait
   Object.Lock(fmain.SeekBar)
   fmain.SeekBar.Value = 0
+  SetProgress(seekbar.value)
   Object.unLock(fmain.SeekBar)
   If TabSelectedPlaylist() Then
     MyPlaylist.SelectPrev(PlaylistGrid) ', ShufflePls.value)
@@ -10479,7 +10497,7 @@ Private Sub CantSeekMessage()
 End
 
 Public ThumblerActive As Boolean = False
-Public Sub panelseek_MouseDrag()
+Public Sub ProgressFrame_MouseDrag()
   Dim relative As Float
   Dim msg As String
   If Not mplayer.ProcessRunningOvr() Then Return
@@ -10504,7 +10522,9 @@ Public Sub panelseek_MouseDrag()
   Endif
   'Debug relative
   msg = ("Seek to:") & " " & mplayer.FormatTime(CInt(mplayer.Media_Length * relative))
-   seekbar.value = mouse.x / seekbar.w
+   'seekbar.value = mouse.x / seekbar.w
+   seekbar.value = mouse.x / Last.w
+   SetProgress(seekbar.value)
   StatusLabelLeft.text = msg
   mplayer.ShowText(msg, 1000)
 End
@@ -10707,7 +10727,7 @@ Public Sub HideThumbler()
 End
 
 
-Public Sub panelseek_Leave()
+Public Sub ProgressFrame_Leave()
   HideThumbler()
 End
 
@@ -10765,12 +10785,14 @@ Private Sub Stopmthumbler()
   thumbleractive = False
 End
 
-Public Sub panelseek_MouseWheel()
+Public Sub ProgressFrame_MouseWheel()
   If mplayer.ProcessRunningOvr() Then
     If Mouse.delta > 0 Then
       seekbar.value += 0.01
+      SetProgress(seekbar.value)
         Else
       seekbar.value -= 0.01
+      SetProgress(seekbar.value)
     Endif
   Endif
   SeekBar_Change()
@@ -11070,13 +11092,44 @@ Public Sub ButtonRadios_click()
   Last.mouse = mouse.Normal
 End
 
-
-Public Sub Panel9_Arrange()
-  panelseek.Move(seekbar.x, seekbar.y, seekbar.w, seekbar.h)
-End
-
 Public Sub ButtonmenuNEWBTN_click()
-
   topmenu.popup
+End
+
+
+' Public Sub ProgressContainer_Arrange()
+' Stop
+'   ProgressFrame.Move(seekbar.x, seekbar.y, seekbar.w, seekbar.h)
+' End
+
+
+Public Sub Initprogress()
+  Dim barpicture As New Picture
+  barpicture.Resize(10, 10)
+  'barpicture.Fill(Color.red) 'Selectedbackground)
+  'barpicture.Fill(Color.Selectedbackground)
+  'Progress.Picture = barpicture
+  'Progress.Picture = Picture.Load("shadow.png")
+  'progress.Picture = progress.Picture.Image.Desaturate().Colorize(Color.selectedbackground).picture
+  'progress.Picture = progress.Picture.Image.Colorize(Color.lightBackground).Contrast(0.75).brightness(-0.10).picture
+  progress.Picture = progress.Picture.Image.Colorize(Color.lightBackground).Contrast(0.5).brightness(-0.20).picture
+  progress.Move(0, 0, 0, progress.parent.h)
+  'ProgressGlow.Move(0, 0, 0, progress.Parent.h)
+  ProgressFrame.proxy = progress
+End
+
+Public Sub SetProgress(newset As Float)
+  ' Dim newpos As Integer = CInt(progress.parent.clientw * newset)
+  ' progress.Move(ProgressFrame.clientx, ProgressFrame.clienty, newpos, progress.Parent.clienth)
+  ' ProgressGlow.Move(Progressframe.clientx, ProgressFrame.clienty, newpos, progress.Parent.clienth)
+
+   'Dim newpos As Integer = CInt(ProgressFrame.clientw * newset - ProgressFrame.padding)
+   Dim newpos As Integer = CInt(ProgressFrame.w * newset - ProgressFrame.padding)
+   If newpos < 0 Then newpos = 0
+   progress.Move(0, 0, newpos, progressframe.h)
+   'ProgressGlow.Move(progresscontainer.clientx, progresscontainer.clienty, newpos, progressframe.clienth)
+Debug seekbar.visible
 
 End
+
+

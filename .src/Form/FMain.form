@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,101,80)
+  MoveScaled(0,0,179,80)
   Text = ("Xt7-Player")
   Icon = Picture["xt7-player.png"]
   Persistent = True
@@ -1891,7 +1891,7 @@
             Stretch = True
           }
           { ControlPanel Panel
-            MoveScaled(0,1,44,4)
+            MoveScaled(1,1,44,5)
             Font = Font["6"]
             Drop = True
             Arrangement = Arrange.Horizontal
@@ -1930,23 +1930,31 @@
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
-            { Panel9 Panel
-              MoveScaled(15,0,8,4)
+            { ProgressContainer Panel
+              MoveScaled(16,1,62,19)
               Tracking = True
               Expand = True
-              Arrangement = Arrange.Fill
+              Arrangement = Arrange.Vertical
               Padding = 6
-              { seekbar ProgressBar
-                MoveScaled(-4,2,24,2)
-                Font = Font["1"]
-                Tracking = True
+              { ProgressFrame DrawingArea
+                MoveScaled(1,1,53,16)
+                Background = &HD7000000&
                 Expand = True
-                Label = False
-              }
-              { panelseek Panel
-                MoveScaled(0,-4,24,24)
-                Tracking = True
-                Ignore = True
+                Border = Border.Sunken
+                { Progress PictureBox
+                  MoveScaled(9,1,14,4)
+                  Picture = Picture["barglow.png"]
+                  Stretch = True
+                  Border = Border.Sunken
+                }
+                { seekbar ProgressBar
+                  MoveScaled(36,1,14,5)
+                  Visible = False
+                  Font = Font["1"]
+                  Tracking = True
+                  Expand = True
+                  Label = False
+                }
               }
             }
             { ABLoopButton ToolButton

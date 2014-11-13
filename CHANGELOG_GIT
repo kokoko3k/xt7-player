@@ -6,6 +6,7 @@ Nov 11 2014
   FIX:    removed white border around the preview picture (gambas 3.6.1)
   FIX:    Ugly trayicon due to gambas 3.6.1; less ugly now...
   FIX:    "enhanced" gambas 3.6.1 file dialogs doesn't use "path" as start directory anymore, use "not enhanced" dialogs.
+  FIX:    Nicer, non flat, progressbar.
 
 Oct 13 2014
   CHANGE: Don't change brightness on overbright change with vaapi and vdpau

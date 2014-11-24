@@ -1938,7 +1938,7 @@
               Padding = 6
               { ProgressFrame DrawingArea
                 MoveScaled(1,1,53,16)
-                Background = &HD7000000&
+                Background = &H000000&
                 Expand = True
                 Border = Border.Sunken
                 { Progress PictureBox
@@ -2060,7 +2060,7 @@
     }
     { TimerDVD #Timer
       #MoveScaled(72,0)
-      Delay = 250
+      Delay = 125
     }
     { TimerFullScreen #Timer
       #MoveScaled(79,0)

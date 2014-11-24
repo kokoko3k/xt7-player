@@ -1,5 +1,10 @@
 Git changes:
 --------------------------------------
+Dov 24 2014
+  FIX:    Do not update volume if the media hasn't (yet) started; may fix muted sound on dvd play.
+  CHANGE: More reactive mouse movements in dvd-menu mode
+
+
 Nov 11 2014
   CHANGE: get rid of menubar as it is ugly (with gambas 3.6.1)
   CHANGE: Workaround for seekbar not accepting mouse events anymore (gambas 3.6.1)

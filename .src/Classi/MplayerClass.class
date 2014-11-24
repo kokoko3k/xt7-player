@@ -545,6 +545,7 @@ Public Sub do_restart(filename As String, options As String, Optional rewind As 
           CurrentSeconds = CurrentSeconds + 1
         Endif
       Endif
+
       NewOptions = Options & " -ss " & CurrentSeconds
         Else
       NewOptions = Options & " -ss " & seekto

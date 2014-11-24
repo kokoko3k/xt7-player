@@ -1016,6 +1016,7 @@ Public Sub SetStyle_early()
   Label2.Font.bold = True
   PlayListSelInfo.Foreground = Color.black
   LibrarySelInfo.Foreground = Color.black
+  progressframe.background = Color.rgb(0, 0, 0, 215)
   Initprogress()
 End
 
@@ -2596,7 +2597,6 @@ Public needytcookie As Boolean = False
 Private dumpfile As String
 
 Public Function SetInitialvolume() As String
-Stop
   'initialvolume
   If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
   If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0 '
@@ -6816,13 +6816,13 @@ Public VolumeFocused As Boolean = False
 Public Sub VideoAreaGroup_Enter()
   
   If mplayer.ProcessRunningOvr() Then fmain.VideoBox.setfocus
-  ' fakesplit.hide
+
   If Lower(mplayer.Media_FullPath_Playing) Like "dvdnav*" Then
     timerdvd.enabled = True
   Else
     timerdvd.enabled = False
   Endif
-  ' Fakesplit_Leave()
+
 End
 
 Public Sub VideoAreaGroup_GotFocus()
@@ -7865,7 +7865,9 @@ Public Sub Button3_Click()
   OneSecTimer.Stop
   Stopmthumbler()
   Wait
-  mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
+  'mplayer.do_restart("dvdnav://", mplayer.CurrentOptions & " -nocache ", Not rewind)
+  mplayer.do_stop()
+  mplayer.do_play("dvdnav://", mplayer.CurrentOptions & " -nocache ")
   Wait
   OneSecTimer.start
   fmain.VideoBox.setfocus
@@ -10454,6 +10456,10 @@ End
 
 Public Sub VideoAreaGroup_MouseMove()
   ' If Mouse.screenx < (outerbox.screenx + 10) Then UseFakeSplit()
+  ' If Lower(mplayer.Media_FullPath_Playing) Like "dvdnav*" Then
+  '   Try mplayer.Send("set_mouse_pos " & (mouse.screenx - VideoBox.screenx) & " " & (mouse.screeny - VideoBox.screeny))
+  '   Return
+  ' Endif
   If global.pluginmode Then
     timerpluginmode.Stop()
     If fsform.fullscreen Then 
@@ -11130,7 +11136,7 @@ Public Sub SetProgress(newset As Float)
    If newpos < 0 Then newpos = 0
    progress.Move(0, 0, newpos, progressframe.h)
    'ProgressGlow.Move(progresscontainer.clientx, progresscontainer.clienty, newpos, progressframe.clienth)
-Debug seekbar.visible
+  'Debug seekbar.visible
 
 End
 

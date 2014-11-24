@@ -137,10 +137,10 @@ Public Sub BarBox_MouseDown()
 End
 
 Public Sub PictureBox2_Enter()
-  Last.border = Border.plain
+  
 End
 Public Sub PictureBox2_leave()
-  Last.border = False
+  'Last.border = False
 End
 
 Public Sub PictureBox2_MouseDown()

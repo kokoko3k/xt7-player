@@ -241,6 +241,7 @@
             { PictureBox2 PictureBox
               Move(14,147,24,24)
               Foreground = &H000000&
+              Mouse = Mouse.Pointing
               Picture = Picture["icon:/22/microphone"]
               Alignment = Align.Left
             }

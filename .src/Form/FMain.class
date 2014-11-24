@@ -2596,6 +2596,7 @@ Public needytcookie As Boolean = False
 Private dumpfile As String
 
 Public Function SetInitialvolume() As String
+Stop
   'initialvolume
   If lastvolume = -2 Then lastvolume = (SaveVolumeSlider.value * 4)
   If lastvolume = 0 Then lastvolume = 1 'softvol has problems with volume=0 '
@@ -3219,6 +3220,7 @@ Public Sub UpdateVolumeSlider()
 
   Dim tmp As String
   Dim newvolume As Integer
+  If mplayer.Media_percent_pos = "0" Then Return 'do not update volume if the media playback is not started.
   'DEBUG "asking for volume level..."
   mplayer.Send("get_property volume")
   Try SaveVolumeSlider.tag = "timer"          'this will avoid seekbar to send volume to mplayer

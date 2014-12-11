@@ -1930,22 +1930,20 @@
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
-            { ProgressContainer Panel
-              MoveScaled(16,1,62,19)
-              Tracking = True
+            { Panel9 Panel
+              MoveScaled(16,1,54,17)
               Expand = True
-              Arrangement = Arrange.Vertical
+              Arrangement = Arrange.Fill
               Padding = 6
               { ProgressFrame DrawingArea
-                MoveScaled(1,1,53,16)
+                MoveScaled(3,1,53,16)
                 Background = &H000000&
                 Expand = True
                 Border = Border.Sunken
                 { Progress PictureBox
-                  MoveScaled(9,1,14,4)
+                  MoveScaled(6,1,14,4)
                   Picture = Picture["barglow.png"]
                   Stretch = True
-                  Border = Border.Sunken
                 }
                 { seekbar ProgressBar
                   MoveScaled(36,1,14,5)

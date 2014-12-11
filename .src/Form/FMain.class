@@ -3796,9 +3796,10 @@ Public Sub ProgressFrame_MouseUp()
   Endif
   'seekbar.value = mouse.x / seekbar.w
   seekbar.value = mouse.x / Last.w
-  SetProgress(seekbar.value)
+  
   Debug "seeking"
   SeekBar_Change()
+  SetProgress(seekbar.value)
 End
 
 Public Sub ProgressFrame_DblClick()
@@ -11112,8 +11113,8 @@ End
 
 
 Public Sub Initprogress()
-  Dim barpicture As New Picture
-  barpicture.Resize(10, 10)
+  'Dim barpicture As New Picture
+  'barpicture.Resize(10, 10)
   'barpicture.Fill(Color.red) 'Selectedbackground)
   'barpicture.Fill(Color.Selectedbackground)
   'Progress.Picture = barpicture
@@ -11127,14 +11128,18 @@ Public Sub Initprogress()
 End
 
 Public Sub SetProgress(newset As Float)
+  Dim border As Integer = 0
+  Dim bor As Integer = 0
   ' Dim newpos As Integer = CInt(progress.parent.clientw * newset)
   ' progress.Move(ProgressFrame.clientx, ProgressFrame.clienty, newpos, progress.Parent.clienth)
   ' ProgressGlow.Move(Progressframe.clientx, ProgressFrame.clienty, newpos, progress.Parent.clienth)
 
    'Dim newpos As Integer = CInt(ProgressFrame.clientw * newset - ProgressFrame.padding)
-   Dim newpos As Integer = CInt(ProgressFrame.w * newset - ProgressFrame.padding)
-   If newpos < 0 Then newpos = 0
-   progress.Move(0, 0, newpos, progressframe.h)
+   Dim newpos As Integer = CInt(ProgressFrame.clientw * newset - ProgressFrame.padding)
+   If newpos < border Then newpos = border
+   'progress.Move(0, 0, newpos, progressframe.h)
+    'progress.Move(progressframe.clientx, progressframe.clienty, newpos, progressframe.clienth)
+    progress.Move(progressframe.clientx + bor, progressframe.clienty + bor, newpos - border, progressframe.clienth - border)
    'ProgressGlow.Move(progresscontainer.clientx, progresscontainer.clienty, newpos, progressframe.clienth)
   'Debug seekbar.visible
 

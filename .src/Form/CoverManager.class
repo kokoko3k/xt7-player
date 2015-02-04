@@ -74,7 +74,7 @@ Public Sub GetCoversFromAmazon(query As String)
 
   'MyURL = "http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=045ZGZ60B4A7NQEJRMR2&Operation=ItemSearch&SearchIndex=Music&Keywords=" & Keyword & "&ItemPage=1&ResponseGroup=ItemAttributes,Small,Images"
   MyURL = buffer
-  Try HttpClient1.url = MYURL
+  Try HttpClient1.url = Trim(MYURL)
   If Error Then 
     MyQuestion.Ask(("Amazon search: Network error"), ("Ok"))
     Return

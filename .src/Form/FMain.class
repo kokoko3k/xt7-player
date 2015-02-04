@@ -10522,7 +10522,7 @@ Public Sub ProgressFrame_MouseDrag()
     Return
   Endif
   
-  relative = (mouse.x / seekbar.w)
+  relative = (mouse.x / progressframe.w)
   
   If relative <= 0 Then 
     relative = 0.00000000000000000000001

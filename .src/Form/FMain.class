@@ -11122,6 +11122,7 @@ Public Sub Initprogress()
   'Progress.Picture = Picture.Load("shadow.png")
   'progress.Picture = progress.Picture.Image.Desaturate().Colorize(Color.selectedbackground).picture
   'progress.Picture = progress.Picture.Image.Colorize(Color.lightBackground).Contrast(0.75).brightness(-0.10).picture
+  progress.picture = Picture.Load("barglow.png")
   progress.Picture = progress.Picture.Image.Colorize(Color.lightBackground).Contrast(0.5).brightness(-0.20).picture
   progress.Move(0, 0, 0, progress.parent.h)
   'ProgressGlow.Move(0, 0, 0, progress.Parent.h)

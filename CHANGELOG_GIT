@@ -5,6 +5,7 @@ Feb 4 2015
   FIX:    wrong seek position on mouse drag over the seekbar
   FIX:    do not replace https with http, new mplayer version supports https.
   FIX:    cddb works again
+  FIX:    progressbar becomes darker over time
 
 Nov 24 2014
   FIX:    Do not update volume if the media hasn't (yet) started; may fix muted sound on dvd play.

@@ -8256,6 +8256,7 @@ Public Sub MenuCDDA_Click()
     CDDAGrid.Columns[1].text = ("Name")
     CDDAGrid.Columns[2].text = ("Length")
     CDDAGrid.Clear
+    Stop
     For track = 1 To numtracks
       Length = "00:" & Left(mplayer.FindTagValue("ID_CDDA_TRACK_" & track & "_MSF"), 5)
       CDDAGrid.Rows.count = CDDAGrid.Rows.count + 1

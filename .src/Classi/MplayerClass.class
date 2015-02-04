@@ -201,9 +201,8 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
   'for audio only files, try to get common audio tags
   'try first to get them using fast taglib
   'but fallback to mplayer in idle mode
-  
-  If (AudioOnly And (Not Global.IsNetworkURI(Media_FullPath)) And media.IsSupported(fileutf8)) Then
-      If media.Init(Media_FullPath) Then
+  If (AudioOnly And (Not Global.IsNetworkURI(Media_FullPath))) Then
+      If media.IsSupported(fileutf8) And media.Init(Media_FullPath) Then
         Media_Artist = media.Artist
         Media_author = media.Artist
         Media_Title = media.Title
@@ -231,7 +230,7 @@ Private Function GetAllTags(Optional idleplay As Boolean = False)
         tmp = Split(Media_GetLength(), ".")
         tmp = Split(tmp[0], ",")
         Media_Length = tmp[0]
-        
+
         If global.IsCddb(Media_FullPath) Then
           Try cddbtrack = Split(Media_FullPath, "/ ", "", True, False)[1]
           Try Media_Artist = FindTagValue("ID_CDDB_INFO_ARTIST")

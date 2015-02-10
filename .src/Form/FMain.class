@@ -3236,7 +3236,6 @@ Public Sub UpdateVolumeSlider()
 ReturnLabel:
   Try SaveVolumeSlider.tag = "user"
   lastvolume = newvolume
-
 End
 
 Public Sub UpdateStreamsMenu()
@@ -3364,6 +3363,7 @@ Public Sub OneSecTimer_Timer()
     Endif
 
     If (Not mplayer.Paused) Then
+      mplayer.Send("get_property percent_pos")
       If (Not MousePressed) Then
         UpdateVolumeSlider()  '12% --> ok 3-4%
         mplayer.Send("get_property osdlevel")

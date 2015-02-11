@@ -225,6 +225,7 @@
       { ScrollView6 ScrollView
         MoveScaled(1,2,56,57)
         Tag = "library"
+        Expand = True
         Arrangement = Arrange.Vertical
         Spacing = True
         Margin = True
@@ -247,7 +248,6 @@
         { NOPARSEVBox2 VBox
           MoveScaled(1,5,51,23)
           ToolTip = ("Directories specified here are recursively added to the playlist\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop.")
-          Expand = True
           Spacing = True
           { NoParseWatchedLabel Label
             MoveScaled(0,1,20,3)
@@ -289,7 +289,6 @@
         { NOPARSEVBox1 VBox
           MoveScaled(1,29,51,26)
           ToolTip = ("Directories specified here will excluded\nwhen you commit a playlist update.\nUse add/delete button or drag 'n drop.")
-          Expand = True
           Spacing = True
           { NoParseExcludedLabel2 Label
             MoveScaled(0,1,20,3)

@@ -52,7 +52,7 @@
         Index = 0
         Text = ("equalizer")
         { ScrollView1xx Panel
-          MoveScaled(0,1,62,39)
+          MoveScaled(-1,5,62,39)
           Expand = True
           Arrangement = Arrange.Horizontal
           Spacing = True
@@ -196,52 +196,52 @@
               MoveScaled(1,29,50,4)
               { tfreq1 TextBox
                 MoveScaled(0,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq2 TextBox
                 MoveScaled(4,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq3 TextBox
                 MoveScaled(8,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq4 TextBox
                 MoveScaled(12,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq5 TextBox
                 MoveScaled(16,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq6 TextBox
                 MoveScaled(20,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq7 TextBox
                 MoveScaled(24,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq8 TextBox
                 MoveScaled(28,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq9 TextBox
                 MoveScaled(32,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
               { tfreq10 TextBox
                 MoveScaled(36,0,4,4)
-                Text = ("12")
+                Text = ("0")
                 ReadOnly = True
               }
             }
@@ -263,7 +263,7 @@
         Index = 0
       }
       { ButtonLadspaHelper Button
-        MoveScaled(0,24,4,4)
+        MoveScaled(0,18,4,4)
         Visible = False
         ToolTip = ("Show a tool that helps you to compile ladspa filter parameters.\nIf you don't use ladspa, just don't push it.")
         Picture = Picture["icon:/16/component"]

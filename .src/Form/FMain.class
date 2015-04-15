@@ -9448,6 +9448,7 @@ MainToolBar_Arrange()
   If Rnd(0, 1) > 0.75 Then
     Hsplit1_MyRefresh   
   Endif
+  Return
   'If Not FMain.mplayer.AudioOnly Then
     timerhideshowvideo.stop
     timerhideshowvideo.start

@@ -427,18 +427,15 @@ Public Sub LoadLeftSideTabsVisibility(ProfilePath As String)
   
 End
 
+
 Public Function GetLastProfile(confpath As String) As String
-  
-  Dim myfile As File
-  Dim currentprofile As String = "Factory_Defaults"
+
   Dim myfilename As String = confpath & "/" & lastprofilefile
-  
-  Try myfile = Open myfilename For Read
-  Try Line Input #myfile, currentprofile
-  Try Close #myfile
-  Return currentprofile
-  
+Stop
+  Try Return File.Load(myfilename)
+
 End
+
 
 Public Sub SaveCachefile(mytype As String, cachesize As String, mincache As String, seekcache As String)
   Dim cachesizefile As String = global.confpath & "/" & global.CurrentProfile & ".profile/" & "cachesize."

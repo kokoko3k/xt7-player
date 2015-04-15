@@ -162,6 +162,7 @@ Public Function ParsedVideoDriver() As String
     If Object.Type(driver) = "CheckBox" Then
       If driver.enabled Then
         If driver.value Then
+          Stop
           ParsedVoCmdLine = AddVideoDriver(ParsedVoCmdLine, driver.text)
         Endif
       Endif

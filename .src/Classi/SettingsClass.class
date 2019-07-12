@@ -431,7 +431,7 @@ End
 Public Function GetLastProfile(confpath As String) As String
 
   Dim myfilename As String = confpath & "/" & lastprofilefile
-Stop
+
   Try Return File.Load(myfilename)
 
 End

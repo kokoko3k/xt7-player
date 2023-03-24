@@ -1137,10 +1137,6 @@
           Tag = "flash"
           Text = ("Label3")
         }
-        { TimerFlash #Timer
-          #MoveScaled(2,2)
-          Delay = 2000
-        }
         { Panel5 Panel GridPanels
           Name = "Panel5"
           MoveScaled(2,10,30,15)
@@ -1170,6 +1166,10 @@
           AutoResize = True
           Text = ("PopUp window to play new catched videos")
         }
+        { TimerFlash #Timer
+          #MoveScaled(2,2)
+          Delay = 2000
+        }
         Index = 8
         Text = ("YouTube")
         Picture = Picture["youtubeicon.png"]
@@ -1185,10 +1185,6 @@
           { youtubetree TreeView
             MoveScaled(0,0,35,12)
             Expand = True
-          }
-          { TimerTreeDelayExpand #Timer
-            #MoveScaled(24,2)
-            Delay = 50
           }
           { scrollviewyt ScrollView
             MoveScaled(0,13,35,13)
@@ -1207,6 +1203,10 @@
               AutoResize = True
             }
           }
+          { TimerTreeDelayExpand #Timer
+            #MoveScaled(24,2)
+            Delay = 50
+          }
         }
         { HBox13 HBox
           MoveScaled(2,32,38,4)
@@ -1215,9 +1215,6 @@
             MoveScaled(0,0,4,4)
             ToolTip = ("Show advanced search options")
             Picture = Picture["icon:/16/zoom-fit"]
-          }
-          { blinktimer #Timer
-            Delay = 100
           }
           { buttondetail Button
             MoveScaled(4,0,4,4)
@@ -1250,6 +1247,9 @@
             MoveScaled(35,0,4,4)
             ToolTip = ("Search now")
             Text = (">>")
+          }
+          { blinktimer #Timer
+            Delay = 100
           }
         }
         { sidepanelYTSearchoptions Panel
@@ -1630,12 +1630,13 @@
       MoveScaled(42,5,60,65)
       Tracking = True
       Arrangement = Arrange.Vertical
-      { timerpluginmode #Timer
-        #MoveScaled(0,1)
-      }
-      { ABLoopTimer #Timer
-        #MoveScaled(8,2)
-        Delay = 75
+      { ToolbarBackground PictureBox
+        MoveScaled(6,4,19,0.8571)
+        #Translate = False
+        NoTabFocus = True
+        Picture = Picture["toolbarshade.png"]
+        Stretch = True
+        Alignment = Align.Left
       }
       { TagPanel ScrollView
         MoveScaled(27,3,30,45)
@@ -1815,14 +1816,14 @@
             Expand = True
             Text = ("Select next")
           }
+          { HBox3 HBox
+            MoveScaled(14,1,5,3)
+            Expand = True
+          }
           { Button2 Button
             MoveScaled(12,0,12,4)
             Text = ("Refresh")
             Picture = Picture["icon:/16/refresh"]
-          }
-          { HBox3 HBox
-            MoveScaled(14,1,5,3)
-            Expand = True
           }
           { ButtonTag Button
             MoveScaled(21,0,12,4)
@@ -1834,14 +1835,6 @@
           MoveScaled(6,39,17,3)
           Expand = True
         }
-      }
-      { ToolbarBackground PictureBox
-        MoveScaled(6,4,19,0.8571)
-        #Translate = False
-        NoTabFocus = True
-        Picture = Picture["toolbarshade.png"]
-        Stretch = True
-        Alignment = Align.Left
       }
       { OuterBox Panel VideoAreaGroup
         Name = "OuterBox"
@@ -1871,10 +1864,6 @@
             MoveScaled(1,2,15,18)
           }
         }
-      }
-      { TimerSeekThumble #Timer
-        #MoveScaled(16,20)
-        Delay = 100
       }
       { BottomVbox VBox
         MoveScaled(0,48,71,14)
@@ -1930,31 +1919,6 @@
               ToolTip = ("Stop")
               Picture = Picture["media-playback-stop.png"]
             }
-            { Panel9 Panel
-              MoveScaled(16,1,54,17)
-              Expand = True
-              Arrangement = Arrange.Fill
-              Padding = 6
-              { ProgressFrame DrawingArea
-                MoveScaled(3,1,53,16)
-                Background = &H000000&
-                Expand = True
-                Border = Border.Sunken
-                { Progress PictureBox
-                  MoveScaled(6,1,14,4)
-                  Picture = Picture["barglow.png"]
-                  Stretch = True
-                }
-                { seekbar ProgressBar
-                  MoveScaled(36,1,14,5)
-                  Visible = False
-                  Font = Font["1"]
-                  Tracking = True
-                  Expand = True
-                  Label = False
-                }
-              }
-            }
             { ABLoopButton ToolButton
               MoveScaled(24,0,5,4)
               Font = Font["Bold,-1"]
@@ -1985,6 +1949,31 @@
               Font = Font["6"]
               ToolTip = ("Show/Hide current and next TV program.")
               Picture = Picture["media-info.png"]
+            }
+            { Panel9 Panel
+              MoveScaled(16,1,54,17)
+              Expand = True
+              Arrangement = Arrange.Fill
+              Padding = 6
+              { ProgressFrame DrawingArea
+                MoveScaled(3,1,53,16)
+                Background = &H000000&
+                Expand = True
+                Border = Border.Sunken
+                { Progress PictureBox
+                  MoveScaled(6,1,14,4)
+                  Picture = Picture["barglow.png"]
+                  Stretch = True
+                }
+                { seekbar ProgressBar
+                  MoveScaled(36,1,14,5)
+                  Visible = False
+                  Font = Font["1"]
+                  Tracking = True
+                  Expand = True
+                  Label = False
+                }
+              }
             }
           }
           { ControlPanelRight Panel
@@ -2036,6 +2025,17 @@
             Alignment = Align.Right
           }
         }
+      }
+      { timerpluginmode #Timer
+        #MoveScaled(0,1)
+      }
+      { ABLoopTimer #Timer
+        #MoveScaled(8,2)
+        Delay = 75
+      }
+      { TimerSeekThumble #Timer
+        #MoveScaled(16,20)
+        Delay = 100
       }
       { cachebar PictureBox
         MoveScaled(1,49,58,1)

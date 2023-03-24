@@ -50,15 +50,15 @@
       Spacing = True
       Margin = True
       Padding = 6
+      { VBox1 VBox
+        MoveScaled(1,1,4,4)
+        Expand = True
+      }
       { Button3 Button
         MoveScaled(0,1,19,4)
         Visible = False
         AutoResize = True
         Text = ("Print grid code to console")
-      }
-      { VBox1 VBox
-        MoveScaled(1,1,4,4)
-        Expand = True
       }
       { Button2 Button
         MoveScaled(17,1,13.5714,4)

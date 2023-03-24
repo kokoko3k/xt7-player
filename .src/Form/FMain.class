@@ -246,7 +246,7 @@ Public Sub Form_Open()
   SetFlexSpaceVisibility(False)
   'init dynagui toolbar objects
   DynaGuiTools.AllowedContainers = ["MainToolbar"] ', "SliderBox"]
-  DynaGuiTools.YOffset = - Me.Font.TextHeight("Ij") - 8
+  DynaGuiTools.YOffset = -Me.Font.TextHeight("Ij") - 8
   'Hide the coverbox
   If GeneralOptions.CoverCHK2.value Then ShowAudioPanel(False)
   'Popup translation needed dialog:
@@ -1603,7 +1603,7 @@ Public Sub SaveFormGeometry()
       Wait 0.03
       deltax = (fmain.screenx - prevscreenx) * 2
       deltay = (fmain.screeny - prevscreeny) * 2
-      SubSaveFormGeometry(- deltax, - deltay)
+      SubSaveFormGeometry(-deltax, -deltay)
     Else
       SubSaveFormGeometry(fmain.x - fmain.screenx, fmain.y - fmain.screeny)
     Endif
@@ -4801,7 +4801,7 @@ Public Sub PanelNowNextArrange(Optional Exdended As Boolean = False)
     If .LabelNowInfo.visible Then .PanelNowNext.h += .LabelNowInfo.h + .LabelNextInfo.h
     .PanelNowNext.w = CInt(outerbox.w * 0.8)
     .PanelNowNext.x = (outerbox.w / 2) - (.PanelNowNext.w / 2)
-    .PanelNowNext.y = - .PanelNowNext.padding
+    .PanelNowNext.y = -.PanelNowNext.padding
   End With
 
 End
